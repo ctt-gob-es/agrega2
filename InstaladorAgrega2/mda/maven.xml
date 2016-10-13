@@ -9,10 +9,8 @@
 		<!-- 
 		  <taskdef name="svn" classname="org.tigris.subversion.svnant.SvnTask" />
 
-
 		  <typedef name="svnFileSet" classname="org.tigris.subversion.svnant.types.SvnFileSet" />
 				
-
 		  <typedef name="svnNormal" classname="org.tigris.subversion.svnant.selectors.Normal" />
 		  <typedef name="svnAdded" classname="org.tigris.subversion.svnant.selectors.Added" />
 		  <typedef name="svnReplaced" classname="org.tigris.subversion.svnant.selectors.Replaced" />
@@ -24,26 +22,27 @@
 		  <typedef name="svnMissing" classname="org.tigris.subversion.svnant.selectors.Missing" />
 		  <typedef name="svnDeleted" classname="org.tigris.subversion.svnant.selectors.Deleted" />
 			
-
 		  <typedef name="svnExists" classname="org.tigris.subversion.svnant.conditions.Exists" />
 		
 		<ant:echo message="Bajando plantillas portal de ${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}"/>
 		<ant:svn username="${svn.user}" password="${svn.password}" javahl="true">
 			<ant:export srcUrl="${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}" destPath="${maven.scm.checkout.dir}"/>
 		</ant:svn>
-	    -->
-			<ant:exec failonerror="true" executable="svn">
-				<arg value="export"/>
-				<arg value="${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}"/>
-				<arg value="${maven.scm.checkout.dir}"/> 
-			</ant:exec>
+		-->
+		
+		<ant:exec failonerror="true" executable="svn">
+			<arg value="export"/>
+			<arg value="${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}"/>
+			<arg value="${maven.scm.checkout.dir}"/> 
+		</ant:exec>
+		
 		<!-- copiamos css e imagenes -->
 		<ant:echo message="copiando estaticos a ${maven.scm.checkout.dir}/jsp/layout"/>
-		<ant:copy todir="${maven.scm.checkout.dir}/jsp/layout">
+		<ant:copy todir="${maven.scm.checkout2.dir}/jsp/layout">
 		    <fileset dir="../styledir" />
 		</ant:copy>
 				
-		<ant:copy todir="${maven.scm.checkout.dir}/jsp/">
+		<ant:copy todir="${maven.scm.checkout2.dir}/jsp/">
 		    <fileset dir="../styledir" />
 		</ant:copy>
 

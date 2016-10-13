@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.oaipmh.presentacion.pmhServer;
 
@@ -851,7 +846,7 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 	        					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)){
 	        				
 	        				LomAgrega lomAgrega = new LomAgrega((Lom)o[i]);
-							String catalogo = this.getSrvPropiedadService().get(AgregaProperties.CATALOGO_MEC);
+							String catalogo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
 							header.setIdentifier(devuelveidOai(lomAgrega.getGeneralAgrega().obtenerIdentificadorFormatoMEC(catalogo)));		
 							header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
 							meta.setAnyObject((Lom)o[i]);

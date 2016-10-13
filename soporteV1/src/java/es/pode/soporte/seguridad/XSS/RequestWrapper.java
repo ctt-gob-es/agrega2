@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * This code is to avoid XSS security threat in spring application
  */
@@ -252,26 +247,30 @@ public final class RequestWrapper extends HttpServletRequestWrapper {
 		//son muy sospechosos de ser ataques
 		
 		//Eliminamos apariciones de : con ( y )
+/*		
 		value = value.replaceAll("(?i):.*\\(.*\\)", "");
 		value = value.replaceAll("(?i):.*\\(.*%29", "");
 		value = value.replaceAll("(?i):.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3A.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3A.*\\(.*\\)", "");
+*/
 		
 		//Eliminamos apariciones de = con ( y )
+/*		
 		value = value.replaceAll("(?i)=.*\\(.*\\)", "");
 		value = value.replaceAll("(?i)=.*\\(.*%29", "");
 		value = value.replaceAll("(?i)=.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3D.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3D.*\\(.*\\)", "");
-		
+*/		
 		//Eliminamos apariciones de < con ( y )
+/*		
 		value = value.replaceAll("(?i)<.*\\(.*\\)", "");
 		value = value.replaceAll("(?i)<.*\\(.*%29", "");
 		value = value.replaceAll("(?i)<.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3C.*%28.*%29", "");
 		value = value.replaceAll("(?i)%3C.*\\(.*\\)", "");
-		
+*/		
 		logger.debug("Out cleanXSS RequestWrapper ........ value ......." + value);
 		return value;
 	}

@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.visualizador.presentacion.portada;
 
@@ -22,7 +17,7 @@ import org.apache.struts.action.ActionMapping;
 import es.agrega.soporte.agregaProperties.AgregaProperties;
 
 import es.pode.adminusuarios.negocio.servicios.GrupoPublicoVO;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.contenidos.negocio.descargas.servicio.DescDescargaVO;
 import es.pode.contenidos.negocio.descargas.servicio.DescargaVO;
 import es.pode.contenidos.negocio.noticias.servicio.NoticiaTraducidaVO;
@@ -138,7 +133,7 @@ public class PortadaControllerImpl extends PortadaController {
 			//new NoticiaTraducidaVO[0];
 			if (arrayNoticias!=null && arrayNoticias.length>0) {
 				
-				int numNoticiasMostradas = Integer.parseInt(ObtieneSrvPropiedad().get(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN));
+				int numNoticiasMostradas = Integer.parseInt(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN));
 				ArrayList<NoticiaTraducidaVO> lista_noticias = new ArrayList<NoticiaTraducidaVO>();
 //				NoticiaTraducidaVO[] array_noticias = new NoticiaTraducidaVO[numNoticiasMostradas];
 				
@@ -198,7 +193,7 @@ public class PortadaControllerImpl extends PortadaController {
 			if (descargas!=null && descargas.length>0) {	
 				DescDescargaVO[] descs = getSrvDescargas().obtenerDescDescargasIdioma(descargas, idioma);
 				logger.debug("Recuperadas <" + descs.length + "> descripciones de descargas.");
-				int numDescargasMostradas = Integer.parseInt(ObtieneSrvPropiedad().get(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN));
+				int numDescargasMostradas = Integer.parseInt(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN));
 				
 				for (int i = 0; i<numDescargasMostradas && i<descargas.length && i<descs.length; i++) {
 					DescargaInfo info = new DescargaInfo();

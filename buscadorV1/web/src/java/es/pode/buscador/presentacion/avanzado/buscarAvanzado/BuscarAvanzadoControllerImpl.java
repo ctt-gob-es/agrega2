@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.buscador.presentacion.avanzado.buscarAvanzado;
 
@@ -41,7 +36,7 @@ import es.pode.buscar.negocio.buscar.servicios.ResultadosNodoCountVO;
 import es.pode.buscar.negocio.buscar.servicios.SrvBuscarService;
 import es.pode.buscar.negocio.buscar.servicios.ValoresBusquedaVO;
 import es.pode.buscar.negocio.nodosSQI.servicio.NodoSQIVO;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.fuentestaxonomicas.negocio.servicio.EstructuraVdexVO;
 import es.pode.fuentestaxonomicas.negocio.servicio.TaxonPathVO;
 import es.pode.fuentestaxonomicas.negocio.servicio.TaxonVO;
@@ -1149,7 +1144,7 @@ public class BuscarAvanzadoControllerImpl extends BuscarAvanzadoController{
 						boolean encontrado=false;
 						for (int j=0;j<resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito().length;j++){
 //							if (resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j]!=null && resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j].equals(DependentServerProperties.getInstance().getProperty(BuscarAvanzadoControllerImpl.IDENTIFICADOR_NODO).toString())){
-							if (resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j]!=null && resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j].equals(ObtieneSrvPropiedad().get(AgregaProperties.SERVER_ID))){
+							if (resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j]!=null && resultadosTaxonomica.getResultadoBusqueda()[i].getAmbito()[j].equals(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.SERVER_ID))){
 								resultadosTaxonomica.getResultadoBusqueda()[i].setEsVisualizable(true);
 								encontrado=true;
 							}
@@ -2244,7 +2239,7 @@ public class BuscarAvanzadoControllerImpl extends BuscarAvanzadoController{
 				} else {
 					if ((LdapUserDetailsUtils.estaAutenticado())||(LdapUserDetailsUtils.tieneIdentidadFederada(request))){
 						for (int j = 0; j < valoresRetorno[i].getAmbito().length && !visualizable; j++) {
-							if(valoresRetorno[i].getAmbito()[j].trim().equals(ObtieneSrvPropiedad().get(AgregaProperties.SERVER_ID))){
+							if(valoresRetorno[i].getAmbito()[j].trim().equals(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.SERVER_ID))){
 								valoresRetorno[i].setEsVisualizable(true);
 								visualizable=true;
 							}

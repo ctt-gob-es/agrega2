@@ -293,12 +293,14 @@
 			<type>war</type>
 			<version>1</version>
 		</dependency>
+<!--    
 		<dependency>
 			<groupId>es.agrega</groupId>
 			<artifactId>interfazJMX</artifactId>
 			<type>war</type>
 			<version>1.0</version>
 		</dependency>
+-->    
 		<dependency>
 			<groupId>es.agrega</groupId>
 			<artifactId>cas</artifactId>

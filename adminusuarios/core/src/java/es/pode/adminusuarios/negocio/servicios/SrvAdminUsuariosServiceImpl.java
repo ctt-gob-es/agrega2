@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.adminusuarios.negocio.servicios;
 
 import java.io.IOException;
@@ -44,10 +39,12 @@ import es.pode.adminusuarios.negocio.dominio.Rol;
 import es.pode.adminusuarios.negocio.dominio.RolDao;
 import es.pode.adminusuarios.negocio.dominio.Usuario;
 import es.pode.adminusuarios.negocio.dominio.UsuarioDao;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.gestorCorreo.negocio.servicios.CorreoUsuarioVO;
 import es.pode.gestorCorreo.negocio.servicios.ResultadoEnvioCorreoVO;
 import es.pode.gestorCorreo.negocio.servicios.SrvCorreo;
+import es.pode.publicacion.negocio.servicios.SrvAlbumService;
+import es.pode.publicacion.negocio.servicios.SrvPublicacionService;
 import es.pode.soporte.i18n.I18n;
 import es.pode.soporte.url.ImagenesAgrega;
 import es.pode.soporte.utiles.base64.Base64Coder;
@@ -64,7 +61,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 	private java.util.Properties pAdminUsuariosProperties = null;
 	private java.util.Properties pAgregaProperties = null;
-	private static String caracteres = "aábcdeéfghiíjklmnñoópqrstuúvwxyzAÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZ1234567890.,;:{}[]";
+	private static String caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,;:{}[]";
 	
 	private static String SERVER_ID_INTEF ="es_cnice_20080623";
 	
@@ -255,7 +252,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			//Envio del correo al usuario
 			setTo[0]=emailNIF.getEmail();
 			correoUsuarioVO.setTo(setTo);
-			correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+			correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 			correoUsuarioVO.setHrefLogo(ImagenesAgrega.urlImagenLogoAgrega());
 			correoUsuarioVO.setUrlImagenLogo(ImagenesAgrega.urlImagenLogoAgrega());
 			correoUsuarioVO.setEmailUsuario(emailNIF.getEmail());
@@ -272,7 +269,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				Usuario usuarioEntity = this.getUsuarioDao().load(id);
 				this.getBeanMapper().map(emailNIF, usuarioEntity, "MAPEO_USUARIOVO_USUARIO");
 				this.getUsuarioDao().update(usuarioEntity);
-				if(!(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
+				if(!(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
 				{
 					this.getLdapHandler().modifyUser(emailNIF.getUsuario(), this.getHashPassword(nuevaClave), emailNIF.getNombre() + " " + emailNIF.getApellido1() + " " + emailNIF.getApellido2());
 					if(log.isDebugEnabled())log.debug("Actualizamos la entrada de ldap");
@@ -280,9 +277,9 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				{
 					log.info("Se envia un correo al administrador del ldap para que modifique la clave del usuario");
 					correoUsuarioVO = new CorreoUsuarioVO();
-					setTo[0]= AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO);
+					setTo[0]= this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO);
 					correoUsuarioVO.setTo(setTo);
-					correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+					correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 					correoUsuarioVO.setHrefLogo(ImagenesAgrega.urlImagenLogoAgrega());
 					correoUsuarioVO.setUrlImagenLogo(ImagenesAgrega.urlImagenLogoAgrega());
 					correoUsuarioVO.setEmailUsuario(emailNIF.getEmail());
@@ -352,7 +349,24 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		}
 		try
 		{
+			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
+		    if (usuario.getNIF()!=null)
+		    	usuario.setNIF(usuario.getNIF().toUpperCase());
+			
+		    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
+		    if (usuario.getEmail()!=null)
+		    	usuario.setEmail(usuario.getEmail().toLowerCase());
+			
 			Usuario usuarioEntity = this.getUsuarioDao().load(usuario.getId());
+			
+			//Revisamos si el email se ha modificado
+			if(!usuario.getEmail().toLowerCase().contentEquals(usuarioEntity.getEmail().toLowerCase())) {
+				//Revisamos si el nuevo email email ya pertenece a un usuario registrado
+				if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail().toLowerCase())!=null) {
+					log.error("El email ya pertenece a un usuario registrado");
+					return "FALLO.MODIFICARUSUARIO";
+				} 
+			}
 		
 			boolean emailLdapExt = (!(usuario.getClave() == null) && (!(usuario.getClave().equalsIgnoreCase(""))));
 			String claveNueva = usuario.getClave();
@@ -376,13 +390,13 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			{
 //				if(ChequeoClave.chequea(claveNueva)!=0) return "FALLO.MODIFICARUSUARIO";
 				
-				if (ObtieneSrvPropiedad().get (AgregaProperties.CHECK_PASSWORD).equalsIgnoreCase("true")) {
+				if (ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CHECK_PASSWORD).equalsIgnoreCase("true")) {
 					//Chequeamos la clave
 					if (ChequeoClave.chequea(claveNueva) != 0)
 						return "FALLO.MODIFICARUSUARIO";
 				}
 					
-				if (!((AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true")))
+				if (!((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true")))
 				{
 					if(log.isDebugEnabled())log.debug("Se modifica la entrada de ldap");
 					this.getLdapHandler().modifyUser(usuario.getUsuario(), this.getHashPassword(claveNueva), usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
@@ -393,18 +407,20 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		} catch (org.springframework.dao.DataRetrievalFailureException comunicationException)
 		{
 			log.error("Se produce una excepcion en ldap damos marcha atras : DataRetrievalFailureException");
-
+			log.error(comunicationException);
 //			this.modificarUserTransaccion(usuarioVoOld);
 			resultado = "FALLO.MODIFICARUSUARIO";
 		} catch (org.springframework.ldap.UncategorizedLdapException exception)
 		{
 			log.error("Se produce una excepcion en ldap damos marcha atras : UncategorizedLdapException");
+			log.error(exception);
 //			this.modificarUserTransaccion(usuarioVoOld);
 			resultado = "FALLO.MODIFICARUSUARIO";
 
 		} catch (Exception e)
 		{
 			log.error("Se ha producido la siguiente excepcion " + e);
+			log.error(e);
 			resultado = "FALLO.MODIFICARUSUARIO";
 		}
 		return resultado;
@@ -422,7 +438,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	{
 		Person datosLdapUsuario=null;
 		boolean existeLdapWebSemantica=ldapWebSemanticaActiva();
-		String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+		String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
 		
 		// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
 	    if (usuario.getNIF()!=null)
@@ -433,34 +449,54 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	    	usuario.setEmail(usuario.getEmail().toLowerCase());
 	    	
 	    //Modificamos los datos del usuario en la rama LDAP de la web semantica
-		if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {	
+	    boolean aplicarCambiosEnWebSemantica = existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false");
+	    
+		if(aplicarCambiosEnWebSemantica) {	
 			//Primero almacenamos los datos actuales por si hay que hacer rollback
-			datosLdapUsuario=this.getLdapWebSemanticaHandler().getUserData(usuario.getUsuario());
-			
-			// Obtenemos la clave. 
-			// Si viene en el usuarioVO se cambia, si no se deja la que tenía en ldap
-			String claveUsuarioHash="";
-			if (usuario.getClave()!=null && !usuario.getClave().equals(""))
-				claveUsuarioHash=getHashPassword(usuario.getClave());
-			else
-				claveUsuarioHash=datosLdapUsuario.getHasedPasswd();			
-
-			//Ahora modificamos
-			this.getLdapWebSemanticaHandler().modifyUser(usuario.getUsuario(), claveUsuarioHash, 
-					usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());			
+			try{
+				// Se busca en rama Procomún
+				datosLdapUsuario=this.getLdapWebSemanticaHandler().getUserData(usuario.getUsuario());
+			}catch (Exception e) {
+				log.warn("El usuario no existe en la rama de Procomún. Se intentará modificar en la de Agrega", e);
+			}			
+			// Si el usuario está en la rama de Procomún se modifica en ldap de procomun
+			if (datosLdapUsuario!=null)
+			{
+				// Obtenemos la clave. 
+				// Si viene en el usuarioVO se cambia, si no se deja la que tenía en ldap
+				String claveUsuarioHash="";
+				if (usuario.getClave()!=null && !usuario.getClave().equals(""))
+					claveUsuarioHash=getHashPassword(usuario.getClave());
+				else
+					claveUsuarioHash=datosLdapUsuario.getHasedPasswd();			
+	
+				//Ahora modificamos
+				this.getLdapWebSemanticaHandler().modifyUser(usuario.getUsuario(), claveUsuarioHash, 
+						usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
+			}
 		}	
 
 		try {
 			//Damos de alta al usuario en Agrega
-			return modificarUsuarioAgrega(usuario);
+			String resultado = modificarUsuarioAgrega(usuario);
+			
+			if(!resultado.contentEquals("OK.MODIFICARUSUARIO")) {
+				if(aplicarCambiosEnWebSemantica) {				
+					//Rollback
+					this.getLdapWebSemanticaHandler().modifyUser(datosLdapUsuario.getUsuario(), datosLdapUsuario.getHasedPasswd(), 
+						datosLdapUsuario.getNombreApellidos());
+				}
+				log.error("Error al modificar el usuario en agrega");
+			}
+			return resultado;
 			
 		} catch (Exception e) {
-			if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {				
+			if(aplicarCambiosEnWebSemantica) {				
 				//Rollback
 				this.getLdapWebSemanticaHandler().modifyUser(datosLdapUsuario.getUsuario(), datosLdapUsuario.getHasedPasswd(), 
 					datosLdapUsuario.getNombreApellidos());
 			}
-			log.error("Error al dar de alta al usuario en agrega ", e);
+			log.error("Error al modificar el usuario en agrega ", e);
 			throw e;
 		}
 	}
@@ -504,13 +540,21 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		CorreoUsuarioVO correoUsuarioVO =new CorreoUsuarioVO();
 		String setTo[]=new String [1];
 		ResultadoEnvioCorreoVO correoVO2= new ResultadoEnvioCorreoVO();
+		
+		// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
+	    if (usuario.getNIF()!=null)
+	    	usuario.setNIF(usuario.getNIF().toUpperCase());
+		
+	    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
+	    if (usuario.getEmail()!=null)
+	    	usuario.setEmail(usuario.getEmail().toLowerCase());
 
 		// En BD no se va a almacenar la clave del usuario unicamente en ldap
 		String clave = usuario.getClave();
 		usuario.setClave("");
 		SrvCorreo correoService=  this.getSrvCorreo();
 
-		if (ObtieneSrvPropiedad().get (AgregaProperties.CHECK_PASSWORD).equalsIgnoreCase("true")) {
+		if (ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CHECK_PASSWORD).equalsIgnoreCase("true")) {
 			//Chequeamos la clave
 			log.debug("Comprobamos clave");
 			if (ChequeoClave.chequea(clave) != 0)
@@ -524,7 +568,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		
 		setTo[0]=usuario.getEmail();
 		correoUsuarioVO.setTo(setTo);
-		correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+		correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 		correoUsuarioVO.setHrefLogo(ImagenesAgrega.urlImagenLogoAgrega());
 		correoUsuarioVO.setUrlImagenLogo(ImagenesAgrega.urlImagenLogoAgrega());
 		correoUsuarioVO.setEmailUsuario(usuario.getEmail());
@@ -536,7 +580,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			//Comprobamos la cuota si es nula o vacia ponemos la de por defecto
 			if((usuario.getCuota() == null)|| (usuario.getCuota() == 0)) {
 				if(log.isDebugEnabled())log.debug("Se pone la cuota por defecto");
-				usuario.setCuota((new Long((ObtieneSrvPropiedad().get (AgregaProperties.VALOR_CUOTA_DEFECTO)))* 1024 * 1024));
+				usuario.setCuota((new Long((ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.VALOR_CUOTA_DEFECTO)))* 1024 * 1024));
 			}
 			
 			//Comprobamos si los grupos o usuarios son nulos, en ese caso devolvemos una excepcion
@@ -544,6 +588,12 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				log.error("El usuario no tiene ningún grupo asociado");
 				throw new Exception("El usuario no tienen ningún grupo asociado");
 			}
+
+			//Comprobamos si ya existe un usuario con ese email
+			if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail().toLowerCase())!=null) {
+				log.error("El email ya pertenece a un usuario registrado");
+				throw new Exception("El email ya pertenece a un usuario registrado");
+			} 
 			
 			if (this.obtenerUsuario(usuario.getNIF()) == null) {
 				//Comprobamos si el login ya pertenece a otro usuario en ese caso como no coinciden el nif devolvemos un error
@@ -552,7 +602,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				}
 				usuarioEntity = this.getUsuarioDao().fromUsuarioVO(usuario);
 			    usuarioCreado = this.getUsuarioDao().create(usuarioEntity);
-				if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
+				if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
 				{
 					this.getLdapHandler().insertUser(usuarioCreado.getUsuario(), this.getHashPassword(clave), 
 							usuarioCreado.getNombre() + " " + usuarioCreado.getApellido1() + " " + usuarioCreado.getApellido2());
@@ -585,7 +635,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				
 				this.getUsuarioDao().update(usuarioEntity);
 				
-				if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false")) 
+				if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false")) 
 				{
 					this.getLdapHandler().insertUser(usuario.getUsuario(), this.getHashPassword(clave), 
 							usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
@@ -600,7 +650,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			StringBuffer idiomas = null;
 			
 			//Si es nodo.taller
-			if ("true".equals(AgregaPropertiesImpl.getInstance().getProperty("nodo.taller"))){
+			if ("true".equals(this.getSrvPropiedadService().getValorPropiedad("nodo.taller"))){
 				idiomas=new StringBuffer();
 				for(int j=0;j<l;j++){
 					
@@ -637,14 +687,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			//Comprobamos si el sistema tiene un ldap externo, en este
 			// caso se mandara un email al administrador del ldap
-			if ((AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
+			if ((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
 			{
 				if(log.isDebugEnabled())log.debug("Alta en un servidor ldap externo");
 				correoUsuarioVO.setLdapExterno(true);
 				correoUsuarioVO.setIdiomaCorreo(I18n.getInstance().obtenerIdiomaDefectoPlataforma());
 
-				correoUsuarioVO.setEmailUsuario(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO));
-				setTo[0]=(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO));
+				correoUsuarioVO.setEmailUsuario(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
+				setTo[0]=(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
 				correoUsuarioVO.setTo(setTo);
 				correoVO2=correoService.altaUsuario(correoUsuarioVO);
 			}
@@ -661,6 +711,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 			UsuarioVO usuarioCreated = this.obtenerDatosUsuario(usuario.getUsuario());
 			this.eliminarUserTransaccion(usuarioCreated);
+			resultado=null;
 
 		} catch (org.springframework.ldap.UncategorizedLdapException exception)
 		{
@@ -668,6 +719,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 			UsuarioVO usuarioCreated = this.obtenerDatosUsuario(usuario.getUsuario());
 			this.eliminarUserTransaccion(usuarioCreated);
+			resultado=null;
 			
 		} catch (org.springframework.dao.DataIntegrityViolationException dataIntegrityViolation)
 		{
@@ -675,6 +727,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 			UsuarioVO usuarioCreated = this.obtenerDatosUsuario(usuario.getUsuario());
 			this.eliminarUserTransaccion(usuarioCreated);
+			resultado=null;
 
 		} catch (Exception e)
 		{
@@ -711,7 +764,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	protected Long handleAltaUsuario(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.lang.Exception
 	{
 		boolean existeLdapWebSemantica=ldapWebSemanticaActiva();
-		String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+		String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
 		
 		// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
 	    if (usuario.getNIF()!=null)
@@ -722,27 +775,146 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	    	usuario.setEmail(usuario.getEmail().toLowerCase());
 
 	    //Damos al usuario de alta en la rama LDAP de la web semantica
-		if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {
+	    boolean aplicarCambiosEnWebSemantica = existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false");
+	    
+		if(aplicarCambiosEnWebSemantica) {
 			this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()),
 					usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
 		}
 
 		try {
 			//Damos de alta al usuario en Agrega
-			return altaUsuarioAgrega(usuario, false, true);
+			Long resultado = altaUsuarioAgrega(usuario, false, true);
+			if(resultado==null) {
+			    //Damos al usuario de baja en la rama LDAP de la web semantica
+				if(aplicarCambiosEnWebSemantica) {
+					this.getLdapWebSemanticaHandler().deleteContact(usuario.getUsuario());
+				}				
+				log.error("Error al dar de alta al usuario en agrega");
+			}
+			return resultado;
 			
 		} catch (Exception e) {
 		    //Damos al usuario de baja en la rama LDAP de la web semantica
-			if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {
+			if(aplicarCambiosEnWebSemantica) {
 				this.getLdapWebSemanticaHandler().deleteContact(usuario.getUsuario());
 			}
 			log.error("Error al dar de alta al usuario en agrega ", e);
 			throw e;
 		}
 	}
+		
+	
+	/**
+	 * Metodo identico al controlador que da de baja a los usuarios BajaUsuarioControllerImpl
+	 * Se encarga de eliminar cualquier contacto en el que este el usuario a eliminar, y eliminar
+	 * todos sus ODEs e información relacionada
+	 * @param ids
+	 * @param bEnviarCorreoBajaUsuario
+	 * @return
+	 * @throws Exception
+	 */
+    private ValidaBajaUsuarioVO bajaUsuarioAgrega(java.lang.Long[] ids, boolean bEnviarCorreoBajaUsuario) throws Exception {
+    	    	
+		ValidaBajaUsuarioVO validaBaja = null;
+		
+		try {
+			ArrayList <UsuarioVO> usuariosABorrar= new ArrayList<UsuarioVO>();
+
+			for (int i=0; i<ids.length; i++) {
+				UsuarioVO usuarioABorrar=this.descripcionUsuario(ids[i]);
+				usuariosABorrar.add(usuarioABorrar);
+			}
+
+			// Eliminamos los contactos generados por otros usuarios hacia el/los usuario/s eliminado/s
+			//Para ello sigo los siguientes pasos:
+			//1- Obtenemos todos los usuaarios de la plataforma
+			UsuarioVO[] usuarioVO = listarUsuarios();
+			for(int i=0; i<usuarioVO.length; i++) {
+				
+				//2- Obtengo los contactos de cada usuario de la plataforma
+        if (usuarioVO[i].getUsuarioPublico()!=null)
+				{
+  				ContactoVO[] contactos = getSrvPerfilPublico().listarContactosDeAgenda(usuarioVO[i].getUsuario());
+  				for(int j=0; j<contactos.length; j++) {
+  					
+  					//3- Miro si algun contacto de los usuarios de la plataforma es uno de los usuarios que estan borrandose
+  					//y en caso de ser asi lo elimino como contacto
+  					for(int k=0; k<usuariosABorrar.size(); k++) {
+  						
+  						if (usuariosABorrar.get(k).getUsuario().equalsIgnoreCase(contactos[j].getUsuarioContacto())) {
+  							
+  				 	       Long[] idContactos=new Long[1];
+  				 	       idContactos[0]=contactos[j].getId();
+  				 	       ResultadoOperacionVO[] r = this.getSrvPerfilPublico().eliminarContactoDeAgenda(idContactos, usuarioVO[i].getUsuario());
+  				 	       
+  				 	       //Revisamos el resultado de la operacion
+  				 	       if(r!=null && r.length>0){
+  				 	    	   ResultadoOperacionVO resultado=r[0];
+  				 	    	   Boolean texto=resultado.getResultado();
+  				 	    	   if(texto.equals(Boolean.FALSE)){
+  				 	    		   String error_msg="Se ha producido un error al eliminar al usuario "+usuariosABorrar.get(k).getUsuario()+" como contacto del usuario "+usuarioVO[i].getUsuario();
+  				 	    		   log.error(error_msg);
+  				 	    		   ValidaBajaUsuarioVO ret = new ValidaBajaUsuarioVO();
+  				 	    		   ret.setNumDeleted(0);
+  				 	    		   ret.setDescripcion(error_msg);
+  				 	    		   ret.setItemsDeleted(null);
+  				 	    		   return ret;
+  				 	    	   }
+  				 	       } else {
+  			 	    		   String error_msg="Se ha producido un error al eliminar al usuario "+usuariosABorrar.get(k).getUsuario()+" como contacto del usuario"+usuarioVO[i].getUsuario()+". Respuesta es null o vacia";
+  			 	    		   log.error(error_msg);
+  			 	    		   ValidaBajaUsuarioVO ret = new ValidaBajaUsuarioVO();
+  			 	    		   ret.setNumDeleted(0);
+  			 	    		   ret.setDescripcion(error_msg);
+  			 	    		   ret.setItemsDeleted(null);
+  			 	    		   return ret;
+  				 	       }
+  						}
+  					}
+  				}
+        }
+			}
+		    
+			//Marcamos a los usuario a eliminar como dados de baja
+		    validaBaja = bajaUsuarioAgregaAux(ids,bEnviarCorreoBajaUsuario);
+
+		    // Despues de eliminar (dar de baja) al usuario tenemos que eliminar mas datos relacionados
+			if(validaBaja.getDescripcion().equals("ok.borrarUsuarios")) {
+				
+				UsuarioVO[] usuariosBorrados=validaBaja.getItemsDeleted();
+				String[] listaUsuarios=new String[usuariosBorrados.length];
+				
+				for(int i=0;i<usuariosBorrados.length;i++){
+					String idUsuario=usuariosBorrados[i].getUsuario();
+					listaUsuarios[i]=idUsuario;
+				}
+
+			    // Eliminamos los odes en estado creado o rechazado, es decir los que tenía en su carpeta personal, si la baja ha ido bien
+			    // También tenemos que eliminar todos sus albumes si la eliminacion de usuario ha ido bien.
+				SrvPublicacionService srvPublicacion = this.getSrvPublicacionService();
+				Boolean vuelta = srvPublicacion.eliminarOdesUsuarios(listaUsuarios);
+				log.debug("Hemos borrado todos los odes de todos los usuarios ? "+vuelta);
+				SrvAlbumService srvAlbumes=this.getSrvAlbumService();
+				Boolean eliminadosUsuarios=srvAlbumes.eliminarAlbumesUsuarios(listaUsuarios);
+				log.debug("Hemos borrado todos los albumes de todos los usuarios ? "+eliminadosUsuarios);
+			}
+		   
+		} catch (Exception e) {
+		    log.error("Se ha producido un error al eliminar el usuario " + e);
+		}
+		return validaBaja;
+    }
 	
 	
-	private ValidaBajaUsuarioVO bajaUsuarioAgrega(java.lang.Long[] ids, boolean bEnviarCorreoBajaUsuario) throws java.lang.Exception {
+    /**
+     * Se encarga de eliminar al usuario de la DB u del LDAP de Agrega
+     * @param ids
+     * @param bEnviarCorreoBajaUsuario
+     * @return
+     * @throws java.lang.Exception
+     */
+	private ValidaBajaUsuarioVO bajaUsuarioAgregaAux(java.lang.Long[] ids, boolean bEnviarCorreoBajaUsuario) throws java.lang.Exception {
 		
 		ValidaBajaUsuarioVO validaBajaVO = new ValidaBajaUsuarioVO();
 		String setTo[]=new String [ids.length];
@@ -782,7 +954,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				}
 				this.getUsuarioDao().update(usuario);
 				if(log.isDebugEnabled())log.debug("Se actualiza la fecha de baja del usuario");
-				if (!((AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true")))
+				if (!((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true")))
 				{
 					this.getLdapHandler().deleteContact(usuario.getUsuario());
 				}
@@ -799,7 +971,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				setTo[j]=usuario.getEmail();
 				
 				correoUsuarioVO.setTo(setTo);
-				correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+				correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 				correoUsuarioVO.setHrefLogo(ImagenesAgrega.urlImagenLogoAgrega());
 				correoUsuarioVO.setUrlImagenLogo(ImagenesAgrega.urlImagenLogoAgrega());
 				correoUsuarioVO.setLdapExterno(false);
@@ -807,7 +979,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				correoUsuarioVO.setNodoTaller(false);
 				correoUsuarioVO.setUsuario(usuario.getUsuario());
 				
-				if ("true".equals(AgregaPropertiesImpl.getInstance().getProperty("nodo.taller"))){
+				if ("true".equals(this.getSrvPropiedadService().getValorPropiedad("nodo.taller"))){
 					idiomas = new StringBuffer();
 					for(int m=0;m<l;m++){
 						String idioma="";
@@ -847,12 +1019,12 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			// Enviamos un correo al administrador del ldap externo con
 			// todos los usuarios que han sido realmente eliminados
 
-			if ((AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
+			if ((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
 			{
 				correoUsuarioVO.setLdapExterno(true);
 				correoUsuarioVO.setIdiomaCorreo(I18n.getInstance().obtenerIdiomaDefectoPlataforma());
 				correoUsuarioVO.setUsuario(usuario.getUsuario());
-				setTo[0]=(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO));
+				setTo[0]=(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
 				correoUsuarioVO.setTo(setTo);
 				if(log.isDebugEnabled())log.debug("Enviamos un correo al administrador del ldap externo");
 				SrvCorreo correoService=  this.getSrvCorreo();
@@ -914,8 +1086,10 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		validaBajaVO.setItemsDeleted((UsuarioVO[]) itemsDeleted.toArray(new UsuarioVO[0]));
 		
 		try {
+			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
+			
 			boolean existeLdapWebSemantica=ldapWebSemanticaActiva();
-			String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+		    boolean aplicarCambiosEnWebSemantica = existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false");	    
 			
 			for (int j=0; j<ids.length; j++) {
 				
@@ -923,7 +1097,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				usuario = this.getUsuarioDao().load(identificador);
 
 			    //Damos al usuario de baja en la rama LDAP de la web semantica
-				if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {
+				if(aplicarCambiosEnWebSemantica) {
 					this.getLdapWebSemanticaHandler().deleteContact(usuario.getUsuario());
 				}
 				
@@ -935,7 +1109,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 					
 					if(ret.getNumDeleted()!=1) {
 					    //Damos al usuario de alta en la rama LDAP de la web semantica
-						if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {
+						if(aplicarCambiosEnWebSemantica) {
 							this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()),
 									usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
 						}
@@ -946,7 +1120,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 					
 				} catch (Exception e) {
 					//Damos al usuario de alta en la rama LDAP de la web semantica
-					if(existeLdapWebSemantica && ldapExterno.equalsIgnoreCase("false")) {
+					if(aplicarCambiosEnWebSemantica) {
 						this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()), 
 								usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
 					}
@@ -986,9 +1160,12 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			while(iter.hasNext())
 			{
-				usuarioVO = (es.pode.adminusuarios.negocio.servicios.UsuarioVO)this.getBeanMapper().map(iter.next(),es.pode.adminusuarios.negocio.servicios.UsuarioVO.class, "MAPEO_USUARIO_USUARIOVO");
-				log.debug("usuarioVO "+usuarioVO);
-				usuariosVO.add(usuarioVO);
+        try{
+				  usuarioVO = (es.pode.adminusuarios.negocio.servicios.UsuarioVO)this.getBeanMapper().map(iter.next(),es.pode.adminusuarios.negocio.servicios.UsuarioVO.class, "MAPEO_USUARIO_USUARIOVO");
+          usuariosVO.add(usuarioVO);
+				}catch (Exception e) {
+					log.debug("Ha fallado al parsear un usuario" );
+				}			
 			}
 			
 		//	this.getUsuarioDao().toUsuarioVOCollection(usuarios);
@@ -1054,7 +1231,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				{
 					
 					
-					String serverId  = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID);
+					String serverId  = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SERVER_ID);
 					
 					if (serverId.equals(SERVER_ID_INTEF))										
 					{
@@ -1299,7 +1476,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				setTo[i]=destinatarios[i];
 			}
 			correoUsuarioVO.setTo(setTo);
-			correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+			correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 			correoUsuarioVO.setIdiomaCorreo(idiomas.toString());
 			correoVO2=correoService.solicitudBajaUsuario(correoUsuarioVO);
 			log.debug("Resultado del envio de correo de solicitud baja "+correoVO2.getResultado());
@@ -1310,15 +1487,15 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			{
 				resultado = "0";
 			}
-			if ((AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
+			if ((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO)).equalsIgnoreCase("true"))
 			{
 					correoUsuarioVO.setLdapExterno(true);
-					correoUsuarioVO.setEmailUsuario(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO));
+					correoUsuarioVO.setEmailUsuario(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
 					correoUsuarioVO.setIdiomaCorreo((I18n.getInstance().obtenerIdiomaDefectoPlataforma()));
 					correoUsuarioVO.setPassword("");
 					log.debug("setPassword"+correoUsuarioVO.getPassword() );
 					String setToAdminLdap[]=new String [1];
-					setToAdminLdap[0]=(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ADMINLDAPEXTERNO));
+					setToAdminLdap[0]=(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
 					correoUsuarioVO.setTo(setToAdminLdap);
 					correoVO2=correoService.solicitudBajaUsuario(correoUsuarioVO);
 					
@@ -1760,7 +1937,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			l++;
 		setTo[0]=usuario.getEmail();
 		correoUsuarioVO.setTo(setTo);
-		correoUsuarioVO.setFrom(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER));
+		correoUsuarioVO.setFrom(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.FROMSENDER));
 		correoUsuarioVO.setHrefLogo(ImagenesAgrega.urlImagenLogoAgrega());
 		correoUsuarioVO.setUrlImagenLogo(ImagenesAgrega.urlImagenLogoAgrega());
 		log.debug("from :" + correoUsuarioVO.getFrom());
@@ -2583,7 +2760,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		}
 		if(usuario.getCuota() == null)
 		{
-			usuario.setCuota((new Long((ObtieneSrvPropiedad().get (AgregaProperties.VALOR_CUOTA_DEFECTO)))* 1024 * 1024));
+			usuario.setCuota((new Long((ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.VALOR_CUOTA_DEFECTO)))* 1024 * 1024));
 			
 		}
 		//Comprobamos si tiene fecha de alta en el caso de que no lo tenga se le asigna la fecha actual
@@ -2945,7 +3122,10 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			checkDatos=comprobarIntegridadDatosBasicosUsuarioProComun(usuario, true);
 			if(checkDatos==null || !checkDatos.getCodigoResultado().contentEquals(OK_WS))
 				return checkDatos;
-		    
+
+		    // Pasamos a minúsculas el username ya que suponemos que son emails
+	    	usuario.setUsuario(usuario.getUsuario().toLowerCase());
+			
 			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
 		    if (usuario.getNIF()!=null)
 		    	usuario.setNIF(usuario.getNIF().toUpperCase());
@@ -3020,7 +3200,6 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			    	}
 			    }
 			} catch (Exception ex) {
-				
 				log.error("Error al obtener los grupos ", ex);
 				r.setMensaje("Error al obtener los grupos");
 				r.setCodigoResultado(ERROR_LISTAR_GRUPOS_ALTA_WS);
@@ -3030,39 +3209,37 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    		    
 		    if(!grupoWebSemanticaEncontrado) {
 		    	
-		    	try
-		    	{
-			    Boolean rolDocenteEncontrado=false;
-			    
-		    	//Para crear el nuevo grupo necesito darle el rol docente
-			    RolVO[] roles = handleListarRoles();
-			    for(int i=0; i<roles.length; i++) {
-			    	
-			    	if(roles[i].getDescripcion().equalsIgnoreCase("DOCENTE")) {
-			    	
-			    		GrupoVO nuevoGrupo=new GrupoVO();
-			    		RolVO[] rolWebSemantica=new RolVO[1];
-			    		rolWebSemantica[0]=roles[i];
-			    		nuevoGrupo.setRols(rolWebSemantica);
-			    		nuevoGrupo.setDescripcion(nombreGrupoWebSemantica);
-			    		Long idGrupo=handleAltaGrupo(nuevoGrupo);
-			    		
-			    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
-			    		grupoWebSemantica[0]=handleDescripcionGrupo(idGrupo);
-			    		usuario.setGrupos(grupoWebSemantica);
-			    		rolDocenteEncontrado=true;
-			    		break;
-			    	}
-			    	
-			    	
-			    }
-			    if(!rolDocenteEncontrado) {
-					r.setMensaje("No existe el rol DOCENTE en la plataforma. Este es necesario para crear el grupo de usuarios de web semantica.");
-					r.setCodigoResultado(ERROR_OBTENER_ROL_DOCENTE_WS);
-					return r;
-			    }
+		    	try {
+				    Boolean rolDocenteEncontrado=false;
+				    
+			    	//Para crear el nuevo grupo necesito darle el rol docente
+				    RolVO[] roles = handleListarRoles();
+				    for(int i=0; i<roles.length; i++) {
+				    	
+				    	if(roles[i].getDescripcion().equalsIgnoreCase("DOCENTE")) {
+				    	
+				    		GrupoVO nuevoGrupo=new GrupoVO();
+				    		RolVO[] rolWebSemantica=new RolVO[1];
+				    		rolWebSemantica[0]=roles[i];
+				    		nuevoGrupo.setRols(rolWebSemantica);
+				    		nuevoGrupo.setDescripcion(nombreGrupoWebSemantica);
+				    		Long idGrupo=handleAltaGrupo(nuevoGrupo);
+				    		
+				    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
+				    		grupoWebSemantica[0]=handleDescripcionGrupo(idGrupo);
+				    		usuario.setGrupos(grupoWebSemantica);
+				    		rolDocenteEncontrado=true;
+				    		break;
+				    	}
+				    	
+				    }
+				    if(!rolDocenteEncontrado) {
+						r.setMensaje("No existe el rol DOCENTE en la plataforma. Este es necesario para crear el grupo de usuarios de web semantica.");
+						r.setCodigoResultado(ERROR_OBTENER_ROL_DOCENTE_WS);
+						return r;
+				    }
+				    
 				} catch (Exception ex) {
-					
 					log.error("Error al obtener los roles ", ex);
 					r.setMensaje("Error al obtener los roles");
 					r.setCodigoResultado(ERROR_LISTAR_ROLES_ALTA_WS);
@@ -3099,13 +3276,13 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    		usuario.setGrupoTrabajo(grupoWebSemantica);
 				}
 		    	 
-			} catch (Exception ex) {
-				
+			} catch (Exception ex) {				
 				log.error("Error al obtener los grupos de trabajo ", ex);
 				r.setMensaje("Error al obtener los grupos de trabajo");
 				r.setCodigoResultado(ERROR_LISTAR_GRUPOS_TRABAJO_ALTA_WS);
 				return r;
 			}
+		    
 		    //Compruebo si el usuario(NIF) ya esta dado de alta. Si lo esta y no tiene fecha
 	        //de baja saco un mensaje de error.
 			try
@@ -3131,6 +3308,13 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 					//El usuario ya esta registrado pero esta dado de baja
 				    usuario.setFechaAlta(usuarioExistente.getFechaAlta());
 			    }
+
+				if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail())!=null) {
+					r.setMensaje("El email ya pertenece a un usuario registrado");
+					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
+					return r;
+				} 
+			    
 			} catch (Exception ex) {
 				
 				log.error("Error al comprobar si existe usuario ", ex);
@@ -3142,19 +3326,19 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    // 16092014 La plataforma final de Procomún pasará la clave como hash sha1.
 		    // Para compatibilidad con el piloto de Procomún que la pasa en claro, si se detecta que no es un hash se calcula
 		    String pass = usuario.getClave();
-		    if (!pass.startsWith("{SHA}"))
-		    	try
-		    	{
-		    		pass = getHashPassword(pass);
-				} catch (Exception ex) {					
-					log.error("Error al calcular la contraseña ", ex);
-					r.setMensaje("Error al calcular la contraseña");
-					r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
-					return r;
-				}
+		    //if (!pass.startsWith("{SHA}"))
+	    	try
+	    	{
+	    		pass = getHashPassword(pass);
+			} catch (Exception ex) {					
+				log.error("Error al calcular la contraseña ", ex);
+				r.setMensaje("Error al calcular la contraseña");
+				r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
+				return r;
+			}
 		    
 		    //Damos al usuario de alta en la rama LDAP de la web semantica
-			if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
+			if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
 			{
 				try
 				{
@@ -3240,30 +3424,30 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				r.setCodigoResultado(OK_WS);
 				return r;
 			}
+			
 		} else if(nombreCampo.equalsIgnoreCase(CAMPO_DOCUMENTO_IDENTIDAD)) {
 			if (obtenerUsuario(valorCampo.toUpperCase())!=null) {
 				r.setMensaje("El documento de identidad ya pertenece a un usuario registrado");
 				r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 				return r;
-			}
-			else {
+			} else {
 				r.setMensaje("El valor del campo no se está utilizando actualmente.");
 				r.setCodigoResultado(OK_WS);
 				return r;
 			}
-		}
-		else if(nombreCampo.equalsIgnoreCase(CAMPO_IDENTIFICADOR)) {
-				if (handleExisteUsuario(valorCampo))
-				{
-					r.setMensaje("El identificador ya pertenece a un usuario registrado");
-					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
-					return r;
-				}
-				else {
-					r.setMensaje("El valor del campo no se está utilizando actualmente.");
-					r.setCodigoResultado(OK_WS);
-					return r;
-				}
+			
+		} else if(nombreCampo.equalsIgnoreCase(CAMPO_IDENTIFICADOR)) {
+			//Los buscamos en minusculas ya que el campo username suponemos que sera un email
+			if (handleExisteUsuario(valorCampo.toLowerCase()))
+			{
+				r.setMensaje("El identificador ya pertenece a un usuario registrado");
+				r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
+				return r;
+			} else {
+				r.setMensaje("El valor del campo no se está utilizando actualmente.");
+				r.setCodigoResultado(OK_WS);
+				return r;
+			}
 		}
 		r.setMensaje("El nombre del campo no es correcto. Debe ser email, documentoIdentidad o identificador");
 		r.setCodigoResultado(ERROR_CAMPO_INCORRECTO_WS);
@@ -3294,18 +3478,18 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		log.info("PROCOMUN Va a autenticar el usuario: " + email);
 		try
 		{
-			// Si es un email tenemos que obtener el identificador para Agrega
-			// Para nuevos usuarios de web semántica será el mismo,
-			// para usuarios anteriores de Agrega obtendremos un identificador normal de Agrega.
-			Usuario usuario = null;
-			
-			if (esUnMail(email))
-			{
-				log.info("PROCOMUN Es un email " + email);
-				usuario = this.getUsuarioDao().obtenerUsuarioPorEmail(email.toLowerCase());
-				idUsuario = usuario.getUsuario();
-				log.info("PROCOMUN Va a autenticar el id de usuario: " + idUsuario);
-			}
+//			// Si es un email tenemos que obtener el identificador para Agrega
+//			// Para nuevos usuarios de web semántica será el mismo,
+//			// para usuarios anteriores de Agrega obtendremos un identificador normal de Agrega.
+//			Usuario usuario = null;
+//			
+//			if (esUnMail(email))
+//			{
+//				log.info("PROCOMUN Es un email " + email);
+//				usuario = this.getUsuarioDao().obtenerUsuarioPorEmail(email.toLowerCase());
+//				idUsuario = usuario.getUsuario();
+//				log.info("PROCOMUN Va a autenticar el id de usuario: " + idUsuario);
+//			}
 			
 			// Si no está activo devolvemos error diferenciado
 			if (usuarioDesactivadoOEliminado(idUsuario)) {	
@@ -3319,7 +3503,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			String passUserLdap = "";
 			try
 			{
-				passUserLdap = getLdapHandler().getUserHasedPasswd(idUsuario);	
+				passUserLdap = getLdapWebSemanticaHandler().getUserHasedPasswd(idUsuario);	
 			} catch (Exception ex) {					
 				log.error("Error al acceder a ldap para obtener la contraseña ", ex);
 				r.setMensaje("Error al acceder a ldap para obtener la contraseña");
@@ -3387,24 +3571,13 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			String correoUsuario) throws Exception {
 		
 		UsuarioVO usuario= null;
-		
 		log.info("PROCOMUN Va a obtener los datos del usuario: " + correoUsuario);
-		
-		// Si es un mail obtenemos los datos asociados al mail
-		if (esUnMail(correoUsuario))
-		{
-			Usuario usuBd = this.getUsuarioDao().obtenerUsuarioPorEmail(correoUsuario.toLowerCase());
-			if (usuBd!=null)
-				usuario = getUsuarioDao().toUsuarioVO(usuBd); 			
-		}
-		// Si no es un mail, puede ser un identificador de Agrega y buscamos por identificador
-		else
-		{
-			Usuario usuBd = this.getUsuarioDao().obtenerDatosUsuario(correoUsuario.toLowerCase());
-			if (usuBd!=null)
-				usuario = getUsuarioDao().toUsuarioVO(usuBd); 			
+
+	    // Buscamos en minúsculas el username ya que suponemos que son emails
+		Usuario usuBd = this.getUsuarioDao().obtenerDatosUsuario(correoUsuario.toLowerCase());
+		if (usuBd!=null)
+			usuario = getUsuarioDao().toUsuarioVO(usuBd); 			
 			
-		}
 		return usuario;
 	}
 	
@@ -3487,35 +3660,31 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			}
 			
 			// Intentamos autenticar al usuario para permitir modificar sus datos
-			ResultadoOperacionWebSemanticaVO resAuten = handleAutenticacionUsuarioProComun(user.getUsuario(), passwordAntiguo);			
-			if (!resAuten.getCodigoResultado().equals(OK_WS) && !resAuten.getCodigoResultado().equals(ERROR_USUARIO_NO_ACTIVO_WS) )
-			{
-				log.error("No se ha autenticado correctamente al usuario: "+ usuario.getUsuario());				
-				return resAuten;								
-			}
+//			ResultadoOperacionWebSemanticaVO resAuten = handleAutenticacionUsuarioProComun(user.getUsuario(), passwordAntiguo);			
+//			if (!resAuten.getCodigoResultado().equals(OK_WS) && !resAuten.getCodigoResultado().equals(ERROR_USUARIO_NO_ACTIVO_WS) )
+//			{
+//				log.error("No se ha autenticado correctamente al usuario: "+ usuario.getUsuario());				
+//				return resAuten;								
+//			}
 			
 			// Si el correo ha cambiado verificamos que no se esté usando ya
 			if (!user.getEmail().equalsIgnoreCase(usuario.getEmail()))
 			{
-				ResultadoOperacionWebSemanticaVO resVal = handleValidarCampoUsuarioProComun("email",usuario.getEmail());
-				if (!resVal.getCodigoResultado().equals(OK_WS))
-				{
+				if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail())!=null) {
 					r.setMensaje("El email ya pertenece a un usuario registrado");
 					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 					return r;
-				}
+				} 
 			}
 			
 			// Si el dni ha cambiado verificamos que no se esté usando ya
 			if (!user.getNIF().equalsIgnoreCase(usuario.getNIF()))
 			{
-				ResultadoOperacionWebSemanticaVO resVal = handleValidarCampoUsuarioProComun("documentoIdentidad",usuario.getNIF());
-				if (!resVal.getCodigoResultado().equals(OK_WS))
-				{
+				if (obtenerUsuario(usuario.getNIF().toUpperCase())!=null) {
 					r.setMensaje("El documento de identidad ya pertenece a un usuario registrado");
 					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 					return r;
-				}
+				} 
 			}
 		    //Activamos al usuario
 		    handleActivarUsuario(user.getId(), "Procomun");    
@@ -3545,7 +3714,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			// Para poder cambiar la password debe haber informado la contraseña anterior
 		    String hashedPassword="";
 		    
-		    if(usuario.getClave()!=null || !usuario.getClave().isEmpty()) {
+		    if(usuario.getClave()!=null && !usuario.getClave().isEmpty()) {
 		    //if(passwordAntiguo!=null && !passwordAntiguo.isEmpty()) {
 			//	boolean usuarioCorrecto = handleAutenticacionUsuarioWebSemantica(user.getUsuario(), passwordAntiguo);
 			//	if (!usuarioCorrecto) throw new Exception("El par usuario/password no es valido o el usuario esta desactivado o eliminado");
@@ -3649,7 +3818,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			log.info("Es una baja especial de usuario de web semantica :"+bCasoBajaEspecial);
 			
-			String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
 			
 			//Comprobamos que la clave es correcta
 			log.info("Va a autenticar : " + mail + " con : " + passwd);
@@ -3663,12 +3832,39 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				
 				return resAutenticacion;
 			}
-						
+				
+			UsuarioVO usuario = null;
+			boolean bRetrotraerBaja = false;
+			
+			try {
+				usuario = handleObtenerDatosUsuarioWebSemantica(mail);
+			} catch (Exception ex) {					
+				log.error("Error al obtener los datos del usuario", ex);
+				r.setMensaje("Error al obtener los datos del usuario");
+				r.setCodigoResultado(ERROR_OBTENER_DATOS_USUARIO_WS);
+				return r;				
+			}
+			if(usuario==null) {
+				log.info("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
+				r.setMensaje("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
+				r.setCodigoResultado(ERROR_USUARIO_NO_ENCONTRADO_WS);
+				return r;
+			}
+
+			// Obtenemos el password del usuario almacenado en LDAP por si hay que hacer rollback y volver a insertarlo
+			String passUserLdap = "";
+			try {
+				passUserLdap = getLdapWebSemanticaHandler().getUserHasedPasswd(usuario.getUsuario());	
+			} catch (Exception ex) {					
+				log.error("Error al acceder a ldap para obtener la contraseña ", ex);
+				r.setMensaje("Error al acceder a ldap para obtener la contraseña");
+				r.setCodigoResultado(ERROR_ACCESO_LDAP_WS);
+				return r;
+			}
+			
 		    //Damos al usuario de baja en la rama LDAP de la web semantica
-			if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
-			{
-				try
-				{
+			if(ldapExterno.equalsIgnoreCase("false")) {
+				try {
 					this.getLdapWebSemanticaHandler().deleteContact(mail);				
 				} catch (Exception ex) {					
 					log.error("Error al acceder a ldap para dar de baja", ex);
@@ -3677,70 +3873,50 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 					return r;				
 				}
 			}
-				
-			UsuarioVO usuario = null;
-			boolean bRetrotraerBaja = false;
 			
-				try{
-					usuario = handleObtenerDatosUsuarioWebSemantica(mail);
-				} catch (Exception ex) {					
-					log.error("Error al obtener los datos del usuario", ex);
-					r.setMensaje("Error al obtener los datos del usuario");
-					r.setCodigoResultado(ERROR_OBTENER_DATOS_USUARIO_WS);
-					return r;				
-				}
-				if(usuario==null) {
-					log.info("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
-					r.setMensaje("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
-					r.setCodigoResultado(ERROR_USUARIO_NO_ENCONTRADO_WS);
-					return r;
-				}
-				
-				//Damos de baja al usuario en Agrega	
-				Long[] idUsuario=new Long[1];
-				idUsuario[0]=usuario.getId();
-				ValidaBajaUsuarioVO ret= null;
-				try
-				{
-					ret = bajaUsuarioAgrega(idUsuario, false);
-				} catch (Exception ex) {					
-					log.error("Error al dar de baja el usuario en Agrega", ex);
-					r.setMensaje("Error al dar de baja el usuario en Agrega. Motivo: " + ex.getMessage());						
-					r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
-					bRetrotraerBaja = true;	
-				}
-				if(bCasoBajaEspecial)
-					resetearCamposUsuarioBajaEspecialWS(usuario.getId());
-				
-				if((ret.getNumDeleted()!=1) || bRetrotraerBaja) {
-				    //Damos al usuario de alta en la rama LDAP de la web semantica
-					if(ldapExterno.equalsIgnoreCase("false")) {
-						try {
-							this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()),
-									usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
-						} catch (UnsupportedEncodingException e) {
-							log.error("Error al calcular la password del usuario", e);
-							r.setMensaje("Error al calcular la password del usuario");						
-							r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
-							return r;						
-						} catch (NoSuchAlgorithmException e) {
-							log.error("Error al calcular la password del usuario", e);
-							r.setMensaje("Error al calcular la password del usuario");						
-							r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
-							return r;
-						} catch (Exception e) {
-							log.error("Error al acceder a ldap para retrotraer la baja del usuario en Agrega", e);
-							r.setMensaje("Error al acceder a ldap para retrotraer la baja del usuario en Agrega");						
-							r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
-							return r;						
-						}
+			//Damos de baja al usuario en Agrega	
+			Long[] idUsuario=new Long[1];
+			idUsuario[0]=usuario.getId();
+			ValidaBajaUsuarioVO ret= null;
+			try {
+				ret = bajaUsuarioAgrega(idUsuario, false);
+			} catch (Exception ex) {		
+				log.error("Error al dar de baja el usuario en Agrega", ex);
+				r.setMensaje("Error al dar de baja el usuario en Agrega. Motivo: " + ex.getMessage());						
+				r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
+				bRetrotraerBaja = true;	
+			}
+			if(bCasoBajaEspecial)
+				resetearCamposUsuarioBajaEspecialWS(usuario.getId());
+			
+			if((ret.getNumDeleted()!=1) || bRetrotraerBaja) {
+			    //ROLLBACK: Damos al usuario de alta en la rama LDAP de la web semantica
+				if(ldapExterno.equalsIgnoreCase("false")) {
+					try {
+						this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), passUserLdap,
+								usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
+					} catch (UnsupportedEncodingException e) {
+						log.error("Error al calcular la password del usuario", e);
+						r.setMensaje("Error al calcular la password del usuario");						
+						r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
+						return r;						
+					} catch (NoSuchAlgorithmException e) {
+						log.error("Error al calcular la password del usuario", e);
+						r.setMensaje("Error al calcular la password del usuario");						
+						r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
+						return r;
+					} catch (Exception e) {
+						log.error("Error al acceder a ldap para retrotraer la baja del usuario en Agrega", e);
+						r.setMensaje("Error al acceder a ldap para retrotraer la baja del usuario en Agrega");						
+						r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
+						return r;						
 					}
-					r.setMensaje("Error al dar de baja al usuario de Procomun: "+mail);
-					r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
-					return r;
 				}
-				
-						
+				r.setMensaje("Error al dar de baja al usuario de Procomun: "+mail);
+				r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
+				return r;
+			}
+					
 		} catch (Exception e) {
 			log.error("Error genérico al dar de baja al usuario de Procomún "+mail+": ", e);
 			r.setMensaje("Error genérico al dar de baja al usuario de Procomún. Motivo: "+e.getMessage());
@@ -3932,7 +4108,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    }
 		    
 		    //Damos al usuario de alta en la rama LDAP de la web semantica
-			if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
+			if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
 			{
 				this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()), 
 						usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
@@ -3995,8 +4171,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			String hashPassEntrada = getHashPassword(password);
 			
 			// Si ambos hash son iguales asumimos que la password es correcta y damos el usuario por correcto
-			// devolviendo su información
-			log.info("EMILIO. Va a comparar : " + passUserLdap + " contra : " + hashPassEntrada);
+			// devolviendo su información			
 			if (passUserLdap.equals(hashPassEntrada))
 			{
 				log.info("Se ha autenticado correctamente al usuario: " + email);				
@@ -4033,14 +4208,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			log.info("Es una baja especial de usuario de web semantica :"+bCasoBajaEspecial);
 			
-			String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
 			
 			//Comprobamos que la clave es correcta
 			if(!bCasoBajaEspecial & (!handleAutenticacionUsuarioWebSemantica(mail, passwd))) 
 				throw new Exception("El par usuario/password no es valido o el usuario esta desactivado o eliminado");
 						
 		    //Damos al usuario de baja en la rama LDAP de la web semantica
-			if (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
+			if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
 				this.getLdapWebSemanticaHandler().deleteContact(mail);
 				
 			UsuarioVO usuario = null;
@@ -4099,7 +4274,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    else
 		    	comprobarIntegridadDatosBasicosUsuarioWebSemantica(usuario, false);
 
-			String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
+			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
 			
 			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
 		    if (usuario.getNIF()!=null)

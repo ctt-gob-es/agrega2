@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.administracion.presentacion.adminusuarios.altaUsuario;
 
@@ -28,7 +23,7 @@ import es.pode.adminusuarios.negocio.servicios.GrupoVO;
 import es.pode.adminusuarios.negocio.servicios.RolVO;
 import es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService;
 import es.pode.adminusuarios.negocio.servicios.UsuarioVO;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.soporte.i18n.I18n;
 import es.pode.soporte.i18n.LocalizacionIdiomaVO;
 import es.pode.soporte.seguridad.ldap.LdapUserDetailsUtils;
@@ -250,7 +245,7 @@ public class AltaUsuarioControllerImpl extends AltaUsuarioController {
 				//pasamos de mbytes a bytes la cuota
 				cuota = Long.valueOf(form.getCuota()).longValue() * 1024 * 1024;
 		    }else{//Por defecto,si no introducen nigún valor le podremos 5 Mb
-		    	cuota =Long.valueOf(ObtieneSrvPropiedad().get(AgregaProperties.VALOR_CUOTA_DEFECTO)).longValue() * 1024 * 1024 ;
+		    	cuota =Long.valueOf(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.VALOR_CUOTA_DEFECTO)).longValue() * 1024 * 1024 ;
 		    }
 	
 		    // Una vez recojo todos los datos del formulario compruebo si el

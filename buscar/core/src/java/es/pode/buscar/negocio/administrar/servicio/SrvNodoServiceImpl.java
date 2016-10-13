@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -21,6 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,7 +55,8 @@ import es.pode.buscar.negocio.administrar.estadisticas.castor.NodoEstadistica;
 import es.pode.buscar.negocio.administrar.estadisticas.castor.NodosEstadisticaTotal;
 import es.pode.buscar.negocio.administrar.nodo.castor.NodoConf;
 import es.pode.buscar.negocio.buscar.dominio.EstadisticaImpl;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.PropiedadVO;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.gestorCorreo.negocio.servicios.SrvCorreo;
 import es.pode.indexador.negocio.servicios.busqueda.ParamDocsCountVO;
 import es.pode.indexador.negocio.servicios.busqueda.ResultadosCountVO;
@@ -114,6 +111,9 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 	private static final String INCIDENCIA_ACTIVIDAD_NEGATIVA="INCIDENCIA_ACTIVIDAD_NEGATIVA";
 	private static final String INCIDENCIA_DATO_ESTADISTICO_INCORRECTO="INCIDENCIA_DATO_ESTADISTICO_INCORRECTO";
 	private static final int CODIGO_ESTADISTICA_BUSQUEDAS = 1;
+	
+	private static final String ERROR = "ERROR";
+	private static final String OK = "OK";
 	
 	
 	/**
@@ -476,181 +476,262 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 	}
 
 	@Override
-	protected Boolean handleActualizarIndices() throws Exception {
+	protected ResultadoTareaVO handleActualizarIndices() throws Exception {
 		
-		//Bajamos Zips de web
-		String url=ObtieneSrvPropiedad().get(AgregaProperties.INDEX_SERVER_URL);
-		if(url.isEmpty()) {
-			logger.warn("La propiedad <"+AgregaProperties.INDEX_SERVER_URL+"> del fichero properties esta en blanco. Debe dar la url donde se encuentra el fichero nodos.zip en el servidor de indices.");
-			return false;
-		}
-		String rutaLocal = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDICES_REMOTOS);
-		if(rutaLocal.isEmpty()) {
-			logger.warn("La propiedad <"+AgregaProperties.INDICES_REMOTOS+"> del fichero properties esta en blanco. Debe dar la ruta del nodo local donde se descargara y descomprimira el fichero de indices.");
-			return false;
-		}
-
-		String fullUrl="";
-		String port = ObtieneSrvPropiedad().get(AgregaProperties.INDEX_SERVER_PORT);
-		if(port.isEmpty()) {
-			logger.warn("La propiedad <"+AgregaProperties.INDEX_SERVER_PORT+"> del fichero properties esta en blanco.");
-			fullUrl=url+"/";
-		} else { 
-			//Metemos en la url el puerto que nos hayan especificado
-			String urlParts[] = url.split("/");
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);		
+		List<ResultadoSubtareaVO> lResSubtarea = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea= new ResultadoSubtareaVO();
+		
+		try{
+			//Bajamos Zips de web			
+				
+			resSubtarea.setSubtarea("Obtener propiedad url nodos.zip");
 			
-			//Revisamos si en la url se especifica protocolo
-			int indexPort; 
-			if(url.contains("://")) indexPort=2;
-			else indexPort=0;
-			
-			for (int i=0; i<urlParts.length; i++) {
-				if(i==indexPort) fullUrl=fullUrl.concat(urlParts[i]+":"+port+"/");
-				else fullUrl=fullUrl.concat(urlParts[i]+"/");
+			String url=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.INDEX_SERVER_URL);	
+			if(url.isEmpty()) {
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : La propiedad <"+AgregaProperties.INDEX_SERVER_URL+"> del fichero properties esta en blanco. Debe dar la url donde se encuentra el fichero nodos.zip en el servidor de indices.");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+				logger.warn("La propiedad <"+AgregaProperties.INDEX_SERVER_URL+"> del fichero properties esta en blanco. Debe dar la url donde se encuentra el fichero nodos.zip en el servidor de indices.");
+				return resultado;
 			}
-		}
-		
-		File temporal = new File(rutaLocal+"/nodos.zip");
-		OutputStream out=null;
-		InputStream is=null;
-
-		if(logger.isDebugEnabled()) 
-			logger.debug("Descargaremos <"+fullUrl+"> nodos.zip en <"+temporal+">");
-		
-
-		try {
-
-			is=new BufferedInputStream(Proxy.getInputStream(new URL(fullUrl+"nodos.zip")));
-			
-    			out = new BufferedOutputStream(new FileOutputStream(temporal));
-    			byte[] buffer = new byte[1024];
-    			int numRead;
-    			long numWritten = 0;
-    			while ((numRead = is.read(buffer)) != -1) {
-    				out.write(buffer, 0, numRead);
-    				numWritten += numRead;
-    			}
-			
-			//
-			UtilesFicheros.copiar(is, out);
-			
-		} catch (Exception e) {
-			logger.error("Error en descarga del fichero con los indices: - "+e);
-			return false;			
-		} finally {
-			if(out!=null) out.close();
-			if(is!=null) is.close();
-		}
-		if(logger.isDebugEnabled()) 
-			logger.debug("Descomprimimos '"+temporal.getAbsolutePath()+"' en '"+rutaLocal+"' y borramos '"+temporal+"'");
-		
-		TrueZipDaoImpl.getInstance().descomprimir(temporal.getAbsolutePath(), rutaLocal);
-		UtilesFicheros.eliminar(temporal);
-
-		//Descomprimimos en ruta de índices remotos
-		File rutaIndicesRemotos = new File(rutaLocal);
-		String[] zips = rutaIndicesRemotos.list();
-		
-		//Eliminamos todos los nodos registrados en el sistema
-		if(!handleEliminarTodosLosNodos()){ 
-			logger.error("Error al eliminar los nodos registrados con anterioridad.");
-			return false;
-		}
-		
-		boolean huboAlgunError=false;
-		
-		for (int i = 0; i < zips.length; i++) {
-			String zip = zips[i];
-			
-			if(zip.endsWith(".zip")) {
-				if(logger.isDebugEnabled()) logger.debug("Zip de indices a procesar: <"+zip+">");
-				
-				//creamos ruta destino descompresion
-				File rutatemp = new File(rutaLocal+"/"+zip.replace(".zip", ""));
-				if(rutatemp.exists()) {
-					if(logger.isDebugEnabled()) logger.debug("Eliminamos los indices antiguos en <"+rutatemp.getAbsolutePath()+">");
-					UtilesFicheros.eliminar(rutatemp);
-				}
-				if(!rutatemp.mkdirs()) {
-
-					if(logger.isDebugEnabled()) logger.debug("No se pudo crear ruta <"+rutatemp.getAbsolutePath()+
-							"> y por lo tanto los indices del nodo correspondiente no se podran añadir al sistema.");
-					// 20140220 Se comenta porque es un falso positivo. Realmente después al descomprimir el zip crea el directorio
-					// En Galicia y en PRE INTEF esta validación fallaba aleatoriamente.
-					//huboAlgunError=true;
-					//return false;
-				} else {
-					if(logger.isDebugEnabled()) logger.debug("Creada ruta <"+rutatemp.getAbsolutePath()+">");
-				}
-				
-				TrueZipDaoImpl.getInstance().descomprimir(rutaLocal+"/"+zip, rutatemp.getAbsolutePath());
-				UtilesFicheros.eliminar(new File(rutaLocal+"/"+zip));
-				
-				//Parseamos XML
-				Unmarshaller unmarshaller = new Unmarshaller(NodoConf.class);
-				unmarshaller.setValidation(false);
-	
-				String nombreFicEstadisticasNodo = "";
-				for (String nombreFicheroEst : rutatemp.list()) {
-					if (nombreFicheroEst.startsWith(NOMBRE_FICHERO_ESTADISTICAS) && nombreFicheroEst.endsWith(EXTENSION_FICHERO_ESTADISTICAS)) {
-						File estFile = new File(rutatemp.getAbsolutePath()+ "/" +nombreFicheroEst);
-						UtilesFicheros.copiar(estFile, new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS)));
-						nombreFicEstadisticasNodo=nombreFicheroEst;
-					}
-				}
-				
-				File fichero = new File(rutatemp.getAbsolutePath()+"/"+getPropertyValue("nodoConf.fichero"));
-				FileInputStream fis=null;
-				InputStreamReader isr = null;
-				NodoConf nodoConf=null;
-				try {
-					fis = new FileInputStream(fichero);
-					isr = new InputStreamReader(fis);
-					nodoConf=(NodoConf)unmarshaller.unmarshal(isr);
-				} catch (Exception e) {
-					logger.error("Error en parseo a XML de configuración de nodo: - " +e.getCause());
-					logger.error("",e);
-					huboAlgunError=true;
-					//return false;
-				} finally {
-					if(fis!=null) fis.close();
-					if(isr!=null) isr.close();
-				}
-				//Dar de alta cada nodo si no es nodo propio!
-				if(nodoConf!=null && !nodoConf.getIdNodo().equals(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID))) {
-					NodoVO nodoVO = new NodoVO();
-					nodoVO.setNodo(nodoConf.getCcaa());
-					nodoVO.setFechaAlta(formatoFecha.parse(nodoConf.getFechaAlta()));
-					nodoVO.setUrl(nodoConf.getUrl());
-					nodoVO.setIdNodo(nodoConf.getIdNodo());
-					nodoVO.setPuerto(nodoConf.getPuerto());
-					nodoVO.setUrlWS(nodoConf.getUrlWS());
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtarea.add(resSubtarea);
 					
-					if(handleCrearNodo(nodoVO)==-1L) {
-						logger.error("Error dando de alta/modificando el nodo <"+nodoConf.getCcaa()+"> con id <"+nodoConf.getIdNodo()+">");
+			resSubtarea= new ResultadoSubtareaVO();	
+			resSubtarea.setSubtarea("Obtener propiedad directorio descarga");
+			
+			String rutaLocal = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDICES_REMOTOS);
+			if(rutaLocal.isEmpty()) {
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : La propiedad <"+AgregaProperties.INDICES_REMOTOS+"> del fichero properties esta en blanco. Debe dar la ruta del nodo local donde se descargara y descomprimira el fichero de indices.");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+				logger.warn("La propiedad <"+AgregaProperties.INDICES_REMOTOS+"> del fichero properties esta en blanco. Debe dar la ruta del nodo local donde se descargara y descomprimira el fichero de indices.");
+				return resultado;
+			}
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtarea.add(resSubtarea);		
+			
+			String fullUrl="";
+			String port = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.INDEX_SERVER_PORT);
+			if(port.isEmpty()) {
+				logger.warn("La propiedad <"+AgregaProperties.INDEX_SERVER_PORT+"> del fichero properties esta en blanco.");
+				fullUrl=url+"/";
+			} else { 
+				//Metemos en la url el puerto que nos hayan especificado
+				String urlParts[] = url.split("/");
+				
+				//Revisamos si en la url se especifica protocolo
+				int indexPort; 
+				if(url.contains("://")) indexPort=2;
+				else indexPort=0;
+				
+				for (int i=0; i<urlParts.length; i++) {
+					if(i==indexPort) fullUrl=fullUrl.concat(urlParts[i]+":"+port+"/");
+					else fullUrl=fullUrl.concat(urlParts[i]+"/");
+				}
+			}
+			
+			File temporal = new File(rutaLocal+"/nodos.zip");
+			OutputStream out=null;
+			InputStream is=null;
+			
+			//Borramos todo lo que haya en la ruta temporal donde descomprimimos el fichero 
+			//y que no sea un directorio ya que los directorios perteneceran a carpetas con indices de otros nodos
+			File[] f= new File(rutaLocal).listFiles();
+			for(int i=0; i<f.length; i++) {
+				if(!f[i].isDirectory())
+					UtilesFicheros.eliminar(f[i]);
+			}
+	
+			
+			if(logger.isDebugEnabled()) 
+				logger.debug("Descargaremos <"+fullUrl+"> nodos.zip en <"+temporal+">");
+			
+	
+			try {
+				resSubtarea= new ResultadoSubtareaVO();	
+				resSubtarea.setSubtarea("Descargando fichero de nodos");
+	
+				is=new BufferedInputStream(Proxy.getInputStream(new URL(fullUrl+"nodos.zip")));
+				
+	    			out = new BufferedOutputStream(new FileOutputStream(temporal));
+	    			byte[] buffer = new byte[1024];
+	    			int numRead;
+	    			long numWritten = 0;
+	    			while ((numRead = is.read(buffer)) != -1) {
+	    				out.write(buffer, 0, numRead);
+	    				numWritten += numRead;
+	    			}
+				
+				//
+				UtilesFicheros.copiar(is, out);
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtarea.add(resSubtarea);						
+			} catch (Exception e) {
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : Error en descarga del fichero con los indices: - "+e.getMessage());
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+				logger.error("Error en descarga del fichero con los indices: - "+e);
+				return resultado;			
+			} finally {
+				if(out!=null) out.close();
+				if(is!=null) is.close();
+			}
+			if(logger.isDebugEnabled()) 
+				logger.debug("Descomprimimos '"+temporal.getAbsolutePath()+"' en '"+rutaLocal+"' y borramos '"+temporal+"'");
+			
+			resSubtarea= new ResultadoSubtareaVO();	
+			resSubtarea.setSubtarea("Descomprimimos el zip");
+	
+			TrueZipDaoImpl.getInstance().descomprimir(temporal.getAbsolutePath(), rutaLocal);
+			UtilesFicheros.eliminar(temporal);
+	
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtarea.add(resSubtarea);
+			
+			//Descomprimimos en ruta de índices remotos
+			File rutaIndicesRemotos = new File(rutaLocal);
+			String[] zips = rutaIndicesRemotos.list();
+			
+			//Eliminamos todos los nodos registrados en el sistema
+			resSubtarea= new ResultadoSubtareaVO();	
+			resSubtarea.setSubtarea("Eliminamos nodos registrados en el sistema");
+	
+			if(!handleEliminarTodosLosNodos()){ 
+				logger.error("Error al eliminar los nodos registrados con anterioridad.");
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : Error al eliminar los nodos registrados con anterioridad.");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+				return resultado;
+			}
+			
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtarea.add(resSubtarea);
+			
+			boolean huboAlgunError=false;
+			
+			for (int i = 0; i < zips.length; i++) {
+				String zip = zips[i];
+				
+				if(zip.endsWith(".zip")) {
+					if(logger.isDebugEnabled()) logger.debug("Zip de indices a procesar: <"+zip+">");
+					
+					resSubtarea= new ResultadoSubtareaVO();	
+					resSubtarea.setSubtarea("Procesando fichero :" + zip);
+	
+					
+					//creamos ruta destino descompresion
+					File rutatemp = new File(rutaLocal+"/"+zip.replace(".zip", ""));
+					if(rutatemp.exists()) {
+						if(logger.isDebugEnabled()) logger.debug("Eliminamos los indices antiguos en <"+rutatemp.getAbsolutePath()+">");
+						UtilesFicheros.eliminar(rutatemp);
+					}
+					if(!rutatemp.mkdirs()) {
+	
+						if(logger.isDebugEnabled()) logger.debug("No se pudo crear ruta <"+rutatemp.getAbsolutePath()+
+								"> y por lo tanto los indices del nodo correspondiente no se podran añadir al sistema.");
+						// 20140220 Se comenta porque es un falso positivo. Realmente después al descomprimir el zip crea el directorio
+						// En Galicia y en PRE INTEF esta validación fallaba aleatoriamente.
+						//huboAlgunError=true;
+						//return false;
+					} else {
+						if(logger.isDebugEnabled()) logger.debug("Creada ruta <"+rutatemp.getAbsolutePath()+">");
+					}
+					
+					TrueZipDaoImpl.getInstance().descomprimir(rutaLocal+"/"+zip, rutatemp.getAbsolutePath());
+					UtilesFicheros.eliminar(new File(rutaLocal+"/"+zip));
+					
+					//Parseamos XML
+					Unmarshaller unmarshaller = new Unmarshaller(NodoConf.class);
+					unmarshaller.setValidation(false);
+		
+					String nombreFicEstadisticasNodo = "";
+					for (String nombreFicheroEst : rutatemp.list()) {
+						if (nombreFicheroEst.startsWith(NOMBRE_FICHERO_ESTADISTICAS) && nombreFicheroEst.endsWith(EXTENSION_FICHERO_ESTADISTICAS)) {
+							File estFile = new File(rutatemp.getAbsolutePath()+ "/" +nombreFicheroEst);
+							UtilesFicheros.copiar(estFile, new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS)));
+							nombreFicEstadisticasNodo=nombreFicheroEst;
+						}
+					}
+					
+					File fichero = new File(rutatemp.getAbsolutePath()+"/"+getPropertyValue("nodoConf.fichero"));
+					FileInputStream fis=null;
+					InputStreamReader isr = null;
+					NodoConf nodoConf=null;
+					try {
+						fis = new FileInputStream(fichero);
+						isr = new InputStreamReader(fis);
+						nodoConf=(NodoConf)unmarshaller.unmarshal(isr);
+					} catch (Exception e) {
+						logger.error("Error en parseo a XML de configuración de nodo: - " +e.getCause());
+						logger.error("",e);
 						huboAlgunError=true;
 						//return false;
+					} finally {
+						if(fis!=null) fis.close();
+						if(isr!=null) isr.close();
 					}
-					
-					// Verificamos si la fecha informada en el nodoConf.xml es actual. Si es obsoleta enviamos mail de alarma					
-					Date fechaFichero = formatoFecha.parse(nodoConf.getFechaAlta());
-					String fechaHoyAux = formatoFecha.format(new Date());					
-					Date fechaHoy = formatoFecha.parse(fechaHoyAux);
-
-					// Lanzamos correo de alarma de fichero obsoleto
-					if (fechaFichero.before(fechaHoy)) {
-						// Obtenemos el nombre del nodo del nombre del fichero porque el nodoConf.xml no lo incluye
-						logger.error("El fichero de índices es obsoleto");
-						nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(NOMBRE_FICHERO_ESTADISTICAS,"");
-						nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(EXTENSION_FICHERO_ESTADISTICAS,"");
-						nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(".","");													
-						envioCorreoAlarma(nombreFicEstadisticasNodo, INCIDENCIA_ZIP_OBSOLETO);
+					//Dar de alta cada nodo si no es nodo propio!
+					if(nodoConf!=null && !nodoConf.getIdNodo().equals(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID))) {
+						NodoVO nodoVO = new NodoVO();
+						nodoVO.setNodo(nodoConf.getCcaa());
+						nodoVO.setFechaAlta(formatoFecha.parse(nodoConf.getFechaAlta()));
+						nodoVO.setUrl(nodoConf.getUrl());
+						nodoVO.setIdNodo(nodoConf.getIdNodo());
+						nodoVO.setPuerto(nodoConf.getPuerto());
+						nodoVO.setUrlWS(nodoConf.getUrlWS());
+						
+						if(handleCrearNodo(nodoVO)==-1L) {
+							logger.error("Error dando de alta/modificando el nodo <"+nodoConf.getCcaa()+"> con id <"+nodoConf.getIdNodo()+">");
+							huboAlgunError=true;
+							//return false;
+						}
+						
+						// Verificamos si la fecha informada en el nodoConf.xml es actual. Si es obsoleta enviamos mail de alarma					
+						Date fechaFichero = formatoFecha.parse(nodoConf.getFechaAlta());
+						String fechaHoyAux = formatoFecha.format(new Date());					
+						Date fechaHoy = formatoFecha.parse(fechaHoyAux);
+	
+						// Lanzamos correo de alarma de fichero obsoleto
+						if (fechaFichero.before(fechaHoy)) {
+							// Obtenemos el nombre del nodo del nombre del fichero porque el nodoConf.xml no lo incluye
+							logger.error("El fichero de índices es obsoleto");
+							nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(NOMBRE_FICHERO_ESTADISTICAS,"");
+							nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(EXTENSION_FICHERO_ESTADISTICAS,"");
+							nombreFicEstadisticasNodo = nombreFicEstadisticasNodo.replace(".","");													
+							envioCorreoAlarma(nombreFicEstadisticasNodo, INCIDENCIA_ZIP_OBSOLETO);
+						}
 					}
+	
+					if (huboAlgunError)
+						resSubtarea.setResultadoSubtarea(ERROR);
+					else
+						resSubtarea.setResultadoSubtarea(OK);
+					lResSubtarea.add(resSubtarea);
+	
 				}
 			}
+			if (!huboAlgunError)
+				resultado.setResultadoGlobal(OK);
+			
+			resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+			
+		}catch (Exception e) {
+			logger.error("Error genérico al actualizar índices " + e.getMessage());
+
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtarea.add(resSubtarea);
+			resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+
 		}
-		if (huboAlgunError) return false;
-		return true;
+		return resultado;
 	}
 
 	
@@ -666,81 +747,131 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 	
 	
 	@Override
-	protected Boolean handleSubirIndices() throws Exception {
+	protected ResultadoTareaVO handleSubirIndices() throws Exception {
 
-		//Copiamos a temp carpeta índices local
-		File uploadFolder=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/temp");
-		if(!uploadFolder.mkdirs()) {
-			logger.warn("No se pudo crear la ruta temporal <" + uploadFolder.getPath() +">");
-			return false;
-		}
-
-		String pathIndicesCompass=getHomeServidor()+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_INDICE);
-		File indices = new File(pathIndicesCompass);
-		logger.debug("Se usaran los indices de "+indices.getAbsolutePath());
-		UtilesFicheros.copiar(indices, uploadFolder);
-
-		//Crear XML de conf de este nodo en carpeta temp
-		NodoConf nodoConf = new NodoConf();
-		nodoConf.setIdNodo(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID));
-		nodoConf.setCcaa(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ON));
-		nodoConf.setFechaAlta(formatoFecha.format(new Date()));
-		nodoConf.setPuerto(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PUERTO));
-		String alternativo=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST_ALTERNATIVO);
-		
-		// Obtenemos el subdominio para que si tiene valor se concatena al host
-		String subdominio=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SUBDOMINIO);
-		
-		if (subdominio!=null && !subdominio.equals(""))
-			subdominio="\\"+subdominio;
-		else
-			subdominio="";
-		
-		if(alternativo!=null&&!alternativo.equals(""))
-		{
-			logger.debug("Se usa la URL del nodo alternativo");
-			nodoConf.setUrl(alternativo+subdominio);
-		} else {
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);
+		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
+		try {			
+			
+			resSubtarea.setSubtarea("Verificando carpeta de índices locales");
+			//Copiamos a temp carpeta índices local
+			File uploadFolder=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/temp");
+			if(!uploadFolder.mkdirs()) {
+				logger.warn("No se pudo crear la ruta temporal <" + uploadFolder.getPath() +">");
+				
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : No se pudo crear la ruta temporal <" + uploadFolder.getPath() +">");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtareas.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));			
+				return resultado;
+			}
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);
+			
+			String pathIndicesCompass=getHomeServidor()+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_INDICE);
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Copiando índices locales :" + pathIndicesCompass);
+	
+			File indices = new File(pathIndicesCompass);
+			logger.debug("Se usaran los indices de "+indices.getAbsolutePath());
+			UtilesFicheros.copiar(indices, uploadFolder);
+			
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Creando fichero nodoConf.xml");
+	
+			//Crear XML de conf de este nodo en carpeta temp
+			NodoConf nodoConf = new NodoConf();
+			nodoConf.setIdNodo(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID));
+			nodoConf.setCcaa(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ON));
+			nodoConf.setFechaAlta(formatoFecha.format(new Date()));
+			nodoConf.setPuerto(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PUERTO));
+			
+			// Obtenemos el subdominio para que si tiene valor se concatena al host
+			String subdominio=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SUBDOMINIO);
+			
+			if (subdominio!=null && !subdominio.equals(""))
+				subdominio="\\"+subdominio;
+			else
+				subdominio="";
+					
 			nodoConf.setUrl(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST)+subdominio);
-		}
-		nodoConf.setUrlWS(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST));
-
-		File ficheroNodoConf=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/temp/"+getPropertyValue("nodoConf.fichero"));
-		
-		FileOutputStream fos = new FileOutputStream(ficheroNodoConf);
-		OutputStreamWriter osw = new OutputStreamWriter(fos);
-		try {
-			Marshaller marshaller = new Marshaller(osw);
-			marshaller.setEncoding(defaultEcoding);
-			marshaller.marshal(nodoConf);
+			nodoConf.setUrlWS(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST));
+	
+			File ficheroNodoConf=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/temp/"+getPropertyValue("nodoConf.fichero"));
+			
+			FileOutputStream fos = new FileOutputStream(ficheroNodoConf);
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			try {
+				Marshaller marshaller = new Marshaller(osw);
+				marshaller.setEncoding(defaultEcoding);
+				marshaller.marshal(nodoConf);
+				
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtareas.add(resSubtarea);
+	
+			} catch (Exception e) {
+				logger.error("Error en parseo a XML de configuración de nodo: - ",e);
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : Error en parseo a XML de configuración de nodo: " + e.getMessage());
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtareas.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));			
+				return resultado;
+				
+			} finally {
+				if(osw!=null) osw.close();
+				if(fos!=null) fos.close();
+			}
+	
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Copiando fichero de estadísticas");
+	
+			File ficheroEstadisiticas = new File(AgregaPropertiesImpl.getInstance()
+					.getProperty(AgregaProperties.PATH_ESTADISTICAS)
+					+ "/"
+					+ NOMBRE_FICHERO_ESTADISTICAS
+					+ this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO)
+					+ EXTENSION_FICHERO_ESTADISTICAS);
+			logger.debug("ficheroEstadisiticas es :" + ficheroEstadisiticas.getAbsolutePath() + " y uploadFolder es " + uploadFolder.getAbsolutePath());
+			UtilesFicheros.copiar(ficheroEstadisiticas, uploadFolder);
+	
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);
+	
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Comprimiento directorio índices");
+	
+			//Comprimimos carpeta
+			File zipFile=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/"+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID)+".zip");
+			//Si existe, lo borramos
+			if(zipFile.exists()) zipFile.delete();
+			
+			TrueZipDaoImpl.getInstance().comprimir(zipFile.getCanonicalPath(), uploadFolder.getCanonicalPath());
+			//copiamos ZIP a ruta para upload
+			UtilesFicheros.copiar(zipFile, uploadFolder);
+			UtilesFicheros.eliminar(uploadFolder);
+	
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);
+	
+			resultado.setResultadoGlobal(OK);
+			resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
 
 		} catch (Exception e) {
-			logger.error("Error en parseo a XML de configuración de nodo: - ",e);
-			return false;
-		} finally {
-			if(osw!=null) osw.close();
-			if(fos!=null) fos.close();
+			logger.error("Error genérico al subir índices " + e.getMessage());
+
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtareas.add(resSubtarea);
+			resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
 		}
 
-		File ficheroEstadisiticas = new File(AgregaPropertiesImpl.getInstance()
-				.getProperty(AgregaProperties.PATH_ESTADISTICAS)
-				+ "/"
-				+ NOMBRE_FICHERO_ESTADISTICAS
-				+ AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO)
-				+ EXTENSION_FICHERO_ESTADISTICAS);
-		logger.debug("ficheroEstadisiticas es :" + ficheroEstadisiticas.getAbsolutePath() + " y uploadFolder es " + uploadFolder.getAbsolutePath());
-		UtilesFicheros.copiar(ficheroEstadisiticas, uploadFolder);
-		
-		//Comprimimos carpeta
-		File zipFile=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.INDEX_UPLOAD_PATH)+"/"+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID)+".zip");
-		//Si existe, lo borramos
-		if(zipFile.exists()) zipFile.delete();
-		
-		TrueZipDaoImpl.getInstance().comprimir(zipFile.getCanonicalPath(), uploadFolder.getCanonicalPath());
-		//copiamos ZIP a ruta para upload
-		UtilesFicheros.copiar(zipFile, uploadFolder);
-		UtilesFicheros.eliminar(uploadFolder);
-		return true;
+		return resultado;
 	}
 
 	@Override
@@ -768,10 +899,15 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 		return prop;
 	}
 
-	protected Boolean handleCrearEstadisticasLocales() throws Exception{
+	protected ResultadoTareaVO handleCrearEstadisticasLocales() throws Exception{
+		
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);		
+		List<ResultadoSubtareaVO> lResSubtarea = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea= new ResultadoSubtareaVO();	
 
 //		logger.debug("crearFicheroEstadisticas begins");
-		
+		try{		
 		FileOutputStream fos = null;
 		OutputStreamWriter osw = null;
 		
@@ -779,7 +915,7 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 				.getProperty(AgregaProperties.PATH_ESTADISTICAS)
 				+ "/"
 				+ NOMBRE_FICHERO_ESTADISTICAS
-				+ AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO)
+				+ this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO)
 				+ EXTENSION_FICHERO_ESTADISTICAS);
 		
 		fos = new FileOutputStream(fichero);
@@ -790,14 +926,16 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 		Date date = new Date();
 		
 		EstadisticasAgrega estadisticasAgrega = new EstadisticasAgrega();
-		estadisticasAgrega.setNodo(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO));
+		estadisticasAgrega.setNodo(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO));
 		estadisticasAgrega.setFecha(sdf.format(date));
 		
 		// ACTIVIDAD
 		try {
 			if (logger.isDebugEnabled())
 				logger.debug("Procesando estadísticas locales de actividad");
-
+			
+			resSubtarea.setSubtarea("Obteniendo datos de actividad"); 
+			
 			GregorianCalendar todosLosTiempos = new GregorianCalendar(1970, 1, 1, 0, 0);
 			ParametrosInformeVO parametrosInformeActividad = new ParametrosInformeVO();
 			parametrosInformeActividad.setFechaDesde(todosLosTiempos);			
@@ -842,19 +980,29 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			if (logger.isDebugEnabled())
 				logger.debug("Termina de procesar estadísticas locales de actividad");
 
+			resSubtarea.setResultadoSubtarea(OK);
+			
 		} catch (Exception ex) {
 			logger.warn("No se ha podido obtener las estadisticas de ACTIVIDAD" + ex.getCause());
 			estadisticasAgrega.addEstadistica(covert2estadistica("01", "Busquedas", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("02", "Descargas", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("03", "Fichas Accedidas", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("04", "Odes Previsualizados", "0", "0"));
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de ACTIVIDAD" + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
 		}
+		
+		lResSubtarea.add(resSubtarea);
 
 		// COBERTURA CURRICULAR
 		try {
 			
 			if (logger.isDebugEnabled())
 				logger.debug("Procesando estadísticas locales de cobertura curricular");
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de cobertura curricular"); 
 			
 			String[] idiomasIndices = I18n.getInstance().obtenerIdiomasBuscables();
 			
@@ -979,6 +1127,8 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			if (logger.isDebugEnabled())
 				logger.debug("Termina de procesar estadísticas locales de cobertura curricular");			
 			
+			resSubtarea.setResultadoSubtarea(OK);	
+			
 		} catch (Exception ex) {
 			logger.warn("No se ha podido obtener las estadisticas de COBERTURA CURRICULAR" + ex.getCause());
 			estadisticasAgrega.addEstadistica(covert2estadistica("05", "Bachillerato", "0", "0"));
@@ -988,13 +1138,23 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			estadisticasAgrega.addEstadistica(covert2estadistica("09", "Enseñanzas Artisticas", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("10", "Enseñanza Oficial Idiomas", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("11", "Formacion Profesional", "0", "0"));
+
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de COBERTURA CURRICULAR" + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}
+		
+		lResSubtarea.add(resSubtarea);
+		
 		
 		// LICENCIAS
 		try {
 			if (logger.isDebugEnabled())
 				logger.debug("Procesando estadísticas locales de licencias");
 
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de licencias");
+			
 			Calendar todosLosTiempos = Calendar.getInstance();
 			todosLosTiempos.setTime(new Date(0));
 			
@@ -1014,6 +1174,8 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			
 			if (logger.isDebugEnabled())
 				logger.debug("Termina de procesar estadísticas locales de licencias");
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 
 		} catch (Exception ex) {
 			estadisticasAgrega.addEstadistica(covert2estadistica("12", "licencia propietaria", "0", "0"));
@@ -1032,12 +1194,21 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			estadisticasAgrega.addEstadistica(covert2estadistica("25", "creative commons: reconocimiento - compartir igual", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("26", "licencia GFDL", "0", "0"));
 			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de licencias" + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
+			
 		}
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// ODES
 		try {
 			if (logger.isDebugEnabled())
 				logger.debug("Procesando estadísticas locales de odes");
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de ODEs");
 
 			ResultadosCountVO resultadosCountVO = this.getSrvBuscadorService().obtenerTotalesRepositorio();
 			estadisticasAgrega.addEstadistica(covert2estadistica("27", "NumLocalCursos", String.valueOf(resultadosCountVO.getConteo()[3]),"0"));
@@ -1048,6 +1219,8 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			
 			if (logger.isDebugEnabled())
 				logger.debug("Termina de procesar estadísticas locales de odes");
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 
 		}catch (Exception ex) { 
 			logger.warn("No se ha podido obtener los valores de las estadisticas de ODES locales" + ex.getCause());
@@ -1056,10 +1229,19 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			estadisticasAgrega.addEstadistica(covert2estadistica("29", "NumLocalObjetos", "0","0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("30", "NumLocalObjetosAprendizaje", "0", "0"));
 			estadisticasAgrega.addEstadistica(covert2estadistica("31", "NumLocalSecuencias", "0","0"));
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de ODEs" + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}		
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// TERMINOS TODOS LOS TIEMPOS
 		try {
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de terminos todos los tiempos");
+			
 			Calendar todosLosTiempos = Calendar.getInstance();
             todosLosTiempos.setTime(new Date(0));
 			ParametrosInformeVO parametrosInformeTerminosTotal = new ParametrosInformeVO();
@@ -1068,12 +1250,23 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			parametrosInformeTerminosTotal.setRango(5);
 			
 			agregarEstaditsticasTerminos(this.getSrvAuditoriaServicio().informeTerminosBusqueda(parametrosInformeTerminosTotal), BLOQUE_TERMINOS_TOTAL, estadisticasAgrega);
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 		}catch (Exception ex) {
 			logger.warn("Error creando las estadisticas locales de los terminos mas buscados totales" + ex.getCause());
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de terminos todos los años " + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// TERMINOS AÑO
 		try{
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de terminos año");
+			
 			Calendar anioEnCurso = Calendar.getInstance();
 			anioEnCurso.set(Calendar.HOUR, -12);
 			anioEnCurso.set(Calendar.MINUTE, 0);
@@ -1086,13 +1279,23 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			parametrosInformeTerminosAnio.setRango(5);
 
 			agregarEstaditsticasTerminos(this.getSrvAuditoriaServicio().informeTerminosBusqueda(parametrosInformeTerminosAnio), BLOQUE_TERMINOS_ANIO, estadisticasAgrega);
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 		}catch (Exception ex) {
 			logger.warn("Error creando las estadisticas locales de los terminos mas buscados totales"+ ex.getCause());
-			logger.debug("",ex);
+
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de terminos año " + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// TERMINOS MES
 		try {
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de terminos mes");
+			
 			Calendar mesEnCurso = Calendar.getInstance();
 			mesEnCurso.set(Calendar.HOUR, -12);
 			mesEnCurso.set(Calendar.MINUTE, 0);
@@ -1104,12 +1307,23 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			parametrosInformeTerminosMes.setRango(5);
 
 			agregarEstaditsticasTerminos(this.getSrvAuditoriaServicio().informeTerminosBusqueda(parametrosInformeTerminosMes), BLOQUE_TERMINOS_MES, estadisticasAgrega);
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 		} catch (Exception ex) {
 			logger.warn("Error creando las estadisticas locales de los terminos mas buscados del mes"+ ex.getCause());
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de terminos mes " + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}	
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// TERMINOS SEMANA
 		try {
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de terminos semana");
+			
 			Calendar todosLosTiempos = Calendar.getInstance();
             todosLosTiempos.setTime(new Date(0));
 			Calendar semanaEnCurso = Calendar.getInstance();
@@ -1123,12 +1337,23 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			parametrosInformeTerminosSemana.setRango(5);
 
 			agregarEstaditsticasTerminos(this.getSrvAuditoriaServicio().informeTerminosBusqueda(parametrosInformeTerminosSemana), BLOQUE_TERMINOS_SEMANA, estadisticasAgrega);
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 		} catch (Exception ex) {
 			logger.warn("Error creando las estadisticas locales de los terminos mas buscados de a semana"+ ex.getCause());
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de terminos semana " + ex.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		}
+		
+		lResSubtarea.add(resSubtarea);
 		
 		// TERMINOS DIA
 		try {
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo datos de terminos día");
+			
 	        Calendar inicioDiaActual = Calendar.getInstance();
 	        inicioDiaActual.add(Calendar.DATE, -1);
 	        inicioDiaActual.set(Calendar.AM_PM, 0);
@@ -1149,9 +1374,20 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			parametrosInformeTerminosDia.setRango(5);
 
 			agregarEstaditsticasTerminos(this.getSrvAuditoriaServicio().informeTerminosBusqueda(parametrosInformeTerminosDia), BLOQUE_TERMINOS_DIA, estadisticasAgrega);
+			
+			resSubtarea.setResultadoSubtarea(OK);	
 		} catch (Exception e) {
 			logger.warn("Error creando las estadisticas locales de los terminos mas buscados diarios"+ e.getCause());
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + "No se ha podido obtener las estadisticas de terminos día " + e.getCause());
+			resSubtarea.setResultadoSubtarea(ERROR);		
+
 		} 
+		
+		lResSubtarea.add(resSubtarea);
+		
+		resSubtarea = new ResultadoSubtareaVO();
+		resSubtarea.setSubtarea("Convirtiendo datos estadísticos");
 		
 		Set<Integer> estPresentes = new HashSet<Integer>();
 		for(Estadistica est : estadisticasAgrega.getEstadistica()){
@@ -1166,6 +1402,12 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 		
 		estadisticasSinVacios(estadisticasAgrega);
 		
+		resSubtarea.setResultadoSubtarea(OK);			
+		lResSubtarea.add(resSubtarea);
+		
+		resSubtarea = new ResultadoSubtareaVO();
+		resSubtarea.setSubtarea("Generando fichero datos estadísticos");
+		
 		Marshaller marshaller = new Marshaller(osw);
 		marshaller.setEncoding("iso-8859-1");
 		marshaller.marshal(estadisticasAgrega);
@@ -1175,519 +1417,610 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			if (fos != null)
 				fos.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
+		}
+
+		resSubtarea.setResultadoSubtarea(OK);			
+		lResSubtarea.add(resSubtarea);
+
+		resultado.setResultadoGlobal(OK);
+//		logger.debug("crearFicheroEstadisticas ends");
+		
+		}catch (Exception e) {
+			logger.error("Error genérico al crear estadística locales " + e.getMessage());
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtarea.add(resSubtarea);		
 		}
 		
-//		logger.debug("crearFicheroEstadisticas ends");
-		return true;
+		resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+		return resultado;
 	}
 
-	protected Boolean handleCrearEstadisticasTotales() throws Exception {
+	protected ResultadoTareaVO handleCrearEstadisticasTotales() throws Exception {
+		
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);		
+		List<ResultadoSubtareaVO> lResSubtarea = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea= new ResultadoSubtareaVO();	
 		
 //		logger.debug("crearFicheroEstadisticasTotales begins");
 		
-		String[] comunidades;
-		int totales[] = new int [POSICION_INICIO_TERMINOS];
-		Map<String, Integer> masBuscadosTotal = new HashMap<String, Integer>();
-		Map<String, Integer> masBuscadosAnio = new HashMap<String, Integer>();
-		Map<String, Integer> masBuscadosMes = new HashMap<String, Integer>();
-		Map<String, Integer> masBuscadosSemana = new HashMap<String, Integer>();
-		Map<String, Map<String,Integer>> masBuscadosTotalAux = new HashMap<String, Map<String,Integer>>();
-		Map<String, Map<String,Integer>> masBuscadosAnioAux = new HashMap<String, Map<String,Integer>>();
-		Map<String, Map<String,Integer>> masBuscadosMesAux = new HashMap<String, Map<String,Integer>>();
-		Map<String, Map<String,Integer>> masBuscadosSemanaAux = new HashMap<String, Map<String,Integer>>();
-		Map<String, ArrayList<NodoEstadistica>> nodosEstadisticaTotalMap = new HashMap<String, ArrayList<NodoEstadistica>>();
-		
-		File directorio = null;
-		File estTot = null;
-		FileInputStream fis = null;
-		InputStreamReader isr = null;
-		FileOutputStream fos = null;
-		OutputStreamWriter osw = null;		
-		
-		try {
-			directorio = new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS));
-		} catch (Exception ex) {
-			logger.error("No existe el dicrectorio que deberia contener los ficheros de estadisticas locales");
-			throw new Exception("No existe el dicrectorio que deberia contener los ficheros de estadisticas locales");
-		}
-		
-		estTot=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS)+ "/" + NOMBRE_FICHERO_ESTADISTICAS_TOTALES +EXTENSION_FICHERO_ESTADISTICAS);
-		if (estTot.exists()) {
-			if(estTot.delete()) {
-				logger.info("Se ha borrado el fichero de est totales");
-			} else {
-				logger.info("No se ha borrado el fichero de est totales");
-			}
+		try{					
+
+			String[] comunidades;
+			int totales[] = new int [POSICION_INICIO_TERMINOS];
+			Map<String, Integer> masBuscadosTotal = new HashMap<String, Integer>();
+			Map<String, Integer> masBuscadosAnio = new HashMap<String, Integer>();
+			Map<String, Integer> masBuscadosMes = new HashMap<String, Integer>();
+			Map<String, Integer> masBuscadosSemana = new HashMap<String, Integer>();
+			Map<String, Map<String,Integer>> masBuscadosTotalAux = new HashMap<String, Map<String,Integer>>();
+			Map<String, Map<String,Integer>> masBuscadosAnioAux = new HashMap<String, Map<String,Integer>>();
+			Map<String, Map<String,Integer>> masBuscadosMesAux = new HashMap<String, Map<String,Integer>>();
+			Map<String, Map<String,Integer>> masBuscadosSemanaAux = new HashMap<String, Map<String,Integer>>();
+			Map<String, ArrayList<NodoEstadistica>> nodosEstadisticaTotalMap = new HashMap<String, ArrayList<NodoEstadistica>>();
 			
-		}
-		
-		int numFicEstadisticasNodo = 0;
-		
-		
-		
-		if (directorio.list() != null) {
+			File directorio = null;
+			File estTot = null;
+			FileInputStream fis = null;
+			InputStreamReader isr = null;
+			FileOutputStream fos = null;
+			OutputStreamWriter osw = null;		
 			
-			for (String nomFile : directorio.list()) { 
-				
-				if (nomFile.startsWith(NOMBRE_FICHERO_ESTADISTICAS) 
-						&& nomFile.endsWith(EXTENSION_FICHERO_ESTADISTICAS)
-						&& !nomFile.equals(NOMBRE_FICHERO_ESTADISTICAS_TOTALES + EXTENSION_FICHERO_ESTADISTICAS)){
-					numFicEstadisticasNodo++;
-				}
-			}
-
-			Vector<String> vFicheros = new Vector<String>();
-			
-			File[] aFicheros = directorio.listFiles();
-			for(int i = 0; i < aFicheros.length; i++) {
-				vFicheros.add(aFicheros[i].toString());
-            }
-			
-			Collections.sort(vFicheros, String.CASE_INSENSITIVE_ORDER);
-						
-			comunidades = new String[numFicEstadisticasNodo];			
-			
-			int i = 0;
-			for (String nombreFicheroEst : vFicheros) {
-
-				if (nombreFicheroEst.contains(NOMBRE_FICHERO_ESTADISTICAS) 
-						&& nombreFicheroEst.endsWith(EXTENSION_FICHERO_ESTADISTICAS)
-						&& !nombreFicheroEst.contains(NOMBRE_FICHERO_ESTADISTICAS_TOTALES + EXTENSION_FICHERO_ESTADISTICAS)){
-					
-					Unmarshaller unmarshaller = new Unmarshaller(EstadisticasAgrega.class);
-					unmarshaller.setValidation(false);
-					EstadisticasAgrega estadisticasAgrega = null;
-					
-					try {
-						File ficheroTmpLectura = new File(nombreFicheroEst);
-						fis = new FileInputStream(ficheroTmpLectura);
-						isr = new InputStreamReader(fis);
-						estadisticasAgrega = (EstadisticasAgrega) unmarshaller.unmarshal(isr);	
-					} catch (Exception e) {
-						logger.error("No se ha podido parsear correctamente el fichero de estadisticas locales " + nombreFicheroEst);
-						throw new Exception("No se ha podido parsear correctamente el fichero de estadisticas locales " + nombreFicheroEst);
-					} finally {
-						try {
-							if (fis != null)
-								fis.close();
-							if (isr != null)
-								isr.close();
-						} catch (Exception e) {
-							logger.warn("No se puede cerrar los stream de lectura del fichero xml de estadisticas: " + nombreFicheroEst + " "+ e.getCause());
-							
-						}
-					}
-					
-					try {
-						
-						String dateFormat = "dd/MM/yyyy";
-						SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-						Date fechaFichero = sdf.parse(estadisticasAgrega.getFecha());
-						String fechaHoyAux = sdf.format(new Date());
-						Date fechaHoy = sdf.parse(fechaHoyAux);
-
-						String sNombreNodo = estadisticasAgrega.getNodo();
-						// Si la fecha del fichero es anterior a hoy lo marcamos para informar al usuario								
-						if (fechaFichero.before(fechaHoy)) {
- 							
-							// Lanzamos correo de alarma de fichero obsoleto
-							envioCorreoAlarma(sNombreNodo, INCIDENCIA_FICHERO_OBSOLETO);
-							
-							//sNombreNodo+=" (*)";
-							//htNodos.put(estadisticasAgrega.getNodo(),	sNombreNodo);
-						}
-//						else
-//						{
-//							htNodos.put(estadisticasAgrega.getNodo(),	sNombreNodo);
-//						}
-						
-						comunidades[i] = estadisticasAgrega.getNodo();
-						
-						for (Estadistica estadistica : estadisticasAgrega.getEstadistica()) {
-							int codigoEstAct = Integer.valueOf(estadistica.getCodigo());
-							
-							if (codigoEstAct < POSICION_INICIO_TERMINOS){
-						
-								String valorDatoEstadistico=estadistica.getValor();
-								
-								if (valorDatoEstadistico==null ||valorDatoEstadistico.equals("") ||valorDatoEstadistico.equals("null"))
-								{
-									envioCorreoAlarma(estadisticasAgrega.getNodo(), INCIDENCIA_DATO_ESTADISTICO_INCORRECTO);
-									valorDatoEstadistico="0";
-								}
-								
-								totales[codigoEstAct-1] = totales[codigoEstAct-1] + Integer.valueOf(valorDatoEstadistico);
-	
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								
-								// Se verifica si el valor informado en Búsquedas es 0. 
-								// Si es 0 se envía correo de alarma
-								if ((CODIGO_ESTADISTICA_BUSQUEDAS==codigoEstAct) && (estadistica.getValor().equals("0")))
-								{
-									// Lanzamos correo de alarma de actividad nula
-									envioCorreoAlarma(estadisticasAgrega.getNodo(), INCIDENCIA_ACTIVIDAD_NULA);
-								}
-								
-								nodoEstadistica.setNombreNodoEstadistica(sNombreNodo);
-								nodoEstadistica.setValorNodoEstadistica(valorDatoEstadistico);
-							
-								if (nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct)) != null) {
-									ArrayList<NodoEstadistica> nodosEstadisticaTotalSetTmp = nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct));
-									nodosEstadisticaTotalSetTmp.add(nodoEstadistica);
-									nodosEstadisticaTotalMap.put(String.valueOf(codigoEstAct), nodosEstadisticaTotalSetTmp);
-								} else {
-									ArrayList<NodoEstadistica> nodosEstadisticaTotalSetTmp = new ArrayList<NodoEstadistica>();
-									nodosEstadisticaTotalSetTmp.add(nodoEstadistica);
-									nodosEstadisticaTotalMap.put(String.valueOf(codigoEstAct), nodosEstadisticaTotalSetTmp);
-								}
-							}
-							if (codigoEstAct>=POSICION_INICIO_TERMINOS 
-									&& codigoEstAct<(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
-									&& estadistica.getDescripcion() != null
-									&& !estadistica.getDescripcion().equals("")) {
-								if (!masBuscadosTotal.containsKey(estadistica.getDescripcion())) {
-									masBuscadosTotal.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
-									
-									Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosTotalAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								} else {
-									int valorTotalAux = masBuscadosTotal.get(estadistica.getDescripcion());
-									valorTotalAux += Integer.valueOf(estadistica.getValor());
-									masBuscadosTotal.put(estadistica.getDescripcion(), valorTotalAux);
-									
-									Map<String,Integer> valoresPorComunidad = masBuscadosTotalAux.get(estadistica.getDescripcion());
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosTotalAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								}
-							}
-							if (codigoEstAct>=(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
-									&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))
-									&& estadistica.getDescripcion() != null
-									&& !estadistica.getDescripcion().equals("")) {
-								if (!masBuscadosAnio.containsKey(estadistica.getDescripcion())) {
-									masBuscadosAnio.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
-									
-									Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosAnioAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								} else {
-									int valorTotalAux = masBuscadosAnio.get(estadistica.getDescripcion());
-									valorTotalAux += Integer.valueOf(estadistica.getValor());
-									masBuscadosAnio.put(estadistica.getDescripcion(), valorTotalAux);
-									
-									Map<String,Integer> valoresPorComunidad = masBuscadosAnioAux.get(estadistica.getDescripcion());
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosAnioAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								}
-							}
-							if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO)) 
-									&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
-									&& estadistica.getDescripcion() != null
-									&& !estadistica.getDescripcion().equals("")) {
-								if (!masBuscadosMes.containsKey(estadistica.getDescripcion())) {
-									masBuscadosMes.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
-									
-									Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosMesAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								} else {
-									int valorTotalAux = masBuscadosMes.get(estadistica.getDescripcion());
-									valorTotalAux += Integer.valueOf(estadistica.getValor());
-									masBuscadosMes.put(estadistica.getDescripcion(), valorTotalAux);
-									
-									Map<String,Integer> valoresPorComunidad = masBuscadosMesAux.get(estadistica.getDescripcion());
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosMesAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								}
-							}
-							if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
-									&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_SEMANA))
-									&& estadistica.getDescripcion() != null
-									&& !estadistica.getDescripcion().equals("")) {
-								if (!masBuscadosSemana.containsKey(estadistica.getDescripcion())) {
-									masBuscadosSemana.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
-									
-									Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosSemanaAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								} else {
-									int valorTotalAux = masBuscadosSemana.get(estadistica.getDescripcion());
-									valorTotalAux += Integer.valueOf(estadistica.getValor());
-									masBuscadosSemana.put(estadistica.getDescripcion(), valorTotalAux);
-									
-									Map<String,Integer> valoresPorComunidad = masBuscadosSemanaAux.get(estadistica.getDescripcion());
-									valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
-									masBuscadosSemanaAux.put(estadistica.getDescripcion(), valoresPorComunidad);
-								}
-							}								
-							if (codigoEstAct>(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
-									&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_DIA))
-									&& estadistica.getDescripcion() != null
-									&& !estadistica.getDescripcion().equals("")) {
-
-								if (!fechaFichero.before(fechaHoy)) {
-									EstadisticaImpl estadisticaAux = new EstadisticaImpl();
-									estadisticaAux.setCodigo(estadistica.getCodigo());
-									estadisticaAux.setDescripcion(estadistica.getDescripcion());
-									estadisticaAux.setFechaAlta(fechaHoy);
-									estadisticaAux.setNodo(estadisticasAgrega.getNodo());
-									estadisticaAux.setValor(Integer.valueOf(estadistica.getValor()));
-									this.getEstadisticaDao().create(estadisticaAux);						
-								} else {
-									logger.warn("El fichero de estadísticas locales del nodo " + estadisticasAgrega.getNodo() + " está desactualizado");
-								}
-							}							
-						}
-					} catch (Exception ex) {
-						logger.error("Error calculando los totales " + ex.getMessage());
-						throw new Exception("Error calculando los totales mientras se sumaban los datos del fichero " + nombreFicheroEst);
-					}
-						
-					try {
-						volcarEstadisticasBBDD (estadisticasAgrega);
-					} catch (Exception ex) {
-						logger.error("Excepcion volcando estadisticas" + ex.getMessage());
-						
-						//NO LANZO EXCEPCION PARA QUE COMPLETE EL FICHERO DE ESTADISTICAS TOTALES Y SE PUEDA MOSTRAR LAS ESTADISTICAS DE LA PARTE PUBLICA
-					}
-					
-					i++;					
-				}
-
-			}
-		} else {
-			logger.error("El directorio de estadisticas no contiene las estadisticas locales de cada nodo");
-			throw new Exception ("El directorio de estadisticas no contiene las estadisticas locales de cada nodo"); 
-		}
-		
-		try {
-			
-			// Obtenemos los nodos para marcar los obsoletos
-			Hashtable<String, String> htNodos = new Hashtable<String, String>();
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date fecHastaDia = sdf.parse(sdf.format(new Date()));
-			
-			Collection<Object> estadisticasUltimoDia = this.getEstadisticaDao().obtenerEstadisticasActividadPorFechas(fecHastaDia, fecHastaDia);
-
-			for (Object object : estadisticasUltimoDia) {	
-				Object[] estadistica = (Object[])object;
-				String codigoEst = (String) estadistica[0];
-				String nodo = (String) estadistica[1];
-				Integer valorDato = (Integer) estadistica[2];	
-				
-				String nodoOrig = (String) estadistica[1];
-				
-				if (codigoEst.equals("01") && valorDato.intValue()==0)
-				{
-					nodo+=" (*)";
-					htNodos.put(nodoOrig,nodo);
-
-				}else if (codigoEst.equals("01")) 
-				{
-					htNodos.put(nodoOrig,nodo);
-				}
-				
-				
-			}
-						
-			
-			File ficheroEstLocales = new File(AgregaPropertiesImpl.getInstance().getProperty(
-					AgregaProperties.PATH_ESTADISTICAS)
-					+ "/"
-					+ NOMBRE_FICHERO_ESTADISTICAS
-					+ AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO)
-					+ EXTENSION_FICHERO_ESTADISTICAS);
-			File ficheroEstTotales = new File(AgregaPropertiesImpl.getInstance()
-					.getProperty(AgregaProperties.PATH_ESTADISTICAS)
-					+ "/"
-					+ NOMBRE_FICHERO_ESTADISTICAS_TOTALES
-					+ EXTENSION_FICHERO_ESTADISTICAS);
-
-			fis = new FileInputStream(ficheroEstLocales);
-			isr = new InputStreamReader(fis);
-			fos = new FileOutputStream(ficheroEstTotales);
-			osw = new OutputStreamWriter(fos);
-			
-			Date date = new Date();
-	
-			Unmarshaller unmarshaller = new Unmarshaller(EstadisticasAgrega.class);
-			unmarshaller.setValidation(false);
-			EstadisticasAgrega estadisticasAgrega = (EstadisticasAgrega) unmarshaller.unmarshal(isr);
-			
-			String[] TerminosMasBuscadosTotalesOrdenados = obtenerLosMasBuscados(masBuscadosTotal);
-			String[] TerminosMasBuscadosAnioOrdenados = obtenerLosMasBuscados(masBuscadosAnio);
-			String[] TerminosMasBuscadosMesOrdenados = obtenerLosMasBuscados(masBuscadosMes);
-			String[] TerminosMasBuscadosSemanaOrdenados = obtenerLosMasBuscados(masBuscadosSemana);
-			
-			for (Estadistica estadistica : estadisticasAgrega.getEstadistica()) {
-				int codigoEstAct = Integer.valueOf(estadistica.getCodigo());
-				if (codigoEstAct < POSICION_INICIO_TERMINOS) {
-
-					estadistica.setValorTotal(String.valueOf(totales[codigoEstAct - 1]));
-					NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
-					for (NodoEstadistica nodoEstadistica : nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct))) {
-						nodoEstadistica.setNombreNodoEstadistica(htNodos.get(nodoEstadistica.getNombreNodoEstadistica()));
-						nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-					}
-					//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
-					estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
-				}
-				if (codigoEstAct>=POSICION_INICIO_TERMINOS 
-						&& codigoEstAct<(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)) {
-
-					NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
-					if (!TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS].equals("")
-							&&TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS] != null) {
-						estadistica.setDescripcion(TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS]);
-						estadistica.setValorTotal(String.valueOf(masBuscadosTotal.get(TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS])));
-						if (masBuscadosTotalAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
-							estadistica.setValor(masBuscadosTotalAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
-						} else {
-							estadistica.setValor("0");
-						}
-						
-						for (String comunidad : comunidades) {
-							if (masBuscadosTotalAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica(masBuscadosTotalAux.get(estadistica.getDescripcion()).get(comunidad).toString());
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							} else {
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica("0");
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							}
-						}
-					}
-					
-					estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
-					//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
-				} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
-						&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))) {
-
-					NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
-					if (!TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)].equals("")
-							&& TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)] != null) {	
-					estadistica.setDescripcion(TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)]);
-						estadistica.setValorTotal(String.valueOf(masBuscadosAnio.get(TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)])));
-						if (masBuscadosAnioAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
-							estadistica.setValor(masBuscadosAnioAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
-						} else {
-							estadistica.setValor("0");
-						}
-						
-						for (String comunidad : comunidades) {
-							if (masBuscadosAnioAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica(masBuscadosAnioAux.get(estadistica.getDescripcion()).get(comunidad).toString());
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							} else {
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica("0");
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							}
-						}
-					}
-						
-					estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
-					//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
-				} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO)) 
-						&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))) {
-
-					NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
-					if (!TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))].equals("")
-							&& TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))] != null) {
-						estadistica.setDescripcion(TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))]);
-						estadistica.setValorTotal(String.valueOf(masBuscadosMes.get(TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))])));
-						if (masBuscadosMesAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
-							estadistica.setValor(masBuscadosMesAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
-						} else {
-							estadistica.setValor("0");
-						}
-						
-						for (String comunidad : comunidades) {
-							if (masBuscadosMesAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica(masBuscadosMesAux.get(estadistica.getDescripcion()).get(comunidad).toString());
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							} else {
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica("0");
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							}
-						}
-					}	
-						
-					//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
-					estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
-				} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
-						&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_SEMANA))) {
-
-					NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
-					if (!TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))].equals("")
-							&& TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))] != null) {
-						estadistica.setDescripcion(TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))]);
-						estadistica.setValorTotal(String.valueOf(masBuscadosSemana.get(TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))])));
-						if (masBuscadosSemanaAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
-							estadistica.setValor(masBuscadosSemanaAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
-						} else {
-							estadistica.setValor("0");
-						}
-						
-						for (String comunidad : comunidades) {
-							if (masBuscadosSemanaAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica(masBuscadosSemanaAux.get(estadistica.getDescripcion()).get(comunidad).toString());
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							} else {
-								NodoEstadistica nodoEstadistica = new NodoEstadistica();
-								nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
-								nodoEstadistica.setValorNodoEstadistica("0");
-								nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
-							}
-						}
-					}
-					
-					estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
-					//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
-				}
-			}
-
-			estadisticasAgrega.setNodo(NODO_ESTADISTICAS_TOTALES);
-			estadisticasAgrega.setFecha(sdf.format(date));
-
-			Marshaller marshaller = new Marshaller(osw);
-			marshaller.setEncoding("iso-8859-1");
-			marshaller.marshal(estadisticasAgrega);
-
-		} catch (Exception ex) {
-			logger.error("No se ha podido rellenar el fichero de estadisticas local con los valores totales." + ex.getMessage());
-		} finally {
 			try {
-				if (osw != null)
-					osw.close();
-				if (fos != null)
-					fos.close();
-				if (fis != null)
-					fis.close();
-				if (isr != null)
-					isr.close();
-			} catch (Exception e) {
-				e.printStackTrace();
+				resSubtarea = new ResultadoSubtareaVO();
+				resSubtarea.setSubtarea("Verificando directorio de estadísticas"); 
+
+				directorio = new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS));
+				
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtarea.add(resSubtarea);		
+
+			} catch (Exception ex) {
+				logger.error("No existe el dicrectorio que deberia contener los ficheros de estadisticas locales");
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :No existe el dicrectorio que deberia contener los ficheros de estadisticas locales " + ex.getMessage());
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);		
+
+				return resultado;
 			}
-		}
-//		logger.debug("crearFicheroEstadisticasTotales ends");
+			
+			estTot=new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_ESTADISTICAS)+ "/" + NOMBRE_FICHERO_ESTADISTICAS_TOTALES +EXTENSION_FICHERO_ESTADISTICAS);
+			if (estTot.exists()) {
+				if(estTot.delete()) {
+					logger.info("Se ha borrado el fichero de est totales");
+				} else {
+					logger.info("No se ha borrado el fichero de est totales");
+				}
+				
+			}
+			
+			int numFicEstadisticasNodo = 0;
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Obteniendo ficheros de estadísticas del resto de nodos"); 
+			
+			if (directorio.list() != null) {
+				
+				for (String nomFile : directorio.list()) { 
+					
+					if (nomFile.startsWith(NOMBRE_FICHERO_ESTADISTICAS) 
+							&& nomFile.endsWith(EXTENSION_FICHERO_ESTADISTICAS)
+							&& !nomFile.equals(NOMBRE_FICHERO_ESTADISTICAS_TOTALES + EXTENSION_FICHERO_ESTADISTICAS)){
+						numFicEstadisticasNodo++;
+					}
+				}
+	
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtarea.add(resSubtarea);		
+
+				Vector<String> vFicheros = new Vector<String>();
+				
+				File[] aFicheros = directorio.listFiles();
+				for(int i = 0; i < aFicheros.length; i++) {
+					vFicheros.add(aFicheros[i].toString());
+	            }
+				
+				Collections.sort(vFicheros, String.CASE_INSENSITIVE_ORDER);
+							
+				comunidades = new String[numFicEstadisticasNodo];			
+				
+				int i = 0;
+				for (String nombreFicheroEst : vFicheros) {
+	
+					if (nombreFicheroEst.contains(NOMBRE_FICHERO_ESTADISTICAS) 
+							&& nombreFicheroEst.endsWith(EXTENSION_FICHERO_ESTADISTICAS)
+							&& !nombreFicheroEst.contains(NOMBRE_FICHERO_ESTADISTICAS_TOTALES + EXTENSION_FICHERO_ESTADISTICAS)){
+						
+						Unmarshaller unmarshaller = new Unmarshaller(EstadisticasAgrega.class);
+						unmarshaller.setValidation(false);
+						EstadisticasAgrega estadisticasAgrega = null;
+						
+						try {
+							
+							resSubtarea = new ResultadoSubtareaVO();
+							resSubtarea.setSubtarea("Parseando fichero de estadísticas :" + nombreFicheroEst); 
+
+							File ficheroTmpLectura = new File(nombreFicheroEst);
+							fis = new FileInputStream(ficheroTmpLectura);
+							isr = new InputStreamReader(fis);
+							estadisticasAgrega = (EstadisticasAgrega) unmarshaller.unmarshal(isr);	
+							
+							resSubtarea.setResultadoSubtarea(OK);
+							lResSubtarea.add(resSubtarea);	
+						} catch (Exception e) {
+							logger.error("No se ha podido parsear correctamente el fichero de estadisticas locales " + nombreFicheroEst);
+							resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :No se ha podido parsear correctamente el fichero de estadisticas locales " + e.getMessage());
+							resSubtarea.setResultadoSubtarea(ERROR);
+							lResSubtarea.add(resSubtarea);								
+
+						} finally {
+							try {
+								if (fis != null)
+									fis.close();
+								if (isr != null)
+									isr.close();
+							} catch (Exception e) {
+								logger.warn("No se puede cerrar los stream de lectura del fichero xml de estadisticas: " + nombreFicheroEst + " "+ e.getCause());
+								
+							}
+						}
+						
+						try {
+							
+							resSubtarea = new ResultadoSubtareaVO();
+							resSubtarea.setSubtarea("Procesando fichero de estadísticas :" + estadisticasAgrega.getNodo()); 
+
+							String dateFormat = "dd/MM/yyyy";
+							SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+							Date fechaFichero = sdf.parse(estadisticasAgrega.getFecha());
+							String fechaHoyAux = sdf.format(new Date());
+							Date fechaHoy = sdf.parse(fechaHoyAux);
+	
+							String sNombreNodo = estadisticasAgrega.getNodo();
+							// Si la fecha del fichero es anterior a hoy lo marcamos para informar al usuario								
+							if (fechaFichero.before(fechaHoy)) {
+	 							
+								// Lanzamos correo de alarma de fichero obsoleto
+								envioCorreoAlarma(sNombreNodo, INCIDENCIA_FICHERO_OBSOLETO);
+								
+								//sNombreNodo+=" (*)";
+								//htNodos.put(estadisticasAgrega.getNodo(),	sNombreNodo);
+							}
+	//						else
+	//						{
+	//							htNodos.put(estadisticasAgrega.getNodo(),	sNombreNodo);
+	//						}
+							
+							comunidades[i] = estadisticasAgrega.getNodo();
+							
+							for (Estadistica estadistica : estadisticasAgrega.getEstadistica()) {
+								int codigoEstAct = Integer.valueOf(estadistica.getCodigo());
+								
+								if (codigoEstAct < POSICION_INICIO_TERMINOS){
+							
+									String valorDatoEstadistico=estadistica.getValor();
+									
+									if (valorDatoEstadistico==null ||valorDatoEstadistico.equals("") ||valorDatoEstadistico.equals("null"))
+									{
+										envioCorreoAlarma(estadisticasAgrega.getNodo(), INCIDENCIA_DATO_ESTADISTICO_INCORRECTO);
+										valorDatoEstadistico="0";
+									}
+									
+									totales[codigoEstAct-1] = totales[codigoEstAct-1] + Integer.valueOf(valorDatoEstadistico);
 		
-		return true;
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									
+									// Se verifica si el valor informado en Búsquedas es 0. 
+									// Si es 0 se envía correo de alarma
+									if ((CODIGO_ESTADISTICA_BUSQUEDAS==codigoEstAct) && (estadistica.getValor().equals("0")))
+									{
+										// Lanzamos correo de alarma de actividad nula
+										envioCorreoAlarma(estadisticasAgrega.getNodo(), INCIDENCIA_ACTIVIDAD_NULA);
+									}
+									
+									nodoEstadistica.setNombreNodoEstadistica(sNombreNodo);
+									nodoEstadistica.setValorNodoEstadistica(valorDatoEstadistico);
+								
+									if (nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct)) != null) {
+										ArrayList<NodoEstadistica> nodosEstadisticaTotalSetTmp = nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct));
+										nodosEstadisticaTotalSetTmp.add(nodoEstadistica);
+										nodosEstadisticaTotalMap.put(String.valueOf(codigoEstAct), nodosEstadisticaTotalSetTmp);
+									} else {
+										ArrayList<NodoEstadistica> nodosEstadisticaTotalSetTmp = new ArrayList<NodoEstadistica>();
+										nodosEstadisticaTotalSetTmp.add(nodoEstadistica);
+										nodosEstadisticaTotalMap.put(String.valueOf(codigoEstAct), nodosEstadisticaTotalSetTmp);
+									}
+								}
+								if (codigoEstAct>=POSICION_INICIO_TERMINOS 
+										&& codigoEstAct<(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
+										&& estadistica.getDescripcion() != null
+										&& !estadistica.getDescripcion().equals("")) {
+									if (!masBuscadosTotal.containsKey(estadistica.getDescripcion())) {
+										masBuscadosTotal.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
+										
+										Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosTotalAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									} else {
+										int valorTotalAux = masBuscadosTotal.get(estadistica.getDescripcion());
+										valorTotalAux += Integer.valueOf(estadistica.getValor());
+										masBuscadosTotal.put(estadistica.getDescripcion(), valorTotalAux);
+										
+										Map<String,Integer> valoresPorComunidad = masBuscadosTotalAux.get(estadistica.getDescripcion());
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosTotalAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									}
+								}
+								if (codigoEstAct>=(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
+										&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))
+										&& estadistica.getDescripcion() != null
+										&& !estadistica.getDescripcion().equals("")) {
+									if (!masBuscadosAnio.containsKey(estadistica.getDescripcion())) {
+										masBuscadosAnio.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
+										
+										Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosAnioAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									} else {
+										int valorTotalAux = masBuscadosAnio.get(estadistica.getDescripcion());
+										valorTotalAux += Integer.valueOf(estadistica.getValor());
+										masBuscadosAnio.put(estadistica.getDescripcion(), valorTotalAux);
+										
+										Map<String,Integer> valoresPorComunidad = masBuscadosAnioAux.get(estadistica.getDescripcion());
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosAnioAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									}
+								}
+								if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO)) 
+										&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
+										&& estadistica.getDescripcion() != null
+										&& !estadistica.getDescripcion().equals("")) {
+									if (!masBuscadosMes.containsKey(estadistica.getDescripcion())) {
+										masBuscadosMes.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
+										
+										Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosMesAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									} else {
+										int valorTotalAux = masBuscadosMes.get(estadistica.getDescripcion());
+										valorTotalAux += Integer.valueOf(estadistica.getValor());
+										masBuscadosMes.put(estadistica.getDescripcion(), valorTotalAux);
+										
+										Map<String,Integer> valoresPorComunidad = masBuscadosMesAux.get(estadistica.getDescripcion());
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosMesAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									}
+								}
+								if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
+										&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_SEMANA))
+										&& estadistica.getDescripcion() != null
+										&& !estadistica.getDescripcion().equals("")) {
+									if (!masBuscadosSemana.containsKey(estadistica.getDescripcion())) {
+										masBuscadosSemana.put(estadistica.getDescripcion(), Integer.valueOf(estadistica.getValor()));
+										
+										Map<String,Integer> valoresPorComunidad = new HashMap<String, Integer>();
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosSemanaAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									} else {
+										int valorTotalAux = masBuscadosSemana.get(estadistica.getDescripcion());
+										valorTotalAux += Integer.valueOf(estadistica.getValor());
+										masBuscadosSemana.put(estadistica.getDescripcion(), valorTotalAux);
+										
+										Map<String,Integer> valoresPorComunidad = masBuscadosSemanaAux.get(estadistica.getDescripcion());
+										valoresPorComunidad.put(sNombreNodo, Integer.valueOf(estadistica.getValor()));
+										masBuscadosSemanaAux.put(estadistica.getDescripcion(), valoresPorComunidad);
+									}
+								}								
+								if (codigoEstAct>(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
+										&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_DIA))
+										&& estadistica.getDescripcion() != null
+										&& !estadistica.getDescripcion().equals("")) {
+	
+									if (!fechaFichero.before(fechaHoy)) {
+										EstadisticaImpl estadisticaAux = new EstadisticaImpl();
+										estadisticaAux.setCodigo(estadistica.getCodigo());
+										estadisticaAux.setDescripcion(estadistica.getDescripcion());
+										estadisticaAux.setFechaAlta(fechaHoy);
+										estadisticaAux.setNodo(estadisticasAgrega.getNodo());
+										estadisticaAux.setValor(Integer.valueOf(estadistica.getValor()));
+										this.getEstadisticaDao().create(estadisticaAux);						
+									} else {
+										logger.warn("El fichero de estadísticas locales del nodo " + estadisticasAgrega.getNodo() + " está desactualizado");
+									}
+								}							
+							}
+							
+							resSubtarea.setResultadoSubtarea(OK);
+							lResSubtarea.add(resSubtarea);	
+						} catch (Exception ex) {
+							logger.error("Error calculando los totales " + ex.getMessage());
+							//throw new Exception("Error calculando los totales mientras se sumaban los datos del fichero " + nombreFicheroEst);
+							resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error : Error calculando los totales " + ex.getMessage());
+							resSubtarea.setResultadoSubtarea(ERROR);
+							lResSubtarea.add(resSubtarea);								
+
+						}
+							
+						try {
+							resSubtarea = new ResultadoSubtareaVO();
+							resSubtarea.setSubtarea("Volcando estadísticas a bbdd"); 
+
+							volcarEstadisticasBBDD (estadisticasAgrega);
+							resSubtarea.setResultadoSubtarea(OK);
+							lResSubtarea.add(resSubtarea);	
+						} catch (Exception ex) {
+							logger.error("Excepcion volcando estadisticas" + ex.getMessage());
+							resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Excepcion volcando estadisticas" + ex.getMessage());
+							resSubtarea.setResultadoSubtarea(ERROR);
+							lResSubtarea.add(resSubtarea);
+							//NO LANZO EXCEPCION PARA QUE COMPLETE EL FICHERO DE ESTADISTICAS TOTALES Y SE PUEDA MOSTRAR LAS ESTADISTICAS DE LA PARTE PUBLICA
+						}
+						
+						i++;					
+					}
+	
+				}
+			} else {
+				logger.error("El directorio de estadisticas no contiene las estadisticas locales de cada nodo");
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :El directorio de estadisticas no contiene las estadisticas locales de cada nodo");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);		
+
+				return resultado;
+ 
+			}
+			
+			try {
+				
+				resSubtarea = new ResultadoSubtareaVO();
+				resSubtarea.setSubtarea("Marcando nodos obsoletos"); 
+
+				// Obtenemos los nodos para marcar los obsoletos
+				Hashtable<String, String> htNodos = new Hashtable<String, String>();
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+				Date fecHastaDia = sdf.parse(sdf.format(new Date()));
+				
+				Collection<Object> estadisticasUltimoDia = this.getEstadisticaDao().obtenerEstadisticasActividadPorFechas(fecHastaDia, fecHastaDia);
+	
+				for (Object object : estadisticasUltimoDia) {	
+					Object[] estadistica = (Object[])object;
+					String codigoEst = (String) estadistica[0];
+					String nodo = (String) estadistica[1];
+					Integer valorDato = (Integer) estadistica[2];	
+					
+					String nodoOrig = (String) estadistica[1];
+					
+					if (codigoEst.equals("01") && valorDato.intValue()==0)
+					{
+						nodo+=" (*)";
+						htNodos.put(nodoOrig,nodo);
+	
+					}else if (codigoEst.equals("01")) 
+					{
+						htNodos.put(nodoOrig,nodo);
+					}
+					
+					
+				}
+					
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtarea.add(resSubtarea);		
+
+				
+				resSubtarea = new ResultadoSubtareaVO();
+				resSubtarea.setSubtarea("Actualizando fichero estadísticas totales"); 
+
+				File ficheroEstLocales = new File(AgregaPropertiesImpl.getInstance().getProperty(
+						AgregaProperties.PATH_ESTADISTICAS)
+						+ "/"
+						+ NOMBRE_FICHERO_ESTADISTICAS
+						+ this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO)
+						+ EXTENSION_FICHERO_ESTADISTICAS);
+				File ficheroEstTotales = new File(AgregaPropertiesImpl.getInstance()
+						.getProperty(AgregaProperties.PATH_ESTADISTICAS)
+						+ "/"
+						+ NOMBRE_FICHERO_ESTADISTICAS_TOTALES
+						+ EXTENSION_FICHERO_ESTADISTICAS);
+	
+				fis = new FileInputStream(ficheroEstLocales);
+				isr = new InputStreamReader(fis);
+				fos = new FileOutputStream(ficheroEstTotales);
+				osw = new OutputStreamWriter(fos);
+				
+				Date date = new Date();
+		
+				Unmarshaller unmarshaller = new Unmarshaller(EstadisticasAgrega.class);
+				unmarshaller.setValidation(false);
+				EstadisticasAgrega estadisticasAgrega = (EstadisticasAgrega) unmarshaller.unmarshal(isr);
+				
+				String[] TerminosMasBuscadosTotalesOrdenados = obtenerLosMasBuscados(masBuscadosTotal);
+				String[] TerminosMasBuscadosAnioOrdenados = obtenerLosMasBuscados(masBuscadosAnio);
+				String[] TerminosMasBuscadosMesOrdenados = obtenerLosMasBuscados(masBuscadosMes);
+				String[] TerminosMasBuscadosSemanaOrdenados = obtenerLosMasBuscados(masBuscadosSemana);
+				
+				for (Estadistica estadistica : estadisticasAgrega.getEstadistica()) {
+					int codigoEstAct = Integer.valueOf(estadistica.getCodigo());
+					if (codigoEstAct < POSICION_INICIO_TERMINOS) {
+	
+						estadistica.setValorTotal(String.valueOf(totales[codigoEstAct - 1]));
+						NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
+						for (NodoEstadistica nodoEstadistica : nodosEstadisticaTotalMap.get(String.valueOf(codigoEstAct))) {
+							nodoEstadistica.setNombreNodoEstadistica(htNodos.get(nodoEstadistica.getNombreNodoEstadistica()));
+							nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+						}
+						//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
+						estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
+					}
+					if (codigoEstAct>=POSICION_INICIO_TERMINOS 
+							&& codigoEstAct<(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)) {
+	
+						NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
+						if (!TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS].equals("")
+								&&TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS] != null) {
+							estadistica.setDescripcion(TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS]);
+							estadistica.setValorTotal(String.valueOf(masBuscadosTotal.get(TerminosMasBuscadosTotalesOrdenados[codigoEstAct - POSICION_INICIO_TERMINOS])));
+							if (masBuscadosTotalAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
+								estadistica.setValor(masBuscadosTotalAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
+							} else {
+								estadistica.setValor("0");
+							}
+							
+							for (String comunidad : comunidades) {
+								if (masBuscadosTotalAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica(masBuscadosTotalAux.get(estadistica.getDescripcion()).get(comunidad).toString());
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								} else {
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica("0");
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								}
+							}
+						}
+						
+						estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
+						//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
+					} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)
+							&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))) {
+	
+						NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
+						if (!TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)].equals("")
+								&& TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)] != null) {	
+						estadistica.setDescripcion(TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)]);
+							estadistica.setValorTotal(String.valueOf(masBuscadosAnio.get(TerminosMasBuscadosAnioOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+NUMERO_TERMINOS_POR_BLOQUE)])));
+							if (masBuscadosAnioAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
+								estadistica.setValor(masBuscadosAnioAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
+							} else {
+								estadistica.setValor("0");
+							}
+							
+							for (String comunidad : comunidades) {
+								if (masBuscadosAnioAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica(masBuscadosAnioAux.get(estadistica.getDescripcion()).get(comunidad).toString());
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								} else {
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica("0");
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								}
+							}
+						}
+							
+						estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
+						//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
+					} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO)) 
+							&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))) {
+	
+						NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
+						if (!TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))].equals("")
+								&& TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))] != null) {
+							estadistica.setDescripcion(TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))]);
+							estadistica.setValorTotal(String.valueOf(masBuscadosMes.get(TerminosMasBuscadosMesOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_ANIO))])));
+							if (masBuscadosMesAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
+								estadistica.setValor(masBuscadosMesAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
+							} else {
+								estadistica.setValor("0");
+							}
+							
+							for (String comunidad : comunidades) {
+								if (masBuscadosMesAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica(masBuscadosMesAux.get(estadistica.getDescripcion()).get(comunidad).toString());
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								} else {
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica("0");
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								}
+							}
+						}	
+							
+						//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
+						estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
+					} else if (codigoEstAct>=(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))
+							&& codigoEstAct<(POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_SEMANA))) {
+	
+						NodosEstadisticaTotal nodosEstadisticaTotal = new NodosEstadisticaTotal();
+						if (!TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))].equals("")
+								&& TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))] != null) {
+							estadistica.setDescripcion(TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))]);
+							estadistica.setValorTotal(String.valueOf(masBuscadosSemana.get(TerminosMasBuscadosSemanaOrdenados[codigoEstAct - (POSICION_INICIO_TERMINOS+(NUMERO_TERMINOS_POR_BLOQUE*BLOQUE_TERMINOS_MES))])));
+							if (masBuscadosSemanaAux.get(estadistica.getDescripcion()).containsKey(estadisticasAgrega.getNodo())) {
+								estadistica.setValor(masBuscadosSemanaAux.get(estadistica.getDescripcion()).get(estadisticasAgrega.getNodo()).toString());
+							} else {
+								estadistica.setValor("0");
+							}
+							
+							for (String comunidad : comunidades) {
+								if (masBuscadosSemanaAux.get(estadistica.getDescripcion()).containsKey(comunidad)){
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica(masBuscadosSemanaAux.get(estadistica.getDescripcion()).get(comunidad).toString());
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								} else {
+									NodoEstadistica nodoEstadistica = new NodoEstadistica();
+									nodoEstadistica.setNombreNodoEstadistica(htNodos.get(comunidad));
+									nodoEstadistica.setValorNodoEstadistica("0");
+									nodosEstadisticaTotal.addNodoEstadistica(nodoEstadistica);
+								}
+							}
+						}
+						
+						estadistica.setNodosEstadisticaTotal(nodosEstadisticaTotal);
+						//estadistica.setNodosEstadisticaTotal(completarEstadisticasNodos(nodosEstadisticaTotal));
+					}
+				}
+	
+				estadisticasAgrega.setNodo(NODO_ESTADISTICAS_TOTALES);
+				estadisticasAgrega.setFecha(sdf.format(date));
+	
+				Marshaller marshaller = new Marshaller(osw);
+				marshaller.setEncoding("iso-8859-1");
+				marshaller.marshal(estadisticasAgrega);
+				
+				resSubtarea.setResultadoSubtarea(OK);
+				lResSubtarea.add(resSubtarea);		
+
+	
+			} catch (Exception ex) {
+				logger.error("No se ha podido rellenar el fichero de estadisticas local con los valores totales." + ex.getMessage());
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " No se ha podido rellenar el fichero de estadisticas local con los valores totales." + ex.getMessage());
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtarea.add(resSubtarea);		
+
+			} finally {
+				try {
+					if (osw != null)
+						osw.close();
+					if (fos != null)
+						fos.close();
+					if (fis != null)
+						fis.close();
+					if (isr != null)
+						isr.close();
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+			}
+//		logger.debug("crearFicheroEstadisticasTotales ends");
+		}catch (Exception e) {
+			logger.error("Error genérico al crear estadísticas totales " + e.getMessage());
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtarea.add(resSubtarea);		
+		}
+		resultado.setResultadoGlobal(OK);
+		resultado.setResultadosSubtareas(lResSubtarea.toArray(new ResultadoSubtareaVO[0]));
+		return resultado;
 	}
 	
 	private Estadistica covert2estadistica (String codigo, String descripcion, String valor, String valorTotal) {
@@ -1985,7 +2318,7 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 			if (logger.isDebugEnabled())
 				logger.debug("Envio de correo de alarma en nodo : " + nodo + " por : "+ tipoIncidencia);
 			
-			String envioCorreoAlarmaActivo = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ACTIVO_ENVIO_CORREOS_INCIDENCIA_COMUNICACION);
+			String envioCorreoAlarmaActivo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ACTIVO_ENVIO_CORREOS_INCIDENCIA_COMUNICACION);
 			
 			if (envioCorreoAlarmaActivo!=null && envioCorreoAlarmaActivo.equals("true"))
 			{
@@ -2003,12 +2336,14 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 	 * Obtiene la lista de direcciones de correo del administrador del nodo	
 	 * @return String
 	 * @param  String Identificador del nodo
+	 * @throws Exception 
+	 * @throws RemoteException 
 	 */
-	private String getCorreosAdministradorNodo(String nodo)
+	private String getCorreosAdministradorNodo(String nodo) throws RemoteException, Exception
 	{
 		String listaCorreosAdminNodo = "";
 
-		String sCorreosAdminNodo = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO + "_" + nodo);		
+		String sCorreosAdminNodo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO + "_" + nodo);		
 
 		if (sCorreosAdminNodo!=null && !sCorreosAdminNodo.equals(""))
 			listaCorreosAdminNodo= sCorreosAdminNodo;
@@ -2021,10 +2356,12 @@ extends es.pode.buscar.negocio.administrar.servicio.SrvNodoServiceBase
 	/**
 	 * Obtiene la lista de direcciones de correo del administrador del nodo	del INTEF
 	 * @return String
+	 * @throws Exception 
+	 * @throws RemoteException 
 	 */
-	private String getCorreosAdministradorNodoINTEF()
+	private String getCorreosAdministradorNodoINTEF() throws RemoteException, Exception
 	{
-		String listaCorreosAdminNodo = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);	
+		String listaCorreosAdminNodo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);	
 		if (logger.isDebugEnabled())
 			logger.debug("Devuelve los correos del INTEF: " + listaCorreosAdminNodo);
 		return listaCorreosAdminNodo;

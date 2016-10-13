@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.visualizador.presentacion.paginaUsuarioPublico;
 
@@ -226,7 +221,7 @@ public class PaginaUsuarioPublicoControllerImpl extends PaginaUsuarioPublicoCont
 		       form.setActionManual(null);
 		       form.setMostrar(mostrar);
 		       String imagenEncodada=PerfilPublico.encodarTexto(form.getImagenUsuario());
-		       String urlFeed=PerfilPublico.encodarTexto(AgregaPropertiesImpl.getInstance().getUrlNodo()+"/widgets/usuario/"+usuario+"/"+this.getSrvPropiedadService().get(AgregaProperties.NUMERO_ODES_EN_FLASH));
+		       String urlFeed=PerfilPublico.encodarTexto(AgregaPropertiesImpl.getInstance().getUrlNodo()+"/widgets/usuario/"+usuario+"/"+this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NUMERO_ODES_EN_FLASH));
 		       String codigoEmbeb="<object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0' width='280' height='656' id='scrollerAgrega_vert' align='middle'>" +
 		       		" <param name='allowScriptAccess' value='sameDomain' />" +
 		       		"<param name='allowFullScreen' value='false' />" +

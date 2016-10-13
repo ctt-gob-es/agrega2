@@ -49,9 +49,7 @@
 	<classpathentry kind="var" path="MAVEN_REPO/springframework/jars/spring-2.0.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/springframework/jars/spring-mock-1.2.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/springmodules/jars/spring-modules-0.8-all.jar"/>
-	<classpathentry kind="var" path="MAVEN_REPO/agrega/jars/soporte-2.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/agrega/jars/soporte-1.0.jar"/>
 	<classpathentry kind="var" path="MAVEN_REPO/commons-io/jars/commons-io-1.4.jar"/>
-	<classpathentry kind="var" path="MAVEN_REPO/jboss/jars/jboss-system-jmx-5.1.0.jar"/>
-	<classpathentry kind="var" path="MAVEN_REPO/jboss/jars/jboss-system-5.1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

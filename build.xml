@@ -252,13 +252,13 @@
 			<arg value="install"/>
 			<arg value="-Dmaven.test.skip"/>
 		</exec>
-		<!-- interfazJMX -->
+		<!-- interfazJMX 
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
 			<arg value="clean"/>
 			<arg value="install"/>
 			<arg value="-Dmaven.test.skip"/>
 		</exec>
-
+    -->
 		<!-- Modulos de presentacion -->
 		<!-- InstaladorAgrega2 -->
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
@@ -583,7 +583,7 @@
 			<arg value="-Dsql.mappings=Oracle9i"/>
 			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
 		</exec>
-		<!-- interfazJMX -->
+		<!-- interfazJMX
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
 			<arg value="clean"/>
 			<arg value="install"/>
@@ -592,7 +592,7 @@
 			<arg value="-Dsql.mappings=Oracle9i"/>
 			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
 		</exec>
-
+     -->
 		<!-- Modulos de presentacion -->
 		<!-- ModificadorWeb -->
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
@@ -1435,7 +1435,7 @@
 		<copy file="${src.dir}/InstaladorAgrega2/web/target/${InstaladorAgrega2.war}.war" todir="${war-destination}"/>
 		<copy file="${src.dir}/configuracionPlataforma/web/target/war/${configuracionPlataforma.war}.war" todir="${war-destination}"/>
 		<copy file="${src.dir}/cas-server-3.3.4/cas-server-webapp/target/${cas.war}.war" todir="${war-destination}"/>
-		<copy file="${src.dir}/interfazJMX/web/target/${interfazJMX.war}.war" todir="${war-destination}"/>
+	<!--	<copy file="${src.dir}/interfazJMX/web/target/${interfazJMX.war}.war" todir="${war-destination}"/> -->
 		<!-- <copy file="${src.dir}/RemotingGalleryServer/target/${RemotingGalleryServer.war}.war" todir="${war-destination}"/>-->
 	</target>
 
@@ -1551,7 +1551,7 @@
 		<copy file="${src.dir}/buscar/web/target/war/${buscar.war}.war" todir="${local.repo2}\es\agrega\buscar\1"/>
 		<copy file="${src.dir}/configuracionPlataforma/web/target/war/${configuracionPlataforma.war}.war" todir="${local.repo2}\es\agrega\configuracionPlataforma\1.0"/>
 		<copy file="${src.dir}/catalogacion/web/target/war/${catalogacion.war}.war" todir="${local.repo2}\es\agrega\catalogacion\1.0"/> 
-		<copy file="${src.dir}/interfazJMX/web/target/interfazJMX.war" tofile="${local.repo2}\es\agrega\interfazJMX\1.0\interfazJMX-1.0.war"/> 
+	<!--	<copy file="${src.dir}/interfazJMX/web/target/interfazJMX.war" tofile="${local.repo2}\es\agrega\interfazJMX\1.0\interfazJMX-1.0.war"/> --> 
 		<copy file="${src.dir}/cas-server-3.3.4/cas-server-webapp/target/${cas.war}.war" tofile="${local.repo2}\es\agrega\cas\1.0\cas-1.0.war"/> 
 	</target>
 
@@ -1858,11 +1858,11 @@
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/configuracionPlataforma">
 			<arg value="clean"/>
 		</exec>
-		<!-- interfazJMX -->
+		<!-- interfazJMX
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
 			<arg value="clean"/>
 		</exec>
-
+      -->
 		<!-- Modulos de presentacion -->
 		<!-- InstaladorAgrega2 -->
 		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">

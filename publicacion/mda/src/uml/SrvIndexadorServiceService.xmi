@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Mar 07 13:04:13 CET 2014'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Aug 27 13:45:34 CEST 2014'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -1607,7 +1607,7 @@
                 <UML:Enumeration xmi.id = 'a368' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -4115,69 +4115,70 @@
                     <UML:EnumerationLiteral xmi.id = 'a1123' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1124' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1125' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1125' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1126' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1126' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1127' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1127' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1128' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1128' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1131' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1131' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1132' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1132' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1148' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1148' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1149' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1149' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1151' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>
@@ -4186,14 +4187,14 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1151' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1152' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1152' name = 'Author:ZOO.&#10;Created:6/21/05 8:55 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1153' name = 'Author:ZOO.&#10;Created:6/21/05 8:55 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1153' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1154' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
         <UML:Package xmi.id = 'a262' name = 'datatype' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -4499,14 +4500,14 @@
             </UML:DataType>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1154' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1155' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1155' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1156' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1156' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1157' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
         <UML:Package xmi.id = 'a262' name = 'datatype' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -4942,7 +4943,7 @@
                 <UML:Enumeration xmi.id = 'a368' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -7450,83 +7451,84 @@
                     <UML:EnumerationLiteral xmi.id = 'a1123' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1124' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1125' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1125' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1126' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1126' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1127' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1127' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1128' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1128' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1131' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1131' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1132' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1132' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1148' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1148' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1149' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1149' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1151' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1157' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1158' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1158' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1159' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1159' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1160' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a334' name = 'architecture' isSpecification = 'false'
@@ -7650,10 +7652,10 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1160' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1161' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1161' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1162' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a366' name = 'estimation' isSpecification = 'false'
@@ -7666,7 +7668,7 @@
                 <UML:Enumeration xmi.id = 'a368' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a369' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -7735,10 +7737,10 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1162' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1163' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1163' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1164' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a388' name = 'batch' isSpecification = 'false' isRoot = 'false'
@@ -7828,24 +7830,24 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1164' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1165' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1165' name = 'Tipos de Datos' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1166' name = 'Tipos de Datos' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1166' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1167' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1167' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1168' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1168' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1169' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1169' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1170' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1170' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1171' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a412' name = 'service' isSpecification = 'false'
@@ -8136,16 +8138,16 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1171' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1172' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1172' name = 'Author:ZOO.&#10;Created:6/18/05 11:18 PM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1173' name = 'Author:ZOO.&#10;Created:6/18/05 11:18 PM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1173' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1174' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1174' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1175' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a496' name = 'process' isSpecification = 'false'
@@ -8246,20 +8248,20 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1175' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1176' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1176' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1177' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1177' name = 'Author:ZOO.&#10;Created:6/21/05 9:00 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1178' name = 'Author:ZOO.&#10;Created:6/21/05 9:00 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1178' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1179' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1179' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1180' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a521' name = 'presentation' isSpecification = 'false'
@@ -8995,22 +8997,22 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1180' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1181' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1181' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1182' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1182' name = 'Author:ZOO.&#10;Created:6/21/05 8:56 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1183' name = 'Author:ZOO.&#10;Created:6/21/05 8:56 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1183' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1184' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1184' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1185' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1185' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1186' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a738' name = 'meta' isSpecification = 'false' isRoot = 'false'
@@ -9037,16 +9039,16 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1186' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1187' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1187' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1188' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1188' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1189' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1189' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1190' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a743' name = 'xml' isSpecification = 'false' isRoot = 'false'
@@ -9071,22 +9073,22 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1190' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1191' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1191' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1192' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1192' name = 'Author:ZOO.&#10;Created:6/21/05 8:57 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1193' name = 'Author:ZOO.&#10;Created:6/21/05 8:57 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1193' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1194' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1194' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1195' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1195' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1196' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a748' name = 'persistence' isSpecification = 'false'
@@ -10096,18 +10098,18 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1196' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1197' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1197' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1198' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1198' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1199' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1199' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1200' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1200' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1201' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1084' name = 'webservice' isSpecification = 'false'
@@ -10190,18 +10192,18 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1201' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1202' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1202' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1203' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1203' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1204' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1204' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1205' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1205' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1206' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1108' name = 'jms' isSpecification = 'false' isRoot = 'false'
@@ -10243,69 +10245,70 @@
                     <UML:EnumerationLiteral xmi.id = 'a1123' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1124' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1125' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1125' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1126' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1126' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1127' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1127' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1128' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1128' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1129' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1130' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1131' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1131' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1132' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1132' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1133' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1134' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1135' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1136' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1137' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1138' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1139' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1140' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1141' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1142' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1143' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1144' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1145' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1146' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1147' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1148' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1148' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1149' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1149' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1150' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1151' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>

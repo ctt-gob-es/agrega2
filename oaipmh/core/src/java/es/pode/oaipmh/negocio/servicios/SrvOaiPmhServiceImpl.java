@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -25,7 +20,7 @@ import net.sf.ehcache.Element;
 
 import org.apache.log4j.Logger;
 
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.indexador.negocio.servicios.busqueda.ParamPeriodoRepositorioVO;
 import es.pode.localizador.negocio.servicios.SrvLocalizadorService;
 import es.pode.oaipmh.negocio.resumptionToken.ResumptionTokenManager;
@@ -177,7 +172,7 @@ public class SrvOaiPmhServiceImpl
     			logger.debug("Se rellena el vo de identify");
     			
 				//Nombre del repositorio
-				identify.setNombreRepositorio(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NOMBRE_REPOSITORIO));
+				identify.setNombreRepositorio(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NOMBRE_REPOSITORIO));
 				if (logger.isDebugEnabled()) logger.debug("El valor del nombre del repositorio introducido es ["+identify.getNombreRepositorio()+"]");
 				
 				//Url del repositorio
@@ -189,7 +184,7 @@ public class SrvOaiPmhServiceImpl
 				if (logger.isDebugEnabled()) logger.debug("El valor de la version del repositorio introducido es ["+identify.getVersionProtocolo()+"]");
 				
 //				Email admin
-				identify.setEmailAdmin(ObtieneSrvPropiedad().get(AgregaProperties.EMAIL_ADMIN_REPOSITORIO));
+				identify.setEmailAdmin(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.EMAIL_ADMIN_REPOSITORIO));
 					
 				if (logger.isDebugEnabled()) logger.debug("El valor del emailAdmin del repositorio introducido es ["+identify.getEmailAdmin()+"]");
 				

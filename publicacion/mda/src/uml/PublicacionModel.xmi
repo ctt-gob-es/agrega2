@@ -3,7 +3,7 @@
 <!-- This xmi file is optimized for MagicDraw UML. Some references are not saved. -->
 <!-- Change MagicDraw UML environment options property General->.Save Rich XMI -->
 
-<XMI xmi.version='1.2' timestamp='Fri Mar 21 11:00:20 CET 2014' xmlns:UML='omg.org/UML/1.4'>
+<XMI xmi.version='1.2' timestamp='Fri Dec 05 13:05:06 CET 2014' xmlns:UML='omg.org/UML/1.4'>
 	<XMI.header>
 		<XMI.documentation>
 			<XMI.exporter>MagicDraw UML</XMI.exporter>
@@ -7387,6 +7387,13 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 																			<UML:ModelElement.comment>
 																				<UML:Comment xmi.id='_9_5_b8802e7_1195814048445_897768_112' name='Titulo del ODE.'/>
 																			</UML:ModelElement.comment>
+																			<UML:ModelElement.stereotype>
+																				<UML:Stereotype href='andromda-profile-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119373197267_872834_19'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='org.andromda.profile::Nullable'/>
+																					</XMI.extension>
+																				</UML:Stereotype>
+																			</UML:ModelElement.stereotype>
 																			<UML:Parameter.type>
 																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
 																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
@@ -13993,7 +14000,6 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 														<UML:Dependency xmi.id='_9_5_17030433_1318243199640_487173_64' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_17030433_1318243136779_123892_16'/>
 														<UML:Dependency xmi.id='_9_5_17030433_1328265368536_651329_92' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_17030433_1328265348613_929826_32'/>
 														<UML:Dependency xmi.id='_9_5_17030433_1330435304531_51173_772' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_17030433_1330435258171_660056_109'/>
-														<UML:Dependency xmi.id='_9_5_173b0439_1334591174319_934362_81' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_173b0439_1334591044651_381493_31'/>
 														<UML:Dependency xmi.id='_9_5_f65036f_1385053390950_889145_275' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_f65036f_1385029854162_36715_30'/>
 														<UML:Class xmi.id='_9_5_f65036f_1386090578132_12627_175' name='OdesFederadosDespublicadosVO'>
 															<UML:ModelElement.stereotype>
@@ -14133,6 +14139,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 																</UML:Attribute>
 															</UML:Classifier.feature>
 														</UML:Class>
+														<UML:Dependency xmi.id='_9_5_f65036f_1409140435035_590292_311' client='_9_5_bff030f_1171894925326_549304_601' supplier='_9_5_f65036f_1409140030636_11672_113'/>
 													</UML:Namespace.ownedElement>
 												</UML:Package>
 												<UML:Package xmi.id='_9_5_bff030f_1187797531665_729607_501' name='soporte'>
@@ -14142,6 +14149,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 																<UML:Comment xmi.id='_9_5_bff030f_1187797619362_685514_594' name='Esta clase contiene todos los metodos para el tratamiento de un ODE y la extraccion de todos sus atributos indexables cuando se publica.'/>
 															</UML:ModelElement.comment>
 														</UML:Class>
+														<UML:Class xmi.id='_9_5_f65036f_1409306080318_318889_217' name='TratamientoImagenes'/>
+														<UML:Dependency xmi.id='_9_5_f65036f_1409306102072_269752_320' client='_9_5_f65036f_1409306080318_318889_217' supplier='_9_5_f65036f_1409140030636_11672_113'/>
 													</UML:Namespace.ownedElement>
 												</UML:Package>
 												<UML:Package xmi.id='_9_5_b8802e7_1208789124393_527120_18' name='roles'>
@@ -32094,140 +32103,528 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 										</UML:Package>
 									</UML:Namespace.ownedElement>
 								</UML:Package>
-								<UML:Package xmi.id='_9_5_173b0439_1334591044653_43942_32' name='configuracionPlataforma'>
+								<UML:Package xmi.id='_9_5_f65036f_1409140030639_372740_126' name='configuracionPlataforma'>
 									<UML:Namespace.ownedElement>
-										<UML:Package xmi.id='_9_5_173b0439_1334591044650_512633_18' name='servicios'>
+										<UML:Package xmi.id='_9_5_f65036f_1409140030634_595491_67' name='negocio'>
 											<UML:Namespace.ownedElement>
-												<UML:Class xmi.id='_9_5_173b0439_1334591044651_381493_31' name='SrvPropiedadService'>
-													<UML:ModelElement.comment>
-														<UML:Comment xmi.id='_9_5_173b0439_1334591186048_176301_92'/>
-													</UML:ModelElement.comment>
-													<UML:ModelElement.stereotype>
-														<UML:Stereotype href='andromda-profile-service-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119337557859_21792_59'>
-															<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																<referentPath xmi.value='org.andromda.profile::service::Service'/>
-															</XMI.extension>
-														</UML:Stereotype>
-													</UML:ModelElement.stereotype>
-													<UML:ModelElement.taggedValue>
-														<UML:TaggedValue xmi.id='_9_5_173b0439_1334591044651_47043_19' name='@andromda.spring.service.imported'>
-															<UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
-															<UML:TaggedValue.type>
-																<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1141319421170_662235_0'>
-																	<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																		<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.spring.service.imported'/>
-																	</XMI.extension>
-																</UML:TagDefinition>
-															</UML:TaggedValue.type>
-														</UML:TaggedValue>
-														<UML:TaggedValue xmi.id='_9_5_173b0439_1334591044651_154872_20' name='@andromda.service.imported.name'>
-															<UML:TaggedValue.dataValue>SrvPropiedadServiceService</UML:TaggedValue.dataValue>
-															<UML:TaggedValue.type>
-																<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337310203_315202_0'>
-																	<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																		<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.name'/>
-																	</XMI.extension>
-																</UML:TagDefinition>
-															</UML:TaggedValue.type>
-														</UML:TaggedValue>
-														<UML:TaggedValue xmi.id='_9_5_173b0439_1334591044651_328697_21' name='@andromda.service.imported.binding'>
-															<UML:TaggedValue.dataValue>SrvPropiedadService</UML:TaggedValue.dataValue>
-															<UML:TaggedValue.type>
-																<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337373139_74400_1'>
-																	<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																		<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.binding'/>
-																	</XMI.extension>
-																</UML:TagDefinition>
-															</UML:TaggedValue.type>
-														</UML:TaggedValue>
-													</UML:ModelElement.taggedValue>
-													<UML:Classifier.feature>
-														<UML:Operation xmi.id='_9_5_173b0439_1334591044651_933463_24' name='get' visibility='public'>
+												<UML:Package xmi.id='_9_5_f65036f_1409140030634_301788_68' name='servicios'>
+													<UML:Namespace.ownedElement>
+														<UML:Class xmi.id='_9_5_f65036f_1409140030636_11672_113' name='SrvPropiedadService'>
 															<UML:ModelElement.comment>
-																<UML:Comment xmi.id='_9_5_173b0439_1334591186048_706655_93'/>
+																<UML:Comment xmi.id='_9_5_f65036f_1409140032182_930911_127'/>
 															</UML:ModelElement.comment>
-															<UML:BehavioralFeature.parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_998585_22' name='property' kind='in'>
+															<UML:ModelElement.stereotype>
+																<UML:Stereotype href='andromda-profile-service-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119337557859_21792_59'>
+																	<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																		<referentPath xmi.value='org.andromda.profile::service::Service'/>
+																	</XMI.extension>
+																</UML:Stereotype>
+															</UML:ModelElement.stereotype>
+															<UML:ModelElement.taggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409140030635_596621_69' name='@andromda.spring.service.imported'>
+																	<UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1141319421170_662235_0'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.spring.service.imported'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409140030635_971015_70' name='@andromda.service.imported.name'>
+																	<UML:TaggedValue.dataValue>SrvPropiedadServiceService</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337310203_315202_0'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.name'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409140030635_46646_71' name='@andromda.service.imported.binding'>
+																	<UML:TaggedValue.dataValue>SrvPropiedadService</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337373139_74400_1'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.binding'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+															</UML:ModelElement.taggedValue>
+															<UML:Classifier.feature>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_818628_74' name='getPropiedad' visibility='public'>
 																	<UML:ModelElement.comment>
-																		<UML:Comment xmi.id='_9_5_173b0439_1334591186049_251900_94'/>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_162358_128' name='Devuelve una propiedad. Primero intenta localizarla como local y&#10;                si falla la busca como global.'/>
 																	</UML:ModelElement.comment>
-																	<UML:Parameter.type>
-																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
-																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																				<referentPath xmi.value='datatype::String'/>
-																			</XMI.extension>
-																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_104900_23' name='getReturn' kind='return'>
-																	<UML:Parameter.type>
-																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
-																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																				<referentPath xmi.value='datatype::String'/>
-																			</XMI.extension>
-																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-															</UML:BehavioralFeature.parameter>
-														</UML:Operation>
-														<UML:Operation xmi.id='_9_5_173b0439_1334591044651_791253_26' name='getUrlNodo' visibility='public'>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_820969_72' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_704508_129'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_128904_73' name='getPropiedadReturn' kind='return' type='_9_5_f65036f_1409140030636_401741_124'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_878452_77' name='getPropiedadesJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_984450_130' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local. La instancia jboss puede ser global, default, node1,&#10;                node2, node3, node4, node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_168669_75' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_849190_131'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_568805_76' name='getPropiedadesJbossReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_41984_81' name='getPropiedadesJbossPorCategoria' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_663032_132' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por categoria. La instancia jboss puede ser&#10;                global, default, node1, node2, node3, node4, node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_482634_78' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_794581_133'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_919989_79' name='categoria' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_824531_134'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_511617_80' name='getPropiedadesJbossPorCategoriaReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_680496_85' name='getPropiedadesJbossPorFichero' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_541358_135' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por el campo ficherosAfectados. La instancia&#10;                jboss puede ser global, default, node1, node2, node3, node4,&#10;                node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_373021_82' name='nombreFichero' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_908016_136'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_506371_83' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_445519_137'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_244632_84' name='getPropiedadesJbossPorFicheroReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_408704_87' name='getPropiedadesLocales' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_3035_138' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local. La instancia JBoss local se ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_770168_86' name='getPropiedadesLocalesReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_852821_90' name='getPropiedadesLocalesPorCategoria' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_436353_139' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por categoria. La instancia JBoss local se&#10;                ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_728022_88' name='categoria' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032182_78641_140'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_460104_89' name='getPropiedadesLocalesPorCategoriaReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_23912_93' name='getPropiedadesLocalesPorFichero' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032182_52344_141' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por el campo ficherosAfectados.  La instancia&#10;                JBoss local se ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_121632_91' name='nombreFichero' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_121997_142'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_429941_92' name='getPropiedadesLocalesPorFicheroReturn' kind='return' type='_9_5_f65036f_1409140030636_154124_125'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_874625_96' name='getValorPropiedad' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_403335_143' name='Devuelve el valor de una propiedad. Primero intenta localizarla&#10;                como local y si falla la busca como global.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_416154_94' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_335246_144'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_974893_95' name='getValorPropiedadReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030635_274304_100' name='getValorPropiedadJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_709737_145' name='Devuelve el valor de la variable perteneciente a una instancia&#10;                JBoss determinada; global, default, node1, node2, node3, node4,&#10;                node5 o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_871159_97' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_259888_146'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_489423_98' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_509588_147'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_363310_99' name='getValorPropiedadJbossReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030636_946768_103' name='getValorPropiedadLocal' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_314608_148' name='Devuelve el valor de la variable perteneciente a la instancia&#10;                JBoss local.  La instancia JBoss local se ajustara&#10;                automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030635_589628_101' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_56520_149'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_383999_102' name='getValorPropiedadLocalReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030636_474087_108' name='setValorPropiedadJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_191512_150' name='Modifica el valor de la variable perteneciente a una instancia&#10;                JBoss determinada; global, default, node1, node2, node3, node4,&#10;                node5 o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_135580_104' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_216537_151'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_38260_105' name='valor' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_194005_152'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_55117_106' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_184964_153'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_898063_107' name='setValorPropiedadJbossReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::boolean'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409140030636_545676_112' name='setValorPropiedadLocal' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_394625_154' name='Modifica el valor de la variable perteneciente a la instancia&#10;                JBoss local.  La instancia JBoss local se ajustara&#10;                automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_609162_109' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_228497_155'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_44459_110' name='valor' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409140032183_311190_156'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409140030636_74402_111' name='setValorPropiedadLocalReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::boolean'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+															</UML:Classifier.feature>
+														</UML:Class>
+														<UML:Class xmi.id='_9_5_f65036f_1409140030636_401741_124' name='PropiedadVO'>
 															<UML:ModelElement.comment>
-																<UML:Comment xmi.id='_9_5_173b0439_1334591186049_994046_95'/>
+																<UML:Comment xmi.id='_9_5_f65036f_1409140032183_68340_157'/>
 															</UML:ModelElement.comment>
-															<UML:BehavioralFeature.parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_954099_25' name='getUrlNodoReturn' kind='return'>
-																	<UML:Parameter.type>
-																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
-																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-																				<referentPath xmi.value='datatype::String'/>
-																			</XMI.extension>
-																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-															</UML:BehavioralFeature.parameter>
-														</UML:Operation>
-														<UML:Operation xmi.id='_9_5_173b0439_1334591044651_683341_30' name='set' visibility='public'>
-															<UML:ModelElement.comment>
-																<UML:Comment xmi.id='_9_5_173b0439_1334591186049_301652_96'/>
-															</UML:ModelElement.comment>
-															<UML:BehavioralFeature.parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_777189_27' name='nombre' kind='in'>
+															<UML:Classifier.feature>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_685732_114' name='nombre' visibility='public' targetScope='classifier'>
 																	<UML:ModelElement.comment>
-																		<UML:Comment xmi.id='_9_5_173b0439_1334591186049_103733_97'/>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_153395_158'/>
 																	</UML:ModelElement.comment>
-																	<UML:Parameter.type>
+																	<UML:StructuralFeature.type>
 																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
 																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
 																				<referentPath xmi.value='datatype::String'/>
 																			</XMI.extension>
 																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_104178_28' name='valor' kind='in'>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_67409_115' name='valor' visibility='public' targetScope='classifier'>
 																	<UML:ModelElement.comment>
-																		<UML:Comment xmi.id='_9_5_173b0439_1334591186049_248833_98'/>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_381657_159'/>
 																	</UML:ModelElement.comment>
-																	<UML:Parameter.type>
+																	<UML:StructuralFeature.type>
 																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
 																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
 																				<referentPath xmi.value='datatype::String'/>
 																			</XMI.extension>
 																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-																<UML:Parameter xmi.id='_9_5_173b0439_1334591044651_517718_29' name='setReturn' kind='return'>
-																	<UML:Parameter.type>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_808006_116' name='ejemplo' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_978992_160'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_115845_117' name='descripcion' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_648579_161'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_701683_118' name='categoria' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_858803_162'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_446866_119' name='tipologia' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_414860_163'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_163374_120' name='modificable' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_313897_164'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
 																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
 																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
 																				<referentPath xmi.value='datatype::boolean'/>
 																			</XMI.extension>
 																		</UML:Classifier>
-																	</UML:Parameter.type>
-																</UML:Parameter>
-															</UML:BehavioralFeature.parameter>
-														</UML:Operation>
-													</UML:Classifier.feature>
-												</UML:Class>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_268748_121' name='instanciaJboss' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032183_195641_165'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_798556_122' name='requiereReinicioJboss' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032184_427424_166'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::boolean'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409140030636_154985_123' name='ficherosAfectados' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409140032184_199132_167'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+															</UML:Classifier.feature>
+														</UML:Class>
+														<UML:Class xmi.id='_9_5_f65036f_1409140030636_154124_125' name='PropiedadVO[]'/>
+													</UML:Namespace.ownedElement>
+												</UML:Package>
 											</UML:Namespace.ownedElement>
 										</UML:Package>
 									</UML:Namespace.ownedElement>
@@ -32255,9 +32652,9 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<elementID xmi.idref='_9_5_bff030f_1171875784775_283386_25'/>
 					<zoomFactor xmi.value='0.70907193'/>
 					<diagramOpened xmi.value='true'/>
-					<diagramWindowBounds>0, 0, 905, 874</diagramWindowBounds>
-					<diagramScrollPositionX xmi.value='359'/>
-					<diagramScrollPositionY xmi.value='19'/>
+					<diagramWindowBounds>0, 0, 1017, 588</diagramWindowBounds>
+					<diagramScrollPositionX xmi.value='327'/>
+					<diagramScrollPositionY xmi.value='129'/>
 					<maximized xmi.value='true'/>
 					<active xmi.value='true'/>
 					<mdOwnedViews>
@@ -32859,17 +33256,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1187705116224_547207_28'>
 									<visible xmi.value='false'/>
-									<geometry>1738, 1507, 30, 15</geometry>
+									<geometry>1739, 1507, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1187705116224_726042_30'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1738, 1507, 30, 15</geometry>
+									<geometry>1739, 1507, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1187705116224_657129_32'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1754, 1535, 30, 15</geometry>
+									<geometry>1754, 1537, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1187705116224_695818_35'>
 									<editable xmi.value='false'/>
@@ -32950,7 +33347,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1194957766891_465906_355'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>301, 527, 30, 15</geometry>
+									<geometry>301, 528, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1194957766891_432154_358'>
 									<editable xmi.value='false'/>
@@ -33051,17 +33448,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_b8802e7_1196357692376_810474_175'>
 									<visible xmi.value='false'/>
-									<geometry>263, 919, 30, 15</geometry>
+									<geometry>264, 918, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_b8802e7_1196357692376_1683_177'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>263, 919, 30, 15</geometry>
+									<geometry>264, 918, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_b8802e7_1196357692376_172412_179'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>278, 948, 30, 15</geometry>
+									<geometry>279, 948, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_b8802e7_1196357692376_61254_182'>
 									<editable xmi.value='false'/>
@@ -33145,17 +33542,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1204275705945_764039_173'>
 									<visible xmi.value='false'/>
-									<geometry>1706, 1551, 30, 15</geometry>
+									<geometry>1707, 1551, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1204275705945_186903_175'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1706, 1551, 30, 15</geometry>
+									<geometry>1707, 1551, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1204275705945_919005_177'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1707, 1580, 30, 15</geometry>
+									<geometry>1707, 1581, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1204275705945_320987_180'>
 									<editable xmi.value='false'/>
@@ -33205,17 +33602,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_eae0348_1208246390556_489211_362'>
 									<visible xmi.value='false'/>
-									<geometry>1270, 196, 30, 15</geometry>
+									<geometry>1268, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_eae0348_1208246390556_338160_364'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1270, 196, 30, 15</geometry>
+									<geometry>1268, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_eae0348_1208246390556_198325_366'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1284, 223, 30, 15</geometry>
+									<geometry>1283, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_eae0348_1208246390556_944762_369'>
 									<editable xmi.value='false'/>
@@ -33265,17 +33662,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1211989282347_832240_138'>
 									<visible xmi.value='false'/>
-									<geometry>291, 562, 30, 15</geometry>
+									<geometry>292, 561, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1211989282347_58199_140'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>291, 562, 30, 15</geometry>
+									<geometry>292, 561, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1211989282347_261832_142'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>307, 590, 30, 15</geometry>
+									<geometry>307, 591, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1211989282347_614235_145'>
 									<editable xmi.value='false'/>
@@ -33325,17 +33722,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1216735202165_4547_165'>
 									<visible xmi.value='false'/>
-									<geometry>868, 196, 30, 15</geometry>
+									<geometry>868, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1216735202165_870975_167'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>868, 196, 30, 15</geometry>
+									<geometry>868, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_12e803c2_1216735202165_534602_169'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>882, 223, 30, 15</geometry>
+									<geometry>883, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1216735202165_779584_172'>
 									<editable xmi.value='false'/>
@@ -33385,17 +33782,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f01035f_1220603512406_802020_110'>
 									<visible xmi.value='false'/>
-									<geometry>667, 195, 30, 15</geometry>
+									<geometry>668, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f01035f_1220603512406_158714_112'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>667, 195, 30, 15</geometry>
+									<geometry>668, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f01035f_1220603512406_41529_114'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>667, 222, 30, 15</geometry>
+									<geometry>668, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f01035f_1220603512406_640515_117'>
 									<editable xmi.value='false'/>
@@ -33439,18 +33836,18 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_16e70432_1227269021348_330639_511'/>
 							<linkFirstEndID xmi.idref='_9_5_16e70432_1227268979708_782115_477'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>236, 171; 370, 282; </geometry>
+							<geometry>236, 171; 370, 281; </geometry>
 							<linkNameID xmi.idref='_9_5_16e70432_1227269021348_694990_513'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_16e70432_1227269021348_694990_513'>
 									<visible xmi.value='false'/>
-									<geometry>287, 212, 30, 15</geometry>
+									<geometry>288, 211, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_16e70432_1227269021348_406170_515'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>287, 212, 30, 15</geometry>
+									<geometry>288, 211, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_16e70432_1227269021348_472735_517'>
 									<editable xmi.value='false'/>
@@ -33516,23 +33913,23 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_12e803c2_1237799763947_964196_467'/>
 							<linkFirstEndID xmi.idref='_9_5_12e803c2_1237799482707_378263_139'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>218, 341; 370, 436; </geometry>
+							<geometry>218, 341; 370, 435; </geometry>
 							<linkNameID xmi.idref='_9_5_12e803c2_1237799763947_670572_469'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1237799763947_670572_469'>
 									<visible xmi.value='false'/>
-									<geometry>278, 374, 30, 15</geometry>
+									<geometry>279, 373, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1237799763947_746179_471'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>278, 374, 30, 15</geometry>
+									<geometry>279, 373, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_12e803c2_1237799763947_523057_473'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>278, 403, 30, 15</geometry>
+									<geometry>279, 403, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_12e803c2_1237799763947_150387_476'>
 									<editable xmi.value='false'/>
@@ -33599,17 +33996,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245320608964_602393_1548'>
 									<visible xmi.value='false'/>
-									<geometry>1067, 195, 30, 15</geometry>
+									<geometry>1068, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245320608964_683027_1550'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1067, 195, 30, 15</geometry>
+									<geometry>1068, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f420370_1245320608964_670526_1552'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1081, 222, 30, 15</geometry>
+									<geometry>1083, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245320608964_413552_1555'>
 									<editable xmi.value='false'/>
@@ -33653,23 +34050,23 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_f420370_1245332298336_733559_2659'/>
 							<linkFirstEndID xmi.idref='_9_5_f420370_1245322610130_698366_2331'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>447, 171; 520, 250; </geometry>
+							<geometry>447, 171; 521, 250; </geometry>
 							<linkNameID xmi.idref='_9_5_f420370_1245332298336_487701_2661'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332298336_487701_2661'>
 									<visible xmi.value='false'/>
-									<geometry>468, 196, 30, 15</geometry>
+									<geometry>469, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332298336_761706_2663'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>468, 196, 30, 15</geometry>
+									<geometry>469, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f420370_1245332298336_853776_2665'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>482, 222, 30, 15</geometry>
+									<geometry>484, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332298336_441331_2668'>
 									<editable xmi.value='false'/>
@@ -33719,17 +34116,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332814576_267742_3532'>
 									<visible xmi.value='false'/>
-									<geometry>275, 310, 30, 15</geometry>
+									<geometry>276, 310, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332814576_488800_3534'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>275, 310, 30, 15</geometry>
+									<geometry>276, 310, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f420370_1245332814576_803653_3536'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>291, 339, 30, 15</geometry>
+									<geometry>291, 340, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1245332814576_11920_3539'>
 									<editable xmi.value='false'/>
@@ -33803,7 +34200,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1172156498349_831401_157'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>318, 1004, 30, 15</geometry>
+									<geometry>319, 1005, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1172156498349_675713_160'>
 									<editable xmi.value='false'/>
@@ -33876,17 +34273,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_16e70432_1253870123721_564441_543'>
 									<visible xmi.value='false'/>
-									<geometry>1487, 196, 30, 15</geometry>
+									<geometry>1486, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_16e70432_1253870123721_549989_545'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1487, 196, 30, 15</geometry>
+									<geometry>1486, 195, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_16e70432_1253870123721_797025_547'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1502, 222, 30, 15</geometry>
+									<geometry>1501, 225, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_16e70432_1253870123721_325145_550'>
 									<editable xmi.value='false'/>
@@ -33936,17 +34333,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1255072306005_434572_387'>
 									<visible xmi.value='false'/>
-									<geometry>281, 436, 30, 15</geometry>
+									<geometry>282, 436, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1255072306005_260896_389'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>281, 436, 30, 15</geometry>
+									<geometry>282, 436, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f420370_1255072306005_921570_391'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>281, 465, 30, 15</geometry>
+									<geometry>282, 466, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f420370_1255072306005_283149_394'>
 									<editable xmi.value='false'/>
@@ -34067,18 +34464,18 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_bff030f_1257327963002_872670_365'/>
 							<linkFirstEndID xmi.idref='_9_5_bff030f_1257327947547_978120_312'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>255, 616; 370, 655; </geometry>
+							<geometry>255, 616; 370, 654; </geometry>
 							<linkNameID xmi.idref='_9_5_bff030f_1257327963002_414473_367'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1257327963002_414473_367'>
 									<visible xmi.value='false'/>
-									<geometry>296, 621, 30, 15</geometry>
+									<geometry>297, 620, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1257327963002_709583_369'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>296, 621, 30, 15</geometry>
+									<geometry>297, 620, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1257327963002_690257_371'>
 									<editable xmi.value='false'/>
@@ -34361,7 +34758,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1171895272487_58399_686'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>320, 1447, 30, 15</geometry>
+									<geometry>320, 1448, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1171895272487_615190_689'>
 									<editable xmi.value='false'/>
@@ -34428,23 +34825,23 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_bff030f_1259237868093_57493_250'/>
 							<linkFirstEndID xmi.idref='_9_5_bff030f_1259237842231_725926_198'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>276, 697; 370, 721; </geometry>
+							<geometry>276, 697; 370, 720; </geometry>
 							<linkNameID xmi.idref='_9_5_bff030f_1259237868093_656776_252'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1259237868093_656776_252'>
 									<visible xmi.value='false'/>
-									<geometry>308, 694, 30, 15</geometry>
+									<geometry>308, 693, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1259237868093_922393_254'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>308, 694, 30, 15</geometry>
+									<geometry>308, 693, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bff030f_1259237868093_570877_256'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>323, 724, 30, 15</geometry>
+									<geometry>323, 723, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bff030f_1259237868093_541577_259'>
 									<editable xmi.value='false'/>
@@ -34488,7 +34885,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_ea80349_1260106706750_949792_54'/>
 							<linkFirstEndID xmi.idref='_9_5_ea80349_1260106667609_729703_15'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>273, 765; 370, 782; </geometry>
+							<geometry>273, 765; 370, 781; </geometry>
 							<linkNameID xmi.idref='_9_5_ea80349_1260106706750_132286_56'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
@@ -34548,7 +34945,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<elementID xmi.idref='_9_5_f420370_1261069022331_737894_860'/>
 							<linkFirstEndID xmi.idref='_9_5_f420370_1261068976738_139996_779'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>276, 840; 370, 849; </geometry>
+							<geometry>276, 840; 370, 848; </geometry>
 							<linkNameID xmi.idref='_9_5_f420370_1261069022331_490759_862'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
@@ -34590,34 +34987,34 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 									<value xmi.value='-52'/>
 								</mdElement>
 							</properties>
-							<geometry>1720, 1160, 216, 95</geometry>
+							<geometry>1990, 1150, 216, 95</geometry>
 						</mdElement>
 						<mdElement elementClass='DependencyView' xmi.id='_9_5_17030433_1318243199640_506915_65'>
 							<elementID xmi.idref='_9_5_17030433_1318243199640_487173_64'/>
 							<linkFirstEndID xmi.idref='_9_5_17030433_1318243189046_651161_33'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>1838, 1255; 1905, 1570; </geometry>
+							<geometry>1990, 1166; 1905, 1140; </geometry>
 							<linkNameID xmi.idref='_9_5_17030433_1318243199640_19633_66'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1318243199640_19633_66'>
 									<visible xmi.value='false'/>
-									<geometry>1855, 1397, 30, 15</geometry>
+									<geometry>1932, 1145, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1318243199640_819451_68'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1855, 1397, 30, 15</geometry>
+									<geometry>1932, 1145, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_17030433_1318243199640_647889_70'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1856, 1426, 30, 15</geometry>
+									<geometry>1932, 1175, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1318243199640_108055_73'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>2042, 1187, 30, 15</geometry>
+									<geometry>1988, 1453, 30, 15</geometry>
 									<text>&lt;html&gt;
 &lt;body&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -34644,29 +35041,29 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 									<value xmi.value='true'/>
 								</mdElement>
 							</properties>
-							<geometry>1750, 260, 215, 71</geometry>
+							<geometry>2010, 240, 215, 71</geometry>
 						</mdElement>
 						<mdElement elementClass='DependencyView' xmi.id='_9_5_17030433_1328265368536_415175_93'>
 							<elementID xmi.idref='_9_5_17030433_1328265368536_651329_92'/>
 							<linkFirstEndID xmi.idref='_9_5_17030433_1328265361239_610266_57'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>1905, 260; 1905, 260; </geometry>
+							<geometry>2061, 311; 1905, 412; </geometry>
 							<linkNameID xmi.idref='_9_5_17030433_1328265368536_988809_94'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1328265368536_988809_94'>
 									<visible xmi.value='false'/>
-									<geometry>1890, 245, 30, 15</geometry>
+									<geometry>1966, 342, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1328265368536_439096_96'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1890, 245, 30, 15</geometry>
+									<geometry>1966, 342, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_17030433_1328265368536_351109_98'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1905, 275, 30, 15</geometry>
+									<geometry>1981, 372, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1328265368536_819222_101'>
 									<editable xmi.value='false'/>
@@ -34698,34 +35095,34 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 									<value xmi.value='true'/>
 								</mdElement>
 							</properties>
-							<geometry>1750, 400, 215, 71</geometry>
+							<geometry>2010, 400, 215, 71</geometry>
 						</mdElement>
 						<mdElement elementClass='DependencyView' xmi.id='_9_5_17030433_1330435304531_948870_773'>
 							<elementID xmi.idref='_9_5_17030433_1330435304531_51173_772'/>
 							<linkFirstEndID xmi.idref='_9_5_17030433_1330435296156_819083_720'/>
 							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>1866, 400; 1905, 250; </geometry>
+							<geometry>2042, 471; 1905, 537; </geometry>
 							<linkNameID xmi.idref='_9_5_17030433_1330435304531_173420_774'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1330435304531_173420_774'>
 									<visible xmi.value='false'/>
-									<geometry>1870, 310, 30, 15</geometry>
+									<geometry>1956, 485, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1330435304531_488463_776'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1870, 310, 30, 15</geometry>
+									<geometry>1956, 485, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_17030433_1330435304531_225203_778'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1869, 341, 30, 15</geometry>
+									<geometry>1956, 515, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_17030433_1330435304531_531538_781'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>2488, 369, 30, 15</geometry>
+									<geometry>1587, 0, 30, 15</geometry>
 									<text>&lt;html&gt;
 &lt;body&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -34736,60 +35133,6 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<linkConstraintID xmi.idref='_9_5_17030433_1330435304531_488463_776'/>
 							<linkStereotypeID xmi.idref='_9_5_17030433_1330435304531_225203_778'/>
 							<linkTaggedValuesID xmi.idref='_9_5_17030433_1330435304531_531538_781'/>
-						</mdElement>
-						<mdElement elementClass='ClassView' xmi.id='_9_5_173b0439_1334591170042_830157_48'>
-							<elementID xmi.idref='_9_5_173b0439_1334591044651_381493_31'/>
-							<properties>
-								<mdElement elementClass='ColorProperty'>
-									<propertyID>FILL_COLOR</propertyID>
-									<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
-									<value xmi.value='-52'/>
-								</mdElement>
-								<mdElement elementClass='BooleanProperty'>
-									<propertyID>SUPPRESS_CLASS_OPERATIONS</propertyID>
-									<propertyGroup>OPERATIONS</propertyGroup>
-									<propertyDescriptionID>SUPPRESS_CLASS_OPERATIONS_DESCRIPTION</propertyDescriptionID>
-									<value xmi.value='true'/>
-								</mdElement>
-							</properties>
-							<geometry>1750, 530, 215, 71</geometry>
-						</mdElement>
-						<mdElement elementClass='DependencyView' xmi.id='_9_5_173b0439_1334591174320_587250_82'>
-							<elementID xmi.idref='_9_5_173b0439_1334591174319_934362_81'/>
-							<linkFirstEndID xmi.idref='_9_5_173b0439_1334591170042_830157_48'/>
-							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
-							<geometry>1862, 530; 1905, 250; </geometry>
-							<linkNameID xmi.idref='_9_5_173b0439_1334591174320_515446_83'/>
-							<nameVisible xmi.value='true'/>
-							<mdOwnedViews>
-								<mdElement elementClass='TextBoxView' xmi.id='_9_5_173b0439_1334591174320_515446_83'>
-									<visible xmi.value='false'/>
-									<geometry>1868, 375, 30, 15</geometry>
-								</mdElement>
-								<mdElement elementClass='TextBoxView' xmi.id='_9_5_173b0439_1334591174320_418590_85'>
-									<editable xmi.value='false'/>
-									<visible xmi.value='false'/>
-									<geometry>1868, 375, 30, 15</geometry>
-								</mdElement>
-								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_173b0439_1334591174320_805353_87'>
-									<editable xmi.value='false'/>
-									<visible xmi.value='false'/>
-									<geometry>1882, 406, 30, 15</geometry>
-								</mdElement>
-								<mdElement elementClass='TextBoxView' xmi.id='_9_5_173b0439_1334591174320_967219_90'>
-									<editable xmi.value='false'/>
-									<visible xmi.value='false'/>
-									<geometry>2302, 592, 30, 15</geometry>
-									<text>&lt;html&gt;
-&lt;body&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</text>
-								</mdElement>
-							</mdOwnedViews>
-							<linkConstraintID xmi.idref='_9_5_173b0439_1334591174320_418590_85'/>
-							<linkStereotypeID xmi.idref='_9_5_173b0439_1334591174320_805353_87'/>
-							<linkTaggedValuesID xmi.idref='_9_5_173b0439_1334591174320_967219_90'/>
 						</mdElement>
 						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1385053367304_89379_241'>
 							<elementID xmi.idref='_9_5_f65036f_1385029854162_36715_30'/>
@@ -34824,17 +35167,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1385053390951_245347_277'>
 									<visible xmi.value='false'/>
-									<geometry>253, 1562, 30, 15</geometry>
+									<geometry>253, 1561, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1385053390951_768732_279'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>253, 1562, 30, 15</geometry>
+									<geometry>253, 1561, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f65036f_1385053390951_628292_281'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>252, 1591, 30, 15</geometry>
+									<geometry>253, 1591, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1385053390951_297927_284'>
 									<editable xmi.value='false'/>
@@ -34926,17 +35269,17 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1392379719064_579574_9514'>
 									<visible xmi.value='false'/>
-									<geometry>1758, 200, 30, 15</geometry>
+									<geometry>1757, 200, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1392379719064_128709_9516'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1758, 200, 30, 15</geometry>
+									<geometry>1757, 200, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f65036f_1392379719064_929611_9518'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>1772, 228, 30, 15</geometry>
+									<geometry>1772, 230, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1392379719065_784953_9521'>
 									<editable xmi.value='false'/>
@@ -34970,6 +35313,60 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 							</properties>
 							<geometry>1219, 1685, 146, 156</geometry>
 						</mdElement>
+						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1409140412033_734533_269'>
+							<elementID xmi.idref='_9_5_f65036f_1409140030636_11672_113'/>
+							<properties>
+								<mdElement elementClass='ColorProperty'>
+									<propertyID>FILL_COLOR</propertyID>
+									<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
+									<value xmi.value='-52'/>
+								</mdElement>
+								<mdElement elementClass='BooleanProperty'>
+									<propertyID>SUPPRESS_CLASS_OPERATIONS</propertyID>
+									<propertyGroup>OPERATIONS</propertyGroup>
+									<propertyDescriptionID>SUPPRESS_CLASS_OPERATIONS_DESCRIPTION</propertyDescriptionID>
+									<value xmi.value='true'/>
+								</mdElement>
+							</properties>
+							<geometry>2000, 690, 215, 71</geometry>
+						</mdElement>
+						<mdElement elementClass='DependencyView' xmi.id='_9_5_f65036f_1409140435036_881346_312'>
+							<elementID xmi.idref='_9_5_f65036f_1409140435035_590292_311'/>
+							<linkFirstEndID xmi.idref='_9_5_f65036f_1409140412033_734533_269'/>
+							<linkSecondEndID xmi.idref='_9_5_bff030f_1171894925326_592312_602'/>
+							<geometry>2000, 745; 1905, 763; </geometry>
+							<linkNameID xmi.idref='_9_5_f65036f_1409140435036_520990_313'/>
+							<nameVisible xmi.value='true'/>
+							<mdOwnedViews>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409140435036_520990_313'>
+									<visible xmi.value='false'/>
+									<geometry>1937, 739, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409140435036_99546_315'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>1937, 739, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f65036f_1409140435036_693076_317'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>1937, 769, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409140435036_740628_320'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>1607, 0, 30, 15</geometry>
+									<text>&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+								</mdElement>
+							</mdOwnedViews>
+							<linkConstraintID xmi.idref='_9_5_f65036f_1409140435036_99546_315'/>
+							<linkStereotypeID xmi.idref='_9_5_f65036f_1409140435036_693076_317'/>
+							<linkTaggedValuesID xmi.idref='_9_5_f65036f_1409140435036_740628_320'/>
+						</mdElement>
 					</mdOwnedViews>
 				</mdElement>
 			</mdElement>
@@ -34984,7 +35381,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<elementID xmi.idref='_9_5_bff030f_1171875769588_948198_6'/>
 					<zoomFactor xmi.value='0.74863815'/>
 					<diagramOpened xmi.value='true'/>
-					<diagramWindowBounds>0, 0, 905, 874</diagramWindowBounds>
+					<diagramWindowBounds>0, 0, 1017, 588</diagramWindowBounds>
 					<diagramScrollPositionX xmi.value='695'/>
 					<diagramScrollPositionY xmi.value='1400'/>
 					<maximized xmi.value='true'/>
@@ -35794,6 +36191,75 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1385478983612_253918_91'>
 							<elementID xmi.idref='_9_5_f65036f_1385478983612_235088_90'/>
 							<geometry>2370, 990, 694, 91</geometry>
+						</mdElement>
+					</mdOwnedViews>
+				</mdElement>
+			</mdElement>
+			<mdElement elementClass='DiagramData' xmi.id='_9_5_bff030f_1187797543058_222063_529' name='soporteDC'>
+				<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+					<ignoredInModule xmi.value='true'/>
+				</XMI.extension>
+				<parentID xmi.idref='_9_5_bff030f_1187797531665_729607_501'/>
+				<type>Class Diagram</type>
+				<umlType>Class Diagram</umlType>
+				<mdElement elementClass='DiagramView' xmi.id='_9_5_bff030f_1187797619377_246709_595'>
+					<elementID xmi.idref='_9_5_bff030f_1187797543058_222063_529'/>
+					<zoomFactor xmi.value='1.0'/>
+					<diagramOpened xmi.value='true'/>
+					<diagramWindowBounds>0, 0, 1017, 588</diagramWindowBounds>
+					<diagramScrollPositionX xmi.value='0'/>
+					<diagramScrollPositionY xmi.value='0'/>
+					<maximized xmi.value='true'/>
+					<active xmi.value='false'/>
+					<mdOwnedViews>
+						<mdElement elementClass='ClassView' xmi.id='_9_5_bff030f_1187797578679_456707_564'>
+							<elementID xmi.idref='_9_5_bff030f_1187797548230_990356_548'/>
+							<geometry>160, 160, 138, 44</geometry>
+						</mdElement>
+						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1409306090634_718868_233'>
+							<elementID xmi.idref='_9_5_f65036f_1409306080318_318889_217'/>
+							<geometry>450, 160, 131, 44</geometry>
+						</mdElement>
+						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1409306098740_919080_278'>
+							<elementID xmi.idref='_9_5_f65036f_1409140030636_11672_113'/>
+							<geometry>390, 340, 562, 260</geometry>
+						</mdElement>
+						<mdElement elementClass='DependencyView' xmi.id='_9_5_f65036f_1409306102072_350998_321'>
+							<elementID xmi.idref='_9_5_f65036f_1409306102072_269752_320'/>
+							<linkFirstEndID xmi.idref='_9_5_f65036f_1409306098740_919080_278'/>
+							<linkSecondEndID xmi.idref='_9_5_f65036f_1409306090634_718868_233'/>
+							<geometry>601, 340; 527, 204; </geometry>
+							<linkNameID xmi.idref='_9_5_f65036f_1409306102072_89183_322'/>
+							<nameVisible xmi.value='true'/>
+							<mdOwnedViews>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409306102072_89183_322'>
+									<visible xmi.value='false'/>
+									<geometry>549, 257, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409306102072_917850_324'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>549, 257, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f65036f_1409306102072_5223_326'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>564, 287, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409306102072_124597_329'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>111, 205, 30, 15</geometry>
+									<text>&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+								</mdElement>
+							</mdOwnedViews>
+							<linkConstraintID xmi.idref='_9_5_f65036f_1409306102072_917850_324'/>
+							<linkStereotypeID xmi.idref='_9_5_f65036f_1409306102072_5223_326'/>
+							<linkTaggedValuesID xmi.idref='_9_5_f65036f_1409306102072_124597_329'/>
 						</mdElement>
 					</mdOwnedViews>
 				</mdElement>
@@ -38545,25 +39011,6 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					</mdOwnedViews>
 				</mdElement>
 			</mdElement>
-			<mdElement elementClass='DiagramData' xmi.id='_9_5_bff030f_1187797543058_222063_529' name='soporteDC'>
-				<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
-					<ignoredInModule xmi.value='true'/>
-				</XMI.extension>
-				<parentID xmi.idref='_9_5_bff030f_1187797531665_729607_501'/>
-				<type>Class Diagram</type>
-				<umlType>Class Diagram</umlType>
-				<mdElement elementClass='DiagramView' xmi.id='_9_5_bff030f_1187797619377_246709_595'>
-					<elementID xmi.idref='_9_5_bff030f_1187797543058_222063_529'/>
-					<zoomFactor xmi.value='1.0'/>
-					<diagramOpened xmi.value='false'/>
-					<mdOwnedViews>
-						<mdElement elementClass='ClassView' xmi.id='_9_5_bff030f_1187797578679_456707_564'>
-							<elementID xmi.idref='_9_5_bff030f_1187797548230_990356_548'/>
-							<geometry>160, 160, 138, 44</geometry>
-						</mdElement>
-					</mdOwnedViews>
-				</mdElement>
-			</mdElement>
 		</mdOwnedDiagrams>
 		<options>
 			<mdElement elementClass='SimpleStyle'>
@@ -38571,7 +39018,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 				<default xmi.value='false'/>
 				<mdElement elementClass='PropertyManager'>
 					<name>PROJECT_GENERAL_PROPERTIES</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_784456_0</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1417781107038_896714_0</propertyManagerID>
 					<mdElement elementClass='ModelElementProperty'>
 						<propertyID>DEFAULT_PROFILE_PACKAGE</propertyID>
 						<displayableTypes xmi.value='Subsystem^ModelPackage^Model'/>
@@ -38688,7 +39135,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 				</mdElement>
 				<mdElement elementClass='PropertyManager'>
 					<name>PROJECT_INVISIBLE_PROPERTIES</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_859791_1</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1417781107038_914713_1</propertyManagerID>
 					<mdElement elementClass='NumberProperty'>
 						<propertyID>TOOL_TIP_STYLE</propertyID>
 						<propertyDescriptionID>TOOL_TIP_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -38738,7 +39185,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<mdElement elementClass='StringProperty'>
 						<propertyID>BROWSER_LAYOUT</propertyID>
 						<propertyDescriptionID>BROWSER_LAYOUT_DESCRIPTION</propertyDescriptionID>
-						<value>0 13 0 0 5 4e ff ff ff 76 0 0 5 10 0 0 4 10 0 0 0 0 0 0 0 9 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 0 0 6a 15 0 0 0 2 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 6a 15 0 0 0 0 0 0 0 3c 0 0 0 3c 0 0 0 c8 0 0 0 c8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 8b 42 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 8b 42 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 ae ab 0 0 0 5 0 0 b7 3f 0 0 65 3f 0 0 8c e3 0 0 8b 42 0 0 6e 6d 0 0 0 2 0 0 82 34 0 0 ae ab 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 8c e3 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 8c e3 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 ae ab 0 0 0 5 0 0 b7 3f 0 0 65 3f 0 0 8c e3 0 0 8b 42 0 0 6e 6d 0 0 0 2 0 0 82 34 0 0 ae ab 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 22 27 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 22 27 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 5f 92 0 0 0 3 0 0 2c f0 0 0 e6 7d 0 0 22 27 0 0 0 2 0 0 82 34 0 0 5f 92 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 e6 7d 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 e6 7d 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 5f 92 0 0 0 3 0 0 2c f0 0 0 e6 7d 0 0 22 27 0 0 0 2 0 0 82 34 0 0 5f 92 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 2c f0 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 2c f0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 5f 92 0 0 0 3 0 0 2c f0 0 0 e6 7d 0 0 22 27 0 0 0 2 0 0 82 34 0 0 5f 92 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 6e 6d 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 6e 6d 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 ae ab 0 0 0 5 0 0 b7 3f 0 0 65 3f 0 0 8c e3 0 0 8b 42 0 0 6e 6d 0 0 0 2 0 0 82 34 0 0 ae ab 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 b7 3f 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 b7 3f 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 ae ab 0 0 0 5 0 0 b7 3f 0 0 65 3f 0 0 8c e3 0 0 8b 42 0 0 6e 6d 0 0 0 2 0 0 82 34 0 0 ae ab 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 65 3f 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 73 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 65 3f 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 0 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 ae ab 0 0 0 5 0 0 b7 3f 0 0 65 3f 0 0 8c e3 0 0 8b 42 0 0 6e 6d 0 0 0 2 0 0 82 34 0 0 ae ab 0 0 0 0 0 0 0 2 0 0 ae ab 0 0 5f 92 0 0 a7 e7 0 0 82 34 0 0 0 1 0 0 0 2 0 0 82 34 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 63 0 0 0 0 0 0 ac dc 0 0 0 1 0 0 4 63 0 0 0 1 0 0 a7 e7 0 0 0 2 0 0 4 63 0 0 0 0 0 0 82 34 0 0 0 2 0 0 4 64 0 0 ae ab 0 0 0 5 0 0 4 65 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 1 44 0 0 1 36 0 0 0 0 0 0 4 64 0 0 5f 92 0 0 0 3 0 0 4 65 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 4 65 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 4 65 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 1 44 0 0 1 36 0 0 0 0 0 0 1 73 0 0 2 70 0 0 4 66 0 0 3 89 0 0 0 18 0 0 0 0 0 0 5 0 0 0 2 70 0 0 5 0 0 0 2 70 0 0 0 3 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 </value>
+						<value>0 13 0 0 0 0 0 0 0 0 0 0 4 0 0 0 3 0 0 0 0 6 0 0 0 9 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 0 0 d e8 0 0 0 2 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 d e8 0 0 0 0 0 0 0 3c 0 0 0 3c 0 0 0 c8 0 0 0 c8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 59 11 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 59 11 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 a3 f0 0 0 0 5 0 0 82 41 0 0 1f 74 0 0 a4 92 0 0 59 11 0 0 eb fe 0 0 0 2 0 0 50 52 0 0 a3 f0 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 a4 92 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 a4 92 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 a3 f0 0 0 0 5 0 0 82 41 0 0 1f 74 0 0 a4 92 0 0 59 11 0 0 eb fe 0 0 0 2 0 0 50 52 0 0 a3 f0 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 da e2 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 da e2 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 9b ed 0 0 0 3 0 0 91 d6 0 0 8b d8 0 0 da e2 0 0 0 2 0 0 50 52 0 0 9b ed 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 8b d8 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 8b d8 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 9b ed 0 0 0 3 0 0 91 d6 0 0 8b d8 0 0 da e2 0 0 0 2 0 0 50 52 0 0 9b ed 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 91 d6 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 91 d6 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 9b ed 0 0 0 3 0 0 91 d6 0 0 8b d8 0 0 da e2 0 0 0 2 0 0 50 52 0 0 9b ed 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 eb fe 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 eb fe 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 a3 f0 0 0 0 5 0 0 82 41 0 0 1f 74 0 0 a4 92 0 0 59 11 0 0 eb fe 0 0 0 2 0 0 50 52 0 0 a3 f0 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 82 41 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 82 41 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 a3 f0 0 0 0 5 0 0 82 41 0 0 1f 74 0 0 a4 92 0 0 59 11 0 0 eb fe 0 0 0 2 0 0 50 52 0 0 a3 f0 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 1f 74 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 59 0 0 1 16 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 1f 74 0 0 0 2 0 0 0 0 0 0 0 0 0 0 5 56 0 0 2 63 0 0 0 8 0 0 0 0 0 0 a3 f0 0 0 0 5 0 0 82 41 0 0 1f 74 0 0 a4 92 0 0 59 11 0 0 eb fe 0 0 0 2 0 0 50 52 0 0 a3 f0 0 0 0 0 0 0 0 2 0 0 a3 f0 0 0 9b ed 0 0 2d a3 0 0 50 52 0 0 0 1 0 0 0 2 0 0 50 52 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 63 0 0 0 0 0 0 82 2c 0 0 0 1 0 0 4 63 0 0 0 1 0 0 2d a3 0 0 0 2 0 0 4 63 0 0 0 0 0 0 50 52 0 0 0 2 0 0 4 64 0 0 a3 f0 0 0 0 5 0 0 4 65 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 1 59 0 0 0 d7 0 0 0 0 0 0 4 64 0 0 9b ed 0 0 0 3 0 0 4 65 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 4 65 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 4 65 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 1 59 0 0 0 d7 0 0 0 0 0 0 1 59 0 0 1 b2 0 0 4 66 0 0 0 1 0 0 0 18 0 0 0 0 0 0 1 5e 0 0 1 b2 0 0 1 5e 0 0 1 b2 0 0 0 3 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 </value>
 						<multiline xmi.value='false'/>
 					</mdElement>
 					<mdElement elementClass='StringProperty'>
@@ -38787,7 +39234,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<mdElement elementClass='StringProperty'>
 						<propertyID>INFO_PROPERTY</propertyID>
 						<propertyDescriptionID>INFO_PROPERTY_DESCRIPTION</propertyDescriptionID>
-						<value>10 1f 7e 7c 3e 45 28 27 12 26 d2 94 5 4c 1b 6f 7b 8a c5 fc 47 2b 8c 53 f9 f 1a 50 a8 85 17 d8 d9 19 8b fe c8 16 d4 e 9 b0 3b 90 19 fe 18 92 78 94 cf a9 91 6 13 b7 ed bf 10 66 11 f7 66 10 0 2d 63 2e f6 1d a </value>
+						<value>2d 19 44 70 e 7c 77 36 34 11 d8 b4 20 8e 21 86 ac 1f df 1d 55 5a 69 7f 35 2 5c 9a 91 cf b3 83 b4 b9 d7 aa 17 7d fa f8 14 19 19 56 49 fe 13 7e dd 28 44 d1 15 2e c1 70 60 19 14 ef c7 c9 4d 3d e5 7a 72 bc e3 bf 3 </value>
 						<multiline xmi.value='false'/>
 					</mdElement>
 					<mdElement elementClass='ChoiceProperty'>
@@ -38816,8 +39263,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Abstraction</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_671905_2</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_768540_2</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -38868,8 +39315,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Action State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_21942_4</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_14924_4</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -38881,8 +39328,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Actor</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_278729_6</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_270510_6</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39033,8 +39480,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Artifact</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_680434_7</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_377039_7</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39185,8 +39632,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Association</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_623928_8</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_17904_8</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39242,8 +39689,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Binding Dependency</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_923829_9</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_560983_9</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39294,8 +39741,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Call State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_2522_10</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_605688_10</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -39307,8 +39754,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Class</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_155167_11</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_211069_11</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39459,8 +39906,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Classifier Role</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_496516_12</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_82573_12</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39482,8 +39929,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Classifier Role(in Sequence Diagram)</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_670242_13</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_490973_13</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39510,16 +39957,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Collaboration</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_468262_14</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_471858_14</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Combined Fragment</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_861893_15</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_792617_15</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39531,8 +39978,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Component</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_378400_16</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_926482_16</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_INTERFACES</propertyID>
 						<propertyDescriptionID>SUPPRESS_INTERFACES_DESCRIPTION</propertyDescriptionID>
@@ -39554,8 +40001,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Component Instance</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_71492_17</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_418178_17</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -39572,8 +40019,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Concurrent State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_545025_18</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_492368_18</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -39590,8 +40037,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Constraint</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_170272_19</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_188150_19</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_NAME</propertyID>
 						<propertyDescriptionID>SHOW_NAME_DESCRIPTION</propertyDescriptionID>
@@ -39622,8 +40069,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Containment</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_15906_20</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_365790_20</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -39637,8 +40084,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>ContentShape</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_260434_21</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_973919_21</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -39655,8 +40102,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>DataType</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_229936_22</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_99269_22</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39744,8 +40191,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Decision</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_26215_23</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_898534_23</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39762,8 +40209,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Dependency</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_943839_24</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_120623_24</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39821,8 +40268,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_836118_25</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_582380_26</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_444567_25</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_752598_26</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>DIAGRAM_BACKGROUND_COLOR</propertyID>
 						<propertyDescriptionID>DIAGRAM_BACKGROUND_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39872,16 +40319,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Diagram Shape</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_825169_27</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_438632_27</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>DiagramInfo</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_462478_28</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_117847_28</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -39908,8 +40355,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Enumeration</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_762076_29</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_849167_29</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40098,8 +40545,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Extend</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_361843_30</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_488517_30</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40157,8 +40604,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Final State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_437666_31</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_304130_31</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40175,8 +40622,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Generalization</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_409898_32</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_784449_32</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40228,24 +40675,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Implementation Diagram</name>
-					<propertyManagerID>_9_0_be00301_1102495862296_461313_216</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_770907_33</parentPropertyManager>
-					<mdElement elementClass='ChoiceProperty'>
-						<propertyID>LINK_LINE_STYLE</propertyID>
-						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
-						<value>OBLIQUE</value>
-						<choice xmi.value='RECTILINEAR^OBLIQUE^BEZIER'/>
-						<index xmi.value='1'/>
-					</mdElement>
-				</mdElement>
-				<mdElement elementClass='PropertyManagerByDiagram'>
-					<diagramType>Implementation Diagram</diagramType>
-					<removable xmi.value='true'/>
-					<extendableByDiagram xmi.value='false'/>
-					<extendableByStereotype xmi.value='false'/>
-					<name>Implementation Diagram</name>
 					<propertyManagerID>_9_0_be00301_1102495986564_458307_303</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_922134_34</parentPropertyManager>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_990490_33</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -40260,8 +40691,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Implementation Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_505570_35</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_368781_36</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_672789_34</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_185749_35</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_CLASS_OPERATIONS</propertyID>
 						<propertyGroup>OPERATIONS</propertyGroup>
@@ -40269,13 +40700,29 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 						<value xmi.value='true'/>
 					</mdElement>
 				</mdElement>
+				<mdElement elementClass='PropertyManagerByDiagram'>
+					<diagramType>Implementation Diagram</diagramType>
+					<removable xmi.value='true'/>
+					<extendableByDiagram xmi.value='false'/>
+					<extendableByStereotype xmi.value='false'/>
+					<name>Implementation Diagram</name>
+					<propertyManagerID>_9_0_be00301_1102495862296_461313_216</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_599139_36</parentPropertyManager>
+					<mdElement elementClass='ChoiceProperty'>
+						<propertyID>LINK_LINE_STYLE</propertyID>
+						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
+						<value>OBLIQUE</value>
+						<choice xmi.value='RECTILINEAR^OBLIQUE^BEZIER'/>
+						<index xmi.value='1'/>
+					</mdElement>
+				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Include</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_718287_37</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_656562_37</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40333,8 +40780,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Instance</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_345429_38</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_751142_38</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -40356,16 +40803,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Interaction Use</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_847214_39</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_870068_39</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Interface</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_368781_36</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_185749_35</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40521,8 +40968,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Link</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_18218_40</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_475438_40</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40573,16 +41020,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Link Attribute</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_314913_41</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_744411_41</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Message</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_761465_42</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_734335_42</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40604,8 +41051,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Message(in Sequence Diagram)</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_310536_43</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_126553_43</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40627,8 +41074,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Model</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_443506_44</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_386449_44</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40659,16 +41106,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>N-ary Association</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_931482_45</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_453787_45</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Node</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_290412_46</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_133287_46</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40692,8 +41139,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Node Instance</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_695602_47</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_21990_47</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40727,16 +41174,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_350763_48</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_719638_49</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_9649_48</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_855792_49</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note Anchor</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_72317_50</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_68432_50</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -40750,29 +41197,29 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with Comment)</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_431365_51</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_719638_49</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_526357_51</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_855792_49</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with Constraint)</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_298185_52</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_719638_49</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_69482_52</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_855792_49</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with TaggedValue)</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_120964_53</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_719638_49</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_79891_53</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_855792_49</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='PropertyManager'>
 					<name>Notes</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_719638_49</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_855792_49</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40799,8 +41246,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Object</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_401734_54</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_317473_54</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -40822,8 +41269,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>ObjectFlow State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_536205_55</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_978291_55</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -40840,8 +41287,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Package</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_252112_56</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_486166_56</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40872,8 +41319,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Paths</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_743321_3</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_582380_26</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_903822_3</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_752598_26</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40892,8 +41339,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Permission</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_946399_57</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_82436_57</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -40944,8 +41391,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Pin</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_73016_58</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_137034_58</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>AUTOSIZE</propertyID>
 						<propertyDescriptionID>AUTOSIZE_DESCRIPTION</propertyDescriptionID>
@@ -40967,8 +41414,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Port</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_17840_59</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_963635_59</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_NAME</propertyID>
 						<propertyDescriptionID>SHOW_NAME_DESCRIPTION</propertyDescriptionID>
@@ -40985,8 +41432,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Pseudo State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_3543_60</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_401074_60</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41003,8 +41450,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Realization</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_770907_33</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_599139_36</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41055,8 +41502,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Role</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_600101_61</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_460872_61</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41083,8 +41530,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Separator</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_659949_62</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_796212_62</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41125,8 +41572,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Shapes</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_34536_5</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_582380_26</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_184195_5</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_752598_26</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>AUTOSIZE</propertyID>
 						<propertyDescriptionID>AUTOSIZE_DESCRIPTION</propertyDescriptionID>
@@ -41192,8 +41639,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Signal Classifier</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_275336_63</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_427177_63</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41344,8 +41791,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>SignalRS</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_239600_64</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_642174_64</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -41369,8 +41816,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_694608_65</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_59973_65</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -41387,8 +41834,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stereotype</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_602789_66</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_893850_66</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_TAGS</propertyID>
 						<propertyDescriptionID>SUPPRESS_TAGS_DESCRIPTION</propertyDescriptionID>
@@ -41410,16 +41857,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='true'/>
 					<name>Stereotypes</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_254506_67</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_582380_26</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_385523_67</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_752598_26</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stimulus</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_354409_68</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_217480_68</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41436,16 +41883,16 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stub State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_258251_69</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_179967_69</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subactivity State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_656462_70</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_696366_70</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -41457,8 +41904,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Submachine State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_77650_71</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_438155_71</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -41475,8 +41922,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subsystem</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_405221_72</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_980062_72</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41593,8 +42040,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subsystem Instance</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_971134_73</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_41119_73</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -41611,8 +42058,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Swimlane</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_465569_74</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_929287_74</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41631,7 +42078,7 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Symbol</name>
-					<propertyManagerID>_9_5_f65036f_1395396021035_582380_26</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1417781107038_752598_26</propertyManagerID>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41665,8 +42112,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Synch State</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_619611_75</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_384090_75</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41683,8 +42130,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Synchronization Bar</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_972084_76</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_695152_76</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>SYNCH_BAR_ORIENTATION</propertyID>
 						<propertyDescriptionID>SYNCH_BAR_ORIENTATION_DESCRIPTION</propertyDescriptionID>
@@ -41698,8 +42145,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>TextBox</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_382595_77</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_785307_77</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -41726,8 +42173,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Transition</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_775017_78</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_683151_78</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41778,8 +42225,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Transition Connector</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_34304_79</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_643122_79</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FIXED_CONNECTION_POINTS</propertyID>
 						<propertyDescriptionID>USE_FIXED_CONNECTION_POINTS_DESCRIPTION</propertyDescriptionID>
@@ -41796,8 +42243,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Tree</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_63195_80</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_357973_80</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41809,8 +42256,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Usage</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_922134_34</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_743321_3</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107038_990490_33</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_903822_3</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41861,8 +42308,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_860897_81</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_702390_81</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -41895,8 +42342,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_59518_82</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_770907_33</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_353249_82</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_17904_8</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -41911,8 +42358,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_549400_83</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021051_409898_32</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_853530_83</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_784449_32</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -41927,8 +42374,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_623087_84</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_623928_8</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_760404_84</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_599139_36</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -41942,8 +42389,8 @@ group by T.estadoActual</UML:TaggedValue.dataValue>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Instance</name>
-					<propertyManagerID>_9_5_f65036f_1395396021051_105032_85</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1395396021035_34536_5</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1417781107054_557595_85</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1417781107038_184195_5</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>

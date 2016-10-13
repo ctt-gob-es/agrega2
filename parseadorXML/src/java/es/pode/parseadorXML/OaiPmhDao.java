@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.parseadorXML;
 
 import java.io.File;
@@ -14,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import org.exolab.castor.xml.MarshalException;
@@ -50,6 +46,29 @@ public class OaiPmhDao {
 		return value;
 	}
 
+	
+	private String getEncoding() throws ParseadorException {
+
+		String encoding="";
+		/*
+		//Tratamos de usar el encoding que se le haya indicado en el arranque de JBoss
+		try {
+    		encoding = System.getProperty("file.encoding");
+		} catch (Exception e) {
+			//Si no tratamos de usar el charset por defecto
+			try {
+				encoding = Charset.defaultCharset().toString();
+			} catch (Exception ex) {
+				encoding = getProperty("default.encoding");
+			}
+		}
+		if(encoding.contentEquals(""))
+		*/
+			encoding = getProperty("default.encoding");
+		
+		return encoding;
+	}
+	
 
 	/**
 	 * @param oaipmh
@@ -63,7 +82,7 @@ public class OaiPmhDao {
 			marshaller.setSchemaLocation("http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd " +
 					"http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd");
 			marshaller.setSuppressXSIType(true);
-			marshaller.setEncoding(getProperty("default.encoding"));
+			marshaller.setEncoding(getEncoding());
 			marshaller.setValidation(false);
 			marshaller.marshal(oaipmh.getOaipmh());
 			

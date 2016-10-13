@@ -157,7 +157,7 @@ function marcarTodas()
 			<display:column style="valign:top;" class="ejec">
 				<span class="oculto">-</span>	
 					<html:link
-						action="${initParam.url_despublicados_mostrar}?idODE=${fila.idODE}&idUsuario=${idUsuarioLocal}&titulo=${fila.titulo}&esDespublicado=${form.esDespublicado}&retorno=${form.retorno }">
+						action="${initParam.url_despublicados_mostrar}?idODE=${fila.idODE}&idUsuario=${idUsuarioLocal}&esDespublicado=${form.esDespublicado}&retorno=${form.retorno }">
 					<bean:message key="gestorFlujo.mostrarOdes.publicar" />
 					</html:link>					
 				

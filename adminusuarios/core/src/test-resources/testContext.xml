@@ -310,6 +310,12 @@
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerUsuarioCorreo=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.enviarCorreoBaja=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerUsuariosConCorreo=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.altaUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.validarCampoUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.autenticacionUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerDatosUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.modificarUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.bajaUsuarioWebSemantica=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.obtenerGrupoUsuario=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.crearUsuarioPublico=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.modificarUsuarioPublico=PROPAGATION_REQUIRED

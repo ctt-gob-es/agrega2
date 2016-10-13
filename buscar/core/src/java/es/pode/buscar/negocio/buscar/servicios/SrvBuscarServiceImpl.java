@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -60,7 +55,7 @@ import es.pode.buscar.negocio.buscar.comparators.TaxonNombreComparator;
 import es.pode.buscar.negocio.buscar.pool.MultiSearcher;
 import es.pode.buscar.negocio.buscar.pool.MultiSearcherSQI;
 import es.pode.buscar.negocio.nodosSQI.servicio.NodoSQIVO;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.indexador.negocio.servicios.busqueda.DocMECSimpleVO;
 import es.pode.indexador.negocio.servicios.busqueda.DocVO30;
 import es.pode.indexador.negocio.servicios.busqueda.DocumentosLOM_ESVO;
@@ -137,7 +132,7 @@ public class SrvBuscarServiceImpl
 		super();
 		//Se agrega un parametro al metodo EHCacheConfig para evitar usar el servicio de SrvPropiedadService en su clase
 		try {
-			segundosCaducidadHit=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SEGUNDOSCADUCIDADHIT);
+			segundosCaducidadHit=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SEGUNDOSCADUCIDADHIT);
 		} catch (Exception e1) {
 			logger.warn("Excepcion generica - "+e1.getCause());
 			logger.debug("",e1);
@@ -157,7 +152,7 @@ public class SrvBuscarServiceImpl
 				jbossHost = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST_JBOSS);
 				jbossPort = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PUERTO_JBOSS);
 				jbossSubdominio = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SUBDOMINIO_JBOSS);
-				segundosCaducidadHit=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SEGUNDOSCADUCIDADHIT);
+				segundosCaducidadHit=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SEGUNDOSCADUCIDADHIT);
 //				maxWaitThread=Integer.parseInt(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.MAX_WAIT_THREAD));
 //				maxWaitPool=Integer.parseInt(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.MAX_WAIT_POOL));
 				maxTesauros=Integer.parseInt(properties.getProperty("numero_tesauros"));

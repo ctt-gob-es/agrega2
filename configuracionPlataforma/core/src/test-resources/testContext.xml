@@ -48,7 +48,8 @@
         <property name="dataSource"><ref bean="dataSource"/></property>
         <property name="mappingResources">
             <list>
-                <value>es/indra/agrega/jmx/Propiedad.hbm.xml</value>
+                <value>es/pode/configuracionPlataforma/negocio/dominio/Propiedad.hbm.xml</value>
+                <value>es/pode/configuracionPlataforma/negocio/dominio/HistoricoPropiedad.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -70,14 +71,32 @@
     <!-- Propiedad Entity Proxy with inner Propiedad Entity implementation -->
     <bean id="propiedadDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target">
-            <bean class="es.indra.agrega.jmx.PropiedadDaoImpl">
+            <bean class="es.pode.configuracionPlataforma.negocio.dominio.PropiedadDaoImpl">
                 <property name="sessionFactory"><ref local="sessionFactory"/></property>
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
                 
             </bean>
         </property>
         <property name="proxyInterfaces">
-            <value>es.indra.agrega.jmx.PropiedadDao</value>
+            <value>es.pode.configuracionPlataforma.negocio.dominio.PropiedadDao</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <!-- HistoricoPropiedad Entity Proxy with inner HistoricoPropiedad Entity implementation -->
+    <bean id="historicoPropiedadDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.configuracionPlataforma.negocio.dominio.HistoricoPropiedadDaoImpl">
+                <property name="sessionFactory"><ref local="sessionFactory"/></property>
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                
+            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.configuracionPlataforma.negocio.dominio.HistoricoPropiedadDao</value>
         </property>
         <property name="interceptorNames">
             <list>
@@ -92,10 +111,25 @@
         <property name="transactionManager"><ref bean="transactionManager"/></property>
         <property name="transactionAttributeSource">
             <value>
-                es.pode.configuracionPlataforma.servicios.SrvPropiedadService.get=PROPAGATION_REQUIRED
-                es.pode.configuracionPlataforma.servicios.SrvPropiedadService.set=PROPAGATION_REQUIRED
-                es.pode.configuracionPlataforma.servicios.SrvPropiedadService.getUrlNodo=PROPAGATION_REQUIRED
-                es.pode.configuracionPlataforma.servicios.SrvPropiedadService.getPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getValorPropiedadLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.setValorPropiedadLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getUrlNodo=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadJboss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getValorPropiedadJboss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.setValorPropiedadJboss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesJboss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesLocales=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesJbossPorCategoria=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesLocalesPorCategoria=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesJbossPorFichero=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesLocalesPorFichero=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getValorPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionService.escribirFicheroLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarValorPropiedadLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarValorPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarPropiedadesLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarPropiedades=PROPAGATION_REQUIRED
             </value>
         </property>
     </bean>
@@ -103,13 +137,53 @@
     <!-- SrvPropiedadService Service Proxy with inner SrvPropiedadService Service Implementation -->
     <bean id="srvPropiedadService" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target">
-            <bean class="es.pode.configuracionPlataforma.servicios.SrvPropiedadServiceImpl">
+            <bean class="es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                <property name="historicoPropiedadDao"><ref bean="historicoPropiedadDao"/></property>
                 <property name="propiedadDao"><ref bean="propiedadDao"/></property>
             </bean>
         </property>
         <property name="proxyInterfaces">
-            <value>es.pode.configuracionPlataforma.servicios.SrvPropiedadService</value>
+            <value>es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>serviceTransactionInterceptor</value>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- SrvFicherosConfiguracionService Service Proxy with inner SrvFicherosConfiguracionService Service Implementation -->
+    <bean id="srvFicherosConfiguracionService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionServiceImpl">
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+	                <property name="srvPropiedadService"><ref bean="srvPropiedadService"/></property>
+    	            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionService</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>serviceTransactionInterceptor</value>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- SrvGestorConfiguracionService Service Proxy with inner SrvGestorConfiguracionService Service Implementation -->
+    <bean id="srvGestorConfiguracionService" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionServiceImpl">
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+	                <property name="srvFicherosConfiguracionService"><ref bean="srvFicherosConfiguracionService"/></property>
+    		                <property name="srvPropiedadService"><ref bean="srvPropiedadService"/></property>
+    	            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService</value>
         </property>
         <property name="interceptorNames">
             <list>

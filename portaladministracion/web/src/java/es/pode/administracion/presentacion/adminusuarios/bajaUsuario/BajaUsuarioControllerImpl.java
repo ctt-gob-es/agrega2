@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.administracion.presentacion.adminusuarios.bajaUsuario;
 
@@ -90,7 +85,7 @@ public class BajaUsuarioControllerImpl extends BajaUsuarioController {
 	
 		ResourceBundle ficheroRecursos = null;
 		try {
-			
+/*			
 			ArrayList <UsuarioVO> usuariosABorrar= new ArrayList<UsuarioVO>();
 			Long [] ids = obtenerIds(objeto);
 			for (int i=0; i<objeto.length; i++) {
@@ -133,6 +128,9 @@ public class BajaUsuarioControllerImpl extends BajaUsuarioController {
 		    
 			//Marcamos a los usuario a eliminar como dados de baja
 		    //String login = LdapUserDetailsUtils.getLogin();
+			
+*/			
+			
 		    SrvAdminUsuariosService srvAdminUsuariosService = this.getSrvAdminUsuariosService();
 		 //   UsuarioVO emailAdmin = srvAdminUsuariosService.obtenerDatosUsuario(login);
 		    ValidaBajaUsuarioVO validaBaja = srvAdminUsuariosService.bajaUsuario(obtenerIds(objeto));
@@ -141,7 +139,7 @@ public class BajaUsuarioControllerImpl extends BajaUsuarioController {
 		    form.setUsuariosDeleted(validaBaja.getItemsDeleted());
 		    form.setDescripcionBaja(ficheroRecursos.getString(validaBaja.getDescripcion()));
 		    form.setUsuariosDeleted(validaBaja.getItemsDeleted());
-
+/*
 		    // Despues de eliminar (dar de baja) al usuario tenemos que eliminar mas datos relacionados
 			if(validaBaja.getDescripcion().equals("ok.borrarUsuarios")){
 				
@@ -162,7 +160,7 @@ public class BajaUsuarioControllerImpl extends BajaUsuarioController {
 				log.debug("Hemos borrado todos los albumes de todos los usuarios ? "+eliminadosUsuarios);
 				
 			}
-		   
+*/		   
 		} catch (Exception e) {
 		    log.error("Se ha producido un error al eliminar el usuario " + e);
 		    throw new ValidatorException("{errors.borrarUsuario}");

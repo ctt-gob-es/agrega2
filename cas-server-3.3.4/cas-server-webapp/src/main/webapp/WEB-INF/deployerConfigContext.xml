@@ -122,6 +122,9 @@
 			<list>
   				<!--  Autenticacion basada en LDAP  -->
   				<ref local="ldapAuthenticationProvider"/>
+          <!-- Se incluye para trabajar con dos ldaps -->
+          <ref local="ldapAuthenticationProviderSecundario"/>
+           <!-- Fin nuevo contenido para trabajar con dos ldaps -->
 			</list>
 		</property>
 	</bean>
@@ -181,6 +184,55 @@
 		<property name="convertToUpperCase"><value>true</value></property>
 	</bean>
 
+  <!-- Se incluye para trabajar con dos ldaps -->
+  
+  <bean id="initialDirContextFactorySecundario" class="org.springframework.security.ldap.DefaultInitialDirContextFactory">
+		<constructor-arg><value>${ibuilder.security.ldap.urlSecundario}</value></constructor-arg>
+		<property name="managerDn"><value>${ibuilder.security.ldap.managerDNSecundario}</value></property>
+		<property name="managerPassword"><value>${ibuilder.security.ldap.managerPwdSecundario}</value></property>
+		<property name="extraEnvVars" ref="jndiEnvVarsProperties"/>
+	</bean>
+  
+  <bean id="ldapAuthenticationProviderSecundario" class="org.springframework.security.providers.ldap.LdapAuthenticationProvider">
+		<constructor-arg>
+			<ref bean="ldapBindAuthenticatorSecundario"/>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="ldapAuthoritiesPopulatorSecundario"/>
+		</constructor-arg>	
+	</bean>	
+	<bean id="ldapBindAuthenticatorSecundario" class="org.springframework.security.providers.ldap.authenticator.BindAuthenticator">
+		<constructor-arg><ref local="initialDirContextFactorySecundario"/></constructor-arg>
+		<property name="userSearch" ref="userSearchSecundario"/>		
+	</bean>
+
+	<!-- Buscar el DN del usuario a partir del username para poder hacer bind  -->
+  	<bean id="userSearchSecundario" class="org.springframework.security.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg index="0">
+			<value>${ibuilder.security.ldap.userSearchBaseSecundario}</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>${ibuilder.security.ldap.userSearchFilterSecundario}</value>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref local="initialDirContextFactorySecundario" />
+		</constructor-arg>
+		<property name="searchSubtree">
+			<value>true</value>
+		</property>
+	</bean>	
+	
+	<bean id="ldapAuthoritiesPopulatorSecundario" class="org.springframework.security.ldap.populator.DefaultLdapAuthoritiesPopulator">
+		<constructor-arg><ref local="initialDirContextFactorySecundario"/></constructor-arg>
+		<constructor-arg><value>${ibuilder.security.ldap.groupSearchBaseSecundario}</value></constructor-arg>
+		<property name="groupRoleAttribute"><value>${ibuilder.security.ldap.groupRoleAttributeSecundario}</value></property>
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>
+		<property name="searchSubtree"><value>true</value></property>
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+	</bean>  
+   <!-- Fin nuevo contenido para trabajar con dos ldaps -->
+ 
 	<!-- =========================== END LDAP BACKEND SUPPORT ============================== -->		
 <!--
 	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.

@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -1476,11 +1471,22 @@ private void trataLom (String cat, Lom[] obj, List<ErrorParseoVO> errores, Prope
 								
 								//obtenemos el propósito asignado a la fuente
 								String propo = proP.getProperty(fuentegui);
-									
+
+
 								//si hemos obtenido un propósito asignado a la fuente y es igual al nuestro, lo tratamos
 								if (propo != null){ 
-									
-									if (propo.equals(propos)){
+
+									//20141015 Se modifica para permitir múltiples propósitos para una fuente
+									String[] listaPropFuente = propo.split(",");				
+
+									boolean bPropCorrecto=false;
+									for (int k = 0; k < listaPropFuente.length; k++) {										
+										if (listaPropFuente[k].equals(propos))
+											bPropCorrecto = true;
+									}
+									if (bPropCorrecto){						
+						//			if (propo.equals(propos)){
+
 									
 									if(logger.isDebugEnabled())logger.debug("La fuente que buscamos es <"+fuente+">");
 									
@@ -1934,7 +1940,7 @@ private void trataLom (String cat, Lom[] obj, List<ErrorParseoVO> errores, Prope
 		
 		try{
 
-			String catalogoMec=this.getSrvPropiedadService().get(AgregaProperties.CATALOGO_MEC);
+			String catalogoMec=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
 			
 			prop.load(is);
 			propIdioma.load(in);

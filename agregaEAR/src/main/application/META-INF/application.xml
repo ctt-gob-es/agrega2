@@ -187,12 +187,6 @@
 	</module>
   <module>
     <web>
-      <web-uri>interfazJMX-1.0.war</web-uri>
-      <context-root>/interfazJMX</context-root>
-    </web>
-  </module>
-  <module>
-    <web>
       <web-uri>cas-1.0.war</web-uri>
       <context-root>/cas</context-root>
     </web>

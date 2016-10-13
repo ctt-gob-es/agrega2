@@ -54,6 +54,38 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="devolverPaquetePIFOImagen">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="identificador" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="devolverImagen" type="xsd:boolean" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="devolverPaquetePIFOImagenResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="devolverPaquetePIFOImagenReturn" type="impl:PaquetePifDriVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="eliminarTemporales">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -157,6 +189,32 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="generarPDF">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        Este método se usa para saber si un servicio está levantado o
+                        no.
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idOde" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="generarPDFResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="generarPDFReturn" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="localizacionPaquetePIF">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -181,6 +239,33 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="localizacionPaquetePIFReturn" type="impl:LocalizadorAdlVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerManifest">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        Metodo que copia el manifest de un ODE en
+                        $UPLOADS/export/$IDODE/XML y devuelve la ruta relativa del dicho
+                        manifest. Este metodo sirve para poder descargarse el manifest.
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idOde" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerManifestResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerManifestReturn" type="xsd:string"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -221,6 +306,33 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="obtenerRecursoUnicoDelODE">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        Este metodo copia el recurso unico de un ODE y lo pone en una
+                        ruta accesible para que sea descargable. El ODE debe tener un
+                        solo recurso. Se devuelve la ruta donde esta el recurso
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idOde" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerRecursoUnicoDelODEResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerRecursoUnicoDelODEReturn" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="obtenerTiposPIF">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -236,6 +348,32 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="obtenerTiposPIFReturn" type="impl:ArrayOfxsd_string"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="odeConRecursoDirectamenteDescargable">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        Metodo que devuelve true si el ODE esta catalogado con nivel de
+                        agregacion 1 y si tiene un unico recurso de tipo imagen
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idOde" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="odeConRecursoDirectamenteDescargableResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="odeConRecursoDirectamenteDescargableReturn" type="xsd:boolean"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -476,6 +614,13 @@
                         </xsd:annotation>
                     </xsd:enumeration>
                     <xsd:enumeration value="E_005">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:enumeration>
+                    <xsd:enumeration value="E_006">
                         <xsd:annotation>     
                             <xsd:documentation> 
                                 
@@ -867,6 +1012,13 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="resultadoValidacion" nillable="false" type="impl:CBValidoVO">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfResultadoTransformacionVO">
@@ -991,64 +1143,94 @@
     <wsdl:message name="cargarObjManifest1Response">
         <wsdl:part element="impl:cargarObjManifestResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarTemporales2Request">
+    <wsdl:message name="devolverPaquetePIFOImagen2Request">
+        <wsdl:part element="impl:devolverPaquetePIFOImagen" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="devolverPaquetePIFOImagen2Response">
+        <wsdl:part element="impl:devolverPaquetePIFOImagenResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="eliminarTemporales3Request">
         <wsdl:part element="impl:eliminarTemporales" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarTemporales2Response">
+    <wsdl:message name="eliminarTemporales3Response">
         <wsdl:part element="impl:eliminarTemporalesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="estoyActivo3Request">
+    <wsdl:message name="estoyActivo4Request">
         <wsdl:part element="impl:estoyActivo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="estoyActivo3Response">
+    <wsdl:message name="estoyActivo4Response">
         <wsdl:part element="impl:estoyActivoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generarPaquetePIF4Request">
+    <wsdl:message name="generarPaquetePIF5Request">
         <wsdl:part element="impl:generarPaquetePIF" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generarPaquetePIF4Response">
+    <wsdl:message name="generarPaquetePIF5Response">
         <wsdl:part element="impl:generarPaquetePIFResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generarPaquetePIFTipoPIF5Request">
+    <wsdl:message name="generarPaquetePIFTipoPIF6Request">
         <wsdl:part element="impl:generarPaquetePIFTipoPIF" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generarPaquetePIFTipoPIF5Response">
+    <wsdl:message name="generarPaquetePIFTipoPIF6Response">
         <wsdl:part element="impl:generarPaquetePIFTipoPIFResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="localizacionPaquetePIF6Request">
+    <wsdl:message name="generarPDF7Request">
+        <wsdl:part element="impl:generarPDF" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="generarPDF7Response">
+        <wsdl:part element="impl:generarPDFResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="localizacionPaquetePIF8Request">
         <wsdl:part element="impl:localizacionPaquetePIF" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="localizacionPaquetePIF6Response">
+    <wsdl:message name="localizacionPaquetePIF8Response">
         <wsdl:part element="impl:localizacionPaquetePIFResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerOrganizaciones7Request">
+    <wsdl:message name="obtenerManifest9Request">
+        <wsdl:part element="impl:obtenerManifest" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerManifest9Response">
+        <wsdl:part element="impl:obtenerManifestResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerOrganizaciones10Request">
         <wsdl:part element="impl:obtenerOrganizaciones" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerOrganizaciones7Response">
+    <wsdl:message name="obtenerOrganizaciones10Response">
         <wsdl:part element="impl:obtenerOrganizacionesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerTiposPIF8Request">
+    <wsdl:message name="obtenerRecursoUnicoDelODE11Request">
+        <wsdl:part element="impl:obtenerRecursoUnicoDelODE" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerRecursoUnicoDelODE11Response">
+        <wsdl:part element="impl:obtenerRecursoUnicoDelODEResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerTiposPIF12Request">
         <wsdl:part element="impl:obtenerTiposPIF" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerTiposPIF8Response">
+    <wsdl:message name="obtenerTiposPIF12Response">
         <wsdl:part element="impl:obtenerTiposPIFResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="tieneSecuencia9Request">
+    <wsdl:message name="odeConRecursoDirectamenteDescargable13Request">
+        <wsdl:part element="impl:odeConRecursoDirectamenteDescargable" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="odeConRecursoDirectamenteDescargable13Response">
+        <wsdl:part element="impl:odeConRecursoDirectamenteDescargableResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="tieneSecuencia14Request">
         <wsdl:part element="impl:tieneSecuencia" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="tieneSecuencia9Response">
+    <wsdl:message name="tieneSecuencia14Response">
         <wsdl:part element="impl:tieneSecuenciaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="transformarFormatosODEs10Request">
+    <wsdl:message name="transformarFormatosODEs15Request">
         <wsdl:part element="impl:transformarFormatosODEs" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="transformarFormatosODEs10Response">
+    <wsdl:message name="transformarFormatosODEs15Response">
         <wsdl:part element="impl:transformarFormatosODEsResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="transformarODE11Request">
+    <wsdl:message name="transformarODE16Request">
         <wsdl:part element="impl:transformarODE" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="transformarODE11Response">
+    <wsdl:message name="transformarODE16Response">
         <wsdl:part element="impl:transformarODEResponse" name="parameters"/>
     </wsdl:message>
 
@@ -1071,6 +1253,16 @@
             <wsdl:output message="impl:cargarObjManifest1Response" 
                          name="cargarObjManifest1Response"/>
         </wsdl:operation>
+        <wsdl:operation name="devolverPaquetePIFOImagen">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:devolverPaquetePIFOImagen2Request" 
+                        name="devolverPaquetePIFOImagen2Request"/>
+            <wsdl:output message="impl:devolverPaquetePIFOImagen2Response" 
+                         name="devolverPaquetePIFOImagen2Response"/>
+        </wsdl:operation>
         <wsdl:operation name="eliminarTemporales">
                 
             <wsdl:documentation> 
@@ -1079,10 +1271,10 @@
                 durante el intercambio de ODEs entre diferentes modulos de la
                 plataforma.
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarTemporales2Request" 
-                        name="eliminarTemporales2Request"/>
-            <wsdl:output message="impl:eliminarTemporales2Response" 
-                         name="eliminarTemporales2Response"/>
+            <wsdl:input message="impl:eliminarTemporales3Request" 
+                        name="eliminarTemporales3Request"/>
+            <wsdl:output message="impl:eliminarTemporales3Response" 
+                         name="eliminarTemporales3Response"/>
         </wsdl:operation>
         <wsdl:operation name="estoyActivo">
                 
@@ -1090,10 +1282,10 @@
                 Este método se usa para saber si un servicio está levantado o
                 no.
             </wsdl:documentation>
-            <wsdl:input message="impl:estoyActivo3Request" 
-                        name="estoyActivo3Request"/>
-            <wsdl:output message="impl:estoyActivo3Response" 
-                         name="estoyActivo3Response"/>
+            <wsdl:input message="impl:estoyActivo4Request" 
+                        name="estoyActivo4Request"/>
+            <wsdl:output message="impl:estoyActivo4Response" 
+                         name="estoyActivo4Response"/>
         </wsdl:operation>
         <wsdl:operation name="generarPaquetePIF">
                 
@@ -1104,10 +1296,10 @@
                 ODE y el resultado de la validación todo ello en un
                 PaquetePifVO.
             </wsdl:documentation>
-            <wsdl:input message="impl:generarPaquetePIF4Request" 
-                        name="generarPaquetePIF4Request"/>
-            <wsdl:output message="impl:generarPaquetePIF4Response" 
-                         name="generarPaquetePIF4Response"/>
+            <wsdl:input message="impl:generarPaquetePIF5Request" 
+                        name="generarPaquetePIF5Request"/>
+            <wsdl:output message="impl:generarPaquetePIF5Response" 
+                         name="generarPaquetePIF5Response"/>
         </wsdl:operation>
         <wsdl:operation name="generarPaquetePIFTipoPIF">
                 
@@ -1123,10 +1315,21 @@
                 Devuelve la ruta al ODE empaquetado con el tipo escogido y el
                 resultado de la validación todo ello en un objeto PaquetePifVO.
             </wsdl:documentation>
-            <wsdl:input message="impl:generarPaquetePIFTipoPIF5Request" 
-                        name="generarPaquetePIFTipoPIF5Request"/>
-            <wsdl:output message="impl:generarPaquetePIFTipoPIF5Response" 
-                         name="generarPaquetePIFTipoPIF5Response"/>
+            <wsdl:input message="impl:generarPaquetePIFTipoPIF6Request" 
+                        name="generarPaquetePIFTipoPIF6Request"/>
+            <wsdl:output message="impl:generarPaquetePIFTipoPIF6Response" 
+                         name="generarPaquetePIFTipoPIF6Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="generarPDF">
+                
+            <wsdl:documentation> 
+                Este método se usa para saber si un servicio está levantado o
+                no.
+            </wsdl:documentation>
+            <wsdl:input message="impl:generarPDF7Request" 
+                        name="generarPDF7Request"/>
+            <wsdl:output message="impl:generarPDF7Response" 
+                         name="generarPDF7Response"/>
         </wsdl:operation>
         <wsdl:operation name="localizacionPaquetePIF">
                 
@@ -1135,10 +1338,22 @@
                 Obtiene la localización física de un ODE en un objeto del tipo
                 LocalizadorAdlVO.
             </wsdl:documentation>
-            <wsdl:input message="impl:localizacionPaquetePIF6Request" 
-                        name="localizacionPaquetePIF6Request"/>
-            <wsdl:output message="impl:localizacionPaquetePIF6Response" 
-                         name="localizacionPaquetePIF6Response"/>
+            <wsdl:input message="impl:localizacionPaquetePIF8Request" 
+                        name="localizacionPaquetePIF8Request"/>
+            <wsdl:output message="impl:localizacionPaquetePIF8Response" 
+                         name="localizacionPaquetePIF8Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerManifest">
+                
+            <wsdl:documentation> 
+                Metodo que copia el manifest de un ODE en
+                $UPLOADS/export/$IDODE/XML y devuelve la ruta relativa del dicho
+                manifest. Este metodo sirve para poder descargarse el manifest.
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerManifest9Request" 
+                        name="obtenerManifest9Request"/>
+            <wsdl:output message="impl:obtenerManifest9Response" 
+                         name="obtenerManifest9Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerOrganizaciones">
                 
@@ -1157,10 +1372,22 @@
                 (generada por Castor) y trataremos los datos devolviendo un
                 array OrganizacionVO[]
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerOrganizaciones7Request" 
-                        name="obtenerOrganizaciones7Request"/>
-            <wsdl:output message="impl:obtenerOrganizaciones7Response" 
-                         name="obtenerOrganizaciones7Response"/>
+            <wsdl:input message="impl:obtenerOrganizaciones10Request" 
+                        name="obtenerOrganizaciones10Request"/>
+            <wsdl:output message="impl:obtenerOrganizaciones10Response" 
+                         name="obtenerOrganizaciones10Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerRecursoUnicoDelODE">
+                
+            <wsdl:documentation> 
+                Este metodo copia el recurso unico de un ODE y lo pone en una
+                ruta accesible para que sea descargable. El ODE debe tener un
+                solo recurso. Se devuelve la ruta donde esta el recurso
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerRecursoUnicoDelODE11Request" 
+                        name="obtenerRecursoUnicoDelODE11Request"/>
+            <wsdl:output message="impl:obtenerRecursoUnicoDelODE11Response" 
+                         name="obtenerRecursoUnicoDelODE11Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerTiposPIF">
                 
@@ -1170,10 +1397,21 @@
                 Strings son identificadores para ulteriores llamadas de peticion
                 de conversion de formato de ODEs.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerTiposPIF8Request" 
-                        name="obtenerTiposPIF8Request"/>
-            <wsdl:output message="impl:obtenerTiposPIF8Response" 
-                         name="obtenerTiposPIF8Response"/>
+            <wsdl:input message="impl:obtenerTiposPIF12Request" 
+                        name="obtenerTiposPIF12Request"/>
+            <wsdl:output message="impl:obtenerTiposPIF12Response" 
+                         name="obtenerTiposPIF12Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="odeConRecursoDirectamenteDescargable">
+                
+            <wsdl:documentation> 
+                Metodo que devuelve true si el ODE esta catalogado con nivel de
+                agregacion 1 y si tiene un unico recurso de tipo imagen
+            </wsdl:documentation>
+            <wsdl:input message="impl:odeConRecursoDirectamenteDescargable13Request" 
+                        name="odeConRecursoDirectamenteDescargable13Request"/>
+            <wsdl:output message="impl:odeConRecursoDirectamenteDescargable13Response" 
+                         name="odeConRecursoDirectamenteDescargable13Response"/>
         </wsdl:operation>
         <wsdl:operation name="tieneSecuencia">
                 
@@ -1181,20 +1419,20 @@
                 Metodo tieneSecuencia
                 Este metodo permite conocer si el ODE indicado tiene secuencia.
             </wsdl:documentation>
-            <wsdl:input message="impl:tieneSecuencia9Request" 
-                        name="tieneSecuencia9Request"/>
-            <wsdl:output message="impl:tieneSecuencia9Response" 
-                         name="tieneSecuencia9Response"/>
+            <wsdl:input message="impl:tieneSecuencia14Request" 
+                        name="tieneSecuencia14Request"/>
+            <wsdl:output message="impl:tieneSecuencia14Response" 
+                         name="tieneSecuencia14Response"/>
         </wsdl:operation>
         <wsdl:operation name="transformarFormatosODEs">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:transformarFormatosODEs10Request" 
-                        name="transformarFormatosODEs10Request"/>
-            <wsdl:output message="impl:transformarFormatosODEs10Response" 
-                         name="transformarFormatosODEs10Response"/>
+            <wsdl:input message="impl:transformarFormatosODEs15Request" 
+                        name="transformarFormatosODEs15Request"/>
+            <wsdl:output message="impl:transformarFormatosODEs15Response" 
+                         name="transformarFormatosODEs15Response"/>
         </wsdl:operation>
         <wsdl:operation name="transformarODE">
                 
@@ -1204,10 +1442,10 @@
                 formato especificado por tipoPIF. El resultado se deja
                 comprimido en la carpeta pathDestino.
             </wsdl:documentation>
-            <wsdl:input message="impl:transformarODE11Request" 
-                        name="transformarODE11Request"/>
-            <wsdl:output message="impl:transformarODE11Response" 
-                         name="transformarODE11Response"/>
+            <wsdl:input message="impl:transformarODE16Request" 
+                        name="transformarODE16Request"/>
+            <wsdl:output message="impl:transformarODE16Response" 
+                         name="transformarODE16Response"/>
         </wsdl:operation>
     </wsdl:portType>
     
@@ -1223,93 +1461,138 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="eliminarTemporales">
-            <wsdlsoap:operation soapAction="eliminarTemporales" style="document"/>
-            <wsdl:input name="eliminarTemporales2Request">
+        <wsdl:operation name="devolverPaquetePIFOImagen">
+            <wsdlsoap:operation soapAction="devolverPaquetePIFOImagen" style="document"/>
+            <wsdl:input name="devolverPaquetePIFOImagen2Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarTemporales2Response">
+            <wsdl:output name="devolverPaquetePIFOImagen2Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="eliminarTemporales">
+            <wsdlsoap:operation soapAction="eliminarTemporales" style="document"/>
+            <wsdl:input name="eliminarTemporales3Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="eliminarTemporales3Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="estoyActivo">
             <wsdlsoap:operation soapAction="estoyActivo" style="document"/>
-            <wsdl:input name="estoyActivo3Request">
+            <wsdl:input name="estoyActivo4Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="estoyActivo3Response">
+            <wsdl:output name="estoyActivo4Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="generarPaquetePIF">
             <wsdlsoap:operation soapAction="generarPaquetePIF" style="document"/>
-            <wsdl:input name="generarPaquetePIF4Request">
+            <wsdl:input name="generarPaquetePIF5Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="generarPaquetePIF4Response">
+            <wsdl:output name="generarPaquetePIF5Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="generarPaquetePIFTipoPIF">
             <wsdlsoap:operation soapAction="generarPaquetePIFTipoPIF" style="document"/>
-            <wsdl:input name="generarPaquetePIFTipoPIF5Request">
+            <wsdl:input name="generarPaquetePIFTipoPIF6Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="generarPaquetePIFTipoPIF5Response">
+            <wsdl:output name="generarPaquetePIFTipoPIF6Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="generarPDF">
+            <wsdlsoap:operation soapAction="generarPDF" style="document"/>
+            <wsdl:input name="generarPDF7Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="generarPDF7Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="localizacionPaquetePIF">
             <wsdlsoap:operation soapAction="localizacionPaquetePIF" style="document"/>
-            <wsdl:input name="localizacionPaquetePIF6Request">
+            <wsdl:input name="localizacionPaquetePIF8Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="localizacionPaquetePIF6Response">
+            <wsdl:output name="localizacionPaquetePIF8Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerManifest">
+            <wsdlsoap:operation soapAction="obtenerManifest" style="document"/>
+            <wsdl:input name="obtenerManifest9Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerManifest9Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerOrganizaciones">
             <wsdlsoap:operation soapAction="obtenerOrganizaciones" style="document"/>
-            <wsdl:input name="obtenerOrganizaciones7Request">
+            <wsdl:input name="obtenerOrganizaciones10Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerOrganizaciones7Response">
+            <wsdl:output name="obtenerOrganizaciones10Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerRecursoUnicoDelODE">
+            <wsdlsoap:operation soapAction="obtenerRecursoUnicoDelODE" style="document"/>
+            <wsdl:input name="obtenerRecursoUnicoDelODE11Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerRecursoUnicoDelODE11Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerTiposPIF">
             <wsdlsoap:operation soapAction="obtenerTiposPIF" style="document"/>
-            <wsdl:input name="obtenerTiposPIF8Request">
+            <wsdl:input name="obtenerTiposPIF12Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerTiposPIF8Response">
+            <wsdl:output name="obtenerTiposPIF12Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="odeConRecursoDirectamenteDescargable">
+            <wsdlsoap:operation soapAction="odeConRecursoDirectamenteDescargable" style="document"/>
+            <wsdl:input name="odeConRecursoDirectamenteDescargable13Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="odeConRecursoDirectamenteDescargable13Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="tieneSecuencia">
             <wsdlsoap:operation soapAction="tieneSecuencia" style="document"/>
-            <wsdl:input name="tieneSecuencia9Request">
+            <wsdl:input name="tieneSecuencia14Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="tieneSecuencia9Response">
+            <wsdl:output name="tieneSecuencia14Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="transformarFormatosODEs">
             <wsdlsoap:operation soapAction="transformarFormatosODEs" style="document"/>
-            <wsdl:input name="transformarFormatosODEs10Request">
+            <wsdl:input name="transformarFormatosODEs15Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="transformarFormatosODEs10Response">
+            <wsdl:output name="transformarFormatosODEs15Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="transformarODE">
             <wsdlsoap:operation soapAction="transformarODE" style="document"/>
-            <wsdl:input name="transformarODE11Request">
+            <wsdl:input name="transformarODE16Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="transformarODE11Response">
+            <wsdl:output name="transformarODE16Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         

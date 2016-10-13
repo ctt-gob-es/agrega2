@@ -502,7 +502,7 @@
 
 				<div class="cpa_sup"><label for="captchaImage" ></label></div>
 				<img name="Refrescar" id="Refrescar" src="/static/img/reload.jpg" title="Cambiar imagen" alt="Cambiar imagen" style="height: 23px; width: 23px;"/>&nbsp;
-				<img id="captchaImage" src="jcaptcha.jcaptcha" title="captcha" alt="captcha" class="in_box_" style="border: 1px solid #585858; height: 70px; width: 200px;"/><br />
+				<img id="captchaImage" src="/visualizador-1/jcaptcha.jcaptcha" title="captcha" alt="captcha" class="in_box_" style="border: 1px solid #585858; height: 70px; width: 200px;"/><br />
 				
 				
 				<input type="hidden" name="identificador" value="${form.identificador}" />

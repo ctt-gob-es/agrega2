@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.publicacion.negocio.soporte;
 
 import java.io.File;
@@ -19,6 +14,7 @@ import es.agrega.soporte.agregaProperties.AgregaProperties;
 import es.agrega.soporte.agregaProperties.AgregaPropertiesImpl;
 import es.pode.buscar.negocio.administrar.servicio.NodoVO;
 import es.pode.buscar.negocio.administrar.servicio.SrvNodoService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.fuentestaxonomicas.negocio.servicio.SrvEstructurasEducativasService;
 import es.pode.fuentestaxonomicas.negocio.servicio.SrvTaxonomiaService;
 import es.pode.fuentestaxonomicas.negocio.servicio.SrvVocabulariosControladosService;
@@ -42,6 +38,8 @@ import es.pode.publicacion.negocio.servicios.SrvPublicacionServiceImpl;
 import es.pode.soporte.constantes.ConstantesAgrega;
 import es.pode.soporte.seguridad.ldap.LdapUserDetailsUtils;
 import es.pode.soporte.utiles.ficheros.UtilesFicheros;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
+
 
 public class TratamientoODE {
 	private static Logger logger = Logger.getLogger(TratamientoODE.class);
@@ -64,8 +62,8 @@ public class TratamientoODE {
 	public static es.pode.indexador.negocio.servicios.indexado.IdODEVO rellenaIdOdeVO(ManifestAgrega manifest,
 			String path_ode, String mec, String valoracion, Float tamanio, SrvNodoService nodo, 
 			SrvEstructurasEducativasService estructuras, SrvTaxonomiaService taxonomia, 
-			SrvPublicacionServiceImpl publicacion) throws Exception {
-		return rellenaIdOdeVO(manifest, path_ode, mec, valoracion, tamanio, nodo, estructuras, taxonomia, publicacion, null);
+			SrvPublicacionServiceImpl publicacion, SrvPropiedadService servicioPropiedades) throws Exception {
+		return rellenaIdOdeVO(manifest, path_ode, mec, valoracion, tamanio, nodo, estructuras, taxonomia, publicacion, null, servicioPropiedades);
 	}
 	
 	/**
@@ -78,8 +76,8 @@ public class TratamientoODE {
 	public static es.pode.indexador.negocio.servicios.indexado.IdODEVO rellenaIdOdeVO(ManifestAgrega manifest,
 			String path_ode, String mec, String valoracion, Float tamanio, SrvNodoService nodo, 
 			SrvEstructurasEducativasService estructuras, SrvTaxonomiaService taxonomia, 
-			SrvPublicacionServiceImpl publicacion, SrvBuscadorService buscador) throws Exception {
-		return rellenaIdOdeVO(manifest, path_ode, mec, valoracion, tamanio, nodo, estructuras, taxonomia, publicacion, null, null);
+			SrvPublicacionServiceImpl publicacion, SrvBuscadorService buscador, SrvPropiedadService servicioPropiedades) throws Exception {
+		return rellenaIdOdeVO(manifest, path_ode, mec, valoracion, tamanio, nodo, estructuras, taxonomia, publicacion, null, null, servicioPropiedades);
 	}
 	
 	/**
@@ -98,7 +96,7 @@ public class TratamientoODE {
 	public static es.pode.indexador.negocio.servicios.indexado.IdODEVO rellenaIdOdeVO(ManifestAgrega manifest,
 			String path_ode, String mec, String valoracion, Float tamanio, SrvNodoService nodo, 
 			SrvEstructurasEducativasService estructuras, SrvTaxonomiaService taxonomia, 
-			SrvPublicacionServiceImpl publicacion, SrvBuscadorService buscador, String imagen) throws Exception {
+			SrvPublicacionServiceImpl publicacion, SrvBuscadorService buscador, String imagen, SrvPropiedadService servicioPropiedades) throws Exception {
 		
 		if (logger.isDebugEnabled())
 			logger.debug("Vamos a rellenar los VOs para enviárselos luego al indexador con manifest["
@@ -176,7 +174,7 @@ public class TratamientoODE {
 		if (logger.isDebugEnabled())logger.debug("Rellenamos IdODEVO con valoracion[" + valoracion + "]");
 		// FICHERO DE LA IMAGEN
 		if (imagen==null||imagen.isEmpty()) {
-			OdeVO ode = TratamientoImagenes.pathGenerate(manifest, mec, path_ode);
+			OdeVO ode = TratamientoImagenes.pathGenerate(manifest, mec, path_ode, servicioPropiedades);
 			String imgFile = publicacion.imagePathGenerate(manifest, mec, ode, path_ode);
 			idOdeVo.setImgFile(imgFile);
 		} else {
@@ -260,7 +258,8 @@ public class TratamientoODE {
 
 				for (int i = 0; i < correosUsuarios.length; i++) {
 					// Generamos la entidad VCARD con la entidad
-					String entidad = "BEGIN:VCARD VERSION:3.0 FN: " + correosUsuarios[i] + " EMAIL;TYPE=INTERNET:"+ correosUsuarios[i]  +" ORG: Plataforma Agrega-WebSemantica";
+					//String entidad = "BEGIN:VCARD VERSION:3.0 FN: " + correosUsuarios[i] + " EMAIL;TYPE=INTERNET:"+ correosUsuarios[i]  +" ORG: Plataforma Agrega-WebSemantica";
+					String entidad = "BEGIN:VCARD VERSION:3.0 FN: " + correosUsuarios[i] + " EMAIL;TYPE=INTERNET: ORG: Plataforma Agrega-WebSemantica";
 					// Generamos la fecha de hoy con formato YYYYMMDD
 					java.util.Date date = new java.util.Date();
 					SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");

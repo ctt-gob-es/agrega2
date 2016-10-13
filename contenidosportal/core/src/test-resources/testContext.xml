@@ -471,7 +471,7 @@
         <property name="target">
             <bean class="es.pode.contenidos.negocio.logs.servicio.SrvLogServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
-	            </bean>
+            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.contenidos.negocio.logs.servicio.SrvLogService</value>
@@ -489,7 +489,7 @@
         <property name="target">
             <bean class="es.pode.contenidos.negocio.informes.servicio.SrvInformeServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
-	            </bean>
+            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.contenidos.negocio.informes.servicio.SrvInformeService</value>
@@ -511,7 +511,7 @@
                 <property name="descDescargaDao"><ref bean="descDescargaDao"/></property>
                 <property name="categoriaDescargaDao"><ref bean="categoriaDescargaDao"/></property>
                 <property name="categoriaDescargaDescDao"><ref bean="categoriaDescargaDescDao"/></property>
-	            </bean>
+            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.contenidos.negocio.descargas.servicio.SrvDescargas</value>
@@ -530,7 +530,7 @@
             <bean class="es.pode.contenidos.negocio.generacionDinamica.servicio.SrvGeneracionDinamicaServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
                 <property name="contenidoODEDao"><ref bean="contenidoODEDao"/></property>
-		            </bean>
+	            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.contenidos.negocio.generacionDinamica.servicio.SrvGeneracionDinamicaService</value>

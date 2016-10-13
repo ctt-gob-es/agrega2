@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 //license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -40,6 +35,7 @@ import javax.mail.internet.MimeUtility;
 import javax.mail.util.ByteArrayDataSource;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.jms.core.JmsTemplate;
 
 import de.schlichtherle.io.FileInputStream;
@@ -52,7 +48,7 @@ import es.pode.auditoria.negocio.servicios.TareaEjecutadaPlanVO;
 import es.pode.buscar.negocio.administrar.servicio.NodoVO;
 import es.pode.buscar.negocio.administrar.servicio.SrvNodoService;
 import es.pode.catalogacion.licencias.servicio.ValidarLicenciasVO;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.empaquetador.negocio.servicio.AnalizaArchivoVO;
 import es.pode.entregar.negocio.servicios.SrvEntregarService;
 import es.pode.fuentestaxonomicas.negocio.servicio.SrvEstructurasEducativasService;
@@ -71,6 +67,7 @@ import es.pode.localizador.negocio.servicios.LocalizadorVO;
 import es.pode.localizador.negocio.servicios.SrvLocalizadorService;
 import es.pode.parseadorXML.castor.Educational;
 import es.pode.parseadorXML.castor.General;
+import es.pode.parseadorXML.castor.GroupTitleTitle;
 import es.pode.parseadorXML.castor.Grp_any;
 import es.pode.parseadorXML.castor.Item;
 import es.pode.parseadorXML.castor.Location;
@@ -82,6 +79,7 @@ import es.pode.parseadorXML.castor.Organization;
 import es.pode.parseadorXML.castor.Relation;
 import es.pode.parseadorXML.castor.Resource;
 import es.pode.parseadorXML.castor.Rights;
+import es.pode.parseadorXML.castor.Title;
 import es.pode.parseadorXML.lomes.lomesAgrega.AccesoAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.AnnotationAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.ClassificationAgrega;
@@ -143,6 +141,7 @@ import es.pode.soporte.seguridad.ldap.LdapUserDetailsUtils;
 import es.pode.soporte.utiles.date.DateManager;
 import es.pode.soporte.utiles.ficheros.UtilesFicheros;
 import es.pode.soporte.utiles.imagenes.UtilesImagenes;
+import es.pode.soporte.utiles.string.UtilesString;
 import es.pode.validador.negocio.servicio.SrvValidadorService;
 import es.pode.validador.negocio.servicio.ValidaVO;
 
@@ -316,6 +315,25 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			return historial.get(0);
 		return transicionDao.fromTransicionVO(new TransicionVO());
 	}
+	
+
+	/**
+	 * Obtiene la primera transicion del ode al que corresponde el identificador.
+	 *  
+	 * @param idODE
+	 *            El identificador correspondiente al ODE.
+	 * @return Transicion  VO con la transición del ODE
+	 * @throws Exception
+	 * 
+	 */
+	private Transicion obtenerPrimeraTransicion(String idODE) {
+		TransicionDao transicionDao = this.getTransicionDao();
+		List<Transicion> historial = this.getTransicionDao().buscarHistorialPorIdODEOrdenado(idODE);
+		if (logger.isDebugEnabled()) logger.debug("Historial de idODE["+idODE+"]["+ ((historial!=null)?historial.size():0)+"]transiciones.");
+		if (historial != null && historial.size() > 0)
+			return historial.get(historial.size()-1);
+		return transicionDao.fromTransicionVO(new TransicionVO());
+	}
 
 	
 	/**
@@ -428,7 +446,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 	protected String handleGeneraMEC(String localizador) throws Exception {
 		if (logger.isDebugEnabled()) logger.debug("Iniciamos generacion de mec para: " + localizador);
 		//DependentServerPropertiesItf properties = DependentServerProperties.getInstance();
-		String comunidad = ObtieneSrvPropiedad().get(ConstantesAgrega.AMBITO_NODO).toLowerCase();
+		String comunidad = ObtieneSrvPropiedad().getValorPropiedad(ConstantesAgrega.AMBITO_NODO).toLowerCase();
 		String administracion = SrvPublicacionServiceImpl.getPropertyValue("mec.prefix");
 		StringBuffer mecSB = new StringBuffer();
 		mecSB.append(administracion);
@@ -550,7 +568,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 								this.getSrvNodoService(),
 								this.getSrvEstructurasEducativasService(),
 								this.getSrvTaxonomiaService(),
-								this
+								this,
+								this.getSrvPropiedadService()
 								), IdeOdePub);
 				IdOdeVOs.add(IdeOdePub);
 			}
@@ -1357,7 +1376,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				// Si el ODE a publicar tiene una relación esVersionDe con el texto igual al que se pone cuando se inserta automáticamente 
 				// al proponer como una nueva versión de un ODE suyo previamente publicado.
 				// En ese caso, se despublica y elimina la versión anterior del ODE y se publica la nueva versión con el mismo idMEC
-				String catalogoMec=ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC);
+				String catalogoMec=ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
 				List<RelacionAgrega> relacionVersionDe = lomAgrega.getRelacionesEsVersionDeMEC(catalogoMec);
 
 				if (lomAgrega.esOdeVersionado(catalogoMec))
@@ -1857,7 +1876,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						taxonomia,
 						this,
 						getSrvBuscadorService(),
-						sRutaImagenIndice
+						sRutaImagenIndice,
+						this.getSrvPropiedadService()
 						);
 			} catch (Exception e) {
 				logger.error("Error realizando el mapeo de indexacion del ODE[" + idODE
@@ -1970,7 +1990,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						nodo,
 						estructuras,
 						taxonomia,
-						this); // Estamos mapeando la valoracion que tiene el ODE.
+						this, 
+						this.getSrvPropiedadService()); // Estamos mapeando la valoracion que tiene el ODE.
 				listaAIndexar.add(ODEaIndexar);
 			} catch (Exception e) {
 				logger.error("Error realizando el mapeo del ODE[" + odesPublicados[i].getIdODE()
@@ -2197,7 +2218,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			// Para acceder a la imagen física hay que añadirle el uplods y el serverID para encontrarla.
 			String sImagenOriginal = imagen.replace(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PROPERTY_IMAGE_APACHE_PATH), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_GALERIA_IMG)+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID) );
 			
-			String sImagenDestino=localODE.getPath()+"/"+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.VISTA_PREVIA_AGREGA);
+			String sImagenDestino=localODE.getPath()+"/"+this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA);
 
 			copiarFichero(new File(sImagenOriginal),new File(sImagenDestino));
 
@@ -2278,7 +2299,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 										nodo,
 										estructuras,
 										taxonomia,
-										this);
+										this, 
+										this.getSrvPropiedadService());
 						listIndexables.add(obj2Index);
 					} catch (Exception ex) {
 						logger.error("Se ha producido un error al intentar indexar el objeto [" + sIdentificador+ "] y path [" + sPath + "]", ex);
@@ -2369,7 +2391,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					// puesto que el método de obtenerValidacion daría error si tuviera mas de un MEC, lo vamos a almacenar en relaciones y luego lo borramos de 
 					//los identificadores y le insertamos el nuevo mec.
 					logger.debug("Antes de modificar el identificador el comentario es "+comentarios);
-					String entrada=lomAgrega.getGeneralAgrega().insertarIdentificadorMEC(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC),mec);
+					String entrada=lomAgrega.getGeneralAgrega().insertarIdentificadorMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC),mec);
 //					RelationAgrega[] listaRelaciones=null;
 					
 					if(entrada!=null && !entrada.equals("")){
@@ -2384,7 +2406,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						descripciones.add(lang);
 						recursoNuevo.setDescripciones(descripciones);
 						IdentificadorAgrega identificador=new IdentificadorAgrega();
-						identificador.setCatalogo(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+						identificador.setCatalogo(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 						identificador.setEntrada(entrada);
 						recursoNuevo.setIdentificador(identificador);
 
@@ -2404,7 +2426,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				//Actualmente existe una carpeta por cada uno de los tipos de licencias
 
 				logger.debug("Vamos a copiar el licencia.txt a la misma altura que imsmanifest , la licencia de tipo"+identificadorLicencia);
-//					String urlLicencias=ObtieneSrvPropiedad().get(AgregaProperties.URL_LICENCIAS);
+//					String urlLicencias=ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.URL_LICENCIAS);
 //					String urlEntero=urlLicencias+"/"+identificadorLicencia+"/"+this.LICENCIA_NAME;
 //					File localizarLicencia=new File(urlEntero);
 				File licencia=new File(localizadorVO.getPath()+"/"+SrvPublicacionServiceImpl.LICENCIA_NAME);
@@ -2453,7 +2475,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 			// Comprueba si es primera indexacion y en tal caso, introduce MEC en LOMES.
 
-			//cambiaUUIDxMEC(mec, localizadorVO.getPath(), imsmanifest, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC)); 
+			//cambiaUUIDxMEC(mec, localizadorVO.getPath(), imsmanifest, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC)); 
 			//Ya se lo hemos cambiado o añadido antes en insertarIdnetificadorMEC el catalogo mec
 			ScormDao scorm = (ScormDao) this.getScormDao();
 			// Aniadimos la contribucion del publicador
@@ -2461,7 +2483,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			// Despues de la contribucion, tenemos que meter la localizacion del ODE en a pantalla de busqueda para que la ficha sea publica
 			// y accesible en el caso de una busqueda por SQI.
 
-			TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+			TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 			SrvNodoService nodo = this.getSrvNodoService();
 			SrvEstructurasEducativasService estructuras = this.getSrvEstructurasEducativasService();
 			SrvTaxonomiaService taxonomia = this.getSrvTaxonomiaService();
@@ -2484,7 +2506,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						nodo,
 						estructuras,
 						taxonomia,
-						this);
+						this, 
+						this.getSrvPropiedadService());
 				index = new es.pode.indexador.negocio.servicios.indexado.IdODEVO[1];
 				index[0] = idOdeVo;
 				res = this.getSrvIndexadorService().indexarODE(index);
@@ -2642,7 +2665,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			TratamientoODE.introducePublicadorManifest(localizadorVO.getPath(), idUsuario, imsmanifest, scorm);
 			// Despues de la contribucion, tenemos que meter la localizacion del ODE en a pantalla de busqueda para que la ficha sea publica
 			// y accesible en el caso de una busqueda por SQI.
-			TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+			TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 
 			// Aqui se hace el asunto de la imagen
 			es.pode.indexador.negocio.servicios.indexado.IdODEVO idOdeVo = null;
@@ -2661,7 +2684,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						new Float(tamanioODE.floatValue()),
 						nodo, estructuras,
 						taxonomia,
-						this);
+						this, 
+						this.getSrvPropiedadService());
 
 				index = new es.pode.indexador.negocio.servicios.indexado.IdODEVO[1];
 				index[0] = idOdeVo;
@@ -3049,7 +3073,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					LomAgrega lomAgrega = new LomAgrega(lom);
 //					Publicación del ode, añadiendo el identificador que tenía al publicar, si lo han borrado se le inyecta, si lo han modificado se machaca el que tenía y si no lo han tocado se mantiene
 					if(logger.isDebugEnabled())	logger.debug("Publicación del ode, añadiendo el identificador "+idODE+" con comentarios "+comentarios);
-					lomAgrega.getGeneralAgrega().insertarIdentificadorMEC(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC),idODE);
+					lomAgrega.getGeneralAgrega().insertarIdentificadorMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC),idODE);
 					lomAgrega.getRightsAgrega().setDerechosDeAutor(identificadorLicencia);
 					lomAgrega.getRightsAgrega().setAcceso(universal, comunidades);
 					// Hacemos el set
@@ -3140,7 +3164,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						nodo,
 						estructuras,
 						taxonomia,
-						this);
+						this, 
+						this.getSrvPropiedadService());
 
 				es.pode.indexador.negocio.servicios.indexado.IdODEVO index[] = new es.pode.indexador.negocio.servicios.indexado.IdODEVO[1];
 				index[0] = idOdeVo;
@@ -3366,8 +3391,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			if (ode.getIdentificadorMEC() != null && !ode.getIdentificadorMEC().equals("") && ode.getMainFile() != null && !ode.getMainFile().equals("") && ode.getServerOn() != null && !ode.getServerOn().equals("")) {
 				if (logger.isDebugEnabled()) logger.debug("Antes de enviar el mensaje id[" + ode.getIdentificadorMEC() + "] MainFile ["+ ode.getMainFile() + "] serverOn [" + ode.getServerOn() + "]");
 //				this.sendMessage(ode);
-				TratamientoImagenes.createImage4Odes(
-						new OdeVO[]{ode});
+				TratamientoImagenes.createImage4Odes(new OdeVO[]{ode}, this.getSrvPropiedadService());
 				if(logger.isDebugEnabled()) logger.debug("El mensaje se ha enviado correctamente");
 			} else
 //				throw new RuntimeException("EL archivo principal no va relleno");
@@ -3414,7 +3438,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			//La regeneracion de imagenes no es necesaria en la reindexacion aunque si en la publicacion.
 			//Separamos la creacion del path de la generacion de imagenes --> TratamientoImagenes.pathGenerate
 			this.handleCreateImage4Ode(ode);
-			imagePathReturn = TratamientoImagenes.pathImagen(sMec, TratamientoImagenes.LITTLE_WIDTH, TratamientoImagenes.LITTLE_HEIGHT, localizador, true);
+			imagePathReturn = TratamientoImagenes.pathImagen(sMec, TratamientoImagenes.LITTLE_WIDTH, TratamientoImagenes.LITTLE_HEIGHT, localizador, true, this.getSrvPropiedadService());
 		} catch (Exception ex) {
 			logger.error("Se ha producido un error en imageGenerate", ex);
 		}
@@ -3682,61 +3706,6 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 		return SrvPublicacionServiceImpl.obtenerODEsPorEstadoUsuarios(idsUsuarios, SrvPublicacionServiceImpl.PROPUESTO_CATALOGACION, this.getEstadoDao(), this.getTransicionDao());
 	}
-
-	
-	/**
-	 * The code snippet below remove the characters from a string that is not inside the range 
-	 * of x20 and x7E ASCII code. The regex below strips non-printable and control characters. 
-	 * But it also keeps the linefeed character \n (x0A) and the carriage return \r (x0D) characters.
-	 */
-	private String removeNonASCIICharacters(String s) {
-		return s.replaceAll("[^\\x0A\\x0D\\x20-\\x7E]", "");
-	}
-
-
-	private String eliminarAcentosYOtrasRarezas(String s) {
-		
-		s=s.replaceAll("á", "a");
-		s=s.replaceAll("é", "e");
-		s=s.replaceAll("í", "i");
-		s=s.replaceAll("ó", "o");
-		s=s.replaceAll("ú", "u");
-		
-		s=s.replaceAll("à", "a");
-		s=s.replaceAll("è", "e");
-		s=s.replaceAll("ì", "i");
-		s=s.replaceAll("ò", "o");
-		s=s.replaceAll("ù", "u");
-
-		s=s.replaceAll("ä", "a");
-		s=s.replaceAll("ë", "e");
-		s=s.replaceAll("ï", "i");
-		s=s.replaceAll("ö", "o");
-		s=s.replaceAll("ü", "u");
-		
-		s=s.replaceAll("Á", "A");
-		s=s.replaceAll("É", "E");
-		s=s.replaceAll("Í", "I");
-		s=s.replaceAll("Ó", "O");
-		s=s.replaceAll("Ú", "U");
-		
-		s=s.replaceAll("À", "A");
-		s=s.replaceAll("È", "E");
-		s=s.replaceAll("Ì", "I");
-		s=s.replaceAll("Ò", "O");
-		s=s.replaceAll("Ù", "U");
-
-		s=s.replaceAll("Ä", "A");
-		s=s.replaceAll("Ë", "E");
-		s=s.replaceAll("Ï", "I");
-		s=s.replaceAll("Ö", "O");
-		s=s.replaceAll("Ü", "U");
-		
-		s=s.replaceAll("\\[", "_");
-		s=s.replaceAll("\\]", "_");
-		
-		return s;
-	}
 	
 	
    	/**
@@ -3760,12 +3729,14 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		return false;
 	}
    	
-	
+
    	/**
    	 * Metodo que se ejecuta al importar un ODE. Este metodo examina todos los recursos del ODE
    	 * una vez que ya esta descomprimido en la carpeta del usuario y elimina acentos y caracteres 
    	 * extraños de los recursos editando no solo el nombre de los ficheros, si no tambien ajustando 
-   	 * la entrada correspondiente en el manifest 
+   	 * la entrada correspondiente en el manifest .
+   	 * NOTA: un recurso puede tener varios ficheros y solo uno de esos ficheros esta asignado en 
+   	 * el href del recurso.
    	 */
 	private void eliminarCaracteresExtranosDeRecursos(String idODE) throws Exception {
 
@@ -3782,25 +3753,37 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		//Recorremos los recursos
 		for(int r=0; r<manAgrega.getManifest().getResources().getResourceCount(); r++)
 		{
-			for(int f=0; f<manAgrega.getManifest().getResources().getResource(r).getFileCount(); f++)
+			Resource resource = manAgrega.getManifest().getResources().getResource(r);
+			String nombreRecursoOriginal=resource.getHref();	
+			
+			if(nombreRecursoOriginal!=null) {
+				
+				String nombreRecursoNuevo = UtilesString.filtroCaracteresSimples(nombreRecursoOriginal);
+				
+				if(!nombreRecursoNuevo.contentEquals(nombreRecursoOriginal)) {
+					resource.setHref(nombreRecursoNuevo);
+					//No escribimos todavia el cambio en fichero ni buscamos el fichero fisico en disco
+					//ya que el href del recurso coincidira siempre con el de algun fichero y esto
+					//se hace en el bucle de abajo
+				}
+			}
+						
+			for(int f=0; f<resource.getFileCount(); f++)
 			{
-				Resource resource = manAgrega.getManifest().getResources().getResource(r);
-				es.pode.parseadorXML.castor.File recurso = resource.getFile(f);
-				String nombreRecursoOriginal=recurso.getHref();
-
-				String nombreRecursoNuevo = eliminarCaracteresExtranos(nombreRecursoOriginal);
+				es.pode.parseadorXML.castor.File fichero = resource.getFile(f);
+				String nombreFicheroOriginal=fichero.getHref();
+				String nombreFicheroNuevo = UtilesString.filtroCaracteresSimples(nombreFicheroOriginal);
 
 				//Si el nombre no es el mismo modificamos el recurso
-				if(!nombreRecursoNuevo.contentEquals(nombreRecursoOriginal)) {
+				if(!nombreFicheroNuevo.contentEquals(nombreFicheroOriginal)) {
 					
-					File recursoFisicoOriginal = new File(localizadorNP.getPath()+File.separator+nombreRecursoOriginal);
-					File recursoFisicoNuevo = new File(localizadorNP.getPath()+File.separator+nombreRecursoNuevo);
+					File recursoFisicoOriginal = new File(localizadorNP.getPath()+File.separator+nombreFicheroOriginal);
+					File recursoFisicoNuevo = new File(localizadorNP.getPath()+File.separator+nombreFicheroNuevo);
 					
 					if(recursoFisicoOriginal.exists()) {
 						recursoFisicoOriginal.renameTo(recursoFisicoNuevo);
-						recurso.setHref(nombreRecursoNuevo);
-						resource.setHref(nombreRecursoNuevo);
-						//Escribimos el cambio de nombre de recurso en disco
+						fichero.setHref(nombreFicheroNuevo);
+						//Escribimos el cambio de nombre de fichero en disco
 						this.getScormDao().escribirODE(imsmanifest, manifest);
 						
 					} else {
@@ -3810,7 +3793,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						
 						//Obtenemos la ruta del recurso. Suponemos que dicha ruta no contiene caracteres
 						//extranos. Los caracteres extranos estan solo en el nombre del fichero.
-						String carpetas[] = nombreRecursoOriginal.split(File.separator);
+						String carpetas[] = nombreFicheroOriginal.split(File.separator);
 						String rutaRecurso="";
 						for(int c=0; c<carpetas.length-1; c++)
 							rutaRecurso=rutaRecurso+File.separator+carpetas[c];
@@ -3826,11 +3809,10 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						
 						for (int i = 0; i<ficheros.length; i++) {
 							if(ficheros[i].isFile()) {
-								if(esRecursoBuscado(nombreRecursoOriginal, ficheros[i].getName())) {
+								if(esRecursoBuscado(nombreFicheroOriginal, ficheros[i].getName())) {
 									ficheros[i].renameTo(recursoFisicoNuevo);
-									recurso.setHref(nombreRecursoNuevo);
-									resource.setHref(nombreRecursoNuevo);
-									//Escribimos el cambio de nombre de recurso en disco
+									fichero.setHref(nombreFicheroNuevo);
+									//Escribimos el cambio de nombre de fichero en disco
 									this.getScormDao().escribirODE(imsmanifest, manifest);
 									break;
 								}
@@ -3849,7 +3831,9 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
    	 * Metodo que se ejecuta al importar un ODE. Este metodo examina todos los recursos del ODE
    	 * una vez que ya esta descomprimido en la carpeta del usuario y elimina acentos y caracteres 
    	 * extraños de los recursos editando no solo el nombre de los ficheros, si no tambien ajustando 
-   	 * la entrada correspondiente en el manifest 
+   	 * la entrada correspondiente en el manifest .
+   	 * NOTA: un recurso puede tener varios ficheros y solo uno de esos ficheros esta asignado en 
+   	 * el href del recurso.
    	 */
 	private void eliminarCaracteresExtranosDeManifest(String rutaLocalizador, String rutaFicTemp) throws Exception {
 
@@ -3863,25 +3847,37 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		//Recorremos los recursos
 		for(int r=0; r<manAgrega.getManifest().getResources().getResourceCount(); r++)
 		{
-			for(int f=0; f<manAgrega.getManifest().getResources().getResource(r).getFileCount(); f++)
+			Resource resource = manAgrega.getManifest().getResources().getResource(r);
+			String nombreRecursoOriginal=resource.getHref();	
+			
+			if(nombreRecursoOriginal!=null) {
+				
+				String nombreRecursoNuevo = UtilesString.filtroCaracteresSimples(nombreRecursoOriginal);
+				
+				if(!nombreRecursoNuevo.contentEquals(nombreRecursoOriginal)) {
+					resource.setHref(nombreRecursoNuevo);
+					//No escribimos todavia el cambio en fichero ni buscamos el fichero fisico en disco
+					//ya que el href del recurso coincidira siempre con el de algun fichero y esto
+					//se hace en el bucle de abajo
+				}
+			}
+		
+			for(int f=0; f<resource.getFileCount(); f++)
 			{
-				Resource resource = manAgrega.getManifest().getResources().getResource(r);
-				es.pode.parseadorXML.castor.File recurso = resource.getFile(f);
-				String nombreRecursoOriginal=recurso.getHref();
-
-				String nombreRecursoNuevo = eliminarCaracteresExtranos(nombreRecursoOriginal);
+				es.pode.parseadorXML.castor.File fichero = resource.getFile(f);
+				String nombreFicheroOriginal=fichero.getHref();
+				String nombreFicheroNuevo = UtilesString.filtroCaracteresSimples(nombreFicheroOriginal);
 
 				//Si el nombre no es el mismo modificamos el recurso
-				if(!nombreRecursoNuevo.contentEquals(nombreRecursoOriginal)) {
+				if(!nombreFicheroNuevo.contentEquals(nombreFicheroOriginal)) {
 					
-					File recursoFisicoOriginal = new File(rutaLocalizador+File.separator+nombreRecursoOriginal);
-					File recursoFisicoNuevo = new File(rutaLocalizador+File.separator+nombreRecursoNuevo);
+					File recursoFisicoOriginal = new File(rutaLocalizador+File.separator+nombreFicheroOriginal);
+					File recursoFisicoNuevo = new File(rutaLocalizador+File.separator+nombreFicheroNuevo);
 					
 					if(recursoFisicoOriginal.exists()) {
 						recursoFisicoOriginal.renameTo(recursoFisicoNuevo);
-						recurso.setHref(nombreRecursoNuevo);
-						resource.setHref(nombreRecursoNuevo);
-						//Escribimos el cambio de nombre de recurso en disco
+						fichero.setHref(nombreFicheroNuevo);
+						//Escribimos el cambio de nombre de fichero en disco
 						this.getScormDao().escribirODE(imsmanifest, manifest);
 						
 					} else {
@@ -3891,7 +3887,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						
 						//Obtenemos la ruta del recurso. Suponemos que dicha ruta no contiene caracteres
 						//extranos. Los caracteres extranos estan solo en el nombre del fichero.
-						String carpetas[] = nombreRecursoOriginal.split(File.separator);
+						String carpetas[] = nombreFicheroOriginal.split(File.separator);
 						String rutaRecurso="";
 						for(int c=0; c<carpetas.length-1; c++)
 							rutaRecurso=rutaRecurso+File.separator+carpetas[c];
@@ -3907,11 +3903,10 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 						
 						for (int i = 0; i<ficheros.length; i++) {
 							if(ficheros[i].isFile()) {
-								if(esRecursoBuscado(nombreRecursoOriginal, ficheros[i].getName())) {
+								if(esRecursoBuscado(nombreFicheroOriginal, ficheros[i].getName())) {
 									ficheros[i].renameTo(recursoFisicoNuevo);
-									recurso.setHref(nombreRecursoNuevo);
-									resource.setHref(nombreRecursoNuevo);
-									//Escribimos el cambio de nombre de recurso en disco
+									fichero.setHref(nombreFicheroNuevo);
+									//Escribimos el cambio de nombre de fichero en disco
 									this.getScormDao().escribirODE(imsmanifest, manifest);
 									break;
 								}
@@ -3942,8 +3937,14 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				escribirCambios=true;
 			}
 			
-			if(items[i].getItem()!=null && items[i].getItem().length>0)
-				escribirMasCambios=eliminarCaracteresExtranosDeItems(items[i].getItem());
+			if(items[i].getItem()!=null && items[i].getItem().length>0) {
+				if(!escribirMasCambios)
+					escribirMasCambios=eliminarCaracteresExtranosDeItems(items[i].getItem());
+				else
+					//Si ya hemos detectado que en algun sitio hay que hacer cambios
+					//no modificamos el valor de escribirMasCambios
+					eliminarCaracteresExtranosDeItems(items[i].getItem());
+			}
 		}
 		return (escribirCambios||escribirMasCambios);
 	}
@@ -4006,8 +4007,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 	
 	
 	private String eliminarCaracteresExtranos(String s) {
-		String retorno = eliminarAcentosYOtrasRarezas(s);
-		return removeNonASCIICharacters(retorno);		
+		String retorno = UtilesString.eliminaCaracteresProblematicosParaVisualizador(s);
+		return retorno;
 	}
 	
 	
@@ -4054,7 +4055,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			// empezamos a descomprimir el pif y guardar lo que nos devuelve en un directorio temporal
 			if(logger.isDebugEnabled())	logger.debug("Comenzamos a descomprimir el PIF y guardar en un dir temporal.");
 
-			String pathtemp = "";
+			String pathtemp = "";			
 			pathtemp = localizadorNP.getPath() + SrvPublicacionServiceImpl.getPropertyValue("carpeta.temporal") + "/" + titulo;
 			String pathLocal = localizadorNP.getPath();
 			int position = pathLocal.lastIndexOf("/");
@@ -4255,13 +4256,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					return new ResultadoOperacionVO(ERROR_EXCEDER,I18nModuloPublicacion.getPropertyValueI18n(ERROR_EXCEDER) ,idODE,new Long(consumoODE));
 				}
 				logger.info("Creando ODE desde PIF con id["+idODE+"] tamanio["+consumoODE+"] para usuario["+idUsuario+"] con cuota consumida["+cuotaConsumida+"] y cuota total["+cuotaUsuario+"]");
-			}
-
-			//Eliminamos caracteres extraños de los recursos y del titulo para evitar problemas
-			//y para que el manifest del ODE pueda validarse
-			eliminarCaracteresExtranosDeRecursos(idODE);				
-			eliminarCaracteresExtranosDelTituloYOrganizaciones(localizadorNP.getPath());		
-			
+			}					
+						
 			// validador
 			SrvValidadorService validadorService = this.getSrvValidadorService();
 			// reaalizamos una validacion ligera en lugar de carga ode.
@@ -4296,7 +4292,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				// el identificador de taller (el UUID)
 
 				ScormDao scorm = (ScormDao) this.getScormDao();
-				TratamientoODE.cambiaUUIDxMEC(idODE, localizadorNP.getPath(), imsmanifest, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_AGREGA), scorm); 
+				TratamientoODE.cambiaUUIDxMEC(idODE, localizadorNP.getPath(), imsmanifest, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_AGREGA), scorm); 
 				// utilizamos el catalogo agrega imsmanifest
 				// si el ode tiene lomes el título lo cambiamos al que trajese con el lomes
 
@@ -4310,7 +4306,13 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					titulo = lomAgrega.getGeneralAgrega().getTitulo(idioma);
 				} else {
 					logger.warn("El Lom del manifest " + idODE+ " no tiene objeto general, el nombre del fichero será el titulo del ODE");
-				}
+				}	
+				
+				//Eliminamos caracteres extraños de los recursos y del titulo para evitar problemas
+				//y para que el manifest del ODE pueda validarse
+				eliminarCaracteresExtranosDeRecursos(idODE);				
+				eliminarCaracteresExtranosDelTituloYOrganizaciones(localizadorNP.getPath());
+				
 				// Creamos la transicion
 				EstadoDao estadoDao = this.getEstadoDao();
 				TransicionDao transicionDao = this.getTransicionDao();
@@ -5477,7 +5479,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 										logger.debug("Generamos el objeto de regeneracion del ODE [" + sIdentificador + "]");
 
 									ManifestAgrega manifAgrega = new ManifestAgrega(imsmanifest);
-									AgregaPropertiesImpl properties = (AgregaPropertiesImpl) AgregaPropertiesImpl.getInstance();									String pathOde=TratamientoImagenes.localPathGenerate(manifAgrega, sIdentificador, sPath, properties);
+									AgregaPropertiesImpl properties = (AgregaPropertiesImpl) AgregaPropertiesImpl.getInstance();									
+									String pathOde=TratamientoImagenes.localPathGenerate(manifAgrega, sIdentificador, sPath, properties, this.getSrvPropiedadService());
 									OdeVO odeVO=new OdeVO();
 									odeVO.setIdentificadorMEC(sIdentificador);
 									odeVO.setMainFile(pathOde);//Es el href de la imagen
@@ -5489,7 +5492,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 									logger.error("Se ha producido un error al intentar regenerar la imagen [" + sIdentificador+ "] y path [" + sPath + "]", ex);
 								}
 							}
-							TratamientoImagenes.createImage4Odes(arrayOdes);
+							TratamientoImagenes.createImage4Odes(arrayOdes, this.getSrvPropiedadService());
 							vuelta=true;
 						}
 					} else {
@@ -6030,7 +6033,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 				// Despues de la contribucion, tenemos que meter la localizacion del ODE en a pantalla de busqueda para que la ficha sea publica
 				// y accesible en el caso de una busqueda por SQI.
-				TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+				TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 				SrvNodoService nodo = this.getSrvNodoService();
 				SrvEstructurasEducativasService estructuras = this.getSrvEstructurasEducativasService();
 				SrvTaxonomiaService taxonomia = this.getSrvTaxonomiaService();
@@ -6053,7 +6056,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 							nodo,
 							estructuras,
 							taxonomia,
-							this);
+							this, 
+							this.getSrvPropiedadService());
 					index = new es.pode.indexador.negocio.servicios.indexado.IdODEVO[1];
 					index[0] = idOdeVo;
 					res = this.getSrvIndexadorService().indexarODE(index);
@@ -6711,7 +6715,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		String identifiadorManifest = manAgrega.getManifest().getIdentifier();
 		Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);
 		LomAgrega lomAgrega = new LomAgrega(lom);
-		ArrayList relacionesAgrega = lomAgrega.getRelacionesSeBasaEnMEC(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+		ArrayList relacionesAgrega = lomAgrega.getRelacionesSeBasaEnMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 //		Miro a ver si tiene relaciones, y si es asi, luego tengo que ver si estan en la plataforma
 		if (relacionesAgrega != null && relacionesAgrega.size() >0)
 		{
@@ -6937,7 +6941,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			LomAgrega lomAgrega = new LomAgrega(lom);				
 	
 			if (lom == null) return;						
-			String catalogo=ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC);
+			String catalogo=ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
 			lomAgrega.crearRelacionVersionDe(catalogo);
 			manAgrega.setLom(identifiadorManifest, null, lom);
 			imsmanifest = manAgrega.getManifest();
@@ -7232,7 +7236,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);
 			LomAgrega lomAg = new LomAgrega(lom);
 							
-			String idMECAGREGA = lomAg.getGeneralAgrega().obtenerIdentificadorFormatoMEC(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));							
+			String idMECAGREGA = lomAg.getGeneralAgrega().obtenerIdentificadorFormatoMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));							
 				
 			 extraeSubmanifest = new File(localizadorNP.getPath(), MANIFEST_NAME);
 			 imsmanifest = this.getScormDao().parsearODEEager(extraeSubmanifest);
@@ -7242,7 +7246,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			 lom = manAgrega.obtenerLom(identifiadorManifest, null);			
 			 lomAg = new LomAgrega(lom);
 			
-			String idMECNuevaVersion = lomAg.getGeneralAgrega().obtenerIdentificadorFormatoMEC(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_MEC));
+			String idMECNuevaVersion = lomAg.getGeneralAgrega().obtenerIdentificadorFormatoMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 			if (logger.isDebugEnabled())
 				logger.debug("El idMEC de la nueva version es : "  + idMECNuevaVersion);
 			
@@ -7252,8 +7256,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				logger.error("No se puede actualizar porque no coinciden los idMEC");
 				return new ResultadoOperacionVO(ERROR_ACTUALIZAR_VERSION_INCORRECTA, I18nModuloPublicacion.getPropertyValueI18n(ERROR_ACTUALIZAR_VERSION_INCORRECTA),idODE,0L);				
 				
-			}
-				
+			}	
+							
 			// validador
 			SrvValidadorService validadorService = this.getSrvValidadorService();
 			// reaalizamos una validacion ligera en lugar de carga ode.
@@ -7288,7 +7292,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				// el identificador de taller (el UUID)
 
 				ScormDao scorm = (ScormDao) this.getScormDao();
-				TratamientoODE.cambiaUUIDxMEC(idODE, localizadorNP.getPath(), imsmanifest, ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_AGREGA), scorm); 
+				TratamientoODE.cambiaUUIDxMEC(idODE, localizadorNP.getPath(), imsmanifest, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_AGREGA), scorm); 
 				// utilizamos el catalogo agrega imsmanifest
 				// si el ode tiene lomes el título lo cambiamos al que trajese con el lomes
 
@@ -7303,6 +7307,12 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				} else {
 					logger.warn("El Lom del manifest " + idODE+ " no tiene objeto general, el nombre del fichero será el titulo del ODE");
 				}
+								
+				//Eliminamos caracteres extraños de los recursos y del titulo para evitar problemas
+				//y para que el manifest del ODE pueda validarse
+				eliminarCaracteresExtranosDeRecursos(idODE);				
+				eliminarCaracteresExtranosDelTituloYOrganizaciones(localizadorNP.getPath());	
+				
 				// Creamos la transicion
 				EstadoDao estadoDao = this.getEstadoDao();
 				TransicionDao transicionDao = this.getTransicionDao();
@@ -7357,8 +7367,11 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 	
 	/*
-	 * Devuelve una lista con los ODEs que estan en estado eliminado o despublicado entre dos fechas dadas
-	 * @see es.pode.publicacion.negocio.servicios.SrvPublicacionServiceBase#handleObtenODEsDespublicadosPorFecha(java.lang.String, java.lang.String)
+	 * Devuelve una lista con los ODEs que estan en estado eliminado o despublicado entre dos fechas dadas.
+	 * Metodo que devuelve los ODEs despublicados de un nodo, devuelve aquellas transiciones que tienen 
+	 * como estado actual NO_DISPONIBLE o ELIMINADO y cuyo estado transitado es siempre null, en otras 
+	 * palabras, devolverá aquellos ODEs que han sido eliminados (como los versionados) o aquellos que 
+	 * su estado actual es NO_DISPONIBLE.
 	 */
 	@Override
 	protected TransicionVO[] handleObtenODEsDespublicadosPorFecha(String fechaInicio, String fechaFin)
@@ -7467,9 +7480,10 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			List l = this.getOdesFederadosDespublicadosDao().obtenerOdeFederadoDespublicadoPorFecha(criterio);
 			
 			if(l==null || l.size()==0) {
-				if(!estado.equals(NO_DISPONIBLE)) 
-					throw (new Exception ("Error; se ha intentado registrar en la tabla de ODEs federados despublicados un ode con estado "+estado+" -> idODE:"+odes[i].getIdODE()+", fecha despublicacion:"+fechaOde+", nodo:"+idNodo));			
-				this.getOdesFederadosDespublicadosDao().create(odes[i].getIdODE(), odes[i].getFecha(), idNodo);
+				if(!estado.equals(NO_DISPONIBLE) && !estado.equals(ELIMINADO)) 
+					logger.error("Error: Se ha intentado registrar en la tabla de ODEs federados despublicados un ode con estado "+estado+" -> idODE:"+odes[i].getIdODE()+", fecha despublicacion:"+fechaOde+", nodo:"+idNodo);			
+				else
+					this.getOdesFederadosDespublicadosDao().create(odes[i].getIdODE(), odes[i].getFecha(), idNodo);
 			} else {
 				logger.warn("Se ha intentado registrar como despublicado federado en el nodo "+idNodo+" un ODE ("+odes[i].getIdODE()+") que ya teniamos registrado con fecha de despublicacion "+fechaOde);
 			}
@@ -7598,14 +7612,16 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			LomAgrega lomAgrega = new LomAgrega(lom);
 
 			List<EntidadAgrega> listaAutores = (List<EntidadAgrega>) lomAgrega.getLifeCycleAgrega().getAutores();
+			
+			List<EntidadAgrega> listaPublicadores = (List<EntidadAgrega>) lomAgrega.getLifeCycleAgrega().getPublicadores();
 
 			boolean bUsuarioAutorizado = false;
 
 			for (Iterator<EntidadAgrega> iterator = listaAutores.iterator(); iterator.hasNext();) {
 				EntidadAgrega entidadAgrega =  iterator.next();
-				logger.error("Correo autor :" + entidadAgrega.getCorreo());
+				logger.info("Identificador autor :" + entidadAgrega.getNombre() + " Correo : " + entidadAgrega.getCorreo());
 
-				if (idUsuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
+				if (idUsuario.equalsIgnoreCase(entidadAgrega.getNombre())||idUsuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
 				{
 					bUsuarioAutorizado=true;
 					break;
@@ -7613,6 +7629,17 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 			}
 
+			for (Iterator<EntidadAgrega> iterator = listaPublicadores.iterator(); iterator.hasNext();) {
+				EntidadAgrega entidadAgrega =  iterator.next();
+				logger.info("Identificador publicador :" + entidadAgrega.getNombre()+ " Correo : " + entidadAgrega.getCorreo());
+
+				if (idUsuario.equalsIgnoreCase(entidadAgrega.getNombre())||idUsuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
+				{
+					bUsuarioAutorizado=true;
+					break;
+				}
+
+			}
 			if (!bUsuarioAutorizado)
 			{
 				logger.error("handleDespublicarWebSemantica. El usuario : " + idUsuario + " no tiene permisos para despublicar el ODE : " + idODE);
@@ -7646,7 +7673,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
     private String darIdsNodosAgrega() throws Exception {
 		//Añadimos el nodo local al resto de nodos
 		NodoVO nodoLocal = new NodoVO();
-		nodoLocal.setIdNodo(this.getSrvPropiedadService().get(AgregaProperties.SERVER_ID));
+		nodoLocal.setIdNodo(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SERVER_ID));
  		NodoVO[] otrosNodos = this.getSrvNodoService().listarNodos();
  		ArrayList<NodoVO> nodos = new ArrayList<NodoVO>(Arrays.asList(otrosNodos));
  		nodos.add(nodoLocal);
@@ -7745,7 +7772,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
     	r.setPathImagen(pathImagen);
     	r.setPathRepositorio(pathRepositorio);
 
-    	//r.setNodoPublicacion(this.getSrvPropiedadService().get(AgregaProperties.SERVER_ID));
+    	//r.setNodoPublicacion(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SERVER_ID));
 		String url = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST);
 		String subdominio = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SUBDOMINIO);
 		if(subdominio.isEmpty() || url.endsWith("/") || subdominio.startsWith("/"))
@@ -7905,31 +7932,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		
 		String[] resultado = null;		
 		LocalizadorVO localizadorP = null;
-		String correoUsuarioCreacionAgrega = null;
-/*		
-		if (idODE.equals("pruebaPublicacion"))
-		{
-		
-			DataSource fuente = null;
-			
-			fuente = new FileDataSource(new java.io.File("/export/pruebaFicherosSueltos.zip"));
-			
-			DataHandler fichero = new DataHandler(fuente);	
-			
-			DataSource fuenteMani = null;
-			
-			fuenteMani = new FileDataSource(new java.io.File("/export/imsmanifest_CatalogacionReducidaWebSemantica.xml"));
-			
-			DataHandler ficheroMani = new DataHandler(fuenteMani);		
-			
-			
-			String[] listaEditores = new String[3];
-			listaEditores[0]="user1@correo.es";
-			listaEditores[1]="user2@correo.es";
-			listaEditores[2]="user3@correo.es";
-			handlePublicarWebSemantica(fichero, ficheroMani, "ejfente@indra.es", "pruebaFicherosSueltos.zip",listaEditores, false,"ODE_CATALOGACION_MINIMA");
-		}	
-*/
+
 		if (logger.isDebugEnabled())
 			logger.debug("handleObtenerEditoresOdeWebSemantica. Se ha solicitado los editores del ODE : " + idODE);	
 		
@@ -7943,17 +7946,17 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 		// Obtenemos el usuario que ha creado el ODE para incluirlo en la lista.
 		// Esto se hace para aquellos casos en los que no se ha incluido como una contribución de Autor cuando se creo
+		String usuarioCreacion="";
 		try
 		{
-			Transicion ultTrans = handleObtenerUltimaTransicion(idODE);
-			String usuarioCreacion = ultTrans.getIdUsuarioCreacion();
-			UsuarioVO usuarioVO = getSrvAdminUsuariosService().obtenerDatosUsuario(usuarioCreacion);
+			//Obtenemos el creador de la primera transicion; en otras palabras el creador del ODE
+			Transicion t = obtenerPrimeraTransicion(idODE);
+			usuarioCreacion = t.getIdUsuarioCreacion();
 			
-			correoUsuarioCreacionAgrega=usuarioVO.getEmail();
 			if (logger.isDebugEnabled())
-				logger.debug("Correo del usuario de creación en Agrega : " +usuarioVO.getEmail());
+				logger.debug("Correo del usuario de creación en Agrega : " +usuarioCreacion);
 			
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error("No se ha podido obtener la última transición : ", e);		
 			return resultado;
 		}
@@ -7971,30 +7974,33 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 		if (listaAutores!=null && listaAutores.size()>0)
 		{		
-			List<String> listaCorreos = new ArrayList<String>();
+			List<String> listaUsuarios = new ArrayList<String>();
+      
+      // 09072015 Insertamos el usuario de creación en la primera posición para devolverlo siempre en una posición fija
+			listaUsuarios.add(usuarioCreacion);
 			
 			if (logger.isDebugEnabled())
 				logger.debug("handleObtenerEditoresOdeWebSemantica. Obtiene editores del ODE : " + listaAutores.size());	
 
 			for (Iterator<EntidadAgrega> iterator = listaAutores.iterator(); iterator.hasNext();) {
 				EntidadAgrega entidadAgrega =  iterator.next();					
-				listaCorreos.add(entidadAgrega.getCorreo());			
+				listaUsuarios.add(entidadAgrega.getNombre());			
 			}
+/* 09072015 Movemos este código para devolver siempre el usuario que crea el ODE en primera posición       
 			// Controlamos si el usuario de creación en Agrega ya se incluye por estar en contribución con rol autor
-			if (!listaCorreos.contains(correoUsuarioCreacionAgrega))
-				listaCorreos.add(correoUsuarioCreacionAgrega);
-			
-			resultado = listaCorreos.toArray(new String[0]);
+			if (!listaUsuarios.contains(usuarioCreacion))
+				listaUsuarios.add(usuarioCreacion);
+*/			
+			resultado = listaUsuarios.toArray(new String[0]);
 						
-		}else
-		{
+		} else {
 			resultado = new String[1];
-			resultado[0]=correoUsuarioCreacionAgrega;
+			resultado[0]=usuarioCreacion;
 		}
-	
 		return resultado;
 	}		
 
+	
 	private boolean insertarContribucionesAutoresODE(String idODE, String[] correosUsuarios)
 	{
 
@@ -8140,7 +8146,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		ga.addTituloIdioma(idioma, titulo);
 		// Identificador
 		IdentificadorAgrega id = new IdentificadorAgrega();
-		id.setCatalogo(ObtieneSrvPropiedad().get(AgregaProperties.CATALOGO_AGREGA));
+		id.setCatalogo(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_AGREGA));
 		id.setEntrada(identificador);
 		ArrayList<IdentificadorAgrega> lista = new ArrayList<IdentificadorAgrega>();
 		lista.add(id);
@@ -8270,16 +8276,12 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			String idUsuario) throws Exception {
 
 		boolean usuarioRegistrado=false;
-		String emailUsuario="";
 		
-		if(esUnMail(idUsuario)) {
-			emailUsuario=idUsuario;
-			UsuarioVO usuario = this.getSrvAdminUsuariosService().obtenerDatosUsuarioWebSemantica(idUsuario);
-			if (usuario!=null && usuario.getUsuario()!=null) {
-				idUsuario=usuario.getUsuario();
-				usuarioRegistrado=true;
-			}
-		}
+		UsuarioVO usuario = this.getSrvAdminUsuariosService().obtenerDatosUsuarioWebSemantica(idUsuario);
+		if (usuario!=null && usuario.getUsuario()!=null) {
+			idUsuario=usuario.getUsuario();
+			usuarioRegistrado=true;
+		}		
 		
 		ArrayList<String> idODEsEditables=new ArrayList<String>();
 		
@@ -8290,21 +8292,28 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				idODEsEditables.add(odesPublicados[i].getIdODE());
 		}
 		
-		//Obtengo los ODEs en los que el usuario ha contribuido
-		String[] idODEsContribuidos = this.getSrvIndexadorService().obtenerOdesConUsuarioEnContribucion(emailUsuario);
-				
+		//Obtengo los ODEs en los que el usuario ha contribuido como publicador o como autor
+		String[] idODEsContribuidos = this.getSrvIndexadorService().obtenerOdesConUsuarioEnContribucion(idUsuario);
+		
 		for(int i=0; i<idODEsContribuidos.length; i++) {
 			
-			//Obtenemos la ultima transicion; solo nos interesan aquellos ODE publicados
-			Transicion t = handleObtenerUltimaTransicion(idODEsContribuidos[i]);
+			//Obtenemos todas las transiciones
+			TransicionVO[] t = handleObtenHistorialPorIdODE(idODEsContribuidos[i]);
 			EstadoVO e = handleObtenEstadoPorIdODE(idODEsContribuidos[i],"");
 			
+			//Solo nos interesan los publicados que hayan sido alguna vez publicados por web semantica
 			if (e!=null && e.getClave().equals(PUBLICADO)) {
-				//Ahora revisamos si fue publicado por web semantica
-				if(t!=null && t.getComentarios()!=null)
-				if(t.getComentarios().startsWith(MARCA_ODE_PUBLICADO_POR_WEB_SEMANTICA))
-						idODEsEditables.add(idODEsContribuidos[i]);
+				//Ahora revisamos si alguna vez fue publicado por web semantica
+				for(int j=0; j<t.length; j++) {
+					if(t[j]!=null && t[j].getComentarios()!=null) {
+						if(t[j].getComentarios().startsWith(MARCA_ODE_PUBLICADO_POR_WEB_SEMANTICA)) {
+							idODEsEditables.add(idODEsContribuidos[i]);
+							break;
+						}
+					}
+				}
 			}
+			
 		}					
 		return (String[])idODEsEditables.toArray(new String[0]);	
 

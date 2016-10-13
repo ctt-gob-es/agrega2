@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federaci�n de repositorios de objetos digitales educativos formada por todas las Comunidades Aut�nomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * SrvEntregarService.java
  *
@@ -27,6 +22,11 @@ public interface SrvEntregarService extends java.rmi.Remote {
      * (manifest.getIdentifier()) y el prefijo EMP
      */
     public java.lang.String cargarObjManifest(java.lang.String usuario, javax.activation.DataHandler fichManifest) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.entregar.negocio.servicios.PaquetePifDriVO devolverPaquetePIFOImagen(java.lang.String identificador, boolean devolverImagen) throws java.rmi.RemoteException;
 
     /**
      * Metodo eliminarTemporales
@@ -77,12 +77,28 @@ public interface SrvEntregarService extends java.rmi.Remote {
     public es.pode.entregar.negocio.servicios.PaquetePifVO generarPaquetePIFTipoPIF(es.pode.entregar.negocio.servicios.TipoPifVO tipoPifVO) throws java.rmi.RemoteException;
 
     /**
+     * Este método se usa para saber si un servicio está levantado
+     * o
+     *                 no.
+     */
+    public java.lang.String generarPDF(java.lang.String idOde) throws java.rmi.RemoteException;
+
+    /**
      * Metodo localizacionPaquetePIF
      *                 Obtiene la localización física de un ODE en un objeto
      * del tipo
      *                 LocalizadorAdlVO.
      */
     public es.pode.entregar.negocio.servicios.LocalizadorAdlVO localizacionPaquetePIF(java.lang.String identificador) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo que copia el manifest de un ODE en
+     *                 $UPLOADS/export/$IDODE/XML y devuelve la ruta relativa
+     * del dicho
+     *                 manifest. Este metodo sirve para poder descargarse
+     * el manifest.
+     */
+    public java.lang.String obtenerManifest(java.lang.String idOde) throws java.rmi.RemoteException;
 
     /**
      * metodo obtenerOrganizaciones
@@ -106,6 +122,13 @@ public interface SrvEntregarService extends java.rmi.Remote {
     public es.pode.entregar.negocio.servicios.ManifestVO obtenerOrganizaciones(es.pode.entregar.negocio.servicios.ArgObtOrganizacionesVO argObtenerOrganizaciones) throws java.rmi.RemoteException;
 
     /**
+     * Este metodo copia el recurso unico de un ODE y lo pone en una
+     * ruta accesible para que sea descargable. El ODE debe tener un
+     *                 solo recurso. Se devuelve la ruta donde esta el recurso
+     */
+    public java.lang.String obtenerRecursoUnicoDelODE(java.lang.String idOde) throws java.rmi.RemoteException;
+
+    /**
      * Este metodo devuelve un array de Strings con todos los tipos
      * de
      *                 formatos PIF que maneja el modulo de Entregar. Los
@@ -115,6 +138,13 @@ public interface SrvEntregarService extends java.rmi.Remote {
      *                 de conversion de formato de ODEs.
      */
     public java.lang.String[] obtenerTiposPIF() throws java.rmi.RemoteException;
+
+    /**
+     * Metodo que devuelve true si el ODE esta catalogado con nivel
+     * de
+     *                 agregacion 1 y si tiene un unico recurso de tipo imagen
+     */
+    public boolean odeConRecursoDirectamenteDescargable(java.lang.String idOde) throws java.rmi.RemoteException;
 
     /**
      * Metodo tieneSecuencia

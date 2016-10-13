@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * SrvBuscarServiceSoapBindingStub.java
  *
@@ -21,7 +16,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[17];
+        _operations = new org.apache.axis.description.OperationDesc[19];
         _initOperationDesc1();
         _initOperationDesc2();
     }
@@ -175,6 +170,46 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         _operations[11] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("obtenerFicheroExcelEstadisticas");
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        oper.setReturnClass(java.lang.String.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "obtenerFicheroExcelEstadisticasReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[12] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("obtenerFicheroExcelEstadisticasPorFechas");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaHastaTerminos"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaHastaOdes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaHastaLicencias"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaHastaCoberturaCurricular"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaHastaActividad"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaDesdeTerminos"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaDesdeOdes"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaDesdeLicencias"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaDesdeCoberturaCurricular"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "fechaDesdeActividad"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "bloqueEstadistica"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        oper.setReturnClass(java.lang.String.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "obtenerFicheroExcelEstadisticasPorFechasReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[13] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("solicitarDocsCount");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "parametros"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "ParametrosDocsCountVO30"), es.pode.buscar.negocio.buscar.servicios.ParametrosDocsCountVO30.class, false, false);
         oper.addParameter(param);
@@ -183,7 +218,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "solicitarDocsCountReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[12] = oper;
+        _operations[14] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("solicitarMetadato");
@@ -194,7 +229,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "solicitarMetadatoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[13] = oper;
+        _operations[15] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("solicitarMetadatosOaiOre");
@@ -205,7 +240,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "solicitarMetadatosOaiOreReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[14] = oper;
+        _operations[16] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("solicitarMetadatosOdes");
@@ -219,7 +254,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[15] = oper;
+        _operations[17] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("sugerirBusqueda");
@@ -232,7 +267,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[16] = oper;
+        _operations[18] = oper;
 
     }
 
@@ -992,12 +1027,80 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
 }
     }
 
-    public es.pode.buscar.negocio.buscar.servicios.ResultadosNodoCountVO solicitarDocsCount(es.pode.buscar.negocio.buscar.servicios.ParametrosDocsCountVO30 parametros) throws java.rmi.RemoteException {
+    public java.lang.String obtenerFicheroExcelEstadisticas() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[12]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("obtenerFicheroExcelEstadisticas");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "obtenerFicheroExcelEstadisticas"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.String) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public java.lang.String obtenerFicheroExcelEstadisticasPorFechas(java.lang.String fechaHastaTerminos, java.lang.String fechaHastaOdes, java.lang.String fechaHastaLicencias, java.lang.String fechaHastaCoberturaCurricular, java.lang.String fechaHastaActividad, java.lang.String fechaDesdeTerminos, java.lang.String fechaDesdeOdes, java.lang.String fechaDesdeLicencias, java.lang.String fechaDesdeCoberturaCurricular, java.lang.String fechaDesdeActividad, int bloqueEstadistica) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[13]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("obtenerFicheroExcelEstadisticasPorFechas");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.buscar.negocio.buscar.pode.es", "obtenerFicheroExcelEstadisticasPorFechas"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {fechaHastaTerminos, fechaHastaOdes, fechaHastaLicencias, fechaHastaCoberturaCurricular, fechaHastaActividad, fechaDesdeTerminos, fechaDesdeOdes, fechaDesdeLicencias, fechaDesdeCoberturaCurricular, fechaDesdeActividad, new java.lang.Integer(bloqueEstadistica)});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (java.lang.String) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (java.lang.String) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.String.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public es.pode.buscar.negocio.buscar.servicios.ResultadosNodoCountVO solicitarDocsCount(es.pode.buscar.negocio.buscar.servicios.ParametrosDocsCountVO30 parametros) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[14]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("solicitarDocsCount");
         _call.setEncodingStyle(null);
@@ -1031,7 +1134,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[13]);
+        _call.setOperation(_operations[15]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("solicitarMetadato");
         _call.setEncodingStyle(null);
@@ -1065,7 +1168,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[14]);
+        _call.setOperation(_operations[16]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("solicitarMetadatosOaiOre");
         _call.setEncodingStyle(null);
@@ -1099,7 +1202,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[15]);
+        _call.setOperation(_operations[17]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("solicitarMetadatosOdes");
         _call.setEncodingStyle(null);
@@ -1133,7 +1236,7 @@ public class SrvBuscarServiceSoapBindingStub extends org.apache.axis.client.Stub
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[16]);
+        _call.setOperation(_operations[18]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("sugerirBusqueda");
         _call.setEncodingStyle(null);

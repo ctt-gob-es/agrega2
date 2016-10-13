@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * 
  */
@@ -11,6 +6,7 @@ package es.pode.parseadorXML;
 import java.io.InputStream;
 import java.io.Writer;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
@@ -81,6 +77,28 @@ public class RestDao {
 		}
 	}
 	
+	private String getEncoding() throws ParseadorException {
+
+		String encoding="";
+		/*
+		//Tratamos de usar el encoding que se le haya indicado en el arranque de JBoss
+		try {
+    		encoding = System.getProperty("file.encoding");
+		} catch (Exception e) {
+			//Si no tratamos de usar el charset por defecto
+			try {
+				encoding = Charset.defaultCharset().toString();
+			} catch (Exception ex) {
+				encoding = getProperty("default.encoding");
+			}
+		}
+		if(encoding.contentEquals(""))
+		*/
+			encoding = getProperty("default.encoding");
+		
+		return encoding;
+	}
+	
 	/**
 	 * Genera el XML-REST de respuesta a una peticion REST. El resultado se
 	 * escribe en el stream proporcionado como parametro.
@@ -98,7 +116,7 @@ public class RestDao {
 		try {
 			Marshaller marshaller = new Marshaller(writer);
 			marshaller.setMapping(restMapping);
-			marshaller.setEncoding(getProperty("default.encoding"));
+			marshaller.setEncoding(getEncoding());
 			marshaller.marshal(response);
 			writer.flush();
 		} catch (Exception e) {

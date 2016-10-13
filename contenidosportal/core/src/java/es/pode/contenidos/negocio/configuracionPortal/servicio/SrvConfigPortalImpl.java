@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -183,7 +178,7 @@ public class SrvConfigPortalImpl
 			// guardamos la imagen
 			if(!imagen.getNombre().equalsIgnoreCase("noFile"))
 			{
-			imagen.setNombre(this.getSrvPropiedadService().get(AgregaProperties.VISTA_PREVIA_AGREGA));
+			imagen.setNombre(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 			File fImagen = new File(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PROPERTY_IMAGE_COMMON_PATH).toString()+ imagen.getNombre());
 			fImagen.createNewFile();
 			FileOutputStream fOsImagen = new FileOutputStream(fImagen);

@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -251,8 +246,7 @@ public class SrvEntregarServiceImpl extends
 
 	}
 	
-	
-	
+
 	/**
 	 * Este metodo recibe un identificador de un ODE.
 	 * Devuelve el paquete PIF con todos los elementos que contiene el ODE.
@@ -261,13 +255,13 @@ public class SrvEntregarServiceImpl extends
 	 * informacion (invocar al validador) para despues generar el paquete.
 	 * 
 	 * @param identificador Identificador del ODE del que se requiere el paquete.
+	 * @param devolverImagen Si en caso de ser un ODE con un unico recurso y que esta sea una imagen, se devolvera directamente la imagen. 
 	 * @return PaquetePifVO Fichero conteniendo el ODE en formato PIF.
 	 */
+	@Override
+	protected PaquetePifDriVO handleDevolverPaquetePIFOImagen(
+			String identificador, boolean devolverImagen) throws Exception {
 
-	protected PaquetePifDriVO handleGenerarPaquetePIF(
-			String identificador)
-	throws java.lang.Exception 
-	{
 		PaquetePifDriVO paquetePif = new PaquetePifDriVO();
 		// inicializo un DataHandler porque es la salida.
 		DataHandler dh = null;
@@ -290,14 +284,14 @@ public class SrvEntregarServiceImpl extends
 			if(logger.isDebugEnabled())logger.debug("Despues de validar = <" + valid.getEsValidoManifest()+">");
 			if (valid.getEsValidoManifest().booleanValue()) 
 			{
-				if (odeConRecursoDirectamenteDescargable(identificador))
+				if (devolverImagen && odeConRecursoDirectamenteDescargable(identificador))
 				{
 					// Si es un recurso directamente descargable no es necesario comprimir
 					logger.debug("Es un ODE con un único recurso descargable. Se descarga el fichero");
 
 					String rutaRecurso = handleObtenerRecursoUnicoDelODE(identificador);
 
-					File exportar= new File(rutaRecurso);
+					File exportar= new File("uploads"+rutaRecurso);
 					if (exportar.exists())
 					{
 						logger.debug("Se devuelve el DataHandler a ese fichero"); 
@@ -394,7 +388,11 @@ public class SrvEntregarServiceImpl extends
 	}
 	
 	
-
+	protected PaquetePifDriVO handleGenerarPaquetePIF(String identificador) throws java.lang.Exception {
+		return handleDevolverPaquetePIFOImagen(identificador, false);
+	}
+	
+	
 	/**
 	 * Este metodo se comporta como el homonimo de la clase pero permite configurar el formato 
 	 * del fichero PIF que se devuelve entre la coleccion de formatos que se soportan por la clase TiposPIF.

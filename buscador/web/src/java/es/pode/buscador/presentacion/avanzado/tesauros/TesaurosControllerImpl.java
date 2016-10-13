@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.buscador.presentacion.avanzado.tesauros;
 
@@ -102,7 +97,7 @@ public class TesaurosControllerImpl extends TesaurosController
     				
     				if (arrayNoticias!=null && arrayNoticias.length>0) {
     					
-    					int numNoticiasMostradas = Integer.parseInt(this.getSrvPropiedadService().get(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN));
+    					int numNoticiasMostradas = Integer.parseInt(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN));
     					NoticiaTraducidaVO[] array_noticias = new NoticiaTraducidaVO[numNoticiasMostradas];
     					
     					for(int h=0; h<numNoticiasMostradas && h < arrayNoticias.length; h++)
@@ -161,7 +156,7 @@ public class TesaurosControllerImpl extends TesaurosController
     				if (descargas!=null && descargas.length>0) {	
     					DescDescargaVO[] descs = getSrvDescargas().obtenerDescDescargasIdioma(descargas, idioma);
     					logger.debug("Recuperadas " + descs.length + " descripciones de descargas");
-    					int numDescargasMostradas = Integer.parseInt(this.getSrvPropiedadService().get(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN));
+    					int numDescargasMostradas = Integer.parseInt(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN));
     					
     					for (int i = 0; i<numDescargasMostradas && i<descargas.length && i<descs.length; i++) {    					
     						DescargaInfo info = new DescargaInfo();

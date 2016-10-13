@@ -1,13 +1,9 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.publicacion.negocio.soporte;
 
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.rmi.RemoteException;
 
 import org.apache.log4j.Logger;
 
@@ -17,6 +13,7 @@ import es.pode.parseadorXML.scorm2004.agrega.ManifestAgrega;
 import es.pode.publicacion.negocio.servicios.OdeVO;
 import es.pode.soporte.seguridad.encriptacion.EncriptacionUtiles;
 import es.pode.soporte.utiles.imagenes.UtilesImagenes;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 
 public class TratamientoImagenes {
 
@@ -43,7 +40,7 @@ public class TratamientoImagenes {
      */
 	//TODO ESte método pasará a ser muy simple, dará la imagen incluida o nada
 	public static String localPathGenerate(ManifestAgrega manifestAgrega, String sMec, String sLocalizador,
-			AgregaPropertiesImpl properties) throws Exception {
+			AgregaPropertiesImpl properties, SrvPropiedadService servicioPropiedades) throws Exception {
 
 		StringBuffer sbLocalPath = new StringBuffer();
 		try {
@@ -91,7 +88,7 @@ public class TratamientoImagenes {
 //			}
 			
 			//Mirar si existe vistaPreviaAgrega.png en raíz de Ode
-			File vistaPrevia = new File(sLocalizador+"/"+properties.getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+			File vistaPrevia = new File(sLocalizador+"/"+servicioPropiedades.getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 			logger.debug("Vamos a ver si existe "+vistaPrevia.getAbsolutePath());
 			if(vistaPrevia.exists()) {
 				logger.debug("Existe imagen de vista previa en ODE");
@@ -99,7 +96,7 @@ public class TratamientoImagenes {
 				sbLocalPath.append(FILE_SEPARATOR);
 				sbLocalPath.append(sLocalizador);
 				sbLocalPath.append(FILE_SEPARATOR);
-				sbLocalPath.append(properties.getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+				sbLocalPath.append(servicioPropiedades.getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 				logger.debug("El local path que va a devolver el método localPathGenerate es [ "+sbLocalPath.toString());
 				return sbLocalPath.toString();
 			}
@@ -206,7 +203,7 @@ public class TratamientoImagenes {
 	
 	
 	//TODO Método donde se escala imágen dada o la por defecto
-	public static void createImage4Odes(OdeVO[] odeArray) throws Exception {
+	public static void createImage4Odes(OdeVO[] odeArray, SrvPropiedadService servicioPropiedades) throws Exception {
 		try {
 			if(logger.isDebugEnabled())
 			logger.debug("Begin:createImage4Odes, el array de odes que nos llega es de longitud "+ odeArray.length);
@@ -220,20 +217,20 @@ public class TratamientoImagenes {
 //					if (logger.isDebugEnabled())logger.debug("Antes de enviar el mensaje id[" + ode.getIdentificadorMEC() + "] MainFile ["+ ode.getMainFile() + "] serverOn [" + ode.getServerOn() + "]");
 //					publicacion.sendMessage(ode);
 					logger.debug("Origen es "+ode.getMainFile());
-					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), LITTLE_WIDTH, LITTLE_HEIGHT, "", false).toString());
-					File destino =new File(pathImagen(ode.getIdentificadorMEC(), LITTLE_WIDTH, LITTLE_HEIGHT, "", false).toString());
+					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), LITTLE_WIDTH, LITTLE_HEIGHT, "", false, servicioPropiedades).toString());
+					File destino =new File(pathImagen(ode.getIdentificadorMEC(), LITTLE_WIDTH, LITTLE_HEIGHT, "", false, servicioPropiedades).toString());
 					//hay que crear la carpeta...
 					logger.debug("Creamos carpeta padre "+destino.getParentFile().getPath());
 					destino.getParentFile().mkdirs();
 					
 //					destino.createNewFile();
 					UtilesImagenes.escala(new File(ode.getMainFile()), destino, LITTLE_WIDTH, LITTLE_HEIGHT, "png");
-					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), MEDIUM_WIDTH, MEDIUM_HEIGHT, "", false).toString());
-					destino=new File(pathImagen(ode.getIdentificadorMEC(), MEDIUM_WIDTH, MEDIUM_HEIGHT, "", false).toString());
+					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), MEDIUM_WIDTH, MEDIUM_HEIGHT, "", false, servicioPropiedades).toString());
+					destino=new File(pathImagen(ode.getIdentificadorMEC(), MEDIUM_WIDTH, MEDIUM_HEIGHT, "", false, servicioPropiedades).toString());
 //					destino.createNewFile();
 					UtilesImagenes.escala(new File(ode.getMainFile()), destino, MEDIUM_WIDTH, MEDIUM_HEIGHT, "jpg");
-					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), BIG_WIDTH, BIG_HEIGHT, "", false).toString());
-					destino=new File(pathImagen(ode.getIdentificadorMEC(), BIG_WIDTH, BIG_HEIGHT, "", false).toString());
+					logger.debug("Destino es "+pathImagen(ode.getIdentificadorMEC(), BIG_WIDTH, BIG_HEIGHT, "", false, servicioPropiedades).toString());
+					destino=new File(pathImagen(ode.getIdentificadorMEC(), BIG_WIDTH, BIG_HEIGHT, "", false, servicioPropiedades).toString());
 //					destino.createNewFile();
 					UtilesImagenes.escala(new File(ode.getMainFile()), destino, BIG_WIDTH, BIG_HEIGHT, "jpg");
 //					if(logger.isDebugEnabled())logger.debug("El mensaje se ha enviado correctamente para el ode "+ode.getIdentificadorMEC());
@@ -271,12 +268,12 @@ public class TratamientoImagenes {
 	/*
 	 * Este método, incluido anteriormente en el imagePathGenerate, contiene la parte de construcción del path, y la separa de la parte 
 	 * de generación de la imagen, ya que la parte de reindexacion no debe regenerar las imagenes.*/
-	public static OdeVO pathGenerate (ManifestAgrega manifestAgrega, String sMec, String sLocalizador) {
+	public static OdeVO pathGenerate (ManifestAgrega manifestAgrega, String sMec, String sLocalizador, SrvPropiedadService servicioPropiedades) {
 		AgregaPropertiesImpl properties = (AgregaPropertiesImpl) AgregaPropertiesImpl.getInstance();
 		String serverId = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID);
 		String sLocalPath = "";
 		try {
-			sLocalPath = localPathGenerate(manifestAgrega, sMec, sLocalizador, properties);
+			sLocalPath = localPathGenerate(manifestAgrega, sMec, sLocalizador, properties, servicioPropiedades);
 			logger.info("Vamos a generar el path para el objeto cuya ruta en el servidor es [" + sLocalPath + "]");
 		} catch (Exception ex) {
 			logger.error("Se ha producido un error en la llamada a localPathGenerate", ex);
@@ -296,14 +293,14 @@ public class TratamientoImagenes {
 	
 	
 	//TODO DANIEL: Este es el que da la ruta de imagen de ODE que acaba en BBDD
-	public static StringBuffer pathImagen(String sMec, int ancho, int alto, String localizador, boolean isUrl){
+	public static StringBuffer pathImagen(String sMec, int ancho, int alto, String localizador, boolean isUrl, SrvPropiedadService servicioPropiedades) throws RemoteException{
 		StringBuffer imagePathReturn = new StringBuffer();
 
 		AgregaProperties agregaProperties = AgregaPropertiesImpl.getInstance();
 		//Mirar si existe vistaPreviaAgrega.png en raíz de Ode
 		File vistaPrevia=null;
 		if(!localizador.equals("")) {
-			vistaPrevia = new File(localizador+"/"+agregaProperties.getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+			vistaPrevia = new File(localizador+"/"+servicioPropiedades.getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 		}
 		if(localizador.equals("")||vistaPrevia.exists()) {
 			if(!isUrl) {
@@ -315,8 +312,7 @@ public class TratamientoImagenes {
 			}
 			if (!isUrl) {
 				// propiedad server Id
-				imagePathReturn.append(agregaProperties
-						.getProperty(AgregaProperties.SERVER_ID));
+				imagePathReturn.append(agregaProperties.getProperty(AgregaProperties.SERVER_ID));
 				imagePathReturn.append(FILE_SEPARATOR);
 			}
 			//		Tenemos que añadir un codigo MD5 para impedir que en un mismo directorio haya mas de 32000 subdirectorios. El sistema de ficheros no lo 

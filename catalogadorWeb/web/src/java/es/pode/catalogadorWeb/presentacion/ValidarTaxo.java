@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.catalogadorWeb.presentacion;
 
 import java.io.IOException;
@@ -189,10 +184,19 @@ public class ValidarTaxo {
 					//comprobamos que la fuente está registrada en el properties
 					String fuegui = fue.replace(" ", "_");
 					String propn = prop.getProperty(fuegui);
-						
+					
+					
 					if (propn!=null){//si no es cierto, la fuente no estaría en el properties y la dejamos pasar
-														
-						if (propn.equals(propostra)){
+
+						//20141015 Se modifica para permitir múltiples propósitos para una fuente
+						String[] listaPropFuente = propn.split(",");				
+
+						boolean bPropCorrecto=false;
+						for (int k = 0; k < listaPropFuente.length; k++) {
+							if (listaPropFuente[k].equals(propostra))
+								bPropCorrecto = true;
+						}
+						if (bPropCorrecto){
 							
 							//el propósito y la fuente coinciden
 							//buscamos si la fuente es una taxonomía o un tesauro

@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * SrvBuscarService.java
  *
@@ -85,6 +80,16 @@ public interface SrvBuscarService extends java.rmi.Remote {
 
      */
     public es.pode.buscar.negocio.buscar.servicios.ResultadosEstadisticasTerminosVO obtenerEstadisticasTerminosPorFechas(java.util.Calendar fechaDesde, java.util.Calendar fechaHasta) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.String obtenerFicheroExcelEstadisticas() throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.String obtenerFicheroExcelEstadisticasPorFechas(java.lang.String fechaHastaTerminos, java.lang.String fechaHastaOdes, java.lang.String fechaHastaLicencias, java.lang.String fechaHastaCoberturaCurricular, java.lang.String fechaHastaActividad, java.lang.String fechaDesdeTerminos, java.lang.String fechaDesdeOdes, java.lang.String fechaDesdeLicencias, java.lang.String fechaDesdeCoberturaCurricular, java.lang.String fechaDesdeActividad, int bloqueEstadistica) throws java.rmi.RemoteException;
 
     /**
      * Solicita el nÃºmero de documentos existentes en el Ã­ndice para

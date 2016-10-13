@@ -85,7 +85,7 @@
         <property name="target">
             <bean class="es.pode.sitemap.negocio.servicios.SrvSitemapServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
-		            </bean>
+	            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.sitemap.negocio.servicios.SrvSitemapService</value>

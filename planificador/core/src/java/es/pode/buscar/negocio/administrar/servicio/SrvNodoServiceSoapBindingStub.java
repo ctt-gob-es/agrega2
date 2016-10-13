@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 /**
  * SrvNodoServiceSoapBindingStub.java
  *
@@ -31,8 +26,8 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("actualizarIndices");
-        oper.setReturnType(new javax.xml.namespace.QName("http://schemas.xmlsoap.org/soap/encoding/", "boolean"));
-        oper.setReturnClass(java.lang.Boolean.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoTareaVO"));
+        oper.setReturnClass(es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "actualizarIndicesReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -40,8 +35,8 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("crearEstadisticasLocales");
-        oper.setReturnType(new javax.xml.namespace.QName("http://schemas.xmlsoap.org/soap/encoding/", "boolean"));
-        oper.setReturnClass(java.lang.Boolean.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoTareaVO"));
+        oper.setReturnClass(es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "crearEstadisticasLocalesReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -49,8 +44,8 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("crearEstadisticasTotales");
-        oper.setReturnType(new javax.xml.namespace.QName("http://schemas.xmlsoap.org/soap/encoding/", "boolean"));
-        oper.setReturnClass(java.lang.Boolean.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoTareaVO"));
+        oper.setReturnClass(es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "crearEstadisticasTotalesReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -207,8 +202,8 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("subirIndices");
-        oper.setReturnType(new javax.xml.namespace.QName("http://schemas.xmlsoap.org/soap/encoding/", "boolean"));
-        oper.setReturnClass(java.lang.Boolean.class);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoTareaVO"));
+        oper.setReturnClass(es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "subirIndicesReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
@@ -263,6 +258,15 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
             cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
             cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
 
+            qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ArrayOfResultadoSubtareaVO");
+            cachedSerQNames.add(qName);
+            cls = es.pode.buscar.negocio.administrar.servicio.ResultadoSubtareaVO[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoSubtareaVO");
+            qName2 = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "item");
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
             qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ArrayOfServicioVO");
             cachedSerQNames.add(qName);
             cls = es.pode.buscar.negocio.administrar.servicio.ServicioVO[].class;
@@ -291,6 +295,20 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
             qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "NodoVO");
             cachedSerQNames.add(qName);
             cls = es.pode.buscar.negocio.administrar.servicio.NodoVO.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoSubtareaVO");
+            cachedSerQNames.add(qName);
+            cls = es.pode.buscar.negocio.administrar.servicio.ResultadoSubtareaVO.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://servicio.administrar.negocio.buscar.pode.es", "ResultadoTareaVO");
+            cachedSerQNames.add(qName);
+            cls = es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -375,7 +393,7 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         }
     }
 
-    public java.lang.Boolean actualizarIndices() throws java.rmi.RemoteException {
+    public es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO actualizarIndices() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -399,9 +417,9 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         else {
             extractAttachments(_call);
             try {
-                return (java.lang.Boolean) _resp;
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) _resp;
             } catch (java.lang.Exception _exception) {
-                return (java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.Boolean.class);
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -409,7 +427,7 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 }
     }
 
-    public java.lang.Boolean crearEstadisticasLocales() throws java.rmi.RemoteException {
+    public es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO crearEstadisticasLocales() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -433,9 +451,9 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         else {
             extractAttachments(_call);
             try {
-                return (java.lang.Boolean) _resp;
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) _resp;
             } catch (java.lang.Exception _exception) {
-                return (java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.Boolean.class);
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -443,7 +461,7 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 }
     }
 
-    public java.lang.Boolean crearEstadisticasTotales() throws java.rmi.RemoteException {
+    public es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO crearEstadisticasTotales() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -467,9 +485,9 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         else {
             extractAttachments(_call);
             try {
-                return (java.lang.Boolean) _resp;
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) _resp;
             } catch (java.lang.Exception _exception) {
-                return (java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.Boolean.class);
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {
@@ -919,7 +937,7 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
 }
     }
 
-    public java.lang.Boolean subirIndices() throws java.rmi.RemoteException {
+    public es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO subirIndices() throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
@@ -943,9 +961,9 @@ public class SrvNodoServiceSoapBindingStub extends org.apache.axis.client.Stub i
         else {
             extractAttachments(_call);
             try {
-                return (java.lang.Boolean) _resp;
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) _resp;
             } catch (java.lang.Exception _exception) {
-                return (java.lang.Boolean) org.apache.axis.utils.JavaUtils.convert(_resp, java.lang.Boolean.class);
+                return (es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO.class);
             }
         }
   } catch (org.apache.axis.AxisFault axisFaultException) {

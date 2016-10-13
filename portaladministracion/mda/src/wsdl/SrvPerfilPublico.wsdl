@@ -388,6 +388,39 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="desasociarGrupoDeUsuario">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        Método para que un usuario pueda desasociarse de un grupo en el
+                        que es socio
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="id" type="soapenc:long" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="usuario" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="desasociarGrupoDeUsuarioResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="desasociarGrupoDeUsuarioReturn" type="impl:ResultadoOperacionVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="desasociarOdeDeGrupo">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -1532,6 +1565,13 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="id" nillable="true" type="soapenc:long">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfContactoAsociadoVO">
@@ -1666,11 +1706,6 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                </xsd:sequence>
-            </xsd:complexType>
-            <xsd:complexType name="ArrayOfFavoritoVO">
-                <xsd:sequence>
-                    <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="impl:FavoritoVO" /> 
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="GrupoPublicoAdminVO">
@@ -2125,7 +2160,7 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
-                    <xsd:element name="centroEducativo" nillable="false" type="xsd:string">
+                    <xsd:element name="centroEducativo" nillable="true" type="xsd:string">
                         <xsd:annotation>     
                             <xsd:documentation> 
                                 Nombre del centro educativo del usuario
@@ -2300,238 +2335,244 @@
     <wsdl:message name="crearUsuarioPublico12Response">
         <wsdl:part element="impl:crearUsuarioPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="desasociarOdeDeGrupo13Request">
+    <wsdl:message name="desasociarGrupoDeUsuario13Request">
+        <wsdl:part element="impl:desasociarGrupoDeUsuario" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="desasociarGrupoDeUsuario13Response">
+        <wsdl:part element="impl:desasociarGrupoDeUsuarioResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="desasociarOdeDeGrupo14Request">
         <wsdl:part element="impl:desasociarOdeDeGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="desasociarOdeDeGrupo13Response">
+    <wsdl:message name="desasociarOdeDeGrupo14Response">
         <wsdl:part element="impl:desasociarOdeDeGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarContactoDeAgenda14Request">
+    <wsdl:message name="eliminarContactoDeAgenda15Request">
         <wsdl:part element="impl:eliminarContactoDeAgenda" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarContactoDeAgenda14Response">
+    <wsdl:message name="eliminarContactoDeAgenda15Response">
         <wsdl:part element="impl:eliminarContactoDeAgendaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarFavoritoDeUsuario15Request">
+    <wsdl:message name="eliminarFavoritoDeUsuario16Request">
         <wsdl:part element="impl:eliminarFavoritoDeUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarFavoritoDeUsuario15Response">
+    <wsdl:message name="eliminarFavoritoDeUsuario16Response">
         <wsdl:part element="impl:eliminarFavoritoDeUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarGrupoPublicoPorAdministrador16Request">
+    <wsdl:message name="eliminarGrupoPublicoPorAdministrador17Request">
         <wsdl:part element="impl:eliminarGrupoPublicoPorAdministrador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarGrupoPublicoPorAdministrador16Response">
+    <wsdl:message name="eliminarGrupoPublicoPorAdministrador17Response">
         <wsdl:part element="impl:eliminarGrupoPublicoPorAdministradorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarGrupoPublicoPorUsuario17Request">
+    <wsdl:message name="eliminarGrupoPublicoPorUsuario18Request">
         <wsdl:part element="impl:eliminarGrupoPublicoPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarGrupoPublicoPorUsuario17Response">
+    <wsdl:message name="eliminarGrupoPublicoPorUsuario18Response">
         <wsdl:part element="impl:eliminarGrupoPublicoPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarODEPerfilPublico18Request">
+    <wsdl:message name="eliminarODEPerfilPublico19Request">
         <wsdl:part element="impl:eliminarODEPerfilPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarODEPerfilPublico18Response">
+    <wsdl:message name="eliminarODEPerfilPublico19Response">
         <wsdl:part element="impl:eliminarODEPerfilPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarSolicitud19Request">
+    <wsdl:message name="eliminarSolicitud20Request">
         <wsdl:part element="impl:eliminarSolicitud" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarSolicitud19Response">
+    <wsdl:message name="eliminarSolicitud20Response">
         <wsdl:part element="impl:eliminarSolicitudResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarUsuarioDeGrupo20Request">
+    <wsdl:message name="eliminarUsuarioDeGrupo21Request">
         <wsdl:part element="impl:eliminarUsuarioDeGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarUsuarioDeGrupo20Response">
+    <wsdl:message name="eliminarUsuarioDeGrupo21Response">
         <wsdl:part element="impl:eliminarUsuarioDeGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarUsuarioPublico21Request">
+    <wsdl:message name="eliminarUsuarioPublico22Request">
         <wsdl:part element="impl:eliminarUsuarioPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="eliminarUsuarioPublico21Response">
+    <wsdl:message name="eliminarUsuarioPublico22Response">
         <wsdl:part element="impl:eliminarUsuarioPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeContactoEnAgendaDeUsuario22Request">
+    <wsdl:message name="existeContactoEnAgendaDeUsuario23Request">
         <wsdl:part element="impl:existeContactoEnAgendaDeUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeContactoEnAgendaDeUsuario22Response">
+    <wsdl:message name="existeContactoEnAgendaDeUsuario23Response">
         <wsdl:part element="impl:existeContactoEnAgendaDeUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeFavoritoEnUsuario23Request">
+    <wsdl:message name="existeFavoritoEnUsuario24Request">
         <wsdl:part element="impl:existeFavoritoEnUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeFavoritoEnUsuario23Response">
+    <wsdl:message name="existeFavoritoEnUsuario24Response">
         <wsdl:part element="impl:existeFavoritoEnUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeGrupoEnUsuario24Request">
+    <wsdl:message name="existeGrupoEnUsuario25Request">
         <wsdl:part element="impl:existeGrupoEnUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeGrupoEnUsuario24Response">
+    <wsdl:message name="existeGrupoEnUsuario25Response">
         <wsdl:part element="impl:existeGrupoEnUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeNombreGrupo25Request">
+    <wsdl:message name="existeNombreGrupo26Request">
         <wsdl:part element="impl:existeNombreGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeNombreGrupo25Response">
+    <wsdl:message name="existeNombreGrupo26Response">
         <wsdl:part element="impl:existeNombreGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeOdeEnGrupo26Request">
+    <wsdl:message name="existeOdeEnGrupo27Request">
         <wsdl:part element="impl:existeOdeEnGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeOdeEnGrupo26Response">
+    <wsdl:message name="existeOdeEnGrupo27Response">
         <wsdl:part element="impl:existeOdeEnGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeSolicitudGrupoIdentico27Request">
+    <wsdl:message name="existeSolicitudGrupoIdentico28Request">
         <wsdl:part element="impl:existeSolicitudGrupoIdentico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeSolicitudGrupoIdentico27Response">
+    <wsdl:message name="existeSolicitudGrupoIdentico28Response">
         <wsdl:part element="impl:existeSolicitudGrupoIdenticoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="hacerSolicitudParaGrupo28Request">
+    <wsdl:message name="hacerSolicitudParaGrupo29Request">
         <wsdl:part element="impl:hacerSolicitudParaGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="hacerSolicitudParaGrupo28Response">
+    <wsdl:message name="hacerSolicitudParaGrupo29Response">
         <wsdl:part element="impl:hacerSolicitudParaGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde29Request">
+    <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde30Request">
         <wsdl:part element="impl:listadoGruposConAsociacionPorUsuarioYOde" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde29Response">
+    <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde30Response">
         <wsdl:part element="impl:listadoGruposConAsociacionPorUsuarioYOdeResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarContactosDeAgenda30Request">
+    <wsdl:message name="listarContactosDeAgenda31Request">
         <wsdl:part element="impl:listarContactosDeAgenda" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarContactosDeAgenda30Response">
+    <wsdl:message name="listarContactosDeAgenda31Response">
         <wsdl:part element="impl:listarContactosDeAgendaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarFavoritosUsuario31Request">
+    <wsdl:message name="listarFavoritosUsuario32Request">
         <wsdl:part element="impl:listarFavoritosUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarFavoritosUsuario31Response">
+    <wsdl:message name="listarFavoritosUsuario32Response">
         <wsdl:part element="impl:listarFavoritosUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupoPublicos32Request">
+    <wsdl:message name="listarGrupoPublicos33Request">
         <wsdl:part element="impl:listarGrupoPublicos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupoPublicos32Response">
+    <wsdl:message name="listarGrupoPublicos33Response">
         <wsdl:part element="impl:listarGrupoPublicosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupoPublicosDeAdministrador33Request">
+    <wsdl:message name="listarGrupoPublicosDeAdministrador34Request">
         <wsdl:part element="impl:listarGrupoPublicosDeAdministrador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupoPublicosDeAdministrador33Response">
+    <wsdl:message name="listarGrupoPublicosDeAdministrador34Response">
         <wsdl:part element="impl:listarGrupoPublicosDeAdministradorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposCreadosUltimos34Request">
+    <wsdl:message name="listarGruposCreadosUltimos35Request">
         <wsdl:part element="impl:listarGruposCreadosUltimos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposCreadosUltimos34Response">
+    <wsdl:message name="listarGruposCreadosUltimos35Response">
         <wsdl:part element="impl:listarGruposCreadosUltimosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposModificadosUltimos35Request">
+    <wsdl:message name="listarGruposModificadosUltimos36Request">
         <wsdl:part element="impl:listarGruposModificadosUltimos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposModificadosUltimos35Response">
+    <wsdl:message name="listarGruposModificadosUltimos36Response">
         <wsdl:part element="impl:listarGruposModificadosUltimosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposPublicosConAsociacion36Request">
+    <wsdl:message name="listarGruposPublicosConAsociacion37Request">
         <wsdl:part element="impl:listarGruposPublicosConAsociacion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposPublicosConAsociacion36Response">
+    <wsdl:message name="listarGruposPublicosConAsociacion37Response">
         <wsdl:part element="impl:listarGruposPublicosConAsociacionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposSolicitadosPorUsuario37Request">
+    <wsdl:message name="listarGruposSolicitadosPorUsuario38Request">
         <wsdl:part element="impl:listarGruposSolicitadosPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposSolicitadosPorUsuario37Response">
+    <wsdl:message name="listarGruposSolicitadosPorUsuario38Response">
         <wsdl:part element="impl:listarGruposSolicitadosPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarOdesDeGrupo38Request">
+    <wsdl:message name="listarOdesDeGrupo39Request">
         <wsdl:part element="impl:listarOdesDeGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarOdesDeGrupo38Response">
+    <wsdl:message name="listarOdesDeGrupo39Response">
         <wsdl:part element="impl:listarOdesDeGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarSolicitudesAdministrador39Request">
+    <wsdl:message name="listarSolicitudesAdministrador40Request">
         <wsdl:part element="impl:listarSolicitudesAdministrador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarSolicitudesAdministrador39Response">
+    <wsdl:message name="listarSolicitudesAdministrador40Response">
         <wsdl:part element="impl:listarSolicitudesAdministradorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarSolicitudesRealizadasPorUsuario40Request">
+    <wsdl:message name="listarSolicitudesRealizadasPorUsuario41Request">
         <wsdl:part element="impl:listarSolicitudesRealizadasPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarSolicitudesRealizadasPorUsuario40Response">
+    <wsdl:message name="listarSolicitudesRealizadasPorUsuario41Response">
         <wsdl:part element="impl:listarSolicitudesRealizadasPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarTodosGrupoDeUsuario41Request">
+    <wsdl:message name="listarTodosGrupoDeUsuario42Request">
         <wsdl:part element="impl:listarTodosGrupoDeUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarTodosGrupoDeUsuario41Response">
+    <wsdl:message name="listarTodosGrupoDeUsuario42Response">
         <wsdl:part element="impl:listarTodosGrupoDeUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosConContacto42Request">
+    <wsdl:message name="listarUsuariosConContacto43Request">
         <wsdl:part element="impl:listarUsuariosConContacto" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosConContacto42Response">
+    <wsdl:message name="listarUsuariosConContacto43Response">
         <wsdl:part element="impl:listarUsuariosConContactoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosDeGrupo43Request">
+    <wsdl:message name="listarUsuariosDeGrupo44Request">
         <wsdl:part element="impl:listarUsuariosDeGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosDeGrupo43Response">
+    <wsdl:message name="listarUsuariosDeGrupo44Response">
         <wsdl:part element="impl:listarUsuariosDeGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosDeGrupoCorreo44Request">
+    <wsdl:message name="listarUsuariosDeGrupoCorreo45Request">
         <wsdl:part element="impl:listarUsuariosDeGrupoCorreo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosDeGrupoCorreo44Response">
+    <wsdl:message name="listarUsuariosDeGrupoCorreo45Response">
         <wsdl:part element="impl:listarUsuariosDeGrupoCorreoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupoPublico45Request">
+    <wsdl:message name="modificarGrupoPublico46Request">
         <wsdl:part element="impl:modificarGrupoPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupoPublico45Response">
+    <wsdl:message name="modificarGrupoPublico46Response">
         <wsdl:part element="impl:modificarGrupoPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuarioPublico46Request">
+    <wsdl:message name="modificarUsuarioPublico47Request">
         <wsdl:part element="impl:modificarUsuarioPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuarioPublico46Response">
+    <wsdl:message name="modificarUsuarioPublico47Response">
         <wsdl:part element="impl:modificarUsuarioPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoPublico47Request">
+    <wsdl:message name="obtenerGrupoPublico48Request">
         <wsdl:part element="impl:obtenerGrupoPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoPublico47Response">
+    <wsdl:message name="obtenerGrupoPublico48Response">
         <wsdl:part element="impl:obtenerGrupoPublicoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGruposPublicosPorIdentificador48Request">
+    <wsdl:message name="obtenerGruposPublicosPorIdentificador49Request">
         <wsdl:part element="impl:obtenerGruposPublicosPorIdentificador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGruposPublicosPorIdentificador48Response">
+    <wsdl:message name="obtenerGruposPublicosPorIdentificador49Response">
         <wsdl:part element="impl:obtenerGruposPublicosPorIdentificadorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoUsuario49Request">
+    <wsdl:message name="obtenerGrupoUsuario50Request">
         <wsdl:part element="impl:obtenerGrupoUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoUsuario49Response">
+    <wsdl:message name="obtenerGrupoUsuario50Response">
         <wsdl:part element="impl:obtenerGrupoUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerNumeroFavoritosUsuario50Request">
+    <wsdl:message name="obtenerNumeroFavoritosUsuario51Request">
         <wsdl:part element="impl:obtenerNumeroFavoritosUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerNumeroFavoritosUsuario50Response">
+    <wsdl:message name="obtenerNumeroFavoritosUsuario51Response">
         <wsdl:part element="impl:obtenerNumeroFavoritosUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuarioPublico51Request">
+    <wsdl:message name="obtenerUsuarioPublico52Request">
         <wsdl:part element="impl:obtenerUsuarioPublico" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuarioPublico51Response">
+    <wsdl:message name="obtenerUsuarioPublico52Response">
         <wsdl:part element="impl:obtenerUsuarioPublicoResponse" name="parameters"/>
     </wsdl:message>
 
@@ -2662,15 +2703,26 @@
             <wsdl:output message="impl:crearUsuarioPublico12Response" 
                          name="crearUsuarioPublico12Response"/>
         </wsdl:operation>
+        <wsdl:operation name="desasociarGrupoDeUsuario">
+                
+            <wsdl:documentation> 
+                Método para que un usuario pueda desasociarse de un grupo en el
+                que es socio
+            </wsdl:documentation>
+            <wsdl:input message="impl:desasociarGrupoDeUsuario13Request" 
+                        name="desasociarGrupoDeUsuario13Request"/>
+            <wsdl:output message="impl:desasociarGrupoDeUsuario13Response" 
+                         name="desasociarGrupoDeUsuario13Response"/>
+        </wsdl:operation>
         <wsdl:operation name="desasociarOdeDeGrupo">
                 
             <wsdl:documentation> 
                 Sólo lo podrá hacer el administrador del grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:desasociarOdeDeGrupo13Request" 
-                        name="desasociarOdeDeGrupo13Request"/>
-            <wsdl:output message="impl:desasociarOdeDeGrupo13Response" 
-                         name="desasociarOdeDeGrupo13Response"/>
+            <wsdl:input message="impl:desasociarOdeDeGrupo14Request" 
+                        name="desasociarOdeDeGrupo14Request"/>
+            <wsdl:output message="impl:desasociarOdeDeGrupo14Response" 
+                         name="desasociarOdeDeGrupo14Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarContactoDeAgenda">
                 
@@ -2678,20 +2730,20 @@
                 Si somos administradores del grupo podemos eliminar un contacto
                 de nuestra lista de contactos
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarContactoDeAgenda14Request" 
-                        name="eliminarContactoDeAgenda14Request"/>
-            <wsdl:output message="impl:eliminarContactoDeAgenda14Response" 
-                         name="eliminarContactoDeAgenda14Response"/>
+            <wsdl:input message="impl:eliminarContactoDeAgenda15Request" 
+                        name="eliminarContactoDeAgenda15Request"/>
+            <wsdl:output message="impl:eliminarContactoDeAgenda15Response" 
+                         name="eliminarContactoDeAgenda15Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarFavoritoDeUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarFavoritoDeUsuario15Request" 
-                        name="eliminarFavoritoDeUsuario15Request"/>
-            <wsdl:output message="impl:eliminarFavoritoDeUsuario15Response" 
-                         name="eliminarFavoritoDeUsuario15Response"/>
+            <wsdl:input message="impl:eliminarFavoritoDeUsuario16Request" 
+                        name="eliminarFavoritoDeUsuario16Request"/>
+            <wsdl:output message="impl:eliminarFavoritoDeUsuario16Response" 
+                         name="eliminarFavoritoDeUsuario16Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarGrupoPublicoPorAdministrador">
                 
@@ -2699,10 +2751,10 @@
                 El usuario que tenga ROL ADMINISTRADOR pude borrar cualquier
                 grupo publico
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarGrupoPublicoPorAdministrador16Request" 
-                        name="eliminarGrupoPublicoPorAdministrador16Request"/>
-            <wsdl:output message="impl:eliminarGrupoPublicoPorAdministrador16Response" 
-                         name="eliminarGrupoPublicoPorAdministrador16Response"/>
+            <wsdl:input message="impl:eliminarGrupoPublicoPorAdministrador17Request" 
+                        name="eliminarGrupoPublicoPorAdministrador17Request"/>
+            <wsdl:output message="impl:eliminarGrupoPublicoPorAdministrador17Response" 
+                         name="eliminarGrupoPublicoPorAdministrador17Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarGrupoPublicoPorUsuario">
                 
@@ -2710,30 +2762,30 @@
                 Metodo para eliminar los grupo publicos, sólo lo podrá eliminar
                 el usuario administrador de ese grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarGrupoPublicoPorUsuario17Request" 
-                        name="eliminarGrupoPublicoPorUsuario17Request"/>
-            <wsdl:output message="impl:eliminarGrupoPublicoPorUsuario17Response" 
-                         name="eliminarGrupoPublicoPorUsuario17Response"/>
+            <wsdl:input message="impl:eliminarGrupoPublicoPorUsuario18Request" 
+                        name="eliminarGrupoPublicoPorUsuario18Request"/>
+            <wsdl:output message="impl:eliminarGrupoPublicoPorUsuario18Response" 
+                         name="eliminarGrupoPublicoPorUsuario18Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarODEPerfilPublico">
                 
             <wsdl:documentation> 
                 Método para borrar los odes de la parte publica
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarODEPerfilPublico18Request" 
-                        name="eliminarODEPerfilPublico18Request"/>
-            <wsdl:output message="impl:eliminarODEPerfilPublico18Response" 
-                         name="eliminarODEPerfilPublico18Response"/>
+            <wsdl:input message="impl:eliminarODEPerfilPublico19Request" 
+                        name="eliminarODEPerfilPublico19Request"/>
+            <wsdl:output message="impl:eliminarODEPerfilPublico19Response" 
+                         name="eliminarODEPerfilPublico19Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarSolicitud">
                 
             <wsdl:documentation> 
                 El usuario que hace la solicitud puede eliminarlo
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarSolicitud19Request" 
-                        name="eliminarSolicitud19Request"/>
-            <wsdl:output message="impl:eliminarSolicitud19Response" 
-                         name="eliminarSolicitud19Response"/>
+            <wsdl:input message="impl:eliminarSolicitud20Request" 
+                        name="eliminarSolicitud20Request"/>
+            <wsdl:output message="impl:eliminarSolicitud20Response" 
+                         name="eliminarSolicitud20Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarUsuarioDeGrupo">
                 
@@ -2741,80 +2793,80 @@
                 El administrador del grupo puede eliminar un usuario de la lista
                 del grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarUsuarioDeGrupo20Request" 
-                        name="eliminarUsuarioDeGrupo20Request"/>
-            <wsdl:output message="impl:eliminarUsuarioDeGrupo20Response" 
-                         name="eliminarUsuarioDeGrupo20Response"/>
+            <wsdl:input message="impl:eliminarUsuarioDeGrupo21Request" 
+                        name="eliminarUsuarioDeGrupo21Request"/>
+            <wsdl:output message="impl:eliminarUsuarioDeGrupo21Response" 
+                         name="eliminarUsuarioDeGrupo21Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminarUsuarioPublico">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:eliminarUsuarioPublico21Request" 
-                        name="eliminarUsuarioPublico21Request"/>
-            <wsdl:output message="impl:eliminarUsuarioPublico21Response" 
-                         name="eliminarUsuarioPublico21Response"/>
+            <wsdl:input message="impl:eliminarUsuarioPublico22Request" 
+                        name="eliminarUsuarioPublico22Request"/>
+            <wsdl:output message="impl:eliminarUsuarioPublico22Response" 
+                         name="eliminarUsuarioPublico22Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeContactoEnAgendaDeUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeContactoEnAgendaDeUsuario22Request" 
-                        name="existeContactoEnAgendaDeUsuario22Request"/>
-            <wsdl:output message="impl:existeContactoEnAgendaDeUsuario22Response" 
-                         name="existeContactoEnAgendaDeUsuario22Response"/>
+            <wsdl:input message="impl:existeContactoEnAgendaDeUsuario23Request" 
+                        name="existeContactoEnAgendaDeUsuario23Request"/>
+            <wsdl:output message="impl:existeContactoEnAgendaDeUsuario23Response" 
+                         name="existeContactoEnAgendaDeUsuario23Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeFavoritoEnUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeFavoritoEnUsuario23Request" 
-                        name="existeFavoritoEnUsuario23Request"/>
-            <wsdl:output message="impl:existeFavoritoEnUsuario23Response" 
-                         name="existeFavoritoEnUsuario23Response"/>
+            <wsdl:input message="impl:existeFavoritoEnUsuario24Request" 
+                        name="existeFavoritoEnUsuario24Request"/>
+            <wsdl:output message="impl:existeFavoritoEnUsuario24Response" 
+                         name="existeFavoritoEnUsuario24Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeGrupoEnUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeGrupoEnUsuario24Request" 
-                        name="existeGrupoEnUsuario24Request"/>
-            <wsdl:output message="impl:existeGrupoEnUsuario24Response" 
-                         name="existeGrupoEnUsuario24Response"/>
+            <wsdl:input message="impl:existeGrupoEnUsuario25Request" 
+                        name="existeGrupoEnUsuario25Request"/>
+            <wsdl:output message="impl:existeGrupoEnUsuario25Response" 
+                         name="existeGrupoEnUsuario25Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeNombreGrupo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeNombreGrupo25Request" 
-                        name="existeNombreGrupo25Request"/>
-            <wsdl:output message="impl:existeNombreGrupo25Response" 
-                         name="existeNombreGrupo25Response"/>
+            <wsdl:input message="impl:existeNombreGrupo26Request" 
+                        name="existeNombreGrupo26Request"/>
+            <wsdl:output message="impl:existeNombreGrupo26Response" 
+                         name="existeNombreGrupo26Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeOdeEnGrupo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeOdeEnGrupo26Request" 
-                        name="existeOdeEnGrupo26Request"/>
-            <wsdl:output message="impl:existeOdeEnGrupo26Response" 
-                         name="existeOdeEnGrupo26Response"/>
+            <wsdl:input message="impl:existeOdeEnGrupo27Request" 
+                        name="existeOdeEnGrupo27Request"/>
+            <wsdl:output message="impl:existeOdeEnGrupo27Response" 
+                         name="existeOdeEnGrupo27Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeSolicitudGrupoIdentico">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeSolicitudGrupoIdentico27Request" 
-                        name="existeSolicitudGrupoIdentico27Request"/>
-            <wsdl:output message="impl:existeSolicitudGrupoIdentico27Response" 
-                         name="existeSolicitudGrupoIdentico27Response"/>
+            <wsdl:input message="impl:existeSolicitudGrupoIdentico28Request" 
+                        name="existeSolicitudGrupoIdentico28Request"/>
+            <wsdl:output message="impl:existeSolicitudGrupoIdentico28Response" 
+                         name="existeSolicitudGrupoIdentico28Response"/>
         </wsdl:operation>
         <wsdl:operation name="hacerSolicitudParaGrupo">
                 
@@ -2823,10 +2875,10 @@
                 se dará en el caso de que el solicitante no sea miembro. Después
                 el administrador del grupo tendrá que decidir si aceptarlo o no.
             </wsdl:documentation>
-            <wsdl:input message="impl:hacerSolicitudParaGrupo28Request" 
-                        name="hacerSolicitudParaGrupo28Request"/>
-            <wsdl:output message="impl:hacerSolicitudParaGrupo28Response" 
-                         name="hacerSolicitudParaGrupo28Response"/>
+            <wsdl:input message="impl:hacerSolicitudParaGrupo29Request" 
+                        name="hacerSolicitudParaGrupo29Request"/>
+            <wsdl:output message="impl:hacerSolicitudParaGrupo29Response" 
+                         name="hacerSolicitudParaGrupo29Response"/>
         </wsdl:operation>
         <wsdl:operation name="listadoGruposConAsociacionPorUsuarioYOde">
                 
@@ -2834,70 +2886,70 @@
                 Devuelve la lista de todos los grupos donde el usuario está
                 asociado y el ode esté.
             </wsdl:documentation>
-            <wsdl:input message="impl:listadoGruposConAsociacionPorUsuarioYOde29Request" 
-                        name="listadoGruposConAsociacionPorUsuarioYOde29Request"/>
-            <wsdl:output message="impl:listadoGruposConAsociacionPorUsuarioYOde29Response" 
-                         name="listadoGruposConAsociacionPorUsuarioYOde29Response"/>
+            <wsdl:input message="impl:listadoGruposConAsociacionPorUsuarioYOde30Request" 
+                        name="listadoGruposConAsociacionPorUsuarioYOde30Request"/>
+            <wsdl:output message="impl:listadoGruposConAsociacionPorUsuarioYOde30Response" 
+                         name="listadoGruposConAsociacionPorUsuarioYOde30Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarContactosDeAgenda">
                 
             <wsdl:documentation> 
                 Listamos todos los contacto de un usuario
             </wsdl:documentation>
-            <wsdl:input message="impl:listarContactosDeAgenda30Request" 
-                        name="listarContactosDeAgenda30Request"/>
-            <wsdl:output message="impl:listarContactosDeAgenda30Response" 
-                         name="listarContactosDeAgenda30Response"/>
+            <wsdl:input message="impl:listarContactosDeAgenda31Request" 
+                        name="listarContactosDeAgenda31Request"/>
+            <wsdl:output message="impl:listarContactosDeAgenda31Response" 
+                         name="listarContactosDeAgenda31Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarFavoritosUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:listarFavoritosUsuario31Request" 
-                        name="listarFavoritosUsuario31Request"/>
-            <wsdl:output message="impl:listarFavoritosUsuario31Response" 
-                         name="listarFavoritosUsuario31Response"/>
+            <wsdl:input message="impl:listarFavoritosUsuario32Request" 
+                        name="listarFavoritosUsuario32Request"/>
+            <wsdl:output message="impl:listarFavoritosUsuario32Response" 
+                         name="listarFavoritosUsuario32Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGrupoPublicos">
                 
             <wsdl:documentation> 
                 Listamos todos los grupos publico exitentes
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGrupoPublicos32Request" 
-                        name="listarGrupoPublicos32Request"/>
-            <wsdl:output message="impl:listarGrupoPublicos32Response" 
-                         name="listarGrupoPublicos32Response"/>
+            <wsdl:input message="impl:listarGrupoPublicos33Request" 
+                        name="listarGrupoPublicos33Request"/>
+            <wsdl:output message="impl:listarGrupoPublicos33Response" 
+                         name="listarGrupoPublicos33Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGrupoPublicosDeAdministrador">
                 
             <wsdl:documentation> 
                 Listamos todos los grupos donde el usuario es el administrador
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGrupoPublicosDeAdministrador33Request" 
-                        name="listarGrupoPublicosDeAdministrador33Request"/>
-            <wsdl:output message="impl:listarGrupoPublicosDeAdministrador33Response" 
-                         name="listarGrupoPublicosDeAdministrador33Response"/>
+            <wsdl:input message="impl:listarGrupoPublicosDeAdministrador34Request" 
+                        name="listarGrupoPublicosDeAdministrador34Request"/>
+            <wsdl:output message="impl:listarGrupoPublicosDeAdministrador34Response" 
+                         name="listarGrupoPublicosDeAdministrador34Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGruposCreadosUltimos">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGruposCreadosUltimos34Request" 
-                        name="listarGruposCreadosUltimos34Request"/>
-            <wsdl:output message="impl:listarGruposCreadosUltimos34Response" 
-                         name="listarGruposCreadosUltimos34Response"/>
+            <wsdl:input message="impl:listarGruposCreadosUltimos35Request" 
+                        name="listarGruposCreadosUltimos35Request"/>
+            <wsdl:output message="impl:listarGruposCreadosUltimos35Response" 
+                         name="listarGruposCreadosUltimos35Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGruposModificadosUltimos">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGruposModificadosUltimos35Request" 
-                        name="listarGruposModificadosUltimos35Request"/>
-            <wsdl:output message="impl:listarGruposModificadosUltimos35Response" 
-                         name="listarGruposModificadosUltimos35Response"/>
+            <wsdl:input message="impl:listarGruposModificadosUltimos36Request" 
+                        name="listarGruposModificadosUltimos36Request"/>
+            <wsdl:output message="impl:listarGruposModificadosUltimos36Response" 
+                         name="listarGruposModificadosUltimos36Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGruposPublicosConAsociacion">
                 
@@ -2906,10 +2958,10 @@
                 aquellos en los que el usuario ya está y a los que se pude
                 asociar
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGruposPublicosConAsociacion36Request" 
-                        name="listarGruposPublicosConAsociacion36Request"/>
-            <wsdl:output message="impl:listarGruposPublicosConAsociacion36Response" 
-                         name="listarGruposPublicosConAsociacion36Response"/>
+            <wsdl:input message="impl:listarGruposPublicosConAsociacion37Request" 
+                        name="listarGruposPublicosConAsociacion37Request"/>
+            <wsdl:output message="impl:listarGruposPublicosConAsociacion37Response" 
+                         name="listarGruposPublicosConAsociacion37Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGruposSolicitadosPorUsuario">
                 
@@ -2917,20 +2969,20 @@
                 Listamos todos los grupos a los que el usuario a solicitado
                 integrar, pero la solicitud no se ha resuelto
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGruposSolicitadosPorUsuario37Request" 
-                        name="listarGruposSolicitadosPorUsuario37Request"/>
-            <wsdl:output message="impl:listarGruposSolicitadosPorUsuario37Response" 
-                         name="listarGruposSolicitadosPorUsuario37Response"/>
+            <wsdl:input message="impl:listarGruposSolicitadosPorUsuario38Request" 
+                        name="listarGruposSolicitadosPorUsuario38Request"/>
+            <wsdl:output message="impl:listarGruposSolicitadosPorUsuario38Response" 
+                         name="listarGruposSolicitadosPorUsuario38Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarOdesDeGrupo">
                 
             <wsdl:documentation> 
                 Listamos todos los odes que estén añadidos en el  grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:listarOdesDeGrupo38Request" 
-                        name="listarOdesDeGrupo38Request"/>
-            <wsdl:output message="impl:listarOdesDeGrupo38Response" 
-                         name="listarOdesDeGrupo38Response"/>
+            <wsdl:input message="impl:listarOdesDeGrupo39Request" 
+                        name="listarOdesDeGrupo39Request"/>
+            <wsdl:output message="impl:listarOdesDeGrupo39Response" 
+                         name="listarOdesDeGrupo39Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarSolicitudesAdministrador">
                 
@@ -2938,20 +2990,20 @@
                 Listamos todas las solicitudes que le faltan por resolver al
                 administrador del grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:listarSolicitudesAdministrador39Request" 
-                        name="listarSolicitudesAdministrador39Request"/>
-            <wsdl:output message="impl:listarSolicitudesAdministrador39Response" 
-                         name="listarSolicitudesAdministrador39Response"/>
+            <wsdl:input message="impl:listarSolicitudesAdministrador40Request" 
+                        name="listarSolicitudesAdministrador40Request"/>
+            <wsdl:output message="impl:listarSolicitudesAdministrador40Response" 
+                         name="listarSolicitudesAdministrador40Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarSolicitudesRealizadasPorUsuario">
                 
             <wsdl:documentation> 
                 Listamos todas las solicitudes que le ha realizado el usuario
             </wsdl:documentation>
-            <wsdl:input message="impl:listarSolicitudesRealizadasPorUsuario40Request" 
-                        name="listarSolicitudesRealizadasPorUsuario40Request"/>
-            <wsdl:output message="impl:listarSolicitudesRealizadasPorUsuario40Response" 
-                         name="listarSolicitudesRealizadasPorUsuario40Response"/>
+            <wsdl:input message="impl:listarSolicitudesRealizadasPorUsuario41Request" 
+                        name="listarSolicitudesRealizadasPorUsuario41Request"/>
+            <wsdl:output message="impl:listarSolicitudesRealizadasPorUsuario41Response" 
+                         name="listarSolicitudesRealizadasPorUsuario41Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarTodosGrupoDeUsuario">
                 
@@ -2959,10 +3011,10 @@
                 Listamos todos los grupos dónde el usuario es el administrador o
                 asociado
             </wsdl:documentation>
-            <wsdl:input message="impl:listarTodosGrupoDeUsuario41Request" 
-                        name="listarTodosGrupoDeUsuario41Request"/>
-            <wsdl:output message="impl:listarTodosGrupoDeUsuario41Response" 
-                         name="listarTodosGrupoDeUsuario41Response"/>
+            <wsdl:input message="impl:listarTodosGrupoDeUsuario42Request" 
+                        name="listarTodosGrupoDeUsuario42Request"/>
+            <wsdl:output message="impl:listarTodosGrupoDeUsuario42Response" 
+                         name="listarTodosGrupoDeUsuario42Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuariosConContacto">
                 
@@ -2971,20 +3023,20 @@
                 nombre del contacto que le pasamos y que tienen marcado como
                 true la variable recibirContacto
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuariosConContacto42Request" 
-                        name="listarUsuariosConContacto42Request"/>
-            <wsdl:output message="impl:listarUsuariosConContacto42Response" 
-                         name="listarUsuariosConContacto42Response"/>
+            <wsdl:input message="impl:listarUsuariosConContacto43Request" 
+                        name="listarUsuariosConContacto43Request"/>
+            <wsdl:output message="impl:listarUsuariosConContacto43Response" 
+                         name="listarUsuariosConContacto43Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuariosDeGrupo">
                 
             <wsdl:documentation> 
                 Se listan todos los usuarios pertenecientes al grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuariosDeGrupo43Request" 
-                        name="listarUsuariosDeGrupo43Request"/>
-            <wsdl:output message="impl:listarUsuariosDeGrupo43Response" 
-                         name="listarUsuariosDeGrupo43Response"/>
+            <wsdl:input message="impl:listarUsuariosDeGrupo44Request" 
+                        name="listarUsuariosDeGrupo44Request"/>
+            <wsdl:output message="impl:listarUsuariosDeGrupo44Response" 
+                         name="listarUsuariosDeGrupo44Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuariosDeGrupoCorreo">
                 
@@ -2993,50 +3045,50 @@
                 debe o no recibir los e-mails. Sólo devolveremos aquellos
                 usuarios que quieren recibir los mail-s
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuariosDeGrupoCorreo44Request" 
-                        name="listarUsuariosDeGrupoCorreo44Request"/>
-            <wsdl:output message="impl:listarUsuariosDeGrupoCorreo44Response" 
-                         name="listarUsuariosDeGrupoCorreo44Response"/>
+            <wsdl:input message="impl:listarUsuariosDeGrupoCorreo45Request" 
+                        name="listarUsuariosDeGrupoCorreo45Request"/>
+            <wsdl:output message="impl:listarUsuariosDeGrupoCorreo45Response" 
+                         name="listarUsuariosDeGrupoCorreo45Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarGrupoPublico">
                 
             <wsdl:documentation> 
                 Metodo para modificar el grupo publico
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarGrupoPublico45Request" 
-                        name="modificarGrupoPublico45Request"/>
-            <wsdl:output message="impl:modificarGrupoPublico45Response" 
-                         name="modificarGrupoPublico45Response"/>
+            <wsdl:input message="impl:modificarGrupoPublico46Request" 
+                        name="modificarGrupoPublico46Request"/>
+            <wsdl:output message="impl:modificarGrupoPublico46Response" 
+                         name="modificarGrupoPublico46Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarUsuarioPublico">
                 
             <wsdl:documentation> 
                 Metodo para modificar el usuario publico
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarUsuarioPublico46Request" 
-                        name="modificarUsuarioPublico46Request"/>
-            <wsdl:output message="impl:modificarUsuarioPublico46Response" 
-                         name="modificarUsuarioPublico46Response"/>
+            <wsdl:input message="impl:modificarUsuarioPublico47Request" 
+                        name="modificarUsuarioPublico47Request"/>
+            <wsdl:output message="impl:modificarUsuarioPublico47Response" 
+                         name="modificarUsuarioPublico47Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerGrupoPublico">
                 
             <wsdl:documentation> 
                 Obtenermos el grupo publico
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerGrupoPublico47Request" 
-                        name="obtenerGrupoPublico47Request"/>
-            <wsdl:output message="impl:obtenerGrupoPublico47Response" 
-                         name="obtenerGrupoPublico47Response"/>
+            <wsdl:input message="impl:obtenerGrupoPublico48Request" 
+                        name="obtenerGrupoPublico48Request"/>
+            <wsdl:output message="impl:obtenerGrupoPublico48Response" 
+                         name="obtenerGrupoPublico48Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerGruposPublicosPorIdentificador">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerGruposPublicosPorIdentificador48Request" 
-                        name="obtenerGruposPublicosPorIdentificador48Request"/>
-            <wsdl:output message="impl:obtenerGruposPublicosPorIdentificador48Response" 
-                         name="obtenerGruposPublicosPorIdentificador48Response"/>
+            <wsdl:input message="impl:obtenerGruposPublicosPorIdentificador49Request" 
+                        name="obtenerGruposPublicosPorIdentificador49Request"/>
+            <wsdl:output message="impl:obtenerGruposPublicosPorIdentificador49Response" 
+                         name="obtenerGruposPublicosPorIdentificador49Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerGrupoUsuario">
                 
@@ -3044,30 +3096,30 @@
                 Obtenemos todos los grupos creados por el usuario y también
                 aquellos grupos donde el usuario se ha asociado
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerGrupoUsuario49Request" 
-                        name="obtenerGrupoUsuario49Request"/>
-            <wsdl:output message="impl:obtenerGrupoUsuario49Response" 
-                         name="obtenerGrupoUsuario49Response"/>
+            <wsdl:input message="impl:obtenerGrupoUsuario50Request" 
+                        name="obtenerGrupoUsuario50Request"/>
+            <wsdl:output message="impl:obtenerGrupoUsuario50Response" 
+                         name="obtenerGrupoUsuario50Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerNumeroFavoritosUsuario">
                 
             <wsdl:documentation> 
                 Metodo que nos devuelve el número de favoritos que le indiquemos
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerNumeroFavoritosUsuario50Request" 
-                        name="obtenerNumeroFavoritosUsuario50Request"/>
-            <wsdl:output message="impl:obtenerNumeroFavoritosUsuario50Response" 
-                         name="obtenerNumeroFavoritosUsuario50Response"/>
+            <wsdl:input message="impl:obtenerNumeroFavoritosUsuario51Request" 
+                        name="obtenerNumeroFavoritosUsuario51Request"/>
+            <wsdl:output message="impl:obtenerNumeroFavoritosUsuario51Response" 
+                         name="obtenerNumeroFavoritosUsuario51Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuarioPublico">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuarioPublico51Request" 
-                        name="obtenerUsuarioPublico51Request"/>
-            <wsdl:output message="impl:obtenerUsuarioPublico51Response" 
-                         name="obtenerUsuarioPublico51Response"/>
+            <wsdl:input message="impl:obtenerUsuarioPublico52Request" 
+                        name="obtenerUsuarioPublico52Request"/>
+            <wsdl:output message="impl:obtenerUsuarioPublico52Response" 
+                         name="obtenerUsuarioPublico52Response"/>
         </wsdl:operation>
     </wsdl:portType>
     
@@ -3182,354 +3234,363 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="desasociarOdeDeGrupo">
-            <wsdlsoap:operation soapAction="desasociarOdeDeGrupo" style="document"/>
-            <wsdl:input name="desasociarOdeDeGrupo13Request">
+        <wsdl:operation name="desasociarGrupoDeUsuario">
+            <wsdlsoap:operation soapAction="desasociarGrupoDeUsuario" style="document"/>
+            <wsdl:input name="desasociarGrupoDeUsuario13Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="desasociarOdeDeGrupo13Response">
+            <wsdl:output name="desasociarGrupoDeUsuario13Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="desasociarOdeDeGrupo">
+            <wsdlsoap:operation soapAction="desasociarOdeDeGrupo" style="document"/>
+            <wsdl:input name="desasociarOdeDeGrupo14Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="desasociarOdeDeGrupo14Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarContactoDeAgenda">
             <wsdlsoap:operation soapAction="eliminarContactoDeAgenda" style="document"/>
-            <wsdl:input name="eliminarContactoDeAgenda14Request">
+            <wsdl:input name="eliminarContactoDeAgenda15Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarContactoDeAgenda14Response">
+            <wsdl:output name="eliminarContactoDeAgenda15Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarFavoritoDeUsuario">
             <wsdlsoap:operation soapAction="eliminarFavoritoDeUsuario" style="document"/>
-            <wsdl:input name="eliminarFavoritoDeUsuario15Request">
+            <wsdl:input name="eliminarFavoritoDeUsuario16Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarFavoritoDeUsuario15Response">
+            <wsdl:output name="eliminarFavoritoDeUsuario16Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarGrupoPublicoPorAdministrador">
             <wsdlsoap:operation soapAction="eliminarGrupoPublicoPorAdministrador" style="document"/>
-            <wsdl:input name="eliminarGrupoPublicoPorAdministrador16Request">
+            <wsdl:input name="eliminarGrupoPublicoPorAdministrador17Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarGrupoPublicoPorAdministrador16Response">
+            <wsdl:output name="eliminarGrupoPublicoPorAdministrador17Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarGrupoPublicoPorUsuario">
             <wsdlsoap:operation soapAction="eliminarGrupoPublicoPorUsuario" style="document"/>
-            <wsdl:input name="eliminarGrupoPublicoPorUsuario17Request">
+            <wsdl:input name="eliminarGrupoPublicoPorUsuario18Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarGrupoPublicoPorUsuario17Response">
+            <wsdl:output name="eliminarGrupoPublicoPorUsuario18Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarODEPerfilPublico">
             <wsdlsoap:operation soapAction="eliminarODEPerfilPublico" style="document"/>
-            <wsdl:input name="eliminarODEPerfilPublico18Request">
+            <wsdl:input name="eliminarODEPerfilPublico19Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarODEPerfilPublico18Response">
+            <wsdl:output name="eliminarODEPerfilPublico19Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarSolicitud">
             <wsdlsoap:operation soapAction="eliminarSolicitud" style="document"/>
-            <wsdl:input name="eliminarSolicitud19Request">
+            <wsdl:input name="eliminarSolicitud20Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarSolicitud19Response">
+            <wsdl:output name="eliminarSolicitud20Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarUsuarioDeGrupo">
             <wsdlsoap:operation soapAction="eliminarUsuarioDeGrupo" style="document"/>
-            <wsdl:input name="eliminarUsuarioDeGrupo20Request">
+            <wsdl:input name="eliminarUsuarioDeGrupo21Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarUsuarioDeGrupo20Response">
+            <wsdl:output name="eliminarUsuarioDeGrupo21Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="eliminarUsuarioPublico">
             <wsdlsoap:operation soapAction="eliminarUsuarioPublico" style="document"/>
-            <wsdl:input name="eliminarUsuarioPublico21Request">
+            <wsdl:input name="eliminarUsuarioPublico22Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="eliminarUsuarioPublico21Response">
+            <wsdl:output name="eliminarUsuarioPublico22Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeContactoEnAgendaDeUsuario">
             <wsdlsoap:operation soapAction="existeContactoEnAgendaDeUsuario" style="document"/>
-            <wsdl:input name="existeContactoEnAgendaDeUsuario22Request">
+            <wsdl:input name="existeContactoEnAgendaDeUsuario23Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeContactoEnAgendaDeUsuario22Response">
+            <wsdl:output name="existeContactoEnAgendaDeUsuario23Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeFavoritoEnUsuario">
             <wsdlsoap:operation soapAction="existeFavoritoEnUsuario" style="document"/>
-            <wsdl:input name="existeFavoritoEnUsuario23Request">
+            <wsdl:input name="existeFavoritoEnUsuario24Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeFavoritoEnUsuario23Response">
+            <wsdl:output name="existeFavoritoEnUsuario24Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeGrupoEnUsuario">
             <wsdlsoap:operation soapAction="existeGrupoEnUsuario" style="document"/>
-            <wsdl:input name="existeGrupoEnUsuario24Request">
+            <wsdl:input name="existeGrupoEnUsuario25Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeGrupoEnUsuario24Response">
+            <wsdl:output name="existeGrupoEnUsuario25Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeNombreGrupo">
             <wsdlsoap:operation soapAction="existeNombreGrupo" style="document"/>
-            <wsdl:input name="existeNombreGrupo25Request">
+            <wsdl:input name="existeNombreGrupo26Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeNombreGrupo25Response">
+            <wsdl:output name="existeNombreGrupo26Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeOdeEnGrupo">
             <wsdlsoap:operation soapAction="existeOdeEnGrupo" style="document"/>
-            <wsdl:input name="existeOdeEnGrupo26Request">
+            <wsdl:input name="existeOdeEnGrupo27Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeOdeEnGrupo26Response">
+            <wsdl:output name="existeOdeEnGrupo27Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeSolicitudGrupoIdentico">
             <wsdlsoap:operation soapAction="existeSolicitudGrupoIdentico" style="document"/>
-            <wsdl:input name="existeSolicitudGrupoIdentico27Request">
+            <wsdl:input name="existeSolicitudGrupoIdentico28Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeSolicitudGrupoIdentico27Response">
+            <wsdl:output name="existeSolicitudGrupoIdentico28Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="hacerSolicitudParaGrupo">
             <wsdlsoap:operation soapAction="hacerSolicitudParaGrupo" style="document"/>
-            <wsdl:input name="hacerSolicitudParaGrupo28Request">
+            <wsdl:input name="hacerSolicitudParaGrupo29Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="hacerSolicitudParaGrupo28Response">
+            <wsdl:output name="hacerSolicitudParaGrupo29Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listadoGruposConAsociacionPorUsuarioYOde">
             <wsdlsoap:operation soapAction="listadoGruposConAsociacionPorUsuarioYOde" style="document"/>
-            <wsdl:input name="listadoGruposConAsociacionPorUsuarioYOde29Request">
+            <wsdl:input name="listadoGruposConAsociacionPorUsuarioYOde30Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listadoGruposConAsociacionPorUsuarioYOde29Response">
+            <wsdl:output name="listadoGruposConAsociacionPorUsuarioYOde30Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarContactosDeAgenda">
             <wsdlsoap:operation soapAction="listarContactosDeAgenda" style="document"/>
-            <wsdl:input name="listarContactosDeAgenda30Request">
+            <wsdl:input name="listarContactosDeAgenda31Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarContactosDeAgenda30Response">
+            <wsdl:output name="listarContactosDeAgenda31Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarFavoritosUsuario">
             <wsdlsoap:operation soapAction="listarFavoritosUsuario" style="document"/>
-            <wsdl:input name="listarFavoritosUsuario31Request">
+            <wsdl:input name="listarFavoritosUsuario32Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarFavoritosUsuario31Response">
+            <wsdl:output name="listarFavoritosUsuario32Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGrupoPublicos">
             <wsdlsoap:operation soapAction="listarGrupoPublicos" style="document"/>
-            <wsdl:input name="listarGrupoPublicos32Request">
+            <wsdl:input name="listarGrupoPublicos33Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGrupoPublicos32Response">
+            <wsdl:output name="listarGrupoPublicos33Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGrupoPublicosDeAdministrador">
             <wsdlsoap:operation soapAction="listarGrupoPublicosDeAdministrador" style="document"/>
-            <wsdl:input name="listarGrupoPublicosDeAdministrador33Request">
+            <wsdl:input name="listarGrupoPublicosDeAdministrador34Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGrupoPublicosDeAdministrador33Response">
+            <wsdl:output name="listarGrupoPublicosDeAdministrador34Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGruposCreadosUltimos">
             <wsdlsoap:operation soapAction="listarGruposCreadosUltimos" style="document"/>
-            <wsdl:input name="listarGruposCreadosUltimos34Request">
+            <wsdl:input name="listarGruposCreadosUltimos35Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGruposCreadosUltimos34Response">
+            <wsdl:output name="listarGruposCreadosUltimos35Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGruposModificadosUltimos">
             <wsdlsoap:operation soapAction="listarGruposModificadosUltimos" style="document"/>
-            <wsdl:input name="listarGruposModificadosUltimos35Request">
+            <wsdl:input name="listarGruposModificadosUltimos36Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGruposModificadosUltimos35Response">
+            <wsdl:output name="listarGruposModificadosUltimos36Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGruposPublicosConAsociacion">
             <wsdlsoap:operation soapAction="listarGruposPublicosConAsociacion" style="document"/>
-            <wsdl:input name="listarGruposPublicosConAsociacion36Request">
+            <wsdl:input name="listarGruposPublicosConAsociacion37Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGruposPublicosConAsociacion36Response">
+            <wsdl:output name="listarGruposPublicosConAsociacion37Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGruposSolicitadosPorUsuario">
             <wsdlsoap:operation soapAction="listarGruposSolicitadosPorUsuario" style="document"/>
-            <wsdl:input name="listarGruposSolicitadosPorUsuario37Request">
+            <wsdl:input name="listarGruposSolicitadosPorUsuario38Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGruposSolicitadosPorUsuario37Response">
+            <wsdl:output name="listarGruposSolicitadosPorUsuario38Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarOdesDeGrupo">
             <wsdlsoap:operation soapAction="listarOdesDeGrupo" style="document"/>
-            <wsdl:input name="listarOdesDeGrupo38Request">
+            <wsdl:input name="listarOdesDeGrupo39Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarOdesDeGrupo38Response">
+            <wsdl:output name="listarOdesDeGrupo39Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarSolicitudesAdministrador">
             <wsdlsoap:operation soapAction="listarSolicitudesAdministrador" style="document"/>
-            <wsdl:input name="listarSolicitudesAdministrador39Request">
+            <wsdl:input name="listarSolicitudesAdministrador40Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarSolicitudesAdministrador39Response">
+            <wsdl:output name="listarSolicitudesAdministrador40Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarSolicitudesRealizadasPorUsuario">
             <wsdlsoap:operation soapAction="listarSolicitudesRealizadasPorUsuario" style="document"/>
-            <wsdl:input name="listarSolicitudesRealizadasPorUsuario40Request">
+            <wsdl:input name="listarSolicitudesRealizadasPorUsuario41Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarSolicitudesRealizadasPorUsuario40Response">
+            <wsdl:output name="listarSolicitudesRealizadasPorUsuario41Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarTodosGrupoDeUsuario">
             <wsdlsoap:operation soapAction="listarTodosGrupoDeUsuario" style="document"/>
-            <wsdl:input name="listarTodosGrupoDeUsuario41Request">
+            <wsdl:input name="listarTodosGrupoDeUsuario42Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarTodosGrupoDeUsuario41Response">
+            <wsdl:output name="listarTodosGrupoDeUsuario42Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuariosConContacto">
             <wsdlsoap:operation soapAction="listarUsuariosConContacto" style="document"/>
-            <wsdl:input name="listarUsuariosConContacto42Request">
+            <wsdl:input name="listarUsuariosConContacto43Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuariosConContacto42Response">
+            <wsdl:output name="listarUsuariosConContacto43Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuariosDeGrupo">
             <wsdlsoap:operation soapAction="listarUsuariosDeGrupo" style="document"/>
-            <wsdl:input name="listarUsuariosDeGrupo43Request">
+            <wsdl:input name="listarUsuariosDeGrupo44Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuariosDeGrupo43Response">
+            <wsdl:output name="listarUsuariosDeGrupo44Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuariosDeGrupoCorreo">
             <wsdlsoap:operation soapAction="listarUsuariosDeGrupoCorreo" style="document"/>
-            <wsdl:input name="listarUsuariosDeGrupoCorreo44Request">
+            <wsdl:input name="listarUsuariosDeGrupoCorreo45Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuariosDeGrupoCorreo44Response">
+            <wsdl:output name="listarUsuariosDeGrupoCorreo45Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarGrupoPublico">
             <wsdlsoap:operation soapAction="modificarGrupoPublico" style="document"/>
-            <wsdl:input name="modificarGrupoPublico45Request">
+            <wsdl:input name="modificarGrupoPublico46Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarGrupoPublico45Response">
+            <wsdl:output name="modificarGrupoPublico46Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarUsuarioPublico">
             <wsdlsoap:operation soapAction="modificarUsuarioPublico" style="document"/>
-            <wsdl:input name="modificarUsuarioPublico46Request">
+            <wsdl:input name="modificarUsuarioPublico47Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarUsuarioPublico46Response">
+            <wsdl:output name="modificarUsuarioPublico47Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerGrupoPublico">
             <wsdlsoap:operation soapAction="obtenerGrupoPublico" style="document"/>
-            <wsdl:input name="obtenerGrupoPublico47Request">
+            <wsdl:input name="obtenerGrupoPublico48Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerGrupoPublico47Response">
+            <wsdl:output name="obtenerGrupoPublico48Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerGruposPublicosPorIdentificador">
             <wsdlsoap:operation soapAction="obtenerGruposPublicosPorIdentificador" style="document"/>
-            <wsdl:input name="obtenerGruposPublicosPorIdentificador48Request">
+            <wsdl:input name="obtenerGruposPublicosPorIdentificador49Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerGruposPublicosPorIdentificador48Response">
+            <wsdl:output name="obtenerGruposPublicosPorIdentificador49Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerGrupoUsuario">
             <wsdlsoap:operation soapAction="obtenerGrupoUsuario" style="document"/>
-            <wsdl:input name="obtenerGrupoUsuario49Request">
+            <wsdl:input name="obtenerGrupoUsuario50Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerGrupoUsuario49Response">
+            <wsdl:output name="obtenerGrupoUsuario50Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerNumeroFavoritosUsuario">
             <wsdlsoap:operation soapAction="obtenerNumeroFavoritosUsuario" style="document"/>
-            <wsdl:input name="obtenerNumeroFavoritosUsuario50Request">
+            <wsdl:input name="obtenerNumeroFavoritosUsuario51Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerNumeroFavoritosUsuario50Response">
+            <wsdl:output name="obtenerNumeroFavoritosUsuario51Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuarioPublico">
             <wsdlsoap:operation soapAction="obtenerUsuarioPublico" style="document"/>
-            <wsdl:input name="obtenerUsuarioPublico51Request">
+            <wsdl:input name="obtenerUsuarioPublico52Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuarioPublico51Response">
+            <wsdl:output name="obtenerUsuarioPublico52Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         

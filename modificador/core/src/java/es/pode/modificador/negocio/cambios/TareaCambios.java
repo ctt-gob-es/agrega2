@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.modificador.negocio.cambios;
 
 import java.io.BufferedReader;
@@ -18,10 +13,13 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
+import es.agrega.soporte.agregaProperties.AgregaProperties;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.modificador.ServiceLocator;
 import es.pode.modificador.negocio.cambios.configuracion.ModificadorProperties;
 import es.pode.modificador.negocio.servicio.ModificacionVO;
 import es.pode.modificador.negocio.servicio.ResultadoModificacionVO;
+import es.pode.modificador.negocio.servicio.SrvTareasModificacionServiceImpl;
 import es.pode.modificador.negocio.utilidades.EstadosTarea;
 import es.pode.parseadorXML.ParseadorException;
 import es.pode.parseadorXML.SCORM2004Dao;
@@ -82,6 +80,59 @@ public class TareaCambios {
 	public ResultadoModificacionVO[] ejecutarTarea() {
 		return ejecutarTarea(false);
 	}
+
+
+	protected final es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService getPropiedadService()
+			throws java.lang.Exception {
+
+		String srvPublicacionServiceFile = "importedServices.properties";
+		java.io.InputStream srvPublicacionServiceInputStream = SrvTareasModificacionServiceImpl.class
+				.getClassLoader()
+				.getResourceAsStream(srvPublicacionServiceFile);
+		logger.debug("srvPropiedadServiceInputStream = " + srvPublicacionServiceInputStream );
+		java.util.Properties srvPublicacionServiceProperties = new java.util.Properties();
+		srvPublicacionServiceProperties.load(srvPublicacionServiceInputStream);
+		String srvPublicacionServiceEndPointAddress = "";
+		srvPublicacionServiceEndPointAddress = (String) srvPublicacionServiceProperties
+				.get("srvPropiedadServicePort");
+		System.out
+				.println("srvPropiedadServiceEndPointAddress del fichero --> "
+						+ srvPublicacionServiceEndPointAddress);
+		es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadServiceService srvPropiedadService = new es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadServiceServiceLocator();
+		logger.debug("srvPropiedadServiceEndPointAddress = " + srvPublicacionServiceEndPointAddress );
+		if (srvPublicacionServiceEndPointAddress.length() > 0)
+			((es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadServiceServiceLocator) srvPropiedadService)
+					.setSrvPropiedadServiceEndpointAddress(srvPublicacionServiceEndPointAddress);
+		es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService port = srvPropiedadService
+				.getSrvPropiedadService();
+		logger.debug("retorno : srvPropiedadService = " + srvPropiedadService );
+		return port;
+
+	}
+	
+	
+	private String obtenerId(LomAgrega lomAgrega) throws ParseadorException, Exception {
+		
+		SrvPropiedadService prop = getPropiedadService();
+		String catalogoMec=prop.getValorPropiedad(AgregaProperties.CATALOGO_MEC);
+		if(catalogoMec==null || catalogoMec.isEmpty()) {
+			return lomAgrega.getGeneralAgrega().getPrimerIdentificador();
+		}
+		es.pode.parseadorXML.lomes.lomesAgrega.GeneralAgrega gen=lomAgrega.getGeneralAgrega();
+
+		//recorremos la estructura de Identificadores
+		for (int i=0; i<gen.getCountIdentifier(); i++) {
+
+			String catalogo = gen.getCatalogo(i)!=null?gen.getCatalogo(i):"";
+			String id = gen.getEntry(i)!=null?gen.getEntry(i):"";
+			//Devolvemos el id asignado al catalogo mec
+			if (catalogo.equals(catalogoMec) && !id.isEmpty()) 
+				return id;
+		}
+		//Si no se encontro un id asociado al catalogo mec, devolvemos el primero que exista
+		return lomAgrega.getGeneralAgrega().getPrimerIdentificador();
+	}
+	
 	
 	/**
 	 * <p>
@@ -166,7 +217,8 @@ public class TareaCambios {
 						ManifestAgrega manAgrega = new ManifestAgrega(manifestImportado);
 						LomAgrega lomAgrega= new LomAgrega(manAgrega.obtenerLom(manifestImportado.getIdentifier(), null));
 						// Si he consegido el manifest, recupero el identificador del ODE para registrarlo
-						resultModificacion[i].setIdOde(lomAgrega.getGeneralAgrega().getPrimerIdentificador());
+						String id=obtenerId(lomAgrega);
+						resultModificacion[i].setIdOde(id);
 						//Título en idioma de navegación 
 						
 						String idioma = null;

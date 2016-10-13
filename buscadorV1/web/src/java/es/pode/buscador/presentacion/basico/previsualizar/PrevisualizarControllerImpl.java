@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.buscador.presentacion.basico.previsualizar;
 
@@ -65,7 +60,7 @@ public class PrevisualizarControllerImpl extends PrevisualizarController
 		        			return VIS_AGREGA_LOGADO_NO_SEC;
 		        		
 		        else
-		        	if (((this.getSrvPropiedadService().get(AgregaProperties.SECUENCIA_SIN_LOGAR)).equalsIgnoreCase("true"))&&(form.getSeleccionarSecuencia()!=null && form.getSeleccionarSecuencia()))
+		        	if (((this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SECUENCIA_SIN_LOGAR)).equalsIgnoreCase("true"))&&(form.getSeleccionarSecuencia()!=null && form.getSeleccionarSecuencia()))
 		        			
 	        			return VIS_AGREGA_LOGADO_CON_SEC;
 		        	else
@@ -141,7 +136,7 @@ public class PrevisualizarControllerImpl extends PrevisualizarController
 		if(form.getTieneIdentidadFederada()!=null && form.getTieneIdentidadFederada().booleanValue()){
 			log("PrevisualizarControllerImpl - previsualizarNoLogadoONoSec: ODE sin secuencia o usuario no logado");
 			urlaVisualizar = urlaVisualizar + request.getSession().getServletContext().getInitParameter("url_visualizador") +
-			///"?identificador=" + form.getIdentificadorODE() + "&secuencia=" + (AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SECUENCIA_SIN_LOGAR).equals("true")?true:false) + "&idioma="+form.getIdioma();
+			///"?identificador=" + form.getIdentificadorODE() + "&secuencia=" + (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SECUENCIA_SIN_LOGAR).equals("true")?true:false) + "&idioma="+form.getIdioma();
 			"?identificador=" + form.getIdentificadorODE() + "&secuencia=false" + "&idioma="+form.getIdioma();
 			String usuario = LdapUserDetailsUtils.getUsuario();
 			String usuarioEncriptado = EncriptacionUtiles.encriptar(usuario);

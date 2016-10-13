@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 
 package es.pode.planificador.negocio.servicios;
@@ -63,6 +58,8 @@ import es.pode.auditoria.negocio.servicios.ParametroInformeGenericoVO;
 import es.pode.auditoria.negocio.servicios.SrvAuditoriaServicio;
 import es.pode.buscar.negocio.administrar.servicio.CcaaVO;
 import es.pode.buscar.negocio.administrar.servicio.NodoVO;
+import es.pode.buscar.negocio.administrar.servicio.ResultadoSubtareaVO;
+import es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO;
 import es.pode.buscar.negocio.buscar.servicios.SrvCacheService;
 import es.pode.gestorCorreo.negocio.servicios.ResultadoEnvioCorreoVO;
 import es.pode.indexador.negocio.servicios.indexado.SrvIndexadorService;
@@ -166,6 +163,8 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	private static final String FILE_NAME_PROPERTIES = "/planificador.properties";
 	private static Properties props = null;
 
+	private static final String ERROR = "ERROR";	
+	
 	/**
 	 * Eliminación de las tareas elegidas. 
 	 * @param tareas Un array de trabajos.
@@ -4184,9 +4183,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	}
 
 	@Override
-	protected Boolean handleSubirIndices(Long idTarea) throws Exception {
+	protected ResultadoTareaVO handleSubirIndices(Long idTarea) throws Exception {
 		if(logger.isDebugEnabled())logger.debug("SUBIR INDICES");
-		Boolean resultado=false;
+		ResultadoTareaVO resultado=null;
 		try{
 			log.info("Lanzar Subir Indices");
 			resultado=getSrvNodoService().subirIndices();
@@ -4201,17 +4200,16 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 
 	
 	@Override
-	protected Boolean handleActualizarIndicesRemotos(Long idTarea)
+	protected ResultadoTareaVO handleActualizarIndicesRemotos(Long idTarea)
 			throws Exception {
 		if(logger.isDebugEnabled())logger.debug("ACTUALIZAR INDICES");
-		Boolean resultado=false;
+		ResultadoTareaVO resultado=null;
 		try{
 			log.info("Lanzar Actualizar Indices");
 			resultado=getSrvNodoService().actualizarIndices();
 		}
 		catch (Exception e) {
-			log.error("Error: No se ha podido realizar la tarea Subir Indices " , e);
-			return resultado;
+			log.error("Error: No se ha podido realizar la tarea Subir Indices " + e.getMessage());						
 		}
 		
 		return resultado;
@@ -4258,9 +4256,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	}
 	
 	
-	protected Boolean handleEstadisticasLocales(Long idTarea) throws Exception {
+	protected ResultadoTareaVO handleEstadisticasLocales(Long idTarea) throws Exception {
 		logger.debug("Estadisticas Locales begins");
-		Boolean resultado=false;
+		ResultadoTareaVO resultado=null;
 		try{
 			resultado=getSrvNodoService().crearEstadisticasLocales();
 		}
@@ -4279,9 +4277,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	}
 	
 
-	protected Boolean handleEstadisticasTotales(Long idTarea) throws Exception {
+	protected ResultadoTareaVO handleEstadisticasTotales(Long idTarea) throws Exception {
 		logger.info("Estadisticas Totales begins");
-		Boolean resultado=false;
+		ResultadoTareaVO resultado=null;
 		try{
 			resultado=getSrvNodoService().crearEstadisticasTotales();
 		}
@@ -4543,10 +4541,10 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			TareaEjecutada tarea = tareaEjecutadaDao.load(idTarea);
 			
 			//Obtenemos las direcciones de administradores del nodo 
-			String listaCorreoAdminNodo = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO);
+			String listaCorreoAdminNodo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO);
 			
 			//Obtenemos las direcciones de administradores del nodo 
-			String listaCorreoAdminMECD = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);
+			String listaCorreoAdminMECD = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);
 			
 			// Si tenemos el correo del administrador del nodo enviamos el correo
 			if (listaCorreoAdminNodo!=null && !listaCorreoAdminNodo.equals(""))
@@ -4828,7 +4826,7 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 
 		boolean envioCorrecto = false;
 		
-		String envioCorreoAlarmaActivo = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.ACTIVO_ENVIO_CORREOS_INCIDENCIA_COMUNICACION);
+		String envioCorreoAlarmaActivo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.ACTIVO_ENVIO_CORREOS_INCIDENCIA_COMUNICACION);
 		
 		if (envioCorreoAlarmaActivo==null || !envioCorreoAlarmaActivo.equals("true")) {
 			log.debug("No se envia correo para informar de errores en la tarea de unificacion");
@@ -4861,12 +4859,12 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			//idNodos_emails.put("",				AgregaProperties.CORREOINCIDENCIACOMUNICACIONNODO_REDES);
 
 			//Obtenemos las direcciones de administradores del nodo 
-			String listaCorreoAdminMECD = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);
+			String listaCorreoAdminMECD = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CORREO_INCIDENCIA_COMUNICACION_NODO_MECD);
 			String listaCorreoAdminNodo = "";
 			
 			for(int i=0; i<listaNodosConError.size(); i++) {
 				
-				listaCorreoAdminNodo = AgregaPropertiesImpl.getInstance().getProperty(idNodos_emails.get(listaNodosConError.get(i)));
+				listaCorreoAdminNodo = this.getSrvPropiedadService().getValorPropiedad(idNodos_emails.get(listaNodosConError.get(i)));
 	
 				// Si tenemos el correo del administrador del nodo enviamos el correo
 				if (listaCorreoAdminNodo!=null && !listaCorreoAdminNodo.equals(""))
@@ -4896,11 +4894,11 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		//Añadimos el nodo local al resto de nodos
 		NodoVO nodoLocal = new NodoVO();
 		nodoLocal.setNodo("localhost");
-		nodoLocal.setIdNodo(this.getSrvPropiedadService().get(AgregaProperties.SERVER_ID));
+		nodoLocal.setIdNodo(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SERVER_ID));
 		/* Esto lo coge de DB y no funciona correctamente ya que siempre usa default_host
 		 * en vez de adecuarlo a la instancia en la que este
-		nodoLocal.setUrl(this.getSrvPropiedadService().get(AgregaProperties.HOST));
-		nodoLocal.setUrlWS(this.getSrvPropiedadService().get(AgregaProperties.HOST));
+		nodoLocal.setUrl(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.HOST));
+		nodoLocal.setUrlWS(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.HOST));
 		*/
 		String url = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.HOST);
 		String subdominio = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SUBDOMINIO);
@@ -5016,8 +5014,14 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
      * Los metadatos son guardados en ficheros independientes en carpetaspara las diferentes comunidades
      */
 	@Override
-	protected Boolean handleObtenerMetadatosODESFederados(Long idTarea)
+	protected ResultadoTareaVO handleObtenerMetadatosODESFederados(Long idTarea)
 			throws Exception {
+		
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);
+		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
+
 		
 		int contNodos = 0;
 		List<NodoVO> nodos = null;
@@ -5055,8 +5059,13 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
     		File errorLog = new File(errorLogFile);
     		if(!errorLog.exists()) errorLog.createNewFile();
     		
+    		resSubtarea.setSubtarea("Obtenemos la lista de nodos");
+    		
    	 		nodos = listaTodosLosNodos();
    	 		
+   	 		resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
+		
 	   	 	for(contNodos=0; contNodos<nodos.size(); contNodos++) {
 	   	 		
 	   	 		String urlWsNodo="http://"+nodos.get(contNodos).getUrl().replaceAll("\\\\", "");
@@ -5065,6 +5074,10 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	   	 		logger.debug("idNodo: " + nodos.get(contNodos).getIdNodo());
 	   	 		logger.debug("urlWsNodo: " + urlWsNodo);
 	    		
+	   			resSubtarea = new ResultadoSubtareaVO();
+				resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
+		
+				
 	    		ArrayList<Object> o = hacerPeticionOAIPMHLomes(fechaInicio, fechaFin, urlWsNodo, idNodo);
 	    		if (o==null) {		        		
 	    			//Resgistro error del nodo en el fichero log en caso de que no este ya registrado
@@ -5075,8 +5088,15 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			    		f.close();
 					}
 		    		listaNodosConError.add(idNodo);
+		    		
+		    		resSubtarea.setResultadoSubtarea(ERROR);
+		    		lResSubtareas.add(resSubtarea);
 					
 	    		} else {
+	    			
+		    		resSubtarea.setResultadoSubtarea(OK);
+		    		lResSubtareas.add(resSubtarea);
+		    		
 	        		logger.debug("Recibidos "+o.size()+" ODEs del nodo "+idNodo);
 	    			
 	    			//Guardaremos los datos obtenidos en el HD
@@ -5087,6 +5107,10 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 					if(!storePath.exists()) storePath.mkdirs();
 	        		logger.debug("Los metadatos se guardaran en "+storePath.getAbsolutePath());
 	        		
+		   			resSubtarea = new ResultadoSubtareaVO();
+					resSubtarea.setSubtarea("Procesando respuesta nodo :" + idNodo);
+		
+					
 	        		for(int n=0; n<o.size(); n++) {
 						RecordAgrega rec = (RecordAgrega)o.get(n);
 						String[] tmp = rec.getHeader().getIdentifier().split(":");
@@ -5102,13 +5126,17 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		    			FileWriter xml = new FileWriter(nombreXml);
 		    			xml.write(rec.getMetadata().toString().replaceFirst("UTF-8", "ISO-8859-1"));
 		    			xml.close();
-					}
+					}	        		
+		    		resSubtarea.setResultadoSubtarea(OK);
+		    		lResSubtareas.add(resSubtarea);
 	    		}
 	   	 	}
 
 	   	 	//Enviamos correo informando de que nodos han fallado
 	   	 	if(listaNodosConError!=null && listaNodosConError.size()>0)
 	   	 		enviarCorreoIncidenciaUnificacion(listaNodosConError, "INCIDENCIA_METADATOS_ODES_FEDERADOS");
+	   	 	
+	   	 	resultado.setResultadoGlobal(OK);
 	   	 	
     	} catch(Exception e) {
     		if (nodos!=null) {
@@ -5121,9 +5149,15 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
         		logger.error("ERROR GRAVE: No se han podido registrar los nodos que no han contestados en el log "+errorLogFile);
     		}
     		logger.error("Error al recuperar y salvar metadatos - "+e);
-    		return false;
+    		
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtareas.add(resSubtarea);		
+    		
     	}
-    	return true;
+    	resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
+    	
+    	return resultado;
 	}
 
 	
@@ -5166,11 +5200,14 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
  			if(guardaConFechaManana){				            
  				Calendar inicioDiaManana = Calendar.getInstance();
 	            inicioDiaManana.add(Calendar.DATE,+ 1);
+	            //No ajustamos hora para que en los ajustes de hora en verano e invierno
+	            //siga funcionando
+	            /*
 	            inicioDiaManana.set(Calendar.AM_PM, 0);
 	            inicioDiaManana.set(Calendar.HOUR, 0);
 	            inicioDiaManana.set(Calendar.MINUTE, 0);
 	            inicioDiaManana.set(Calendar.SECOND, 0);
-	            
+	            */
 	            for(int i=0; i<t.length; i++)
 	            	t[i].setFecha(inicioDiaManana);
  			}
@@ -5192,9 +5229,15 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	 * Obtiene los ODEs despublicados en cada nodo en el dia anterior a su ejecucion
 	 */
 	@Override
-	protected Boolean handleObtenerODESDespublicadosFederados(Long idTarea)
+	protected ResultadoTareaVO handleObtenerODESDespublicadosFederados(Long idTarea)
 			throws Exception {
 
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);
+		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
+
+		
 		String rutaLocal = "uploads";
 		String errorLogFile = rutaLocal+File.separator+"ObtenerODESDespublicadosFederados_ERROR.log";
 		String newLine = System.getProperty("line.separator");
@@ -5229,8 +5272,13 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
     		File errorLog = new File(errorLogFile);
     		if(!errorLog.exists()) errorLog.createNewFile();
     		
+    		resSubtarea.setSubtarea("Obtenemos la lista de nodos");
+    		
    	 		nodos = listaTodosLosNodos();
 	 		
+  	 		resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
+
 	 		//Recorremos todos los nodos
 	   	 	for(contNodos=0; contNodos<nodos.size(); contNodos++) {
 	
@@ -5239,6 +5287,10 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	   	 	   	 		
 	   	 		logger.debug("idNodo: " + nodos.get(contNodos).getIdNodo());
 	   	 		logger.debug("urlWsNodo: " + urlWsNodo);
+	   	 		
+	 			resSubtarea = new ResultadoSubtareaVO();
+				resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
+		
 	   	 		
 	   	 		if(!registraDespublicadosDeNodo(fechaInicio, fechaFin, urlWsNodo, idNodo, false)) {
 	   	 			//Resgistro error del nodo en el fichero log en caso de que no este ya registrado
@@ -5249,8 +5301,19 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			    		f.close();
 					}
 		    		listaNodosConError.add(idNodo);
-	   	 		}
+		    		
+		    		resSubtarea.setSubtarea(resSubtarea.getSubtarea()+ " Error al procesar el nodo");
+		    		resSubtarea.setResultadoSubtarea(ERROR);
+		    		lResSubtareas.add(resSubtarea);
+					
+	   	 		}else
+	   	 		{
+	   	 			resSubtarea.setResultadoSubtarea(OK);
+	   	 			lResSubtareas.add(resSubtarea);
+	   	 		}				
 	   	 	}
+	   	 	
+	   	 	resultado.setResultadoGlobal(OK);
 
 	   	 	//Enviamos correo informando de que nodos han fallado
 	   	 	// TODO Descomentar cuando se actualicen versiones en los nodos
@@ -5269,16 +5332,26 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
         		logger.error("ERROR GRAVE: No se han podido registrar los nodos que no han contestado en el log "+errorLogFile);
     		}
     		logger.error("Error al obtener despublicados - "+e);
-    		return false;
+    		resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtareas.add(resSubtarea);    		
     	}
-		return true;
+    	
+    	resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
+		return resultado;
 	}
 	
 
 	@Override
-	protected Boolean handleObtenerMetadatosODESFederadosFaltantes(Long idTarea)
+	protected ResultadoTareaVO handleObtenerMetadatosODESFederadosFaltantes(Long idTarea)
 			throws Exception {
 		
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);
+		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
+
+
 		String rutaLocal = "uploads"+File.separator+"metadatosLomesOdesFederados";
 		String errorLogFile = rutaLocal+File.separator+"ObtenerMetadatosODESFederados_ERROR.log";
 		String errorLogFileNew = rutaLocal+File.separator+"ObtenerMetadatosODESFederados_ERROR.newlog";
@@ -5288,15 +5361,32 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			
 			//Si no existe fichero de errores de una ejecucion previa de la ObtenerMetadatosODESFederados
 			//salimos inmediatamente
+			
+			resSubtarea.setSubtarea("Verificando existencia de fichero de error");
+			
 			File errorLog = new File(errorLogFile);
 			if(!errorLog.exists()) {
 		    	logger.warn("No se ha encontrado el fichero de errores de la tarea ObtenerMetadatosODESFederados ("+errorLogFile+"), por lo que se supone que no hubo errores en su ejecucion.");
-				return true;
+
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : No se ha encontrado el fichero de errores de la tarea ObtenerMetadatosODESFederados ("+errorLogFile+")");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtareas.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));			
+				return resultado;
+	
 			}
-			
+	
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);
+
+    		resSubtarea.setSubtarea("Obtenemos la lista de nodos");
+        	
 			//Esto nos servira para saber a que url debemos atacar
 	 		ArrayList<NodoVO> nodos = listaTodosLosNodos();
 
+   	 		resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
+   	 		
 			//Variables para el registro de errores
 			File path = new File(rutaLocal);
 			if(!path.exists()) path.mkdir();
@@ -5308,6 +5398,10 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			Integer contLine = 0;
 			ArrayList<String> listaNodosConError = new ArrayList<String>();
 			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Procesando fichero de error");
+			resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
 			while((line = br.readLine()) != null) {
 			
 				contLine++;
@@ -5355,6 +5449,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			    		
 			    		logger.debug("Se va a intentar obtener ODEs federados del nodo "+idNodo+" con fecha "+fecha);
 			    		
+			   			resSubtarea = new ResultadoSubtareaVO();
+						resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
+						
 			    		ArrayList<Object> o = hacerPeticionOAIPMHLomes(fechaInicio, fechaFin, urlWsNodo, idNodo);
 			    		if (o==null) {		        		
 			        		//Creamos el registro de errores si no existe
@@ -5366,7 +5463,14 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 				    		f.close();
 				    		listaNodosConError.add(idNodo);
 				    		
-			    		} else {	    			
+				    		resSubtarea.setResultadoSubtarea(ERROR);
+				    		lResSubtareas.add(resSubtarea);
+			
+				    		
+			    		} else {	    		
+				    		resSubtarea.setResultadoSubtarea(OK);
+				    		lResSubtareas.add(resSubtarea);
+			
 			        		logger.debug("Recibidos "+o.size()+" ODEs del nodo "+idNodo);
 			        		
 			    			//Guardaremos los datos obtenidos en el HD
@@ -5388,6 +5492,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 							if(!storePath.exists()) storePath.mkdirs();
 			        		logger.debug("Los metadatos se guardaran en "+storePath.getAbsolutePath());	
 	
+				   			resSubtarea = new ResultadoSubtareaVO();
+							resSubtarea.setSubtarea("Procesando respuesta nodo :" + idNodo);
+										
 			        		for(int n=0; n<o.size(); n++) {
 								RecordAgrega rec = (RecordAgrega)o.get(n);
 								String[] tmp = rec.getHeader().getIdentifier().split(":");
@@ -5404,6 +5511,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 				    			xml.write(rec.getMetadata().toString().replaceFirst("UTF-8", "ISO-8859-1"));
 				    			xml.close();
 							}
+			        		
+				    		resSubtarea.setResultadoSubtarea(OK);
+				    		lResSubtareas.add(resSubtarea);
 			    		}
 			    	}
 			    }
@@ -5417,21 +5527,43 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	    		logger.debug("Se ha creado un nuevo log con los nodos que no han devuelto los metadatos de sus ODEs");
 			} 
 	
+   			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Enviando correos de error");
+	
+			
 			//Enviamos correo informando de que nodos han fallado
 			if(listaNodosConError!=null && listaNodosConError.size()>0)
 				enviarCorreoIncidenciaUnificacion(listaNodosConError, "INCIDENCIA_METADATOS_ODES_FEDERADOS");
 			
+
+			resSubtarea.setResultadoSubtarea(OK);
+			lResSubtareas.add(resSubtarea);	
+			
+			resultado.setResultadoGlobal(OK);
+			
 		} catch (Exception e) {
 			logger.error("Se produjo una excepcion - "+e);
-			return false;
+			
+			resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);
+			lResSubtareas.add(resSubtarea);		
+
 		}
-		return true;
+		
+		resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
+		return resultado;
 	}
 
 	
 	@Override
-	protected Boolean handleObtenerODESDespublicadosFederadosFaltantes(
+	protected ResultadoTareaVO handleObtenerODESDespublicadosFederadosFaltantes(
 			Long idTarea) throws Exception {
+		
+		ResultadoTareaVO resultado = new ResultadoTareaVO();
+		resultado.setResultadoGlobal(ERROR);
+		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
+		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
+
 		
 		String rutaLocal = "uploads";
 		String errorLogFile = rutaLocal+File.separator+"ObtenerODESDespublicadosFederados_ERROR.log";
@@ -5439,17 +5571,33 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		String newLine = System.getProperty("line.separator");
 		
 		try{
+			
+			resSubtarea.setSubtarea("Verificando existencia de fichero de error");			
+	
 			//Si no existe fichero de errores de una ejecucion previa de la ObtenerODESDespublicadosFederados
 			//salimos inmediatamente
 			File errorLog = new File(errorLogFile);
 			if(!errorLog.exists()) {
-		    	logger.warn("No se ha encontrado el fichero de errores de la tarea ObtenerMetadatosODESFederados ("+errorLogFile+"), por lo que se supone que no hubo errores en su ejecucion.");
-				return true;
+		    	logger.warn("No se ha encontrado el fichero de errores de la tarea ObtenerODESDespublicadosFederadosFaltantes ("+errorLogFile+"), por lo que se supone que no hubo errores en su ejecucion.");
+				resSubtarea.setSubtarea(resSubtarea.getSubtarea() + ". Error : No se ha encontrado el fichero de errores de la tarea ObtenerODESDespublicadosFederadosFaltantes ("+errorLogFile+")");
+				resSubtarea.setResultadoSubtarea(ERROR);
+				lResSubtareas.add(resSubtarea);
+				resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));			
+				return resultado;
+
 			}
-			
+	 		resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
+
+   	 		
+			resSubtarea.setSubtarea("Obtenemos la lista de nodos");
 			//Esto nos servira para saber a que url debemos atacar
 	 		ArrayList<NodoVO> nodos = listaTodosLosNodos();
 
+	 		resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);
+
+   	 		
 			//Variables para el registro de errores
 			File path = new File(rutaLocal);
 			if(!path.exists()) path.mkdir();
@@ -5460,6 +5608,11 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			String line;
 			Integer contLine = 0;
 			ArrayList<String> listaNodosConError = new ArrayList<String>();
+			
+			resSubtarea = new ResultadoSubtareaVO();
+			resSubtarea.setSubtarea("Procesando fichero de error");
+			resSubtarea.setResultadoSubtarea(OK);
+   	 		lResSubtareas.add(resSubtarea);			
 			
 			while((line = br.readLine()) != null) {
 			
@@ -5507,7 +5660,9 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			            String fechaFin = df.format(inicioDiaActual.getTime());
 			    		
 			    		logger.debug("Se va a intentar obtener ODEs despublicados federados del nodo "+idNodo+" con fecha "+fecha);
-			    				    			   	 		
+			    				 
+			   			resSubtarea = new ResultadoSubtareaVO();
+						resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
 			   	 		if(!registraDespublicadosDeNodo(fechaInicio, fechaFin, urlWsNodo, idNodo, true)) {
 			        		//Creamos el registro de errores si no existe
 			        		if(!errorLogNew.exists()) errorLogNew.createNewFile();
@@ -5519,6 +5674,14 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 				    		// Si no se ha identificado ya como error se incluye
 				    		if (!listaNodosConError.contains(idNodo))
 				    			listaNodosConError.add(idNodo);
+				    		
+				    		resSubtarea.setSubtarea(resSubtarea.getSubtarea()+ " Error al procesar el nodo");
+				    		resSubtarea.setResultadoSubtarea(ERROR);
+				    		lResSubtareas.add(resSubtarea);
+			   	 		}else
+			   	 		{
+			   	 			resSubtarea.setResultadoSubtarea(OK);
+			   	 			lResSubtareas.add(resSubtarea);
 			   	 		}
 			   	 	}		
 			    }
@@ -5538,11 +5701,15 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			//if(listaNodosConError!=null && listaNodosConError.size()>0)
 				//enviarCorreoIncidenciaUnificacion(listaNodosConError, "INCIDENCIA_DESPUBLICADOS_FEDERADOS");
 		
+			resultado.setResultadoGlobal(OK);
 		} catch (Exception e) {
 			logger.error("Se produjo una excepcion - "+e);
-			return false;
+	  		resSubtarea.setSubtarea(resSubtarea.getSubtarea() + " Error :" + e.getMessage());
+			resSubtarea.setResultadoSubtarea(ERROR);			 
 		}
-		return true;
+
+		resultado.setResultadosSubtareas(lResSubtareas.toArray(new ResultadoSubtareaVO[0]));
+		return resultado;
 	}
 		
 }

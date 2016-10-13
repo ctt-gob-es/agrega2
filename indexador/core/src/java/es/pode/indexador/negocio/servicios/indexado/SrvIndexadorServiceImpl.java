@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -37,8 +32,21 @@ public class SrvIndexadorServiceImpl extends
 	
 //	private Logger logger = Logger.getLogger(this.getClass());
 	private Properties props = null;
+
+	//string asignado a los publicadores en el campo contribuciones de la tabla INDICE_BUSQUEDA
+	public static String ROL_PUBLICADOR="publisher";
+
+	//string asignado a los autores en el campo contribuciones de la tabla INDICE_BUSQUEDA
+	public static String ROL_AUTOR="author";
+	
 	public static String SPELL_CHECKER = "spell";
+	
+	//Delimitador de los datos de usuarios en el campo contribuciones de la tabla INDICE_BUSQUEDA
 	public static String SEPARADOR_CAMPOS_MULTIVALUADOS;
+
+	//Delimitador de los datos de usuarios en el campo contribuciones de la tabla INDICE_BUSQUEDA
+	public static String SEPARADOR_CAMPOS_MULTIVALUADOS_MARSHALL;
+	
 	public static String INDEXACION_CORRECTA ="Indexacion correcta.";
 	public static String INDEXACION_INCORRECTA ="Indexacion incorrecta.";
 	public static String REINDEXACION_CORRECTA = "Reindexación correcta.";
@@ -64,6 +72,7 @@ public class SrvIndexadorServiceImpl extends
 			props.load(this.getClass().getResourceAsStream("/indexador.properties"));
 //			campo_recurso=props.getProperty("campo_recurso");
 			SEPARADOR_CAMPOS_MULTIVALUADOS= props.getProperty("separadorCamposMultivaluados");
+			SEPARADOR_CAMPOS_MULTIVALUADOS_MARSHALL= props.getProperty("separadorCamposMultivaluadosMarshall");
 			threadOptimizar = new ThreadOptimizar();
 		} catch (IOException e) {
 			logger.error("ERROR: fichero no encontrado: indexador.properties", e);
@@ -541,18 +550,39 @@ public class SrvIndexadorServiceImpl extends
 	}
 
 	
+	/**
+	 * Devuelve los ODEs que tienen como autor o publicador a un usuario determinado
+	 */
 	@Override
 	protected String[] handleObtenerOdesConUsuarioEnContribucion(
 			String idUsuario) throws Exception {
 		
 		ArrayList<String> resultado = new ArrayList<String>(); 
 		
-		UsuarioEnContribucion criterio = new UsuarioEnContribucion(idUsuario);
-		List odes = this.getIndiceBusquedaDao().obtenODEsPorUsuarioEnContribucion(criterio);
+		//Seleccionamos aquellos ODEs en los que el usuario aparece en la contribuciones
+		UsuarioEnContribucion c1 = new UsuarioEnContribucion(idUsuario);
+		List odes = this.getIndiceBusquedaDao().obtenODEsPorUsuarioEnContribucion(c1);
 
-		for(int i=0; i<odes.size(); i++)
-			resultado.add(((IndiceBusquedaImpl) odes.get(i)).getIdentificador());
-		
+		for(int i=0; i<odes.size(); i++) {
+
+			String idOde=((IndiceBusquedaImpl) odes.get(i)).getIdentificador();
+			
+			//Solo nos vale si la contribucion es como autor o publicador 
+			IdentificadorCriteria c2 = new IdentificadorCriteria(idOde);
+			ArrayList indiceBusq = (ArrayList) this.getIndiceBusquedaDao().busquedaIndicePorIdentificador(c2);
+			IndiceBusqueda ind = (IndiceBusqueda) indiceBusq.get(0);
+			String campoContribucion = ind.getContribucion();			
+			String contribuciones[] = campoContribucion.split(SEPARADOR_CAMPOS_MULTIVALUADOS_MARSHALL);
+						
+			for(int c=0; c<contribuciones.length; c++) {
+				if(contribuciones[c].contains(ROL_PUBLICADOR) || contribuciones[c].contains(ROL_AUTOR)) {
+					if(contribuciones[c].contains(idUsuario)) {
+						resultado.add(idOde);
+						break;
+					}
+				}
+			}
+		}
 		return (String[])resultado.toArray(new String[0]);
 	}
 

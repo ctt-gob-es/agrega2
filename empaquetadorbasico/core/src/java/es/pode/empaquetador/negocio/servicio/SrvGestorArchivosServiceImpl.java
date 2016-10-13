@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 
 package es.pode.empaquetador.negocio.servicio;
@@ -21,6 +16,7 @@ import es.pode.empaquetador.negocio.utilidades.Utilidades;
 import es.pode.localizador.negocio.servicios.LocalizadorVO;
 import es.pode.soporte.utiles.ficheros.UtilesFicheros;
 import es.pode.soporte.utiles.imagenes.UtilesImagenes;
+import es.pode.soporte.utiles.string.UtilesString;
 
 
 
@@ -133,7 +129,7 @@ public class SrvGestorArchivosServiceImpl extends
 			path = localizador.getPath().concat("/").concat(carpetaPadre);
 		}
 
-		File ficheroFile = new File(path, eliminarAcentosYOtrasRarezas(fichero.getNombre()));
+		File ficheroFile = new File(path, UtilesString.filtroCaracteresSimples(fichero.getNombre()));
 		if(ficheroFile.isDirectory()) {
 			// Existe una carpeta con el mismo nombre: no se puede crear el archivo
 			String msg = "No se puede crear el archivo " + ficheroFile.getPath() + ". Existe un directorio con el mismo nombre";
@@ -858,7 +854,7 @@ public class SrvGestorArchivosServiceImpl extends
 		//Creamos nuevo FicheroVO		
 		FicheroVO ficheroNuevo = new FicheroVO();
 		ficheroNuevo.setDatos(new DataHandler(new FileDataSource(temporalDestino)));
-		ficheroNuevo.setNombre(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+		ficheroNuevo.setNombre(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 		ficheroNuevo.setRuta(temporalDestino.getPath());
 		
 		//TODO Esto hay que revisarlo
@@ -882,7 +878,7 @@ public class SrvGestorArchivosServiceImpl extends
 			logger.error("No se encontro el path ", e);
 			return "";
 		}
-		File vistaPrevia = new File(path+"/"+AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+		File vistaPrevia = new File(path+"/"+this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 		if(vistaPrevia.exists()) {
 			return vistaPrevia.getCanonicalPath();
 		}
@@ -895,7 +891,7 @@ public class SrvGestorArchivosServiceImpl extends
 		ArchivoVO[] ficheros = new ArchivoVO[0];
 		ArchivoVO fichero = new ArchivoVO();
 		fichero.setCarpetaPadre(null); //Esto equivale al raíz del ODE
-		fichero.setNombre(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.VISTA_PREVIA_AGREGA));
+		fichero.setNombre(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.VISTA_PREVIA_AGREGA));
 		
 		ficheros[0]=fichero;
 		handleEliminar(identificador, ficheros);
@@ -926,47 +922,5 @@ public class SrvGestorArchivosServiceImpl extends
 		}
 		
 		return existeBackup;
-	}
-
-
-	private String eliminarAcentosYOtrasRarezas(String s) {
-		
-		s=s.replaceAll("á", "a");
-		s=s.replaceAll("é", "e");
-		s=s.replaceAll("í", "i");
-		s=s.replaceAll("ó", "o");
-		s=s.replaceAll("ú", "u");
-		
-		s=s.replaceAll("à", "a");
-		s=s.replaceAll("è", "e");
-		s=s.replaceAll("ì", "i");
-		s=s.replaceAll("ò", "o");
-		s=s.replaceAll("ù", "u");
-
-		s=s.replaceAll("ä", "a");
-		s=s.replaceAll("ë", "e");
-		s=s.replaceAll("ï", "i");
-		s=s.replaceAll("ö", "o");
-		s=s.replaceAll("ü", "u");
-		
-		s=s.replaceAll("Á", "A");
-		s=s.replaceAll("É", "E");
-		s=s.replaceAll("Í", "I");
-		s=s.replaceAll("Ó", "O");
-		s=s.replaceAll("Ú", "U");
-		
-		s=s.replaceAll("À", "A");
-		s=s.replaceAll("È", "E");
-		s=s.replaceAll("Ì", "I");
-		s=s.replaceAll("Ò", "O");
-		s=s.replaceAll("Ù", "U");
-
-		s=s.replaceAll("Ä", "A");
-		s=s.replaceAll("Ë", "E");
-		s=s.replaceAll("Ï", "I");
-		s=s.replaceAll("Ö", "O");
-		s=s.replaceAll("Ü", "U");
-		
-		return s;
 	}
 }

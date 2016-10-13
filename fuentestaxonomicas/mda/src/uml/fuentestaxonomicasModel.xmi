@@ -3,7 +3,7 @@
 <!-- This xmi file is optimized for MagicDraw UML. Some references are not saved. -->
 <!-- Change MagicDraw UML environment options property General->.Save Rich XMI -->
 
-<XMI xmi.version='1.2' timestamp='Mon Apr 15 17:45:24 CEST 2013' xmlns:UML='omg.org/UML/1.4'>
+<XMI xmi.version='1.2' timestamp='Thu Aug 28 13:54:36 CEST 2014' xmlns:UML='omg.org/UML/1.4'>
 	<XMI.header>
 		<XMI.documentation>
 			<XMI.exporter>MagicDraw UML</XMI.exporter>
@@ -1722,6 +1722,7 @@
 															</UML:Classifier.feature>
 														</UML:Class>
 														<UML:Class xmi.id='_9_5_bed02ff_1234979072805_272225_144' name='ParamEliminarVO[]'/>
+														<UML:Dependency xmi.id='_9_5_f65036f_1409226874663_274033_135' client='_9_5_ea80349_1173875315068_447995_45' supplier='_9_5_f65036f_1409226830434_172784_65'/>
 													</UML:Namespace.ownedElement>
 												</UML:Package>
 												<UML:Package xmi.id='_9_5_ea80349_1173875315068_582098_55' name='dominio'/>
@@ -1967,6 +1968,532 @@
 										</UML:Package>
 									</UML:Namespace.ownedElement>
 								</UML:Package>
+								<UML:Package xmi.id='_9_5_f65036f_1409226830435_508801_77' name='configuracionPlataforma'>
+									<UML:Namespace.ownedElement>
+										<UML:Package xmi.id='_9_5_f65036f_1409226830433_366494_18' name='negocio'>
+											<UML:Namespace.ownedElement>
+												<UML:Package xmi.id='_9_5_f65036f_1409226830433_766967_19' name='servicios'>
+													<UML:Namespace.ownedElement>
+														<UML:Class xmi.id='_9_5_f65036f_1409226830433_907050_20' name='PropiedadVO[]'/>
+														<UML:Class xmi.id='_9_5_f65036f_1409226830434_172784_65' name='SrvPropiedadService'>
+															<UML:ModelElement.comment>
+																<UML:Comment xmi.id='_9_5_f65036f_1409226876238_784941_146'/>
+															</UML:ModelElement.comment>
+															<UML:ModelElement.stereotype>
+																<UML:Stereotype href='andromda-profile-service-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119337557859_21792_59'>
+																	<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																		<referentPath xmi.value='org.andromda.profile::service::Service'/>
+																	</XMI.extension>
+																</UML:Stereotype>
+															</UML:ModelElement.stereotype>
+															<UML:ModelElement.taggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409226830433_823703_21' name='@andromda.spring.service.imported'>
+																	<UML:TaggedValue.dataValue>true</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1141319421170_662235_0'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.spring.service.imported'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409226830433_697716_22' name='@andromda.service.imported.name'>
+																	<UML:TaggedValue.dataValue>SrvPropiedadServiceService</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337310203_315202_0'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.name'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+																<UML:TaggedValue xmi.id='_9_5_f65036f_1409226830433_419395_23' name='@andromda.service.imported.binding'>
+																	<UML:TaggedValue.dataValue>SrvPropiedadService</UML:TaggedValue.dataValue>
+																	<UML:TaggedValue.type>
+																		<UML:TagDefinition href='andromda-profile-service-3.1.7.p01.xml.zip|_9_5_12bc03bf_1142337373139_74400_1'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='org.andromda.profile::service::Service::@andromda.service.imported.binding'/>
+																			</XMI.extension>
+																		</UML:TagDefinition>
+																	</UML:TaggedValue.type>
+																</UML:TaggedValue>
+															</UML:ModelElement.taggedValue>
+															<UML:Classifier.feature>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830433_954984_26' name='getPropiedad' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_759796_147' name='Devuelve una propiedad. Primero intenta localizarla como local y&#10;                si falla la busca como global.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_893692_24' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_431844_148'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_263062_25' name='getPropiedadReturn' kind='return' type='_9_5_f65036f_1409226830434_663778_76'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830433_858881_29' name='getPropiedadesJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_792832_149' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local. La instancia jboss puede ser global, default, node1,&#10;                node2, node3, node4, node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_733693_27' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_140079_150'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_239788_28' name='getPropiedadesJbossReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830433_873235_33' name='getPropiedadesJbossPorCategoria' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_880478_151' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por categoria. La instancia jboss puede ser&#10;                global, default, node1, node2, node3, node4, node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_826015_30' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_154572_152'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_505480_31' name='categoria' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_718068_153'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830433_386320_32' name='getPropiedadesJbossPorCategoriaReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_653869_37' name='getPropiedadesJbossPorFichero' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_519653_154' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por el campo ficherosAfectados. La instancia&#10;                jboss puede ser global, default, node1, node2, node3, node4,&#10;                node5, o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_899927_34' name='nombreFichero' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_648866_155'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_279922_35' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_312243_156'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_256765_36' name='getPropiedadesJbossPorFicheroReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_502056_39' name='getPropiedadesLocales' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_725134_157' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local. La instancia JBoss local se ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_471072_38' name='getPropiedadesLocalesReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_800326_42' name='getPropiedadesLocalesPorCategoria' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_166988_158' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por categoria. La instancia JBoss local se&#10;                ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_301115_40' name='categoria' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_239_159'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_873147_41' name='getPropiedadesLocalesPorCategoriaReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_129285_45' name='getPropiedadesLocalesPorFichero' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_482403_160' name='Devuelve las propiedades pertenecientes a la instancia Jboss&#10;                local filtrandolas por el campo ficherosAfectados.  La instancia&#10;                JBoss local se ajustara automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_786378_43' name='nombreFichero' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_458376_161'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_387678_44' name='getPropiedadesLocalesPorFicheroReturn' kind='return' type='_9_5_f65036f_1409226830433_907050_20'/>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_207869_48' name='getValorPropiedad' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_362089_162' name='Devuelve el valor de una propiedad. Primero intenta localizarla&#10;                como local y si falla la busca como global.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_809076_46' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_124458_163'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_347598_47' name='getValorPropiedadReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_106244_52' name='getValorPropiedadJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_636812_164' name='Devuelve el valor de la variable perteneciente a una instancia&#10;                JBoss determinada; global, default, node1, node2, node3, node4,&#10;                node5 o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_645575_49' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_374720_165'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_975125_50' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_306917_166'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_498727_51' name='getValorPropiedadJbossReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_393152_55' name='getValorPropiedadLocal' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_684310_167' name='Devuelve el valor de la variable perteneciente a la instancia&#10;                JBoss local.  La instancia JBoss local se ajustara&#10;                automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_245770_53' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_468572_168'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_149870_54' name='getValorPropiedadLocalReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_822608_60' name='setValorPropiedadJboss' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_474964_169' name='Modifica el valor de la variable perteneciente a una instancia&#10;                JBoss determinada; global, default, node1, node2, node3, node4,&#10;                node5 o node6'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_151360_56' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_473017_170'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_132364_57' name='valor' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_165818_171'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_122626_58' name='instanciaJboss' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876238_400051_172'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_864128_59' name='setValorPropiedadJbossReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::boolean'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+																<UML:Operation xmi.id='_9_5_f65036f_1409226830434_904011_64' name='setValorPropiedadLocal' visibility='public'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876238_363166_173' name='Modifica el valor de la variable perteneciente a la instancia&#10;                JBoss local.  La instancia JBoss local se ajustara&#10;                automaticamente.'/>
+																	</UML:ModelElement.comment>
+																	<UML:BehavioralFeature.parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_249427_61' name='nombrePropiedad' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876239_292973_174'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_20594_62' name='valor' kind='in'>
+																			<UML:ModelElement.comment>
+																				<UML:Comment xmi.id='_9_5_f65036f_1409226876239_558657_175'/>
+																			</UML:ModelElement.comment>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::String'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																		<UML:Parameter xmi.id='_9_5_f65036f_1409226830434_298119_63' name='setValorPropiedadLocalReturn' kind='return'>
+																			<UML:Parameter.type>
+																				<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																					<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																						<referentPath xmi.value='datatype::boolean'/>
+																					</XMI.extension>
+																				</UML:Classifier>
+																			</UML:Parameter.type>
+																		</UML:Parameter>
+																	</UML:BehavioralFeature.parameter>
+																</UML:Operation>
+															</UML:Classifier.feature>
+														</UML:Class>
+														<UML:Class xmi.id='_9_5_f65036f_1409226830434_663778_76' name='PropiedadVO'>
+															<UML:ModelElement.comment>
+																<UML:Comment xmi.id='_9_5_f65036f_1409226876239_343049_176'/>
+															</UML:ModelElement.comment>
+															<UML:Classifier.feature>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_51980_66' name='nombre' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_26107_177'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_967684_67' name='valor' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_871159_178'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_48009_68' name='ejemplo' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_429104_179'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_537673_69' name='descripcion' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_529717_180'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_674915_70' name='categoria' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_167215_181'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_145086_71' name='tipologia' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_339405_182'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_599_72' name='modificable' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_718412_183'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::boolean'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_987707_73' name='instanciaJboss' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_636061_184'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_6300_74' name='requiereReinicioJboss' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_277977_185'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_736816_6'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::boolean'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+																<UML:Attribute xmi.id='_9_5_f65036f_1409226830434_619604_75' name='ficherosAfectados' visibility='public' targetScope='classifier'>
+																	<UML:ModelElement.comment>
+																		<UML:Comment xmi.id='_9_5_f65036f_1409226876239_589681_186'/>
+																	</UML:ModelElement.comment>
+																	<UML:StructuralFeature.type>
+																		<UML:Classifier href='andromda-profile-datatype-3.1.7.p01.xml.zip|_9_0_1fe00f9_1119336925531_364079_66'>
+																			<XMI.extension xmi.extender='MagicDraw UML 9.5' xmi.extenderID='MagicDraw UML 9.5'>
+																				<referentPath xmi.value='datatype::String'/>
+																			</XMI.extension>
+																		</UML:Classifier>
+																	</UML:StructuralFeature.type>
+																</UML:Attribute>
+															</UML:Classifier.feature>
+														</UML:Class>
+													</UML:Namespace.ownedElement>
+												</UML:Package>
+											</UML:Namespace.ownedElement>
+										</UML:Package>
+									</UML:Namespace.ownedElement>
+								</UML:Package>
 							</UML:Namespace.ownedElement>
 						</UML:Package>
 					</UML:Namespace.ownedElement>
@@ -1987,9 +2514,9 @@
 					<elementID xmi.idref='_9_5_ea80349_1173875315068_755430_4'/>
 					<zoomFactor xmi.value='0.75'/>
 					<diagramOpened xmi.value='true'/>
-					<diagramWindowBounds>0, 0, 945, 781</diagramWindowBounds>
+					<diagramWindowBounds>0, 0, 946, 874</diagramWindowBounds>
 					<diagramScrollPositionX xmi.value='0'/>
-					<diagramScrollPositionY xmi.value='180'/>
+					<diagramScrollPositionY xmi.value='108'/>
 					<maximized xmi.value='true'/>
 					<active xmi.value='true'/>
 					<mdOwnedViews>
@@ -2636,17 +3163,17 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1201162882713_131829_138'>
 									<visible xmi.value='false'/>
-									<geometry>310, 1231, 30, 15</geometry>
+									<geometry>309, 1230, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1201162882713_928601_140'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>310, 1231, 30, 15</geometry>
+									<geometry>309, 1230, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bed02ff_1201162882713_403433_142'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>309, 1256, 30, 15</geometry>
+									<geometry>309, 1260, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1201162882713_778066_145'>
 									<editable xmi.value='false'/>
@@ -2719,34 +3246,34 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 									<value xmi.value='true'/>
 								</mdElement>
 							</properties>
-							<geometry>740, 300, 560, 61</geometry>
+							<geometry>780, 530, 560, 61</geometry>
 						</mdElement>
 						<mdElement elementClass='DependencyView' xmi.id='_9_5_bed02ff_1232716052187_107580_322'>
 							<elementID xmi.idref='_9_5_bed02ff_1232716052187_328994_321'/>
 							<linkFirstEndID xmi.idref='_9_5_bed02ff_1232715880867_507188_304'/>
 							<linkSecondEndID xmi.idref='_9_5_ea80349_1173875320614_865523_70'/>
-							<geometry>888, 361; 620, 413; </geometry>
+							<geometry>971, 530; 620, 496; </geometry>
 							<linkNameID xmi.idref='_9_5_bed02ff_1232716052187_264878_323'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716052187_264878_323'>
 									<visible xmi.value='false'/>
-									<geometry>740, 371, 30, 15</geometry>
+									<geometry>796, 504, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716052187_256356_325'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>740, 371, 30, 15</geometry>
+									<geometry>796, 504, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bed02ff_1232716052187_142200_327'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>739, 400, 30, 15</geometry>
+									<geometry>785, 531, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716052187_346818_330'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>959, 677, 30, 15</geometry>
+									<geometry>950, 860, 30, 15</geometry>
 									<text>&lt;html&gt;
 &lt;body&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -2762,28 +3289,28 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 							<elementID xmi.idref='_9_5_bed02ff_1232716056343_294130_332'/>
 							<linkFirstEndID xmi.idref='_9_5_bed02ff_1232715880867_507188_304'/>
 							<linkSecondEndID xmi.idref='_9_5_ea80349_1194352642385_861957_65'/>
-							<geometry>972, 361; 598, 590; </geometry>
+							<geometry>780, 578; 686, 613; </geometry>
 							<linkNameID xmi.idref='_9_5_bed02ff_1232716056343_104911_334'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716056343_104911_334'>
 									<visible xmi.value='false'/>
-									<geometry>770, 460, 30, 15</geometry>
+									<geometry>718, 582, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716056343_66328_336'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>770, 460, 30, 15</geometry>
+									<geometry>718, 582, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bed02ff_1232716056343_758913_338'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>769, 489, 30, 15</geometry>
+									<geometry>723, 606, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716056343_112218_341'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>259, 9, 30, 15</geometry>
+									<geometry>432, 0, 30, 15</geometry>
 									<text>&lt;html&gt;
 &lt;body&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -2799,28 +3326,28 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 							<elementID xmi.idref='_9_5_bed02ff_1232716061687_786947_343'/>
 							<linkFirstEndID xmi.idref='_9_5_bed02ff_1232715880867_507188_304'/>
 							<linkSecondEndID xmi.idref='_9_5_bed02ff_1199956942145_991835_103'/>
-							<geometry>991, 361; 481, 900; </geometry>
+							<geometry>1007, 591; 558, 900; </geometry>
 							<linkNameID xmi.idref='_9_5_bed02ff_1232716061687_994081_345'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716061687_994081_345'>
 									<visible xmi.value='false'/>
-									<geometry>723, 615, 30, 15</geometry>
+									<geometry>769, 731, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716061687_61441_347'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>723, 615, 30, 15</geometry>
+									<geometry>769, 731, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bed02ff_1232716061687_714302_349'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>722, 642, 30, 15</geometry>
+									<geometry>767, 757, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1232716061687_164787_352'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>20, 80, 30, 15</geometry>
+									<geometry>216, 47, 30, 15</geometry>
 									<text>&lt;html&gt;
 &lt;body&gt;
 &lt;p&gt;&lt;/p&gt;
@@ -2853,23 +3380,23 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 							<elementID xmi.idref='_9_5_bed02ff_1233766542460_629115_256'/>
 							<linkFirstEndID xmi.idref='_9_5_bed02ff_1233766522835_284611_223'/>
 							<linkSecondEndID xmi.idref='_9_5_bed02ff_1199956942145_991835_103'/>
-							<geometry>580, 1300; 488, 1206; </geometry>
+							<geometry>580, 1300; 487, 1206; </geometry>
 							<linkNameID xmi.idref='_9_5_bed02ff_1233766542460_516515_258'/>
 							<nameVisible xmi.value='true'/>
 							<mdOwnedViews>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1233766542460_516515_258'>
 									<visible xmi.value='false'/>
-									<geometry>519, 1240, 30, 15</geometry>
+									<geometry>519, 1238, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1233766542460_205762_260'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>519, 1240, 30, 15</geometry>
+									<geometry>519, 1238, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_bed02ff_1233766542460_856182_262'>
 									<editable xmi.value='false'/>
 									<visible xmi.value='false'/>
-									<geometry>518, 1266, 30, 15</geometry>
+									<geometry>519, 1268, 30, 15</geometry>
 								</mdElement>
 								<mdElement elementClass='TextBoxView' xmi.id='_9_5_bed02ff_1233766542460_73214_265'>
 									<editable xmi.value='false'/>
@@ -2920,6 +3447,61 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 							</properties>
 							<geometry>110, 1360, 108, 81</geometry>
 						</mdElement>
+						<mdElement elementClass='ClassView' xmi.id='_9_5_f65036f_1409226862757_236809_93'>
+							<elementID xmi.idref='_9_5_f65036f_1409226830434_172784_65'/>
+							<properties>
+								<mdElement elementClass='BooleanProperty'>
+									<propertyID>SUPPRESS_CLASS_OPERATIONS</propertyID>
+									<propertyGroup>OPERATIONS</propertyGroup>
+									<propertyDescriptionID>SUPPRESS_CLASS_OPERATIONS_DESCRIPTION</propertyDescriptionID>
+									<value xmi.value='true'/>
+								</mdElement>
+								<mdElement elementClass='BooleanProperty'>
+									<propertyID>SUPPRESS_CLASS_ATTRIBUTES</propertyID>
+									<propertyGroup>ATTRIBUTES</propertyGroup>
+									<propertyDescriptionID>SUPPRESS_CLASS_ATTRIBUTES_DESCRIPTION</propertyDescriptionID>
+									<value xmi.value='true'/>
+								</mdElement>
+							</properties>
+							<geometry>730, 340, 215, 61</geometry>
+						</mdElement>
+						<mdElement elementClass='DependencyView' xmi.id='_9_5_f65036f_1409226874663_656265_136'>
+							<elementID xmi.idref='_9_5_f65036f_1409226874663_274033_135'/>
+							<linkFirstEndID xmi.idref='_9_5_f65036f_1409226862757_236809_93'/>
+							<linkSecondEndID xmi.idref='_9_5_ea80349_1173875320614_865523_70'/>
+							<geometry>730, 391; 620, 413; </geometry>
+							<linkNameID xmi.idref='_9_5_f65036f_1409226874663_33903_137'/>
+							<nameVisible xmi.value='true'/>
+							<mdOwnedViews>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409226874663_33903_137'>
+									<visible xmi.value='false'/>
+									<geometry>660, 387, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409226874663_737614_139'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>658, 372, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxWithIconView' xmi.id='_9_5_f65036f_1409226874663_365099_141'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>664, 416, 30, 15</geometry>
+								</mdElement>
+								<mdElement elementClass='TextBoxView' xmi.id='_9_5_f65036f_1409226874663_833776_144'>
+									<editable xmi.value='false'/>
+									<visible xmi.value='false'/>
+									<geometry>463, 0, 30, 15</geometry>
+									<text>&lt;html&gt;
+&lt;body&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+								</mdElement>
+							</mdOwnedViews>
+							<linkConstraintID xmi.idref='_9_5_f65036f_1409226874663_737614_139'/>
+							<linkStereotypeID xmi.idref='_9_5_f65036f_1409226874663_365099_141'/>
+							<linkTaggedValuesID xmi.idref='_9_5_f65036f_1409226874663_833776_144'/>
+						</mdElement>
 					</mdOwnedViews>
 				</mdElement>
 			</mdElement>
@@ -2930,7 +3512,7 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 				<default xmi.value='false'/>
 				<mdElement elementClass='PropertyManager'>
 					<name>PROJECT_GENERAL_PROPERTIES</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_934655_18</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1409226876242_276310_187</propertyManagerID>
 					<mdElement elementClass='ModelElementProperty'>
 						<propertyID>DEFAULT_PROFILE_PACKAGE</propertyID>
 						<displayableTypes xmi.value='Subsystem^ModelPackage^Model'/>
@@ -3047,7 +3629,7 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 				</mdElement>
 				<mdElement elementClass='PropertyManager'>
 					<name>PROJECT_INVISIBLE_PROPERTIES</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_40088_19</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1409226876242_979426_188</propertyManagerID>
 					<mdElement elementClass='NumberProperty'>
 						<propertyID>TOOL_TIP_STYLE</propertyID>
 						<propertyDescriptionID>TOOL_TIP_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -3097,7 +3679,7 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<mdElement elementClass='StringProperty'>
 						<propertyID>BROWSER_LAYOUT</propertyID>
 						<propertyDescriptionID>BROWSER_LAYOUT_DESCRIPTION</propertyDescriptionID>
-						<value>0 13 0 0 5 58 ff ff ff 76 0 0 5 6 0 0 3 b3 0 0 0 0 0 0 0 9 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 0 0 4 64 0 0 0 2 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 4 64 0 0 0 0 0 0 0 3c 0 0 0 3c 0 0 0 c8 0 0 0 c8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 ff d 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 ff d 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 d3 9f 0 0 0 5 0 0 d0 4a 0 0 15 6e 0 0 b1 6 0 0 ff d 0 0 fd d9 0 0 0 2 0 0 54 d4 0 0 d3 9f 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 b1 6 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 b1 6 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 d3 9f 0 0 0 5 0 0 d0 4a 0 0 15 6e 0 0 b1 6 0 0 ff d 0 0 fd d9 0 0 0 2 0 0 54 d4 0 0 d3 9f 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 38 e 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 38 e 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 ee a8 0 0 0 3 0 0 9e d7 0 0 b3 41 0 0 38 e 0 0 0 2 0 0 54 d4 0 0 ee a8 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 b3 41 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 b3 41 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 ee a8 0 0 0 3 0 0 9e d7 0 0 b3 41 0 0 38 e 0 0 0 2 0 0 54 d4 0 0 ee a8 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 9e d7 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 9e d7 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 ee a8 0 0 0 3 0 0 9e d7 0 0 b3 41 0 0 38 e 0 0 0 2 0 0 54 d4 0 0 ee a8 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 fd d9 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 fd d9 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 d3 9f 0 0 0 5 0 0 d0 4a 0 0 15 6e 0 0 b1 6 0 0 ff d 0 0 fd d9 0 0 0 2 0 0 54 d4 0 0 d3 9f 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 d0 4a 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 d0 4a 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 d3 9f 0 0 0 5 0 0 d0 4a 0 0 15 6e 0 0 b1 6 0 0 ff d 0 0 fd d9 0 0 0 2 0 0 54 d4 0 0 d3 9f 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 15 6e 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 77 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 15 6e 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f6 0 0 3 24 0 0 0 8 0 0 0 0 0 0 d3 9f 0 0 0 5 0 0 d0 4a 0 0 15 6e 0 0 b1 6 0 0 ff d 0 0 fd d9 0 0 0 2 0 0 54 d4 0 0 d3 9f 0 0 0 0 0 0 0 2 0 0 d3 9f 0 0 ee a8 0 0 cf 59 0 0 54 d4 0 0 0 1 0 0 0 2 0 0 54 d4 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 63 0 0 0 0 0 0 ce df 0 0 0 1 0 0 4 63 0 0 0 1 0 0 cf 59 0 0 0 2 0 0 4 63 0 0 0 0 0 0 54 d4 0 0 0 2 0 0 4 64 0 0 d3 9f 0 0 0 5 0 0 4 65 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 1 41 0 0 1 18 0 0 0 0 0 0 4 64 0 0 ee a8 0 0 0 3 0 0 4 65 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 4 65 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 4 65 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 1 41 0 0 1 18 0 0 0 0 0 0 1 41 0 0 2 34 0 0 4 66 0 0 0 1 0 0 0 18 0 0 0 0 0 0 1 46 0 0 2 34 0 0 1 46 0 0 2 34 0 0 0 3 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 </value>
+						<value>0 13 0 0 5 54 ff ff ff 7f 0 0 5 7 0 0 4 10 0 0 0 0 0 0 0 9 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 0 0 a9 1a 0 0 0 2 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 a9 1a 0 0 0 0 0 0 0 3c 0 0 0 3c 0 0 0 c8 0 0 0 c8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 59 37 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 59 37 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 4a 0 0 0 0 5 0 0 4b 39 0 0 5e 2f 0 0 34 3f 0 0 59 37 0 0 4 af 0 0 0 2 0 0 2c 33 0 0 4a 0 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 34 3f 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 34 3f 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 4a 0 0 0 0 5 0 0 4b 39 0 0 5e 2f 0 0 34 3f 0 0 59 37 0 0 4 af 0 0 0 2 0 0 2c 33 0 0 4a 0 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 a d8 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 a d8 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 54 78 0 0 0 3 0 0 82 3a 0 0 db c9 0 0 a d8 0 0 0 2 0 0 2c 33 0 0 54 78 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 db c9 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 db c9 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 54 78 0 0 0 3 0 0 82 3a 0 0 db c9 0 0 a d8 0 0 0 2 0 0 2c 33 0 0 54 78 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 82 3a 0 0 0 8 0 0 0 1 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 82 3a 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 54 78 0 0 0 3 0 0 82 3a 0 0 db c9 0 0 a d8 0 0 0 2 0 0 2c 33 0 0 54 78 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 af 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 4 af 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 4a 0 0 0 0 5 0 0 4b 39 0 0 5e 2f 0 0 34 3f 0 0 59 37 0 0 4 af 0 0 0 2 0 0 2c 33 0 0 4a 0 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 4b 39 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 4b 39 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 4a 0 0 0 0 5 0 0 4b 39 0 0 5e 2f 0 0 34 3f 0 0 59 37 0 0 4 af 0 0 0 2 0 0 2c 33 0 0 4a 0 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 5e 2f 0 0 0 8 0 0 0 0 0 0 0 1 0 0 0 f 0 0 0 4 0 0 0 4 0 0 0 8 0 0 1 41 0 0 1 a5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 4 0 0 5e 2f 0 0 0 2 0 0 0 0 0 0 0 0 0 0 4 f7 0 0 3 3f 0 0 0 8 0 0 0 0 0 0 4a 0 0 0 0 5 0 0 4b 39 0 0 5e 2f 0 0 34 3f 0 0 59 37 0 0 4 af 0 0 0 2 0 0 2c 33 0 0 4a 0 0 0 0 0 0 0 0 2 0 0 4a 0 0 0 54 78 0 0 9e ca 0 0 2c 33 0 0 0 1 0 0 0 2 0 0 2c 33 ff ff ff ff 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 63 0 0 0 0 0 0 f3 4b 0 0 0 1 0 0 4 63 0 0 0 1 0 0 9e ca 0 0 0 2 0 0 4 63 0 0 0 0 0 0 2c 33 0 0 0 2 0 0 4 64 0 0 4a 0 0 0 0 5 0 0 4 65 0 0 0 10 0 43 0 4f 0 4e 0 54 0 41 0 49 0 4e 0 4d 0 45 0 4e 0 54 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 10 0 49 0 4e 0 48 0 45 0 52 0 49 0 54 0 41 0 4e 0 43 0 45 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 d 0 44 0 49 0 41 0 47 0 52 0 41 0 4d 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 f 0 45 0 58 0 54 0 45 0 4e 0 53 0 49 0 4f 0 4e 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 4 65 0 0 0 13 0 53 0 45 0 41 0 52 0 43 0 48 0 5f 0 52 0 45 0 53 0 55 0 4c 0 54 0 53 0 5f 0 54 0 52 0 45 0 45 0 0 1 41 0 0 1 36 0 0 0 0 0 0 4 64 0 0 54 78 0 0 0 3 0 0 4 65 0 0 0 c 0 5a 0 4f 0 4f 0 4d 0 5f 0 43 0 4f 0 4e 0 54 0 52 0 4f 0 4c 0 0 4 65 0 0 0 d 0 44 0 4f 0 43 0 55 0 4d 0 45 0 4e 0 54 0 41 0 54 0 49 0 4f 0 4e 0 0 4 65 0 0 0 a 0 50 0 52 0 4f 0 50 0 45 0 52 0 54 0 49 0 45 0 53 0 0 1 41 0 0 1 36 0 0 0 0 0 0 1 41 0 0 2 70 0 0 4 66 0 0 0 1 0 0 0 2 0 0 0 0 0 0 1 46 0 0 2 70 0 0 1 46 0 0 2 70 0 0 0 3 0 0 0 0 0 0 0 7 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 5 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 f 0 4d 0 45 0 53 0 53 0 41 0 47 0 45 0 53 0 5f 0 57 0 49 0 4e 0 44 0 4f 0 57 </value>
 						<multiline xmi.value='false'/>
 					</mdElement>
 					<mdElement elementClass='StringProperty'>
@@ -3146,7 +3728,7 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<mdElement elementClass='StringProperty'>
 						<propertyID>INFO_PROPERTY</propertyID>
 						<propertyDescriptionID>INFO_PROPERTY_DESCRIPTION</propertyDescriptionID>
-						<value>43 66 27 5d 14 2e 41 1d 4f 48 6c ac 9d 98 1d c9 aa 1e 74 8d d3 fd 95 6 23 c4 b 6a d4 b 6f 7d 2c ce b9 38 3e d8 d7 7a ae c0 ca b6 a8 90 d3 da 21 cd 83 6e a8 2c a3 5a df a5 ed f 99 7d 86 3f 84 a7 22 7 1e bb d3 a5 </value>
+						<value>60 2f 5e 67 9 60 4c d 52 60 54 27 43 5e fa fa f2 77 8a 97 8 61 36 c6 77 d2 a0 50 d8 48 43 9c 6a 3 98 3b 85 66 20 fb 5f ff d6 b6 fa 3e 99 59 91 5b 1d 6b df c7 b7 31 27 d1 97 8c 1 55 6c ec 37 57 22 38 1 ac 4f 4d </value>
 						<multiline xmi.value='false'/>
 					</mdElement>
 					<mdElement elementClass='ChoiceProperty'>
@@ -3175,8 +3757,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Abstraction</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_439051_20</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_884713_189</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3227,8 +3809,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Action State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_568437_22</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_222286_191</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -3240,8 +3822,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Actor</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_160308_24</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_569763_193</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3392,8 +3974,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Artifact</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_545453_25</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_217256_194</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3544,8 +4126,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Association</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_134260_26</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_716611_195</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3601,8 +4183,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Binding Dependency</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_495526_27</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_406017_196</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3653,8 +4235,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Call State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_144106_28</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_433481_197</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -3666,8 +4248,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Class</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_997709_29</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_35976_198</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3818,8 +4400,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Classifier Role</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_229549_30</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_618540_199</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3841,8 +4423,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Classifier Role(in Sequence Diagram)</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_455116_31</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_849071_200</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3869,16 +4451,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Collaboration</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_944380_32</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_637100_201</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Combined Fragment</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_135406_33</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_343246_202</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -3890,8 +4472,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Component</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_586283_34</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_810900_203</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_INTERFACES</propertyID>
 						<propertyDescriptionID>SUPPRESS_INTERFACES_DESCRIPTION</propertyDescriptionID>
@@ -3913,8 +4495,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Component Instance</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_81732_35</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_263740_204</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -3931,8 +4513,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Concurrent State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_85311_36</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_546378_205</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -3949,8 +4531,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Constraint</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_183832_37</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_487988_206</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_NAME</propertyID>
 						<propertyDescriptionID>SHOW_NAME_DESCRIPTION</propertyDescriptionID>
@@ -3981,8 +4563,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Containment</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_223120_38</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_678283_207</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -3996,8 +4578,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>ContentShape</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_102290_39</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_742511_208</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -4014,8 +4596,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>DataType</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_693398_40</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_782098_209</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4103,8 +4685,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Decision</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_785023_41</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_676524_210</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4121,8 +4703,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Dependency</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_6034_42</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_340302_211</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4180,8 +4762,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_923530_43</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_954932_44</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_397279_212</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_175858_213</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>DIAGRAM_BACKGROUND_COLOR</propertyID>
 						<propertyDescriptionID>DIAGRAM_BACKGROUND_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4231,16 +4813,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Diagram Shape</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_352891_45</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_596656_214</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>DiagramInfo</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_773748_46</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_761902_215</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4267,8 +4849,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Enumeration</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_104819_47</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_770427_216</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4457,8 +5039,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Extend</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_797826_48</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_228238_217</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4516,8 +5098,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Final State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_343925_49</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_857478_218</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4534,8 +5116,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Generalization</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_427415_50</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_789451_219</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4587,8 +5169,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Implementation Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_535816_51</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_80555_52</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_465640_220</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_171287_221</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_CLASS_OPERATIONS</propertyID>
 						<propertyGroup>OPERATIONS</propertyGroup>
@@ -4602,8 +5184,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Implementation Diagram</name>
-					<propertyManagerID>_9_0_be00301_1102495986564_458307_303</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_959832_53</parentPropertyManager>
+					<propertyManagerID>_9_0_be00301_1102495862296_461313_216</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_966264_222</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -4618,8 +5200,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Implementation Diagram</name>
-					<propertyManagerID>_9_0_be00301_1102495862296_461313_216</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_158393_54</parentPropertyManager>
+					<propertyManagerID>_9_0_be00301_1102495986564_458307_303</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876245_494373_223</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -4633,8 +5215,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Include</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_652312_55</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_347252_224</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4692,8 +5274,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Instance</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_485977_56</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_148438_225</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -4715,16 +5297,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Interaction Use</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_377612_57</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_232719_226</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Interface</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_80555_52</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_171287_221</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4880,8 +5462,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Link</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_293649_58</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_945299_227</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4932,16 +5514,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Link Attribute</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_618243_59</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_778955_228</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Message</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_264122_60</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_342312_229</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4963,8 +5545,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Message(in Sequence Diagram)</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_462916_61</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_816087_230</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -4986,8 +5568,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Model</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_75218_62</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_675271_231</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5018,16 +5600,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>N-ary Association</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_777852_63</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_151088_232</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Node</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_945551_64</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_104539_233</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5051,8 +5633,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Node Instance</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_64122_65</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_112027_234</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5086,16 +5668,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_58326_66</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_839229_67</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_662252_235</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876245_380207_236</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note Anchor</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_155696_68</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_271555_237</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -5109,29 +5691,29 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with Comment)</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_407419_69</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_839229_67</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_813909_238</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876245_380207_236</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with Constraint)</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_712190_70</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_839229_67</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_599224_239</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876245_380207_236</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Note(with TaggedValue)</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_188908_71</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_839229_67</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_155538_240</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876245_380207_236</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='PropertyManager'>
 					<name>Notes</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_839229_67</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_380207_236</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5158,8 +5740,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Object</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_700608_72</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_886531_241</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -5181,8 +5763,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>ObjectFlow State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_817315_73</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_277072_242</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -5199,8 +5781,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Package</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_238167_74</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_594405_243</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5231,8 +5813,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Paths</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_311979_21</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_954932_44</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_378568_190</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_175858_213</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5251,8 +5833,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Permission</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_456934_75</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_453929_244</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5303,8 +5885,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Pin</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_165862_76</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_489919_245</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>AUTOSIZE</propertyID>
 						<propertyDescriptionID>AUTOSIZE_DESCRIPTION</propertyDescriptionID>
@@ -5326,8 +5908,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Port</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_972286_77</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_264828_246</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_NAME</propertyID>
 						<propertyDescriptionID>SHOW_NAME_DESCRIPTION</propertyDescriptionID>
@@ -5344,8 +5926,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Pseudo State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_581860_78</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_212626_247</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5362,8 +5944,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Realization</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_158393_54</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876244_966264_222</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5414,8 +5996,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Role</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_952803_79</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_248270_248</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5442,8 +6024,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Separator</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_372870_80</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_989761_249</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5484,8 +6066,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Shapes</name>
-					<propertyManagerID>_9_5_f65036f_1366040724176_868157_23</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_954932_44</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876243_787200_192</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_175858_213</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>AUTOSIZE</propertyID>
 						<propertyDescriptionID>AUTOSIZE_DESCRIPTION</propertyDescriptionID>
@@ -5551,8 +6133,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Signal Classifier</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_171943_81</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_761427_250</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5703,8 +6285,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>SignalRS</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_108918_82</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_945665_251</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -5728,8 +6310,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_874876_83</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_393898_252</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -5746,8 +6328,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stereotype</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_170668_84</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_877784_253</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_TAGS</propertyID>
 						<propertyDescriptionID>SUPPRESS_TAGS_DESCRIPTION</propertyDescriptionID>
@@ -5769,16 +6351,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='true'/>
 					<name>Stereotypes</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_639896_85</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_954932_44</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_299867_254</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_175858_213</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stimulus</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_438722_86</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_782358_255</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5795,16 +6377,16 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Stub State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_259384_87</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_393347_256</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 				</mdElement>
 				<mdElement elementClass='ExtendableManager'>
 					<removable xmi.value='false'/>
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subactivity State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_206277_88</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_218433_257</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -5816,8 +6398,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Submachine State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_715640_89</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_171427_258</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SUPPRESS_STATE_ACTIONS</propertyID>
 						<propertyDescriptionID>SUPPRESS_STATE_ACTIONS_DESCRIPTION</propertyDescriptionID>
@@ -5834,8 +6416,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subsystem</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_485776_90</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_538527_259</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5952,8 +6534,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Subsystem Instance</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_479825_91</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_111851_260</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>
@@ -5970,8 +6552,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Swimlane</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_513016_92</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_405377_261</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -5990,7 +6572,7 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Symbol</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_954932_44</propertyManagerID>
+					<propertyManagerID>_9_5_f65036f_1409226876244_175858_213</propertyManagerID>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6024,8 +6606,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Synch State</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_899086_93</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_958948_262</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6042,8 +6624,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Synchronization Bar</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_845560_94</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_2327_263</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>SYNCH_BAR_ORIENTATION</propertyID>
 						<propertyDescriptionID>SYNCH_BAR_ORIENTATION_DESCRIPTION</propertyDescriptionID>
@@ -6057,8 +6639,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>TextBox</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_733562_95</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_544346_264</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>WRAP_WORDS</propertyID>
 						<propertyDescriptionID>WRAP_WORDS_DESCRIPTION</propertyDescriptionID>
@@ -6085,8 +6667,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Transition</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_983692_96</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_153668_265</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6137,8 +6719,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Transition Connector</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_103024_97</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_67377_266</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FIXED_CONNECTION_POINTS</propertyID>
 						<propertyDescriptionID>USE_FIXED_CONNECTION_POINTS_DESCRIPTION</propertyDescriptionID>
@@ -6155,8 +6737,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Tree</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_279759_98</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_752312_267</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>USE_FILL_COLOR</propertyID>
 						<propertyDescriptionID>USE_FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6168,8 +6750,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Usage</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_959832_53</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_311979_21</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876245_494373_223</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_378568_190</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>STEREOTYPE_COLOR</propertyID>
 						<propertyDescriptionID>STEREOTYPE_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6220,8 +6802,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_359648_99</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_419270_268</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='ColorProperty'>
 						<propertyID>FILL_COLOR</propertyID>
 						<propertyDescriptionID>FILL_COLOR_DESCRIPTION</propertyDescriptionID>
@@ -6254,8 +6836,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_54401_100</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_158393_54</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876246_575592_269</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_966264_222</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -6270,8 +6852,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_141601_101</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_134260_26</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876247_312735_270</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876244_789451_219</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -6286,8 +6868,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='false'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Diagram</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_205187_102</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724192_427415_50</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876247_713587_271</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_716611_195</parentPropertyManager>
 					<mdElement elementClass='ChoiceProperty'>
 						<propertyID>LINK_LINE_STYLE</propertyID>
 						<propertyDescriptionID>LINK_LINE_STYLE_DESCRIPTION</propertyDescriptionID>
@@ -6301,8 +6883,8 @@ De este modo, al llamar al metodo consultaNodoTaxonomia, si ya se tiene el arbol
 					<extendableByDiagram xmi.value='true'/>
 					<extendableByStereotype xmi.value='false'/>
 					<name>Use Case Instance</name>
-					<propertyManagerID>_9_5_f65036f_1366040724192_20371_103</propertyManagerID>
-					<parentPropertyManager>_9_5_f65036f_1366040724176_868157_23</parentPropertyManager>
+					<propertyManagerID>_9_5_f65036f_1409226876247_765306_272</propertyManagerID>
+					<parentPropertyManager>_9_5_f65036f_1409226876243_787200_192</parentPropertyManager>
 					<mdElement elementClass='BooleanProperty'>
 						<propertyID>SHOW_OBJECT_CLASS</propertyID>
 						<propertyDescriptionID>SHOW_OBJECT_CLASS_DESCRIPTION</propertyDescriptionID>

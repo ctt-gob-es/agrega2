@@ -15,6 +15,21 @@
         <xsd:schema elementFormDefault="qualified" 
                     targetNamespace="http://servicios.buscar.negocio.buscar.pode.es" 
                     xmlns="http://www.w3.org/2001/XMLSchema"> 
+            <xsd:element name="borrarHitCache">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                 <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="borrarHitCacheResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="borrarHitCacheReturn" type="xsd:boolean"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="buscarAvanzado">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -122,6 +137,323 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="generadorIdentificadorAvanzadoReturn" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                 <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasReturn" type="impl:ResultadosEstadisticasVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasActividadPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasActividadPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasActividadPorFechasReturn" type="impl:ResultadosEstadisticasActividadVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasCoberturaCurricularPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasCoberturaCurricularPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasCoberturaCurricularPorFechasReturn" type="impl:ResultadosEstadisticasCoberturaCurricularVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasLicenciasPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasLicenciasPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasLicenciasPorFechasReturn" type="impl:ResultadosEstadisticasLicenciasVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasOdesPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasOdesPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasOdesPorFechasReturn" type="impl:ResultadosEstadisticasOdesVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasPorFechasReturn" type="impl:ResultadosEstadisticasVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasTerminosPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaDesde" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHasta" type="xsd:dateTime" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerEstadisticasTerminosPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerEstadisticasTerminosPorFechasReturn" type="impl:ResultadosEstadisticasTerminosVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerFicheroExcelEstadisticas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                 <xsd:complexType/>
+            </xsd:element>
+            <xsd:element name="obtenerFicheroExcelEstadisticasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerFicheroExcelEstadisticasReturn" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenerFicheroExcelEstadisticasPorFechas">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="fechaHastaTerminos" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHastaOdes" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHastaLicencias" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHastaCoberturaCurricular" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaHastaActividad" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaDesdeTerminos" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaDesdeOdes" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaDesdeLicencias" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaDesdeCoberturaCurricular" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaDesdeActividad" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="bloqueEstadistica" type="xsd:int" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenerFicheroExcelEstadisticasPorFechasResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenerFicheroExcelEstadisticasPorFechasReturn" type="xsd:string"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -879,6 +1211,13 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="licencias" nillable="true" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ParametrosBusquedaSQIVO">
@@ -1081,6 +1420,2370 @@
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:element name="tesauros" nillable="true" type="impl:ArrayOfResultadosTaxonVO">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasActividadVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="busquedasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="descargasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="busquedasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="fichasAccedidasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="fichasAccedidasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="odesPrevisualizadosLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="odesPrevisualizadosTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="descargas" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBusquedas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBusquedasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDescargas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDescargasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFichasAccedidas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFichasAccedidasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOdesPrevisualizados" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOdesPrevisualizadosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasCoberturaCurricularVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="educacionInfantilLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionInfantilTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionPrimariaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="eduSecundariaObligatoriaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bachilleratoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="formacionProfesionalLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionPrimariaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="eduSecundariaObligatoriaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bachilleratoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="formacionProfesionalTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensArtisticasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensArtisticasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensOficialIdiomasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensOficialIdiomasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBachillerato" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBachilleratoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionInfantil" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionInfantilValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionPrimaria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionPrimariaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEduSecundariaObligatoria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEduSecundariaObligatoriaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsArtisticas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsArtisticasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsOficialIdiomas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsOficialIdiomasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFormacionProfesional" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFormacionProfesionalValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasLicenciasVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="licenciaLibreGPLLoclaes" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreGPLTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreDualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreDualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="otrasLicenciasLibresLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="otrasLicenciasLibresTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noCorrespondeLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noCorrespondeTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="GFDLLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="GFDLTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreEUPLLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreEUPLTotlaes" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesGFDL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreDual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreEUPL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreGPL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoCorresponde" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesGFDLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreDualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreEUPLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreGPLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoCorrespondeValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOtrasLicenciasLibres" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOtrasLicenciasLibresValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaNoComercialLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaNoComercialTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialCompartirIgualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialCompartirIgualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoCompartirIgualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoCompartirIgualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dominioPublicoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dominioPublicoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaIntelectualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaIntelectualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietaria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDominioPublico" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaIntelectual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimiento" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivada" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaNoComercial" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercial" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialCompartirIgual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoCompartirIgual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDominioPublicoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaIntelectualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaNoComercialValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialCompartirIgualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoCompartirIgualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasOdesVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="numLocalObjetos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalObjetos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalCursos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalCursos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalSecuencias" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalSecuencias" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalObjetosAprendizaje" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalObjetosAprendizaje" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalMediosIntegrados" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalMediosIntegrados" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCursos" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjetos" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesSecuencias" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjAprendizaje" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMediosIntegrados" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCursosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMediosIntegradosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjAprendizajeValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjetosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesSecuenciasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasTerminosVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="terminosMasBuscadosLocales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosTotales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosNumTotales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosNumLocales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalPrimero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalSegundo" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalTercero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalCuarto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalQuinto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalCuartoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalPrimeroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalQuintoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalSegundoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalTerceroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadosEstadisticasVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="numLocalObjetos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalObjetos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalCursos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalCursos" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalSecuencias" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalSecuencias" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalObjetosAprendizaje" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalObjetosAprendizaje" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numLocalMediosIntegrados" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numTotalMediosIntegrados" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCursos" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjetos" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesSecuencias" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjAprendizaje" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMediosIntegrados" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCursosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMediosIntegradosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjAprendizajeValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObjetosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesSecuenciasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="busquedasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="descargasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="busquedasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="fichasAccedidasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="fichasAccedidasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="odesPrevisualizadosLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="odesPrevisualizadosTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="descargas" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionInfantilLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionInfantilTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionPrimariaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="eduSecundariaObligatoriaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bachilleratoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="formacionProfesionalLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="educacionPrimariaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="eduSecundariaObligatoriaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="bachilleratoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="formacionProfesionalTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensArtisticasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensArtisticasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensOficialIdiomasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="ensOficialIdiomasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="obrasDerivadasSinRestriccionesLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreGPLLoclaes" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreGPLTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreDualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreDualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="otrasLicenciasLibresLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="otrasLicenciasLibresTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noCorrespondeLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noCorrespondeTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="obrasDerivadasSinRestriccionesTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="obrasDerivadasSinUsoComercialLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="obrasDerivadasSinUsoComercialTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noPermiteObrasDerivadasLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noPermiteObrasDerivadasTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="GFDLLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="GFDLTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreEUPLLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaLibreEUPLTotlaes" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosLocales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosMesLocales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosAnoLocales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosSemanaTotales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosMesTotales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosTotales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosAnoTotales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosNumTotales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosSemanaNumTotales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosSemanaLocales" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosMesNumTotales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosMesNumLocales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosNumLocales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosAnoNumTotales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosAnoNumLocales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="terminosMasBuscadosSemanaNumLocales" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBachillerato" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBachilleratoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBusquedas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesBusquedasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDescargas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDescargasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionInfantil" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionInfantilValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionPrimaria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEducacionPrimariaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEduSecundariaObligatoria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEduSecundariaObligatoriaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsArtisticas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsArtisticasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsOficialIdiomas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesEnsOficialIdiomasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFichasAccedidas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFichasAccedidasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFormacionProfesional" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesFormacionProfesionalValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesGFDL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreDual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreEUPL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreGPL" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoCorresponde" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoPermiteObrasDerivadas" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesGFDLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreDualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreEUPLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaLibreGPLValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoCorrespondeValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesNoPermiteObrasDerivadasValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObrasDerivadasSinRestricciones" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObrasDerivadasSinUsoComercial" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOdesPrevisualizados" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOtrasLicenciasLibres" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObrasDerivadasSinRestriccionesValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesObrasDerivadasSinUsoComercialValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOdesPrevisualizadosValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesOtrasLicenciasLibresValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalPrimero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalSegundo" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalTercero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalCuarto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalQuinto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalCuartoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalPrimeroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalQuintoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalSegundoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoTotalTerceroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioTercero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioSegundoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioTerceroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioSegundo" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioQuintoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioQuinto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioPrimeroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioPrimero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioCuartoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoAnioCuarto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaTerceroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaTercero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaSegundoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaSegundo" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaQuintoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaQuinto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaPrimeroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaPrimero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaCuartoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoSemanaCuarto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesTerceroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesTercero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesSegundoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesSegundo" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesQuintoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesQuinto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesPrimeroValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesPrimero" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesCuartoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesMasBuscadoMesCuarto" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="LicenciaPropietariaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietaria" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDominioPublico" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaIntelectual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimiento" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivada" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaNoComercial" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercial" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialCompartirIgual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoCompartirIgual" nillable="false" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesDominioPublicoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesLicenciaPropietariaIntelectualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoSinObraDerivadaNoComercialValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoNoComercialCompartirIgualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="comunidadesCCRReconocimientoCompartirIgualValores" nillable="false" type="impl:ArrayOfxsd_int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dominioPublicoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaIntelectualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaNoComercialLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialCompartirIgualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoCompartirIgualLocales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="dominioPublicoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="licenciaPropietariaIntelectualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoSinObraDerivadaNoComercialTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoNoComercialCompartirIgualTotales" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="CCRReconocimientoCompartirIgualTotales" nillable="false" type="xsd:int">
                         <xsd:annotation>     
                             <xsd:documentation> 
                                 
@@ -1323,11 +4026,23 @@
                             </xsd:documentation>
                         </xsd:annotation>
                     </xsd:element>
+                    <xsd:element name="numValoraciones" nillable="false" type="xsd:int">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                Valor del ranking dentro de la busqueda realizada.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfValoresBusquedaVO">
                 <xsd:sequence>
                     <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="impl:ValoresBusquedaVO" /> 
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfxsd_int">
+                <xsd:sequence>
+                    <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="xsd:int" /> 
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfsoapenc_int">
@@ -1344,63 +4059,133 @@
     </wsdl:types>
    
     <!-- Messages -->
-    <wsdl:message name="buscarAvanzado1Request">
+    <wsdl:message name="borrarHitCache1Request">
+        <wsdl:part element="impl:borrarHitCache" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="borrarHitCache1Response">
+        <wsdl:part element="impl:borrarHitCacheResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="buscarAvanzado2Request">
         <wsdl:part element="impl:buscarAvanzado" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="buscarAvanzado1Response">
+    <wsdl:message name="buscarAvanzado2Response">
         <wsdl:part element="impl:buscarAvanzadoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="buscarLomEs2Request">
+    <wsdl:message name="buscarLomEs3Request">
         <wsdl:part element="impl:buscarLomEs" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="buscarLomEs2Response">
+    <wsdl:message name="buscarLomEs3Response">
         <wsdl:part element="impl:buscarLomEsResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="buscarSQI3Request">
+    <wsdl:message name="buscarSQI4Request">
         <wsdl:part element="impl:buscarSQI" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="buscarSQI3Response">
+    <wsdl:message name="buscarSQI4Response">
         <wsdl:part element="impl:buscarSQIResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generadorIdentificadorAvanzado4Request">
+    <wsdl:message name="generadorIdentificadorAvanzado5Request">
         <wsdl:part element="impl:generadorIdentificadorAvanzado" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="generadorIdentificadorAvanzado4Response">
+    <wsdl:message name="generadorIdentificadorAvanzado5Response">
         <wsdl:part element="impl:generadorIdentificadorAvanzadoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarDocsCount5Request">
+    <wsdl:message name="obtenerEstadisticas6Request">
+        <wsdl:part element="impl:obtenerEstadisticas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticas6Response">
+        <wsdl:part element="impl:obtenerEstadisticasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasActividadPorFechas7Request">
+        <wsdl:part element="impl:obtenerEstadisticasActividadPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasActividadPorFechas7Response">
+        <wsdl:part element="impl:obtenerEstadisticasActividadPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasCoberturaCurricularPorFechas8Request">
+        <wsdl:part element="impl:obtenerEstadisticasCoberturaCurricularPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasCoberturaCurricularPorFechas8Response">
+        <wsdl:part element="impl:obtenerEstadisticasCoberturaCurricularPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasLicenciasPorFechas9Request">
+        <wsdl:part element="impl:obtenerEstadisticasLicenciasPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasLicenciasPorFechas9Response">
+        <wsdl:part element="impl:obtenerEstadisticasLicenciasPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasOdesPorFechas10Request">
+        <wsdl:part element="impl:obtenerEstadisticasOdesPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasOdesPorFechas10Response">
+        <wsdl:part element="impl:obtenerEstadisticasOdesPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasPorFechas11Request">
+        <wsdl:part element="impl:obtenerEstadisticasPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasPorFechas11Response">
+        <wsdl:part element="impl:obtenerEstadisticasPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasTerminosPorFechas12Request">
+        <wsdl:part element="impl:obtenerEstadisticasTerminosPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerEstadisticasTerminosPorFechas12Response">
+        <wsdl:part element="impl:obtenerEstadisticasTerminosPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerFicheroExcelEstadisticas13Request">
+        <wsdl:part element="impl:obtenerFicheroExcelEstadisticas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerFicheroExcelEstadisticas13Response">
+        <wsdl:part element="impl:obtenerFicheroExcelEstadisticasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerFicheroExcelEstadisticasPorFechas14Request">
+        <wsdl:part element="impl:obtenerFicheroExcelEstadisticasPorFechas" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenerFicheroExcelEstadisticasPorFechas14Response">
+        <wsdl:part element="impl:obtenerFicheroExcelEstadisticasPorFechasResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="solicitarDocsCount15Request">
         <wsdl:part element="impl:solicitarDocsCount" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarDocsCount5Response">
+    <wsdl:message name="solicitarDocsCount15Response">
         <wsdl:part element="impl:solicitarDocsCountResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadato6Request">
+    <wsdl:message name="solicitarMetadato16Request">
         <wsdl:part element="impl:solicitarMetadato" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadato6Response">
+    <wsdl:message name="solicitarMetadato16Response">
         <wsdl:part element="impl:solicitarMetadatoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadatosOaiOre7Request">
+    <wsdl:message name="solicitarMetadatosOaiOre17Request">
         <wsdl:part element="impl:solicitarMetadatosOaiOre" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadatosOaiOre7Response">
+    <wsdl:message name="solicitarMetadatosOaiOre17Response">
         <wsdl:part element="impl:solicitarMetadatosOaiOreResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadatosOdes8Request">
+    <wsdl:message name="solicitarMetadatosOdes18Request">
         <wsdl:part element="impl:solicitarMetadatosOdes" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarMetadatosOdes8Response">
+    <wsdl:message name="solicitarMetadatosOdes18Response">
         <wsdl:part element="impl:solicitarMetadatosOdesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="sugerirBusqueda9Request">
+    <wsdl:message name="sugerirBusqueda19Request">
         <wsdl:part element="impl:sugerirBusqueda" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="sugerirBusqueda9Response">
+    <wsdl:message name="sugerirBusqueda19Response">
         <wsdl:part element="impl:sugerirBusquedaResponse" name="parameters"/>
     </wsdl:message>
 
     <!-- Port Type -->
     <wsdl:portType name="SrvBuscarService">
+        <wsdl:operation name="borrarHitCache">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:borrarHitCache1Request" 
+                        name="borrarHitCache1Request"/>
+            <wsdl:output message="impl:borrarHitCache1Response" 
+                         name="borrarHitCache1Response"/>
+        </wsdl:operation>
         <wsdl:operation name="buscarAvanzado">
                 
             <wsdl:documentation> 
@@ -1410,10 +4195,10 @@
                 accesible desde el exterior a traves del interfaz de Web
                 Services
             </wsdl:documentation>
-            <wsdl:input message="impl:buscarAvanzado1Request" 
-                        name="buscarAvanzado1Request"/>
-            <wsdl:output message="impl:buscarAvanzado1Response" 
-                         name="buscarAvanzado1Response"/>
+            <wsdl:input message="impl:buscarAvanzado2Request" 
+                        name="buscarAvanzado2Request"/>
+            <wsdl:output message="impl:buscarAvanzado2Response" 
+                         name="buscarAvanzado2Response"/>
         </wsdl:operation>
         <wsdl:operation name="buscarLomEs">
                 
@@ -1423,10 +4208,10 @@
                 Devuelve el resultado de la busqueda en el formato necesario
                 para el modulo de SQI.
             </wsdl:documentation>
-            <wsdl:input message="impl:buscarLomEs2Request" 
-                        name="buscarLomEs2Request"/>
-            <wsdl:output message="impl:buscarLomEs2Response" 
-                         name="buscarLomEs2Response"/>
+            <wsdl:input message="impl:buscarLomEs3Request" 
+                        name="buscarLomEs3Request"/>
+            <wsdl:output message="impl:buscarLomEs3Response" 
+                         name="buscarLomEs3Response"/>
         </wsdl:operation>
         <wsdl:operation name="buscarSQI">
                 
@@ -1434,10 +4219,10 @@
                 Este metodo resuelve la búsqueda SQI sobre los nodos federados
                 en la plataforma que implementan el interfaz SQI.
             </wsdl:documentation>
-            <wsdl:input message="impl:buscarSQI3Request" 
-                        name="buscarSQI3Request"/>
-            <wsdl:output message="impl:buscarSQI3Response" 
-                         name="buscarSQI3Response"/>
+            <wsdl:input message="impl:buscarSQI4Request" 
+                        name="buscarSQI4Request"/>
+            <wsdl:output message="impl:buscarSQI4Response" 
+                         name="buscarSQI4Response"/>
         </wsdl:operation>
         <wsdl:operation name="generadorIdentificadorAvanzado">
                 
@@ -1445,10 +4230,100 @@
                 Este metodo genera un identificador para la cache de busqueda
                 para una busqueda avanzada.
             </wsdl:documentation>
-            <wsdl:input message="impl:generadorIdentificadorAvanzado4Request" 
-                        name="generadorIdentificadorAvanzado4Request"/>
-            <wsdl:output message="impl:generadorIdentificadorAvanzado4Response" 
-                         name="generadorIdentificadorAvanzado4Response"/>
+            <wsdl:input message="impl:generadorIdentificadorAvanzado5Request" 
+                        name="generadorIdentificadorAvanzado5Request"/>
+            <wsdl:output message="impl:generadorIdentificadorAvanzado5Response" 
+                         name="generadorIdentificadorAvanzado5Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticas6Request" 
+                        name="obtenerEstadisticas6Request"/>
+            <wsdl:output message="impl:obtenerEstadisticas6Response" 
+                         name="obtenerEstadisticas6Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasActividadPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasActividadPorFechas7Request" 
+                        name="obtenerEstadisticasActividadPorFechas7Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasActividadPorFechas7Response" 
+                         name="obtenerEstadisticasActividadPorFechas7Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasCoberturaCurricularPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasCoberturaCurricularPorFechas8Request" 
+                        name="obtenerEstadisticasCoberturaCurricularPorFechas8Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasCoberturaCurricularPorFechas8Response" 
+                         name="obtenerEstadisticasCoberturaCurricularPorFechas8Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasLicenciasPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasLicenciasPorFechas9Request" 
+                        name="obtenerEstadisticasLicenciasPorFechas9Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasLicenciasPorFechas9Response" 
+                         name="obtenerEstadisticasLicenciasPorFechas9Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasOdesPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasOdesPorFechas10Request" 
+                        name="obtenerEstadisticasOdesPorFechas10Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasOdesPorFechas10Response" 
+                         name="obtenerEstadisticasOdesPorFechas10Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasPorFechas11Request" 
+                        name="obtenerEstadisticasPorFechas11Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasPorFechas11Response" 
+                         name="obtenerEstadisticasPorFechas11Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerEstadisticasTerminosPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerEstadisticasTerminosPorFechas12Request" 
+                        name="obtenerEstadisticasTerminosPorFechas12Request"/>
+            <wsdl:output message="impl:obtenerEstadisticasTerminosPorFechas12Response" 
+                         name="obtenerEstadisticasTerminosPorFechas12Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerFicheroExcelEstadisticas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerFicheroExcelEstadisticas13Request" 
+                        name="obtenerFicheroExcelEstadisticas13Request"/>
+            <wsdl:output message="impl:obtenerFicheroExcelEstadisticas13Response" 
+                         name="obtenerFicheroExcelEstadisticas13Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerFicheroExcelEstadisticasPorFechas">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenerFicheroExcelEstadisticasPorFechas14Request" 
+                        name="obtenerFicheroExcelEstadisticasPorFechas14Request"/>
+            <wsdl:output message="impl:obtenerFicheroExcelEstadisticasPorFechas14Response" 
+                         name="obtenerFicheroExcelEstadisticasPorFechas14Response"/>
         </wsdl:operation>
         <wsdl:operation name="solicitarDocsCount">
                 
@@ -1456,10 +4331,10 @@
                 Solicita el número de documentos existentes en el índice para un
                 área curricular.
             </wsdl:documentation>
-            <wsdl:input message="impl:solicitarDocsCount5Request" 
-                        name="solicitarDocsCount5Request"/>
-            <wsdl:output message="impl:solicitarDocsCount5Response" 
-                         name="solicitarDocsCount5Response"/>
+            <wsdl:input message="impl:solicitarDocsCount15Request" 
+                        name="solicitarDocsCount15Request"/>
+            <wsdl:output message="impl:solicitarDocsCount15Response" 
+                         name="solicitarDocsCount15Response"/>
         </wsdl:operation>
         <wsdl:operation name="solicitarMetadato">
                 
@@ -1468,10 +4343,10 @@
                 identificador MEC y el idioma de busqueda sobre el repositorio
                 local. Devuelve la meta informacion del ODE.
             </wsdl:documentation>
-            <wsdl:input message="impl:solicitarMetadato6Request" 
-                        name="solicitarMetadato6Request"/>
-            <wsdl:output message="impl:solicitarMetadato6Response" 
-                         name="solicitarMetadato6Response"/>
+            <wsdl:input message="impl:solicitarMetadato16Request" 
+                        name="solicitarMetadato16Request"/>
+            <wsdl:output message="impl:solicitarMetadato16Response" 
+                         name="solicitarMetadato16Response"/>
         </wsdl:operation>
         <wsdl:operation name="solicitarMetadatosOaiOre">
                 
@@ -1479,114 +4354,204 @@
                 Método que devuelve los metadatos necesarios para realizar
                 llamadas OaiOre
             </wsdl:documentation>
-            <wsdl:input message="impl:solicitarMetadatosOaiOre7Request" 
-                        name="solicitarMetadatosOaiOre7Request"/>
-            <wsdl:output message="impl:solicitarMetadatosOaiOre7Response" 
-                         name="solicitarMetadatosOaiOre7Response"/>
+            <wsdl:input message="impl:solicitarMetadatosOaiOre17Request" 
+                        name="solicitarMetadatosOaiOre17Request"/>
+            <wsdl:output message="impl:solicitarMetadatosOaiOre17Response" 
+                         name="solicitarMetadatosOaiOre17Response"/>
         </wsdl:operation>
         <wsdl:operation name="solicitarMetadatosOdes">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:solicitarMetadatosOdes8Request" 
-                        name="solicitarMetadatosOdes8Request"/>
-            <wsdl:output message="impl:solicitarMetadatosOdes8Response" 
-                         name="solicitarMetadatosOdes8Response"/>
+            <wsdl:input message="impl:solicitarMetadatosOdes18Request" 
+                        name="solicitarMetadatosOdes18Request"/>
+            <wsdl:output message="impl:solicitarMetadatosOdes18Response" 
+                         name="solicitarMetadatosOdes18Response"/>
         </wsdl:operation>
         <wsdl:operation name="sugerirBusqueda">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:sugerirBusqueda9Request" 
-                        name="sugerirBusqueda9Request"/>
-            <wsdl:output message="impl:sugerirBusqueda9Response" 
-                         name="sugerirBusqueda9Response"/>
+            <wsdl:input message="impl:sugerirBusqueda19Request" 
+                        name="sugerirBusqueda19Request"/>
+            <wsdl:output message="impl:sugerirBusqueda19Response" 
+                         name="sugerirBusqueda19Response"/>
         </wsdl:operation>
     </wsdl:portType>
     
     <!-- WSDL Binding -->
     <wsdl:binding name="SrvBuscarServiceSoapBinding" type="impl:SrvBuscarService">
         <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <wsdl:operation name="buscarAvanzado">
-            <wsdlsoap:operation soapAction="buscarAvanzado" style="document"/>
-            <wsdl:input name="buscarAvanzado1Request">
+        <wsdl:operation name="borrarHitCache">
+            <wsdlsoap:operation soapAction="borrarHitCache" style="document"/>
+            <wsdl:input name="borrarHitCache1Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="buscarAvanzado1Response">
+            <wsdl:output name="borrarHitCache1Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="buscarAvanzado">
+            <wsdlsoap:operation soapAction="buscarAvanzado" style="document"/>
+            <wsdl:input name="buscarAvanzado2Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="buscarAvanzado2Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="buscarLomEs">
             <wsdlsoap:operation soapAction="buscarLomEs" style="document"/>
-            <wsdl:input name="buscarLomEs2Request">
+            <wsdl:input name="buscarLomEs3Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="buscarLomEs2Response">
+            <wsdl:output name="buscarLomEs3Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="buscarSQI">
             <wsdlsoap:operation soapAction="buscarSQI" style="document"/>
-            <wsdl:input name="buscarSQI3Request">
+            <wsdl:input name="buscarSQI4Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="buscarSQI3Response">
+            <wsdl:output name="buscarSQI4Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="generadorIdentificadorAvanzado">
             <wsdlsoap:operation soapAction="generadorIdentificadorAvanzado" style="document"/>
-            <wsdl:input name="generadorIdentificadorAvanzado4Request">
+            <wsdl:input name="generadorIdentificadorAvanzado5Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="generadorIdentificadorAvanzado4Response">
+            <wsdl:output name="generadorIdentificadorAvanzado5Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticas" style="document"/>
+            <wsdl:input name="obtenerEstadisticas6Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticas6Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasActividadPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasActividadPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasActividadPorFechas7Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasActividadPorFechas7Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasCoberturaCurricularPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasCoberturaCurricularPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasCoberturaCurricularPorFechas8Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasCoberturaCurricularPorFechas8Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasLicenciasPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasLicenciasPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasLicenciasPorFechas9Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasLicenciasPorFechas9Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasOdesPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasOdesPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasOdesPorFechas10Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasOdesPorFechas10Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasPorFechas11Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasPorFechas11Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerEstadisticasTerminosPorFechas">
+            <wsdlsoap:operation soapAction="obtenerEstadisticasTerminosPorFechas" style="document"/>
+            <wsdl:input name="obtenerEstadisticasTerminosPorFechas12Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerEstadisticasTerminosPorFechas12Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerFicheroExcelEstadisticas">
+            <wsdlsoap:operation soapAction="obtenerFicheroExcelEstadisticas" style="document"/>
+            <wsdl:input name="obtenerFicheroExcelEstadisticas13Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerFicheroExcelEstadisticas13Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenerFicheroExcelEstadisticasPorFechas">
+            <wsdlsoap:operation soapAction="obtenerFicheroExcelEstadisticasPorFechas" style="document"/>
+            <wsdl:input name="obtenerFicheroExcelEstadisticasPorFechas14Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerFicheroExcelEstadisticasPorFechas14Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="solicitarDocsCount">
             <wsdlsoap:operation soapAction="solicitarDocsCount" style="document"/>
-            <wsdl:input name="solicitarDocsCount5Request">
+            <wsdl:input name="solicitarDocsCount15Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="solicitarDocsCount5Response">
+            <wsdl:output name="solicitarDocsCount15Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="solicitarMetadato">
             <wsdlsoap:operation soapAction="solicitarMetadato" style="document"/>
-            <wsdl:input name="solicitarMetadato6Request">
+            <wsdl:input name="solicitarMetadato16Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="solicitarMetadato6Response">
+            <wsdl:output name="solicitarMetadato16Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="solicitarMetadatosOaiOre">
             <wsdlsoap:operation soapAction="solicitarMetadatosOaiOre" style="document"/>
-            <wsdl:input name="solicitarMetadatosOaiOre7Request">
+            <wsdl:input name="solicitarMetadatosOaiOre17Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="solicitarMetadatosOaiOre7Response">
+            <wsdl:output name="solicitarMetadatosOaiOre17Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="solicitarMetadatosOdes">
             <wsdlsoap:operation soapAction="solicitarMetadatosOdes" style="document"/>
-            <wsdl:input name="solicitarMetadatosOdes8Request">
+            <wsdl:input name="solicitarMetadatosOdes18Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="solicitarMetadatosOdes8Response">
+            <wsdl:output name="solicitarMetadatosOdes18Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="sugerirBusqueda">
             <wsdlsoap:operation soapAction="sugerirBusqueda" style="document"/>
-            <wsdl:input name="sugerirBusqueda9Request">
+            <wsdl:input name="sugerirBusqueda19Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="sugerirBusqueda9Response">
+            <wsdl:output name="sugerirBusqueda19Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         

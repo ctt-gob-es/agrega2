@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.presentacion.inicio;
 
@@ -152,7 +147,7 @@ public class VisualizarControllerImpl extends VisualizarController
 	    	String serverId = "";
 	    	if(LdapUserDetailsUtils.estaAutenticado())
 	    	{
-	    		serverId = AgregaPropertiesImpl.getInstance().getProperty("server.id");
+	    		serverId = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID);
 	    	}else if(LdapUserDetailsUtils.tieneIdentidadFederada(request))
 	    	{
 //	    		formo la url del nodo
@@ -168,7 +163,7 @@ public class VisualizarControllerImpl extends VisualizarController
 	    	}
 	    	//Un usuario no logado no debe poder ver ODEs con ámbito limitado
 //	    	if ((!LdapUserDetailsUtils.estaAutenticado())&&(!LdapUserDetailsUtils.tieneIdentidadFederada(request))){
-//	    		serverId = AgregaPropertiesImpl.getInstance().getProperty("server.id");
+//	    		serverId = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SERVER_ID);
 //	    	}
 	    	
 	    	if(doc!=null && doc.getAmbito()!=null)
@@ -399,7 +394,7 @@ public class VisualizarControllerImpl extends VisualizarController
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    	//	usuario autenticado
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////			
-			if(LdapUserDetailsUtils.estaAutenticado()||this.getSrvPropiedadService().get(AgregaProperties.SECUENCIA_SIN_LOGAR).equals("true"))
+			if(LdapUserDetailsUtils.estaAutenticado()||this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.SECUENCIA_SIN_LOGAR).equals("true"))
 			{
 				//Inicializamos ahora aqui los botones y el contador
 //				sesion.setBtnDerecho(Boolean.FALSE);

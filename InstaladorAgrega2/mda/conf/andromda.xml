@@ -77,8 +77,8 @@
                 <property name="service-impls">${maven.andromda.core.manual.dir}</property>
                 <property name="service-impls-tests">${maven.andromda.core.test.dir}</property>
                 <property name="test-context">${maven.andromda.core.test.resources.dir}</property>
-                <property name="src-resources">${maven.andromda.core.resources.dir}</property>                
-
+             <!--    <property name="src-resources">${maven.andromda.core.resources.dir}</property>                
+ -->
                 <property name="acknowledgeMode">AUTO_ACKNOWLEDGE</property>            
                 <property name="senderConnectionFactoryJndiName">UIL2ConnectionFactory</property>
                 <property name="senderConnectionFactoryName">UIL2ConnectionFactory</property>                    

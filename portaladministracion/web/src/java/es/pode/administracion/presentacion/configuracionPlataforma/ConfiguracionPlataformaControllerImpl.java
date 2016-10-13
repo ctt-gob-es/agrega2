@@ -1,16 +1,12 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 package es.pode.administracion.presentacion.configuracionPlataforma;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +17,11 @@ import org.apache.commons.validator.ValidatorException;
 
 import es.agrega.soporte.agregaProperties.AgregaProperties;
 import es.agrega.soporte.agregaProperties.AgregaPropertiesImpl;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
-import es.pode.configuracionPlataforma.servicios.PropiedadVO;
+import es.pode.configuracionPlataforma.negocio.servicios.ResultadoOperacionVO;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.PropiedadVO;
+import es.pode.soporte.constantes.ConstantesAgrega;
+import es.pode.soporte.i18n.I18n;
 
 
 /**
@@ -33,48 +32,114 @@ public class ConfiguracionPlataformaControllerImpl extends ConfiguracionPlatafor
 	private static Logger logger = Logger.getLogger(ConfiguracionPlataformaControllerImpl.class);
 	private SrvPropiedadService srvPropiedad = null;
 	
-	//Lista de propiedades/variables que se podran configurar
-	public static String[] propiedades = new String[]{
-		AgregaProperties.CATALOGO_AGREGA,
-		AgregaProperties.CATALOGO_MEC,
-		AgregaProperties.CHECK_PASSWORD,
-		AgregaProperties.EMAIL_ADMIN_REPOSITORIO,
-		AgregaProperties.INDEX_SERVER_PORT,
-		AgregaProperties.INDEX_SERVER_URL,	
-		AgregaProperties.ADMINLDAPEXTERNO,
-		AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN,
-		AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN,
-		AgregaProperties.REST_RESULTADOS_POR_PAGINA,
-		AgregaProperties.SECUENCIA_SIN_LOGAR,
-		AgregaProperties.VALOR_CUOTA_DEFECTO,
-		AgregaProperties.VISTA_PREVIA_AGREGA
-	};
+	/* 
+	 * Todas las tipologias de las propiedades. Sirven para comprobar
+	 * que el usuario introduce valores coherentes.
+	 */
+	private String TIPO_DATO_STRING 	= "string";
+	private String TIPO_DATO_INTEGER 	= "integer";
+	private String TIPO_DATO_EMAIL 		= "email";
+	private String TIPO_DATO_BOOLEAN 	= "boolean";
+
+	/* Instancia a la que pertenecen las propiedades globales; aplicables en todas las instancias de Jboss */
+	private String INSTANCIA_GLOBAL="global";
 	
+	private ResourceBundle properties = null;
+	private static AgregaProperties agregaProperties = null;
+		
+	
+	/**
+	 * Inicializa un objeto único con las propiedades de configuracion cargadas en memoria.
+	 */
+	private void cargarPropiedades()
+	{	
+		properties = ResourceBundle.getBundle("application-resources");
+		if (logger.isDebugEnabled())
+			logger.debug("Se han cargado los properties correctamente");
+	}
+
 	
 	private SrvPropiedadService obtieneSrvPropiedad() throws Exception {
 		if (srvPropiedad==null) srvPropiedad = this.getSrvPropiedadService();
 		return srvPropiedad;
 	}
 	
-	
+
     /**
-     * Metodo que cambia el nombre de las variables sustituyendo los caracteres que sean punto
-     * por barras bajas. Esto es necesario debido a que el nombre de las variables se usa como 
-     * identificador y sirven para extraer las variables y sus valores del form. 
-     * El caracter punto daria problemas en la parte de la vista (en el JSP).
-     * @param props
-     * @return
+     * Metodo eficiente que devuelve la lista de propiedades ordenada alfabeticamente por subcategoria
      */
-    private ArrayList<PropiedadVO> reemplazarPuntosPorBarrasBajas(ArrayList<PropiedadVO> props) {
-    	if (props==null || props.size()==0) return props;
-    	
-    	for(int i=0; i<props.size(); i++) {
-    		String nombre = props.get(i).getNombre();
-    		if(nombre.contains("."))
-    			props.get(i).setNombre(nombre.replace(".", "_"));
+	private ArrayList<PropiedadVO> ordenarPropiedadesPorSubcategoria(ArrayList<PropiedadVO> propiedades) {
+    	if (propiedades==null || propiedades.size()<2) return propiedades;
+    	PropiedadVO tmp;
+
+    	for(int i=0; i<propiedades.size(); i++) {
+        	for(int j=0; j+1<propiedades.size(); j++) {
+        		if(propiedades.get(j).getSubcategoria().compareTo(propiedades.get(j+1).getSubcategoria())>0){
+        			tmp = propiedades.get(j);
+        			propiedades.set(j, propiedades.get(j+1));
+        			propiedades.set(j+1, tmp);
+        		}
+        	}
     	}
-    	return props;
-    }
+    	return propiedades;
+	}
+	
+	
+	/**
+	 * Metodo que dada una lista de propiedades elimina las que pertenecen a instancias JBoss inactivas
+	 */
+	private ArrayList<PropiedadVO> eliminarPropiedadesDeInstanciasInactivas(ArrayList<PropiedadVO> propiedades) {
+		
+		boolean propiedadActiva;
+		String[] instanciasActivas=null;
+		try {
+			instanciasActivas = obtieneSrvPropiedad().getInstanciasJbossActivas();
+		} catch (Exception e) {
+			logger.error("Error al obtener las instancias activas de Jboss",e);
+			return propiedades;
+		}
+		
+    	for(int i=0; i<propiedades.size(); i++) {
+    		
+    		propiedadActiva=false;
+    		String instanciaPropiedad=propiedades.get(i).getInstanciaJboss();
+    		
+        	for(int j=0; j<instanciasActivas.length; j++) {
+        		if(instanciaPropiedad.contentEquals(instanciasActivas[j])) {
+            		propiedadActiva=true;
+        			break;
+        		}
+        	}
+        	if(!propiedadActiva) {
+        		propiedades.remove(i);
+        		i--;
+        	} 
+    	}
+    	return propiedades;
+	}
+	
+	
+	/*
+	 * Devuelve una lista con las propiedades que se mostraran en cada pestaña de categoria
+	 */
+	private ArrayList<PropiedadVO> obtenerPropiedadesAMostrarPorCategoria(String categoria) throws ValidatorException {
+				
+		//Obtenemos la lista de propiedades de la categoria a mostrar
+		PropiedadVO[] propiedades = null;
+		try {
+			propiedades=obtieneSrvPropiedad().getPropiedadesModificablesDeTodasInstanciasPorCategoria(categoria);
+		} catch (Exception e) {
+			logger.error("Error al obtener las propiedades de configuracion de la plataforma",e);
+			throw new ValidatorException("{error.obtencion.parametros}");			
+		}
+
+		ArrayList<PropiedadVO> props = new ArrayList<PropiedadVO>();
+		for(int i=0; i<propiedades.length; i++) 
+			props.add(propiedades[i]);
+
+		props=eliminarPropiedadesDeInstanciasInactivas(props);
+		return props;
+	}
 	
 
 	@Override
@@ -82,49 +147,39 @@ public class ConfiguracionPlataformaControllerImpl extends ConfiguracionPlatafor
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		HashMap<String ,String> propsMap = new HashMap<String ,String>();
-		ArrayList<PropiedadVO> props = new ArrayList<PropiedadVO>();
-		
-		try {
-			for(int i=0; i<propiedades.length; i++) {
-				props.add(obtieneSrvPropiedad().getPropiedad(propiedades[i]));
-				propsMap.put(propiedades[i], props.get(i).getValor());
-			}
-		} catch (Exception e) {
-			logger.error("Error al obtener los parametros de configuracion de la plataforma",e);
-			throw new ValidatorException("{error.obtencion.parametros}");			
+		//Obtenemos las categorias
+		form.setListaCategorias(obtieneSrvPropiedad().getCategoriasPropiedadesModificables());
+
+		String categoria=form.getCategoria();
+		if(categoria==null||categoria.isEmpty()) {
+			categoria=form.getListaCategorias()[0];
+			form.setCategoria(categoria);
 		}
-		form.setListaVariables					(reemplazarPuntosPorBarrasBajas(props));
-		form.setCatalogo_agrega					(propsMap.get(AgregaProperties.CATALOGO_AGREGA));
-		form.setCatalogo_mec					(propsMap.get(AgregaProperties.CATALOGO_MEC));
-		form.setCheck_password					(propsMap.get(AgregaProperties.CHECK_PASSWORD));
-		form.setEmailAdmin						(propsMap.get(AgregaProperties.EMAIL_ADMIN_REPOSITORIO));
-		form.setIndexServer_port				(propsMap.get(AgregaProperties.INDEX_SERVER_PORT));
-		form.setIndexServer_url					(propsMap.get(AgregaProperties.INDEX_SERVER_URL));	
-		form.setLdap_external_admin				(propsMap.get(AgregaProperties.ADMINLDAPEXTERNO));
-		form.setNumDescargasMostradasEnResumen	(propsMap.get(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN));
-		form.setNumNoticiasMostradasEnResumen	(propsMap.get(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN));
-		form.setRest_resultados_por_pagina		(propsMap.get(AgregaProperties.REST_RESULTADOS_POR_PAGINA));
-		form.setSecuencia_sin_logar				(propsMap.get(AgregaProperties.SECUENCIA_SIN_LOGAR));
-		form.setValorCuotaDefecto				(propsMap.get(AgregaProperties.VALOR_CUOTA_DEFECTO));
-		form.setVistaPreviaAgrega				(propsMap.get(AgregaProperties.VISTA_PREVIA_AGREGA));
+
+		ArrayList<PropiedadVO> props = new ArrayList<PropiedadVO>();
+		props=obtenerPropiedadesAMostrarPorCategoria(categoria);
+		props=ordenarPropiedadesPorSubcategoria(props);
+		form.setListaPropiedades(props);
+		form.setListaNuevosValores(props);
 	}
 
 	
 	private boolean esValido (String s) {
-		if(s==null || s.equals(""))	return false;
+		if(s==null)	return false;
 		return true;
 	}
 	
 	
-	private boolean esUnNumero (String num) {
+	private boolean esUnEnteroPositivo (String num) {
+		if (num.isEmpty()) return true;
 		if(!esValido(num)) return false;
-		int puerto;
+		int n;
 		try {
-			puerto = Integer.valueOf(num);
+			n = Integer.valueOf(num);
 		} catch (Exception e) {
 			return false;
 		}
+		if(n<0) return false;
 		return true;
 	}
 	
@@ -161,50 +216,71 @@ public class ConfiguracionPlataformaControllerImpl extends ConfiguracionPlatafor
 		if(!esValido(bool)) return false;
 		if(bool.equalsIgnoreCase("true") || bool.equalsIgnoreCase("false"))
 			return true;
+		if(bool.equalsIgnoreCase("si") || bool.equalsIgnoreCase("no"))
+			return true;
 		return false;
 	}
 
-	
-	private void validarDatos(ActualizarDatosForm form) throws Exception {
 
-		if(!esValido(form.getCatalogo_agrega())) 	
-			throw new ValidatorException("{error.catalogo_agrega}");		
+	/*
+	 * Metodo que se encarga de revisar que el nuevo valor introducido es coherente con el tipo de dato segun la propiedad.
+	 * Devuelve false si no valida algun valor.
+	 */
+	private boolean validarDatos(CambiosRequierenReinicioForm form, HttpServletRequest request, ArrayList<PropiedadVO> propiedadesMostradas) throws Exception {
 		
-		if(!esValido(form.getCatalogo_mec())) 	
-			throw new ValidatorException("{error.catalogo_mec}");	
+		ArrayList<PropiedadVO> props = propiedadesMostradas;
 		
-		if(!esUnBooleano(form.getCheck_password())) 	
-			throw new ValidatorException("{error.check_password}");		
+		if(form.getNuevosValores().length!=form.getNombresPropiedades().length) {
+			logger.error("No se han recibido el mismo numero de valores que de propiedades");
+			throw new Exception("No se han recibido el mismo numero de valores que de propiedades");	
+		}
+		if(form.getNuevosValores().length!=form.getInstanciaJboss().length) {
+			logger.error("No se han recibido el mismo numero de valores que de instancias");
+			throw new Exception("No se han recibido el mismo numero de valores que de instancias");	
+		}		
 		
-		if(!esUnMail(form.getEmailAdmin())) 	
-			throw new ValidatorException("{error.email_admin_repositorio}");		
-		
-		if(!esUnPuerto(form.getIndexServer_port())) 	
-			throw new ValidatorException("{error.index_server_port}");		
-		
-		if(!esValido(form.getIndexServer_url())) 	
-			throw new ValidatorException("{error.index_server_url}");		
+		for(int i=0; i<form.getNuevosValores().length; i++) {
+			
+			String nuevoValor=form.getNuevosValores()[i];
+			String instanciaJboss=form.getInstanciaJboss()[i];
+			String nombre=form.getNombresPropiedades()[i];
+			
+			String[] nombrePropiedad = new String[1];
+			if(instanciaJboss.contentEquals(INSTANCIA_GLOBAL))
+				nombrePropiedad[0]=nombre;
+			else
+				nombrePropiedad[0]=nombre+" ("+instanciaJboss+")";
 
-		if(!esUnMail(form.getLdap_external_admin())) 	
-			throw new ValidatorException("{error.ldap_external_admin}");	
-		
-		if(!esUnNumero(form.getNumDescargasMostradasEnResumen())) 	
-			throw new ValidatorException("{error.num_descargas_mostradas_en_resumen}");		
-		
-		if(!esUnNumero(form.getNumNoticiasMostradasEnResumen())) 	
-			throw new ValidatorException("{error.num_noticias_mostradas_en_resumen}");		
-		
-		if(!esUnNumero(form.getRest_resultados_por_pagina())) 	
-			throw new ValidatorException("{error.rest_resultados_por_pagina}");		
-		
-		if(!esUnBooleano(form.getSecuencia_sin_logar())) 	
-			throw new ValidatorException("{error.secuencia_sin_logar}");		
-		
-		if(!esUnNumero(form.getValorCuotaDefecto())) 	
-			throw new ValidatorException("{error.valor_cuota_por_defecto}");			
-		
-		if(!esValido(form.getVistaPreviaAgrega())) 	
-			throw new ValidatorException("{error.vista_previa_agrega}");	
+			for(int j=0; j<props.size(); j++) {
+				if(props.get(j).getNombre().contentEquals(nombre) && props.get(j).getInstanciaJboss().contentEquals(instanciaJboss)) {
+					
+					if(props.get(j).getTipologia().contentEquals(TIPO_DATO_INTEGER)) {
+						if(!esUnEnteroPositivo(nuevoValor)) {
+							saveErrorMessage(request, "errors.natural", nombrePropiedad);
+							return false;
+						}
+					} else if(props.get(j).getTipologia().contentEquals(TIPO_DATO_EMAIL)) {
+						if(!esUnMail(nuevoValor)) {
+							saveErrorMessage(request, "errors.email", nombrePropiedad);
+							return false;
+						}
+					} else if(props.get(j).getTipologia().contentEquals(TIPO_DATO_BOOLEAN)) {
+						if(!esUnBooleano(nuevoValor)) {
+							saveErrorMessage(request, "errors.bool", nombrePropiedad);
+							return false;
+						}
+					} else {
+						if(!esValido(nuevoValor)) {
+							saveErrorMessage(request, "errors.generico", nombrePropiedad);
+							return false;
+						}						
+					}
+
+					break;
+				}	
+			}
+		}
+		return true;
 	}
 	
 
@@ -212,153 +288,141 @@ public class ConfiguracionPlataformaControllerImpl extends ConfiguracionPlatafor
 	public void actualizarDatos(ActionMapping mapping,
 			ActualizarDatosForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+				
+		boolean bRequiereReinicio = false;
 		
-		validarDatos(form);
+		List<PropiedadVO> lPropsModificadas = new ArrayList<PropiedadVO>();
 		
-		String tmp = "";
-		
-		tmp=form.getCatalogo_agrega();	
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.CATALOGO_AGREGA, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CATALOGO_AGREGA);
-				throw new ValidatorException("{error.servicio.catalogo_agrega}");		
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CATALOGO_AGREGA,e);
-			throw new ValidatorException("{error.servicio.catalogo_agrega}");				
+	//	Hashtable<String, String> htPropsPantalla = new Hashtable<String, String>();
+		// Obtenemos las propiedades modificadas en pantalla
+		for(int i=0; i<form.getNombresPropiedades().length; i++) {					
+		//	htPropsPantalla.put(form.getNombresPropiedades()[i] + "_" + form.getInstanciaJboss()[i],form.getNuevosValores()[i]);
+			PropiedadVO propOrig = getSrvPropiedadService().getPropiedadJBoss(form.getNombresPropiedades()[i],form.getInstanciaJboss()[i]);
+			propOrig.setValor(form.getNuevosValores()[i]);
+			lPropsModificadas.add(propOrig);
+			
+			if (propOrig.isRequiereReinicioJboss())
+				bRequiereReinicio=true;
 		}
-		
-		tmp=form.getCatalogo_mec();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.CATALOGO_MEC, tmp)){
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CATALOGO_MEC);
-				throw new ValidatorException("{error.servicio.catalogo_mec}");					
+									
+		PropiedadVO[] propMod =lPropsModificadas.toArray(new PropiedadVO[0]);
+		ResultadoOperacionVO res = getSrvGestorConfiguracionService().modificarPropiedadesLocal(propMod);
+			
+		if (res.getCodigoResultado()==1)
+			if (bRequiereReinicio)
+			{
+				saveSuccessMessage(request, "configuracionPlataforma.actualizacion.correcta");
+				saveSuccessMessage(request, "configuracionPlataforma.actualizacionReinicio");
 			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CATALOGO_MEC,e);
-			throw new ValidatorException("{error.servicio.catalogo_mec}");			
+			else
+				saveSuccessMessage(request, "configuracionPlataforma.actualizacion.correcta");
+		else
+		{
+			String[] argsError = new String[1]; 
+			argsError[0] = res.getMensaje();
+			saveErrorMessage(request,"configuracionPlataforma.actualizacion.erronea", argsError);
 		}
-		
-		tmp=form.getCheck_password();	
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.CHECK_PASSWORD, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CHECK_PASSWORD);
-				throw new ValidatorException("{error.servicio.check_password}");					
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.CHECK_PASSWORD,e);
-			throw new ValidatorException("{error.servicio.check_password}");			
-		}
-		
-		tmp=form.getEmailAdmin();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.EMAIL_ADMIN_REPOSITORIO, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.EMAIL_ADMIN_REPOSITORIO);
-				throw new ValidatorException("{error.servicio.email_admin_repositorio}");					
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.EMAIL_ADMIN_REPOSITORIO,e);
-			throw new ValidatorException("{error.servicio.email_admin_repositorio}");			
-		}
-		
-		tmp=form.getIndexServer_port();	
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.INDEX_SERVER_PORT, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.INDEX_SERVER_PORT);
-				throw new ValidatorException("{error.servicio.index_server_port}");
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.INDEX_SERVER_PORT,e);
-			throw new ValidatorException("{error.servicio.index_server_port}");			
-		}
-		
-		tmp=form.getIndexServer_url();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.INDEX_SERVER_URL, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.INDEX_SERVER_URL);
-				throw new ValidatorException("{error.servicio.index_server_url}");	
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.INDEX_SERVER_URL,e);
-			throw new ValidatorException("{error.servicio.index_server_url}");			
-		}
+	}
 
-		tmp=form.getLdap_external_admin();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.ADMINLDAPEXTERNO, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.ADMINLDAPEXTERNO);
-				throw new ValidatorException("{error.servicio.ldap_external_admin}");					
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.ADMINLDAPEXTERNO,e);
-			throw new ValidatorException("{error.servicio.ldap_external_admin}");			
+
+	@Override
+	public String cambiosRequierenReinicio(ActionMapping mapping,
+			CambiosRequierenReinicioForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		ArrayList<PropiedadVO> props = new ArrayList<PropiedadVO>();
+		props=obtenerPropiedadesAMostrarPorCategoria(form.getCategoria());
+		
+		if(!validarDatos(form, request, props)) return "NO_VALIDA";
+		
+		PropiedadVO propOriginal=null;
+		
+		Hashtable<String, String> htPropsPantalla = new Hashtable<String, String>();
+		
+		for(int i=0; i<form.getNombresPropiedades().length; i++) {					
+			htPropsPantalla.put(form.getNombresPropiedades()[i] + "_" + form.getInstanciaJboss()[i],form.getNuevosValores()[i]);			
 		}
 		
-		tmp=form.getNumDescargasMostradasEnResumen();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN);
-				throw new ValidatorException("{error.servicio.num_descargas_mostradas_en_resumen}");	
+		List<PropiedadVO> lPropsModificadas = new ArrayList<PropiedadVO>();
+		
+		boolean bRequiereReinicio = false;
+		
+		for (Iterator<PropiedadVO> iterator = props.iterator(); iterator
+				.hasNext();) {
+			propOriginal = (PropiedadVO) iterator.next();
+			
+			if (htPropsPantalla.get(propOriginal.getNombre() +"_"+propOriginal.getInstanciaJboss())!=null)
+			{
+				String valorProp = htPropsPantalla.get(propOriginal.getNombre() +"_"+propOriginal.getInstanciaJboss());
+				
+				
+				if (!valorProp.equals(propOriginal.getValor()))
+				{
+					propOriginal.setValor(valorProp);
+					lPropsModificadas.add(propOriginal);
+					
+					if (propOriginal.isRequiereReinicioJboss())
+						bRequiereReinicio=true;
+					
+				}
+				
 			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.NUM_DESCARGAS_MOSTRADAS_EN_RESUMEN,e);
-			throw new ValidatorException("{error.servicio.num_descargas_mostradas_en_resumen}");			
 		}
 		
-		tmp=form.getNumNoticiasMostradasEnResumen();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN);
-				throw new ValidatorException("{error.servicio.num_noticias_mostradas_en_resumen}");	
+		if (lPropsModificadas.size()==0)
+		{
+			saveErrorMessage(request, "configuracionPlataforma.actualizacion.sin.cambios");
+			return "NO_VALIDA";
+		}else
+		{
+			String[] propNombre = new String[lPropsModificadas.size()];
+			String[] propValores = new String[lPropsModificadas.size()];
+			String[] propInstancia = new String[lPropsModificadas.size()];
+			boolean[] propReinicio = new boolean[lPropsModificadas.size()];
+	
+			int i=0;
+			
+			for (Iterator<PropiedadVO> iterator = lPropsModificadas.iterator(); iterator
+					.hasNext();) {
+				PropiedadVO propiedadVO = (PropiedadVO) iterator.next();
+				propNombre[i]=propiedadVO.getNombre();
+				propInstancia[i]=propiedadVO.getInstanciaJboss();
+				propValores[i]=propiedadVO.getValor();
+				propReinicio[i]=propiedadVO.isRequiereReinicioJboss();
+				
+				i++;
+				
 			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.NUM_NOTICIAS_MOSTRADAS_EN_RESUMEN,e);
-			throw new ValidatorException("{error.servicio.num_noticias_mostradas_en_resumen}");			
+			
+			form.setInstanciaJboss(propInstancia);
+			form.setNombresPropiedades(propNombre);
+			form.setNuevosValores(propValores);
+			form.setRequiereReinicio(propReinicio);
+			
 		}
 		
-		tmp=form.getRest_resultados_por_pagina();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.REST_RESULTADOS_POR_PAGINA, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.REST_RESULTADOS_POR_PAGINA);
-				throw new ValidatorException("{error.servicio.rest_resultados_por_pagina}");		
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.REST_RESULTADOS_POR_PAGINA,e);
-			throw new ValidatorException("{error.servicio.rest_resultados_por_pagina}");			
-		}
+		if (bRequiereReinicio)
+			return "SI";
+		else
+			return "NO";
+	}
+
+
+	@Override
+	public String analizarRespuesta(ActionMapping mapping,
+			AnalizarRespuestaForm form, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
+
+		String result = "Cancelar";
+		Locale loc = (Locale)request.getSession().getAttribute(ConstantesAgrega.DEFAULT_LOCALE);
+		String aceptar = I18n.getInstance().getResource("comun.aceptar", "application-resources", loc);
 		
-		tmp=form.getSecuencia_sin_logar();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.SECUENCIA_SIN_LOGAR, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.SECUENCIA_SIN_LOGAR);
-				throw new ValidatorException("{error.servicio.secuencia_sin_logar}");		
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.SECUENCIA_SIN_LOGAR,e);
-			throw new ValidatorException("{error.servicio.secuencia_sin_logar}");			
-		}
+		if(logger.isDebugEnabled()) logger.debug("Action = " + form.getAction());
 		
-		tmp=form.getValorCuotaDefecto();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.VALOR_CUOTA_DEFECTO, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.VALOR_CUOTA_DEFECTO);
-				throw new ValidatorException("{error.servicio.valor_cuota_por_defecto}");	
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.VALOR_CUOTA_DEFECTO,e);
-			throw new ValidatorException("{error.servicio.valor_cuota_por_defecto}");			
+		if(aceptar!=null && form.getAction()!=null && aceptar.equals(form.getAction())) {
+			result = "Aceptar";
 		}
-		
-		tmp=form.getVistaPreviaAgrega();		
-		try {
-			if(!obtieneSrvPropiedad().set(AgregaProperties.VISTA_PREVIA_AGREGA, tmp)) {
-				logger.error("Error al ajustar el valor del parametro "+AgregaProperties.VISTA_PREVIA_AGREGA);
-				throw new ValidatorException("{error.servicio.vista_previa_agrega}");	
-			}
-		} catch (Exception e) {
-			logger.error("Error al ajustar el valor del parametro "+AgregaProperties.VISTA_PREVIA_AGREGA,e);
-			throw new ValidatorException("{error.servicio.vista_previa_agrega}");			
-		}
+		return result;		
 	}
 
 }

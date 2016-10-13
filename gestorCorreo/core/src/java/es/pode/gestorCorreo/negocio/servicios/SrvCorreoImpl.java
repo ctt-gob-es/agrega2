@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 // license-header java merge-point
 /**
  * This is only generated once! It will never be overwritten.
@@ -21,7 +16,7 @@ import org.apache.log4j.Logger;
 
 import es.agrega.soporte.agregaProperties.AgregaProperties;
 import es.agrega.soporte.agregaProperties.AgregaPropertiesImpl;
-import es.pode.configuracionPlataforma.servicios.SrvPropiedadService;
+import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.gestorCorreo.negocio.comun.MailSender;
 import es.pode.soporte.i18n.I18n;
 import es.pode.soporte.url.ImagenesAgrega;
@@ -471,7 +466,7 @@ public class SrvCorreoImpl
 		    	MailSender mailSender = new MailSender();
 		    	//Enviamos un correo al administrador del ldap externo con
 				// todos los usuarios que han sido realmente eliminados
-		    	correoUsuarioVO.setEmailUsuario(ObtieneSrvPropiedad().get(AgregaProperties.ADMINLDAPEXTERNO));
+		    	correoUsuarioVO.setEmailUsuario(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO));
 	    		StringBuffer body= new StringBuffer(texto);
 	    		mailSender.send(correoUsuarioVO.getTo(), asunto, body,correoUsuarioVO.getFrom(), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_HOST), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_AUTENTICATION), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_DEBUG), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_USER), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_PASSWD));	
 	    		log.info("Se ha enviado el correo de baja de usuario"); 
@@ -849,7 +844,7 @@ throws Exception
 						
 //						propiedades comunidad
 						StringBuffer comunidad = new StringBuffer();
-						comunidad.append(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO));//nodo
+						comunidad.append(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO));//nodo
 //						 Comprobamos si url es nulo o vacio.
 						if (!(comunidad == null) && comunidad.toString().length()>0){
 							if(logger.isDebugEnabled()) logger.debug("Reemplazando <${comunidad}> por <" + comunidad.toString()+">");
@@ -890,7 +885,7 @@ throws Exception
 					}
 //					propiedades nodo
 					StringBuffer nodo = new StringBuffer();
-					nodo.append(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.NODO));
+					nodo.append(this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.NODO));
 //					 Comprobamos si url es nulo o vacio.
 					if ((nodo != null) && nodo.toString().length()>0){
 						if(logger.isDebugEnabled()) logger.debug("Reemplazando <${nodo}> por <" + nodo.toString()+">");
@@ -1089,7 +1084,7 @@ protected ResultadoEnvioCorreoVO handleSolicitudBajaUsuario(CorreoUsuarioVO corr
 //	    	la clase MailSender.java que será la encargada de enviar el correo
 	    	mailSender = new MailSender();
 	    	body= new StringBuffer(texto);
-	    	correoUsuarioVO.setEmailUsuario((ObtieneSrvPropiedad().get(AgregaProperties.ADMINLDAPEXTERNO)));
+	    	correoUsuarioVO.setEmailUsuario((ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.ADMINLDAPEXTERNO)));
     		mailSender.send(correoUsuarioVO.getTo(), asunto, body, correoUsuarioVO.getFrom(), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.FROMSENDER), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_HOST), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_AUTENTICATION), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_DEBUG), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_USER), AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.SMTP_PASSWD));
     		log.info("Se ha enviado el correo de baja de usuario"); 
    	}

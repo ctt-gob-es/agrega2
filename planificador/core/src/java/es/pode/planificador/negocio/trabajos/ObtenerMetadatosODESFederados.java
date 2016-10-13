@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.planificador.negocio.trabajos;
 
 import java.util.ArrayList;
@@ -13,6 +8,8 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 
 import es.pode.ServiceLocator;
+import es.pode.buscar.negocio.administrar.servicio.ResultadoSubtareaVO;
+import es.pode.buscar.negocio.administrar.servicio.ResultadoTareaVO;
 import es.pode.planificador.negocio.comun.CtesPlanificador;
 import es.pode.planificador.negocio.comun.Planificador;
 import es.pode.planificador.negocio.servicios.SrvPlanificadorService;
@@ -38,8 +35,8 @@ public class ObtenerMetadatosODESFederados extends AbstractJob {
 		ArrayList parametros = (ArrayList)context.getJobDetail().getJobDataMap().get(CtesPlanificador.PARAMETROS);
 		String msgDescTrabajo = (String) parametros.get(0);
 		//TODO Preparar mejores mensajes
-		String msgGenerarEstadisticas=ConstantesAgrega.TRABAJO_CORRECTO;
-		String msgNoGenerarEstadisticas =ConstantesAgrega.TRABAJO_ERRONEO;
+		String msgObtenerMetadatos=ConstantesAgrega.TRABAJO_CORRECTO;
+		String msgNoObtenerMetadatos =ConstantesAgrega.TRABAJO_ERRONEO;
 		
 		log.debug("ObtenerMetadatosODESFederados: " + context.getJobDetail().getFullName() + " ejecutandose a las " + new Date());
 		
@@ -53,17 +50,31 @@ public class ObtenerMetadatosODESFederados extends AbstractJob {
 				context.getJobDetail().getGroup(), msgDescTrabajo, usuario);
 		
 		SrvPlanificadorService servicio = ServiceLocator.instance().getSrvPlanificadorService();
-		Boolean resultado=servicio.obtenerMetadatosODESFederados(idTarea);
-
+		ResultadoTareaVO resultado=servicio.obtenerMetadatosODESFederados(idTarea);
+		
 		log.debug("Registramos el estado final de la tarea ObtenerMetadatosODESFederados");
 		String estado = ConstantesAgrega.TRABAJO_CORRECTO;
-		if(!resultado) {
+
+		if (resultado!=null) {					
+			// Registramos los resultados de las subtareas
+			for (int i = 0; i < resultado.getResultadosSubtareas().length; i++) {
+				ResultadoSubtareaVO resSubt = resultado.getResultadosSubtareas()[i];			
+				registraEstadoFinal(idTarea, tarea, resSubt.getSubtarea(),resSubt.getResultadoSubtarea());
+			}
+			// Registramos estado final de la tarea
+			if(!resultado.getResultadoGlobal().equals("OK")) {
+				estado = ConstantesAgrega.TRABAJO_ERRONEO;
+				Planificador.registrarTareaIncorrecta(idTarea, estado, msgNoObtenerMetadatos);
+				registraEstadoFinal(idTarea, tarea, msgNoObtenerMetadatos, estado);		
+			} else {						
+				registraEstadoFinal(idTarea, tarea, msgObtenerMetadatos, estado);		
+			}
+		}else
+		{
 			estado = ConstantesAgrega.TRABAJO_ERRONEO;
-			Planificador.registrarTareaIncorrecta(idTarea, estado, msgNoGenerarEstadisticas);
-			registraEstadoFinal(idTarea, tarea, msgNoGenerarEstadisticas, estado);		
-		} else {
-			registraEstadoFinal(idTarea, tarea, msgGenerarEstadisticas, estado);		
-		}
+			Planificador.registrarTareaIncorrecta(idTarea, estado, msgNoObtenerMetadatos);
+			registraEstadoFinal(idTarea, tarea, msgNoObtenerMetadatos, estado);		
+		}		
 		registraHoraFin(idTarea, estado);
 	}
 

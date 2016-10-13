@@ -26,7 +26,7 @@
             <xsd:element name="actualizarIndicesResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="actualizarIndicesReturn" type="soapenc:boolean"/>
+                        <xsd:element name="actualizarIndicesReturn" type="impl:ResultadoTareaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -41,7 +41,7 @@
             <xsd:element name="crearEstadisticasLocalesResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="crearEstadisticasLocalesReturn" type="soapenc:boolean"/>
+                        <xsd:element name="crearEstadisticasLocalesReturn" type="impl:ResultadoTareaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -56,7 +56,7 @@
             <xsd:element name="crearEstadisticasTotalesResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="crearEstadisticasTotalesReturn" type="soapenc:boolean"/>
+                        <xsd:element name="crearEstadisticasTotalesReturn" type="impl:ResultadoTareaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -363,7 +363,7 @@
             <xsd:element name="subirIndicesResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="subirIndicesReturn" type="soapenc:boolean"/>
+                        <xsd:element name="subirIndicesReturn" type="impl:ResultadoTareaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -480,6 +480,57 @@
             <xsd:complexType name="ArrayOfNodoVO">
                 <xsd:sequence>
                     <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="impl:NodoVO" /> 
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadoSubtareaVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="subtarea" nillable="false" type="xsd:string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                Nombre o descripcion de la subtarea
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="resultadoSubtarea" nillable="false" type="xsd:string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfResultadoSubtareaVO">
+                <xsd:sequence>
+                    <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="impl:ResultadoSubtareaVO" /> 
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadoTareaVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="resultadosSubtareas" nillable="false" type="impl:ArrayOfResultadoSubtareaVO">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="resultadoGlobal" nillable="false" type="xsd:string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
                 </xsd:sequence>
             </xsd:complexType>
             <xsd:complexType name="ArrayOfServicioVO">

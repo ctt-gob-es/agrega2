@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Sep 05 12:31:58 CEST 2013'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Dec 05 13:22:47 CET 2014'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -105,14 +105,14 @@
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a29' name = 'OdeGrupoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                                <UML:Class xmi.id = 'a29' name = 'GrupoPublicoAdminVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a30' name = 'Información del ode asociado a un grupo'
-                                      isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a30' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a31' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a31' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
@@ -122,9 +122,9 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a33' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a33' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a34' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -132,9 +132,9 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a35' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a35' name = 'imagenGrupo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a36' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -142,37 +142,52 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a37' name = 'ContactoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a38' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a39' name = 'usuarioContacto' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a37' name = 'administrador' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a40' name = 'Usuario al que se ha añadido como contacto'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a38' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a41' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a39' name = 'creador' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a42'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a43' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a44' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a40' name = 'Indica si el usuario que accede y el administrador son la misma&#10;                                persona'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a42' name = 'fechaCreacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a43' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a44' name = 'fechaModificacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a45' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a46' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a47' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a28'/>
@@ -180,300 +195,305 @@
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Association xmi.id = 'a45' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a46' name = 'grupoPublico' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a47'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a48' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a50' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a51'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a52' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Association xmi.id = 'a54' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a55' name = 'favoritoUsuario' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a56'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a57' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a58'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a59' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a60'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a61' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Association xmi.id = 'a62' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a63' name = 'contacto' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a64'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a65' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a37'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a66' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a67'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a68' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Class xmi.id = 'a53' name = 'UsuarioPublicoVO' visibility = 'public'
+                                <UML:Class xmi.id = 'a48' name = 'GrupoPublicoAsociadoVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a69' name = 'Usuario público de Agrega. Cada usuario público se correspondará&#10;                        con un usuario registrado en la plataforma'
+                                    <UML:Comment xmi.id = 'a49' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a50' name = 'administrador' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a51' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a52' name = 'asociado' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a53' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a54' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a55' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a56' name = 'fechaCreacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a57' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a58' name = 'fechaModificacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a59' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a60' name = 'imagenGrupo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a61' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a62' name = 'nombre' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a63' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a64' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a65' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a28'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a66' name = 'ResultadoOperacionVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a67' name = 'VO para recoger la información de las operaciones realizadas&#10;                        referentes al perfil público'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a70' name = 'foto' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a68' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a71' name = 'Nombre de la foto del usuario' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a72' name = 'mostrarObjetos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a73' name = 'Indica si se va a mostrar los objetos públicos del usuario en su&#10;                                página pública'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a75' name = 'mostrarFavoritos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a76' name = 'Indica si se va a mostrar el bloque de los odes favoritos de un&#10;                                usuario en la página pública de un usuario'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a77' name = 'mostrarGrupos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a78' name = 'Indica si se va a mostrar los grupos de un usuario en su página&#10;                                pública'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a79' name = 'centroEducativo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a80' name = 'Nombre del centro educativo del usuario'
+                                        <UML:Comment xmi.id = 'a69' name = 'Nombre sobre el que se realiza la operación'
                                           isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a81' name = 'recibirCorreo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a82' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a83' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a70' name = 'resultado' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a84' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a71' name = 'Resultado de la operación, si ha ido bien o no.'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a72' name = 'UsuarioCorreoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a73' name = 'Vo para obtener los datos necesarios de un usuario y saber si&#10;                        debe recibir o no correos'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a74' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a75' name = 'Login del usuario' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a85' name = 'contenidoImagen' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a76' name = 'email' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a77' name = 'El e-mail del usuario' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a78' name = 'recibeCorreo' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a79' name = 'Indica si debe recibir correos o no'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Association xmi.id = 'a80' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a81' name = 'odeGrupo' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a82'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a83' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a84'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a85' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
                                         <UML:Multiplicity xmi.id = 'a86'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a87' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a87' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a88' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a89'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a90' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a88'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Class xmi.id = 'a88' name = 'GrupoPublicoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a89' name = 'El grupo público o learning path engloba usuarios y odes&#10;                        relacionados entre sí. Un usuario podrá crear grupos públicos o&#10;                        asociarse a otros que hayan sido creados por otros usuarios.'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a90' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a91'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a92' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a91' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a92' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a93' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a94' name = 'nombreUsuario' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a94' name = 'imagenGrupo' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a95' name = 'Nombre y apellidos del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a95' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a96' name = 'descripcion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a96' name = 'administrador' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a97' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a98' name = 'fechaModificacion' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a97'>
+                                        <UML:Multiplicity xmi.id = 'a99'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a98' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a100' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a99' name = 'Descripcion del usuario publico' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a100' name = 'activo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a101' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a23'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a102' name = 'ContactoAsociadoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a103' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a104' name = 'usuarioContacto' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a102' name = 'fechaCreacion' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a105' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a103' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a23'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a106' name = 'imagenUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a104' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a105'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a106' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a107' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a108' name = 'esAsociadoUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a109' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a110' name = 'descripcionUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a108' name = 'FavoritoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a109' name = 'Objeto digital de la plataforma que ha sido marcado como&#10;                        favorito por un usuario'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a110' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a111' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -481,540 +501,520 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a112' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a112' name = 'titulo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a113'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a114' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a113' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a114' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a115' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a116' name = 'GrupoPublicoAdminVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
+                                <UML:Class xmi.id = 'a84' name = 'OdeGrupoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a117' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a118' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a119' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a120' name = 'descripcion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a121' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a122' name = 'imagenGrupo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a123' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a124' name = 'administrador' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a125' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a126' name = 'creador' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a127' name = 'Indica si el usuario que accede y el administrador son la misma&#10;                                persona'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a128' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a129' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a130' name = 'fechaModificacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a131' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a132' name = 'id' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a133' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a134' name = 'GrupoPublicoAsociadoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a135' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a136' name = 'administrador' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a137' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a138' name = 'asociado' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a139' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a140' name = 'descripcion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a141' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a142' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a143' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a144' name = 'fechaModificacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a145' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a146' name = 'imagenGrupo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a147' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a148' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a149' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a150' name = 'id' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a151' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a152' name = 'UsuarioCorreoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a153' name = 'Vo para obtener los datos necesarios de un usuario y saber si&#10;                        debe recibir o no correos'
+                                    <UML:Comment xmi.id = 'a116' name = 'Información del ode asociado a un grupo'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a154' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a117' name = 'id_mec' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a155' name = 'Login del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a118' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a156' name = 'email' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a119' name = 'titulo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a157' name = 'El e-mail del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a120' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a158' name = 'recibeCorreo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a121' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a159' name = 'Indica si debe recibir correos o no'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a122' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a160' name = 'ResultadoOperacionVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
+                                <UML:Class xmi.id = 'a123' name = 'ContactoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a161' name = 'VO para recoger la información de las operaciones realizadas&#10;                        referentes al perfil público'
-                                      isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a124' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a162' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a125' name = 'usuarioContacto' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a163' name = 'Nombre sobre el que se realiza la operación'
+                                        <UML:Comment xmi.id = 'a126' name = 'Usuario al que se ha añadido como contacto'
                                           isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a164' name = 'resultado' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a127' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a128'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a129' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a165' name = 'Resultado de la operación, si ha ido bien o no.'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a130' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Association xmi.id = 'a166' visibility = 'public' isSpecification = 'false'
+                                <UML:Association xmi.id = 'a131' visibility = 'public' isSpecification = 'false'
                                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                                   <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a167' name = 'odeGrupo' visibility = 'public'
+                                    <UML:AssociationEnd xmi.id = 'a132' name = 'grupoPublico' visibility = 'public'
                                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                                       targetScope = 'instance' changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a168'>
+                                        <UML:Multiplicity xmi.id = 'a133'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a169' lower = '0' upper = '-1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a134' lower = '0' upper = '-1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a29'/>
+                                        <UML:Class xmi.idref = 'a88'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a170' visibility = 'public' isSpecification = 'false'
+                                    <UML:AssociationEnd xmi.id = 'a135' visibility = 'public' isSpecification = 'false'
                                       isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                                       changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a171'>
+                                        <UML:Multiplicity xmi.id = 'a136'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a172' lower = '1' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a137' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
+                                        <UML:Class xmi.idref = 'a138'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
                                   </UML:Association.connection>
                                 </UML:Association>
-                                <UML:Class xmi.id = 'a49' name = 'GrupoPublicoVO' visibility = 'public'
+                                <UML:Association xmi.id = 'a139' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a140' name = 'favoritoUsuario' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a141'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a142' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a108'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a143' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a144'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a145' lower = '1' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a138'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Association xmi.id = 'a146' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a147' name = 'contacto' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a148'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a149' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a123'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a150' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a151'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a152' lower = '1' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a138'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Class xmi.id = 'a138' name = 'UsuarioPublicoVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a173' name = 'El grupo público o learning path engloba usuarios y odes&#10;                        relacionados entre sí. Un usuario podrá crear grupos públicos o&#10;                        asociarse a otros que hayan sido creados por otros usuarios.'
+                                    <UML:Comment xmi.id = 'a153' name = 'Usuario público de Agrega. Cada usuario público se correspondará&#10;                        con un usuario registrado en la plataforma'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a174' name = 'nombre' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a154' name = 'foto' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a175' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a155' name = 'Nombre de la foto del usuario' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a176' name = 'descripcion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a156' name = 'mostrarObjetos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a177' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a157' name = 'Indica si se va a mostrar los objetos públicos del usuario en su&#10;                                página pública'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a178' name = 'imagenGrupo' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a158' name = 'mostrarFavoritos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a179' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a159' name = 'Indica si se va a mostrar el bloque de los odes favoritos de un&#10;                                usuario en la página pública de un usuario'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a180' name = 'administrador' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a160' name = 'mostrarGrupos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a181' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a161' name = 'Indica si se va a mostrar los grupos de un usuario en su página&#10;                                pública'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a162' name = 'centroEducativo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a163' name = 'Nombre del centro educativo del usuario'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a182' name = 'fechaModificacion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a164' name = 'recibirCorreo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a165' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a166' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a167' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a168' name = 'contenidoImagen' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a183'>
+                                        <UML:Multiplicity xmi.id = 'a169'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a184' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a170' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a185' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a171' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
+                                        <UML:DataType xmi.idref = 'a172'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a186' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a187' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a188' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a173' name = 'id' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a189'>
+                                        <UML:Multiplicity xmi.id = 'a174'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a190' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a175' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a191' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a176' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a58' name = 'FavoritoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a192' name = 'Objeto digital de la plataforma que ha sido marcado como&#10;                        favorito por un usuario'
-                                      isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a193' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a177' name = 'nombreUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a178' name = 'Nombre y apellidos del usuario' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a179' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a180'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a181' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a182' name = 'Descripcion del usuario publico' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a183' name = 'activo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a184' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a185' name = 'FavoritoAnadidioVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a186' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a187' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a188' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a189' name = 'titulo' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a190' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a191' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a192' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a193' name = 'esFavorito' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a194' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a195' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a196' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a197' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a198' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a199' name = 'FavoritoAnadidioVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a200' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a201' name = 'id_mec' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a202' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a203' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a204' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a205' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a206' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a207' name = 'esFavorito' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a208' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Association xmi.id = 'a209' visibility = 'public' isSpecification = 'false'
+                                <UML:Association xmi.id = 'a195' visibility = 'public' isSpecification = 'false'
                                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                                   <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a210' name = 'gruposAsociados' visibility = 'public'
+                                    <UML:AssociationEnd xmi.id = 'a196' name = 'gruposAsociados' visibility = 'public'
                                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                                       targetScope = 'instance' changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a211'>
+                                        <UML:Multiplicity xmi.id = 'a197'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a212' lower = '0' upper = '-1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a198' lower = '0' upper = '-1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
+                                        <UML:Class xmi.idref = 'a88'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a213' visibility = 'public' isSpecification = 'false'
+                                    <UML:AssociationEnd xmi.id = 'a199' visibility = 'public' isSpecification = 'false'
                                       isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                                       changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a214'>
+                                        <UML:Multiplicity xmi.id = 'a200'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a215' lower = '1' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a201' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a216'/>
+                                        <UML:Class xmi.idref = 'a202'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
                                   </UML:Association.connection>
                                 </UML:Association>
-                                <UML:Class xmi.id = 'a216' name = 'OdeConGruposVO' visibility = 'public'
+                                <UML:Class xmi.id = 'a202' name = 'OdeConGruposVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a217' name = '' isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a203' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a218' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a204' name = 'id_mec' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a219' name = 'El identificador  del ode' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a205' name = 'El identificador  del ode' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a206' name = 'ContactoAsociadoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a207' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a208' name = 'usuarioContacto' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a209' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a210' name = 'imagenUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a211' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a212' name = 'esAsociadoUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a213' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a214' name = 'descripcionUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a215' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a216' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a217'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a218' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a219' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
@@ -1100,7 +1100,7 @@
                                         <UML:Parameter xmi.id = 'a244' name = 'aceptarSolicitudGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a245' name = 'idSolicitudGrupo' visibility = 'public'
@@ -1125,7 +1125,7 @@
                                         <UML:Parameter xmi.id = 'a249' name = 'anadirContactoAAgendaReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a160'/>
+                                            <UML:Class xmi.idref = 'a66'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a250' name = 'contacto' visibility = 'public' isSpecification = 'false'
@@ -1134,7 +1134,7 @@
                                             <UML:Comment xmi.id = 'a251' name = 'Contacto que se quiere añadir' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a37'/>
+                                            <UML:Class xmi.idref = 'a123'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a252' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1168,7 +1168,7 @@
                                             <UML:Comment xmi.id = 'a258' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a58'/>
+                                            <UML:Class xmi.idref = 'a108'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a259' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1203,7 +1203,7 @@
                                             <UML:Comment xmi.id = 'a265' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a29'/>
+                                            <UML:Class xmi.idref = 'a84'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a266' name = 'nombres' visibility = 'public' isSpecification = 'false'
@@ -1363,7 +1363,7 @@
                                         <UML:Parameter xmi.id = 'a299' name = 'cambiarImagenPorElDefectoReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a300' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1387,7 +1387,7 @@
                                         <UML:Parameter xmi.id = 'a304' name = 'cancelarSolicitudGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a305' name = 'idSolicitudGrupo' visibility = 'public'
@@ -1421,7 +1421,7 @@
                                             <UML:Comment xmi.id = 'a311' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a312' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1456,7 +1456,7 @@
                                             <UML:Comment xmi.id = 'a318' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a319' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1771,7 +1771,7 @@
                                         <UML:Parameter xmi.id = 'a383' name = 'eliminarUsuarioPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a160'/>
+                                            <UML:Class xmi.idref = 'a66'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a384' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1796,7 +1796,7 @@
                                         <UML:Parameter xmi.id = 'a388' name = 'existeContactoEnAgendaDeUsuarioReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a389' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1829,7 +1829,7 @@
                                         <UML:Parameter xmi.id = 'a395' name = 'existeFavoritoEnUsuarioReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a396' name = 'id_mec' visibility = 'public' isSpecification = 'false'
@@ -1862,7 +1862,7 @@
                                         <UML:Parameter xmi.id = 'a402' name = 'existeGrupoEnUsuarioReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a403' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1896,7 +1896,7 @@
                                         <UML:Parameter xmi.id = 'a409' name = 'existeNombreGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a410' name = 'nombreGrupo' visibility = 'public'
@@ -1929,7 +1929,7 @@
                                         <UML:Parameter xmi.id = 'a416' name = 'existeOdeEnGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a417' name = 'id_mec' visibility = 'public' isSpecification = 'false'
@@ -1962,7 +1962,7 @@
                                         <UML:Parameter xmi.id = 'a423' name = 'existeSolicitudGrupoIdenticoReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a424' name = 'nombreGrupo' visibility = 'public'
@@ -2414,7 +2414,7 @@
                                             <UML:Comment xmi.id = 'a513' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a514' name = 'idGrupo' visibility = 'public' isSpecification = 'false'
@@ -2458,7 +2458,7 @@
                                             <UML:Comment xmi.id = 'a522' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a523' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -2483,7 +2483,7 @@
                                         <UML:Parameter xmi.id = 'a527' name = 'obtenerGrupoPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a528' name = 'nombre' visibility = 'public' isSpecification = 'false'
@@ -2593,7 +2593,7 @@
                                         <UML:Parameter xmi.id = 'a549' name = 'obtenerUsuarioPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a550' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -2757,7 +2757,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -2765,7 +2765,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -2916,7 +2916,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'
@@ -3055,7 +3055,7 @@
                 <UML:Enumeration xmi.id = 'a660' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -5563,69 +5563,70 @@
                     <UML:EnumerationLiteral xmi.id = 'a1415' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1416' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1417' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1417' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1418' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1418' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1419' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1419' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1420' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1420' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1423' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1423' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1424' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1424' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1440' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1440' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1441' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1441' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1443' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>
@@ -5634,14 +5635,14 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1443' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1444' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1444' name = 'Author:ZOO.&#10;Created:6/21/05 8:55 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1445' name = 'Author:ZOO.&#10;Created:6/21/05 8:55 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1445' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1446' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
         <UML:Package xmi.id = 'a552' name = 'datatype' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -5779,7 +5780,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -5787,7 +5788,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -5938,7 +5939,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'
@@ -5947,14 +5948,14 @@
             </UML:DataType>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1446' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1447' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1447' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1448' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1448' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1449' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
         <UML:Package xmi.id = 'a552' name = 'datatype' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
@@ -6092,7 +6093,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -6100,7 +6101,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -6251,7 +6252,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'
@@ -6390,7 +6391,7 @@
                 <UML:Enumeration xmi.id = 'a660' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -8898,83 +8899,84 @@
                     <UML:EnumerationLiteral xmi.id = 'a1415' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1416' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1417' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1417' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1418' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1418' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1419' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1419' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1420' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1420' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1423' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1423' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1424' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1424' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1440' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1440' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1441' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1441' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1443' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1449' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1450' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1450' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1451' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1451' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1452' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a626' name = 'architecture' isSpecification = 'false'
@@ -9098,10 +9100,10 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1452' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1453' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1453' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1454' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a658' name = 'estimation' isSpecification = 'false'
@@ -9114,7 +9116,7 @@
                 <UML:Enumeration xmi.id = 'a660' name = 'UseCaseType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:ModelElement.comment>
-                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p02y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
+                    <UML:Comment xmi.id = 'a661' name = 'Use Cases can be either simple or complex. &#10;&#10;A simple Use Case is defined as one that that either creates a new entity instance, searches over an entity and returns a specific entity instance (or a set of matching entity instances), or one that modifies an entity instance (this includes deletion). Collectively simple Use Cases are termed NSM, which stands for New, Search, and Modify. This is an object oriented approach to what have been termed CRUD Use Cases (Create, Read, Update and Delete). Experience suggests these Use Cases usu3.1.7.p01y exist over every entity (where an entity is considered equivalent to a logical database table). Problems can arise when this approach is applied to a physical database schema. One quick test to identify logical entities is whether they refer to things that will be directly manipulated by a Primary actor, and for which a user interface will be required. &#10;&#10;Complex Use Cases are then defined as everything that is not a simple Use Case (not NSM). In simple systems these are often reporting, or management information Use Cases (Management Information System functionality (MIS))&#10;&#10;'
                       isSpecification = 'false'/>
                   </UML:ModelElement.comment>
                   <UML:Enumeration.literal>
@@ -9183,10 +9185,10 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1454' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1455' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1455' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1456' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a680' name = 'batch' isSpecification = 'false' isRoot = 'false'
@@ -9276,24 +9278,24 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1456' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1457' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1457' name = 'Tipos de Datos' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1458' name = 'Tipos de Datos' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1458' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1459' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1459' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1460' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1460' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1461' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1461' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1462' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1462' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1463' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a704' name = 'service' isSpecification = 'false'
@@ -9584,16 +9586,16 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1463' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1464' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1464' name = 'Author:ZOO.&#10;Created:6/18/05 11:18 PM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1465' name = 'Author:ZOO.&#10;Created:6/18/05 11:18 PM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1465' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1466' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1466' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1467' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a788' name = 'process' isSpecification = 'false'
@@ -9694,20 +9696,20 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1467' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1468' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1468' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1469' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1469' name = 'Author:ZOO.&#10;Created:6/21/05 9:00 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1470' name = 'Author:ZOO.&#10;Created:6/21/05 9:00 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1470' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1471' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1471' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1472' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a813' name = 'presentation' isSpecification = 'false'
@@ -10443,22 +10445,22 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1472' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1473' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1473' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1474' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1474' name = 'Author:ZOO.&#10;Created:6/21/05 8:56 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1475' name = 'Author:ZOO.&#10;Created:6/21/05 8:56 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1475' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1476' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1476' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1477' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1477' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1478' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1030' name = 'meta' isSpecification = 'false' isRoot = 'false'
@@ -10485,16 +10487,16 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1478' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1479' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1479' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1480' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1480' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1481' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1481' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1482' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1035' name = 'xml' isSpecification = 'false' isRoot = 'false'
@@ -10519,22 +10521,22 @@
             </UML:Package>
           </UML:Namespace.ownedElement>
         </UML:Package>
-        <UML:Package xmi.id = 'a1482' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1483' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1483' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1484' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1484' name = 'Author:ZOO.&#10;Created:6/21/05 8:57 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1485' name = 'Author:ZOO.&#10;Created:6/21/05 8:57 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1485' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1486' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1486' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1487' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1487' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1488' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1040' name = 'persistence' isSpecification = 'false'
@@ -11544,18 +11546,18 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1488' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1489' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1489' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1490' name = 'Author:ZOO.&#10;Created:6/21/05 9:04 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1490' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1491' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1491' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1492' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1492' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1493' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1376' name = 'webservice' isSpecification = 'false'
@@ -11638,18 +11640,18 @@
         </UML:Package>
       </UML:Namespace.ownedElement>
     </UML:Model>
-    <UML:Model xmi.id = 'a1493' name = 'Data' isSpecification = 'false' isRoot = 'false'
+    <UML:Model xmi.id = 'a1494' name = 'Data' isSpecification = 'false' isRoot = 'false'
       isLeaf = 'false' isAbstract = 'false'>
       <UML:ModelElement.comment>
-        <UML:Comment xmi.id = 'a1494' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
+        <UML:Comment xmi.id = 'a1495' name = 'Author:ZOO.&#10;Created:6/21/05 9:02 AM.&#10;Title:.&#10;Comment:.&#10;'
           isSpecification = 'false'/>
       </UML:ModelElement.comment>
       <UML:Namespace.ownedElement>
-        <UML:Package xmi.id = 'a1495' name = 'Component View' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1496' name = 'Component View' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1496' name = 'Data types' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1497' name = 'Data types' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-        <UML:Package xmi.id = 'a1497' name = 'org.andromda.profile' isSpecification = 'false'
+        <UML:Package xmi.id = 'a1498' name = 'org.andromda.profile' isSpecification = 'false'
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
           <UML:Namespace.ownedElement>
             <UML:Package xmi.id = 'a1400' name = 'jms' isSpecification = 'false' isRoot = 'false'
@@ -11691,69 +11693,70 @@
                     <UML:EnumerationLiteral xmi.id = 'a1415' name = 't3://localhost:7001' isSpecification = 'false'/>
                     <UML:EnumerationLiteral xmi.id = 'a1416' name = 'iiop://localhost:2809'
                       isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1417' name = '${jndi.url}' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1417' name = 'BrokerUrl' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1418' name = 'BrokerUrl' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1418' name = 'tcp://localhost:61616'
+                    <UML:EnumerationLiteral xmi.id = 'a1419' name = 'tcp://localhost:61616'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Enumeration xmi.id = 'a1419' name = 'NamingFactoryInitial' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1420' name = 'NamingFactoryInitial' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1420' name = 'org.jnp.interfaces.NamingContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'org.jnp.interfaces.NamingContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1421' name = 'weblogic.jndi.WLInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'weblogic.jndi.WLInitialContextFactory'
                       isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1422' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
+                    <UML:EnumerationLiteral xmi.id = 'a1423' name = 'com.ibm.websphere.naming.WsnInitialContextFactory'
                       isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
-                <UML:Stereotype xmi.id = 'a1423' name = 'AsyncService' isSpecification = 'false'
+                <UML:Stereotype xmi.id = 'a1424' name = 'AsyncService' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Stereotype.baseClass>Class</UML:Stereotype.baseClass>
                   <UML:Stereotype.definedTag>
-                    <UML:TagDefinition xmi.id = 'a1424' name = '@andromda.jms.sender.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1425' name = '@andromda.jms.sender.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.sender.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1426' name = '@andromda.jms.java.naming.provider.url'
+                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.java.naming.provider.url'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149086703205_216232_100'/>
-                    <UML:TagDefinition xmi.id = 'a1427' name = '@andromda.jms.brokerurl' isSpecification = 'false'
+                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.brokerurl' isSpecification = 'false'
                       tagType = '_9_5_170f042f_1149086956332_513168_104'/>
-                    <UML:TagDefinition xmi.id = 'a1428' name = '@andromda.jms.sender.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.sender.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1429' name = '@andromda.jms.java.naming.factory.initial'
+                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.java.naming.factory.initial'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149088267825_504983_115'/>
-                    <UML:TagDefinition xmi.id = 'a1430' name = '@andromda.jms.acknowledgemode'
+                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.acknowledgemode'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085342800_744415_88'/>
-                    <UML:TagDefinition xmi.id = 'a1431' name = '@andromda.jms.receiver.connectionfactory.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.connectionfactory.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1432' name = '@andromda.jms.receiver.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1433' name = '@andromda.jms.receiver.connectionfactory.name'
+                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.name'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1434' name = '@andromda.jms.receiver.connectionfactory.type'
+                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.connectionfactory.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085632002_520146_94'/>
-                    <UML:TagDefinition xmi.id = 'a1435' name = '@andromda.jms.receiver.destination.type'
+                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.receiver.destination.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1149085517056_911100_91'/>
-                    <UML:TagDefinition xmi.id = 'a1436' name = '@andromda.jms.asyncservice.type'
+                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.asyncservice.type'
                       isSpecification = 'false' tagType = '_9_5_170f042f_1151503779516_451342_87'/>
-                    <UML:TagDefinition xmi.id = 'a1437' name = '@andromda.jms.reply.destination.jndiname'
+                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.reply.destination.jndiname'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1438' name = '@andromda.jms.concurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.concurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
-                    <UML:TagDefinition xmi.id = 'a1439' name = '@andromda.jms.maxconcurrentconsumers'
+                    <UML:TagDefinition xmi.id = 'a1440' name = '@andromda.jms.maxconcurrentconsumers'
                       isSpecification = 'false' tagType = 'String'/>
                   </UML:Stereotype.definedTag>
                 </UML:Stereotype>
-                <UML:Enumeration xmi.id = 'a1440' name = 'AsyncServiceType' isSpecification = 'false'
+                <UML:Enumeration xmi.id = 'a1441' name = 'AsyncServiceType' isSpecification = 'false'
                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                   <UML:Enumeration.literal>
-                    <UML:EnumerationLiteral xmi.id = 'a1441' name = 'Sender' isSpecification = 'false'/>
-                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Receiver' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1442' name = 'Sender' isSpecification = 'false'/>
+                    <UML:EnumerationLiteral xmi.id = 'a1443' name = 'Receiver' isSpecification = 'false'/>
                   </UML:Enumeration.literal>
                 </UML:Enumeration>
               </UML:Namespace.ownedElement>

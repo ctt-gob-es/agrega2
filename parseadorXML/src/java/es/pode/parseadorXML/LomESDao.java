@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.parseadorXML;
 
 import java.io.File;
@@ -14,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import net.sf.dozer.util.mapping.MapperIF;
@@ -156,8 +152,31 @@ public class LomESDao {
 	}
 	
 	
+	private String getEncoding() throws ParseadorException {
+
+		String encoding="";
+		/*
+		//Tratamos de usar el encoding que se le haya indicado en el arranque de JBoss
+		try {
+    		encoding = System.getProperty("file.encoding");
+		} catch (Exception e) {
+			//Si no tratamos de usar el charset por defecto
+			try {
+				encoding = Charset.defaultCharset().toString();
+			} catch (Exception ex) {
+				encoding = getProperty("default.encoding");
+			}
+		}
+		if(encoding.contentEquals(""))
+		*/
+			encoding = getProperty("default.encoding");
+		
+		return encoding;
+	}
+	
+	
 	public void escribirLom(es.pode.parseadorXML.castor.Lom lom, OutputStream os) throws ParseadorException {
-		String encoding = getProperty("default.encoding");
+		String encoding = getEncoding();
 		OutputStreamWriter osw=null;
 		try {
 			osw = new OutputStreamWriter(os,encoding);
@@ -184,7 +203,7 @@ public class LomESDao {
 		
 		try {
 			Marshaller marshaller = new Marshaller(writer);
-			marshaller.setEncoding(getProperty("default.encoding"));
+			marshaller.setEncoding(getEncoding());
 			
 			marshaller.setSchemaLocation("http://ltsc.ieee.org/xsd/LOM lomCustom.xsd");
 			marshaller.setSuppressXSIType(true);
@@ -213,7 +232,7 @@ public class LomESDao {
 		
 		try {
 			Marshaller marshaller = new Marshaller(writer);
-			marshaller.setEncoding(getProperty("default.encoding"));
+			marshaller.setEncoding(getEncoding());
 
 			marshaller.setNamespaceMapping("lomes", "http://ltsc.ieee.org/xsd/LOM");
 			marshaller.setSchemaLocation("http://ltsc.ieee.org/xsd/LOM lomCustom.xsd");

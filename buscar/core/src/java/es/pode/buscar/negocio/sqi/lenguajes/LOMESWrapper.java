@@ -1,8 +1,3 @@
-/*
-Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
-
-This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
-*/
 package es.pode.buscar.negocio.sqi.lenguajes;
 
 import java.io.StringReader;
@@ -16,7 +11,7 @@ import org.apache.log4j.Logger;
 import es.pode.buscar.negocio.buscar.servicios.LomEsVO;
 import es.pode.parseadorXML.LomESDao;
 import es.pode.parseadorXML.ParseadorException;
-import es.pode.parseadorXML.lomes.Lom;
+import es.pode.parseadorXML.castor.Lom;
 import es.pode.parseadorXML.lomes.lomesAgrega.GeneralAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.LangStringAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.LomAgrega;
