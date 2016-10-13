@@ -1,1 +1,1 @@
-Este proyecto engloba el código fuente del proyecto AGREGA2
+Este proyecto engloba el código fuente del proyecto AGREGA2.
