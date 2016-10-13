@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+		<configuration>
+			<custom-converters>
+				<converter type="es.pode.indexador.negocio.soporte.IndiceBusquedaConverter">
+					<class-a>es.pode.indexador.negocio.servicios.indexado.IdODEVO</class-a>
+					<class-b>es.pode.indexador.negocio.dominio.IndiceBusquedaImpl</class-b>
+				</converter>
+			</custom-converters>
+		</configuration>
+		<mapping wildcard="true" map-id="DEF_MAPPING_INDICEBUSQUEDA_IDODEVO">
+			<class-a>
+				es.pode.indexador.negocio.servicios.indexado.IdODEVO
+			</class-a>
+			<class-b>
+				es.pode.indexador.negocio.dominio.IndiceBusquedaImpl
+			</class-b>
+		</mapping>
+</mappings>

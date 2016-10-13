@@ -1,0 +1,35 @@
+<project default="jar:install"
+         xmlns:ant="jelly:ant"
+         xmlns:u="jelly:util"
+         xmlns:maven="jelly:maven"
+         xmlns:j="jelly:core">
+         
+	<postGoal name="jar:install">
+		<ant:echo message="Genero una carpeta target/output con el entregable"/>
+		
+		<!-- Creo los directorios de trabajo para generar el instalable -->
+		<ant:echo message="mkdir target/output; mkdir target/zip"/>
+		<ant:mkdir dir="target/output"/>
+		<ant:mkdir dir="target/zip"/>
+		
+		<!-- Muevo los jars necesarios a zip -->
+		<ant:copy file="target/${pom.artifactId}-${pom.currentVersion}.jar" todir="target/zip"/>
+		<j:forEach var="lib" items="${pom.artifacts}">
+			<ant:copy todir="target/zip" file="${lib.path}" />
+		</j:forEach>
+		<!-- Comprimo a zip y lo pongo en target/output-->
+		<ant:zip destfile="target/output/${output.ZipName}.zip">
+			<ant:fileset dir="target/zip">
+				<ant:include name="**/*"/>
+			</ant:fileset>
+		</ant:zip>	
+		<!-- Copiar ficheros .sh y .properties a output-->
+		<ant:copy todir="target/output" >
+			<ant:fileset dir="build">
+				<ant:include name="cambioOdes.sh"/>
+				<ant:include name="cambio.properties"/>
+			</ant:fileset>
+		</ant:copy>
+	</postGoal>
+
+</project>

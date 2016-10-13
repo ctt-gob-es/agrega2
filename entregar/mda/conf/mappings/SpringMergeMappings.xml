@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings name="SpringMerge">
+    <mapping>
+        <from><![CDATA[<bean class="$service.fullyQualifiedImplementationName">
+        ]]></from>
+        <to><![CDATA[
+        <bean class="$service.fullyQualifiedImplementationName" init-method="init" destroy-method="destroy">
+        ]]></to>
+    </mapping>
+</mappings>

@@ -1,0 +1,57 @@
+#logo_n {
+background:transparent url("../img/logo_agrega_red_fondo_azul.gif") 0 0 no-repeat;
+display:block;
+text-decoration:none;
+width:131px;
+margin-top:7px;
+height:50px;
+margin-left:80px;}
+
+*+html #logo_n {margin-left:80px;margin-top:10px;}
+
+.widget_com {width:280px !important;margin:20px auto;}
+.wid_capa {padding:5px 0 10px 0 !important;}
+*+html  .wid_capa {padding:5px 0 0 0 !important;}
+.wid_flotante {margin-left:0 !important;float:left !important;margin-right:10px;margin-bottom:1px;}
+*+html .wid_flotante {margin-bottom:10px;}
+
+.globo_wid {
+margin-bottom:10px;
+width:280px !important;
+background:#D6E6F6 url("../img/azul/esq_blanco_top_izq.gif") 0 0 no-repeat;}
+
+
+.globo_wid_01 {background:transparent url("../img/azul/esq_blanco_bot_izq.gif") 0 100% no-repeat;} 
+.globo_wid_02 {background:transparent url("../img/azul/esq_blanco_top_der.gif") 100% 0  no-repeat;}
+.globo_wid_03 {
+background:transparent url("../img/azul/esq_blanco_bot_der.gif") 100%  100% no-repeat;
+padding:5px 0 10px 5px !important;}
+
+*+html .globo_wid_03 {padding:5px 0 10px 0 !important;}
+
+.oculto, hr {display: none;}
+
+span.titulo_wid {
+color:#333 !important;
+font-weight:bold;
+line-height:100%;
+padding-bottom:10px;
+margin-right:0;}
+
+*+html span.titulo_wid {padding-bottom:0;}
+
+
+#interior_wid p {padding:0 !important;position:relative;top:-12px;}
+
+#interior_wid p .titulo_wid {font-size:90%}
+
+#interior_wid {
+display:block;
+text-align:left;padding:0 !important;margin:0 0 0 5px !important
+margin:0;
+font-family:"Trebuchet MS",Verdana,Arial, sans-serif;
+font-size:80%;
+width: auto;}
+
+
+#el_flash {clear:both;text-align:left;}

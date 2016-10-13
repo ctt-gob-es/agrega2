@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE mapping PUBLIC "-//EXOLAB/Castor Mapping DTD Version 1.0//EN" "http://castor.org/mapping.dtd">
+
+<mapping>
+
+<description>Mapeos de las clases de REST al XML-REST correspondiente</description>
+
+<class name="es.pode.parseadorXML.rest.RSP" >
+	<map-to xml="rsp"/>
+	
+	<field name="stat" type="java.lang.String">
+		<bind-xml name="stat" node="attribute"/>
+	</field>
+	
+	<field name="errorCode" type="java.lang.Short">
+		<bind-xml name="error-code" node="attribute"/>
+	</field>
+	
+	<field name="errorMsg">
+		<bind-xml name="error-msg" node="attribute"/>
+	</field>
+	
+	<field name="odes" type="es.pode.parseadorXML.rest.Odes">
+		<bind-xml name="odes" node="element"/>
+	</field>
+</class>
+
+<class name="es.pode.parseadorXML.rest.Odes">
+
+	<map-to xml="odes"/>
+	
+	<field name="total" type="java.lang.Integer">
+		<bind-xml name="total" node="attribute"/>
+	</field>
+	
+	<field name="page" type="java.lang.Integer">
+		<bind-xml name="page" node="attribute"/>
+	</field>
+	
+	<field name="pages" type="java.lang.Integer">
+		<bind-xml name="pages" node="attribute"/>
+	</field>
+
+    <field name="odes" collection="array" type="es.pode.parseadorXML.rest.Ode">
+    	<bind-xml name="ode" node="element"/>
+    </field>
+</class>
+
+<class name="es.pode.parseadorXML.rest.Ode">
+	<field name="identifier" type="java.lang.String">
+		<bind-xml name="identifier" node="attribute"/>
+	</field>
+	<field name="url" type="java.lang.String">
+		<bind-xml name="url" node="attribute"/>
+	</field>
+	<field name="urlPreview" type="java.lang.String">
+		<bind-xml name="url-preview" node="attribute"/>
+	</field>
+	<field name="title" type="java.lang.String">
+		<bind-xml name="title" node="attribute"/>
+	</field>
+	<field name="agregationLevel" type="java.lang.Short">
+		<bind-xml name="agregation-level" node="attribute"/>
+	</field>
+	<field name="evaluation" type="java.lang.Float">
+		<bind-xml name="evaluation" node="attribute"/>
+	</field>
+	<field name="taxonPath" collection="array" type="es.pode.parseadorXML.rest.TaxonPath">
+		<bind-xml name="taxon-path" node="element"/>
+	</field>
+</class>
+
+<class name="es.pode.parseadorXML.rest.TaxonPath">
+	<field name="taxonId" type="java.lang.String">
+		<bind-xml name="taxon-id" node="attribute"/>
+	</field>
+	<field name="description" type="java.lang.String">
+		<bind-xml name="description" node="attribute"/>
+	</field>
+</class>
+
+</mapping>

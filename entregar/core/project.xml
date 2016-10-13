@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+    <extend>../project.xml</extend>
+    <artifactId>${pom.groupId}-core</artifactId>
+    <name>entregar Core Business Tier</name>
+    <shortDescription>The ${pom.name} Component</shortDescription>
+    <logo>/images/banner.jpg</logo>            
+    <dependencies>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>${pom.groupId}-mda</artifactId>
+            <version>${pom.currentVersion}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>${pom.groupId}-common</artifactId>
+            <version>${pom.currentVersion}</version>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+
+
+        <dependency>
+            <groupId>andromda</groupId>
+            <artifactId>andromda-core</artifactId>
+            <version>${andromda.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>andromda</groupId>
+            <artifactId>andromda-ocl-translation-core</artifactId>
+            <version>${andromda.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>andromda</groupId>
+            <artifactId>andromda-ocl-validation-library</artifactId>
+            <version>${andromda.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons.lang.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>${hibernate.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>odmg</groupId>
+            <artifactId>odmg</artifactId>
+            <version>${odmg.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+         <dependency>
+            <groupId>jta</groupId>
+            <artifactId>jta</artifactId>
+            <version>${jta.wtp.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>false</war.bundle>
+            </properties>
+        </dependency>
+        
+       <dependency>
+            <groupId>springmodules</groupId>
+            <artifactId>springmodules</artifactId>
+            <version>${springmodules_jbpm.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>springmodules</groupId>
+            <artifactId>spring-modules</artifactId>
+            <version>${springmodules.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+ 
+  <!-- Needed in order to run applications over tomcat -->
+  <dependency>
+            <groupId>javax-transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>${jta.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+ 
+        <!-- commons validator depends on antlr and oro for
+             certain validation types -->
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>${antlr.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency> 
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr</artifactId>
+            <version>${antlr.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>      
+        <dependency>
+            <groupId>antlr</groupId>
+            <artifactId>antlr3</artifactId>
+            <version>${antlr3.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+            <version>${aopalliance.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>${spring.version}</version>
+            <type>jar</type>
+            <properties>
+                <ejb.manifest.classpath>true</ejb.manifest.classpath>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>jboss</groupId>
+            <artifactId>jboss-j2ee</artifactId>
+            <version>${jboss.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+			<groupId>jaf</groupId>
+			<artifactId>jaf</artifactId>
+			<version>${jaf.version}</version>
+			<type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+		</dependency>
+		<dependency>
+		<groupId>javax</groupId>
+		<artifactId>activation</artifactId>
+		<version>${activation.version}</version>
+		<type>jar</type>
+        <war.bundle>true</war.bundle>
+	</dependency>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>dbunit</groupId>
+		<artifactId>dbunit</artifactId>
+		<version>${dbunit.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>${poi.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>${log4j.version}</version>
+		<type>jar</type>
+	</dependency>	
+	<dependency>
+		<groupId>springframework</groupId>
+		<artifactId>spring-mock</artifactId>
+		<version>${spring.mock.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>jdbc-drivers</groupId>
+		<artifactId>drivers-jdbc</artifactId>
+		<version>-</version>
+		<jar>${db.testing.driver}</jar>
+	</dependency>
+	<dependency>
+		<groupId>hibernate</groupId>
+		<artifactId>ehcache</artifactId>
+		<version>${ehcache.hibernate.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>hibernate</groupId>
+		<artifactId>cglib-full</artifactId>
+		<version>${cglib.full.version}</version>
+		<type>jar</type>
+	</dependency>
+	<dependency>
+		<groupId>hibernate</groupId>
+		<artifactId>commons-dbcp</artifactId>
+		<version>${commons.dbcp.version}</version>
+	</dependency>
+
+        <dependency>
+            <groupId>commons-discovery</groupId>
+            <artifactId>commons-discovery</artifactId>
+            <version>${commons.discovery.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-ant</artifactId>
+            <version>${axis.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis</artifactId>
+            <version>${axis.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-jaxrpc</artifactId>
+            <version>${axis.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-saaj</artifactId>
+            <version>${axis.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>axis</groupId>
+            <artifactId>axis-wsdl4j</artifactId>
+            <version>${axis.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+
+		<!-- ACEGI -->
+		<dependency>
+			<groupId>acegisecurity</groupId>
+			<artifactId>acegi-security</artifactId>
+			<version>${acegisecurity.version}</version>
+			<type>jar</type>
+		</dependency>         
+		<!-- JCAPTCHA -->
+		<dependency>
+			<groupId>jcaptcha</groupId>
+			<artifactId>jcaptcha-all</artifactId>
+			<version>${jcaptcha.version}</version>
+			<type>jar</type>
+		</dependency>   
+
+		<dependency>
+			<groupId>dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>${dozer.version}</version>
+			<type>jar</type>
+		</dependency>
+		 <dependency>
+            <groupId>agrega</groupId>
+            <artifactId>parseadorXML</artifactId>
+            <version>${parseador.version}</version>
+            <type>jar</type>
+        </dependency>
+    	<dependency>
+            <groupId>agrega</groupId>
+            <artifactId>soporte</artifactId>
+            <version>${soporte.version}</version>
+            <type>jar</type>
+        </dependency> 
+    	<dependency>
+            <groupId>castor</groupId>
+            <artifactId>castor</artifactId>
+            <version>${castor.version}</version>
+            <type>jar</type>
+        </dependency> 
+        
+         <dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>resolver</artifactId>
+  		<version>${xerces.version}</version>
+  		<type>jar</type>
+	  </dependency>
+	
+	  <dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>serializer</artifactId>
+  		<version>${xerces.version}</version>
+  		<type>jar</type>
+	  </dependency>
+	  <dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>xercesImpl</artifactId>
+  		<version>${xerces.version}</version>
+  		<type>jar</type>
+	  </dependency>
+	  <dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>xercesSamples</artifactId>
+  		<version>${xerces.version}</version>
+  		<type>jar</type>
+	  </dependency>
+	  <dependency>
+  		<groupId>xerces</groupId>
+  		<artifactId>xml-apis</artifactId>
+  		<version>${xerces.version}</version>
+  		<type>jar</type>
+	  </dependency>
+		
+		<dependency>
+        	<groupId>sawa</groupId>
+			<artifactId>sawa-core</artifactId>
+			<version>${sawa.version}</version>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>agrega</groupId>
+            <artifactId>soporte</artifactId>
+            <version>${soporte.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>        
+        <dependency>
+            <groupId>jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>${jdom.version}</version>
+            <type>jar</type>
+            <properties>
+                <war.bundle>true</war.bundle>
+            </properties>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javamail</artifactId>
+            <version>${javamail.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+           <groupId>starteam</groupId>
+           <artifactId>starteam</artifactId>
+           <version>8.0</version>
+           <properties>
+                  <classloader>root</classloader>
+                 <war.bundle>false</war.bundle>
+        	</properties>
+       </dependency>
+	    
+	    <dependency>
+	      <groupId>freemarker</groupId>
+	      <artifactId>freemarker</artifactId>
+	      <version>${freemarker.version}</version>
+	      <type>jar</type>
+	    </dependency>
+    </dependencies>
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${maven.build.src}</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+      <unitTestSourceDirectory>${basedir}/src/test/</unitTestSourceDirectory>
+      <unitTest>
+            <includes>
+                  <include>**/Test*.java</include>
+            </includes>
+            <resources>
+            <resource>
+                  <directory>${basedir}/src/test-resources</directory>
+            </resource>
+            </resources>
+      </unitTest>
+      <resources>
+            <resource>
+                  <directory>${basedir}/src/resources</directory>
+            </resource>
+            <resource>
+                  <directory>${basedir}/src/java
+                  </directory>
+                  <includes>
+                        <include>**/*.xml</include>
+                        <include>**/*.dtd</include>
+                        <include>**/*.properties</include>
+                  </includes>
+            </resource>
+      </resources>
+    </build>
+    <reports>
+        <!-- <report>maven-junit-report-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/junit-report/ -->
+        <report>maven-news-plugin</report>
+		<!-- http://maven-plugins.sourceforge.net/maven-news-plugin/index.html -->        
+        <report>maven-checkstyle-plugin</report>
+		<!-- http://checkstyle.sourceforge.net/ -->
+		<!-- http://maven.apache.org/maven-1.x/plugins/checkstyle/ -->
+        <report>maven-jxr-plugin</report>
+        <!--  http://maven.apache.org/maven-1.x/plugins/jxr/ -->
+        <report>maven-javadoc-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/javadoc/ -->
+        <report>maven-simian-plugin</report>
+        <!-- http://www.redhillconsulting.com.au/products/simian/ -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/simian/ -->
+        <!-- <report>maven-pmd-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/pmd/ -->
+        <!-- http://pmd.sourceforge.net/ -->
+        <!-- <report>maven-jdepend-plugin</report>  -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/jdepend/ -->
+        <report>maven-faq-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/faq/ -->
+        <!-- <report>maven-tasklist-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/tasklist/ -->
+        <!-- <report>maven-file-activity-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/file-activity/ -->
+        <!-- <report>maven-developer-activity-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/developer-activity/ -->
+        <!-- <report>maven-changelog-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/changelog/ -->
+        <!-- <report>maven-changes-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/changes/ -->
+        <!-- <report>maven-cobertura-plugin</report> -->
+        <!-- http://cobertura.sourceforge.net/ -->    
+        <!-- http://maven-plugins.sourceforge.net/maven-cobertura-plugin/ -->
+        <!-- maven plugin:download  -Dmaven.repo.remote=http://maven-plugins.sourceforge.net/repository  -DgroupId=maven-plugins  -DartifactId=maven-cobertura-plugin  -Dversion=1.2 -->
+        <!-- <report>maven-linkcheck-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/linkcheck/ -->
+    </reports>
+    
+    <properties/>
+</project>

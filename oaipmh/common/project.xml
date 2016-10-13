@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+    <extend>../project.xml</extend>
+    <artifactId>${pom.groupId}-common</artifactId>
+    <name>oaipmh Common</name>
+    <shortDescription>${pom.name} Component</shortDescription>
+    <description>
+          Contains the ${pom.name} module.
+    </description>
+    <dependencies>
+        <dependency>
+            <groupId>${pom.groupId}</groupId>
+            <artifactId>${pom.groupId}-mda</artifactId>
+            <version>${pom.currentVersion}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <sourceDirectory>src/java</sourceDirectory>
+    </build>
+    <reports>
+        <report>maven-news-plugin</report>
+		<!-- http://maven-plugins.sourceforge.net/maven-news-plugin/index.html -->        
+        <report>maven-checkstyle-plugin</report>
+	    <!-- http://checkstyle.sourceforge.net/ -->
+	    <!-- http://maven.apache.org/maven-1.x/plugins/checkstyle/ -->
+        <report>maven-jxr-plugin</report>
+        <!--  http://maven.apache.org/maven-1.x/plugins/jxr/ -->
+        <report>maven-javadoc-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/javadoc/ -->
+        <report>maven-simian-plugin</report>
+        <!-- http://www.redhillconsulting.com.au/products/simian/ -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/simian/ -->
+        <!-- <report>maven-pmd-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/pmd/ -->
+        <!-- http://pmd.sourceforge.net/ -->
+        <!-- <report>maven-jdepend-plugin</report>  -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/jdepend/ -->
+        <report>maven-faq-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/faq/ -->
+        <report>maven-tasklist-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/tasklist/ -->
+        <report>maven-file-activity-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/file-activity/ -->
+        <!-- <report>maven-developer-activity-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/developer-activity/ -->
+        <!-- <report>maven-junit-report-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/junit-report/ -->
+        <!-- <report>maven-changelog-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/changelog/ -->
+        <!-- <report>maven-changes-plugin</report> -->
+        <!-- http://maven.apache.org/maven-1.x/plugins/changes/ -->
+        <!-- <report>maven-cobertura-plugin</report> -->
+        <!-- http://cobertura.sourceforge.net/ -->    
+        <!-- http://maven-plugins.sourceforge.net/maven-cobertura-plugin/ -->
+        <!-- maven plugin:download  -Dmaven.repo.remote=http://maven-plugins.sourceforge.net/repository  -DgroupId=maven-plugins  -DartifactId=maven-cobertura-plugin  -Dversion=1.2 -->
+        <report>maven-linkcheck-plugin</report>
+        <!-- http://maven.apache.org/maven-1.x/plugins/linkcheck/ -->
+    </reports>
+    
+</project>

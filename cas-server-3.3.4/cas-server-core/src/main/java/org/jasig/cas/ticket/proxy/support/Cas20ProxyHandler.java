@@ -1,0 +1,100 @@
+/*
+Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
+*/
+/*
+ * Copyright 2007 The JA-SIG Collaborative. All rights reserved. See license
+ * distributed with this file and available online at
+ * http://www.ja-sig.org/products/cas/overview/license/
+ */
+package org.jasig.cas.ticket.proxy.support;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.inspektr.common.ioc.annotation.NotNull;
+import org.jasig.cas.authentication.principal.Credentials;
+import org.jasig.cas.authentication.principal.HttpBasedServiceCredentials;
+import org.jasig.cas.ticket.proxy.ProxyHandler;
+import org.jasig.cas.util.DefaultUniqueTicketIdGenerator;
+import org.jasig.cas.util.HttpClient;
+import org.jasig.cas.util.UniqueTicketIdGenerator;
+
+/**
+ * Proxy Handler to handle the default callback functionality of CAS 2.0.
+ * <p>
+ * The default behavior as defined in the CAS 2 Specification is to callback the
+ * URL provided and give it a pgtIou and a pgtId.
+ * </p>
+ * 
+ * @author Scott Battaglia
+ * @version $Revision: 43942 $ $Date: 2008-07-03 15:55:45 -0400 (Thu, 03 Jul 2008) $
+ * @since 3.0
+ */
+public final class Cas20ProxyHandler implements ProxyHandler {
+
+    /** The Commons Logging instance. */
+    private final Log log = LogFactory.getLog(getClass());
+//	private final Logger log= Logger.getLogger(this.getClass());
+
+    /** The PGTIOU ticket prefix. */
+    private static final String PGTIOU_PREFIX = "PGTIOU";
+
+    /** Generate unique ids. */
+    @NotNull
+    private UniqueTicketIdGenerator uniqueTicketIdGenerator = new DefaultUniqueTicketIdGenerator();
+
+    /** Instance of Apache Commons HttpClient */
+    @NotNull
+    private HttpClient httpClient;
+
+    public String handle(final Credentials credentials,
+        final String proxyGrantingTicketId) {
+        final HttpBasedServiceCredentials serviceCredentials = (HttpBasedServiceCredentials) credentials;
+        final String proxyIou = this.uniqueTicketIdGenerator
+            .getNewTicketId(PGTIOU_PREFIX);
+        final String serviceCredentialsAsString = serviceCredentials.getCallbackUrl().toExternalForm();
+        final StringBuilder stringBuffer = new StringBuilder(
+            serviceCredentialsAsString.length() + proxyIou.length()
+                + proxyGrantingTicketId.length() + 15);
+
+        stringBuffer.append(serviceCredentialsAsString);
+
+        if (serviceCredentials.getCallbackUrl().getQuery() != null) {
+            stringBuffer.append("&");
+        } else {
+            stringBuffer.append("?");
+        }
+
+        stringBuffer.append("pgtIou=");
+        stringBuffer.append(proxyIou);
+        stringBuffer.append("&pgtId=");
+        stringBuffer.append(proxyGrantingTicketId);
+
+        if (this.httpClient.isValidEndPoint(stringBuffer.toString())) {
+            if (log.isDebugEnabled()) {
+                log.debug("Sent ProxyIou of " + proxyIou + " for service: "
+                    + serviceCredentials.toString());
+            }
+            return proxyIou;
+        }
+
+        if (log.isDebugEnabled()) {
+            log.debug("Failed to send ProxyIou of " + proxyIou
+                + " for service: " + serviceCredentials.toString());
+        }
+        return null;
+    }
+
+    /**
+     * @param uniqueTicketIdGenerator The uniqueTicketIdGenerator to set.
+     */
+    public void setUniqueTicketIdGenerator(
+        final UniqueTicketIdGenerator uniqueTicketIdGenerator) {
+        this.uniqueTicketIdGenerator = uniqueTicketIdGenerator;
+    }
+
+    public void setHttpClient(final HttpClient httpClient) {
+        this.httpClient = httpClient;
+    }
+}

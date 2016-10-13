@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+La i18n en XUL se hace por medio de entidades que se resuelven según locale.
+Es necesario que las URIs sean del tipo chrome.
+-->
+<!DOCTYPE window SYSTEM "chrome://agrega-tagger/locale/agrega-tagger.dtd">
+
+<!--
+Este XUL se usa como overlay, así que hay que indicarlo
+-->
+<overlay id="agrega-tagger_toolbar" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<window id="main-window">
+		<!--
+		Para i18n en los ficheros de Javascript hay que declarar el fichero
+		de locale que contiene las cadenas desde el XUL llamante al código.
+		-->
+		<stringbundleset id="stringbundleset">
+			<stringbundle id="agrega-tagger-bundle" src="chrome://agrega-tagger/locale/agrega-tagger.properties"/>
+		</stringbundleset>
+		<!--
+		En cada elemento de XUL que use Javascript hay que declararlo
+		como en la línea siguiente
+		-->
+		<script id="agrega-tagger-script" type="application/x-javascript" src="chrome://agrega-tagger/content/publicar.js" />
+		<toolbox id="navigator-toolbox">
+		<toolbarpalette id="BrowserToolbarPalette">
+			<!--
+			Definimos el punto de inserción por medio de toolbox, toolbarpalette y campo insertbefore/insertafter
+			-->
+			<toolbarbutton id="agrega-taggerButton" insertafter="home-button" class="toolbarbutton-1 chromeclass-toolbar-additional" label="&agrega-tagger.button;" tooltiptext="&agrega-tagger.button;" image="chrome://agrega-tagger/content/hotico-001.png" oncommand="publicar()" />
+		</toolbarpalette>
+		</toolbox>
+	</window>
+
+</overlay>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<opml version="1.1">
+<head>
+	<title>Agrega</title>
+	<dateCreated>Feb 12 2009 12:24:58 GMT</dateCreated>
+	<dateModified>Feb 12 2009 16:05:12 GMT</dateModified>
+	<ownerName>Agrega</ownerName>
+	<ownerEmail/>
+</head>
+<body>
+	<outline text="Notícies" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=0.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:17:01 GMT"/>
+	<outline text="Desc�rreques" type="rss" xmlUrl="http://${host}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=11.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:17:01 GMT"/>
+	<outline text="Darrers ODEs publicats" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:21:56 GMT"/>
+	<outline text="Darrers ODEs federats publicats" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=2.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:22:41 GMT"/>
+	<outline text="ODEs més descarregats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:29:58 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:31:00 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:31:18 GMT"/>
+	</outline>
+	<outline text="ODEs federats més descarregats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:44:59 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:46:45 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:47:19 GMT"/>
+	</outline>
+	<outline text="ODEs més mostrats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:46:08 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:49:45 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:50:31 GMT"/>
+	</outline>
+	<outline text="ODEs federats més mostrats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:52:11 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:52:49 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:53:28 GMT"/>
+	</outline>
+	<outline text="ODEs més previsualitzats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:56:21 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:57:01 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:57:26 GMT"/>
+	</outline>
+	<outline text="ODEs federats més previsualitzats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:57:55 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:58:29 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:58:57 GMT"/>
+	</outline>
+	<outline text="ODEs més enviats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 15:59:39 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 16:00:07 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 16:00:45 GMT"/>
+	</outline>
+	<outline text="ODEs federats més enviats">
+		<outline text="Aquesta setmana" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.1.1&amp;idiomaNavegacion=ca" created="Feb 12 2009 16:01:48 GMT"/>
+		<outline text="Aquest mes" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.1.2&amp;idiomaNavegacion=ca" created="Feb 12 2009 16:02:52 GMT"/>
+		<outline text="Aquest any" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.1.3&amp;idiomaNavegacion=ca" created="Feb 12 2009 16:03:32 GMT"/>
+	</outline>
+	<outline text="ODEs per nivell d'agregació">
+		<outline text="Mitjanes i Mitjanes integrades" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///1///03/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Objectes d'aprenentatge" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///2///03/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Seqüències didàctiques" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///3///03/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Cursos, Plans i Programes de formació" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///4///03/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+	</outline>
+	<outline text="ODEs federats per nivell d'agregació">
+		<outline text="Mitjanes i Mitjanes integrades" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///1///01/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Objectes d'aprenentatge" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///2///01/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Seqüències didàctiques" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///3///01/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Cursos, Plans i Programes de formació" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//ca////////////////BUSCADOR///4///01/RSS" created="Feb 12 2009 16:04:48 GMT"/>
+	</outline>
+</body>
+</opml>

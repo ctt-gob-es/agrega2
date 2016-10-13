@@ -1,0 +1,48 @@
+/*
+Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
+*/
+/*
+ * Copyright 2007 The JA-SIG Collaborative. All rights reserved. See license
+ * distributed with this file and available online at
+ * http://www.ja-sig.org/products/cas/overview/license/
+ */
+package org.jasig.cas.authentication;
+
+import org.jasig.cas.authentication.handler.AuthenticationException;
+import org.jasig.cas.authentication.principal.Credentials;
+
+/**
+ * The AuthenticationManager class is the entity that determines the
+ * authenticity of the credentials provided. It (or a class it delegates to) is
+ * the sole authority on whether credentials are valid or not.
+ * 
+ * @author Scott Battaglia
+ * @version $Revision: 43394 $ $Date: 2008-03-19 08:36:13 -0400 (Wed, 19 Mar 2008) $
+ * @since 3.0
+ * <p>
+ * This is a published and supported CAS Server 3 API.
+ * </p>
+ */
+public interface AuthenticationManager {
+    
+    String AUTHENTICATION_METHOD_ATTRIBUTE = "authenticationMethod";
+
+    /**
+     * Method to validate the credentials provided. On successful validation, a
+     * fully populated Authentication object will be returned. Typically this
+     * will involve resolving a principal and providing any additional
+     * attributes, but specifics are left to the individual implementations to
+     * determine. Failure to authenticate is considered an exceptional case, and
+     * an AuthenticationException is thrown.
+     * 
+     * @param credentials The credentials provided for authentication.
+     * @return fully populated Authentication object.
+     * @throws AuthenticationException if unable to determine validity of
+     * credentials or there is an extenuating circumstance related to
+     * credentials (i.e. Account locked).
+     */
+    Authentication authenticate(final Credentials credentials)
+        throws AuthenticationException;
+}

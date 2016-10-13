@@ -1,0 +1,8 @@
+<!--
+Guardar en UTF8 o no se verán las letras fuera de ASCII.
+-->
+<!ENTITY agrega-tagger.button "Importar en Agrega">
+<!ENTITY agrega-tagger.menuLabel "Agrega">
+<!ENTITY agrega-tagger.prefLabel "Introduzca la URL del nodo de Agrega en el que importar">
+
+

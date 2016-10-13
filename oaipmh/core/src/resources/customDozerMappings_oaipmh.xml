@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+<mapping wildcard="true" map-id="DEF_MAPPING_RESULTADOREPOSITORIOVO_REPOSITORIOVO">
+		<class-a>es.pode.indexador.negocio.servicios.busqueda.ResultadoRepositorioVO</class-a>
+		<class-b>es.pode.sitemap.negocio.servicios.RepositorioVO</class-b>
+		<field>
+			<a>identificador</a>
+			<b>identificador</b>
+		</field>
+		<field>
+			<a>idioma</a>
+			<b>idioma</b>
+		</field>
+		<field>
+			<a>fechaPublicacion</a>
+			<b>fechaPublicacion</b>
+		</field>
+		<field>
+			<a>nivelAgregacion</a>
+			<b>nivelAgregacion</b>
+		</field>
+		<field>
+			<a>objetivos</a>
+			<b>objetivos</b>
+			<a-hint>
+			String
+			</a-hint>
+			<b-hint>
+				String
+			</b-hint>
+		</field>
+</mapping>
+</mappings>

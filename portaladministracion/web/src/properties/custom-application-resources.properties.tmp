@@ -1,0 +1,1341 @@
+#############################################################################
+#																			#
+#  					MENSAJES I18N PARA EL LAYOUT DE:						#
+#					-Portal de Administracion								#
+#																			#
+#############################################################################
+
+##########################		Mensajes General	##########################
+
+#XStandard - Mensaje de no instalado
+xstandard.message=Si no puede ver el editor avanzado, hay tres posibles razones. (1) No tiene instalado XStandard en su ordenador. Antes de continuar, instale XStandard Lite. Puede descargar el instalable desde <a href="http://xstandard.com/en/downloads/">aquí</a> después de registrarse. (2) Necesita reiniciar su navegador web. (3) No ha habilitado 'componentes' (plug-ins) en su navegador. Si tiene alguna pregunta <a href="http://xstandard.com/en/contact-us/">contáctenos</a>. Como alternativa al editor avanzado, se muestra la caja de texto para introducir la respuesta.
+
+# Parametros validados por struts
+crear.faq.formulario.aceptar.param.idioma=idioma
+crear.faq.formulario.aceptar.param.pregunta=pregunta
+crear.faq.formulario.aceptar.param.respuesta=respuesta
+modificar.faq.formulario.aceptar.param.idioma=idioma
+modificar.faq.formulario.aceptar.param.pregunta=pregunta
+modificar.faq.formulario.aceptar.param.respuesta=respuesta
+crear.noticia.formulario.aceptar.param.idioma=idioma
+crear.noticia.formulario.aceptar.param.titulo=título
+crear.noticia.formulario.aceptar.param.resumen=resumen
+crear.noticia.formulario.aceptar.param.dia=día
+crear.noticia.formulario.aceptar.param.nueva.categoria=nueva categoría
+crear.noticia.formulario.aceptar.param.alineamiento=alineamiento
+crear.noticia.formulario.aceptar.param.anio=año
+crear.noticia.formulario.aceptar.param.categoria=categoría
+crear.noticia.formulario.aceptar.param.mes=mes
+crear.noticia.formulario.aceptar.param.estado=estado
+crear.noticia.formulario.aceptar.param.cuerpo=cuerpo
+modificar.noticia.formulario.aceptar.param.nueva.categoria=nueva categoría
+modificar.noticia.formulario.aceptar.param.alineamiento=alineamiento
+modificar.noticia.formulario.aceptar.param.categoria=categoría
+
+
+#Mensaje de error
+errors.required=El término {0} es obligatorio.
+errors.required=El término {0} es obligatorio.
+errors.short={0} debe ser un número.
+errors.integer={0} debe ser un entero.
+errors.long={0} debe ser un numero.
+errors.float={0} debe ser un numero.
+errors.double={0} debe ser numero con decimales.
+errors.date={0} no es una fecha valida o no respeta el formato '{1}' .
+errors.time={0} no es una hora valida  o no respeta el formato '{1}' .
+errors.maxlength=El campo {0} no puede ser mayor de {1} caracteres.
+errors.date.mayor.actual=La fecha introducida es menor que la actual.
+errors.date.required=La fecha es un dato obligatorio.
+errors.resumen.required= El resumen es un dato obligatorio.
+errors.cuerpo.required=El cuerpo es un dato obligatorio.
+errors.idioma.required=El idioma es un dato obligatorio.
+errors.title.required=El t&iacute;tulo es un dato obligatorio.
+errors.date.incorrecto=La fecha introducida no es una fecha valida o no respeta el formato 'DD/MM/AAAA'.
+errors.noticia.long.resumen=Se ha excedido en el tamaño del resumen.
+errors.noticia.long.resumen.tamanio=Se ha excedido en el tamaño del resumen, que es de 256 caracteres.
+errors.noticia.long.cuerpo.tamanio=Se ha excedido en el tamaño del cuerpo, que es de 4000 caracteres.
+errors.noticia.long.cuerpo=Se ha excedido en el tamaño del cuerpo.
+errors.notiticia.categoria= Categor&iacute;a es obligatorio.
+errors.noticias.caracterIlegal=Hay caracteres incorrectos en el t&iacute;tulo (>,#,&,<)
+errors.faq.pregunta= Se ha excedido en el tamaño de la pregunta.
+errors.faq.respuesta=Se ha excedido en el tamaño de la respuesta.
+errors.faq.respuesta.tamanio=Se ha excedido en el tamaño de la respuesta, que es de 3500 caracteres.
+errors.faq.position=Debe de rellenar la posición de la faq.
+errors.faq.crear.inesperado=Error inesperado creando la faq, la operación no se ha podido realizar.
+errors.faq.caracterIlegal=Hay caracteres incorrectos en la pregunta (>,#,&,<)
+errors.faq.categoria.obligatorio=Debe seleccionar al menos una categor&iacute;a o crear una nueva.
+errors.faq.eliminar=No se ha seleccionado ninguna faq
+errors.noticias.eliminar=No se ha seleccionado ninguna noticia
+errors.noticias.borrar.ids=Error al intentar eliminar noticias
+errors.noticias.borrar.cargar=Error al intentar cargar noticias
+errors.faqs.borrar.ids=Error al intentar eliminar preguntas frecuentes
+errors.faqs.borrar.cargar=Error al intentar cargar preguntas frecuentes
+errors.noticias.noImagen= S&oacute;lo se admiten ficheros de tipo : jpg - gif - png
+errors.noticias.imagenVacio= Debe seleccionar una imagen.
+errors.noticias.alineamientoVacio= Debe seleccionar un tipo de alineamiento.
+errors.noticia.titulo=Se ha excedido en el tamaño del título que debe de ser inferior a 100 caracters
+error.400.title=Error
+error.403.title=Acceso prohibido
+error.404.title=Error
+error.500.title=Error
+error.exception.title=Error
+error.400.message=En estos momentos no puede acceder a este servicio, intentelo m&aacute;s tarde
+error.403.message=No puede acceder a esta parte de la aplicaci&oacute;n, intentelo m&aacute;s tarde
+error.404.message=En estos momentos no puede acceder a este servicio, intentelo m&aacute;s tarde
+error.500.message=En estos momentos no puede acceder a este servicio, intentelo m&aacute;s tarde
+error.exception.message=En estos momentos no puede acceder a este servicio, intentelo m&aacute;s tarde
+
+#Mensaje de comun
+comun.idioma=Idioma
+comun.seleccione=Seleccione
+comun.continuar=Continuar
+comun.cancelar=Cancelar
+comun.aceptar=Aceptar
+title.Comun=Agrega - Administraci&oacute;n
+listar.odecu.mostrar.resultados.detalles.errorTraduccionTermino=Error traduciendo t&eacute;rminos
+admin.portada.cabecera=Portada de Administraci&oacute;n
+
+
+##########################		Mensajes Faq y Noticias		##########################
+
+# Mensajes de Noticas
+noticias.titulo.cabecera=T&iacute;tulo
+noticias.estado.cabecera=Estado
+noticias.fecha.cabecera=Fecha
+noticias.idiomas.cabecera=Idiomas
+noticias.categoria.cabecera=Categor&iacute;a
+noticias.Seleccione=Seleccione
+noticias.cabeceraNoticias=Noticias
+noticias.crearNoticia=Crear Noticia
+noticias.tablaAdministracionNoticias=Tabla de Adiministraci&oacute;n de Noticias
+noticias.modificar=Modificar
+noticas.crearNoticia=Crear Noticia
+noticias.noticias.eliminar=Eliminar
+noticia.eliminacionNoticias.cabecera=Eliminaci&oacute;n de Noticias
+noticias.eliminacionNoticias.confirmacion=¿Est&aacute; seguro que desea eliminar estas noticias?
+noticias.eliminacionNoticias.confirmacion2=Las siguientes noticias se han eliminado
+estado.notica.activada=Activa
+estado.notica.noactivada=No Activa
+crear.noticia.formulario.aceptar.param.anio=Año
+crear.noticia.formulario.aceptar.param.nueva.categoria=Nueva Categor&iacute;a
+modificar.noticia.formulario.titleCrearNoticia=Crear Noticia
+modificar.noticia.formulario.titleModificarNoticia=Modificar Noticia
+modificar.noticia.formulario.tituloNoticia=*Título de Noticia:
+modificar.noticia.formulario.Fecha=*Fecha:
+modificar.noticia.formulario.Resumen=*Resumen:
+modificar.noticia.formulario.Cuerpo=*Cuerpo:
+modificar.noticia.formulario.Idioma=*Idioma:
+modificar.noticia.formulario.Categoria=*Categor&iacute;a:
+modificar.noticia.formulario.Imagen=Imagen:
+modificar.noticia.formulario.Estado=*Estado
+modificar.noticia.formulario.introduzcaNoticia=Introduzca  el t&iacute;tulo de la Noticia
+modificar.noticia.formulario.introduzcaAnio=Introduzca A&ntilde;o
+modificar.noticia.formulario.introduzcaFechaDeMes=Fecha de mes:
+modificar.noticia.formulario.introduzcaFechaAnio=Fecha de año:
+modificar.noticia.formulario.introduzcaMes=Introduzca Mes
+modificar.noticia.formulario.introduzcaFechaDia=Fecha de d&iacute;a:
+modificar.noticia.formulario.introduzcaDia=Introduzca D&iacute;a
+modificar.noticia.formulario.introduzcaResumen=Introduzca el resumen de la noticia
+modificar.noticia.formulario.introduzcaCuerpoNoticia=Introduzca el cuerpo de la noticia
+modificar.noticia.formulario.SeleccioneIdioma=Seleccione Idioma
+modificar.noticia.formulario.SelectCategoria=Seleccione Categor&iacute;a
+modificar.noticia.formulario.SelectNuevaCategoria=Nueva categor&iacute;a
+modificar.noticia.formulario.SelectImagen=Seleccione Imagen
+modificar.noticia.formulario.AlinearIzq=Alinear arriba-izquierda
+modificar.noticia.formulario.AlinearDer=Alinear arriba-derecha
+modificar.noticia.formulario.EstadoDesact=Desactivado
+modificar.noticia.formulario.EstadoActiv=Activado
+modificar.noticia.formulario.BotonAceptar=Aceptar
+modificar.noticia.formulario.BotonCancelar=Cancelar
+modificar.noticia.formulario.BotonSeleccione=Seleccione
+
+#Mensajes de faqs
+faqs.crearFaqs.cabecera1=Crear Pregunta frecuente (Paso 01 de 02)
+faqs.crearFaqs.cabecera2=Crear Pregunta frecuente (Paso 02 de 02)
+faqs.eliminacionFaqs.cabecera=Eliminaci&oacute;n de preguntas frecuentes
+faqs.eliminacionFaqs.confirmacion=¿Est&aacute; seguro que desea eliminar estas preguntas frecuentes? Se eliminarán las faqs en todos los idiomas.
+faqs.eliminacionFaqs.cabecera=Eliminaci&oacute;n de Preguntas frecuentes
+faqs.eliminacionfaqs.confirmacion2=Las siguientes preguntas frecuentes se han eliminado
+faqs.crearFaqs.tituloDeLaFaq=*Pregunta:
+faqs.crearFaqs.contenido=*Respuesta:
+faqs.crearFaqs.introducirContenidoFaq=Introduzca aqu&iacute contenido de Pregunta frecuente
+faqs.crearFaqs.tablaAdministracionUsuarios=Tabla de Adiministraci&oacute;n de Usuarios
+faqs.crearFaqs.seleccioneCampoInsertar=Seleccione el punto donde desea que aparezca la nueva Pregunta frecuente (Aparecer&aacute justo debajo del punto seleccionado)
+faqs.crearFaqs.introduzcaFaq=Introduzca Pregunta frecuente
+crear.faq.formulario.aceptar.param.pregunta=Pregunta
+crear.faq.formulario.aceptar.param.respuestaIntroducir=Introduzca la respuesta de la pregunta frecuente
+crear.faq.formulario.aceptar.param.preguntaIntroducir=Introduzca la pregunta de la pregunta frecuente
+faqs.faqs.title=Preguntas frecuentes
+faqs.faqs.TablaAdministracionFaqs=Tabla de Administraci&oacute;n de Preguntas frecuentes
+faqs.faqs.Eliminar=Eliminar
+faqs.faqs.CrearFaqs=Crear FAQ
+faqs.faqs.Seleccione=Seleccione
+faqs.faqs.Modificar=Modificar
+faqs.modificarFaqs.cabecera1=Modificar Pregunta frecuente (Paso 01 de 02)
+faqs.modificarFaqs.cabecera2=Modificar Pregunta frecuente (Paso 02 de 02)
+
+
+##########################		Mensajes de Tareas		##########################
+
+#  Lista comun de Tareas
+tareas.cabecera=Planificador
+tareas.Pendientes=Pendientes
+tareas.Ejecutandose=Ejecut&aacute;ndose
+tareas.Ejecutadas=Ejecutadas
+tareas.fechaIncorrecta=La fecha es incorrecta
+tareas.fechaDesdeIncorrecta=Fecha desde incorrecta
+tareas.fechaHastaIncorrecta=Fecha hasta incorrecta
+tareas.fechaDesdeHastaIncorrecta=Fecha desde y fecha hasta incorrecta
+tareas.fechaDesdeMasQueHasta=Fecha desde no puede ser mayor que fecha hasta
+tareas.horaIncorrecta=La hora es incorrecta
+tareas.fechaYHoraIncorrectas=Fecha y hora incorrectas
+tareas.cabeceraTrabajo=Tarea
+tareas.cabeceraFecha=Fecha
+tareas.cabeceraPeriodicidad=Periodicidad
+tareas.cabeceraDescripcion=Descripci&oacute;n
+tareas.cabeceraDescripcion.export=Descripción
+tareas.cabeceraEstado=Estado
+tareas.error=Esta operaci&oacute;n no se puede realizar en este momento.
+tareas.vacia=
+tareas.errorEliminar=No se ha seleccionado ninguna tarea
+tareas.nombreIncorrecto=El nombre de tarea contiene caracteres no admitidos
+tareas.tareaExiste=Ya existe una tarea con ese nombre
+tareas.OK=Correcto
+tareas.ERROR=Error
+tareas.OK.eliminacion=Correcto
+tareas.ERROR.eliminacion=Error
+tareas.INTERRUMPIDO=Interrumpido
+tareas.NoExisteDirectorioODEs=El directorio de carga de ODEs no existe
+tareas.NoExisteDirectorioODEsCargados=El directorio de carga de ODEs correctos no existe
+tareas.NoExisteDirectorioODEsNoCargados=El directorio de carga de ODEs erroneos no existe
+tareas.errors.dateHora.required=La fecha y la hora son obligatorios
+tareas.errors.fecha.incorrecta=La fecha de Inicio no es correcta
+tareas.fechaAnteriorActual=La fecha introducida es anterior a la actual
+tareas.eliminarOdes.fechaDesde=La fecha de inicio no es correcta
+tareas.eliminarOdes.fechaHasta=La fecha hasta no es correcta
+
+
+# Lista de Tareas Ejecutadas
+tareasEjecutadas.Seleccione=Seleccione
+tareasEjecutadas.VerInforme=Ver Informe
+tareasEjecutadas.Eliminar=Eliminar
+tareas.tituloDescripcion=Descripci&oacute;n:
+tareas.tituloFechaInicio=Fecha Inicio:
+tareas.tituloFechaFin=Fecha Fin:
+tareas.tablaResultados=Tabla de Resultados
+
+# Lista de Tareas Ejecutandose
+tareasEjecutandose.Detener=Detener
+
+# Lista de Tareas Pendientes
+tareasPendientes.Seleccione=Seleccione
+tareasPendientes.Modificar=Modificar
+tareasPendientes.Ejecutar=Ejecutar
+tareasPendientes.crearTarea=Crear Tarea
+tareasPendientes.Eliminar=Eliminar
+
+#Eliminar Tareas Pendientes
+eliminarTareasPendientes.tareasEliminadasOk=Las tareas se han eliminado correctamente
+eliminarTareasPendientes.tareasEliminadasError=ERROR.Las tareas no se han eliminado correctamente
+eliminarTareasPendientes.cabecera=Eliminaci&oacute;n de tareas
+eliminarTareasPendientes.confirmacion=¿Est&aacute; seguro que desea eliminar estas tareas?
+
+
+
+#Lista de Crear Tareas y moficar Tareas
+crearTarea.cabecera=Crear Tarea (Paso 01 de 02)
+modificarTarea.cabecera=Modificar Tarea (Paso 01 de 02)
+crearTarea.cabecera2=Crear Tarea (Paso 02 de 02)
+modificarTarea.cabecera2=Modificar Tarea (Paso 02 de 02)
+modificarTarea.cabecera3=Modificar Tarea
+crearTarea.continuar=Continuar
+crearTarea.cancelar=Cancelar
+crearTarea.aceptar=Aceptar
+crearTarea.seleccioneTipoTarea=Seleccione tipo de tarea
+crearTarea.nombreTarea=Nombre de Tarea
+crearTarea.nombreGrupoTrabajo=Grupo de Trabajo
+crearTarea.introduzcaNombre=Introduzca Nombre
+crearTarea.tipoTarea=Tipo de Tarea:
+crearTarea.mantenimiento=Mantenimiento Repositorio
+crearTarea.tareaCargaODEs=Carga de ODEs
+crearTarea.tareaReindexada=Reindexado
+crearTarea.fechaInicio=Fecha de Inicio
+crearTarea.fechaDesde=Fecha Desde
+crearTarea.fechaHasta=Fecha Hasta
+crearTarea.fechaDia=Fecha de D&iacute;a:
+crearTarea.fechaMes=Fecha de Mes:
+crearTarea.fechaAnio=Fecha de A&ntilde;o:
+crearTarea.aLas=a las &nbsp;&nbsp;
+crearTarea.fechaHora=Fecha (Horas):
+crearTarea.fechaMinuto=Fecha (Minutos):
+crearTarea.introduzcaDia=Introduzca D&iacute;a
+crearTarea.introduzcaMes=Introduzca Mes
+crearTarea.introduzcaAnio=Introduzca A&ntilde;o
+crearTarea.introduzcaHora=Introduzca Hora
+crearTarea.introduzcaMinuto=Introduzca Minuto
+crearTarea.repetir=Repetir
+crearTarea.repitaTipoTarea=Seleccione Periocidad
+crearTarea.N=No Peri&oacute;dica
+crearTarea.periodica=Peri&oacute;dica
+crearTarea.D=Diaria
+crearTarea.S=Semanal
+crearTarea.M=Mensual
+crearTarea.A=Anual
+crearTarea.cargaDeContenidos=Carga de Contenidos
+crearTarea.urlLocation=Carpeta ODEs:
+crearTarea.introduzcaUrlLocation=Introduzca carpeta origen ODEs
+crearTarea.urlDestiny=Carpeta ODEs correctos:
+crearTarea.introduzcaUrlDestiny=Introduzca carpeta donde se moverán los ODEs cargados correctamente
+crearTarea.introduzcaUrlError=Introduzca carpeta donde se moverán los ODEs no cargados
+crearTarea.urlError=Carpeta ODEs Erroneos:
+crearTarea.reindexado=Reindexado
+crearTarea.indices=&Iacute;ndice:
+crearTarea.seleccioneIndices=Seleccione &Iacute;ndices
+crearTarea.all=Todos
+crearTarea.es=Castellano
+crearTarea.en=Ingl&eacute;s
+crearTarea.ca=Catal&aacute;n
+crearTarea.gl=Gallego
+crearTarea.eu=Euskera
+crearTarea.va=Valenciano
+crearTarea.Export.es=Castellano
+crearTarea.Export.en=Ingles
+crearTarea.Export.ca=Catalan
+crearTarea.Export.gl=Gallego
+crearTarea.Export.eu=Euskera
+crearTarea.Export.va=Valenciano
+crearTarea.msgReindexado=Reindexaci&oacute;n correcta
+crearTarea.msgNoReindexado=Reindexaci&oacute;n incorrecta
+crearTarea.msgDescReindexado=Reindexaci&oacute;n
+crearTarea.msgPublicado=Publicado
+crearTarea.msgNoPublicado=No publicado
+crearTarea.msgDescCargaODEs=Carga ODE
+crearTarea.tareaEliminarODEs=Eliminar ODEs
+crearTarea.tareaRegenerarImagenes=Regenerar Imágenes
+crearTarea.sobrescribir=Sobrescribir ODEs:
+crearTarea.tareaInformeFecha=Crear Informe Fechas
+crearTarea.tareaInformeFechaRango=Crear Informe Rango
+crearTarea.tareaInformeFechaUsuario=Crear Informe usuario
+crearTareas.periodicidadNoPeriodicaInforme=Si selecciona una tarea de creaci&oacute;n de informes la periodicidad debe ser "no periódica"
+crearTarea.informes=Informes
+crearTarea.estadoOdes=Estado de los contenidos digitales educativos
+crearTarea.operacionesRealizadas=Operaciones realizadas
+crearTarea.nivelAgregacion=Nivel de Agregaci&oacute;n
+crearTarea.coberturaCurricular=Cobertura curricular
+crearTarea.terminosBusqueda=T&eacute;rminos de B&uacute;squeda
+crearTarea.odesUsuario=Los contenidos digitales educativos de un usuario
+crearTarea.odesLicencias=Licencias de contenidos digitales educativos
+crearTarea.usuarios=Usuarios
+crearTarea.procesosPlanificados=Procesos planificados
+crearTarea.masValorado=Los contenidos digitales educativos m&aacute;s valorados
+crearTarea.masMostrado=Los contenidos digitales educativos m&aacute;s mostrados
+crearTarea.masPrevisualizado=Los contenidos digitales educativos m&aacute;s previsualizados
+crearTarea.masDescargado=Los contenidos digitales educativos m&aacute;s descargados
+crearTarea.tamanio=Los contenidos digitales educativos m&aacute;s grandes
+crearTarea.informesFederado=Informes Federados
+crearTarea.odesIdiomaFederada=Los contenidos digitales por idioma federados
+crearTarea.odesPublicadosFederada=Los contenidos digitales publicados federados
+crearTarea.nivelAgregacionFederada=Nivel de agregación federado
+crearTarea.coberturaCurricularFederada=Cobertura curricular federado
+crearTarea.catalogo=Catálogo
+crearTarea.repositorio=Informe Cat&aacute;logo
+crearTarea.informeCatalogoIdioma=Idioma
+crearTarea.nombreLote=Nombre del lote
+crearTarea.introduzcaNombreLote=Introduzca el nombre del lote
+crearTarea.descripcionTarea=Descripción de la tarea
+crearTarea.introduzcaDescripcionTarea=Introduzca la descripción de la tarea
+
+
+#Lista de Informe Trabajo
+informeTrabajo.volver=Volver
+informeTrabajo.descripcion=Descripción
+informeTrabajo.fecha=Fecha
+
+#Lista de Mostrar Detalle tarea
+mostrarTarea.anio=A&ntilde;o
+
+#Validaciones
+crear.tarea.formulario.inicio.crear.tarea.param.minutos=El campo minutos
+crear.tarea.formulario.inicio.crear.tarea.param.hora=El campo hora
+crear.tarea.formulario.inicio.crear.tarea.param.dia=El campo dia
+crear.tarea.formulario.inicio.crear.tarea.param.mes=El campo mes
+crear.tarea.formulario.inicio.crear.tarea.param.anio=El campo año
+crear.tarea.formulario.inicio.crear.tarea.param.trabajo=El nombre de la tarea
+crear.tarea.formulario.reindexado.aceptar.param.minutos=El campo minutos
+crear.tarea.formulario.reindexado.aceptar.param.hora=El campo hora
+crear.tarea.formulario.reindexado.aceptar.param.dia=El campo día
+crear.tarea.formulario.reindexado.aceptar.param.mes=El campo mes
+crear.tarea.formulario.reindexado.aceptar.param.anio=El campo año
+obtener.tcarga.odes.formulario.i.continuar.param.minutos=El campo minutos
+obtener.tcarga.odes.formulario.i.continuar.param.hora=El campo hora
+obtener.tcarga.odes.formulario.i.continuar.param.dia=El campo día
+obtener.tcarga.odes.formulario.i.continuar.param.mes=El campo mes
+obtener.tcarga.odes.formulario.i.continuar.param.anio=El campo año
+obtener.tcarga.odes.formulario.ii.aceptar.param.minutos=El campo minutos
+obtener.tcarga.odes.formulario.ii.aceptar.param.hora=El campo hora
+obtener.tcarga.odes.formulario.ii.aceptar.param.dia=El campo día
+obtener.tcarga.odes.formulario.ii.aceptar.param.mes=El campo mes
+obtener.tcarga.odes.formulario.ii.aceptar.param.anio=El campo año
+obtener.tcarga.odes.formulario.reindexado.i.continuar.param.minutos=El campo minutos
+obtener.tcarga.odes.formulario.reindexado.i.continuar.param.hora=El campo hora
+obtener.tcarga.odes.formulario.reindexado.i.continuar.param.dia=El campo día
+obtener.tcarga.odes.formulario.reindexado.i.continuar.param.mes=El campo mes
+obtener.tcarga.odes.formulario.reindexado.i.continuar.param.anio=El campo año
+obtener.tcarga.odes.formulario.reindexado.ii.aceptar.param.minutos=El campo minutos
+obtener.tcarga.odes.formulario.reindexado.ii.aceptar.param.hora=El campo hora
+obtener.tcarga.odes.formulario.reindexado.ii.aceptar.param.dia=El campo día
+obtener.tcarga.odes.formulario.reindexado.ii.aceptar.param.mes=El campo mes
+obtener.tcarga.odes.formulario.reindexado.ii.aceptar.param.anio=El campo año
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.minutos=El campo minutos
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.hora=El campo hora
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.dia=El campo día
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.mes=El campo mes
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.anio=El campo año
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.path.odes=Carpeta ODEs
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.path.odes.carg=Carpeta ODEs correctos
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.path.odes.no.carg=Carpeta ODEs erroneos
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.tipo.tarea=El tipo de tarea
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.msg.publicado=Mensaje Publicado
+crear.tarea.formulario.tarea.carga.odes.aceptar.param.msg.no.publicado=Mensaje No Publicado
+
+#Errores de Informe de tareas ejecutadas del planificador
+
+#Errores del validador
+0.0=Sin errores
+1.1=No existe el fichero principal (imsmanifest.xml) en el  ODE
+1.2=Error en la estructura del fichero imsmanifest
+1.3=Error, la etiqueta principal debe ser de Manifest o Lom
+1.4=Error de chequeo de contenidos
+1.5=Error LOM-ES, Metadatos incorrectos
+1.6=Error Scorm, estructura incorrecta del manifest
+2.1=LOM-ES es obligatorio
+2.2=Error LOM-ES, campo obligatorio inexistente
+2.3=Error en la estructura del fichero imsmanifest
+3.1= No existe el fichero principal (imsmanifest.xml) en el  ODE
+4.1=Es necesario que los campos obligatorios de LOM-ES se encuentren rellenos
+4.2=El Titulo es obligatorio
+4.3=El Idioma es obligatorio
+4.4=La Descripción es obligatoria
+4.5=El Tipo es obligatorio
+4.6=El Contexto es obligatorio
+4.7=La Edad es obligatoria
+4.8=El Idioma Destino es obligatorio
+4.9=El Proceso Cognitivo es obligatorio
+
+#Errores detectables en la publicacion de un ode via el metodo publica PIF
+10.1=Fallo en escritura a disco o el fichero ya existe
+10.13=El zip es incorrecto
+10.2=El mec ya existía
+10.3=No se ha podido publicar el ode, error en indexación
+10.4=El fichero original del ODE no existe
+10.5=El identificador del ODE tiene una lozalización inválida
+10.6=El ODE ya esta creado en la plataforma
+20.1=Error no controlado
+
+
+##########################		Mensajes de Usuarios		##########################
+
+#Mensaje de error Alta Grupo
+errors.altagrupo.descripcion=El nombre del grupo no puede estar vac&iacute;o
+errors.altagrupo.descripcion.caracterIlegal=Hay caracteres incorrectos en el nombre del grupo
+errors.altaGrupoTrabajo.caracterIlegal.descripcion=Hay caracteres incorrectos en la descripción del grupo
+errors.altagrupo.descripcionExistente=El nombre ya esta asociado a otro grupo
+errors.altagrupo.roles=Debes seleccionar al menos un permiso
+errors.altagrupo=Esta operaci&oacute;n no se puede realizar en este momento
+
+#Mensaje de error de Listar Grupos
+listarGrupos.error=Esta operaci&oacute;n no se puede realizar en este momento
+
+#Mensaje de error de Ver grupo
+verGrupo.error=Esta operaci&oacute;n no se puede realizar en este momento
+
+#Mensaje de error de Modificar Grupo
+modificarGrupo.error=Esta operaci&oacute;n no se puede realizar en este momento
+modificarGrupo.errorIdNulo=Esta operaci&oacute;n no se puede realizar, se debe seleccionar al menos un grupo para modificar
+errors.modificaciongrupo.descripcion=El nombre del grupo no puede estar vac&iacute;o
+errors.modificaciongrupo.descripcionExistente=El nombre ya esta asociado a otro grupo
+modificarGrupo.errorRoles=En estos momentos no se pueden obtener los permisos del grupo
+errors.modificaciongrupo.roles=Debe seleccionar al menos un permiso
+errors.modificaciongrupo.unicoAdmin=Este grupo debe tener seleccionado como mínimo el rol Administrador
+usuarios.bajaGrupo.cabecera=Eliminación de Grupos
+
+#Mensaje de error de Ver Usuario
+verUsuario.error=Esta operaci&oacute;n no se puede realizar en este momento
+
+#Mensaje de error de Crear Usuario
+errors.altausuario.usuario=El usuario no puede estar vac&iacute;o
+errors.altausuario.nif=El nif no puede estar vac&iacute;o
+errors.altausuario.email=El email no puede estar vac&iacute;o
+errors.altausuario.emailIncorrecto=El email introducido no es correcto
+errors.altausuario.clave=La clave debe tener entre 7 y 20 caracteres
+errors.altausuario.repitaclave=No coinciden los campos clave y repitaclave
+errors.altausuario.nifExistente=Ya existe un usuario con ese Nif
+errors.altausuario.claveDistintas=Las claves introducidas no concuerdan
+errors.altausuario.existe.openId=No se puede dar de alta con ese identificador de openId, ese identificador ya está registrado en la plataforma
+errors.altausuario.tipoEmpaquetador=El tipo de empaquetador no puede estar vac&iacute;o
+errors.altausuario.tipoCatalogador=El tipo de catalogador no puede estar vac&iacute;o
+errors.altausuario.idiomaBusqueda=El idioma de b&uacute;squeda no puede estar vac&iacute;o
+errors.altausuario.idioma=El idioma no puede estar vac&iacute;o
+errors.altausuario.nombre=El nombre no puede estar vac&iacute;o
+errors.altausuario.apellido1=El primer apellido no puede estar vac&iacute;o
+errors.altausuario.apellido2=El segundo apellido no puede estar vac&iacute;o
+errors.altausuario.nifErroneo=El formato del campo nif no es correcto
+errors.altausuario.usuarioExistente=El usuario introducido ya ha sido registrado anteriormente en el sistema
+errors.altausuario.envioCorreo=Se ha producido un error al enviar el correo de alta, el destinatario no era correcta
+errors.altausuario.nombre.caracterIlegal=Hay caracteres incorrectos en el nombre del usuario
+errors.altausuario.apellido1.caracterIlegal=Hay caracteres incorrectos en el primer apellido del usuario
+errors.altausuario.apellido2.caracterIlegal=Hay caracteres incorrectos en el segundo apellido del usuario
+errors.altausuario.usuario.caracterIlegal=Hay caracteres incorrectos en el campo usuario
+errors.altausuario=Esta operaci&oacute;n no se puede realizar en este momento
+OK=El usuario se ha dado de alta correctamente en el sistema
+FALLO=No se ha podido dar de alta al usuario en el sistema
+errors.altausuario.gruposVacio=Debe seleccionar al menos un grupo
+errors.altausuario.gruposTrabajoVacio=Debe seleccionar al menos un grupo de trabajo
+errors.altausuario.clave.caracterIlegal=Hay caracteres incorrectos o ñ en la contraseña
+errors.altausuario.cuota.caracterIlegal=El campo cuota sólo puede contener n&uacute;meros
+
+
+#Mensaje de error de Alta Usuario Pendiente
+errors.altaUsuarioPendiente.email=El email no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.emailIncorrecto=El email introducido no es correcto
+errors.altaUsuarioPendiente.clave=La clave debe tener entre 7 y 20 caracteres
+errors.altaUsuarioPendiente.claveDistintas=Las claves introducidas no concuerdan
+errors.altaUsuarioPendiente.tipoEmpaquetador=El tipo de empaquetador no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.idiomaBusqueda=El idioma de b&uacute;squeda no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.idioma=El idioma no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.nombre=El nombre no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.apellido1=El primer apellido no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.apellido2=El segundo apellido no puede estar vac&iacute;o
+errors.altaUsuarioPendiente.nombre.caracterIlegal=Hay caracteres incorrectos en el nombre del usuario
+errors.altaUsuarioPendiente.apellido1.caracterIlegal=Hay caracteres incorrectos en el primer apellido del usuario
+errors.altaUsuarioPendiente.apellido2.caracterIlegal=Hay caracteres incorrectos en el segundo apellido del usuario
+errors.altaUsuarioPendiente=Esta operaci&oacute;n no se puede realizar en este momento
+errors.altaUsuarioPendiente.gruposVacio=Debe seleccionar al menos un grupo
+errors.altaUsuarioPendiente.idNulo=Debe seleccionar un usuario para dar de alta
+errors.altaUsuarioPendiente.clave.caracterIlegal=Hay caracteres incorrectos o ñ en la contraseña
+
+#Mensaje de error de Recuerdo Clave
+errors.recuerdoUsuario.emailVacio=El campo email no puede estar vac&iacute;o
+errors.recuerdoUsuario.nifVacio=El campo nif no puede estar vac&iacute;o
+errors.recuerdoUsuario.nifNoExistente=El nif introducido no pertene a ning&uacute;n usuario registrado en el sistema
+errors.recuerdoUsuario.emailDistinto=El email introducido no se corresponde con el almacenado en el usuario
+errors.recuerdoUsuario=En estos momentos no se puede realizar esta operaci&iacute;n
+recuerdoUsuario.ok=Se ha cambiado correctamente la clave al usuario, se le enviar&acute; un correo con la nueva
+
+#Mensaje de error de baja de usuario
+errors.borrarUsuario.idNulo=Debe seleccionar al menos un usuario para borrar
+errors.borrarUsuario=Esta operaci&oacute;n no se puede realizar en este momento
+errors.borrarUsuario.todosUsuariosAdmin=No se han podido realizar la operaci&oacute;n. Se ha intentado dar de baja a todos los usuarios con rol Administrador, en el sistema tiene que haber por lo menos uno.
+ok.borrarUsuarios=Se han eliminado los siguientes usuarios
+
+#Mensaje de error de baja de grupo
+errors.borrarGrupo.idNulo=Debe seleccionar al menos un grupo para borrar
+errors.borrarGrupo=Esta operaci&oacute;n no se puede realizar en este momento
+errors.borrarGrupo.todosUsuariosAdmin=No se pueden eliminar todos los grupos con permiso de administrador, en el sistema tiene que haber por lo menos uno.
+ok.borrarGrupo=Se han eliminado el siguiente número de grupos
+errors.borrarGrupo.algunosGrupos=Se han eliminado algunos de los grupos seleccionados
+errors.borrarGrupo.GrupoConUsuarios=No se pueden eliminar grupos que tengan alg&uacute;n usuario asociado
+
+#Mensajes de error de listar usuarios
+errors.listarUsuario=Esta operaci&oacute;n no se puede realizar en este momento
+errors.listarUsuariosPendientes=Esta operaci&oacute;n no se puede realizar en este momento
+
+#Mensajes de error de modificar usuarios
+errors.modificarusuario.idNulo=Debe seleccionar al menos un usuario para modificar
+errors.modificarusuario.usuario=El usuario no puede estar vac&iacute;o
+errors.modificarusuario.email=El email no puede estar vac&iacute;o
+errors.modificarusuario.emailIncorrecto=El email introducido no es correcto
+errors.modificarusuario.clave=La clave debe tener entre 7 y 20 caracteres
+errors.modificarusuario.repitaclave=No coinciden los campos clave y repitaclave
+errors.modificarusuario.claveDistintas=Las claves introducidas no concuerdan
+errors.modificarusuario.tipoEmpaquetador=El tipo de empaquetador no puede estar vac&iacute;o
+errors.modificarusuario.tipoCatalogador=El tipo de catalogador no puede estar vacio
+errors.modificarusuario.idiomaBusqueda=El idioma de b&uacute;squeda no puede estar vac&iacute;o
+errors.modificarusuario.idioma=El idioma no puede estar vac&iacute;o
+errors.modificarusuario.nombre=El nombre no puede estar vac&iacute;o
+errors.modificarusuario.apellido1=El primer apellido no puede estar vac&iacute;o
+errors.modificarusuario.apellido2=El segundo apellido no puede estar vac&iacute;o
+errors.modificarusuario.nombre.caracterIlegal=Hay caracteres incorrectos en el nombre del usuario
+errors.modificarusuario.apellido1.caracterIlegal=Hay caracteres incorrectos en el primer apellido del usuario
+errors.modificarusuario.apellido2.caracterIlegal=Hay caracteres incorrectos en el segundo apellido del usuario
+modificarUsuario.error=Esta operaci&oacute;n no se puede realizar en este momento
+FALLO.MODIFICARUSUARIO=Se ha producido un error al modificar los datos del usuario
+OK.MODIFICARUSUARIO=Los datos del usuario se han modificado correctamente
+errors.modificacionusuario.gruposVacio=Debe seleccionar al menos un grupo
+errors.modificacionusuario.gruposTrabajoVacio=Debe seleccionar al menos un grupo de trabajo
+errors.modificarusuario.clave.caracterIlegal=Hay caracteres incorrectos o ñ en la contraseña
+
+#Mensaje de Solicitar Alta Usuario
+0=No se ha podido enviar el correo al administrador para solicitar el alta en el sistema
+1=El correo de solicitud de alta se ha enviado correctamente al administrador del sistema
+errors.solicitaraltausuario.usuario=El usuario no puede estar vac&iacute;o
+errors.solicitaraltausuario.nif=El nif no puede estar vac&iacute;o
+errors.solicitaraltausuario.email=El email no puede estar vac&iacute;o
+errors.solicitaraltausuario.emailIncorrecto=El email introducido no es correcto
+errors.solicitaraltausuario.clave=La clave debe tener entre 7 y 20 caracteres
+errors.solicitaraltausuario.repitaclave=No coinciden los campos clave y repitaclave
+errors.solicitaraltausuario.claveDistintas=Las claves introducidas no concuerdan
+errors.solicitaraltausuario.tipoEmpaquetador=El tipo de empaquetador no puede estar vac&iacute;o
+errors.solicitaraltausuario.idiomaBusqueda=El idioma de b&uacute;squeda no puede estar vac&iacute;o
+errors.solicitaraltausuario.idioma=El idioma no puede estar vac&iacute;o
+errors.solicitaraltausuario.nombre=El nombre no puede estar vac&iacute;o
+errors.solicitaraltausuario.apellido1=El primer apellido no puede estar vac&iacute;o
+errors.solicitaraltausuario.apellido2=El segundo apellido no puede estar vac&iacute;o
+errors.solicitaraltausuario.nifErroneo=El formato del campo nif no es correcto
+errors.solicitaraltausuario.nombre.caracterIlegal=Hay caracteres incorrectos en el nombre del usuario
+errors.solicitaraltausuario.apellido1.caracterIlegal=Hay caracteres incorrectos en el primer apellido del usuario
+errors.solicitaraltausuario.apellido2.caracterIlegal=Hay caracteres incorrectos en el segundo apellido del usuario
+errors.solicitaraltausuario=Esta operaci&oacute;n no se puede realizar en este momento
+errors.altausuario.usuario.minusculas=El usuario debe ir en minúsculas
+
+#Mensajes de las jsp´s de usuarios
+usuarios.cabecera=Usuarios
+usuarios.seleccione=Seleccione
+usuarios.crearUsuario=Crear usuario
+usuarios.eliminar=Eliminar
+usuarios.aceptar=Aceptar
+usuarios.cancelar=Cancelar
+usuarios.siguiente=Siguiente
+usuarios.volver=Volver
+usuarios.alta.cabecera=Crear Usuario
+usuarios.alta1.cabecera=Crear Usuario (Paso 01 de 02)
+usuarios.alta2.cabecera=Crear Usuario (Paso 02 de 02)
+usuarios.nombre=Nombre:
+usuarios.introduzcaNombre=Introduzca Nombre
+usuarios.apellido1=Primer apellido:
+usuarios.introduzcaApellido1=Introduzca el primer apellido
+usuarios.apellido2=Segundo apellido:
+usuarios.introduzcaApellido2=Introduzca el segundo apellido
+usuarios.NIF=N.I.F./Pasaporte/NIE:
+usuarios.introduzcaNIF=Introduzca NIF/Pasaporte/NIE
+usuarios.mail=Email:
+usuarios.introduzcaMail=Introduzca Email
+usuarios.usuario=Usuario:
+usuarios.introduzcaUsuario=Introduzca Usuario
+usuarios.clave=Contrase&ntilde;a:
+usuarios.introduzcaClave=Introduzca Contraseña
+usuarios.introduzcaopenIdUrl=Introduzca identificador openId
+usuarios.confirmarClave=Confirmar Contrase&ntilde;a:
+usuarios.openIdUrl=Identificador openId:
+usuarios.tipoDeEmpaquetador=Tipo de empaquetador:
+usuarios.tipoCatalogador=Tipo de catalogador:
+usuarios.cuota=Cuota:
+usuarios.IntroduzcaCuota=Introduzca cuota
+usuarios.Mb=Mb
+usuarios.seleccioneCatalogador=Seleccione Catalogador
+usuarios.seleccioneEmpaquetador=Seleccione Empaquetador
+usuarios.idiomaConsultas=Idioma de consultas:
+usuarios.seleccioneIdiomaConsultas=Seleccione Idioma de consultas
+usuarios.idiomaAplicacion=Idioma de aplicaciones:
+usuarios.seleccioneIdiomaAplicacion=Seleccione Idioma de aplicaciones
+usuarios.preferencias=Preferencias
+usuarios.datosAcceso=Datos de Acceso
+usuarios.datosPersonales=Datos Personales
+usuarios.basico=B&aacute;sico
+usuarios.avanzado=Avanzado
+usuarios.permisos=Permisos
+usuarios.alta.fallo=Fallo alta usuario
+usuarios.alta.mensajeFallo=No se ha podido dar de alta el usuario en el sistema
+usuarios.modificar1.cabecera=Modificar Usuario (Paso 01 de 03)
+usuarios.modificar2.cabecera=Modificar Usuario (Paso 02 de 03)
+usuarios.modificar3.cabecera=Modificar Usuario (Paso 03 de o3)
+usuarios.modificar.cabecera=Modificar Usuario
+usuario.modificar.fallo=Fallo al moficiar el usuario
+usuarios.modificarPerfil.cabecera=Modificar Perfil
+usuarios.modificadoCorrecto=Se ha modificado correctamente el usuario
+usuarios.bajaUsuario.cabecera=Eliminaci&oacute;n de Usuarios
+usuarios.bajaUsuario.confirmacion=¿Est&aacute; seguro que desea eliminar estos usuarios?
+usuarios.bajaUsuario.confirmacion2=Los siguientes usuarios se han eliminado
+usuarios.bajaGrupo.confirmacion=¿Est&aacute; seguro que desea eliminar estos grupos?
+usuarios.bajaGrupo.confirmacion2=Los siguientes grupos se han eliminado
+usuarios.verUsuario.cabecera=Ver Usuario
+usuarios.mensajeClave=Si no rellena los campos de contraseña se mantendra la que ya tiene
+usuarios.nombre.cabecera=Nombre
+usuarios.apellido1.cabecera=Primer apellido
+usuarios.apellido2.cabecera=Segundo apellido
+usuarios.tipoEmpaquetador.cabecera=Empaquetador
+usuarios.idioma.cabecera=Idioma de aplicaciones
+usuarios.idiomaBusqueda.cabecera=Idioma de consultas
+usuarios.pestania.listado=Listado
+usuarios.pestania.pendientes=Pendientes de alta
+usuarios.cabecera.pendientes=Usuarios pendientes de alta
+usuariosPendientes.darAlta=Dar de alta
+usuariosPendientes.alta1.cabecera=Alta usuario (Paso 01 de 02)
+usuariosPendientes.alta2.cabecera=Alta usuario (Paso 02 de 02)
+#Usuarios inactivos
+usuarios.desactivados.cabecera=Usuarios inactivos
+usuarios.pestania.desactivados=Inactivos
+usuarios.activar=Activar
+usuarios.desactivar=Desactivar
+usuarios.desactivarUsuario.cabecera=Desactivación de usuarios
+usuarios.desactivarUsuario.confirmacion=¿Est&aacute; seguro que desea desactivar este usuario?
+desactivarUsuario.OK=El usuario se ha desactivado correctamente
+desactivarUsuario.FALLO=El usuario no se ha podido desactivar
+usuarios.activarUsuario.confirmacion=¿Est&aacute; seguro que desea activar este usuario?
+activarUsuario.OK=El usuario se ha activado correctamente
+activarUsuario.FALLO=El usuario no se ha podido activar
+usuarios.activarUsuario.cabecera=Activación de usuarios
+
+
+##########################		Mensajes de Grupos		##########################
+
+#Mensajes de las jsp´s de grupos
+grupos.cabecera=Grupos
+grupos.crearGrupo=Crear grupo
+grupos.alta1.cabecera=Crear Grupo (Paso 01 de 02)
+grupos.alta2.cabecera=Crear Grupo (Paso 02 de 02)
+grupos.eliminar=Eliminar
+grupos.nombreGrupo=Nombre del grupo:
+grupos.introduzcaGrupo=Introduzca el nombre del grupo
+grupos.roles=Roles
+grupos.modificar1.cabecera=Modificar Grupo (Paso 01 de 02)
+grupos.modificar2.cabecera=Modificar Grupo (Paso 02 de 02)
+grupos.modificar.cabecera=Modificar Grupo
+grupos.modificar.OK=Se ha modificado correctamente el grupo
+grupos.modificar.FALLO= Se ha producido un error al modificar el grupo
+usuarios.bajaGrupo.cabecera=Eliminaci&oacute;n de Grupos
+grupos.verGrupo.cabecera=Ver Grupo
+grupos.descripcion=Descripci&oacute;n
+usuarios.bajaGrupo.cabecera=Eliminaci&oacute;n de Grupos
+
+
+##########################		Mensajes de Grupos de trabajo		##########################
+gruposTrabajo.cabecera=Grupos de trabajo
+gruposTrabajo.crearGrupo=Crear grupo
+gruposTrabajo.modificarGrupoTrabajo=Modificar grupo de trabajo
+gruposTrabajo.alta.cabecera=Crear Grupo de trabajo (Paso 01 de 01)
+gruposTrabajo.modificar.cabecera=Modificar Grupo de trabajo(Paso 01 de 01)
+gruposTrabajo.modificar.OK=Se ha modificado correctamente el grupo de trabajo
+gruposTrabajo.modificar.FALLO= Se ha producido un error al modificar el grupo de trabajo
+gruposTrabajo.nombreGrupo=Nombre del grupo de trabajo:
+gruposTrabajo.descripcion=Descripci&oacute;n del grupo de trabajo:
+gruposTrabajo.introduzcaGrupo=Introduzca el nombre del grupo de trabajo
+gruposTrabajo.introduzcaDescripcion=Introduzca descripci&oacute;n del grupo de trabajo
+gruposTrabajo.verGrupo.cabecera=Ver grupo de trabajo
+gruposTrabajo.bajaGrupo=Eliminaci&oacute;n de grupos de trabajo
+gruposTrabajo.bajaGrupos2=Los siguientes grupos de trabajo se han eliminado
+trabajos.bajaGrupo.confirmacion=¿Est&aacute; seguro que desea eliminar estos grupos de trabajo?
+trabajo.bajaGrupo.cabecera=Eliminaci&oacute;n de grupos de trabajo
+##Textos para los correos que se enviaran a los usuarios##
+
+#recuerdo de clave
+correo.nuevaClave1=Se ha generado correctamente una nueva clave, sus nuevos datos de acceso son:
+correo.nuevaClave2=Usuario
+correo.nuevaClave3=Clave
+correo.nuevaClave.asunto=Recuerdo Contraseña
+correo.nuevaClave1.ldapExterno=Los datos del nuevo usuario que solicita el alta son:
+correo.nuevaClave.ldapExterno=En breve tendrá acceso al portal con la nueva contraseña
+correo.nuevaClave.ldapExterno.asunto=Cambio clave (Recuerdo Contraseña)
+
+#alta de usuario
+correo.altaUsuario1=Se ha dado de alta correctamente en el sistema, sus datos de acceso son los siguientes:
+correo.altaUsuario2=Usuario
+correo.altaUsuario3=Clave
+correo.altaUsuario.asunto=Alta Usuario
+correo.altaUsuario.ldapExterno=En breve tendrás acceso al portal con los datos introducidos
+
+#solicitud de alta
+correo.solicitudAlta1=Datos del usuario que se quiere dar de alta
+correo.solicitudAlta2=Nombre
+correo.solicitudAlta3=Primer apellido
+correo.solicitudAlta4=Segundo apellido
+correo.solicitudAlta5=Usuario
+correo.solicitudAlta6=Clave 
+correo.solicitudAlta7=Idioma
+correo.solicitudAlta8=Email
+correo.solicitudAlta9=Nif
+correo.solicitudAlta10=Idioma Busqueda
+correo.solicitudAlta11=Tipo empaquetador
+correo.solicitudAlta.asunto=Solicitud de alta de usuario
+
+#modificacion de usuario
+correo.modificacionUsuario1.ldapExterno=Datos modificados del usuario:
+correo.modificacionUsuario2.ldapExterno=Usuario
+correo.modificacionUsuario3.ldapExterno=Clave
+correo.modificacionUsuario.asunto.ldapExterno=Modificacion clave usuario (Modificacion usuario)
+
+
+
+##########################		Mensajes de Nodos		##########################
+
+#Mensajes de las jsp´s de nodos
+nodos.cabecera=Nodos
+nodos.seleccione=Seleccione
+nodo.Modificar=Modificar
+nodos.eliminar=Eliminar
+nodos.crearNodo=Crear Nodo
+nodos.alta.cabecera=Alta Nodo
+nodos.nombreNodo=Nodo:
+nodos.introduzcaNodo=Introduzca nodo
+nodos.nombreUrl=Url Nodo:
+nodos.nombreUrlWS=Url Web Service:
+nodos.introduzcaUrl=Introduzca url nodo
+nodos.introduzcaUrlWS=Introduzca url web service
+nodos.nombreCcaa=Comunidad Aut&oacute;noma:
+nodos.introduzcaCcaa=Introduzca comunidad aut&oacute;noma
+nodos.nombrePuerto=Puerto:
+nodos.introduzcaPuerto=Introduzca puerto
+nodos.verNodo.cabecera=Descripci&oacute;n nodo
+nodos.volver=Volver
+nodos.bajaNodo.confirmacion=¿Está seguro que desea eliminar estos Nodos?
+nodos.bajaNodos.cabecera=Eliminación de Nodos
+nodos.bajaNodo.confirmacion2=Los siguientes Nodos han sido borrados
+nodos.modificar.cabecera=Modificar Nodo
+ok.modificarnodo=El nodo se ha modificado correctamente
+fallo.modificarnodo=El nodo no se ha modificado correctamente
+
+##########################		Mensajes de NodosSQI		##########################
+nodos.alta.cabeceraSQI=Alta Repositorio Externo
+nodos.nombreNodoSQI=Nombre:
+nodos.introduzcaNodoSQI=Introduzca nombre del repositorio externo
+nodos.urlNodoSQI=Url del servicio:
+nodos.introduzcaUrlSQI=Introduzca la url del repositorio externo
+nodos.descripcionNodoSQI=Descripci&oacute;n:
+nodos.introduzcaDescripcionSQI=Introduzca la descripci&oacute;n del repositorio externo
+nodos.lenguajeConsultaSQI=Lenguaje de consulta:
+nodos.introduzcaLenguajeConsultaSQI=Introduzca el lenguaje de consulta
+nodos.lenguajeRespuestaSQI=Lenguaje de respuesta:
+nodos.introduzcaLenguajeRespuestaSQI=Introduzca el lenguaje de respuesta
+nodos.identGestorObli=Si el identificador de sesi&oacute;n se deja vac&iacute;o hay que implementar el gestor de sesiones
+nodos.identificadorSesion=Identificador de sesiones:
+nodos.introduzcaIdentificadorSesion=Introduzca el identificador de sesiones
+nodos.gestorSesion=Gestor de sesiones:
+nodos.introduzcaGestorSesion=Introduzca el gestor de sesiones
+nodos.usuarioClaveObli=Si se implementa el usuario o la clave, el otro campo tambi&eacute;n hay que rellenarlo
+nodos.usuarioSQI=Usuario:
+nodos.introduzcaUsuarioSQI=Introduzca el usuario
+nodos.claveSQI=Clave:
+nodos.introduzcaClaveSQI=Introduzaca la clave
+nodos.bajaNodos.cabeceraSQI=Eliminaci&oacute;n de Repositorios Externos
+nodos.bajaNodo.confirmacionSQI=¿Est&aacute; seguro que desea eliminar estos Repositorios Externos?
+nodos.bajaNodo.confirmacionSQI2=Los siguientes Repositorios Externos han sido borrados
+nodos.cabeceraSQI=Repositorios Externos
+nodos.modificar.cabeceraSQI=Modificar Repositorio Externo
+OK.nodoSQI=El repositorio externo se ha modificado correctamente
+FALLO.nodoSQI=El repositorio externo no se ha modificado correctamente
+nodos.verNodo.cabeceraSQI=Descripci&oacute;n repositorio externo
+nodos.crearNodoSQI=Crear
+
+#codigos de errores de nodos
+errors.altanodo=Se ha producido un error en el alta del nodo
+errors.altanodo.url=El campo url nodo no puede estar vac&iacute;o
+errors.altanodo.urlWS=El campo url web service no puede estar vac&iacute;o
+errors.altanodo.nodo=El campo nombre no puede estar vac&iacute;o
+errors.borrarNodo=Se ha producido un error al dar de baja el nodo
+errors.modificarnodo.nodo=El campo nombre no puede estar vac&iacute;o
+errors.modificarnodo.url=El campo url nodo no puede estar vac&iacute;o
+errors.modificarnodo.urlWS=El campo url web service no puede estar vac&iacute;o
+errors.modificarnodo.idNodo=El campo identificador nodo no puede estar vac&iacute;o
+fallo.modificarnodo=Se ha producido un error al modificar el nodo
+errors.modificarnodo.idNulo=EL nodo seleccionado no tiene ning&uacute;n id asociado, puede que sea obsoleto
+errors.eliminarnodos.idError=Se ha producido un error al intentar recuperar los ids para borrar
+errors.eliminarnodos.idNulo=No se ha seleccionado ning&uacute;n nodo
+errors.listarnodos=No se pueden listar los nodos
+errors.modificarnodo.nodo.caracterIlegal=Hay caracteres incorrectos en el nodo
+errors.modificarnodo.url.caracterIlegal=Hay caracteres incorrectos en la url del nodo
+errors.modificarnodo.urlWS.caracterIlegal=Hay caracteres incorrectos en la url web service
+errors.altanodo.nodo.caracterIlegal=Hay caracteres incorrectos en el nodo
+errors.altanodo.url.caracterIlegal=Hay caracteres incorrectos en la url del nodo
+errors.altanodo.urlWS.caracterIlegal=Hay caracteres incorrectos en la url web service
+errors.altanodo.url.yaEstaDadoAlta=La url nodo y la url del WebService ya estan asociadas a otro nodo
+errors.altanodo.url.federadoConsigoMismo=La url del nodo no es correcta. Coincide con el dominio actual.
+errors.altanodo.urlWS.timeout=La url de WebService no es correcta o no esta activa
+errors.altanodo.nombreNodoYaExiste=El nombre ya esta asociado a otro nodo
+errors.altanodo.puerto.NoNumerico=El puerto solo puede contener d&iacute;gitos
+
+#codigos de errores de nodosSQI
+errors.altanodoSQI=Se ha producido un error en el alta del repositorio externo
+errors.altanodoSQI.descripcion=La descripci&oacute;n del repositorio externo es obligatorio
+errors.altanodoSQI.nombre=El nombre del repositorio externo es obligatorio
+errors.altanodoSQI.url=La url del servicio es obligatorio
+errors.altanodoSQI.identiGestor=Implementar el gestor de sesiones o el identificador de sesiones es obligatorio
+errors.altanodoSQI.lenguajeConsulta=El lenguaje de consulta debe ser de tipo VSQL
+errors.altanodoSQI.lenguajeConsultaObliga=El lenguaje de consulta es obligatorio
+errors.altanodoSQI.lenguajeRespuesta=El lenguaje de respuesta debe ser de tipo LOM o LOM-ES
+errors.altanodoSQI.lenguajeRespuestaObliga=El lenguaje de respuesta es obligatorio
+errors.altanodoSQI.usuarioClave=Si existe usuario, la clave es obligatoria
+errors.altanodoSQI.claveUsuario=Si existe clave, el usuario es obligatorio
+errors.bajanodosSQI.idNulo=No se ha seleccionado repositorio externo
+errors.bajanodoSQI=Se ha producido un error al dar de baja el repositorio externo
+errors.bajanodoSQI.recuperar=Se ha producido un error al recuperar los repositorios externos
+errors.listarnodoSQI=Se ha producido un error al listar los repositorios externos
+errors.modificarnodoSQI.idNulo=El repositorio externo seleccionado no tiene ning&uacute;n id asociado, puede que sea obsoleto
+errors.modificarnodoSQI=Se ha producido un error en la modificaci&oacute;n del repositorio externo
+errors.vernodoSQI=Se ha producido un error en la visualizaci&oacute;n del repositorio externo
+
+#codigos de la descripcion de las comunidades autonomas
+AN=Andalucía
+AR=Aragón
+CL=Castilla y León
+CM=Castilla-La Mancha
+IC=Canarias
+CT=Cataluña
+EX=Extremadura
+GA=Galicia
+IB=Islas Baleares
+LR=La Rioja
+M=Comunidad de Madrid
+MU=Region de Murcia
+NA=Navarra
+AS=Principado de Asturias
+EU=País Vasco
+CB=Cantabria
+CV=Comunidad Valenciana
+MEC=MEC
+RE=Red.es
+CC=Cnice
+
+
+##########################		Mensajes de Logs		##########################
+
+#Mensajes de las jsp´s de logs
+logs.cabecera=Listar Logs
+logs.nombre.cabecera=Logs
+logs.eliminar=Eliminar
+logs.eliminarLogs.confirmacion2=Los siguientes Logs han sido borrados
+logs.size.cabecera=Tama&ntilde;o(KB)
+logs.seleccione=Seleccione
+logs.eliminarLogs.cabecera=Eliminaci&oacute;n de Logs
+logs.eliminarLogs.confirmacion=¿Est&aacute; seguro que desea eliminar estos Logs?
+
+
+errors.listarlogs=Se ha producido un error al listar los ficheros de log
+errors.eliminarlogs.nombreNulo=Debe seleccionar al menos un fichero a eliminar
+errors.eliminarlogs.noBorrar=Alguno de los ficheros seleccionados no se puede eliminar
+errors.eliminarLog=Se ha producido un error al intentar eliminar los ficheros de log
+ficherosBorrados.OK=Los ficheros de log se han eliminado correctamente
+ficherosBorrados.FALLO=Se ha producido un error al eliminar los ficheros de log
+errors.obtenerLog=Se ha producido un error al recuperar los ficheros de log
+recuperarFicheroLog.FALLO=El fichero recuperado est&aacute; vac&iacute;o
+
+
+#########################		Texto informes		#######################################
+
+#Mensajes de las jsp´s de informes
+nivelAgregacion=Nivel de Agregaci&oacute;
+porcentaje=Porcentaje
+numeroOdes=N&uacute;mero de Odes
+opcionesExportacion=Opciones de exportaci&oacute;n:
+informes.seleccione=Seleccione
+informes.estadoOdes=Estado de los contenidos digitales educativos
+informes.operacionesRealizadas=Operaciones realizadas
+informes.nivelAgregacion=Nivel de Agregaci&oacute;n
+informes.coberturaCurricular=Cobertura curricular
+informes.terminosBusqueda=T&eacute;rminos m&aacute;s buscados
+informes.odesUsuario=Informe de actividad de un usuario
+informes.odesLicencias=Licencias de los contenidos digitales educativos
+informes.usuarios=Usuarios
+informes.procesosPlanificados=Procesos ejecutados
+informes.masValorado=Contenidos digitales educativos m&aacute;s valorados
+informes.masMostrado=Contenidos digitales educativos m&aacute;s mostrados
+informes.masPrevisualizado=Contenidos digitales educativos m&aacute;s previsualizados
+informes.masDescargado=Contenidos digitales educativos m&aacute;s descargados
+informes.tamanio=Contenidos digitales educativos m&aacute;s grandes
+informes.odesIdiomaFederada=Los contenidos digitales por idioma federados
+informes.odesPublicadosFederada=Los contenidos digitales publicados federados
+informes.nivelAgregacionFederada=Nivel de agregaci&oacute;n federado
+informes.coberturaCurricularFederada=Cobertura curricular federado
+informes.repositorio=Informe de cat&aacute;logo
+
+informes.siguiente=Siguiente
+informes.crearInforme.cabecera=Crear Informe
+informes.crearInforme.fechaDesde=Fecha inicio informe:
+informes.crearInforme.fechaHasta=Fecha fin informe:
+informes.crearInforme.fechaDia=Fecha de D&iacute;a:
+informes.crearInforme.fechaMes=Fecha de Mes:
+informes.crearInforme.fechaAnio=Fecha de A&ntilde;o:
+informes.crearInforme.introduzcaDia=Introduzca D&iacute;a
+informes.crearInforme.introduzcaMes=Introduzca Mes
+informes.crearInforme.introduzcaAnio=Introduzca A&ntilde;o
+informes.crearInforme.verInforme=Ver informe
+informes.crearInforme.volver=Volver
+informes.nombre.cabecera=Informes
+informesFederados.nombre.cabecera=Informes federados
+informesCatalogo.nombre.cabecera=Informes catálogo
+informes.nombreInforme=Informe:
+informes.eliminar=Eliminar
+informes.seleccione=Seleccione
+informes.eliminarInformes.cabecera=Eliminaci&oacute;n de Informes
+informes.eliminarInformesFederados.cabecera=Eliminaci&oacute;n de Informes Federados
+informes.eliminarInformes.confirmacion=¿Est&aacute; seguro que desea eliminar estos informes?
+informes.eliminarInformes.confirmacion2=Los siguientes informes han sido borrados
+informes.fecha.cabecera=Fecha
+informesBorrados.OK=Los informes se han eliminado correctamente
+informesBorrados.FALLO=Se ha producido un error al eliminar los informes
+informes.cabecera=Listar Informes
+informes.federados.cabecera=Listar Informes Federados
+informes.crearInformes.nombreUsuario=Usuarios
+informes.crearInformes.introduzcaUsuario=Seleccione usuario
+informes.crearInforme.rango=Rango
+informes.crearInforme.seleccioneRango=Seleccione rango
+informes.crearInforme.rango.5=5
+informes.crearInforme.rango.10=10
+informes.crearInforme.rango.15=15
+informes.crearInforme.rango.20=20
+informes.crearInforme.rango.30=30
+informes.crearInforme.rango.40=40
+informes.crearInforme.rango.50=50
+informes.crearInforme.rango.100=100
+informes.crearInforme.formato=Formato
+informes.crearInforme.seleccioneFormato=Seleccione un formato
+informes.crearInforme.formato.pdf=pdf
+informes.crearInforme.formato.excel=excel
+informes.crearInforme.formato.html=html
+informe.crearInforme.seleccioneUsuario=seleccione usuario
+informes.crearInforme.generarInforme=Crear informe online
+informe.crearInforme.msgInforme=Generaci&oacute;n de informes
+informe.crearInforme.msgNoInforme=Se ha generado el informe
+informe.crearInforme.msgDescTrabajo=Generaci&oacute;n de informes
+informe.contenidoPrincipal=Contenido Principal
+informe.contenido=Contenido
+informe.salir=Salir
+informe.cerrarVentana=Cerrar Ventana
+informes.pestania.listado=Informes
+informes.pestania.federados=Informes Federados
+informes.carga=Informes de Carga
+informes.carga.eliminar=Eliminación de Informes de Carga
+
+#Errores y excepciones de informes
+recuperarInforme.FALLO=El informe recuperado est&aacute; vac&iacute;o
+errors.obtenerInforme=Se ha producido un error al recuperar los informes
+errors.obtenerInformeFederado=Se ha producido un error al recuperar los informes federados
+errors.crearInformes.informeNulo=No se ha seleccionado ning&uacute;n informe, debe seleccionar uno
+errors.crearInforme.noExisteInforme=El informe seleccionado no est&aacute; disponible
+errors.listarInformes=Se ha producido un error al listar los informes
+errors.listarInformesFederados=Se ha producido un error al listar los informes federados
+errors.eliminarInformes.nombreNulo=Debe seleccionar al menos un fichero a eliminar
+errors.eliminarInformes.nombreNuloFederado=Debe seleccionar al menos un fichero federado a eliminar
+errors.eliminarInforme=Se ha producido un error al intentar eliminar los informes
+errors.eliminarInformeFederado=Se ha producido un error al intentar eliminar los informes federados
+informes.crearInformes.fechaDesdeIncorrecta=La fecha inicio informe es incorrecta
+informes.crearInformes.fechaHastaIncorrecta=La fecha fin informe es incorrecta
+informes.crearInformes.fechasOrdenIncorrectas=La fecha de fin debe ser mayor o igual a la fecha inicio de informe
+errors.crearInformes.general=Se ha producido un error
+informes.crearInformes.fechaDesdeVacia=La fecha inicio de informe no puede estar vac&iacute;a
+informes.crearInformes.fechaHastaVacia=La fecha fin de informe no puede estar vac&iacute;a
+informes.crearInformes.fechaDesdeCampoVacio=La fecha de inicio del informe contiene alg&uacute;n campo vac&iacute;o
+informes.crearInformes.fechaHastaCampoVacio=La fecha fin del informe contiene alg&uacute;n campo vac&iacute;o
+
+#Mensaje de fin de sesion
+informes.sesion.expirada=No se ha podido cargar correctamente la página por favor, vuelva a intentarlo
+
+#Mensaje de usuario vacio
+informes.crearInformes.usuarioVacio=El usuario del informe no puede estar vac&iacute;o
+
+
+
+##########################		Mensajes de Estructuras Educativas 	##########################
+estructuras.aceptar=Aceptar
+estructuras.cancelar=Cancelar
+estructuras.eliminar=Eliminar
+estructuras.modificar=Modificar
+estructuras.vermas=Ver mas
+estructuras.ocultar=Ocultar
+estructuras.nombre=Nombre
+estructuras.idioma=Idioma
+
+#Mensajes de las jsp´s de Estructuras Educativas
+estructuras.estructuras.titulo=Estructuras educativas
+estructuras.estructuras.titulo.summary=Tabla de administraci&oacute;n de estructuras educativas
+estructuras.estructuras.seleccione=Seleccione
+estructuras.estructuras.tesauros=Tesauros
+estructuras.estructuras.taxonomias=&Aacute;rboles curriculares y taxonom&iacute;as
+estructuras.estructuras.arboles=&Aacute;rboles curriculares
+
+
+estructuras.tesauros.titulo=Tesauros
+estructuras.tesauros.titulo.summary=Tabla de administraci&oacute;n de tesauros
+estructuras.tesauros.seleccione=Seleccione
+estructuras.tesauros.crear=A&ntilde;adir tesauro
+estructuras.tesauros.mensaje=Seleccione el tesauro que desee a&ntilde;adir
+estructuras.tesauros.crear.titulo=A&ntilde;adir tesauros
+estructuras.tesauros.error.seleccionados.vacios=No se ha seleccionado ning&uacute;n fichero, debe seleccionar al menos uno.
+estructuras.tesauros.error.fichero.vacio=Debe seleccionar al menos un fichero a a&ntilde;adir.
+estructuras.tesauros.baja.titulo=Eliminar tesauros
+estructuras.tesauros.baja.mensaje=¿Est&aacute; seguro que desea eliminar los tesauros seleccionados?
+estructuras.tesauros.baja.fallo=Error al eliminar el fichero.
+estructuras.tesauros.baja.fallo.esp=No se puede eliminar un tesauro del idioma español.
+estructuras.tesauros.baja.exito=Se han eliminado con &eacute;xito los tesauros seleccionados.
+estructuras.tesauros.alta.exito=Se ha a&ntilde;adido con &eacute;xito el tesauro seleccionado: {0}.
+estructuras.tesauros.alta.label=Tesauro
+estructuras.tesauros.modificar.advertencia=Va a a&ntilde;adir un nuevo tesauro, si existe alg&uacute;n tesauro del mismo idioma, sera eliminado de la plataforma.<br/> ¿Est&aacute; seguro que desea hacer esto?
+estructuras.tesauros.exportar=Exportar
+estructuras.tesauros.tipo=Tipo
+estructuras.tesauros.error.fichero.idioma=El fichero: {0}, no se corresponde con el idioma {1}.
+estructuras.tesauros.error.fichero.idioma.general=Alguno de los ficheros que intenta subir no se corresponden con el idioma.
+estructuras.tesauros.error.fichero.idioma.es=El fichero del idioma Castellano es obligatorio.
+estructuras.tesauros.modi.actual=Actual:
+estructuras.tesauros.modi.nuevo=Archivo:
+estructuras.tesauros.modi.advertencia=Va a añadir ficheros al tesauro ETB-LRE MEC-CCAA con el identificador: {0}<br/> Cualquier fichero con el mismo identificador e idioma será reemplazado por el nuevo fichero.<br/> Asegurese de realizar el backup correspondiente antes de continuar.   
+estructuras.tesauros.modi.vigente.advertencia=Est&aacute; cambiando el Tesauro vigente. El Tesauro ETB anterior estar&aacute; disponible como un tesauro mas.
+estructuras.tesauros.modi.actualizar=Actualizar vigente
+
+estructuras.taxonomias.titulo=Arboles curriculares y taxonom&iacute;as
+estructuras.taxonomias.titulo.summary=Tabla de administraci&oacute;n de arboles curriculares y taxonom&iacute;as
+estructuras.taxonomias.seleccione=Seleccione
+estructuras.taxonomias.crear=A&ntilde;adir
+estructuras.taxonomias.mensaje=Seleccione los ficheros que desea a&ntilde;adir
+estructuras.taxonomias.crear.titulo=A&ntilde;adir Árboles curriculares o taxonom&iacute;as
+estructuras.taxonomias.error.seleccionados.vacios=No se ha seleccionado ning&uacute;n fichero, debe seleccionar al menos uno.
+estructuras.taxonomias.error.fichero.vacio=Debe seleccionar al menos un fichero a a&ntilde;adir.
+estructuras.taxonomias.baja.titulo=Eliminar ficheros
+estructuras.taxonomias.baja.mensaje=¿Est&aacute; seguro que desea eliminar los ficheros seleccionados?
+estructuras.taxonomias.baja.exito=Se han eliminado los ficheros seleccionados
+estructuras.taxonomias.baja.fallo=No se han podido eliminar los ficheros seleccionadas
+estructuras.taxonomias.alta.exito=Se ha a&ntilde;adido con &eacute;xito el fichero seleccionado: {0}.
+estructuras.taxonomias.alta.label=Fichero
+estructuras.taxonomias.exportar=Exportar
+estructuras.taxonomias.error.fichero.idioma=El fichero: {0}, no se corresponde con el idioma {1}.
+estructuras.taxonomias.error.fichero.idioma.general=El fichero no se corresponde con el idioma.
+estructuras.taxonomias.error.fichero.idioma.es=El fichero del idioma Castellano es obligatorio.
+estructuras.taxonomias.modi.actual=Actual:
+estructuras.taxonomias.modi.nuevo=Archivo:
+estructuras.taxonomias.modi.advertencia=Va a a&ntilde;adir añadir ficheros a la taxonom&iacute;a: {0}<br/> Cualquier fichero con el mismo identificador e idioma ser&aacute; reemplazado por el nuevo fichero.<br/> Asegurese de realizar el backup correspondiente antes de continuar.
+estructuras.taxonomias.modi.vigente.advertencia=Est&aacute; cambiando el &aacute;rbol curricular vigente. El &aacute;rbol curricular anterior estar&aacute; disponible como una taxonom&iacute;a mas.
+estructuras.taxonomias.modi.actualizar=Actualizar vigente
+
+estructuras.arboles.titulo=&Aacute;rboles curriculares
+estructuras.arboles.titulo.summary=Tabla de administraci&oacute;n de &aacute;rboles curriculares
+estructuras.arboles.seleccione=Seleccione
+estructuras.arboles.crear=A&ntilde;adir &aacute;rbol
+estructuras.arboles.crear.mensaje=Seleccione el &aacute;rbol Curricular que desea a&ntilde;adir.
+estructuras.arboles.crear.titulo=A&ntilde;adir &aacute;rbol curricular
+estructuras.arboles.error.seleccionados.vacios=No se ha seleccionado ning&uacute;n &aacute;rbol curricular, debe seleccionar al menos uno.
+estructuras.arboles.error.fichero.vacio=Debe seleccionar el &aacute;rbol curricular que desee a&ntilde;adir.
+estructuras.arboles.baja.titulo=Eliminar &aacute;rbol curricular
+estructuras.arboles.baja.mensaje=¿Est&aacute; seguro que desea eliminar los &aacute;rboles curriculares seleccionados?
+estructuras.arboles.baja.exito=Se ha eliminado los &aacute;rboles curriculares seleccionados
+estructuras.arboles.baja.fallo=No se han podido eliminar los &aacute;rboles curriculares seleccionados
+estructuras.arboles.baja.fallo.esp=No se puede eliminar un &aacute;rbol curricular del idioma español. 
+estructuras.arboles.alta.exito=Se ha a&ntilde;adido con &eacute;xito el &aacute;rbol curricular seleccionado: {0}.
+estructuras.arboles.alta.mensaje.idioma=Ud. ha creado un &aacute;rbol curricular para un idioma que ya exist&iacute;a.
+estructuras.arboles.alta.label=&Aacute;rbol curricular
+estructuras.arboles.exportar=Exportar
+estructuras.arboles.modi.actual=Actual:
+estructuras.arboles.modi.nuevo=Archivo:
+estructuras.arboles.modi.advertencia=Va a a&ntilde;adir ficheros al &Aacute; Curricular: {0}<br/> Cualquier fichero con el mismo identificador e idioma ser&aacute; reemplazado por el nuevo fichero.<br/> Asegurese de realizar el backup correspondiente antes de continuar.
+
+estructuras.error.alta.0=Error durante la subida del fichero: {0}.
+estructuras.error.alta.1=El fichero que desea a&ntilde;adir posee un identificador que ya existe en la plataforma. Modifique la categoría correspondiente: {0}.
+estructuras.error.alta.2=El nombre del fichero no es v&aacute;lido: {0}.
+estructuras.error.alta.3=El fichero posee un identificador que no se corresponde con la categor&iacute;a: {0}.
+estructuras.error.alta.4=El fichero posee un identificador diferente al resto de ficheros que intenta subir: {0}.
+estructuras.error.alta.5=El fichero que intenta a&ntilde;adir: {0}, posee un vocabName existente en otra categor&iacute;a de la plataforma: {1}.
+estructuras.error.alta.6=El fichero que intenta a&ntilde;adir: {0}, posee un vocabIdentifier existente en otra categor&iacute;a de la plataforma: {1}.
+estructuras.error.alta.parseo.0=El Fichero no es un VDEX v&aacute;lido: {0}.
+estructuras.error.alta.parseo.1=El Fichero no posee vocabName: {0}.
+estructuras.error.alta.parseo.2=El Fichero no posee vocabIdentifier: {0}.
+
+##########################		Monitorización de nodos 	##########################
+SrvBuscarService=Buscar
+SrvEntregarService=Entregar
+SrvValidadorService=Validar
+estadoServicio.ACTIVO=ACTIVO
+estadoServicio.INACTIVO=INACTIVO
+estadoNodo.FALLO=FALLO
+monitorizar.nodo=Nodo
+monitorizar.servicio=Servicio
+monitorizar.estado=Estado
+monitorizarnodos.cabecera=Estado de los servicios por nodo
+errors.monitorizarnodos=Se ha producido un error al monitorizar el estado de los nodos
+
+###########################  Descargas común #############################
+descargasComun.titulo=Descargas
+descargasComun.activadas=Activadas
+descargasComun.desactivadas=Desactivadas
+descargasComun.tabla.summary=Tabla de Administración de Descargas
+descargasComun.seleccione=Seleccione
+###########################  Descargas Activas ###########################
+descargasActivas.eliminar=Eliminar
+descargasActivas.crear=Crear Descarga
+descargasActivas.desactivar=Desactivar
+descargasActivas.modificar=Modificar
+descargasActivas.no.seleccionados=No ha seleccionado Descargas
+###########################  Descargar No Activas ########################
+descargasNoActivas.activar=Activar
+###########################  Crear Descarga    ###########################
+crearDescarga.titulo=Crear Descarga
+crearDescarga.descarga.titulo=Titulo de descarga:
+crearDescarga.descarga.titulo.tooltip=Introduzca título
+crearDescarga.descarga.descripcion=Descripción:
+crearDescarga.descarga.descripcion.tooltip=Introduzca aquí descripción de la descarga
+crearDescarga.descarga.url=Ruta:
+crearDescarga.descarga.url.tooltip=Introduzca ruta
+crearDescarga.verCampos=Ver Campos de Descarga
+crearDescarga.ocultarCampos=Ocultar Campos de Descarga
+crearDescarga.nuevoPath=Introduzca la ruta temporal donde está el fichero que se servirá en la Descarga. Esta ruta debe ser accesible desde el servidor. Al crear la Descarga, el fichero se copiará a una ruta gestionada por la plataforma.
+crearDescarga.modificarPath=Esta ruta es la actual dentro del servidor donde se almacena el fichero. Puede modificarla, indicando una ruta temporal donde esté la nueva versión del fichero que se servirá en la Descarga. Esta ruta debe ser accesible desde el servidor. Al modificar la Descarga, el fichero se copiará a una ruta gestionada por la plataforma.
+crearDescarga.noDescripcion.exception=Debe indicar título y descripción para al menos un idioma
+crearDescarga.noFichero.exception=Compruebe que el fichero se encuentra en la ruta indicada
+crearDescarga.descarga.offline=Marcar si es instalador de herramienta offline:
+
+#FECHAS
+catalogadorAvanzado.nombresMeses=Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre
+catalogadorAvanzado.nombresDias=Domingo,Lunes,Martes,Miercoles,Jueves,Viernes,Sabado
+offset=1
+
+##############################################################################################################################
+######################################## GESTION DE LAS CATEGORIAS ###########################################################
+##############################################################################################################################
+
+categorias.noticia.titulo.cabecera=Categor&iacute;as 
+categorias.noticia.tablaAdministracionCategoria=Tabla de Adiministraci&oacute;n de Categor&iacute;as.
+categorias.noticia.columna.nombre=Nombre
+categorias.noticia.columna.idiomas=Idiomas
+categorias.noticia.boton.crear.categoria=Crear Categoria
+categorias.noticia.boton.eliminar=Eliminar
+categorias.noticia.clave.es=Castellano
+categorias.noticia.clave.ca=Catal&aacute;n
+categorias.noticia.clave.en=Ingl&eacute;s
+categorias.noticia.clave.eu=Euskera
+categorias.noticia.clave.gl=Gallego
+categorias.noticia.clave.va=Valenciano
+categorias.noticias.crear.titulo=Crear categor&iacute;a 
+categorias.noticias.boton.volver.noticias=Noticias
+categorias.noticias.introduzca.nombre=Introduzca el nombre de la categor&iacute;a 
+categorias.noticias.nombre=Nombre categor&iacute;a 
+categorias.noticias.titulo.modificar=Modificar categor&iacute;a 
+categorias.noticias.titulo.ver=Ver categor&iacute;a 
+error.noticia.campo.vacio=Al menos debe introducir una categor&iacute;a.
+error.insertando.categoria=Error al insertar la categor&iacute;a.
+error.modificando.categoria=Error al modificar la categor&iacute;a.
+noticias.listado.boton.categorias=Categorías 
+noticias.crear.titulo.uno=Crear Noticia (Paso 01 de 02)
+noticias.crear.titulo.dos=Crear Noticia (Paso 02 de 02)
+noticias.crear.dos.titulo=T&iacute;tulo de Noticia
+noticias.crear.dos.titulo.tooltip=Introduzca el t&iacute;tulo Noticia
+noticias.crear.dos.titulo.categoria=Categor&iacute;a 
+error.noticias.recuperando=Se ha producido un error recuperando las noticias.
+errorObteniendoNoticia=Error obteniendo la noticia.
+errors.categorias.eliminar=No se ha seleccionado ninguna categor&iacute;a.
+errors.categorias.borrar.ids=Error al intentar eliminar categor&iacute;as.
+errors.categorias.borrar.cargar=Error al intentar cargar categor&iacute;as.
+errors.borrarCategoria.idNulo=Debe seleccionar al menos una categor&iacute;a a eliminar.
+errors.noticia.categoria=Categor&iacute;a es un campo obligatorio.
+errors.borrarNoticia.idNulo=Debe seleccionar al menos una noticia a eliminar.
+errors.borrarCategoria.ids=Error recuperando los identificadores de la categor&iacute;a a eliminar
+errors.modificarCategoria.identificador=Error recuperando el identificador de la categor&iacute;a a modificar
+error.obteniendo.noticia.ver=Error obteniendo la noticia para ver.
+errors.categoria.ver=Error recuperando la categor&iacute;a 
+errors.categorias.recuperar=Error recuperando las categorias
+errors.noticias.insertar=Error al insertar la noticia
+errors.noticias.modificar=Error al modificar la noticia
+categorias.noticias.eliminacionCategorias.cabecera=Eliminaci&oacute;n de Categor&iacute;as
+categorias.noticias.eliminacionCategorias.confirmacion=¿Est&aacute; seguro que desea eliminar estas categor&iacute;as?. Si existen noticias asociadas a las categor&iacute;as tambi&eacute;n se eliminar&aacute;n.
+categorias.eliminacionCategorias.confirmacion2=Las siguientes categor&iacute;as se han eliminado
+noticias.crear.desplegable.ver.campos=Ver Campos de Noticia
+noticias.crear.desplegable.ocultar.campos=Ocultar Campos de Noticia
+categorias.crear.desplegable.ver.campos=Ver Campos de Categor&iacute;a
+categorias.crear.desplegable.ocultar.campos=Ocultar Campos de Categor&iacute;a
+noticia.eliminacionCategoriasNoticias.cabecera=Eliminaci&oacute;n categor&iacute;as 
+noticias.pasodos.crear.boton.anterior=Anterior
+noticias.pasodos.crear.boton.siguiente=Siguiente
+noticias.ver.titulo.uno=Ver Noticia (Paso 01 de 02)
+noticias.ver.titulo.dos=Ver Noticia (Paso 02 de 02)
+noticias.modificar.titulo.uno=Modificar Noticia (Paso 01 de 02)
+noticias.modificar.titulo.dos=Modificar Noticia (Paso 02 de 02)
+noticias.crear.sin.imagen=Sin Imagen
+noticias.crear.alinear.arriba=Alinear Arriba
+noticias.crear.alinear.abajo=Alinear Abajo
+noticias.crear.alinear.abajo.izquierda=Alinear abajo-izquierda
+noticias.crear.alinear.abajo.derecha=Alinear abajo-derecha
+noticias.crear.modificar.imagen.inicio=Imagen
+error.categorias.tamanho={0} Nombre categoría tiene un tamaño máximo de 50 caracteres.
+
+globos.castellano=Castellano
+globos.ingles=Inglés
+globos.catalan=Catalán
+globos.euskera=Euskera
+globos.valenciano=Valenciano
+globos.gallego=Gallego
+
+
+#Errores alta/modificacion noticias
+error.noticias.formulario.incorrecto=Formulario incorrecto.
+
+error.noticias.formulario.incorrecto.clave={0} 
+
+error.noticia.globo.castellano=Castellano:
+error.noticia.globo.ingles=Inglés:
+error.noticia.globo.catalan=Catalán:
+error.noticia.globo.euskera=Euskera:
+error.noticia.globo.valenciano=Valenciano:
+error.noticia.globo.gallego=Gallego:
+
+error.noticia.categoria.obligatorio=Categoría 
+error.noticia.titulo.obligatorio=Título 
+error.noticia.resumen.obligatorio=Resumen 
+error.noticia.cuerpo.obligatorio=Cuerpo 
+error.noticia.es.obligatorio=es obligatorio
+error.noticia.son.obligatorio=son obligatorios
+error.noticia.titulo.maximo.caracteres=Título: Número máximo de caracteres 100
+error.noticia.resumen.maximo.caracteres=Resumen: Número máximo de caracteres 256
+error.noticia.cuerpo.maximo.caracteres=Cuerpo: Número máximo de caracteres 4000
+error.noticia.categoria.maximo.caracteres=Categor&iacute;a: Número máximo de caracteres 50
+error.noticia.formulario.vacio= Al menos debe introducir la noticia en un idioma.
+
+
+#Gestion categorias FAQs
+categorias.faqs.boton.volver.faqs=FAQs
+categorias.faqs.eliminacionCategorias.confirmacion=¿Est&aacute; seguro que desea eliminar estas categor&iacute;as?. Si existen faqs asociadas a las categor&iacute;as tambi&eacute;n se eliminar&aacute;n.
+categorias.faqs.columna.posicion=Posici&oacute;n
+errors.borrarFaq.idNulo=Debe seleccionar al menos una faq a eliminar.
+error.faq.descripcion.obligatorio=Descripci&oacute;n
+error.faq.posicion.obligatorio=Posici&oacute;n
+error.faq.titulo.maximo.caracteres=Título de la faq: N&uacute;mero m&aacute;ximo de caracteres 256
+error.faq.descripcion.maximo.caracteres=Descripci&oacute;n: N&uacute;mero m&aacute;ximo de caracteres 4000
+error.faq.formulario.vacio=Al menos debe introducir la faq en un idioma.
+errors.faqs.insertar=Error al insertar la faq.
+faqs.crear.titulo.uno=Crear Faq (Paso 01 de 02)
+faqs.crear.titulo.dos=Crear Faq (Paso 02 de 02)
+faqs.crear.desplegable.ver.campos=Ver campos de FAQ
+faqs.crear.desplegable.ocultar.campos=Ocultar campos de FAQ
+modificar.faq.formulario.Descripcion=*Descripci&oacute;n:
+faqs.crear.dos.titulo=T&iacute;tulo de la FAQ
+faqs.crear.dos.titulo.tooltip=Introduzca el t&iacute;tulo Faq
+faqs.formulario.introduzcaDescripcion=Introduzca la descripci&oacute;n de la FAQ
+faqs.posicion.literal=*Posici&oacute;n:
+faqs.posicion.literal.tooltip=Seleccione la posici&oacute;n
+faqs.modificar.titulo.uno=Modificar Faq (Paso 01 de 02)
+faqs.modificar.titulo.dos=Modificar Faq (Paso 02 de 02)
+errors.faqs.modificar= Error al modificar la faq.
+errorObteniendoFaq= Error obteniendo la faq.
+
+error.obteniendo.faq.ver=Error obteniendo la faq para ver.
+faqs.ver.titulo.uno=Ver Faq (Paso 01 de 02)
+faqs.ver.titulo.dos=Ver Faq (Paso 02 de 02)
+faqs.posicion.literalComboPrimeraPosicion=Primera posici&oacute;n
+
+error.categorias.faq.relacionada={0} Existe una faq relacionada con esa traducci&oacute;n de categor&iacute;a.
+error.categorias.noticia.relacionada={0} Existe una noticia relacionada con esa traducci&oacute;n de categor&iacute;a.
+error.categorias.duplicada={0} La categor&iacute;a ya existe
+
+#INTERNACIONALIZACION DE ROLES###
+
+ADMINISTRADOR=ADMINISTRADOR
+CATALOGADOR=CATALOGADOR
+DOCENTE=DOCENTE
+PUBLICADOR=PUBLICADOR
+
+crearTarea.catalogo=Informe Catálogo
+crearTarea.idiomasCatalogo=Idioma
+crearTarea.seleccioneIdiomaCatalogo=Seleccione Idioma del Catálogo
+
+#Mensajes de ConfiguracionPortal#
+modificar.config.formulario.noticias=Noticias
+modificar.config.formulario.informes=Informes
+modificar.config.formulario.descargas=Descargas
+modificar.config.formulario.agregaweb=AgregaWeb
+modificar.config.formulario.tagging=Tagging
+modificar.config.formulario.activa=Activa
+modificar.config.formulario.rss=RSS
+modificar.config.formulario.estadisticas=Estad&icute;sticas
+modificar.config.formulario.etiquetas=Etiquetas
+modificar.config.formulario.imagenportada=Imagen Portada
+modificar.config.formulario.plugginbusqueda=Pluggin B&ucute;squeda
+modificar.config.formulario.registrese=Registrese
+modificar.config.formulario.openid=OpenID
+modificar.config.formulario.imagen=Imagen
+modificar.config.formulario.EstadoActiv=Activado
+modificar.config.formulario.EstadoDesact=Desactivado
+modificar.config.formulario.SelectImagen=Seleccionar Imagen

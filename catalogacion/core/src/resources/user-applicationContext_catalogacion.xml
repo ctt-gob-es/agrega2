@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+  <bean id="propiedadesConstantes" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+	  <list>
+		  	<value>classpath:spring.properties</value>
+	  </list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders">
+	  		<value>true</value>
+	  </property>	  
+  </bean>
+  
+ <bean id="CatalogacionDozerDao" class="es.pode.catalogacion.servicio.dominio.CatalogacionDozerDao">
+		<property name="beanMapperAux">
+			<ref bean="beanMapper"/>
+		</property>		
+	</bean>
+    <bean id="TraduccionDao" class="es.pode.catalogacion.servicio.dominio.TraduccionDao">
+		<property name="beanMapperAux">
+			<ref bean="beanMapper"/>
+		</property>			
+	</bean> 	
+  
+  	<bean class="es.indra.sawa.support.wiring.WiringPostProcessor">
+            <property name="propertyMappings">
+                  <list>
+                  <value>beanMapper</value>
+                        <value>.*\.Srv.*Service.*;.*;.*</value>
+                  </list>
+            </property>
+   	 </bean>
+</beans>

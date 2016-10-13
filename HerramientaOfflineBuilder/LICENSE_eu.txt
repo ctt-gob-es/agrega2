@@ -1,0 +1,9 @@
+Dokumentu honek deskargatzen eta instalatzen ari zaren softwarea erabiltzeko baimena eskaintzen dizu, aurrerago hizpatzen diren termino eta baldintzetan. Irakurri arretaz dokumentua Softwarea instalatu, deskargatu edo erabili aurretik. Dagokion check box sakatu ondoren, ondoko termino eta baldintzekiko adostasuna erakusten duzu eta, halaber, dokumentu hau irakurri eta edukia ulertu izana.
+
+Softwarea inolako bermerik gabe, esplizitu zein inplizitu, eskaintzen dela onartzen duzu. Bereziki, ez da bermatzen software horretako funzioak beharretara egokitzea edo bere funtzionamendua etete eta erroreetatik aske izatea. Instalazioaren, erabileraren eta horren bidez lortutako emaitza guztien gaineko erantzukizuna eta arriskua zeure gain hartzen duzu. 
+
+Halaber, onartzen duzu red.es, Hezkuntzako Administrazioak eta aipatutako softwarearen eskubideen bestelako edozein legezko titular ez direla software horren instalazioak edo erabilerak eragindako ondokoen erantzule: irabaziek alde-egitea, diru-sarrerak galtzea, ordezkatze edo zerbitzuko ondasunez jabetzeak eragindako datuak eta kostuak, kalte-materialak, kalte-pertsonalak, merkataritzako jardueraren etetea, merkataritzako informazioaren galera edo bestelako edozein kalte.
+
+Deskargatu nahi duzun softwarearen ezaugarria banaketa askea duela da.   Erabiltzaileak ezingo du softwarearen jabetza industrial edo intelektualeko eskubideen aurkako inolako eragiketarik. Halaber, softwarearen grafiko, markak, logotipoak, diseinuak, marrazkiak eta testuak. Halaber, jabetza intelektualeko eskubideak ezingo ditu aldatu edo manipulatu, red.es, Hezkuntzako Administrazioak eta softwarearen bestelako edozein legezko titularri baitagozkie.
+
+Softwarearen kopia egin dezakezu, betiere dokumentu honetan hizpatutakoaren arabera, termino eta baldintza horiei dagozkien jabetza intelektual eta bestelako jabetzako eskubideen oharrarazpen berberak bildu beharko dituena.

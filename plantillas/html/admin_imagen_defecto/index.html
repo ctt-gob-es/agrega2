@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+
+<head lang="es" dir="ltr">
+
+<title>red.es</title>
+<script type="text/javascript" src="http://andreslopezjosenge.com/clientes/indra/plataforma/js/curvas.js"></script>
+<link rel="stylesheet" media="screen" href="http://andreslopezjosenge.com/clientes/indra/plataforma/css/logos_patrocinadores.css" type="text/css" />
+<link rel="stylesheet" media="screen" href="http://andreslopezjosenge.com/clientes/indra/plataforma/css/red.css" type="text/css" />
+<script type="text/javascript" src="http://andreslopezjosenge.com/clientes/indra/plataforma/js/plantilla.js"></script>
+<script type="text/javascript" src="http://andreslopezjosenge.com/clientes/indra/plataforma/js/jquery-1.3.2.js"></script>
+<script type='text/javascript' src='http://andreslopezjosenge.com/clientes/indra/plataforma/js/jquery.autocomplete.js'></script>
+
+
+<script type="text/javascript">
+function findValue(li) {
+	if( li == null ) return alert("&iexcl;No hay t&eacute;rminos con esta Inicial");
+	if( !!li.extra ) var sValue = li.extra[0];
+	else var sValue = li.selectValue;
+	alert("Usted ha seleccionado: " + sValue);
+}
+
+function selectItem(li) {
+	findValue(li);
+}
+
+function formatItem(row) {
+	return row[0] + " (id: " + row[1] + ")";
+}
+
+function lookupAjax(){
+	var oSuggest = $("#CityAjax")[0].autocompleter;
+
+	oSuggest.findValue();
+
+	return false;
+}
+
+function lookupLocal(){
+	var oSuggest = $("#CityLocal")[0].autocompleter;
+
+	oSuggest.findValue();
+
+	return false;
+}
+
+$(document).ready(function() {
+	$("#CityAjax").autocomplete("http://andreslopezjosenge.com/clientes/indra/plataforma/js/autocompletar.php", {
+		delay:10,
+		minChars:1,
+		matchSubset:1,
+		onItemSelect:selectItem,
+		onFindValue:findValue,
+		autoFill:true,
+		maxItemsToShow:10
+	});	
+});
+</script>
+
+</head>
+
+<body >
+
+<!--  CAPA QUE CONTIENE TODAS LAS DEMAS  -->
+<!--  INICIO CAPA MADRE   -->
+<div id="capa_madre">
+
+<!--  INICIO CUERPO GENERAL   -->
+<!--  INICIO CUERPO GENERAL   -->
+<div id="cuerpo">
+<div class="minwidth">
+<div class="contenido_general">
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- INICIO CABECERA  -->
+
+<div id="cabecera">
+<h1 ><span>Comunidad de Madrid</span></h1>
+
+<!-- INICIO METANAVEGACION   -->
+<!-- INICIO METANAVEGACION   -->
+<div id="metanavegacion">
+<ol>
+		<li class="oculto"><a href="#contenido_central" title="Contenido Principal"><strong>Contenido</strong></a></li>
+		<li><a href="#" title="Salir" id="li_inicial"><span>Salir</span></a></li>
+		<li><a href="#" title="Ayuda" id="ayuda"><span>Ayuda</span></a></li>
+		<li><span id="identificacion">Nombre Apellido Apellido,</span></li>
+		<li><a href="#" title="Acerca de XYZ"><span>Acerca de XYZ</span></a></li>
+		<li><a href="#" title="Accesibilidad"><span>Accesibilidad</span></a></li>
+		<li><a href="#" title="FAQs"><span>FAQs</span></a></li>
+		<li><a href="#" title="Mapa"><span>Mapa</span></a></li>
+		<li><a href="#" title="Contacto" id="contacto"><span>Contacto</span></a></li>
+</ol>
+</div>
+
+<!-- FIN METANAVEGACION   -->
+<!-- FIN METANAVEGACION   -->
+
+
+<!-- BUSCADOR  -->
+<!-- BUSCADOR  -->
+<div id="buscador" >
+<hr />
+<div id="nuevo_buscador">
+<strong class="oculto">Buscador:</strong>
+<br class="oculto" /><br class="oculto" />
+<form method="post" action="" >
+<fieldset>
+<a href="#" class="avanzado" >Avanzado</a>
+<label class="oculto" for="CityAjax">Buscador:&nbsp;</label>
+<input type="text" id="CityAjax" class="caja_buscador" value="" title="Buscador" name="combo_buscador"  />
+<label class="oculto" for="idiomaContenido">Idioma del Contenido:&nbsp;</label>
+<select name="IdiomaContenido" title="Seleccione Idioma del Contenido" id="idiomaContenido"  class="caja_buscador_selector">
+<option value="#" selected="selected" >Idioma del Contenido</option>
+<option value="#" class="color">Ingles</option>
+<option value="#">Español</option>
+</select>
+<input type="button" alt="Boton de buscar" class="buscar"  value=" Buscar" name="buscar" /><br />
+<div class="ren">
+<label class="lb_primera">Buscar en:</label>
+<input type="radio" id="todo_agrega"  checked="checked" class="botonradio"  name="busqueda" />
+<label for="todo_agrega">Repositorio XYZ</label>
+<input type="radio" id="comunidad"   class="botonradio" name="busqueda" />
+<label for="comunidad">Repositorio XYZ</label>
+<input type="radio" id="otros"   class="botonradio" name="busqueda" />
+<label for="otros">Otros repositorios</label>
+</div>
+</fieldset>
+</form>
+</div>
+<br class="oculto" />
+</div>
+<hr />
+<!-- FIN BUSCADOR  -->
+<!-- FIN BUSCADOR  -->
+
+<br class="oculto" />
+<a href="#" title="Volver A Página de Inicio" id="logo"><span>Volver A Página de Inicio</span></a>
+</div>
+
+<!-- Inicio cuerpo central de pagina con Menu Principal, capa Lateral y capa Central  -->
+<!-- Inicio cuerpo central de pagina con Menu Principal, capa Lateral y capa Central  -->
+<div class="tronco_de_contenido">
+
+<!-- Inicio MENU PRINCIPAL -->
+<!-- Inicio MENU PRINCIPAL -->
+<div id="madre_menu_horizontal">
+
+<div id="cabecera_menu">
+<div id="menu_principal0">
+<div id="menu_principal">
+<div id="menu_principal2">
+<ul>
+	<li id="portada"><a href="#" ><span ><span >PORTADA</span></span></a></li>
+	<li id="arbol"><a href="#" ><span ><span >ÁRBOL CURRICULAR</span></span></a></li>
+	<li id="caper"><a href="#"><span ><span >CARPETA PERSONAL</span></span></a></li>
+	<li id="comunidad"><a href="#"><span ><span >COMUNIDAD</span></span></a></li>
+	<li id="admin"><div><span ><span >ADMIN</span></span></div></li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Fin MENU PRINCIPAL -->
+<!-- Fin MENU PRINCIPAL -->
+
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- INICIO LATERAL IZQUIERDO  -->
+<div id="lateral">
+
+<!-- INICIO NAVEGACIÓN VERTICAL -->
+<!-- INICIO NAVEGACIÓN VERTICAL -->
+<div id="menu_vertical">
+
+<br class="oculto" />
+<strong class="oculto">Menu Vertical:</strong><br class="oculto" /><br class="oculto" />
+<em>CONTENIDOS</em>
+<br class="oculto" />
+<ul class="lista_admin">
+<li><a href="#"><span>Noticias</span></a></li>
+<li><a href="#"><span>Descargas</span></a></li>
+<li><a href="#"><span>RSS Feeds</span></a></li>
+<li><a href="#"><span>FAQs</span></a></li>
+<li><a href="#"><span>Agrega en tu web</span></a></li>
+<li><a href="#"><span>Etiquetado social</span></a></li>
+</ul>
+<br class="oculto" />
+
+<em>PLATAFORMA</em>
+<br class="oculto" />
+<ul class="lista_admin">
+<li><a href="#"><span>Nodo</span></a></li>
+<li><a href="#"><span>Usuarios</span></a></li>
+<li><a href="#"><span>Informes</span></a></li>
+<li><a href="#"><span>Publicador</span></a></li>
+<li><a href="#"><span>Planificador</span></a></li>
+<li><a href="#"><span>Monitorizador</span></a></li>
+<li><div><span>Imagen ODE</span></div></li>
+<li><a href="#"><span>Repositorios Externos</span></a></li>
+</ul>
+
+<br class="oculto" />
+<em>CONFIGURACIÓN</em>
+<br class="oculto" />
+<ul>
+<li><a href="#"><span>Roles</span></a></li>
+<li><a href="#"><span>Fuentes Taxonómicas</span></a></li>
+<li><a href="#"><span>Extensiones Árbol Curr.</span></a></li>
+</ul>
+</div>
+<!-- FIN NAVEGACIÓN VERTICAL -->
+<!-- FIN NAVEGACIÓN VERTICAL -->
+
+<hr />
+
+</div>
+<!-- FIN LATERAL IZQUIERDO -->
+<!-- FIN LATERAL IZQUIERDO -->
+
+<!-- Inicio Contenido ESPECÍFICO  -->
+<!-- Inicio Contenido ESPECÍFICO  -->
+<div id="contenido_central">
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- ATENCION!! AQUÍ ES DONDE VA LA PLANTILLA DE CONTENIDO (REEMPLAZAR LA CAPA: "plantilla_contenido" DE LA PLANTILLA DE CONTENIDO QUE SE DESEE POR LA CAPA QUE VIENE A CONTINUACION  -->
+<!-- Inicio plantilla contenido  -->
+<!-- Inicio plantilla contenido  -->
+<div class="plantilla_contenido"  style="padding-bottom:10px !important">
+
+<div class="exito">&nbsp;Muestra de resultados con Exito</div>
+
+<h2>Imagen ODE</h2>
+<form method="post" action="" >
+<p class="parrafo_comun" id="separacion2">Seleccione la imagen que desea utilizar para el ODE:</p>
+<!--  INICIO GLOBO GRIS   -->
+<!--  INICIO GLOBO GRIS   -->
+<div class="globo_gris" >
+	<div class="globo_gris_01">
+		<div class="globo_gris_02">
+			<div class="globo_gris_03">
+			<!--  INICIO CAJA DE FORMULARIO   -->
+			<div id="formulario" >
+			<!--  INICIO ITEMS DE FORMULARIO   -->	
+					
+				<div class="fila_de_tabla ft_centrada2">
+					<!--  IMAGEN CARGADA   -->
+						<div class="text" style="margin-bottom:10px;padding-left:146px !important">
+						<span style="font-weight:bold;display:inline !important">111212_agrega_imagen_ode_01.png &nbsp;&nbsp;
+						<a href="#" style="font-weight:normal !important">Eliminar</a></span><br />
+  	 					</div>
+					<!--  IMAGEN CARGADA   -->
+  					<div class="text"><label class="oculto" for="SelImagen01">Imagen:</label> <input name="SelImagen01" onfocus="limpiarTexto(this)" value="&nbsp;" style="width:200px !important;margin-right:156px !Important;border:0 !Important" type="file" id="SelImagen01" class="selimagen0" title="Imagen 01 "  />
+  					
+  				<br />	
+  				
+  				</div>
+					
+				<div class="linea_separadora"></div>
+					<br class="oculto" />
+				</div>	
+				<!-- -->
+			
+				</div>
+				<!--  FIN CAJA DE FORMULARIO   -->
+			</div>
+		</div>
+	</div>
+</div>
+<!--  FIN GLOBO GRIS   -->
+<!--  FIN GLOBO GRIS   -->
+
+
+
+<!-- Inicio Botones  -->
+<!-- Inicio Botones  -->
+<fieldset class="tipo ft_centrada">
+<input class="boton_125"  type="button"  value="Guardar" />
+</fieldset>
+
+<!-- Fin Botones  -->
+<!-- Fin Botones  -->
+</form>
+</div>
+<!-- Fin plantilla contenido  -->
+<!-- Fin plantilla contenido  -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+</div>
+<!-- Fin Contenido ESPECÍFICO  -->
+<!-- Inicio Contenido ESPECÍFICO  -->
+</div>
+<!-- Fin cuerpo central de pagina con Menu Principal, capa Lateral y capa Central  -->
+<!-- Fin cuerpo central de pagina con Menu Principal, capa Lateral y capa Central  -->
+
+
+<!-- INICIO PIE DE PAGINA -->
+<!-- INICIO PIE DE PAGINA -->
+<div id="pie_pagina">
+<hr />
+<a href="#" id="info" title="Información Legal"><span>Información Legal</span></a>
+<a href="#" id="politica" title="Política de Privacidad"><span>Política de Privacidad</span></a>
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- ESPACIO PARA EL INCLUDE DE LOS LOGOS DE LOS COLABORADORES Y PATROCINADORES  -->
+
+
+<br class="oculto" />
+<strong class="oculto">Colaboran:</strong>
+<div id="avanza_largo"><a href="#" target="_blank" title="Plan Avanza"><span class="oculto">Plan Avanza</span></a></div>
+<ul id="patrocinadores" style="margin:0 !important;">
+<li><a href="#" id="gobespania" target="_blank" title="Gobierno de España"><span>Gobierno de España</span></a></li>
+<li><a href="#" id="plan_e" target="_blank" title="Plan E - Plan español para el estímulo de la economía y el empleo"><span>Plan E - Plan español para el estímulo de la economía y el empleo</span></a></li>
+<li><a href="#" id="educacion" target="_blank" title="Ministerio de Educación, Política Social y Deporte"><span>Ministerio de Educación, Política Social y Deporte</span></a></li>
+<li><a href="#" id="logo_ifstic" target="_blank" title="Instituto Superior de Formación y Recursos en Red para el Profesorado"><span>Instituto Superior de Formación y Recursos en Red para el Profesorado</span></a></li>
+<li><a href="#" id="industria" target="_blank"  title="Ministerio de Industria, Turismo y Comercio"><span>Ministerio de Industria, Turismo y Comercio</span></a></li>
+<li><a href="#" id="secretaria" target="_blank" title="Secretaría de Estado de Telecomunicaciones y para La Sociedad de la Información"><span>Secretaría de Estado de Telecomunicaciones y para La Sociedad de la Información</span></a></li>
+<li><a href="#" class="logo_comunidad"><span>Comunidad</span></a></li>
+<li><a href="#" id="feder" target="_blank" title="Fondo de Desarrollo Regional"><span>Fondo de Desarrollo Regional</span></a></li>
+</ul>
+
+
+<!-- FIN DEL ESPACIO PARA EL INCLUDE DE LOS LOGOS DE LOS COLABORADORES Y PATROCINADORES  -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+</div>
+<!-- FIN PIE DE PAGINA -->
+<!-- FIN PIE DE PAGINA -->
+
+</div>
+</div>
+</div>
+<!--  FIN CUERPO GENERAL   -->
+<!--  FIN CUERPO GENERAL   -->
+
+</div>
+<!--  FIN CAPA MADRE   -->
+<!--  FIN CAPA MADRE   -->
+</body>
+</html>

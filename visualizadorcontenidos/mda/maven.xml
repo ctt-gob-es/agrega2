@@ -1,0 +1,47 @@
+<project default="pom:install" xmlns:ant="jelly:ant" xmlns:j="jelly:core" xmlns:u="jelly:util">
+	<preGoal name="pom:install">
+
+		<ant:mkdir dir="${maven.war.plantillas}"/>
+		<ant:echo message="Borrando ${maven.war.plantillas}"/>
+		<ant:delete dir="${maven.war.plantillas}">
+		</ant:delete>
+
+		<!--
+		<taskdef name="svn" classname="org.tigris.subversion.svnant.SvnTask" />
+
+		<typedef name="svnFileSet" classname="org.tigris.subversion.svnant.types.SvnFileSet" />
+		<typedef name="svnNormal" classname="org.tigris.subversion.svnant.selectors.Normal" />
+		<typedef name="svnAdded" classname="org.tigris.subversion.svnant.selectors.Added" />
+		<typedef name="svnReplaced" classname="org.tigris.subversion.svnant.selectors.Replaced" />
+		<typedef name="svnModified" classname="org.tigris.subversion.svnant.selectors.Modified" />
+		<typedef name="svnConflicted" classname="org.tigris.subversion.svnant.selectors.Conflicted" />
+		<typedef name="svnIgnored" classname="org.tigris.subversion.svnant.selectors.Ignored" />
+		<typedef name="svnUnversioned" classname="org.tigris.subversion.svnant.selectors.Unversioned" />
+		<typedef name="svnLocked" classname="org.tigris.subversion.svnant.selectors.Locked" />
+		<typedef name="svnMissing" classname="org.tigris.subversion.svnant.selectors.Missing" />
+		<typedef name="svnDeleted" classname="org.tigris.subversion.svnant.selectors.Deleted" />
+		<typedef name="svnExists" classname="org.tigris.subversion.svnant.conditions.Exists" />
+
+		<ant:echo message="Bajando plantillas portal de ${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}"/>
+		<ant:svn username="${svn.user}" password="${svn.password}" javahl="true">
+		<ant:export srcUrl="${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}" destPath="${maven.scm.checkout.dir}"/>
+		</ant:svn>
+		-->		
+				
+		<ant:exec failonerror="true" executable="svn">
+			<arg value="export"/>
+			<arg value="${maven.scm.url}/${maven.scm.branch}/${plantillas.portal.path}"/>
+			<arg value="${maven.scm.checkout.dir}"/> 
+		</ant:exec>
+
+		<!--
+    	Descargar de localRepo las VSL de Acegi
+    	-->
+    	<ant:mkdir dir="${merge.location}/templates/spring"/>
+    	<ant:copy failonerror="false" overwrite="true" tofile="${merge.location}/templates/spring/applicationContext-acegiSecurity.xml.vsl" file="${pom.getDependencyPath('agrega-resources:applicationContext-acegiSecurity.xml')}"/>
+
+		
+		<attainGoal name="andromda:run"/>
+		
+	</preGoal>
+</project>

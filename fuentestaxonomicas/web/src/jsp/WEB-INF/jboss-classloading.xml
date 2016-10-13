@@ -1,0 +1,5 @@
+<classloading xmlns="urn:jboss:classloading:1.0"
+ parent-domain="DefaultDomain"
+ import-all="true"
+ parent-first="false">
+</classloading>

@@ -1,0 +1,34 @@
+Contenido Version 3.1.4
+
+1.- Nuevo Cartridge andromda-jsf: en su primera entrega, quiere ayudar a implantar en los proyectos 
+		una arquitectura de software en las capas de vista y controlador. Para conseguir los objetivos anteriores, 
+		se han integrado las siguientes tecnologías y frameworks: Spring Web Flow - JavaServer Faces - IceFaces 
+		- Facelets. Este cartridge respeta el modelado ya conocido utilizado en el cartridge 
+		BPM4Struts. El proyecto generado igual estructura que los anteriores proyectos generados con andromda.
+
+2.- Mejoras e incidencias:
+
+			IBUI1	  Los metodos no contienen los set de los named parameters
+			IBUI2	  Error en metodos del daobase cuando se usa criteria
+			IBUI4	  Problemas con el envio de correo
+			IBUI6	  Los proyectos con servicios definidos y sin entidades provocan un error al levantar el contexto.
+			IBUI7	  Falla andromdapp:generatebatch porque no encuentra eclipse-classpath.vsl
+			IBUI9	  La documentacion de VO no permite caracteres no UTF-8 al publicar WS
+			IBUI10	Al generar el script de creación de base de datos se pierde la documentación de las entidades y atributos
+			IBUI11	Se pierde la documentacion de los Servicio y operaciones cuando se usa el wsdl2xmi
+			IBUI12	Se requiere la posibilidad de realizar un consulta con bloqueo a la base de datos
+			IBUI13	Pase de parametros al arranque de un proceso Batch
+			IBUI14	Doble Navegabilidad en relaciones que no la tienen
+			IBUI15	Cambio de form.key de un Caso de uso
+			IBUI16	Capacidad de inyectar bean definidos de forma manual a los servicios modelados
+			IBUI17	Error en la validacion de listas de seleccion multiples
+			IBUI18	Hay un errores al generar la etiqueta del mapeo de VO a entity, ya que no se corresponde con la etiqueta 
+							del defaultDozerMappings.xml
+			IBUI19	Perdida de la multiplicidad en los VOs de los servicios generados
+			IBUI21	Generación de scripts incrementales para base de datos
+			IBUI22	Falta el metodo isEncriptable para atributos en LOPD
+			IBUI24	Nueva version del dozer 3.4 para la proxima version de iBuilder
+
+3.- Actualización de versiones:
+		- dozer 3.4
+		

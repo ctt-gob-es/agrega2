@@ -1,0 +1,21 @@
+<project default="pom:install"
+         xmlns:ant="jelly:ant">
+    <preGoal name="pom:install">
+        <ant:echo>Limpiando plantillas</ant:echo>
+        <ant:mkdir dir="${maven.war.plantillas}"/>
+        <ant:delete>
+            <ant:fileset dir="${maven.war.plantillas}">
+                <include name="**/*"/>
+            </ant:fileset>
+        </ant:delete>
+        <ant:stcheckout
+            URL="172.22.145.42:49320/PODE/PODE"
+            username="jsimon"
+            password="jsimon"
+            rootstarteamfolder="04_Subsistemas/PlantillasPortal/DyC/web/src"
+            rootlocalfolder="${maven.war.plantillas}"
+            deleteuncontrolled="false"
+        />
+        <attainGoal name="andromda:run"/>
+    </preGoal>
+</project>

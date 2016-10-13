@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:em="http://www.mozilla.org/2004/em-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <!--
+  Este primer bloque de Description es prácticamente fijo, pues el id debe ser
+  el mismo para todas las extensiones de Firefox.
+  Los campos minVersion y maxVersion se comparan con la versión del Firefox en
+  el momento de instalación. Son campos obligatorios.
+  -->
+  <RDF:Description RDF:about="rdf:#$ZUQlk2"
+                   em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+                   em:minVersion="1.5"
+                   em:maxVersion="3.5.*" />
+  <!--
+  Este campo id debe ser único para cada extensión. En versiones anteriores se 
+  recomendaban valores numéricos como los GID del registro de Windows. 
+  Actualmente se recomiendan pseudodirecciones de email como la usada. No tienen
+  porqué existir ni ser válidas, sólo se usa para identificación.
+  El campo iconURL DEBE contener una URI de chrome.
+  -->
+  <RDF:Description RDF:about="urn:mozilla:install-manifest"
+                   em:id="agrega-tagger@agrega.es"
+                   em:name="Agrega Tagger"
+                   em:version="1.2"
+                   em:creator="Proyecto Agrega"
+                   em:iconURL="chrome://agrega-tagger/content/hotico-001.png"
+                   em:description="Un botón para publicar directamente en Agrega.">
+		   <!--
+		   Este campo, optionsURL, apunta al XUL de la página de opciones
+		   propias de la extensión que saldrá en la ventana de complementos.
+		   Puede o no ser la misma página de preferencias con la que hacemos
+		   overlay.
+		   -->
+		   <!--em:optionsURL="chrome://agrega-tagger/content/pref.xul">-->
+		   <!--
+		   Este campo indica la URL en la que se colgarán las actualizaciones
+		   de la extensión. Se comprueba al instalarse y al arrancar Firefox.
+		   Si se indicó y no existe, no se puede seguir adelante con la instalación.
+		   -->
+		   <em:homepageURL>https://addons.mozilla.org/es-ES/firefox/addon/13738</em:homepageURL>
+    <em:targetApplication RDF:resource="rdf:#$ZUQlk2"/>
+  </RDF:Description>
+</RDF:RDF>

@@ -1,0 +1,9 @@
+The owner (licensee) of the application reserves all rights to
+the same and allows the authorized user to access and / or download the application at least to be used. Restrictions and permit the licensee establishes must be clear and stick to right.
+These restrictions must be related to 
+
+	- Limitations / Temporary Use Authorization or geographical
+	
+	- Limitations / authorizations to distribute, copy or modify software
+
+	- Guarantees and responsibilities that offers or are assumed by the licensee.

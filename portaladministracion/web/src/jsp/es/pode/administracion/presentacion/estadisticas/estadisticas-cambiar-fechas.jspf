@@ -1,0 +1,1359 @@
+
+<%@ taglib prefix="agrega" uri="/WEB-INF/tags/agregaProperties.tld" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
+<link rel="stylesheet" href="/static/css/jquery-ui-1.8.23.custom.css" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery-ui-1.8.23.custom.min.js"></script>
+
+
+<html:form styleId="estadisticasEstadisticasCambiarFechasForm" action="/Estadisticas/EstadisticasAnalizaPulsacion" method="post" enctype="multipart/form-data" onsubmit="return validateEstadisticasCambiarFechasForm(this);">
+ <!--  INICIO GLOBO GRIS   --><!--  INICIO GLOBO GRIS   -->
+    <div class="globo_gris">
+        <div class="globo_gris_01">
+            <div class="globo_gris_02">
+                <div class="globo_gris_03">
+                    <!-- INICIO CAJA DE FORMULARIO -->
+                    <div id="formulario">
+
+                        <!-- ACTIVIDAD -->
+                        <div class="globo_blanco gb_ie">
+                            <div class="globo_blanco_01">
+                                <div class="globo_blanco_02">
+                                    <div class="globo_blanco_03">
+                                        <h3>ACTIVIDAD</h3>				
+
+                                        <!-- INICIO GLOBO GRIS --> <!-- INICIO GLOBO GRIS -->
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv" cellpadding="0" cellspacing="0" summary="Objetos">
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.actividad"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaDesdeActividad}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaDesdeActividad" value="${value}" id="cambiarFechasFechaDesdeActividad" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaDesdeActividad" value="${value}" id="cambiarFechasFechaDesdeActividad" />
+                                       						</td>
+                                                            </tr>
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.hasta.actividad"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaHastaActividad}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaHastaActividad" value="${value}" id="cambiarFechasFechaHastaActividad" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaHastaActividad" value="${value}" id="cambiarFechasFechaHastaActividad" />
+                                                            </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+										<h3 class="clearfix theader">
+											<em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+											<strong>Local&nbsp;&nbsp;</strong>
+											<strong>Total</strong>
+										</h3>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.busquedas.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.busquedasLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.busquedasTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>															
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.descargas"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.descargas}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.descargasTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fichas.accedidas.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.fichasAccedidasLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.fichasAccedidasTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.odes.previsualizados.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.odesPrevisualizadosLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.odesPrevisualizadosTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- FIN GLOBO GRIS --><!-- FIN GLOBO GRIS -->
+										<br>
+                                        <a href="#" class="poppup02">Mostrar datos desglosados por comunidades</a>
+
+                                        <div class="oculto">
+                                            <div class="thumb_list" id="pop_up_02">			
+                                                <a class="close close_x sprited" href="#">close</a>
+                                                <div class="showhide clearfix ">								
+                                                    <div class="escroll"> 	
+                                                        <h4><p>Estadísticas de ACTIVIDAD desglosadas por comunidades</p>	</h4>					
+                                                        <div class="caja_tabla" id="bordeada" >		
+                                                            <table border="1" class="generica tabla_rss_estadisticas" width="100%" cellpadding="0" cellspacing="0"  summary="Tabla de Resultados">						
+                                                                <c:forEach items="${form.comunidadesBusquedas}" var="comunidad" varStatus="status">
+                                                                    <col class="col_01">
+                                                                </c:forEach>
+                                                                <tr>
+                                                                    <th></th>
+                                                                <c:forEach items="${form.comunidadesBusquedas}" var="comunidad" varStatus="status">
+                                                                    <th>${comunidad}</th>
+                                                                </c:forEach>
+                                                                <th><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></th>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.busquedas.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesBusquedasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.busquedasTotales}" /></td>
+                                                                </tr>	
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.descargas"/></td>
+                                                                <c:forEach items="${form.comunidadesDescargasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.descargasTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fichas.accedidas.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesFichasAccedidasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.fichasAccedidasTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.odes.previsualizados.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesOdesPrevisualizadosValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.odesPrevisualizadosTotales}" /></td>
+                                                                </tr>
+                                                               <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></td>
+                                                                <c:forEach items="${form.comunidadesBusquedasValores}" var="valor" varStatus="status">
+<c:set var="totalCCAA" value="${form.comunidadesBusquedasValores[status.index] +form.comunidadesDescargasValores[status.index] + form.comunidadesFichasAccedidasValores[status.index] +form.comunidadesOdesPrevisualizadosValores[status.index]}" />
+                                                                    <td><fmt:formatNumber type="number" value="${totalCCAA}"/></td>
+                                                                </c:forEach>
+																<c:set var="totalActividadCCAA" value="${form.busquedasTotales +form.descargasTotales +form.fichasAccedidasTotales +form.odesPrevisualizadosTotales}" />												
+																<td class="al_der"><fmt:formatNumber type="number" value="${totalActividadCCAA}"/></td>																				
+                                                                </tr>	
+                                                               
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq" colspan="100%"><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.datosNoActualizados"/></td>                                                                                                                                    
+                                                                </tr>
+                                                            </table>
+                                                            <br/>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>				
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COBERTURA CURRICULAR -->
+                        <div class="globo_blanco gb_ie">
+                            <div class="globo_blanco_01">
+                                <div class="globo_blanco_02">
+                                    <div class="globo_blanco_03">				
+                                        <h3>ODES POR COBERTURA CURRICULAR</h3>			
+
+                                        <!-- INICIO GLOBO GRIS --> <!-- INICIO GLOBO GRIS -->
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv" cellpadding="0" cellspacing="0" summary="Objetos">
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.cobertura.curricular"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaDesdeCoberturaCurricular}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaDesdeCoberturaCurricular" value="${value}" id="cambiarFechasFechaDesdeCoberturaCurricular" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaDesdeCoberturaCurricular" value="${value}" id="cambiarFechasFechaDesdeCoberturaCurricular" />
+                                                            </td>
+                                                            </tr>
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.hasta.cobertura.curricular"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaHastaCoberturaCurricular}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaHastaCoberturaCurricular" value="${value}" id="cambiarFechasFechaHastaCoberturaCurricular" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaHastaCoberturaCurricular" value="${value}" id="cambiarFechasFechaHastaCoberturaCurricular" />
+                                                            </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+										<h3 class="clearfix theader">
+											<em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+											<strong>Local&nbsp;&nbsp;</strong>
+											<strong>Total</strong>
+										</h3>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.educacion.infantil.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.educacionInfantilLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.educacionInfantilTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.educacion.primaria.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.educacionPrimariaLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.educacionPrimariaTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.edu.secundaria.obligatoria.totales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.eduSecundariaObligatoriaLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.eduSecundariaObligatoriaTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.bachillerato.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.bachilleratoLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.bachilleratoTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>		
+                                        													
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.formacion.profesional.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.formacionProfesionalLocales}" /></span></td>
+																<td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.formacionProfesionalTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ens.artisticas.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.ensArtisticasLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.ensArtisticasTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ens.oficial.idiomas.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.ensOficialIdiomasLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.ensOficialIdiomasTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FIN GLOBO GRIS --><!-- FIN GLOBO GRIS -->
+                                        <br>
+                                        <a href="#" class="poppup03">Mostrar datos desglosados por comunidades</a>	
+                                        <div class="oculto">
+                                            <div class="thumb_list" id="pop_up_03">			
+                                                <a class="close close_x sprited" href="#">close</a>
+                                                <div class="showhide clearfix ">								
+                                                    <div class="escroll"> 	
+                                                        <h3 class="h3_generico">Estadísticas de ODES POR COBERTURA CURRICULAR desglosadas por comunidades</h3>					
+                                                        <div class="caja_tabla" id="bordeada" >		
+                                                            <table border="1" class="generica tabla_rss_estadisticas" width="100%" cellpadding="0" cellspacing="0"  summary="Tabla de Resultados">						
+                                                                <c:forEach items="${form.comunidadesBachillerato}" var="comunidad" varStatus="status">
+                                                                    <col class="col_01">
+                                                                </c:forEach>
+                                                                <tr>
+                                                                    <th></th>
+                                                                <c:forEach items="${form.comunidadesBachillerato}" var="comunidad" varStatus="status">
+                                                                    <th>${comunidad}</th>
+                                                                </c:forEach>
+                                                                <th><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></th>                                                                
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.educacion.infantil.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesEducacionInfantilValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.educacionInfantilTotales}" /></td>
+                                                                </tr>	
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.educacion.primaria.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesEducacionPrimariaValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.educacionPrimariaTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.edu.secundaria.obligatoria.totales"/></td>
+                                                                <c:forEach items="${form.comunidadesEduSecundariaObligatoriaValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.eduSecundariaObligatoriaTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.bachillerato.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesBachilleratoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.bachilleratoTotales}" /></td>
+                                                                </tr>                 
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.formacion.profesional.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesFormacionProfesionalValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.formacionProfesionalTotales}" /></td>
+                                                                </tr>                                                                                                               
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ens.artisticas.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesEnsArtisticasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.ensArtisticasTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ens.oficial.idiomas.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesEnsOficialIdiomasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.ensOficialIdiomasTotales}" /></td>
+                                                                </tr>
+                                                               <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></td>
+                                                                <c:forEach items="${form.comunidadesBachillerato}" var="valor" varStatus="status">
+<c:set var="totalCCAA" value="${form.comunidadesEducacionInfantilValores[status.index] + form.comunidadesEducacionPrimariaValores[status.index] +form.comunidadesEduSecundariaObligatoriaValores[status.index]+form.comunidadesBachilleratoValores[status.index] +form.comunidadesFormacionProfesionalValores[status.index] + form.comunidadesEnsArtisticasValores[status.index] +form.comunidadesEnsOficialIdiomasValores[status.index]}" />
+                                                                    <td><fmt:formatNumber type="number" value="${totalCCAA}"/></td>
+                                                                </c:forEach>
+																<c:set var="totalActividadCCAA" value="${form.educacionInfantilTotales +form.educacionPrimariaTotales +form.eduSecundariaObligatoriaTotales +form.bachilleratoTotales +form.formacionProfesionalTotales +form.ensArtisticasTotales +form.ensOficialIdiomasTotales}" />												
+																<td class="al_der"><fmt:formatNumber type="number" value="${totalActividadCCAA}"/></td>												                                                                
+                                                                </tr>	
+                                                                
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>				
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LICENCIAS -->
+                        <div class="globo_blanco gb_ie">
+                            <div class="globo_blanco_01">
+                                <div class="globo_blanco_02">
+                                    <div class="globo_blanco_03">                                        	
+                                        <h3>ODES POR TIPOS DE LICENCIAS</h3>	
+                                        			
+                                        <!-- INICIO GLOBO GRIS --> <!-- INICIO GLOBO GRIS -->
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv" cellpadding="0" cellspacing="0" summary="Objetos">
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.licencias"/></td>
+                                                            	<td valign="top" class="dere00 td_large">
+                                                            	<c:set var="value" value="${form.fechaDesdeLicencias}"/>
+                                                            	<!-- 
+                                                            	<input class="fechazo" type="text" name="fechaDesdeLicencias" value="${value}" id="cambiarFechasFechaDesdeLicencias" />
+                                                            	-->
+                                                            	<input class="fechazo calendario" type="text" name="fechaDesdeLicencias" value="${value}" id="cambiarFechasFechaDesdeLicencias" />
+																</td>
+                                                            </tr>
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.hasta.licencias"/></td>
+                                                            	<td valign="top" class="dere00 td_large">
+                                                            	<c:set var="value" value="${form.fechaHastaLicencias}"/>
+                                                            	<!-- 
+                                                            	<input class="fechazo" type="text" name="fechaHastaLicencias" value="${value}" id="cambiarFechasFechaHastaLicencias" />
+                                                            	-->
+                                                            	<input class="fechazo calendario" type="text" name="fechaHastaLicencias" value="${value}" id="cambiarFechasFechaHastaLicencias" />
+                                                            	</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+										<h3 class="clearfix theader">
+											<em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+											<strong>Local&nbsp;&nbsp;</strong>
+											<strong>Total</strong>
+										</h3>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.gfdllocales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.GFDLLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.GFDLTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>															
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.dual.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreDualLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreDualTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.eupllocales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreEUPLLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreEUPLTotlaes}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.gplloclaes"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreGPLLoclaes}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaLibreGPLTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.no.corresponde.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.noCorrespondeLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.noCorrespondeTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.no.comercial.compartir.igual.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialCompartirIgualLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialCompartirIgualTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.compartir.igual.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoCompartirIgualLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoCompartirIgualTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.propietaria.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaPropietariaLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaPropietariaTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.dominio.publico.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.dominioPublicoLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.dominioPublicoTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.propietaria.intelectual.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaPropietariaIntelectualLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.licenciaPropietariaIntelectualTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.sin.obra.derivada.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.sin.obra.derivada.no.comercial.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaNoComercialLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaNoComercialTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.no.comercial.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialTotales}" /></span></td>
+                                                                
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.otras.licencias.libres.locales"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.otrasLicenciasLibresLocales}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.otrasLicenciasLibresTotales}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- FIN GLOBO GRIS --><!-- FIN GLOBO GRIS -->
+                                        <br>
+                                        <a href="#" class="poppup04">Mostrar datos desglosados por comunidades</a>	
+                                        <div class="oculto">
+                                            <div class="thumb_list" id="pop_up_04">			
+                                                <a class="close close_x sprited" href="#">close</a>
+                                                <div class="showhide clearfix ">								
+                                                    <div class="escroll"> 	
+                                                        <h3 class="h3_generico">Estadísticas de ODES POR TIPOS DE LICENCIAS desglosadas por comunidades</h3>					
+                                                        <div class="caja_tabla" id="bordeada" >		
+                                                            <table border="1" class="generica tabla_rss_estadisticas" width="100%" cellpadding="0" cellspacing="0"  summary="Tabla de Resultados">						
+                                                                <c:forEach items="${form.comunidadesGFDL}" var="comunidad" varStatus="status">
+                                                                    <col class="col_01">
+                                                                </c:forEach>
+                                                                <tr>
+                                                                    <th></th>
+                                                                <c:forEach items="${form.comunidadesGFDL}" var="comunidad" varStatus="status">
+                                                                    <th>${comunidad}</th>
+                                                                </c:forEach>
+                                                                <th><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></th>                                                                
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.gfdllocales"/></td>
+                                                                <c:forEach items="${form.comunidadesGFDLValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.GFDLTotales}" /></td>
+                                                                </tr>	
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.dual.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesLicenciaLibreDualValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.licenciaLibreDualTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.eupllocales"/></td>
+                                                                <c:forEach items="${form.comunidadesLicenciaLibreEUPLValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.licenciaLibreEUPLTotlaes}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.libre.gplloclaes"/></td>
+                                                                <c:forEach items="${form.comunidadesLicenciaLibreGPLValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.licenciaLibreGPLTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.no.corresponde.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesNoCorrespondeValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.noCorrespondeTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.otras.licencias.libres.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesOtrasLicenciasLibresValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.otrasLicenciasLibresTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.propietaria.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesLicenciaPropietariaValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.licenciaPropietariaTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.dominio.publico.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesDominioPublicoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.dominioPublicoTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.licencia.propietaria.intelectual.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesLicenciaPropietariaIntelectualValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.licenciaPropietariaIntelectualTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.sin.obra.derivada.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoSinObraDerivadaValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.sin.obra.derivada.no.comercial.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoSinObraDerivadaNoComercialValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoSinObraDerivadaNoComercialTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.no.comercial.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoNoComercialValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.no.comercial.compartir.igual.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoNoComercialCompartirIgualValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoNoComercialCompartirIgualTotales}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.ccrreconocimiento.compartir.igual.locales"/></td>
+                                                                <c:forEach items="${form.comunidadesCCRReconocimientoCompartirIgualValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.CCRReconocimientoCompartirIgualTotales}" /></td>
+                                                                </tr>
+                                                               <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></td>
+                                                                <c:forEach items="${form.comunidadesGFDL}" var="valor" varStatus="status">
+<c:set var="totalCCAA" value="${form.comunidadesGFDLValores[status.index] + form.comunidadesLicenciaLibreDualValores[status.index] +form.comunidadesLicenciaLibreEUPLValores[status.index]+form.comunidadesLicenciaLibreGPLValores[status.index] +form.comunidadesNoCorrespondeValores[status.index] + form.comunidadesOtrasLicenciasLibresValores[status.index] +form.comunidadesLicenciaPropietariaValores[status.index] +form.comunidadesDominioPublicoValores[status.index] +form.comunidadesLicenciaPropietariaIntelectualValores[status.index] +form.comunidadesCCRReconocimientoValores[status.index] +form.comunidadesCCRReconocimientoSinObraDerivadaValores[status.index]+form.comunidadesCCRReconocimientoSinObraDerivadaNoComercialValores[status.index]+form.comunidadesCCRReconocimientoNoComercialValores[status.index]+form.comunidadesCCRReconocimientoNoComercialCompartirIgualValores[status.index]+form.comunidadesCCRReconocimientoCompartirIgualValores[status.index]}" />
+                                                                    <td><fmt:formatNumber type="number" value="${totalCCAA}"/></td>
+                                                                </c:forEach>
+																<c:set var="totalActividadCCAA" value="${form.GFDLTotales+form.licenciaLibreDualTotales + form.licenciaLibreEUPLTotlaes+form.licenciaLibreGPLTotales +form.noCorrespondeTotales+form.otrasLicenciasLibresTotales+form.licenciaPropietariaTotales  +form.dominioPublicoTotales+  form.licenciaPropietariaIntelectualTotales+form.CCRReconocimientoTotales + form.CCRReconocimientoSinObraDerivadaTotales +form.CCRReconocimientoSinObraDerivadaNoComercialTotales+form.CCRReconocimientoNoComercialTotales+form.CCRReconocimientoNoComercialCompartirIgualTotales+form.CCRReconocimientoCompartirIgualTotales}" />												
+																<td class="al_der"><fmt:formatNumber type="number" value="${totalActividadCCAA}"/></td>												                                                                                                                                
+                                                                </tr>	                                                                
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>				
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ODES -->
+                        <div class="globo_blanco gb_ie">
+                            <div class="globo_blanco_01">
+                                <div class="globo_blanco_02">
+                                    <div class="globo_blanco_03">
+                                        <h3>ODES POR NIVEL DE AGREGACIÓN</h3>				
+
+                                        <!-- INICIO GLOBO GRIS --> <!-- INICIO GLOBO GRIS -->
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv" cellpadding="0" cellspacing="0" summary="Objetos">
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.odes"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaDesdeOdes}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaDesdeOdes" value="${value}" id="cambiarFechasFechaDesdeOdes" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaDesdeOdes" value="${value}" id="cambiarFechasFechaDesdeOdes" />
+	                                                            </td>
+                                                            </tr>
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.hasta.odes"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaHastaOdes}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaHastaOdes" value="${value}" id="cambiarFechasFechaHastaOdes" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaHastaOdes" value="${value}" id="cambiarFechasFechaHastaOdes" />
+	                                                            </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+										<h3 class="clearfix theader">
+											<em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+											<strong>Local&nbsp;&nbsp;</strong>
+											<strong>Total</strong>
+										</h3>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.medios.integrados"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numLocalMediosIntegrados}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numTotalMediosIntegrados}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.objetos.aprendizaje"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numLocalObjetosAprendizaje}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numTotalObjetosAprendizaje}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.secuencias"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numLocalSecuencias}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numTotalSecuencias}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                                                                
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.cursos"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numLocalCursos}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numTotalCursos}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>															
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.objetos"/>:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numLocalObjetos}" /></span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.numTotalObjetos}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- FIN GLOBO GRIS --><!-- FIN GLOBO GRIS -->
+                                        <br>
+                                        <a href="#" class="poppup01">Mostrar datos desglosados por comunidades</a>
+
+                                        <div class="oculto">
+                                            <div class="thumb_list" id="pop_up_01">			
+                                                <a class="close close_x sprited" href="#">close</a>
+                                                <div class="showhide clearfix ">								
+                                                    <div class="escroll"> 	
+                                                        <h3 class="h3_generico">Estadísticas de ODES POR NIVEL DE AGREGACIÓN desglosadas por comunidades</h3>					
+                                                        <div class="caja_tabla" id="bordeada" >		
+                                                            <table border="1" class="generica tabla_rss_estadisticas" width="100%" cellpadding="0" cellspacing="0"  summary="Tabla de Resultados">						
+                                                                <c:forEach items="${form.comunidadesMediosIntegrados}" var="comunidad" varStatus="status">
+                                                                    <col class="col_01">
+                                                                </c:forEach>
+                                                                <tr>
+                                                                    <th></th>
+                                                                <c:forEach items="${form.comunidadesMediosIntegrados}" var="comunidad" varStatus="status">
+                                                                    <th>${comunidad}</th>
+                                                                </c:forEach>                                                                                                                               
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.medios.integrados"/></td>
+                                                                <c:forEach items="${form.comunidadesMediosIntegradosValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                </tr>             
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.objetos.aprendizaje"/></td>
+                                                                <c:forEach items="${form.comunidadesObjAprendizajeValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                </tr>             
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.secuencias"/></td>
+                                                                <c:forEach items="${form.comunidadesSecuenciasValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                </tr>                                                                                                                                                                      
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.cursos"/></td>
+                                                                <c:forEach items="${form.comunidadesCursosValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                </tr>	
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.num.local.objetos"/></td>
+                                                                <c:forEach items="${form.comunidadesObjetosValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>				
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TERMINOS -->
+                        <div class="globo_blanco gb_ie">
+                            <div class="globo_blanco_01">
+                                <div class="globo_blanco_02">
+                                    <div class="globo_blanco_03">
+                                        <h3>TÉRMINOS MÁS BUSCADOS</h3>				
+
+                                        <!-- INICIO GLOBO GRIS --> <!-- INICIO GLOBO GRIS -->
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv" cellpadding="0" cellspacing="0" summary="Objetos">
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.terminos"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaDesdeTerminos}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaDesdeTerminos" value="${value}" id="cambiarFechasFechaDesdeTerminos" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaDesdeTerminos" value="${value}" id="cambiarFechasFechaDesdeTerminos" />
+	                                                            </td>
+                                                            </tr>
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00 td_short"><bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.hasta.terminos"/></td>
+	                                                            <td valign="top" class="dere00 td_large">
+	                                                            <c:set var="value" value="${form.fechaHastaTerminos}"/>
+	                                                            <!-- 
+	                                                            <input class="fechazo" type="text" name="fechaHastaTerminos" value="${value}" id="cambiarFechasFechaHastaTerminos" />
+	                                                            -->
+	                                                            <input class="fechazo calendario" type="text" name="fechaHastaTerminos" value="${value}" id="cambiarFechasFechaHastaTerminos" />
+                                                            </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+										<h3 class="clearfix theader">
+											<em>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+											<strong></strong>
+                      						<strong>Local</strong>
+										</h3>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco"> 	
+                                                                <td valign="top" class="dere00"><span>${form.terminosMasBuscadosTotales[0]}:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[0]}" /></span></td>                                                                
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>	
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span>${form.terminosMasBuscadosTotales[1]}:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[1]}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span>${form.terminosMasBuscadosTotales[2]}:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[2]}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span>${form.terminosMasBuscadosTotales[3]}:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[3]}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="globo_gris_bis conmargen02" style="margin-bottom: 0;">
+                                            <div class="globo_gris_01_bis">
+                                                <div class="globo_gris_02_bis">
+                                                    <div class="globo_gris_03_bis">
+                                                        <table border="0" class="res_list_inv listado_estadisticas" cellpadding="0" cellspacing="0" summary="Objetos">															
+                                                            <tr class="tr_blanco">
+                                                                <td valign="top" class="dere00"><span>${form.terminosMasBuscadosTotales[4]}:</span></td>
+                                                                <td valign="top" class="alineado_izq objetos"><span><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[4]}" /></span></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- FIN GLOBO GRIS --><!-- FIN GLOBO GRIS -->
+                                        <br>
+                                        <a href="#" class="poppup05">Mostrar datos desglosados por comunidades</a>	
+                                        <div class="oculto">
+                                            <div class="thumb_list" id="pop_up_05">			
+                                                <a class="close close_x sprited" href="#">close</a>
+                                                <div class="showhide clearfix ">								
+                                                    <div class="escroll"> 	
+                                                        <h4><p>Estadísticas de TÉRMINOS MÁS BUSCADOS desglosadas por comunidades</p>	</h4>					
+                                                        <div class="caja_tabla" id="bordeada" >		
+                                                            <table border="1" class="generica tabla_rss_estadisticas" width="100%" cellpadding="0" cellspacing="0"  summary="Tabla de Resultados">					
+                                                                <c:forEach items="${form.comunidadesBusquedas}" var="comunidad" varStatus="status">
+                                                                    <col class="col_01">
+                                                                </c:forEach>
+                                                                <tr>
+                                                                    <th></th>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalPrimero}" var="comunidad" varStatus="status">
+                                                                    <th class="al_der">${comunidad}</th>
+                                                                </c:forEach>
+                                                                <th><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></th>    
+                                                                </tr>                                                                                                                            
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq">${form.terminosMasBuscadosTotales[0]}</td>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalPrimeroValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[0]}" /></td>
+                                                                </tr>	
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq">${form.terminosMasBuscadosTotales[1]}</td>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalSegundoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[1]}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq">${form.terminosMasBuscadosTotales[2]}</td>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalTerceroValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[2]}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_blanco">
+                                                                    <td class="al_izq">${form.terminosMasBuscadosTotales[3]}</td>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalCuartoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[3]}" /></td>
+                                                                </tr>
+                                                                <tr class="tr_gris">
+                                                                    <td class="al_izq">${form.terminosMasBuscadosTotales[4]}</td>
+                                                                <c:forEach items="${form.comunidadesMasBuscadoTotalQuintoValores}" var="valor" varStatus="status">
+                                                                    <td><fmt:formatNumber type="number" value="${valor}" /></td>
+                                                                </c:forEach>
+                                                                <td><fmt:formatNumber type="number" value="${form.terminosMasBuscadosNumTotales[4]}" /></td>
+                                                                </tr>
+                                                               <tr class="tr_blanco">
+                                                                    <td class="al_izq"><bean:message key="estadisticas.estadisticas.cambiar.fechas.leyenda.total"/></td>
+                                                                <c:forEach items="${form.comunidadesGFDL}" var="valor" varStatus="status">
+<c:set var="totalCCAA" value="${form.comunidadesMasBuscadoTotalPrimeroValores[status.index] + form.comunidadesMasBuscadoTotalSegundoValores[status.index] +form.comunidadesMasBuscadoTotalTerceroValores[status.index]+form.comunidadesMasBuscadoTotalCuartoValores[status.index] +form.comunidadesMasBuscadoTotalQuintoValores[status.index] }" />
+                                                                    <td><fmt:formatNumber type="number" value="${totalCCAA}"/></td>
+                                                                </c:forEach>
+																<c:set var="totalActividadCCAA" value="${form.terminosMasBuscadosNumTotales[0] +form.terminosMasBuscadosNumTotales[1] +form.terminosMasBuscadosNumTotales[2] +form.terminosMasBuscadosNumTotales[3] +form.terminosMasBuscadosNumTotales[4]}" />												
+																<td class="al_der"><fmt:formatNumber type="number" value="${totalActividadCCAA}"/></td>												                                                                
+                                                                </tr>                                                                
+                                                            </table>
+                                                            <br/>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>										
+                                    </div>				
+                                </div>
+                            </div>
+                        </div>
+                        <input class="buscar" onmouseover="hints.show('CambiarFechas')" onmouseout="" style="form_submit" type="submit" id="pulsacion" name="pulsacion" value="<bean:message key="estadisticas.estadisticas.cambiar.fechas"/>"  />
+                        <input class="buscar" onmouseover="hints.show('CambiarFechas')" onmouseout="" style="form_submit" type="submit" id="pulsacion" name="pulsacion" value="<bean:message key="estadisticas.estadisticas.descargar.excel.estadisticas"/>"  />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>	
+</html:form>
+
+
+<script type="text/javascript" src="/static/js/jquery.lightbox_me.js"></script>
+
+
+<link rel="stylesheet" media="screen" href="/static/css/red2.css" type="text/css"/>
+
+<!-- Para calendario antiguo -->
+<!-- 
+<script type="text/javascript" src="/static/js/mootools.js"></script>
+<script type="text/javascript" src="/static/js/calendar.rc4.js"></script>
+
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaDesdeActividad: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaHastaActividad: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaDesdeCoberturaCurricular: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaHastaCoberturaCurricular: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaDesdeLicencias: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaHastaLicencias: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaDesdeOdes: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaHastaOdes: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaDesdeTerminos: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+<script type="text/javascript">		
+//<![CDATA[
+	window.addEvent('domready', function() { 
+	myCal1 = new Calendar({ cambiarFechasFechaHastaTerminos: 'd-m-Y' }, { direction: 0, tweak: {x: 6, y: 0} }); });
+	//]]>
+</script>
+-->
+
+
+<script type="text/javascript">		
+var host_and_subdomain="<agrega:agregaProperties property="host"/><agrega:agregaProperties property="subdominio"/>";
+
+$( ".calendario").datepicker({
+				showOn: "button",
+				buttonImage: "http://"+host_and_subdomain+"/static/img/azul/calendar.png",
+				buttonText: "Seleccionar Fecha",
+				buttonImageOnly: true
+		});
+		$( ".calendario").click( function(){ 
+			$(this).datepicker("show");
+		}).attr("readonly",true);
+		
+</script>

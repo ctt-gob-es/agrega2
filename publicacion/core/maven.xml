@@ -1,0 +1,96 @@
+<project default="ejb:install"
+         xmlns:ant="jelly:ant"
+         xmlns:maven="jelly:maven"
+	xmlns:j="jelly:core">
+
+    <postGoal name="jar:jar">
+
+        <ant:path id="schema.classpath">
+            <ant:path refid="maven.dependency.classpath"/>
+            <ant:path location="${maven.build.dest}"/>
+        </ant:path>
+
+        <ant:mkdir dir="${hibernate.schema.output.dir}"/>
+
+        <ant:fileset id="hibernate.mapping.files" dir="${maven.build.src}">
+            <ant:include name="**/*.hbm.xml"/>
+        </ant:fileset>
+
+        <ant:pathconvert refid="hibernate.mapping.files" property="hibernate.mappings" pathsep=" "/>
+
+        <ant:java classname="org.hibernate.tool.hbm2ddl.SchemaExport" fork="true">
+            <ant:arg value="--output=${hibernate.schema.output.dir}/schema-create.sql"/>
+            <ant:arg value="--text"/>
+            <ant:arg value="--quiet"/>
+            <ant:arg value="--delimiter=;"/>
+            <ant:arg value="--format"/>
+            <ant:arg line="${hibernate.mappings}"/>
+            <ant:jvmarg value="-Dhibernate.dialect=${hibernate.db.dialect}"/>
+            <ant:classpath refid="schema.classpath" />
+        </ant:java>
+
+        <ant:replaceregexp file="${hibernate.schema.output.dir}/schema-create.sql"
+                       match="^(alter table .* drop constraint|drop table)"
+                       replace="-- SKIP \1"
+                       flags="i"
+                       byline="true"/>
+
+        <ant:java classname="org.hibernate.tool.hbm2ddl.SchemaExport" fork="true">
+            <ant:arg value="--output=${hibernate.schema.output.dir}/schema-drop.sql"/>
+            <ant:arg value="--text"/>
+            <ant:arg value="--quiet"/>
+            <ant:arg value="--drop"/>
+            <ant:arg value="--delimiter=;"/>
+            <ant:arg value="--format"/>
+            <ant:arg line="${hibernate.mappings}"/>
+            <ant:jvmarg value="-Dhibernate.dialect=${hibernate.db.dialect}"/>
+            <ant:classpath refid="schema.classpath" />
+        </ant:java>
+
+    </postGoal>
+    <postGoal name="java:jar-resources">
+
+    	<!--====================================================
+    	    ==	Generacion de la versión de Tomcat-Oracle		====
+    	    ==    -Realizo los reemplazos necesarios en los 	====
+    	    ==	   ficheros applicationContext-jms_modulo.xml,  ====
+    	    ==     user-applicationContext_modulo.xml y 		====
+    	    ==	   applicationContext-datasource_modulo.xml		====
+    	    ======================================================-->
+    	    	<j:if test="${version.tomcat}">
+    	    		<ant:echo message="Realizando los reemplazos para la version Tomcat"/>
+    	    		<!-- applicationContext-datasource_*.xml -->
+    	    		<ant:replace file="${maven.build.dest}/applicationContext-dataSource_${application.id}.xml" token="java:/jdbc" value="java:comp/env/jdbc"/>
+    	    		<!-- applicationContext-jms.xml -->
+    	    		<ant:replace file="${maven.build.dest}/applicationContext-jms_${application.id}.xml" token="&lt;value&gt;queue" value="&lt;value&gt;java:comp/env/jms"/>
+    	    		
+    	    		    		
+    	    		<!-- Debido a un error de maven (http://jira.codehaus.org/secure/ViewIssue.jspa?key=MAVEN-599) 
+    	    		     hay que introducir la propiedad javax.xml.transform.TransformerFactory requerida por la 
+    	    		     tarea ant:xslt  -->
+    	    		${systemScope.setProperty('javax.xml.transform.TransformerFactory','com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl')}
+    	    		<!-- Ant 1.5.3 no permite configurar el acceso a un proxy con autenticacion. 
+    	    			Para evitar que la tarea XSLT acceda al exterior buscando el DTD de Spring, 
+    	    			bajo el DTD de Spring a local y defino su localizacion en un catalogo -->
+    	    		<ant:xmlcatalog id="Spring">
+    	    			<ant:dtd publicId="-//Spring//DTD Bean//EN" location="${pom.getDependencyPath('agrega-resources:spring-beans')}"/>
+    	    			<!-- La busqueda de publicId la hace case-sensitive. Los applicationContext-jms.xml y 
+    	    			     user-applicationContext.xml lo tienen diferente. -->
+    	    			<ant:dtd publicId="-//SPRING//DTD BEAN//EN" location="${pom.getDependencyPath('agrega-resources:spring-beans')}"/>
+    	    		</ant:xmlcatalog>
+    				<!-- applicationContext-jms.xml : transformacion de la factoria JMS -->
+    	    		<ant:move file="${maven.build.dest}/applicationContext-jms_${application.id}.xml" tofile="${maven.build.dest}/applicationContext-jms_${application.id}_old.xml"/>
+    	    		<ant:xslt in="${maven.build.dest}/applicationContext-jms_${application.id}_old.xml" out="${maven.build.dest}/applicationContext-jms_${application.id}.xml" style="${pom.getDependencyPath('agrega-resources:tomcat-transform-set')}">
+    	    			<ant:xmlcatalog refid="Spring"/>	
+    	    		</ant:xslt>
+    	    		<ant:delete file="${maven.build.dest}/applicationContext-jms_${application.id}_old.xml"/>
+    				<!-- user-applicationContext.xml : transformacion de la factoria JMS -->
+    	    		<ant:move file="${maven.build.dest}/user-applicationContext_${application.id}.xml" tofile="${maven.build.dest}/user-applicationContext_${application.id}_old.xml"/>
+    	    		<ant:xslt in="${maven.build.dest}/user-applicationContext_${application.id}_old.xml" out="${maven.build.dest}/user-applicationContext_${application.id}.xml" style="${pom.getDependencyPath('agrega-resources:tomcat-transform-set')}">
+    	    			<ant:xmlcatalog refid="Spring"/>
+    	    		</ant:xslt>
+    	    		<ant:delete file="${maven.build.dest}/user-applicationContext_${application.id}_old.xml"/>
+    	    	</j:if>
+    </postGoal>
+
+</project>

@@ -1,0 +1,684 @@
+/*
+Agrega2 es una federaci�n de repositorios de objetos digitales educativos formada por todas las Comunidades Aut�nomas propiedad de Red.es.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
+*/
+/**
+ * SrvPlanificadorService.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.3 Oct 05, 2005 (05:23:37 EDT) WSDL2Java emitter.
+ */
+
+package es.pode.planificador.negocio.servicios;
+
+public interface SrvPlanificadorService extends java.rmi.Remote {
+
+    /**
+
+     */
+    public java.lang.Boolean actualizarIndicesRemotos(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Actualiza los registros de una tarea de carga masiva en base
+     * de
+     *                 datos, este método será utilizado para la despublicación
+     * masiva
+     */
+    public void actualizarRegistrosCarga(es.pode.planificador.negocio.servicios.RegistroTareaCargaEjecutadaVO[] registrosCarga) throws java.rmi.RemoteException;
+
+    /**
+     * Método para la búsqueda por nombre lote
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaVO[] buscarPorLote(java.lang.String nombre) throws java.rmi.RemoteException;
+
+    /**
+     * Método sugerir una posible búsqueda en la búsqueda por nombre
+     * lote
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaVO[] buscarPorLoteSugerencias(java.lang.String nombre) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo para hacer la búsqueda por nombre del zip
+     */
+    public es.pode.planificador.negocio.servicios.RegistroTareaCargaEjecutadaVO[] buscarPorZip(java.lang.String nombre) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo para consultar las tareas que coincidan con los
+     *                 identificadores que le pasamos
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaVO[] consultarTareaEjecutadasCarga(java.lang.Long[] identificadores) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo intermedio entre el servicio de planificador y auditoria
+     * para que se genere el informe al hacer la carga masiva.
+     */
+    public void crearInformeCargaMasiva(es.pode.planificador.negocio.servicios.ParametroInformeCargaVO parametro) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaActualizarIndicesRemotos(es.pode.planificador.negocio.servicios.TareaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Creación de la tarea de carga de Objetos Digitales Educativos
+     */
+    public es.pode.planificador.negocio.servicios.TareaCargaODEsVO crearTareaCargaODEs(es.pode.planificador.negocio.servicios.TareaCargaODEsVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Creación de la tarea de despublicacion de Objetos Digitales
+     * Educativos
+     */
+    public es.pode.planificador.negocio.servicios.TareaDespublicarODEsVO crearTareaDespublicarODEs(es.pode.planificador.negocio.servicios.TareaDespublicarODEsVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo que se encarga de crear una tarea de eliminacion de
+     * ODEs
+     *                 en estado no disponible.
+     */
+    public es.pode.planificador.negocio.servicios.TareaEliminaNoDisponiblesVO crearTareaEliminarNoDisponibles(es.pode.planificador.negocio.servicios.TareaEliminaNoDisponiblesVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaEstadisticasLocales(es.pode.planificador.negocio.servicios.TareaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaEstadisticasTotales(es.pode.planificador.negocio.servicios.TareaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaGenerarOaiOre(es.pode.planificador.negocio.servicios.TareaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaGenerarSitemapsVO crearTareaGenerarSitemaps(es.pode.planificador.negocio.servicios.TareaGenerarSitemapsVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método para crear la tarea de informes
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesVO crearTareaInformes(es.pode.planificador.negocio.servicios.TareaInformesVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * metodo que crea una tarea con el informe del catalogo
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO crearTareaInformesCatalogo(es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * metodo que crea una tarea de informes federada
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesVO crearTareaInformesFederado(es.pode.planificador.negocio.servicios.TareaInformesVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * metodo que crea una tarea de informes de nivel agregacion
+     *                 federada
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO crearTareaInformesFederadoNivelAgregacion(es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaLanzarRSSVO crearTareaLanzarRSS(es.pode.planificador.negocio.servicios.TareaLanzarRSSVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Registra en el planificador una tarea de modificacion de odes.
+     */
+    public es.pode.planificador.negocio.servicios.TareaModificacionVO crearTareaModificacion(es.pode.planificador.negocio.servicios.TareaModificacionVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaObtenerMetadatosODESFederados(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaObtenerMetadatosODESFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaObtenerODESDespublicadosFederados(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaObtenerODESDespublicadosFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método que se encarga de regenerar las imágenes
+     */
+    public es.pode.planificador.negocio.servicios.TareaRegenerarImagenesVO crearTareaRegenerarImagemes(es.pode.planificador.negocio.servicios.TareaRegenerarImagenesVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Creación de la tarea de reindexado
+     */
+    public es.pode.planificador.negocio.servicios.TareaReindexadoVO crearTareaReindexado(es.pode.planificador.negocio.servicios.TareaReindexadoVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO crearTareaSubirIndices(es.pode.planificador.negocio.servicios.TareaVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.ResultadoDespublicacionVO[] despublicarPIF(java.lang.String[] identificadores, java.lang.String idUsuario) throws java.rmi.RemoteException;
+
+    /**
+     * Método para eliminar los informes de carga
+     */
+    public es.pode.planificador.negocio.servicios.ValidaBajaInformeCargaVO eliminarInformesCarga(java.lang.String[] ficheros) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo fachada para la eliminacion de los ODEs en estado no
+     * disponible que hayan pasado a dicho estado en un periodo
+     *                 concreto de tiempo.
+     *                 Devuelve lo mismo que la correspondiente llamada al
+     * servicio de
+     *                 publicacion.
+     */
+    public java.lang.String eliminarNoDisponibles(java.util.Calendar fechaInicio, java.util.Calendar fechaHasta, java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Eliminación de las tareas programadas
+     */
+    public java.lang.Boolean eliminarTareas(es.pode.planificador.negocio.servicios.TrabajoVO[] tareas) throws java.rmi.RemoteException;
+
+    /**
+     * Eliminación unicamente las tareas del grupo por defecto del
+     * administrador
+     */
+    public java.lang.Boolean eliminarTareasAdm(es.pode.planificador.negocio.servicios.TrabajoVO[] trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo para la eliminacion de la tarea de carga con sus odes
+     * publicados
+     */
+    public java.lang.Boolean eliminarTareasCargaEjecutada(java.lang.String[] idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public void eliminarTemporalesDespublicar(java.lang.String nombreExcel) throws java.rmi.RemoteException;
+
+    /**
+     * Se elimina la informacion relativa a un trabajo ejecutado
+     *                 incluyendo el informe de la ejecucion
+     */
+    public java.lang.Boolean eliminarTrabajoEjecutado(java.lang.Long[] idTrabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.Boolean enviarCorreoIncidencia(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.Boolean estadisticasLocales(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.Boolean estadisticasTotales(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Consulta para conocer si el planificador está iniciado
+     */
+    public java.lang.Boolean estaIniciado() throws java.rmi.RemoteException;
+
+    /**
+     * Consulta para saber si existe ya existe un trabajo con ese
+     *                 nombre y grupo
+     */
+    public java.lang.Boolean existeTrabajo(es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Método de generación del informe con el catálogo del repositorio
+     */
+    public void generarCatalogo(java.lang.String idioma, java.util.Calendar fechaActualizacion) throws java.rmi.RemoteException;
+
+    /**
+     * Método para generar informe
+     */
+    public void generarInforme(es.pode.planificador.negocio.servicios.TareaInformesVO datosInforme, java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public void generarInformeFederado(es.pode.planificador.negocio.servicios.TareaInformesVO datosInforme, java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public void generarInformeFederadoNivelAgregacion(es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO datosInforme, java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método que genera los ficheros sitemaps.xml con las url de
+     * las
+     *                 fichas de los ODEs
+     */
+    public java.lang.String generarSitemaps(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método que crea los informes que se van a visualizar en el
+     *                 enlace de Informes de la portada
+     */
+    public void informesPortada() throws java.rmi.RemoteException;
+
+    /**
+     * Inicio del planificador
+     */
+    public java.lang.Boolean iniciarPlanificador() throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.String lanzarOaiOre(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método que crea los RSS
+     */
+    public java.lang.String lanzarRSS(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Se ejecuta un trabajo manualmente.
+     */
+    public java.lang.Boolean lanzarTarea(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Lista los informes generados al hacer la carga masiva, los
+     *                 recogeremos de una carpeta en disco
+     */
+    public es.pode.planificador.negocio.servicios.InformeODEsCargadosVO[] listarInformesCarga() throws java.rmi.RemoteException;
+
+    /**
+     * Modificacion de la trabajo de carga de Objetos Digitales
+     *                 Educativos en la plataforma
+     */
+    public es.pode.planificador.negocio.servicios.TareaCargaODEsVO modificarTareaCargaODEs(es.pode.planificador.negocio.servicios.TareaCargaODEsVO datosTareaCargaODE, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaDescargarIndicesRemotos(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaDespublicarODEsVO modificarTareaDespublicarODEs(es.pode.planificador.negocio.servicios.TareaDespublicarODEsVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Este metodo modifica una tarea de eliminacion de ODEs no
+     *                 disponibles.
+     */
+    public es.pode.planificador.negocio.servicios.TareaEliminaNoDisponiblesVO modificarTareaEliminarNoDisponibles(es.pode.planificador.negocio.servicios.TareaEliminaNoDisponiblesVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaGenerarEstadisticasLocales(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaGenerarEstadisticasTotales(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaGenerarOaiOre(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaGenerarSitemapsVO modificarTareaGenerarSitemaps(es.pode.planificador.negocio.servicios.TareaGenerarSitemapsVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Modifica una tarea de informes
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesVO modificarTareaInformes(es.pode.planificador.negocio.servicios.TareaInformesVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO modificarTareaInformesCatalogo(es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesVO modificarTareaInformesFederado(es.pode.planificador.negocio.servicios.TareaInformesVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO modificarTareaInformesFederadoNivelAgregacion(es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaLanzarRSSVO modificarTareaLanzarRSS(es.pode.planificador.negocio.servicios.TareaLanzarRSSVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Modifica en el planificador una tarea de modificacion de odes.
+     */
+    public es.pode.planificador.negocio.servicios.TareaModificacionVO modificarTareaModificacion(es.pode.planificador.negocio.servicios.TareaModificacionVO datosTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaObtenerMetadatosODESFederados(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaObtenerMetadatosODESFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaObtenerODESDespublicadosFederados(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaObtenerODESDespublicadosFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaRegenerarImagenesVO modificarTareaRegenerarImagenes(es.pode.planificador.negocio.servicios.TareaRegenerarImagenesVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Modificación del trabajo de reindexado de índices en la
+     *                 plataforma
+     */
+    public es.pode.planificador.negocio.servicios.TareaReindexadoVO modificarTareaReindexado(es.pode.planificador.negocio.servicios.TareaReindexadoVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO modificarTareaSubirIndices(es.pode.planificador.negocio.servicios.TareaVO datosTarea, es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo que nos devuelve el array de la informacion de cada
+     *                 registro
+     */
+    public es.pode.planificador.negocio.servicios.InformacionCargaVO[] obtenerCarpetasDeRegistro(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Recuperamos el informe de la ejecucion de un trabajo.
+     */
+    public es.pode.planificador.negocio.servicios.RegistroTareaEjecutadaVO[] obtenerInformeTrabajo(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Recuperamos el informe de la ejecucion de un trabajo de carga
+     * masiva
+     */
+    public es.pode.planificador.negocio.servicios.RegistroTareaCargaEjecutadaVO[] obtenerInformeTrabajoCargaMasiva(java.lang.Long idTrabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Informe de los trabajo que no se han ejecutado correctamente
+     */
+    public es.pode.planificador.negocio.servicios.RegistroTareaEjecutadaVO[] obtenerInformeTrabajoErroneos(java.lang.Long id) throws java.rmi.RemoteException;
+
+    /**
+     * Obtiene los metadatos de todos los ODEs publicados en cada
+     * nodo
+     *                 en el dia anterior a su ejecicion. Los metadatos son
+     * guardados
+     *                 en ficheros independientes en carpetaspara las diferentes
+     * comunidades
+     */
+    public java.lang.Boolean obtenerMetadatosODESFederados(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Tarea que intenta obtener los metadatos de todos los ODEs
+     *                 federados de aquellos nodo que no respondieron correctamente
+     * a
+     *                 la tarea obtenerMetadatosODESFederados
+     */
+    public java.lang.Boolean obtenerMetadatosODESFederadosFaltantes(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Obtiene los ODEs despublicados en cada nodo en el dia anterior
+     * a
+     *                 su ejecucion
+     */
+    public java.lang.Boolean obtenerODESDespublicadosFederados(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Tarea que intenta obtener los metadatos de todos los ODEs
+     *                 federados de aquellos nodo que no respondieron correctamente
+     * a
+     *                 la tarea obtenerODESDespublicadosFederados
+     */
+    public java.lang.Boolean obtenerODESDespublicadosFederadosFaltantes(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * A partir de un identificador de carga masiva, devuelve un array
+     * con los identificadores de los ODEs que se han cargado
+     *                 correctamente.
+     */
+    public es.pode.planificador.negocio.servicios.OdeCargaVO[] obtenerODEsPublicadosEnCarga(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Obtienen los registros de carga que han sido cargados durante
+     * la
+     *                 tarea de carga cuyo identificador se pasa por parámetro.
+     */
+    public es.pode.planificador.negocio.servicios.RegistroTareaCargaEjecutadaVO obtenerRegistrosCarga(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaActualizarIndicesRemotos(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaDespublicarODEsVO obtenerTareaDespublicarODEs(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Este metodo devuelve la tarea de eliminacion de ODEs no
+     *                 disponibles que coincida con la tarea.
+     */
+    public es.pode.planificador.negocio.servicios.TareaEliminaNoDisponiblesVO obtenerTareaEliminarrNoDisponibles(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaEstadisticasLocales(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaEstadisticasTotales(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaGenerarOaiOre(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaGenerarSitemapsVO obtenerTareaGenerarSitemaps(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO obtenerTareaInformeCatalogo(es.pode.planificador.negocio.servicios.TareaInformeCatalogoVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO obtenerTareaInformeNivelAgregacion(es.pode.planificador.negocio.servicios.TareaInformesNivelAgregacionFederadaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Se recupera una tarea de informes
+     */
+    public es.pode.planificador.negocio.servicios.TareaInformesVO obtenerTareaInformes(es.pode.planificador.negocio.servicios.TareaInformesVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaLanzarRSSVO obtenerTareaLanzarRSS(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Obtención de la tarea que se encarga de cargar los ODEs en
+     * la
+     *                 plataforma
+     */
+    public es.pode.planificador.negocio.servicios.TareaCargaODEsVO obtenerTareaModificarCargaODEs(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaObtenerMetadatosODESFederados(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaObtenerMetadatosODESFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaObtenerODESDespublicadosFederados(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaObtenerODESDespublicadosFederadosFaltantes(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaRegenerarImagenesVO obtenerTareaRegenerarImagenes(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Obtención de la tarea de reindexado de índices
+     */
+    public es.pode.planificador.negocio.servicios.TareaReindexadoVO obtenerTareaReindexado(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaExplotacionVO[] obtenerTareasCargaEjecutadas() throws java.rmi.RemoteException;
+
+    /**
+     * Recuperamos las tareas en ejecucion
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO[] obtenerTareasEnEjecucion() throws java.rmi.RemoteException;
+
+    /**
+     * Devuelve un listado con los trabajos pendientes de ejecución
+     * y
+     *                 pertenecientes al grupo por defecto.
+     *                 El planificador permite programar tareas propias del
+     * sistema que
+     *                 puede que no sea interesante mostrarlas en la pantalla
+     * de
+     *                 administración de tareas
+     *                 Ver: handleObtenerTareasPendientesTodas
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO[] obtenerTareasPendientes() throws java.rmi.RemoteException;
+
+    /**
+     * Se recuperan todos los trabajos pendientes.
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO[] obtenerTareasPendientesTodas() throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.planificador.negocio.servicios.TareaVO obtenerTareaSubirIndices(es.pode.planificador.negocio.servicios.TareaVO tarea) throws java.rmi.RemoteException;
+
+    /**
+     * Devuelve el tipo de la tarea
+     */
+    public java.lang.String obtenerTipoTarea(es.pode.planificador.negocio.servicios.TrabajoVO trabajo) throws java.rmi.RemoteException;
+
+    /**
+     * Obtención de los trabajos ejecutados
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaVO obtenerTrabajoEjecutado(java.lang.Long id) throws java.rmi.RemoteException;
+
+    /**
+     * Obtención de los trabajos ya ejecutados.
+     */
+    public es.pode.planificador.negocio.servicios.TareaEjecutadaVO[] obtenerTrabajosEjecutados() throws java.rmi.RemoteException;
+
+    /**
+     * Parada del planificador
+     */
+    public java.lang.Boolean pararPlanificador() throws java.rmi.RemoteException;
+
+    /**
+     * Parada de un trabajo en ejecucion.
+     */
+    public java.lang.Boolean pararTarea(es.pode.planificador.negocio.servicios.TrabajoVO job) throws java.rmi.RemoteException;
+
+    /**
+     * Método que genera la imágen aleatoria para las sites externos
+     */
+    public void portadaODE() throws java.rmi.RemoteException;
+
+    /**
+     * Método fachada para la publicación del ODEs
+     */
+    public es.pode.planificador.negocio.servicios.ResultadoCargaVO[] publicarPIF(java.lang.String[] odes, java.lang.String idUsuario, java.lang.String nombreCarga, java.lang.String sobrescribir, java.lang.String pathCarga) throws java.rmi.RemoteException;
+
+    /**
+     * Recupera el contenido del informe que queremos visualizar
+     */
+    public javax.activation.DataHandler recuperarInformeCarga(java.lang.String nombreInforme) throws java.rmi.RemoteException;
+
+    /**
+     * Metodo para regenerar todas las imagenes de todos los indices
+     */
+    public java.lang.String regeneracionImagenes(java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Método fachada para llamar al servicio de reindexado simple
+     * de
+     *                 índices.
+     *                 Retorna -1 si ha ido mal y el número de objetos indexados
+     * si ha
+     *                 ido bien.
+     */
+    public java.lang.Long reindexado(java.lang.String repositorio, java.lang.Long idTarea) throws java.rmi.RemoteException;
+
+    /**
+     * Se reinicia el planificador
+     */
+    public java.lang.Boolean reiniciarPlanificador() throws java.rmi.RemoteException;
+
+    /**
+     * Este servicio se encargar de volcar la info de la DB a los
+     *                 indices de compass. La info que vuelca es toda la
+     * referente a
+     *                 los ODEs publicados. Una vez volcada la informacion
+     * resetea las
+     *                 caches de busqueda.
+     *                 Este metodo se ha creado para que en entornos de alta
+     * disponibilidad, cada instancia de JBoss pueda tener su copia
+     *                 individual de los indices, y que cada ciertto tiempo
+     * las copias
+     *                 puedan sincronizarse entre si a traves de los datos
+     * guardados en
+     *                 el DB.
+     */
+    public java.lang.Boolean sincronizarInfoDB2Indices() throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public java.lang.Boolean subirIndices(java.lang.Long idTarea) throws java.rmi.RemoteException;
+}

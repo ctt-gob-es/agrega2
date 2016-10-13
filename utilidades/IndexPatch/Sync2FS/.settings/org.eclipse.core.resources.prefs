@@ -1,0 +1,12 @@
+#Thu Oct 06 12:38:04 CEST 2011
+eclipse.preferences.version=1
+encoding//src/es/pode/indexador/negocio/servicios/indexado/ContribucionVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/EntidadVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/IdODEVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/IndexadorVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/LomESPrimarioVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/LomESSecundarioVO.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/SrvIndexadorService.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/SrvIndexadorServiceService.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/SrvIndexadorServiceServiceLocator.java=UTF-8
+encoding//src/es/pode/indexador/negocio/servicios/indexado/SrvIndexadorServiceSoapBindingStub.java=UTF-8

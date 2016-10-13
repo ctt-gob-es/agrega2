@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE window SYSTEM "chrome://agrega-tagger/locale/agrega-tagger.dtd">
+<overlay id="agrega-tagger_preferences_overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <!-- Merge with the BrowserPreferences Window -->
+	<prefwindow id="BrowserPreferences">
+      <!-- Create a new pane (tab) for Publicar en Agrega. -->
+      <!--
+      Referenciamos el XUL de la página de preferencias para compartir código
+      -->
+		<prefpane id="agrega-taggerPref" label="&agrega-tagger.menuLabel;" insertafter="paneAdvanced" image="chrome://agrega-tagger/content/hotico-001.png" src="chrome://agrega-tagger/content/pref.xul" />
+	</prefwindow>
+</overlay> 

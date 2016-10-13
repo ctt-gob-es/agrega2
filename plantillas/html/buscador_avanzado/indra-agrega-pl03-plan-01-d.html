@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+<meta charset="utf-8">
+<!-- Obligatorio para trabajar con IExplorer y HTML5 -->
+<!--[if IE]>
+<script src="js/html5.js"></script>
+<![endif]-->
+
+<title>Agrega</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+<link rel="stylesheet" href="http://www.therightdirection.biz/clientes/indra/red_2011/css/red.css?v=9">
+<link rel="stylesheet" media="handheld" href="http://www.therightdirection.biz/clientes/indra/red_2011/css/handheld.css?v=1">
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery-1.4.2.min.js"></script> 
+
+</head>
+
+
+<!-- Para controlar las diferentes versiones de IExplorer -->
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body > <!--<![endif]-->
+
+<!--! INICIO de CAPA PRINCIPAL -->
+
+<div id="madre">
+
+
+<!-- CABECERA  -->
+<header id="cabecera">
+<div>
+<span class="acceso"><span>&iquest;Tienes Cuenta?</span> <a href="#">Accede</a></span>
+<span class="acerca"><a href="#">Acerca de Agrega</a></span>
+<ul class="metanavegacion">
+<li><a href="#">Bienvenido</a></li>
+<li><a href="#">Benvingut</a></li>
+<li><a href="#">Benvido</a></li>
+<li><a href="#">Ongi Etorri</a></li>
+<li><a href="#">Welcome</a></li>
+</ul>
+</div>
+</header>
+<!-- CABECERA  -->
+
+<!-- CONTENEDOR  -->
+<div id="contenedor_ie">
+<div id="contenedor">
+<div id="popup_registro">
+	<div class="pop_int">
+		<a class="cerrar_enlace" href="#" onclick="toggle_visibility('popup_registro');">Cerrar</a>
+		<!-- Inicio Input Busqueda Comunidad  -->
+		<div id="combo_comunidad" class="clearfix">
+			<form>
+				<p> Por favor introduzca los siguientes datos para entrar en Agrega</p>
+				<label for="usuario_portada">Usuario:</label>
+					<input type="text" class="de_texto"  name="login" id="usuario_portada" title="Usuario" value="" />
+					<br class="oculto" />
+					<label for="password_portada">Contrase&ntilde;a:</label>
+					<input type="password" class="de_texto" name="password" id="password_portada" title="Contrase&ntilde;a" value="" />
+					<span class="bot_check"><input id="cache" type="checkbox" class="cajacheck"  />
+					<label for="cache">Recu&eacute;rdame</label></span>
+					<input type="submit"  title="Entrar" value="Entrar" class="boton" />
+			</form>
+			<a href="#">Has olvidado la contrase&ntilde;a?</a>
+		</div>
+		<!-- Fin Input Busqueda Comunidad  -->
+		<!-- Fin Input Busqueda Comunidad  -->
+	</div>
+</div>
+
+<!-- NAV  -->
+<nav id="menu">
+<h1><a href="index.html" title="Agrega"><strong>Agrega</strong></a></h1>
+<div id="nav_principal">
+<ul class="metanavegacion">
+<li><a href="index.html" id="activo" style="cursor:pointer !important">Buscador Agrega</a></li>
+<li><a href="buscador_externo.html">Buscador Externo</a></li>
+<li><a href="arbol_curricular.html">&Aacute;rbol Curricular</a></li>
+</ul>
+</div>
+</nav>
+<!-- FIN NAV  -->
+
+
+
+
+<!-- PRINCIPAL   -->
+<section id="principal">
+ <!--  -->
+<article id="buscador_tipo">
+     <header>
+       <h2 class="titulo">Encuentra los mejores contenidos educativos</h2>
+     </header>
+    <section id="buscador_avanzado">
+    <form>
+ <!-- CAPA NUEVA DE ERROR -->    
+ <div class="tipofieldset clearfix" id="separacion">
+	Sin sugerencias.<br>
+	Sin tesauros.<br>
+	<strong>No se han encontrado resultados acordes con los criterios de su b&uacute;squeda, intente lo siguiente:</strong>
+								<ul id="error">
+									<li>Compruebe la sintaxis.</li>
+									<li>Pruebe con otras palabras m&aacute;s generales.</li>
+									<li>Intente con palabras diferentes que signifiquen lo mismo.</li>
+								</ul>
+	<br class="oculto">
+	</div>   
+ <!-- FIN CAPA NUEVA DE ERROR -->    	
+<div class="tipofieldset clearfix" id="primer_fs"  >
+<h3>BUSCADOR AVANZADO</h3>
+ <!--  -->	  
+<fieldset class="clearfix">
+<label for="Buscar" >Buscar:</label>
+<input name="Buscar" class="de_texto"  id="Buscar"  title="Buscar" type="text" value=" " />
+</fieldset>
+     	<!--  -->
+<fieldset class="clearfix">
+   		<label for="Taxonomia01">Taxonom&iacute;a:</label>
+   		<a href="#" id="flotante_fs">A&ntilde;adir Taxonom&iacute;a</a>
+   		
+			<span class="caja_de_boton">
+			<select class="select" name="Taxonomia01" title="Taxonomia01" id="Taxonomia01">
+						<option value="#" selected="selected" >Todas</option>
+						<option value="#" class="oscura">&nbsp;</option>
+						<option value="#" >Taxonom&iacute;a XYZ</option>
+						<option value="#" class="oscura">Taxonom&iacute;a XYZ</option>
+						</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="tipoRecurso">Recurso:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="tipoRecurso" title="Seleccione Tipo de Recurso" id="tipoRecurso">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Recurso XYZ</option>
+													<option value="#" class="oscura">Recurso XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+	</div>
+	<!--  -->    
+<p>Si lo desea, tambi&eacute;n puede acotar su b&uacute;squeda en funci&oacute;n de las caracter&iacute;sticas de los contenidos que busca:</p>
+<!-- POR PROPIEDADES DE CONTENIDO   -->
+<div class="tipofieldset clearfix"  >
+<div class="caja_dinamica"><a class="desplegado" id="pm1" href="#" onclick="expandirCaja('m1', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;" onkeypress="expandirCaja('m1', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;"><br class="falso" /><strong id="dm1" >Ver Campos de B&uacute;squeda</strong></a><h3>POR PROPIEDADES DE CONTENIDO</h3> <em>(Tiene XYZ filtros seleccionados)</em></div>
+<div id="m1" class="caja_cerrada" >
+ <div class="campos clearfix">
+<fieldset class="clearfix">
+<label for="Titulo" >T&iacute;tulo:</label>
+<input name="Titulo" class="de_texto"  id="Titulo"  title="Introduce Titulo" type="text" value=" " />
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+<label for="Descripcion" >Descripci&oacute;n:</label>
+<textarea  title="A&ntilde;adir Descripci&oacute;n" id="Descripcion"></textarea>	
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="tipoFormato">Tipo de Formato:</label>
+			<span class="caja_de_boton">
+			<select class="select" title="Seleccione Tipo de Formato" id="tipoFormato">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Formato XYZ</option>
+													<option value="#" class="oscura">Formato XYZ</option>
+    		</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="TipoRecurso0">Recurso:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="TipoRecurso0" title="Seleccione Tipo de Recurso" id="TipoRecurso0">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Recurso XYZ</option>
+													<option value="#" class="oscura">Recurso XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="Idioma">Idioma:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="Idioma" title="Seleccione Idioma" id="Idioma">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Idioma XYZ</option>
+													<option value="#" class="oscura">Idioma XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="tipoProceso">Proceso cognitivo:</label>
+			<span class="caja_de_boton">
+		<select class="select" name="tipoProceso" title="Seleccione Proceso" id="tipoProceso">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Proceso XYZ</option>
+													<option value="#" class="oscura">Proceso XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="contexto">Contexto:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="contexto" title="Seleccione Contexto" id="contexto">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Contexto XYZ</option>
+													<option value="#" class="oscura">Contexto XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+   <fieldset class="clearfix">
+<label for="edad" >Edad:</label>
+<input name="edad" class="de_texto"  id="edad"  title="Introduce edad" type="text" style="width:40px;" value=" " />
+</fieldset>
+ 	<!--  -->
+   <fieldset class="clearfix">
+<label for="Autor" >Autor:</label>
+<input name="Autor" class="de_texto"  id="Autor"  title="Introduce Autor" type="text" value=" " />
+</fieldset>
+
+<fieldset class="clearfix">
+   		<label for="secuencia">Con/Sin Secuencia:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="secuencia" title="Seleccione Secuencia" id="secuencia">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Con Secuencia</option>
+													<option value="#" class="oscura">Sin Secuencia</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+   <fieldset class="clearfix">
+<label for="Fecha" >Fecha:</label>
+<input name="Fecha" class="de_texto  date-pick" onfocus="limpiarTexto(this)"   id="Fecha" style="width:108px;"  title="Introduce Fecha" type="text" value="DD/MM/AAAA" />
+</fieldset>
+	<!--  -->
+<fieldset class="clearfix">
+   		<label for="valor">Valoraci&oacute;n:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="valor" title="Seleccione Contexto" id="valor">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Valoraci&oacute;n XYZ</option>
+													<option value="#" class="oscura">Valoraci&oacute;n XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+ 	<!--  -->
+<fieldset class="clearfix">
+   		<label for="nivel_agregacion">Nivel de Agregaci&oacute;n:</label>
+			<span class="caja_de_boton">
+			<select class="select" name="nivel_agregacion" title="Seleccione Nivel de Agregacion" id="nivel_agregacion">
+													<option value="#" selected="selected">Seleccione</option>
+													<option value="#" class="oscura">&nbsp;</option>
+													<option value="#">Nivel XYZ</option>
+													<option value="#" class="oscura">Nivel XYZ</option>
+												</select>
+    		</span>
+</fieldset>
+
+   <!--  -->
+	</div>
+</div>
+</div>
+<!--  -->	
+<!-- POR NIVEL EDUCATIVO  -->
+<div class="tipofieldset clearfix"  >
+<div class="caja_dinamica"><a class="desplegado" id="pm2" href="#" onclick="expandirCaja('m2', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;" onkeypress="expandirCaja('m2', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;"><br class="falso" /><strong id="dm2" >Ver Campos de B&uacute;squeda</strong></a><h3>POR NIVEL EDUCATIVO</h3> <em>(Tiene XYZ filtros seleccionados)</em></div>
+<div id="m2" class="caja_cerrada" >
+ <div class="campos clearfix">
+ <p>Si lo desea puede a&ntilde;adir un criterio de b&uacute;squeda correspondiente al nivel educativo:</p>
+   
+   <div id="portapapeles">
+   <span>00 Criterios</span>
+   </div>
+<fieldset class="botonera  clearfix" id="portapapeles_bot">
+<input type="submit"  title="A&ntilde;adir" value="A&ntilde;adir" class="boton" />
+</fieldset>
+      <!--  -->
+	</div>
+</div>
+</div>
+ <!--  -->	
+<!-- POR &Aacute;MBITO  -->
+<div class="tipofieldset clearfix"  >
+<div class="caja_dinamica"><a class="desplegado" id="pm3" href="#" onclick="expandirCaja('m3', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;" onkeypress="expandirCaja('m3', 'Ver Campos de B&uacute;squeda ', 'Ocultar Campos de B&uacute;squeda');return false;"><br class="falso" /><strong id="dm3" >Ver Campos de B&uacute;squeda</strong></a><h3>POR &Aacute;MBITO</h3> <em>(Tiene XYZ filtros seleccionados)</em></div>
+<div id="m3" class="caja_cerrada" >
+ <div class="campos clearfix">
+ 	<!-- INICIO TABLA  -->
+<div class="caja_de_tabla_invisible">
+<table>
+<tr>
+	<td><input type="checkbox" class="check" id="com01" name="com01"  /></td>
+	<td colspan="3"   ><label for="com01">Todas</label></td>
+</tr>
+<tr>
+	<td ><input type="checkbox" class="check" id="com02" name="com02"  /></td>
+	<td class="td_largo_09"  ><label for="com02">Comunidad Aut&oacute;noma XYZ</label></td>
+	<td><input type="checkbox" class="check" id="com03" name="com03"  /></td>
+	<td class="td_largo_09"  ><label for="com03">Comunidad Aut&oacute;noma XYZ</label></td>
+</tr>
+<tr>
+	<td ><input type="checkbox" class="check" id="com04" name="com04"  /></td>
+	<td class="td_largo_09"  ><label for="com04">Comunidad Aut&oacute;noma XYZ</label></td>
+	<td><input type="checkbox" class="check" id="com05" name="com05"  /></td>
+	<td class="td_largo_09"  ><label for="com05">Comunidad Aut&oacute;noma XYZ</label></td>
+</tr>
+<tr>
+	<td ><input type="checkbox" class="check" id="com06" name="com06"  /></td>
+	<td class="td_largo_09"  ><label for="com06">Comunidad Aut&oacute;noma XYZ</label></td>
+	<td><input type="checkbox" class="check" id="com07" name="com07"  /></td>
+	<td class="td_largo_09"  ><label for="com07">Comunidad Aut&oacute;noma XYZ</label></td>
+</tr>
+<tr>
+	<td ><input type="checkbox" class="check" id="com08" name="com08"  /></td>
+	<td class="td_largo_09"  ><label for="com08">Comunidad Aut&oacute;noma XYZ</label></td>
+	<td><input type="checkbox" class="check" id="com09" name="com09"  /></td>
+	<td class="td_largo_09"  ><label for="com09">Comunidad Aut&oacute;noma XYZ</label></td>
+</tr>
+
+</table>
+</div>
+ </div>
+</div>
+</div>
+<!-- -->
+		</form>
+    
+<fieldset style="background:#fff !Important" class="botonera botonera_de_dos clearfix">
+<input type="submit"  title="Buscar" value="Buscar" class="boton" />
+<input type="submit" title="Limpiar" value="Limpiar" class="boton boton_flot" />
+</fieldset>
+
+    </section>
+    
+</article>
+<!--  -->
+<article id="main" class="clearfix">
+	<!--  -->
+    <div class="col_izq">		
+    <section class="bloque noticias">
+     	<header>
+    		<hgroup>
+    			<h2 title="Noticias">NOTICIAS</h2>
+    			<h3>Congreso Escuela 2.0.</h3>
+    		</hgroup>
+   	 	</header>
+   	 	<p>Zaragoza 13, 14, 15 de Abril, presentaci&oacute;n de la herramaienta de catalogaci&oacute;n de agrega.</p>
+   	 	<p class="texto_der sin_p"><a href="#" class="flotante">M&aacute;s Noticias <span>></span></a></p>
+    </section>
+   <!--  -->	
+    <section class="bloque descargas">
+     	<header>
+    		<hgroup>
+    			<h2 title="Descargas">DESCARGAS</h2>
+    			<h3>Agrega Offline</h3>
+    		</hgroup>
+   	 	</header>
+   	 	<p>Descarga gratuita de la herramienta offline para gesti&oacute;n  de recursos y materiales educativos. ti&oacute;n  de recursos y materiales educativos.</p>
+   	 	<p class="texto_der sin_p"><a href="#" class="flotante">M&aacute;s Descargas <span>></span></a></p>
+    </section>
+    </div>
+    <!--  -->	
+    <div class="col_der">	
+    <section class="bloque etiquetas">
+     	<header>
+    		<h2 title="Etiquetas">ETIQUETAS</h2>
+   	 	</header>
+   	 	<p class="clearfix"><a href="#">accesibilidad</a><a href="#">agrega</a><a href="#">agrega offline</a><a href="#">congreso</a><a href="#">consejos de gu&iacute;as</a><a href="#">metodolog&iacute;a</a><a href="#">taxonom&iacute;a</a><a href="#">productores de contenido</a><a href="#">t&eacute;cnicos</a><a href="#">usos docentes</a><a href="#">vocabularios &aacute;rbol curricular</a><a href="#">&aacute;rbol curricular</a><a href="#">gu&iacute;as material informativo</a><a href="#">metodolog&iacute;a</a><a href="#">t&eacute;cnicos</a><a href="#">usos docentes</a><a href="#">consejos de gu&iacute;as</a><a href="#">metodolog&iacute;a</a><a href="#">agrega offline</a><a href="#">productores de contenido</a><a href="#">accesibilidad</a><a href="#">agrega</a></p>
+    </section>
+    </div>
+     <!--  -->
+</article>
+
+</section>
+<!-- FIN SECCION PRINCIPAL -->
+
+<!-- ASIDE -->
+<aside id="patros">
+<dl id="col">
+<dt><strong class="oculto">Colaboran:</strong></dt>
+<dd id="plan_avanza"><a href="#" title="Plan Avanza 2"><span>Plan Avanza 2</span></a></dd>
+<dd id="economia_sostenible"><a href="#" title="Econom&iacute;a Sostenible"><span>Econom&iacute;a Sostenible</span></a></dd>
+<dd id="gob_espana"><a href="#" title="Gobierno de Espa&ntilde;a"><span>Gobierno de Espa&ntilde;a</span></a></dd>
+<dd id="ite"><a href="#" title="ITE- Instituto de Tecnolog&iacute;as Educativas"><span>ITE- Instituto de Tecnolog&iacute;as Educativas</span></a></dd>
+<dd id="feder"><a href="#" title="Fondo de Desarrollo Regional"><span>Fondo de Desarrollo Regional</span></a></dd>
+<dd id="cel"><a href="#" title="Confianza En L&iacute;nea"><span>Confianza En L&iacute;nea</span></a></dd>
+<dd id="ccaa">
+<div id="slider2" class="nivoSlider">
+<a href="#" title="Andalucia" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_andalucia.gif"  alt="" title="Andalucia"  /></a>
+<a href="#" title="Aragon" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_aragon.jpg" title="Aragon" /></a>
+<a href="#" title="Asturias" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_asturias.gif" title="Asturias"  /></a>
+<a href="#" title="Islas Baleares" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_baleares.gif"  alt="" title="Baleares"  /></a>
+<a href="#" title="Islas Canarias" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_canarias.gif" title="Canarias" /></a>
+<a href="#" title="Cantabria" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_cantabria.gif" title="Cantabria"  /></a>
+<a href="#" title="Castilla La Mancha" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/lamancha.gif" title="Castilla La Mancha"  /></a>
+<a href="#" title="Castilla Le&oacute;n" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_castilla_leon.gif" title="Castilla Le&oacute;n"  /></a>
+<a href="#" title="Catalunya" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_catalunya.gif" title="Catalunya"  /></a>
+<a href="#" title="Ceuta"  ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_ceuta.gif" title="Ceuta"  /></a>
+<a href="#" title="Euskadi" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_euskadi.gif" title="Euskadi"  /></a>
+<a href="#" title="Extremadura" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_extremadura.gif" title="Extremadura"  /></a>	
+<a href="#" title="Galicia"  ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_galicia.gif" title="Galicia"  /></a>
+<a href="#" title="La Rioja" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_rioja.gif" title="La Rioja"  /></a>
+<a href="#" title="Madrid" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_madrid.gif" title="Madrid"  /></a>
+<a href="#" title="Melilla"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_melilla.gif" title="Melilla"  /></a>
+<a href="#" title="Murcia" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_murcia.gif" title="Murcia"  /></a>
+<a href="#" title="Navarra" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_navarra.gif" title="Navarra"  /></a>
+<a href="#" title="Valencia"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_valencia.gif" title="Valencia"  /></a>
+</div></dd>
+</dl>
+</aside>
+<!-- FIN ASIDE -->
+
+
+
+<!-- FOOTER -->
+<footer id="pie_pagina" >
+<ul>
+<li><a href="#" title="Pol&iacute;tica de Privacidad" id="politica">Pol&iacute;tica de Privacidad</a></li>
+<li><a href="#" title="Informaci&oacute;n Legal" id="info_legal">Informaci&oacute;n Legal</a></li>
+<li><a href="#" title="Accesibilidad">Accesibilidad</a></li>
+<li><a href="#" title="Contacto">Contacto</a></li>
+<li><a href="#" title="Ayuda">Ayuda</a></li>
+<li><a href="#" title="Mapa">Mapa</a></li>
+<li><a href="#" title="RSS">RSS</a></li>
+</ul>
+</footer>
+<!-- FIN FOOTER -->
+
+</div>
+</div>
+<!-- CONTENEDOR -->
+
+
+<br />
+</div>
+<!--! FIN de CAPA PRINCIPAL (madre) -->
+
+<!-- Aqui van javascripts propios  -->
+
+<script type="text/javascript">
+$(window).load(function() {
+	setTimeout(function(){
+		$('#slider2').nivoSlider({effect:'sliceDown',directionNav:false,startSlide:14, pauseTime:9000, captionOpacity:0,pauseOnHover:false, animSpeed:500 });
+	}, 1000);
+});
+</script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/codigo.js"></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/plantilla.js"></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery.nivo.slider.pack.js" ></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/date.js"></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery.datePicker.js"></script>	
+<script type="text/javascript">
+Date.firstDayOfWeek = 0;
+Date.format = 'dd/mm/yyyy';
+$(function()
+{
+	$('.date-pick').datePicker()
+});
+</script>
+
+<!-- Aqui van javascripts propios  -->
+</body>
+</html>

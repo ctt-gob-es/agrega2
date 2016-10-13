@@ -1,0 +1,4 @@
+#Wed Feb 01 12:38:05 CET 2012
+es.pode.catalogacion.licencias.dominio.gruposLicencias.Grupos=es.pode.catalogacion.licencias.dominio.gruposLicencias.descriptors.GruposDescriptor
+es.pode.catalogacion.licencias.dominio.gruposLicencias.Grupo=es.pode.catalogacion.licencias.dominio.gruposLicencias.descriptors.GrupoDescriptor
+es.pode.catalogacion.licencias.dominio.gruposLicencias.CodigoLicencia=es.pode.catalogacion.licencias.dominio.gruposLicencias.descriptors.CodigoLicenciaDescriptor

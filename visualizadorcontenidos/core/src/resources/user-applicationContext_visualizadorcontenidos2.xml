@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="propiedadesConstantes" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+	  <list>
+		  	<value>classpath:spring_visualizadorcontenidos.properties</value>
+	  </list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders">
+	  		<value>true</value>
+	  </property>	  
+  </bean>
+  
+  
+  
+  <bean id="accesoPortada" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.visualizador.presentacion.portada.IntercepcionPortadaImpl">
+            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.visualizador.presentacion.portada.IntercepcionPortada</value>
+        </property>
+    </bean>
+  
+  
+  
+   <bean id="registradorInterceptor" class="es.pode.soporte.auditoria.registrar.ServiceRegistrarInterceptor"></bean>
+
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	      <property name="beanNames"><value>*IntercepcionPortadaImpl*</value></property>
+	      <property name="interceptorNames">
+	             <list>
+	                    <value>registradorInterceptor</value>
+	             </list>
+	      </property>
+    </bean>
+</beans>

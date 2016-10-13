@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+<body>
+	<menu name="Sub-Proyectos">
+    		<item name="Principal" href="../../../target/docs/index.html"/>
+    		<item name="Web" href="../../../web/target/docs/index.html"/>
+    		<item name="Core" href="../../../core/target/docs/index.html"/>
+  	</menu>
+	<menu name="Sub-Proyectos">
+		<item name="Introducción" href="index.html"/>
+	</menu>  	  	
+</body>
+</project>

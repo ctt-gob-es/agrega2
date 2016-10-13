@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test"/>
+	<classpathentry kind="src" path="src/conf"/>
+	<classpathentry kind="var" path="MAVEN_REPO/junit/jars/junit-3.8.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-logging/jars/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-3.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-lang/jars/commons-lang-2.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/xerces/jars/xercesImpl-2.9.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/xerces/jars/resolver-2.9.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/xerces/jars/serializer-2.9.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/xerces/jars/xercesSamples-2.9.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/xerces/jars/xml-apis-2.9.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/castor/jars/castor-1.1-xml.jar" sourcepath="/MAVEN_REPO/castor/jars/castor-1.1-src.zip"/>
+	<classpathentry kind="var" path="MAVEN_REPO/dozer/jars/dozer-3.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/log4j/jars/log4j-1.2.9.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/springframework/jars/spring-2.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jug-lgpl/jars/jug-lgpl-2.0.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/agrega/jars/soporte-1.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-io/jars/commons-io-1.4.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

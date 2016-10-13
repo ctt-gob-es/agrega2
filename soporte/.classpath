@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/test"/>
+	<classpathentry kind="src" path="src/test-resources"/>
+	<classpathentry kind="src" path="src/conf"/>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry excluding="compile/|test/|conf/|java/|offline/|test-resources/" kind="src" path="src"/>
+	<classpathentry kind="var" path="MAVEN_REPO/junit/jars/junit-3.8.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="MAVEN_REPO/springframework/jars/spring-2.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-3.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-lang/jars/commons-lang-2.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-logging/jars/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/truezip/jars/truezip-6.6.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jaf/jars/jaf-1.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/javax/jars/javamail-1.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jug-lgpl/jars/jug-lgpl-2.0.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/servletapi/jars/servletapi-2.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/dozer/jars/dozer-3.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/struts/jars/struts-1.2.7.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/acegisecurity/jars/acegi-security-1.0.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/openid4java/jars/openid4java-0.9.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/acegisecurity/jars/spring-ldap-1.1.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/acegisecurity/jars/spring-2.0-rc2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/log4j/jars/log4j-1.2.13.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/axis/jars/axis-1.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/axis/jars/axis-jaxrpc-1.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jdom/jars/jdom-1.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/saxon/jars/saxon-9.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-io/jars/commons-io-1.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-fileupload/jars/commons-fileupload-1.2.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jcaptcha/jars/filters-2.0.235.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jcaptcha/jars/jcaptcha-2.0-alpha-1-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jcaptcha/jars/jcaptcha-api-1.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jcaptcha/jars/jcaptcha-integration-simple-servlet-2.0-alpha-1-SNAPSHOT.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

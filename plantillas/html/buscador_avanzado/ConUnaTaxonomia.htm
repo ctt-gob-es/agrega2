@@ -1,0 +1,1485 @@
+<!-- 
+	   	<- tiles : put name="codigo-head" type="string">
+	   		<script type="text/javascript" src="/static/js/mootools.js"></script>
+			<script type="text/javascript" src="/static/js/calendar.js"></script>
+		<- /tiles : put>
+	    -->
+<!--?xml version="1.0" encoding="iso-8859-1" ?-->
+<!DOCTYPE html>
+<html class="no-js" lang="es"><head dir="ltr" lang="es">
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+		<!-- Obligatorio para trabajar con IExplorer y HTML5 -->
+		<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	
+		<meta name="description" content="Repositorio Educativo de la Comunidad Educativa Española">
+		<meta name="keywords" content="Agrega,Educación,Repositorio,Contenidos,SCORM2004,LOM">
+		<title>
+			
+	        Agrega - Buscador
+	    
+		</title>
+		<link rel="search" type="application/opensearchdescription+xml" title="Agrega" href="http://desarrollo.agrega.indra.es/searchPlugin/searchPlugin.xml">
+		<link rel="shortcut icon" href="http://desarrollo.agrega.indra.es/static/img/favicon.ico">
+
+		<!--
+		<link rel="stylesheet" href="/static/css/red_v3.css" />
+		<link rel="stylesheet" media="handheld" href="/static/css/handheld_v1.css" />
+		<script type="text/javascript" src="/static/js/jquery-1.4.2.min.js"></script> 
+		-->
+		
+		<link rel="stylesheet" href="http://www.therightdirection.biz/clientes/indra/red_2011/css/red.css">
+		<link rel="stylesheet" href="UnaTaxonomia_files/handheld.css">
+		<script type="text/javascript" src="UnaTaxonomia_files/jquery-1_002.txt"></script> 
+
+		<!--
+		<script type="text/javascript" src="/static/js/plantilla.js"></script>
+		<script type="text/javascript" src="/static/js/curvas.js"></script>
+		<script type='text/javascript' src="/static/js/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="/static/js/swfobject.js"></script>
+		-->
+		
+		
+		<!--
+		<style type="text/css" media="screen">
+			el_flash {visibility:hidden}
+		</style>
+		-->
+	</head>
+
+	<!-- Para controlar las diferentes versiones de IExplorer -->
+	<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+	<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+	<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+	<!--[if IE 9 ]> <body class="ie9"> <![endif]-->
+	<!--[if (gt IE 9)|!(IE)]><!-->
+	<body> <!--<![endif]-->
+	
+		<!--  CAPA QUE CONTIENE TODAS LAS DEMAS  -->
+		<!--  INICIO CAPA MADRE   -->
+		<div id="madre">
+		
+			<!-- Aqui va la cabecera -->
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+<!-- INICIO METANAVEGACION   -->
+<!--
+<div id="metanavegacion">
+	<ol>
+			<li class="oculto"><a href="#contenido_central" title="Contenido Principal"><strong>Contenido</strong></a></li>
+-->			<!-- Estos dos links cambian cuando el usuario se ha autenticado -->
+			<!-- TODO: Cambiar en fase II cuando se use autenticacion -->
+			<!-- <li><a href="#" title="Accesibilidad" id="registro">Accesibilidad</a></li> -->
+			<!-- <li><a href="#" title="Acceder" id="restringida">Acceder</a></li> -->
+			<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--			
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<li>
+			<a href="/wiki/index.php/buscador/AreaCurricularCU/TaxonomiaVolcarTaxonomia.do" title="Ayuda" id="ayuda"  target="blank">Ayuda</a>
+	</li>
+
+	<li>
+			<a href="/visualizadorcontenidos/Acceso/Acceso.do" title="Acceder" id="restringida"  >Acceder</a>
+	</li>
+
+		    
+-->		    
+		    <!-- Tag para pintar las banderas con los posibles idiomas de la plataforma -->			
+<!--
+			<li class="idiomas"><a href="/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=es" title="Castellano" >Bienvenido</a></li>
+<li class="idiomas"><a href="/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=ca" title="Catalá" >Benvingut</a></li>
+<li class="idiomas"><a href="/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=eu" title="Euskera" >Ongi Etorri</a></li>
+<li class="idiomas"><a href="/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=gl" title="Galego" >Benvido</a></li>
+<li class="idiomas"><a href="/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=en" title="English" >Welcome</a>&nbsp;</li>
+
+		    
+			<li><a href="/visualizadorcontenidos/AcercaDeAgrega/AcercaDeAgrega.do" title="Acerca de Agrega" >Acerca de Agrega</a></li>
+			<li><a href="http://www.proyectoagrega.es" target="_blank" title="Comunidad Agrega (www.proyectoagrega.es)">Comunidad</a></li>
+			<li><a href="/visualizadorcontenidos/Accesibilidad/Accesibilidad.do" title="Accesibilidad">Accesibilidad</a></li>
+			<li><a href="/visualizadorcontenidos/Faqs/Faqs.do" title="Preguntas frecuentes">Preguntas frecuentes</a></li>
+			<li><a href="/visualizadorcontenidos/Mapa/Mapa.do" title="Mapa del portal">Mapa del portal</a></li>
+			<li><a href="/visualizadorcontenidos/Contacto/Contacto.do" title="Contacto" id="contacto">Contacto</a></li>
+	</ol>
+</div>
+-->
+<!-- FIN METANAVEGACION   -->
+
+
+<!-- INICIO CABECERA (antes llamado METANAVEGACION)  -->
+<header id="cabecera">
+<div>
+<span class="acceso">
+	<span>¿Tienes Cuenta?</span> 
+	<a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Acceso/Acceso.do" title="Acceder">Acceder</a>
+</span> 
+<span class="acerca"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/AcercaDeAgrega/AcercaDeAgrega.do" title="Acerca de Agrega">Acerca de Agrega</a></span>
+<ul class="metanavegacion">
+<!-- Tag para pintar las banderas (o enlaces equivalentes) con los posibles idiomas de la plataforma -->			
+<li class="idiomas"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=es" title="Castellano">Bienvenido</a></li>
+<li class="idiomas"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=ca" title="Catalá">Benvingut</a></li>
+<li class="idiomas"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=eu" title="Euskera">Ongi Etorri</a></li>
+<li class="idiomas"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=gl" title="Galego">Benvido</a></li>
+<li class="idiomas"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/IdiomaCU/IdiomaCU.do?idioma=en" title="English">Welcome</a>&nbsp;</li>
+
+</ul>
+</div>
+</header>
+<!-- FIN CABECERA (antes llamado METANAVEGACION)  -->
+		
+			<!-- INICIO CONTENEDOR -->
+			<div id="contenedor_ie">
+				<div id="contenedor">
+				
+					<!-- INICIO Popup de login -->
+					<div id="popup_registro">
+	<div class="pop_int">
+		<a class="cerrar_enlace" href="#" onclick="toggle_visibility('popup_registro');">Cerrar</a>
+		
+		<div id="combo_comunidad" class="clearfix">
+			<form>
+				<p> Por favor introduzca los siguientes datos para entrar en Agrega</p>
+				<label for="usuario_portada">Usuario:</label>
+					<input class="de_texto" name="login" id="usuario_portada" title="Usuario" value="dani" type="text">
+					<br class="oculto">
+
+					<label for="password_portada">Contraseña:</label>
+					<input class="de_texto" name="password" id="password_portada" title="Contraseña" value="" type="password">
+					<span class="bot_check"><input id="cache" class="cajacheck" type="checkbox">
+					<label for="cache">Recuérdame</label></span>
+					<input title="Entrar" value="Entrar" class="boton" type="submit">
+			</form>
+			<a href="#">Has olvidado la contraseña?</a>
+
+		</div>
+	</div>
+</div>
+
+					<!-- FIN Popup de login -->
+				
+					<!-- NAV  -->
+					<nav id="menu">
+	<h1><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Portada/Portada.do" title="Agrega"><strong>Agrega</strong></a></h1>
+	<div id="nav_principal">
+		<ul class="metanavegacion">
+			<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Portada/Portada.do" id="activo">Buscador Agrega</a></li>
+			<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/BusquedaGoogleCU/BusquedaGoogleCU.do">Buscador Externo</a></li>
+			<li><a href="http://desarrollo.agrega.indra.es/buscador/NavegarArbolCurricularCU/NavegarArbolCurricularCU.do">Árbol Curricular</a></li>
+		</ul>
+	</div>
+</nav>
+					<!-- FIN NAV  -->
+			
+					<!-- INICIO PRINCIPAL   -->
+					<section id="principal">
+						
+						
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+			<!-- PRINCIPAL   -->
+
+				
+				
+
+
+    
+    
+    
+    
+				
+				<article id="buscador_tipo">
+					<header>
+						<h2 class="titulo">Encuentra los mejores contenidos educativos</h2>
+					</header>
+					
+					<section id="buscador_avanzado">
+			
+						<form method="post" name="formularioAvanzado" action="/buscador/BuscarAvanzadoCU/MostrarFormularioAvanzadoAnalizaPulsacion.do">
+			
+							<input name="contPropsContenido" value="2" type="hidden">
+							<input name="contAreasCurric" value="" type="hidden">
+							<input name="contAmbito" value="" type="hidden">
+							<input name="tipoLayoutBuscador" value="BUSCADOR" type="hidden">
+							<input name="tipoBusqueda" value="03" type="hidden">
+							<input name="enlaceTaxSelec" value="ACLOE2006$4" type="hidden">
+							<input name="formularioInicial" value="true" type="hidden">
+							
+							
+								<p class="clearfix" id="separacion3">Si lo desea, puede acotar su búsqueda en función de las características de los contenidos que busca:</p>
+									   	
+							<div class="tipofieldset clearfix" id="primer_fs">
+	
+								<h3>Buscador avanzado</h3>
+								<fieldset class="clearfix">
+									<label for="Buscar">Buscar:</label>
+									<input name="buscContenido" class="de_texto" onkeypress="return focusSubmit(event)" id="nombreGrupo" title="Introduzca texto a buscar " type="text">
+								</fieldset>																		
+	
+								<fieldset class="clearfix">
+									<label for="Taxonomia01">Taxonomía:</label>
+									<span class="caja_de_boton">
+										<select style="z-index: 10; opacity: 0;" name="taxonomias" id="Taxonomia01" class="select" title="Taxonomía"><option value="" class="oscura">Todas</option>
+											<option value="ACLOE2006" selected="selected">Árbol curricular LOE 2006</option>
+<option value="ACLOE2008">Árbol curricular LOE 2008</option>
+<option value="ACLOE2009">Árbol curricular LOE 2009</option>
+<option value="COMLOMES001">Competencia LOM-ESv1.0</option>
+<option value="NEDLOMES001">Nivel educativo LOM-ESv1.0</option></select><span class="select">Árbol curricular LOE 2006</span>
+    								</span>
+									<input id="flotante_fs2" class="boton"  title="Añadir" name="pulsacion" value="Añadir taxonomía" type="submit">
+								</fieldset>
+								
+								
+								
+									
+									
+										<table class="inv_taxo" border="0" cellpadding="0" cellspacing="0" width="100%">
+											
+												
+						 		    				<tbody><tr class="gris_01">
+   														<td>
+															<input name="taxSelec" value="0" id="taxSelec" class="check03" type="checkbox">
+														</td>	
+						        			  			<td class="taxo">
+						        			  				<span class="sola_rea2" title="Árbol curricular LOE 2006-&gt;Bachillerato">Bachillerato</span>
+						        			  			</td>
+						        			  			<td>
+						        			  			<input class="boton flotante_izquierda" id="Eliminar" name="pulsacion"  alt="Eliminar taxonomía" value="Eliminar taxonomía" type="submit">        			  			</td>
+									 				</tr>
+												
+													
+												
+											
+										</tbody></table>
+									
+											
+																          	          
+								
+								
+								
+								
+								
+								<fieldset class="clearfix">
+									<label for="nivel_agregacion">Nivel de agregación:</label>
+									<span class="caja_de_boton">
+										<!--
+										<select class="select" name="tipoRecurso" title="Seleccione Tipo de Recurso" id="tipoRecurso">
+											<option value="#" selected="selected">Seleccione</option>
+											<option value="#" class="oscura">&nbsp;</option>
+											<option value="#">Recurso XYZ</option>
+											<option value="#" class="oscura">Recurso XYZ</option>
+										</select>
+										 
+										-->
+										
+										<select style="z-index: 10; opacity: 0;" name="nivelAgreg" id="Taxonomia01" class="select" title="Nivel agregación"><option selected="selected" value="" class="oscura">Todos</option>
+											<option value="1">Medias y medias integrados</option>
+<option value="2">Objetos de aprendizaje</option>
+<option value="3">Secuencias didácticas</option>
+<option value="4">Cursos, planes y programas de formación</option></select><span class="select">Nivel agregación</span>
+									
+									</span>
+								</fieldset>
+					
+								<fieldset class="clearfix">
+									<label for="tipoFormato">Tipo de formato:</label>
+									<span class="caja_de_boton">
+										
+										<select style="z-index: 10; opacity: 0;" name="formato" id="select" class="select" title="Seleccione tipo de formato"><option selected="selected" value="" class="oscura">Todos</option>
+											<option value="application/*">Aplicación</option>
+<option value="image/*">Imagen</option>
+<option value="audio/*">Sonido</option>
+<option value="text/*">Texto</option>
+<option value="video/*">Video</option></select><span class="select">Seleccione tipo de formato</span>
+									</span>
+								</fieldset>		
+								
+							</div>
+			
+							<!-- POR PROPIEDADES DE CONTENIDO   -->
+							<div class="tipofieldset clearfix">
+								<div class="caja_dinamica">
+									<a class="desplegado" id="pm1" href="#" onclick="contarFiltrosSeleccionados('m1'); expandirCaja('m1', 'Ver Campos de Búsqueda ', 'Ocultar Campos de Búsqueda');"><br class="falso"><strong id="dm1">Ver Campos de Búsqueda</strong></a>
+									<h3>Por propiedades de contenido</h3>
+									<em>(Tiene&nbsp;
+									<label id="contadorPropiedades" style="display:inline-block; float:none; width:auto;">2</label>&nbsp;
+									
+								    
+								      	filtros seleccionados)</em>
+								    
+								
+									<div id="m1" class="caja_cerrada">
+										<div class="campos clearfix">
+										
+											<fieldset class="clearfix">
+												<label for="Titulo">Identificador:</label>
+												<input name="idODE" class="de_texto" onkeypress="return focusSubmit(event)" id="Titulo" title="Introduzca título" type="text">
+											</fieldset>
+					
+											<fieldset class="clearfix">
+												<label for="tipoRecurso">Recurso:</label>
+												<span class="caja_de_boton">
+													
+													<select style="z-index: 10; opacity: 0;" name="recurso" id="tipoRecurso" class="select" title="Seleccione tipo de recurso"><option selected="selected" value="" class="oscura">Todos</option>
+														<option value="discussion activity">actividad de discusión</option>
+<option value="animation">animación</option>
+<option value="compound audio">audio compuesto</option>
+<option value="self assessment">autoevaluación</option>
+<option value="database">base de datos</option>
+<option value="contextualized case problem">caso contextualizado</option>
+<option value="textual-image analysis">comentarios de texto-imagen</option>
+<option value="questionnaire">cuestionario</option>
+<option value="digital dictionary">diccionario digital</option>
+<option value="sound effect">efecto sonoro</option>
+<option value="closed exercise or problem">ejercicio o problema cerrado</option>
+<option value="digital encyclopaedia">enciclopedia digital</option>
+<option value="real or virtual learning environment">escenario real o virtual de aprendizaje</option>
+<option value="exam">examen</option>
+<option value="experiment">experimento</option>
+<option value="photograph">fotografía</option>
+<option value="computer graphics">grafismo</option>
+<option value="graph">gráfico</option>
+<option value="information/knowledgeanalysis/organization tool">herramienta de análisis/organización de información/conocimiento</option>
+<option value="process/procedure supporting tools">herramienta de apoyo a procesos/procedimientos</option>
+<option value="multimedia creation/edition tool">herramienta de creación/edición multimedia </option>
+<option value="web design tool">herramienta de creación/edición web</option>
+<option value="individual/cooperative/collaborative learning/working management tool">herramienta de gestión de aprendizaje/trabajo individual/cooperativo/colaborativo</option>
+<option value="office tool">herramienta de ofimática</option>
+<option value="programming tool">herramienta de programación</option>
+<option value="hypertext">hipertexto</option>
+<option value="illustration">ilustración</option>
+<option value="didactic game">juego didáctico</option>
+<option value="master class">lección magistral</option>
+<option value="guided reading">lecturas guiadas</option>
+<option value="voice-over">locución</option>
+<option value="conceptual map">mapa conceptual</option>
+<option value="navigation map">mapa de navegación</option>
+<option value="integrated media">media integrado</option>
+<option value="music">música</option>
+<option value="multimedia presentation">presentación multimedia</option>
+<option value="open problem">problema abierto</option>
+<option value="real project">proyecto real</option>
+<option value="digital periodical publication">publicación digital periódica</option>
+<option value="information/knowledgeanalysis/organization service">servicio de análisis/organización de información/conocimiento</option>
+<option value="process/procedure supporting service">servicio de apoyo a procesos/procedimientos</option>
+<option value="multimedia creation/edition service">servicio de creación/edición multimedia</option>
+<option value="web design service">servicio de creación/edición web</option>
+<option value="individual/cooperative/collaborative learning/working management service">servicio de gestión de aprendizaje/trabajo individual/cooperativo/colaborativo</option>
+<option value="office service">servicio de ofimática</option>
+<option value="programming service">servicio de programación</option>
+<option value="simulation">simulación</option>
+<option value="table">tabla</option>
+<option value="narrative text">texto narrativo</option>
+<option value="tutorial">tutorial</option>
+<option value="video">video</option>
+<option value="thematic or corporate webs/web portals">web/portal temático o corporativo</option>
+<option value="weblog">weblog</option>
+<option value="webquest">webquest</option>
+<option value="wiki">wiki</option></select><span class="select">Seleccione tipo de recurso</span>
+												</span>
+											</fieldset>
+											
+											<fieldset class="clearfix">
+												<label for="Idioma">Idioma:</label>
+												<span class="caja_de_boton">
+													
+													<select style="z-index: 10; opacity: 0;" name="idiomBusc" id="tipoIdioma" class="select" title="Seleccione idioma"><option value="es" selected="selected">castellano</option>
+<option value="ca">catalán</option>
+<option value="en">inglés</option>
+<option value="eu">euskera</option>
+<option value="gl">gallego</option>
+<option value="va">valenciano</option>
+<option value="fr">francés</option></select><span class="select">castellano</span>
+												</span>
+											</fieldset>
+											
+											<fieldset class="clearfix">
+												<label for="tipoProceso">Proceso cognitivo:</label>
+												<span class="caja_de_boton">
+														
+														<select style="z-index: 10; opacity: 0;" name="procesoCognitivo" id="procesoCognitivo" class="select" title="Seleccione tipo de proceso cognitivo"><option selected="selected" value="" class="oscura">Todos</option>
+															<option value="analyse">analizar</option>
+<option value="implement">aplicar</option>
+<option value="collaborate">colaborar</option>
+<option value="compare">comparar</option>
+<option value="share">compartir</option>
+<option value="compete">competir</option>
+<option value="understand">comprender</option>
+<option value="prove">comprobar</option>
+<option value="communicate">comunicar</option>
+<option value="contextualize">contextualizar</option>
+<option value="control">controlar</option>
+<option value="cooperate">cooperar</option>
+<option value="create">crear</option>
+<option value="decide">decidir</option>
+<option value="define">definir</option>
+<option value="describe">describir</option>
+<option value="discuss">discutir</option>
+<option value="design">diseñar</option>
+<option value="self assessment">evaluarse</option>
+<option value="explain">explicar</option>
+<option value="extrapolate">extrapolar</option>
+<option value="innovate">innovar</option>
+<option value="investigate">investigar</option>
+<option value="judge">juzgar</option>
+<option value="motivate">motivar</option>
+<option value="observe">observar</option>
+<option value="organize">organizar</option>
+<option value="organize oneself">organizarse</option>
+<option value="plan">planificar</option>
+<option value="practise">practicar</option>
+<option value="produce">producir</option>
+<option value="recognize">reconocer</option>
+<option value="remember">recordar</option>
+<option value="write up">redactar</option>
+<option value="consider">reflexionar</option>
+<option value="connect">relacionar</option>
+<option value="represent">representar</option>
+<option value="solve">resolver</option>
+<option value="simulate">simular</option>
+<option value="summarize">sintetizar</option>
+<option value="value">valorar</option></select><span class="select">Seleccione tipo de proceso cognitivo</span>
+									    		</span>
+											</fieldset>
+																					
+											<fieldset class="clearfix">
+												<label for="tipoContexto">Contexto:</label>
+												<span class="caja_de_boton">
+													
+													<select style="z-index: 10; opacity: 0;" name="contexto" id="tipoContexto" class="select" title="Seleccione tipo de contexto"><option selected="selected" value="" class="oscura">Todos</option>
+														<option value="blended">asistencia mixta</option>
+<option value="classroom">aula</option>
+<option value="schoolmate">compañero</option>
+<option value="distance">distancia</option>
+<option value="teacher">docente</option>
+<option value="home">domicilio</option>
+<option value="real environment">entorno real</option>
+<option value="family">familia</option>
+<option value="independent">independiente</option>
+<option value="laboratory">laboratorio</option>
+<option value="mixed">lugar mixto</option>
+<option value="presencial">presencial</option>
+<option value="face to face">semipresencial</option>
+<option value="tutor">tutor</option></select><span class="select">Seleccione tipo de contexto</span>
+									    		</span>
+											</fieldset>
+											
+											<fieldset class="clearfix">
+												<label for="edad">Edad:</label>
+												<input name="edad" class="de_texto" style="width: 40px;" onkeypress="return focusSubmit(event)" id="edad" title="Introduzca edad" type="text">
+											</fieldset>
+	
+											<fieldset class="clearfix">
+												<label for="autor">Autor:</label>
+												<input name="autor" class="de_texto" onkeypress="return focusSubmit(event)" id="autor" title="Introduzca autor" type="text">
+											</fieldset>
+											
+											<fieldset class="clearfix">
+												<label for="fecha_publi">Fecha publicación:</label>
+												
+												<input name="diaPublic" class="de_texto  date-pick" onfocus="limpiarTexto(this)" id="Fecha2" style="width: 108px;" title="Introduce Fecha" value="DD/MM/AAAA" type="text"><a href="#" class="dp-choose-date" title="Escoja fecha">Escoja fecha</a>
+												
+												<input name="mesPublic" id="mesPublic" style="visibility: hidden; display: none;" type="text">
+												<input name="anyoPublic" id="anyoPublic" style="visibility: hidden; display: none;" type="text">
+												
+											</fieldset>
+												
+											
+														
+											<fieldset class="clearfix">
+											<label for="secuencia">Secuenciación:</label>
+												<span class="caja_de_boton">
+													
+													<select style="z-index: 10; opacity: 0;" name="c_s_secuencia" id="tipoSecuencia" class="select" title="Seleccione secuencia"><option selected="selected" value="" class="oscura">Todas</option>
+														<option value="true">Con secuencia</option>
+<option value="false">Sin secuencia</option></select><span class="select">Seleccione secuencia</span>
+									    		</span>
+											</fieldset>
+											
+											<fieldset class="clearfix">
+											<label for="valor">Valoración:</label>
+												<span class="caja_de_boton">
+														
+														<select style="z-index: 10; opacity: 0;" name="valoracion" id="tipoValoracion" class="select" title="Seleccione valoración"><option selected="selected" value="" class="oscura">Todas</option>
+															<option value="0-0.9">0 - 0,9</option>
+<option value="1-1.9">1 - 1,9</option>
+<option value="2-2.9">2 - 2,9</option>
+<option value="3-3.9">3 - 3,9</option>
+<option value="4-5">4 - 5</option></select><span class="select">Seleccione valoración</span>
+									    		</span>
+											</fieldset>
+	
+											<fieldset class="clearfix">
+												<label for="valor">Destinatarios:</label>
+												<span class="caja_de_boton">
+														
+														<select style="z-index: 10; opacity: 0;" name="destinatarios" id="destinatarios" class="select" title="Destinatarios"><option selected="selected" value="" class="oscura">Todos</option>
+															<option value="manager">administrador</option>
+<option value="learner">alumno</option>
+<option value="gifted learner">alumno con altas capacidades intelectuales</option>
+<option value="learners late integration into the education system">alumno con integración tardía en sistema educativo</option>
+<option value="special needs learner">alumno con necesidades educativas especiales</option>
+<option value="learner with other specific educational support needs">alumno con otras necesidades específicas de apoyo educativo</option>
+<option value="teacher">docente</option>
+<option value="information scientist">documentalista</option>
+<option value="education expert">experto en educación</option>
+<option value="subject matter expert">experto en la materia</option>
+<option value="family">familia</option>
+<option value="group">grupal</option>
+<option value="individual">individual</option>
+<option value="computer scientist">informático</option>
+<option value="general public">público en general</option>
+<option value="tutor">tutor</option></select><span class="select">Destinatarios</span>
+									    		</span>
+											</fieldset>
+					
+										</div>
+									</div>
+								</div>
+							</div>	
+							
+							<!-- POR NIVEL EDUCATIVO  -->
+							<div class="tipofieldset clearfix">
+								<div class="caja_dinamica"><a class="desplegado" id="pm2" href="#" onclick="expandirCaja('m2', 'Ver Campos de Búsqueda ', 'Ocultar Campos de Búsqueda');return false;" onkeypress="expandirCaja('m2', 'Ver Campos de Búsqueda ', 'Ocultar Campos de Búsqueda');return false;"><br class="falso"><strong id="dm2">Ver Campos de Búsqueda</strong></a>
+									<h3>Por tesauro</h3> 
+									<em>(Tiene&nbsp;
+									<label id="contadorComunidades" style="display:inline-block; float:none; width:auto;">0</label>&nbsp; 
+									
+			    					
+								      	filtros seleccionados)</em>
+								    
+								</div>
+							
+								<div id="m2" class="caja_cerrada">
+									<div class="campos clearfix">
+							 			<p>Si lo desea puede añadir un criterio de búsqueda correspondiente al nivel educativo:</p>
+									   
+									   	<div id="portapapeles">
+										   	<span></span>
+									   	</div>
+									   	
+										<fieldset class="botonera  clearfix" id="portapapeles_bot">
+											
+												<input class="boton" name="pulsacion" value="Añadir tesauro" type="submit">
+												<input id="nomTesauros" name="nomTesauros" value="" type="hidden">
+											
+											
+										</fieldset>
+									</div>
+								</div>
+							</div>	
+							
+							
+							<!-- POR AMBITO  -->
+							<div class="tipofieldset clearfix">
+								<div class="caja_dinamica"><a class="desplegado" id="pm3" href="#" onclick="expandirCaja('m3', 'Ver Campos de Búsqueda ', 'Ocultar Campos de Búsqueda');contarFiltrosSeleccionados('m3');return false;" onkeypress="expandirCaja('m3', 'Ver Campos de Búsqueda ', 'Ocultar Campos de Búsqueda');contarFiltrosSeleccionados('m3');return false;"><br class="falso"><strong id="dm3">Ver campos de búsqueda</strong></a>
+									<h3>Por ámbito</h3> 
+									<em>(Tiene&nbsp;
+									<label id="contadorComunidades" style="display:inline-block; float:none; width:auto;"></label>&nbsp; 
+									
+			    					
+								      	filtros seleccionados)</em>
+								    
+								</div>
+								<div id="m3" class="caja_cerrada">
+									<div class="campos clearfix">
+								 	<!-- INICIO TABLA  -->
+										<div class="caja_de_tabla_invisible">
+											<table>
+											<tbody><tr>
+												<td>
+													<!--impares y 0-->
+													<table><!--  cellspacing="0" cellpadding="0" border="1" width="50%"  summary="Asignacion Comunidades">-->
+											    		
+														
+															<!-- el primer elemento -->
+															
+			 													<tbody><tr height="30">
+			  														<td>
+			  															<input name="comuSelec" value="0" onclick="marcarTodas();" id="comunidad0" type="checkbox">
+											         			 	</td>	
+											           			  	<td class="td_largo_09" valign="top"><label for="0">Todas</label></td>
+			 													</tr>
+										 					
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+																<tr height="30">
+			  														<td>
+			  															<input name="comuSelec" value="-1" checked="checked" disabled="disabled" id="comunidad1" type="checkbox">
+											         			 	</td>	
+											           			  	<td class="td_largo_09" valign="top"><label for="-1">desarrollo</label></td>
+			  													</tr>
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+										        					<tr height="30">
+																		<td>
+			 																<input name="comuSelec" value="124" onclick="comprobarTodas();" id="comunidad3" type="checkbox">								          	          											         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="124">Castilla y Leon</label></td>
+											 				 		</tr> 	
+											    				
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+										        					<tr height="30">
+																		<td>
+			 																<input name="comuSelec" value="125" onclick="comprobarTodas();" id="comunidad5" type="checkbox">								          	          											         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="125">Madrid</label></td>
+											 				 		</tr> 	
+											    				
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+										        					<tr height="30">
+																		<td>
+			 																<input name="comuSelec" value="122" onclick="comprobarTodas();" id="comunidad7" type="checkbox">								          	          											         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="122">ccaa</label></td>
+											 				 		</tr> 	
+											    				
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+											    			
+															
+														
+															<!-- el primer elemento -->
+															
+										 					
+										 					<!-- fin primer elemento -->
+										 					
+															<!--  impar   -->		
+																
+										        					<tr height="30">
+																		<td>
+			 																<input name="comuSelec" value="123" onclick="comprobarTodas();" id="comunidad9" type="checkbox">								          	          											         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="123">redes</label></td>
+											 				 		</tr> 	
+											    				
+											    			
+															
+														
+													</tbody></table>
+												</td>
+												<td>		
+													<table>
+														<!-- cellspacing="0" cellpadding="0" border="1" width="50%"  summary="Asignacion Comunidades">-->
+														
+														<!--  par -->
+														<tbody><tr height="30">
+	 														<td>&nbsp;</td>
+												 			<td>&nbsp;</td>
+												 		</tr>
+										 		    	
+										 		    		
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+										 		    				<tr height="30">
+			       														<td>
+			 																<input name="comuSelec" value="129" onclick="comprobarTodas();" id="comunidad2" type="checkbox">									          	          
+										         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="129">${serveron}</label></td>
+			     										 			</tr>
+			     												
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+										 		    				<tr height="30">
+			       														<td>
+			 																<input name="comuSelec" value="126" onclick="comprobarTodas();" id="comunidad4" type="checkbox">									          	          
+										         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="126">ITE</label></td>
+			     										 			</tr>
+			     												
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+										 		    				<tr height="30">
+			       														<td>
+			 																<input name="comuSelec" value="127" onclick="comprobarTodas();" id="comunidad6" type="checkbox">									          	          
+										         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="127">Pais Vasco</label></td>
+			     										 			</tr>
+			     												
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+										 		    				<tr height="30">
+			       														<td>
+			 																<input name="comuSelec" value="115" onclick="comprobarTodas();" id="comunidad8" type="checkbox">									          	          
+										         			 			</td>					
+										        			  			<td class="td_largo_09" valign="top"><label for="115">pruebas</label></td>
+			     										 			</tr>
+			     												
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+										 		    		
+										 		    			
+									  						
+															<!--  end mayor 0 -->										
+															
+														
+													</tbody></table>
+												</td>
+											</tr>
+											</tbody></table>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+							<fieldset style="background:#fff !Important" class="botonera botonera_de_dos clearfix">
+								<input class="boton" name="pulsacion" value="Buscar" type="submit">
+								<input class="boton boton_flot" name="pulsacion" value="Limpiar" type="submit"><br>
+							</fieldset>
+					<!-- Fin Botones  -->
+					<!-- Fin Botones  -->
+					
+						</form>
+	    			</section>
+				</article>
+	  
+		
+					
+						<article id="main" class="clearfix">							
+							<!-- En el formato de agrega 2 esto contiene las noticias y descargas -->
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+<div class="col_izq">		
+	<section class="bloque noticias">
+		<header>
+		<hgroup>
+			<h2 class="noticias" title="Noticias">Noticias</h2>
+		</hgroup>
+		</header>
+	
+		 	
+		
+			
+				<header>
+					<h3>
+					<a href="http://desarrollo.agrega.indra.es/portada/noticias/Los/tigres/pueden/ser/peligrosos/152">Los tigres pueden ser peligrosos</a><br>
+					</h3>
+				</header>
+				<p>14/06/2011, Un tigre hambriento podria resultar muy peligroso.</p>
+				<span>Categoría: 
+				<a href="http://desarrollo.agrega.indra.es/noticias/categorias/Pruebas/agrega2/en/desarrollo/48" class="cate">Pruebas agrega2 en desarrollo</a></span><p></p>
+			
+			
+			<p class="texto_der sin_p"><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Noticias/Noticias.do" class="flotante">Ver más noticias <span>&gt;</span></a></p>
+		 				
+	</section>
+	
+	
+	<br>
+    <section class="bloque descargas">
+		<header>
+		<hgroup>
+			<h2 class="descargas" title="Descargas">Descargas</h2>
+		</hgroup>
+		</header>
+		
+		 	
+		
+			
+				<header>
+					<h3>
+					<a href="http://desarrollo.agrega.indra.es/buscador/Descargas/DescargasDescarga.do?identificador=29&amp;titulo=Video%20navide%F1o">Descargar Video navideño (15 MB)</a><br>
+					</h3>
+				</header>
+				<p>Recuerdo de Agrega</p>
+			
+			
+			<p class="texto_der sin_p"><a href="http://desarrollo.agrega.indra.es/buscador/Descargas/Descargas.do" class="flotante">Ver más descargas <span>&gt;</span></a></p>
+		 	
+    </section>
+
+</div>
+							
+							<!-- En el formato de agrega 2 esto contiene la nube de tags -->
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INICIO LATERAL IZQUIERDO  -->
+
+
+<!-- INICIO NAVEGACIÓN VERTICAL NUEVO -->
+<!-- INICIO NAVEGACIÓN VERTICAL -->
+<div id="menu_vertical_02">
+
+<!--
+<br class="oculto" />
+<strong class="oculto">Menu Vertical</strong>
+<ul>
+
+
+</ul>
+-->
+</div>
+
+<!-- FIN NAVEGACIÓN VERTICAL -->
+<!-- FIN NAVEGACIÓN VERTICAL -->
+
+<!-- -->
+<!--
+
+
+-->
+<!-- -->
+
+
+<!-- NUBE TAGS -->
+
+
+<!--
+<div class="nube_destacada_blanca">
+	<div class="nub_d etiquetas">
+		<h3>Etiquetas</h3>
+		<ul>
+			
+			
+				<li><a title="andalucía 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=andalucía&tipoBusqueda=03" class="t1">andalucía</a></li>
+			
+				<li><a title="habana 59" href="/buscador/ListarODECU/ListarODECU.do?keyword=habana&tipoBusqueda=03" class="t4">habana</a></li>
+			
+				<li><a title="enseña 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=enseña&tipoBusqueda=03" class="t2">enseña</a></li>
+			
+				<li><a title="león 59" href="/buscador/ListarODECU/ListarODECU.do?keyword=león&tipoBusqueda=03" class="t3">león</a></li>
+			
+				<li><a title="formación 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=formación&tipoBusqueda=03" class="t1">formación</a></li>
+			
+				<li><a title="escena 73" href="/buscador/ListarODECU/ListarODECU.do?keyword=escena&tipoBusqueda=03" class="t5">escena</a></li>
+			
+				<li><a title="pintura 72" href="/buscador/ListarODECU/ListarODECU.do?keyword=pintura&tipoBusqueda=03" class="t5">pintura</a></li>
+			
+				<li><a title="profesores 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=profesores&tipoBusqueda=03" class="t2">profesores</a></li>
+			
+				<li><a title="novela 63" href="/buscador/ListarODECU/ListarODECU.do?keyword=novela&tipoBusqueda=03" class="t4">novela</a></li>
+			
+				<li><a title="curso 60" href="/buscador/ListarODECU/ListarODECU.do?keyword=curso&tipoBusqueda=03" class="t4">curso</a></li>
+			
+				<li><a title="sevilla 152" href="/buscador/ListarODECU/ListarODECU.do?keyword=sevilla&tipoBusqueda=03" class="t7">sevilla</a></li>
+			
+				<li><a title="cuba 78" href="/buscador/ListarODECU/ListarODECU.do?keyword=cuba&tipoBusqueda=03" class="t6">cuba</a></li>
+			
+				<li><a title="fachada 63" href="/buscador/ListarODECU/ListarODECU.do?keyword=fachada&tipoBusqueda=03" class="t5">fachada</a></li>
+			
+			<li id="enlace_especial"><a href="/visualizadorcontenidos/ListarNubeTagsCU/ListarNubeTagsCU.do" title="Ver Más"><span>Ver Más</span></a><br class="limpiar" /></li>
+		</ul>
+	</div>	
+	</div>
+-->
+
+    <div class="col_der">	
+    <section class="bloque etiquetas">
+     	<header>
+    		<h2 class="etiquetas" title="Etiquetas">Etiquetas</h2>
+   	 	</header>
+   	 	<p class="clearfix">
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="andalucía 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=andalucía&tipoBusqueda=03" class="t1">andalucía</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="andalucía 56" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=andaluc%EDa&amp;tipoBusqueda=02" class="t1">andalucía</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="habana 59" href="/buscador/ListarODECU/ListarODECU.do?keyword=habana&tipoBusqueda=03" class="t4">habana</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="habana 59" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=habana&amp;tipoBusqueda=02" class="t4">habana</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="enseña 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=enseña&tipoBusqueda=03" class="t2">enseña</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="enseña 56" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=ense%F1a&amp;tipoBusqueda=02" class="t2">enseña</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="león 59" href="/buscador/ListarODECU/ListarODECU.do?keyword=león&tipoBusqueda=03" class="t3">león</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="león 59" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=le%F3n&amp;tipoBusqueda=02" class="t3">león</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="formación 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=formación&tipoBusqueda=03" class="t1">formación</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="formación 56" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=formaci%F3n&amp;tipoBusqueda=02" class="t1">formación</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="escena 73" href="/buscador/ListarODECU/ListarODECU.do?keyword=escena&tipoBusqueda=03" class="t5">escena</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="escena 73" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=escena&amp;tipoBusqueda=02" class="t5">escena</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="pintura 72" href="/buscador/ListarODECU/ListarODECU.do?keyword=pintura&tipoBusqueda=03" class="t5">pintura</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="pintura 72" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=pintura&amp;tipoBusqueda=02" class="t5">pintura</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="profesores 56" href="/buscador/ListarODECU/ListarODECU.do?keyword=profesores&tipoBusqueda=03" class="t2">profesores</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="profesores 56" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=profesores&amp;tipoBusqueda=02" class="t2">profesores</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="novela 63" href="/buscador/ListarODECU/ListarODECU.do?keyword=novela&tipoBusqueda=03" class="t4">novela</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="novela 63" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=novela&amp;tipoBusqueda=02" class="t4">novela</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="curso 60" href="/buscador/ListarODECU/ListarODECU.do?keyword=curso&tipoBusqueda=03" class="t4">curso</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="curso 60" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=curso&amp;tipoBusqueda=02" class="t4">curso</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="sevilla 152" href="/buscador/ListarODECU/ListarODECU.do?keyword=sevilla&tipoBusqueda=03" class="t7">sevilla</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="sevilla 152" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=sevilla&amp;tipoBusqueda=02" class="t7">sevilla</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="cuba 78" href="/buscador/ListarODECU/ListarODECU.do?keyword=cuba&tipoBusqueda=03" class="t6">cuba</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="cuba 78" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=cuba&amp;tipoBusqueda=02" class="t6">cuba</a>
+		
+			<!-- Esto lazaria una busqueda por keyword -->
+			<!--
+			<a title="fachada 63" href="/buscador/ListarODECU/ListarODECU.do?keyword=fachada&tipoBusqueda=03" class="t5">fachada</a>
+			-->
+			
+			<!-- Esto lanza una busqueda normal -->
+			<a title="fachada 63" href="http://desarrollo.agrega.indra.es/buscador/ListarODECU/ListarODECU.do?buscar=Buscar&amp;buscadorGeneral=fachada&amp;tipoBusqueda=02" class="t5">fachada</a>
+		
+		</p>
+	</section>
+    </div>
+
+
+<!-- FIN NUBE TAGS -->
+<!--
+<hr/>
+-->
+
+<!-- FIN LATERAL IZQUIERDO -->
+<!-- FIN LATERAL IZQUIERDO -->
+						</article>
+					
+						<!-- Pie de pagina -->
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- INICIO PIE DE PAGINA -->
+<!-- INICIO PIE DE PAGINA -->
+<!-- <div id="pie_pagina"> -->
+<!-- <hr /> -->
+<!-- <a href="/visualizadorcontenidos/InformacionLegal/InformacionLegal.do"  id="info" title="Informaci&oacute;n Legal" ><span>Informaci&oacute;n Legal</span></a> -->
+<!-- <a href="/visualizadorcontenidos/PoliticaPrivacidad/PoliticaPrivacidad.do" id="politica" title="Pol&iacute;tica de Privacidad"><span>Pol&iacute;tica de Privacidad</span></a> <br class="oculto" /> -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+<!-- INCLUDE DE LOS LOGOS DE LOS COLABORADORES Y PATROCINADORES  -->
+<!-- Aqui iria el logos:renderLogoSet .... -->
+<!-- FIN DEL INCLUDE DE LOS LOGOS DE LOS COLABORADORES Y PATROCINADORES  -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
+
+<!-- </div> -->
+
+
+
+
+<!-- ASIDE -->
+<aside id="patros">
+<!--
+<br class="oculto" />
+<strong class="oculto">Colaboran:</strong>
+<div id="avanza_largo"><a href="http://www.planavanza.es" target="_blank" title="Plan Avanza 2"><span class="oculto">Plan Avanza 2</span></a></div>
+<ul id="patrocinadores" style="margin:0 !important;">
+<li><a href="http://www.plane.gob.es" id="plan_e" target="_blank" title="Plan E - Plan español para el estímulo de la economía y el empleo"><span>Plan E - Plan español para el estímulo de la economía y el empleo</span></a></li>
+<li><a href="http://www.la-moncloa.es/default.htm" id="gobespania" target="_blank" title="Gobierno de España"><span>Gobierno de España</span></a></li>
+<li><a href="http://www.mityc.es" id="industria" target="_blank"  title="Ministerio de Industria, Turismo y Comercio"><span>Ministerio de Industria, Turismo y Comercio</span></a></li>
+<li><a href="http://www.mepsyd.es" id="educacion" target="_blank" title="Ministerio de Educaci&oacute;n"><span>Ministerio de Educaci&oacute;n</span></a></li>
+<li><a href="http://www.ite.educacion.es" id="logo_ite" target="_blank" title="Instituto de Tecnolog&iacute;as Educativas"><span>Instituto de Tecnolog&iacute;as Educativas</span></a></li>
+<li><a href="http://europa.eu/scadplus/leg/es/lvb/l60015.htm" id="feder" target="_blank" title="Fondo Europeo de Desarrollo Regional"><span>Fondo Europeo de Desarrollo Regional</span></a></li>
+<li><a href="http://www.imsglobal.org" id="gl" target="_blank" title="${pie.imsglobal}"><span>${pie.imsglobal}</span></a></li>
+<li><a href="${urlConsejeria}" class="logo_comunidad"><span>desarrollo</span></a></li>
+</ul>
+-->
+
+
+<dl id="col">
+<dt><strong class="oculto">Colaboran:</strong></dt>
+<dd id="plan_avanza"><a href="http://www.planavanza.es/" target="_blank" title="Plan Avanza 2"><span>Plan Avanza 2</span></a></dd>
+<dd id="economia_sostenible"><a href="http://www.plane.gob.es/" target="_blank" title="Plan E - Plan español para el estímulo de la economía y el empleo"><span>Plan E - Plan español para el estímulo de la economía y el empleo</span></a></dd>
+<dd id="gob_espana"><a href="http://www.la-moncloa.es/default.htm" target="_blank" title="Gobierno de España"><span>Gobierno de España</span></a></dd>
+<dd id="ite"><a href="http://www.ite.educacion.es/" target="_blank" title="Instituto de Tecnologías Educativas"><span>Instituto de Tecnologías Educativas</span></a></dd>
+<dd id="feder"><a href="http://europa.eu/legislation_summaries/employment_and_social_policy/job_creation_measures/l60015_es.htm" target="_blank" title="Fondo Europeo de Desarrollo Regional"><span>Fondo Europeo de Desarrollo Regional</span></a></dd>
+<dd id="cel"><a href="#" title="Confianza En Línea"><span>Confianza En Línea</span></a></dd>
+<!-- 
+<dd id="ccaa"><div id="slider2" class="nivoSlider"><a href="${urlConsejeria}" title="desarrollo"><img src=""  alt="" title="Andalucia"  /></a></div></dd>
+ -->
+</dl>
+
+
+</aside>
+<!-- FIN ASIDE -->
+
+<!-- FOOTER -->
+<footer id="pie_pagina">
+<ul>
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/PoliticaPrivacidad/PoliticaPrivacidad.do" id="politica" title="Política de Privacidad">Política de Privacidad</a></li>
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/InformacionLegal/InformacionLegal.do" id="info_legal" title="Información Legal">Información Legal</a></li>
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Accesibilidad/Accesibilidad.do" title="Accesibilidad" id="registro">Accesibilidad</a></li>
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Contacto/Contacto.do" title="Contacto" id="contacto">Contacto</a></li>
+<li><a href="#" title="Ayuda">Ayuda</a></li>
+
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Mapa/Mapa.do" title="Mapa del portal">Mapa del portal</a></li>
+<li><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/AgregadorFeedsCU/AgregadorFeedsCU.do" title="RSS">RSS</a></li>
+</ul>
+</footer>
+<!-- FIN FOOTER -->
+
+
+					
+					</section>
+				
+					<!-- FIN PRINCIPAL -->
+
+				</div>
+			</div>
+			<!--  FIN CONTENEDOR (antes llamado CUERPO GENERAL) -->
+
+		</div>
+		<!--  FIN CAPA MADRE   -->
+		
+			
+		
+		<!--  FIN CAPA MADRE   -->
+
+		<!-- Aqui van javascripts propios  -->
+		<script type="text/javascript">
+		$(window).load(function() {
+			setTimeout(function(){
+				$('#slider2').nivoSlider({effect:'sliceDown',directionNav:false,startSlide:14, pauseTime:9000, captionOpacity:0,pauseOnHover:false, animSpeed:500 });
+			}, 1000);
+		});
+		</script>
+		<script type="text/javascript" src="UnaTaxonomia_files/codigo.txt"></script>
+		<script type="text/javascript" src="UnaTaxonomia_files/plantilla.txt"></script>
+		<script type="text/javascript" src="UnaTaxonomia_files/jquery_002.txt"></script>
+		<script type="text/javascript" src="UnaTaxonomia_files/acceso.txt"></script>
+		<script type="text/javascript" src="UnaTaxonomia_files/date.txt"></script>
+		<script type="text/javascript" src="UnaTaxonomia_files/jquery.txt"></script>	
+		<!-- Aqui van javascripts propios  -->
+
+	
+
+	
+	
+
+		<script type="text/javascript">
+			$(window).load(function() {
+				setTimeout(function(){
+					$('#slider2').nivoSlider({effect:'sliceDown',directionNav:false,startSlide:14, pauseTime:9000, captionOpacity:0,pauseOnHover:false, animSpeed:500 });
+				}, 1000);
+			});
+		</script>
+		<script type="text/javascript" src="UnaTaxonomia_files/codigo.txt"></script>
+<script type="text/javascript" src="UnaTaxonomia_files/plantilla.txt"></script>
+<script type="text/javascript" src="UnaTaxonomia_files/jquery_002.txt"></script>
+<script type="text/javascript" src="UnaTaxonomia_files/jquery-1.txt"></script>
+<script type="text/javascript" src="UnaTaxonomia_files/date.txt"></script>
+<script type="text/javascript" src="UnaTaxonomia_files/jquery.txt"></script>	
+		<script type="text/javascript">
+			Date.firstDayOfWeek = 0;
+			Date.format = 'dd/mm/yyyy';
+			$(function()
+			{
+				$('.date-pick').datePicker()
+			});
+		</script>
+
+	<!-- Aqui van javascripts propios  -->
+	
+	
+	
+	<script language="JavaScript">
+		
+		var ocultar="Ocultar campos de b&uacute;squeda";
+		var ver="Ver campos de b&uacute;squeda";
+		var propiedades = getChildsCount();
+		var checkboxes= document.getElementsByTagName("input");
+		var mostrarAmbito="true";
+		if(mostrarAmbito=="true"){
+			var comunidades = 0;
+			var totalComunidades = "10";
+			comunidades = contarComunidades();
+			document.getElementById("contadorComunidades").innerHTML=comunidades;
+	
+			if(comunidades<(parseInt(totalComunidades)-parseInt(2))){
+				expandirCaja('m2');
+			}
+		}
+		if(propiedades>1){
+			expandirCaja('m1');
+		}
+	/*	
+		if(trim(document.getElementById("nomTesauros").value)!=""){
+			expandirCaja('m4');
+		}
+	*/	
+		document.getElementById("contadorPropiedades").innerHTML=propiedades;
+		
+	//	document.getElementById("m6").className = 'caja_abierta';
+		document.forms[0].buscContenido.focus();
+		
+		function contarComunidades(){
+			var cont = 0;
+				if(parseInt(totalComunidades)>2){
+				for (var x=2; x < parseInt(totalComunidades); x++){
+					if(document.getElementById("comunidad"+x).checked){
+						cont=cont+1;
+				    }
+				}
+			}
+			return cont;
+		} 
+	/*	
+		function expandirCaja_original (i) 
+		{
+			if (document.getElementById(i).className=='caja_abierta') 
+			{
+				document.getElementById('p' + i).className = 'caja_cerrada';
+				document.getElementById('d'+i).innerHTML=ver;
+				document.getElementById(i).className = 'caja_cerrada';
+				document.getElementById("contadorPropiedades").innerHTML=getChildsCount();
+				document.getElementById("contadorComunidades").innerHTML=contarComunidades();
+			}
+			else 
+			{
+				document.getElementById('p' + i).className = 'caja_abierta';
+				document.getElementById('d'+i).innerHTML=ocultar;
+				document.getElementById(i).className = 'caja_abierta';
+			}
+		}
+	*/
+		
+		function contarFiltrosSeleccionados (elemento) {
+			if (document.getElementById(elemento).className=='caja_abierta') {
+				//document.getElementById("contadorPropiedades").innerHTML=getChildsCount();
+				document.getElementById("contadorComunidades").innerHTML=contarComunidades();
+			}
+		}
+		
+		function marcarTodas()
+		{
+		 	var checkboxes= document.getElementsByTagName("input");
+			var totalComunidades = "10";
+			
+	
+			if(document.getElementById("comunidad"+0).checked){
+				for (var x=0; x < totalComunidades; x++){
+					document.getElementById("comunidad"+x).checked=true;
+	      		 }
+			}else{
+					for (var x=2; x < totalComunidades; x++){
+				   	 document.getElementById("comunidad"+x).checked=false;
+				   	 }
+				
+			}
+		}
+	
+		function comprobarTodas(){
+			var vacio=false;
+			var checkboxes= document.getElementsByTagName("input");
+			var totalComunidades = "10";
+			for (var x=0; x < totalComunidades; x++){
+					if(document.getElementById("comunidad"+x).checked==true)
+					{
+				   	 	vacio=true;
+					}
+			}
+			if(vacio==true && document.getElementById("comunidad"+0).checked == true) document.getElementById("comunidad"+0).checked = false;
+		}
+		
+		function focusSubmit(evt) {
+			evt = (evt) ? evt : event;
+			var charCode = (evt.charCode) ? evt.charCode :
+			((evt.which) ? evt.which : evt.keyCode);
+			if (charCode == 13 || charCode == 3) {
+				document.getElementById("pulsacion").focus();
+				document.formularioAvanzado.submit();
+				return false;
+			}
+			return true;
+		}
+	</script>
+	
+
+</body></html>
+<!-- Aqui van javascripts propios (DIRECTION) -->

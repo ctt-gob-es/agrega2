@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<DTScroller title="foticos">
+		<items>
+				<item title="Tecnología">
+					<asset src="jpg_flash/imagen_01.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Literatura">
+					<asset src="jpg_flash/imagen_02.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Historia">
+					<asset src="jpg_flash/imagen_03.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Naturaleza">
+					<asset src="jpg_flash/imagen_04.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Matemáticas">
+					<asset src="jpg_flash/imagen_05.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Deportes">
+					<asset src="jpg_flash/imagen_06.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+				
+				<item title="Ciencias naturales">
+					<asset src="jpg_flash/imagen_07.jpg" />
+					<assetFull src="" />
+					<url>http://www.direction.es</url>
+					<description> <![CDATA[]]> </description>
+				</item>
+		</items>
+</DTScroller>

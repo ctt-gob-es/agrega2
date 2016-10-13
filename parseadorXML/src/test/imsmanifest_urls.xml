@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--This is a Reload version 2.5.4 SCORM 2004 Content Package document-->
+<!--Spawned from the Reload Content Package Generator - http://www.reload.ac.uk-->
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" xmlns:imsmd="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3" xmlns:imsss="http://www.imsglobal.org/xsd/imsss" xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3" xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3" identifier="MANIFEST-A09C57BFD9E2313044F1D6AC99DD31C8" xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://ltsc.ieee.org/xsd/LOM lom.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>2004 3rd Edition</schemaversion>
+   </metadata>
+  <organizations default="ORG-1407CA53DF6A0791B2C82466F69C4BB1">
+    <organization identifier="ORG-1407CA53DF6A0791B2C82466F69C4BB1" structure="hierarchical">
+      <title>Media - Publicidad</title>
+      <item identifier="ITEM-C0B1ECC9ADE44FDDBB72F0E4871DD699" identifierref="RES-1937E17748FA68C8270AA65D7691BB67" isvisible="true">
+        <title>Actividad Flash sobre los específico del medio publicitario</title>
+        <imsss:sequencing>
+          <imsss:controlMode choice="false" choiceExit="false" flow="false" forwardOnly="false" />
+        </imsss:sequencing>
+      </item>
+      <item identifier="ITEM-27DC3291-8067-D5DB-480A-A328E3FD89DD" isvisible="true">
+        <title>Grupo</title>
+        <item identifier="ITEM-F7E7F37D-5427-58DC-E205-19D75FF4DA35" identifierref="RES-1937E17748FA68C8270AA65D7691BB67" isvisible="true">
+          <title>Recurso</title>
+        </item>
+      </item>
+      <item identifier="ITEM-F7E7F37D-5427-58DC-E205-19D75FF4JAVI" identifierref="MANIFEST-2B3052FE-91ED-61FC-F5BF-2E7ED32F1BE5" isvisible="true">
+          <title>Submanifiesto</title>
+      </item>
+      <item identifier="ITEM-F7E7F37D-5427-58DC-E205-19D75FFJAVI2" identifierref="RES-D23D11AE-B507-CC76-D57C-2E801BCA2199" isvisible="true">
+          <title>Submanifiesto</title>
+      </item>
+      <imsss:sequencing>
+        <imsss:controlMode choice="true" choiceExit="true" flow="true" forwardOnly="true" />
+      </imsss:sequencing>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="RES-1937E17748FA68C8270AA65D7691BB67" adlcp:scormType="asset" type="webcontent" href="http://ccaa.agrega.indra.es">
+      <file href="contenido/actividad.html"/>
+      <file href="contenido/actividad/2.swf" />
+      <file href="contenido/css/radio_estilo.css" />
+      <file href="contenido/imagenes/index_17.gif" />
+	  <file href="contenido/imagenes/fondo_amarillo.gif" />
+    </resource>
+  </resources>
+  <manifest identifier="MANIFEST-2B3052FE-91ED-61FC-F5BF-2E7ED32F1BE5" xml:base="submanifest1/">
+    <metadata>
+      <schema>ADL SCORM</schema>
+      <schemaversion>2004 3rd Edition</schemaversion>
+          </metadata>
+    <organizations default="ORG-6B2AEB07-8EA1-B15D-C129-B6D8A5F66956">
+      <organization identifier="ORG-6B2AEB07-8EA1-B15D-C129-B6D8A5F66956" structure="hierarchical">
+        <title>Media - Publicidad</title>
+        <item identifier="ITEM-481E2FFC-94BE-4677-5DEB-582D743E7EF3" identifierref="RES-D23D11AE-B507-CC76-D57C-2E801BCA2199" isvisible="true">
+          <title>Historia de la Publicidad</title>
+        </item>
+      </organization>
+    </organizations>
+    <resources>
+      <resource identifier="RES-D23D11AE-B507-CC76-D57C-2E801BCA2199" adlcp:scormType="asset" type="webcontent" href="http://www.google.com">
+      </resource>
+    </resources>
+  </manifest>
+</manifest>
+

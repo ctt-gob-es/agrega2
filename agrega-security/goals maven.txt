@@ -1,0 +1,2 @@
+maven clean --> limpiar proyecto
+maven jar --> compilar y crear jar

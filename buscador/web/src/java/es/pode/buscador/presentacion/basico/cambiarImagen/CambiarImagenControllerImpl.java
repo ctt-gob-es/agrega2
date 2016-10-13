@@ -1,0 +1,222 @@
+/*
+Agrega2 es una federación de repositorios de objetos digitales educativos formada por todas las Comunidades Autónomas propiedad de Red.es.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the European Union Public Licence (EUPL v.1.0).  This program is distributed in the hope that it will be useful,  but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the European Union Public Licence (EUPL v.1.0). You should have received a copy of the EUPL licence along with this program.  If not, see http://ec.europa.eu/idabc/en/document/7330.
+*/
+// license-header java merge-point
+package es.pode.buscador.presentacion.basico.cambiarImagen;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.mail.internet.InternetHeaders;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimePartDataSource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.validator.ValidatorException;
+import org.apache.log4j.Logger;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.upload.FormFile;
+
+import es.agrega.soporte.agregaProperties.AgregaProperties;
+import es.agrega.soporte.agregaProperties.AgregaPropertiesImpl;
+import es.agrega.soporte.serverProperties.DependentServerProperties;
+import es.agrega.soporte.serverProperties.DependentServerPropertiesItf;
+import es.pode.buscador.presentacion.BuscarSession;
+import es.pode.buscador.presentacion.avanzado.buscarAvanzado.BuscarAvanzadoControllerImpl;
+import es.pode.soporte.constantes.ConstantesAgrega;
+import es.pode.soporte.i18n.I18n;
+import es.pode.soporte.seguridad.encriptacion.EncriptacionUtiles;
+
+
+
+/**
+ * @see es.pode.buscador.presentacion.basico.cambiarImagen.CambiarImagenController
+ */
+public class CambiarImagenControllerImpl extends CambiarImagenController
+{
+
+
+	private static Logger logger = Logger.getLogger(CambiarImagenControllerImpl.class);
+	private java.util.Properties pSpringProperties = null;
+	protected final static String FILE_SEPARATOR = "/";
+	public final static String PUNTO = ".";
+
+    /**
+     * @see es.pode.buscador.presentacion.basico.cambiarImagen.CambiarImagenController#subirImagen(org.apache.struts.action.ActionMapping, es.pode.buscador.presentacion.basico.cambiarImagen.SubirImagenForm, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     */
+    public final void subirImagen(ActionMapping mapping, es.pode.buscador.presentacion.basico.cambiarImagen.SubirImagenForm form, HttpServletRequest request, HttpServletResponse response) throws Exception
+    {
+    	BuscarSession sesion = null;
+    	File fDestino = null;
+        try{
+        	sesion = this.getBuscarSession(request);
+	    	DataHandler dFichero=sesion.getDhFileImagen();
+	    	if(dFichero!=null){
+	    		String identificador = form.getIdentificadorODE();
+		    	String pathImagen = this.imagePathGenerate(form.getIdentificadorODE());
+		    	
+	    		String extPNG = AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PROPERTY_IMAGE_EXTENSION);
+	    		String extJPG = this.getPropertyValue("imagen.ampliada.captured");
+	    		String extMediumJPG = this.getPropertyValue("imagen.ampliada.medium");
+	    		String tamanioPequenio = this.getPropertyValue("imagen.tamanioPequenio");
+	    		String tamanioGrande = this.getPropertyValue("imagen.tamanioGrande");
+	    		String tamanioMediano = this.getPropertyValue("imagen.tamanioMediano");
+	    		String imagenPequeña = pathImagen + FILE_SEPARATOR + identificador + extPNG;
+	    		String imagenGrande = pathImagen + FILE_SEPARATOR + identificador + extJPG;
+	    		String imagenMediana = pathImagen + FILE_SEPARATOR + identificador + extMediumJPG;
+	    		
+	    		String sFicheroTemporal = pathImagen + this.getPropertyValue("imagen.temporal.nombre") + form.getExtensionFich();
+	    		fDestino = new File(sFicheroTemporal);
+	    		logger.debug("subirImagen - Creamos el fichero para la nueva imagen");
+				fDestino.createNewFile();
+				FileOutputStream fos = new FileOutputStream(fDestino);
+	    		dFichero.writeTo(fos);	
+	    		form.setResultado(true);
+	    		logger.debug("subirImagen - Generamos imagen grande .jpg " + tamanioGrande);
+	    		if(!this.redimensionarImagen(sFicheroTemporal,imagenGrande,tamanioGrande)) form.setResultado(false);
+	    		logger.debug("subirImagen - Generamos imagen pequeña .png con tamaño " + tamanioPequenio);
+	    		if(!this.redimensionarImagen(sFicheroTemporal,imagenPequeña,tamanioPequenio)) form.setResultado(false);
+	    		logger.debug("subirImagen - Generamos imagen mediana .jpg con tamaño " + tamanioMediano);
+	    		if(!this.redimensionarImagen(sFicheroTemporal,imagenMediana,tamanioMediano)) form.setResultado(false);
+	    	}
+	    	else form.setResultado(false);
+	    	
+	    	sesion.setDhFileImagen(null);
+		} catch (Exception ex) {
+			sesion.setDhFileImagen(null);
+			logger.error("subirImagen - ERROR: al escribir la imagen",ex);
+		}finally{
+			logDebug("subirImagen - Si existe borramos el fichero temporal");
+			if(fDestino!=null && fDestino.exists()){
+				if(fDestino.delete())
+					logger.info("subirImagen - Fichero borrado");
+				else 
+					logger.info("subirImagen - Fichero no ha sido borrado");
+			}else{
+				logger.info("subirImagen - Fichero no existe");
+			}
+		}
+    }
+
+
+
+	@Override
+	public void obtenerImagen(ActionMapping mapping, ObtenerImagenForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 
+			BuscarSession sesion = this.getBuscarSession(request);
+					
+			FormFile fNuevaImagen = form.getFicheroImagenODE();
+			if(fNuevaImagen!=null && fNuevaImagen.getFileName()!=null && !fNuevaImagen.getFileName().equals("")){
+				String fileName = fNuevaImagen.getFileName();
+				String extFile = fileName.substring(fileName.lastIndexOf(PUNTO)+1,fileName.length());
+				if(esImagen(extFile)){
+			    	InternetHeaders ih = new InternetHeaders();
+					MimeBodyPart mbp = new MimeBodyPart(ih, fNuevaImagen.getFileData());
+					DataSource dsource = new MimePartDataSource(mbp);
+					DataHandler dhFichero = new DataHandler(dsource);
+
+					form.setExtensionFich(PUNTO+extFile);	
+				
+					sesion.setDhFileImagen(dhFichero);
+				}
+				else {
+					throw new ValidatorException(I18n.getInstance().getResource("{cambiar.imagen.selec.archivo.incorrecto}",BuscarAvanzadoControllerImpl.APPLICATION_PROPERTIES, (Locale) request.getSession().getAttribute(ConstantesAgrega.DEFAULT_LOCALE)));
+				}
+	    	}
+			else{		
+				throw new ValidatorException(I18n.getInstance().getResource("{cambiar.imagen.selec.vacia}",BuscarAvanzadoControllerImpl.APPLICATION_PROPERTIES, (Locale) request.getSession().getAttribute(ConstantesAgrega.DEFAULT_LOCALE)));		
+			}
+	}
+
+	private String imagePathGenerate(String identificador) {
+		StringBuffer imagePathReturn = new StringBuffer();
+		try {
+			DependentServerPropertiesItf properties = DependentServerProperties.getInstance();
+			String serverOn = properties.getServerOn();
+			// Ahora debo saber en qué servidor estoy.
+			logDebug("CambiarImagenControllerImpl imagePathGenerate - El servidor es serverOn [" + serverOn + "]");
+			// genero la URL de la imagen
+			imagePathReturn.append(AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.PATH_GALERIA_IMG));
+			if(!imagePathReturn.toString().endsWith(FILE_SEPARATOR))imagePathReturn.append(FILE_SEPARATOR);
+			imagePathReturn.append(serverOn);
+			imagePathReturn.append(FILE_SEPARATOR);
+//			Tenemos que añadir un codigo MD5 para impedir que en un mismo directorio haya mas de 32000 subdirectorios. El sistema de ficheros no lo 
+//			soporta. Lo hacemos por MEC, para valancear la carga entre los codigos que salgan.
+			String md5 = EncriptacionUtiles.md5String(identificador).substring(0, 2);
+			imagePathReturn.append(md5);
+			imagePathReturn.append(FILE_SEPARATOR);
+			imagePathReturn.append(identificador);
+			imagePathReturn.append(FILE_SEPARATOR);
+			File f = new File(imagePathReturn.toString());
+			if(!f.exists()){ 
+				logDebug("CambiarImagenControllerImpl imagePathGenerate - NO EXISTE DIRECTORIO!!!!!!!!: " + imagePathReturn.toString());
+				f.mkdirs();
+				logDebug("CambiarImagenControllerImpl imagePathGenerate - CREAMOS EL DIRECTORIO: " + imagePathReturn.toString());
+			}
+			
+			logDebug("CambiarImagenControllerImpl imagePathGenerate - Ruta donde se guarda la imagen: " + imagePathReturn.toString());
+		} catch (Exception ex) {
+			logger.error("CambiarImagenControllerImpl imagePathGenerate - Se ha producido un error en imageGenerate", ex);
+		}
+		return imagePathReturn.toString();
+
+	}
+	
+	private boolean esImagen(String extension) throws Exception{
+		boolean resultado = false;
+		String extensionValidas = this.getSrvPropiedadService().get(AgregaProperties.PROPERTY_IMAGE_RESIZE_EXT);
+		resultado = extensionValidas.contains(extension.toLowerCase());
+		return resultado;
+	}
+	
+	
+	private boolean redimensionarImagen(String pathFileSource, String pathFileTarget, String tamaño){
+		boolean resultado = true;
+		String comando = "convert -resize " + tamaño + " " + pathFileSource + " " + pathFileTarget;
+		try
+		{		
+			logDebug("CambiarImagenControllerImpl redimensionarImagen - Vamos a ejecutar el comando " +comando);
+	
+			Process process = Runtime.getRuntime().exec(comando);
+			
+			logDebug("CambiarImagenControllerImpl redimensionarImagen - Hemos ejecutado el proceso ["+process.getClass()+"]");
+       
+            // check for ls failure
+             if (process.waitFor() != 0) {
+            	 resultado = false;
+            	 logger.error("exit value = " + process.exitValue());       
+            }
+		}
+		catch (Exception ex)
+		{
+			logger.error("Se ha producido un error al ejecutar el comando [" + comando + "]", ex);
+			return false;
+		}	
+		return resultado;
+	}
+
+    private String getPropertyValue(String sKey) throws IOException {
+		InputStream fIsSpringProperties = this.getClass().getResourceAsStream("/spring_buscador2.properties");
+		if (this.pSpringProperties == null) {
+			pSpringProperties = new java.util.Properties();
+			pSpringProperties.load(fIsSpringProperties);
+		}
+		fIsSpringProperties.close();
+		logDebug("Propiedad recuperada: " + sKey + " : "
+				+ pSpringProperties.getProperty(sKey));
+		// devolvemos la propiedad
+		return pSpringProperties.getProperty(sKey);
+	}
+    
+	private void logDebug(String traza){
+		if (logger.isDebugEnabled())logger.debug(traza);
+	}
+}

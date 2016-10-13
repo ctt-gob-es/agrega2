@@ -1,0 +1,1464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SrvBuscarFederadaService"
+targetNamespace="http://servicios.federada.negocio.buscar.pode.es"
+xmlns:apachesoap="http://xml.apache.org/xml-soap"
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:impl="http://servicios.federada.negocio.buscar.pode.es">
+
+
+
+
+    <!-- WSDL Types -->
+
+     <wsdl:types>
+
+          <xsd:schema elementFormDefault="qualified" targetNamespace="http://servicios.federada.negocio.buscar.pode.es" xmlns="http://www.w3.org/2001/XMLSchema">
+
+               <xsd:element name="busquedaFederada30">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="parametros" nillable="false" type="impl:ParametrosBusquedaAvanzadaVO30">
+
+                                   <xsd:annotation>
+
+                                        <xsd:documentation>
+
+
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="busquedaFederada30Response">
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="busquedaFederada30Return" type="impl:DocumentosVO30"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="devolverVersionNodo">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="devolverVersionNodoResponse">
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="devolverVersionNodoReturn" type="xsd:string"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="estoyActivo">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="estoyActivoResponse">
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="estoyActivoReturn" type="xsd:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerIdentificadorNodo">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerIdentificadorNodoResponse">
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerIdentificadorNodoReturn" type="xsd:string"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="solicitarDocsCountArbolCurricular30">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="parametros" nillable="false" type="impl:ParametrosDocsCountVO30">
+
+                                   <xsd:annotation>
+
+                                        <xsd:documentation>
+
+
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="solicitarDocsCountArbolCurricular30Response">
+
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="solicitarDocsCountArbolCurricular30Return" type="impl:ResultadosNodoCountVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+
+               </xsd:element>
+
+	        <xsd:complexType name="DocumentosVO30">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        Esta clase representa los resultados de una busqueda.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="resultados" nillable="true" type="impl:ArrayOfDocVO30">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="sugerencias" nillable="true" type="impl:ArrayOfxsd_string">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                Se trata de las sugerencias de busqueda en el caso de que no
+                                haya resultados de busqueda para la busqueda invocada. Puede
+                                haber varias sugerencias.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numeroResultados" nillable="true" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="totalResultados" nillable="false" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="numDocumentosIndice" nillable="true" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="tesauros" nillable="true" type="impl:ArrayOfTaxonVO30">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="versionComunidadSolicitada" nillable="true" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="TaxonVO30">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        VO que alberga el identificador y nombre del tesauro
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="identificador" nillable="true" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="nombre" nillable="true" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation>
+
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ArrayOfTaxonVO30">
+                <xsd:sequence>
+                    <xsd:element name="item" minOccurs="0" maxOccurs="unbounded" form="qualified" type="impl:TaxonVO30" />
+                </xsd:sequence>
+            </xsd:complexType>
+               <xsd:complexType name="ParametrosBusquedaAvanzadaVO30">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+                        Esta clase encapsula todos los parametros configurables para la
+                        realizacion de una busqueda en el servicio de Buscar.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="valoracion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Valoracion del ODE dentro de la plataforma.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="titulo" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Titulo del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="secuencia" nillable="true" type="xsd:boolean">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Con secuencia o sin secuencia.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="recurso" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Recurso del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="procesoCognitivo" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Proceso cognitivo del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="palabrasClave" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Se trata de las palabras clave por las que se quiere buscar.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="origenPagina" nillable="false" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Indice del conjunto total de resultados a partir del cual se
+                                quieren obtener un conjunto de resultados.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="numeroResultados" nillable="false" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Numero de resultados maximo que se quieren devolver.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="taxonomia" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                El taxonomia del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idiomaNavegacion" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Se trata del idioma con el que el usuario navega por la
+                                aplicacion.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idiomaBusqueda" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Idioma por el que se quiere configurar la busqueda.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idBusqueda" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                El identificador de la busqueda en el caso de que el cliente que
+                                invoca la misma ya la haya realizado anteriormente y solo quiera
+                                paginar sobre los resultados de la misma.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="formato" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Formato del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaPublicacion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Fecha de publicacion del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="edad" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Edad de los destinatarios de la accion lectiva del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Descripcion del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="contexto" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Contexto del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="comunidadesSeleccionadas" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Comunidades en las que se busca el ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="autor" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Autor del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="resultadosPorPagina" nillable="false" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                El numero de resultados por pagina en el que se esta interesado.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="comunidadPeticion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="busquedaSimpleAvanzada" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="nivelAgregacion" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="destinatarios" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="keyword" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="ambito" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="identificador" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="comunidadDestino" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                La url de el nodo destino de la busqueda federada
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="versionComunidadDestino" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                La version del nodo destino de la peticion de busqueda federada
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ParametrosDocsCountVO30">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+                        Parámetros para solicitar el número de documentos para un área
+                        curricular
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="idiomaBusqueda" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="taxonomia" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idiomaNavegacion" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="tipoBusqueda" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="comunidadPeticion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="comunidadDestino" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="versionComunidadDestino" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ResultadosNodoCountVO">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+                        Número de documentos para un área curricular.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="numeroResultados" nillable="true" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="conteo" nillable="true" type="impl:ArrayOfxsd_int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfDocVO30">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:DocVO30"/>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="DocVO30">
+
+                    <xsd:annotation>
+
+                         <xsd:documentation>
+
+                        Esta clase representa un documento como resultado unico de una
+                        busqueda.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="descripcion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="titulo" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="localizadorODE" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Localizador del objeto digital.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="valoracion" nillable="true" type="xsd:float">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Valoracion del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="tipoRecurso" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Tipo de recurso del ODE. En cada entrada del array hay un tipo
+                                de recurso.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="curso" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Curso al que pertenece el ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="areaCurricular" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Area curricular a la que pertenece el ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="licencias" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Licencias del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="formato" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Formatos del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="destinatarios" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Destinatarios del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idioma" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Idiomas que contempla la informacion del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="ambito" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Ambito de aplicacion del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="ranking" nillable="true" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="identificadorODE" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Se trata del identificador alfanumerico del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="nodo" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="imagen" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                URL de acceso a la imagen del ODE.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="nivelAgregacion" nillable="true" type="xsd:int">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="tamanio" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="conSinSecuencia" nillable="true" type="xsd:boolean">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                Indica si el ode tiene secuencia o no.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaPublicacion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                fecha de publicacion del ODE
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="horaPublicacion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+                                hora en la que se ha publicado el ODE
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="autor" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="palabrasClave" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="orientacionDidactica" nillable="true" type="impl:ArrayOfxsd_string">
+
+                              <xsd:annotation>
+
+                                   <xsd:documentation>
+
+
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfxsd_int">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:int"/>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfxsd_string">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+          </xsd:schema>
+
+     </wsdl:types>
+
+
+    <!-- Messages -->
+
+     <wsdl:message name="busquedaFederada301Request">
+
+          <wsdl:part element="impl:busquedaFederada30" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="busquedaFederada301Response">
+
+          <wsdl:part element="impl:busquedaFederada30Response" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="devolverVersionNodo2Request">
+
+          <wsdl:part element="impl:devolverVersionNodo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="devolverVersionNodo2Response">
+
+          <wsdl:part element="impl:devolverVersionNodoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="estoyActivo3Request">
+
+          <wsdl:part element="impl:estoyActivo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="estoyActivo3Response">
+
+          <wsdl:part element="impl:estoyActivoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerIdentificadorNodo4Request">
+
+          <wsdl:part element="impl:obtenerIdentificadorNodo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerIdentificadorNodo4Response">
+
+          <wsdl:part element="impl:obtenerIdentificadorNodoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="solicitarDocsCountArbolCurricular305Request">
+
+          <wsdl:part element="impl:solicitarDocsCountArbolCurricular30" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="solicitarDocsCountArbolCurricular305Response">
+
+          <wsdl:part element="impl:solicitarDocsCountArbolCurricular30Response" name="parameters"/>
+
+     </wsdl:message>
+
+
+    <!-- Port Type -->
+
+     <wsdl:portType name="SrvBuscarFederadaService">
+
+          <wsdl:operation name="busquedaFederada30">
+
+
+               <wsdl:documentation>
+
+
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:busquedaFederada301Request" name="busquedaFederada301Request"/>
+
+               <wsdl:output message="impl:busquedaFederada301Response" name="busquedaFederada301Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="devolverVersionNodo">
+
+
+               <wsdl:documentation>
+
+
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:devolverVersionNodo2Request" name="devolverVersionNodo2Request"/>
+
+               <wsdl:output message="impl:devolverVersionNodo2Response" name="devolverVersionNodo2Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="estoyActivo">
+
+
+               <wsdl:documentation>
+
+
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:estoyActivo3Request" name="estoyActivo3Request"/>
+
+               <wsdl:output message="impl:estoyActivo3Response" name="estoyActivo3Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerIdentificadorNodo">
+
+
+               <wsdl:documentation>
+
+
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerIdentificadorNodo4Request" name="obtenerIdentificadorNodo4Request"/>
+
+               <wsdl:output message="impl:obtenerIdentificadorNodo4Response" name="obtenerIdentificadorNodo4Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="solicitarDocsCountArbolCurricular30">
+
+
+               <wsdl:documentation>
+
+
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:solicitarDocsCountArbolCurricular305Request" name="solicitarDocsCountArbolCurricular305Request"/>
+
+               <wsdl:output message="impl:solicitarDocsCountArbolCurricular305Response" name="solicitarDocsCountArbolCurricular305Response"/>
+
+          </wsdl:operation>
+
+     </wsdl:portType>
+
+
+    <!-- WSDL Binding -->
+
+     <wsdl:binding name="SrvBuscarFederadaServiceSoapBinding" type="impl:SrvBuscarFederadaService">
+
+          <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+          <wsdl:operation name="busquedaFederada30">
+
+               <wsdlsoap:operation soapAction="busquedaFederada30" style="document"/>
+
+               <wsdl:input name="busquedaFederada301Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="busquedaFederada301Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+
+          <wsdl:operation name="devolverVersionNodo">
+
+               <wsdlsoap:operation soapAction="devolverVersionNodo" style="document"/>
+
+               <wsdl:input name="devolverVersionNodo2Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="devolverVersionNodo2Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+
+          <wsdl:operation name="estoyActivo">
+
+               <wsdlsoap:operation soapAction="estoyActivo" style="document"/>
+
+               <wsdl:input name="estoyActivo3Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="estoyActivo3Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+
+          <wsdl:operation name="obtenerIdentificadorNodo">
+
+               <wsdlsoap:operation soapAction="obtenerIdentificadorNodo" style="document"/>
+
+               <wsdl:input name="obtenerIdentificadorNodo4Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerIdentificadorNodo4Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+
+          <wsdl:operation name="solicitarDocsCountArbolCurricular30">
+
+               <wsdlsoap:operation soapAction="solicitarDocsCountArbolCurricular30" style="document"/>
+
+               <wsdl:input name="solicitarDocsCountArbolCurricular305Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="solicitarDocsCountArbolCurricular305Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+
+     </wsdl:binding>
+
+
+    <!-- Service Definition -->
+
+     <wsdl:service name="SrvBuscarFederadaServiceService">
+
+          <wsdl:documentation>
+
+
+          </wsdl:documentation>
+
+          <wsdl:port binding="impl:SrvBuscarFederadaServiceSoapBinding" name="SrvBuscarFederadaService">
+
+               <wsdlsoap:address location="http://localhost:8080/buscar-1/services/SrvBuscarFederadaService"/>
+
+          </wsdl:port>
+
+     </wsdl:service>
+
+
+</wsdl:definitions>

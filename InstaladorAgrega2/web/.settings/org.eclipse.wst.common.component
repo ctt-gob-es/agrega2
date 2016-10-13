@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="InstaladorAgrega2.web">
+        <wb-resource deploy-path="/" source-path="/target/InstaladorAgrega2-1.0.war"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/target/src"/>
+        <property name="context-root" value="InstaladorAgrega2.web"/>
+        <property name="java-output-path" value="/target/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <artifactId>${application.id}</artifactId>
+    <groupId>${application.id}</groupId>
+    <name>${application.name}</name>
+    <currentVersion>${application.version}</currentVersion>
+    <shortDescription>The AgregaJmx</shortDescription>
+    <logo>/images/banner.jpg</logo>
+    <organization>
+	<name>The I-Builder Team</name>
+	<url>http://portalesddp.indra.es/C16/I-Builder/default.aspx</url>
+	<logo></logo>
+    </organization>
+    <inceptionYear>2006</inceptionYear>
+    <description>
+        Contains the AgregaJmx Project.
+    </description>
+    <package>${application.package}</package>
+    <developers>
+        <developer>
+              <name>Francisco Villarejo</name>
+              <id></id>
+              <email></email>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>commons-jelly</groupId>
+            <artifactId>commons-jelly-tags-interaction</artifactId>
+            <version>${commons.jelly.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ibuilder</groupId>
+            <artifactId>ibuilder-schemaupdater</artifactId>
+            <version>${ibuilder.schemaupdater.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hibernate</groupId>
+            <artifactId>hibernate</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax-transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>${jta.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jdbc-drivers</groupId>
+            <artifactId>classes12</artifactId>
+			<jar>classes12.jar</jar>
+        </dependency>
+    </dependencies>
+</project>

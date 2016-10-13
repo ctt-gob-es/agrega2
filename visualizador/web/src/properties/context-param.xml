@@ -1,0 +1,44 @@
+    <context-param>
+   		<param-name>url_portal</param-name>
+   		<param-value>PortalEmpaquetador/Inicio/Inicio.do</param-value>
+	</context-param>
+	<context-param>
+   		<param-name>url_ayuda2</param-name>
+   		<param-value>visualizadorcontenidos/ayuda/ayuda.html</param-value>
+	</context-param>
+	<context-param>
+   		<param-name>url_portada</param-name>
+   		<param-value>visualizadorcontenidos/Portada/Portada.do</param-value>
+	</context-param>
+	<context-param>
+   		<param-name>url_buscadorDetalleCorta</param-name>
+   		<param-value>ODE</param-value>
+	</context-param>
+
+<!-- ADL -->
+    
+    <!-- Context initialization parameters that define shared
+         String constants used within your application, which
+         can be customized by the system administrator who is
+         installing your application.  The values actually
+         assigned to these parameters can be retrieved in a
+         servlet or JSP page by calling:
+
+             String value =
+               getServletContext().getInitParameter("name");
+
+         where "name" matches the <param-name> element of
+         one of these initialization parameters.
+
+         You can define any number of context initialization
+         parameters, including zero.
+    -->
+
+    <context-param>
+      <param-name>ADL</param-name>
+      <param-value>petersod@adlnet.gov</param-value>
+<!--       <description> -->
+<!--         The EMAIL address of the administrator to whom questions -->
+<!--         and comments about this application should be addressed. -->
+<!--       </description> -->
+    </context-param>

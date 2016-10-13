@@ -1,0 +1,32 @@
+Contenido Version 3.1.4
+
+1.- Nuevo Cartridge andromda-batch: a través de los diagramas de actividad se especifican las diversas 
+		actividades de los procesos y sus elementos paralelizables.  De esta forma se generará código capaz 
+		de desplegarse en todos los recursos hardware existentes para reducir en lo posible los tiempos de 
+		ejecución. Para desplegar estos procesos se pueden utilizar protocolos simples como SSH o protocolos 
+		específicos de grid-computing.
+2.- Nuevo Cartridge andromda-BPM4WebFlowJSF: en su primera entrega, quiere ayudar a implantar en los proyectos 
+		una arquitectura de software en las capas de vista y controlador. Para conseguir los objetivos anteriores, 
+		se han integrado las siguientes tecnologías y frameworks: Spring Web Flow - JavaServer Faces - IceFaces 
+		- Facelets. Este cartridge respeta y a su vez simplifica el modelado ya conocido utilizado en el cartridge 
+		BPM4Struts. Además genera un proyecto Eclipse compatible con los plugins Web Tools Platform y MyEclipse, 
+		con el objetivo de incrementar la productividad de los equipos de desarrollo, agilizando las iteraciones 
+		"desarrollo-compilación-prueba". A partir de diagramas de actividad, se generan los flujos para Spring Web Flow, 
+		las acciones del controlador y todo lo necesario para poder utilizar las tecnologías anteriormente citadas de 
+		la manera más sencilla y productiva posible.
+3.- Soporte Auditoría y Encriptación de Datos.
+4.- En el plugin ibuilder:wsdl2xmi se mejora el tratamiento de tipos wrapper java y derivados tales 
+	como el Boolean, Long, etc. También el soporte de Arrays de cualquier tipo y attachments.
+5.- Soporte en fichero de propiedades para las url's (End Point Address) de los servicios importados.
+6.- El fichero .classpath de eclipse se genera dinámicamente incluyendo solo las librerías necesarias.
+7.- Soporte invocación desde un test a un servicio que invoca a otro servicio web con seguridad.
+8.- Cuando se elegía utilizar webservice importados en la creación del proyecto y NO se seleccionaba usar seguridad, 
+	provocaba un error, ya que el fichero client-config.wsdd se generaba haciendo referencia a la clase 
+	es.indra.ibuilder.security.ws.HttpBasicCredentialsSender, esto se corrige.
+9.- Actualización de versiones:
+		- spring 2.0
+		- hibernate 3.1
+		- ehcahe 1.2.3
+		- birt 2.1.1
+		- jbpm 3.1.2
+		

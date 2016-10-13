@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--This is a Reload CRT version 2.3.5 Metadata document-->
+<!--Spawned from the Reload Metadata Generator - http://www.reload.ac.uk-->
+<lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM C:\LOM-ES_XSD\lomCustom.xsd">
+	<general>
+		<identifier>
+			<catalog>Catálogo unificado mec-red.es-ccaa de identificación de ODE</catalog>
+			<entry>
+       es_20070129_1_1000001
+			</entry>
+		</identifier>
+		<title>
+			<string>
+Acoplamiento a media madera
+</string>
+		</title>
+		<language>es</language>
+		<description>
+			<string>Representación del acoplamiento horizontal de dos piezas a media madera</string>
+			<string>Dimensión: 640X480; Formato: horizontal; Estructura formal: figura exenta</string>
+		</description>
+		<keyword>
+			<string>
+carpintería,madera,tabla,acoplamiento,acoplar,unir,unión,media,madera
+</string>
+			<string/>
+			<string/>
+			<string/>
+		</keyword>
+		<coverage>
+			<string/>
+		</coverage>
+		<structure>
+			<value>atomic</value>
+		</structure>
+		<aggregationLevel>
+			<value>1</value>
+		</aggregationLevel>
+	</general>
+	<lifeCycle>
+		<version>
+			<string>v1.0</string>
+		</version>
+		<status>
+			<value>final</value>
+		</status>
+		<contribute>
+			<role>
+				<value>editor</value>
+			</role>
+			<entity>BEGIN:VCARD VERSION:3.0 FN: Centro Nacional de Información y Comunicación Educativa. Ministerio de Educación y Ciencia de España EMAIL;TYPE=INTERNET: webmaster@cnice.mec.es ORG: Ministerio de Educación y Ciencia de España END:VCARD</entity>
+			<date>
+				<dateTime>2006-01-29</dateTime>
+			</date>
+		</contribute>
+	</lifeCycle>
+	<metaMetadata>
+		<identifier>
+			<catalog>Catálogo unificado mec-red.es-ccaa-meta de identificación de instancias de metadatos de ODE</catalog>
+			<entry>
+       es_20070129_1_1000001_meta
+       </entry>
+		</identifier>
+		<contribute>
+			<role>
+				<value>creator</value>
+			</role>
+			<entity>BEGIN:VCARD VERSION:3.0 FN: EMAIL;TYPE=INTERNET:  ORG: Santillana Educación S.L. e Indra Sistemas S.A. END:VCARD</entity>
+			<date>
+				<dateTime>2007-01-29</dateTime>
+			</date>
+		</contribute>
+		<metadataSchema>LOM-ES v1.0</metadataSchema>
+		<language>es</language>
+	</metaMetadata>
+	<technical>
+		<format>application/x-shockwave-flash</format>
+		<size>189120</size>
+		<location/>
+		<requirement>
+			<orComposite>
+				<type>
+					<value>browser</value>
+				</type>
+				<name>
+					<value>any</value>
+				</name>
+				<minimumVersion>Flash Payer 7</minimumVersion>
+				<maximumVersion/>
+			</orComposite>
+		</requirement>
+		<installationRemarks>
+			<string/>
+		</installationRemarks>
+		<otherPlatformRequirements>
+			<string>Plugin de Flash Player</string>
+		</otherPlatformRequirements>
+		<duration>
+			<duration>PT2S</duration>
+		</duration>
+	</technical>
+	<rights>
+		<cost>
+			<value>no</value>
+		</cost>
+		<copyrightAndOtherRestrictions>
+			<value>propietary license</value>
+		</copyrightAndOtherRestrictions>
+		<description>
+			<string>La utilización de estos contenidos es universal, gratuita y abierta, siempre y cuando se trate de un uso educativo no comercial. Las acciones, productos y utilidades derivadas de su utilización no podrán, en consecuencia, generar ningún tipo de lucro. Asimismo, es obligada la referencia a la fuente</string>
+		</description>
+		<access>
+			<accessType>
+				<value>non-universal</value>
+			</accessType>
+			<description>
+				<string>No existen restricciones</string>
+			</description>
+		</access>
+	</rights>
+	<classification>
+		<purpose uniqueElementName="purpose">
+			<value uniqueElementName="value">competency</value>
+			<source uniqueElementName="source">LOM-ES V1.0</source>
+		</purpose>
+		<description>
+			<string/>
+		</description>
+		<keyword>
+			<string/>
+		</keyword>
+		<taxonPath>
+			<source uniqueElementName="source">
+				<string language="en">arbol_curricular_es</string>
+			</source>
+			<taxon>
+				<id uniqueElementName="id">1</id>
+				<entry>
+					<string language="en">Educación Juvenil</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2</id>
+				<entry>
+					<string language="en">Segundo Ciclo</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2.2</id>
+				<entry>
+					<string language="en">Conocimiento de la Sociedad</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2.2.1</id>
+				<entry>
+					<string language="en">Bloque 1: Medio físico: Elementos, relaciones y medida</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+		<taxonPath>
+			<source uniqueElementName="source">
+				<string language="es">arbol curricular</string>
+			</source>
+			<taxon>
+				<id uniqueElementName="id">2</id>
+				<entry>
+					<string language="es">Educación Primaria</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1</id>
+				<entry>
+					<string language="es">Primer Ciclo</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1.2</id>
+				<entry>
+					<string language="es">Educación Artística</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1.2.4</id>
+				<entry>
+					<string language="es">Bloque 4:Interpretación y creación musical</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+		<taxonPath>
+			<source uniqueElementName="source">
+				<string language="en">arbol_curricular_es</string>
+			</source>
+			<taxon>
+				<id uniqueElementName="id">1</id>
+				<entry>
+					<string language="en">Educación Juvenil2</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2</id>
+				<entry>
+					<string language="en">Segundo Ciclo</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2.2</id>
+				<entry>
+					<string language="en">Conocimiento de la Sociedad</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">1.2.2.1</id>
+				<entry>
+					<string language="en">Bloque 1: Medio físico: Elementos, relaciones y medida</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+		<taxonPath>
+			<source uniqueElementName="source">
+				<string language="es">arbol_ curricular_es </string>
+			</source>
+			<taxon>
+				<id uniqueElementName="id">2</id>
+				<entry>
+					<string language="es">Educación Primaria2</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1</id>
+				<entry>
+					<string language="es">Primer Ciclo</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1.2</id>
+				<entry>
+					<string language="es">Educación Artística</string>
+				</entry>
+			</taxon>
+			<taxon>
+				<id uniqueElementName="id">2.1.2.4</id>
+				<entry>
+					<string language="es">Bloque 4:Interpretación y creación musical</string>
+				</entry>
+			</taxon>
+		</taxonPath>
+	</classification>
+    <classification>
+        <purpose uniqueElementName="purpose">
+            <source uniqueElementName="source">LOM-ESv1.0</source>
+            <value uniqueElementName="value">educational level</value>
+        </purpose>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Nivel educativo LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">6</id>
+                <entry>
+                    <string>Bachillerato</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string language="en">Árbol curricular LOE 2006</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string language="en">Children education</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1</id>
+                <entry>
+                    <string language="en">Second stage</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.1</id>
+                <entry>
+                    <string language="en">Self-knowledge and personal autonomy</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <description>
+            <string language="es">aaa</string>
+        </description>
+        <keyword>
+            <string language="es">Bachillerato</string>
+        </keyword>
+    </classification>
+    <classification>
+        <purpose uniqueElementName="purpose">
+            <source uniqueElementName="source">LOM-ESv1.0</source>
+            <value uniqueElementName="value">discipline</value>
+        </purpose>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Árbol curricular LOE 2006</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">4</id>
+                <entry>
+                    <string>Bachillerato</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">4.2</id>
+                <entry>
+                    <string>Materias de Modalidad</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">4.2.12</id>
+                <entry>
+                    <string>Anatomía aplicada</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Árbol curricular LOE 2006</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">4</id>
+                <entry>
+                    <string>Bachillerato</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">4.2</id>
+                <entry>
+                    <string>Materias de modalidad</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">4.2.18</id>
+                <entry>
+                    <string>Biología</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <keyword>
+            <string>Biología</string>
+        </keyword>
+    </classification>
+    <classification>
+        <purpose uniqueElementName="purpose">
+            <source uniqueElementName="source">LOM-ESv1.0</source>
+            <value uniqueElementName="value">competency</value>
+        </purpose>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Competencia LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string>Competencias generales y personales</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.5</id>
+                <entry>
+                    <string>Autoreflexión y autoevaluación</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Competencia LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string>Competencias generales y personales</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.9</id>
+                <entry>
+                    <string>Conocimiento de los principios básicos de la naturaleza</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Competencia LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">2</id>
+                <entry>
+                    <string>Competencias académicas</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.1</id>
+                <entry>
+                    <string>Acceder y aplicar el conocimiento desde diferentes disciplinas (arte, ciencias sociales, filosofía ciencias naturales, ...)</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Competencia LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">2</id>
+                <entry>
+                    <string>Competencias académicas</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.5</id>
+                <entry>
+                    <string>Conocimiento de los métodos científicos</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Competencia LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">3</id>
+                <entry>
+                    <string>Competencias sociales y de trabajo en equipo</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">3.3</id>
+                <entry>
+                    <string>Comprender y trabajar dentro de la cultura del grupo</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <keyword>
+            <string>Conocer</string>
+        </keyword>
+        <keyword>
+            <string>comprender</string>
+        </keyword>
+        <keyword>
+            <string>biología</string>
+        </keyword>
+    </classification>
+    <classification>
+        <purpose uniqueElementName="purpose">
+            <source uniqueElementName="source">LOM-ESv1.0</source>
+            <value uniqueElementName="value">accessibility restrictions</value>
+        </purpose>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE ACCESO AL SIGUIENTE NIVEL</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.</id>
+                <entry>
+                    <string>Modo de presentación de la información en el acceso</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.3</id>
+                <entry>
+                    <string>Textual (visual por texto)</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.3.1</id>
+                <entry>
+                    <string>Informativo</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE ACCESO AL SIGUIENTE NIVEL</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1</id>
+                <entry>
+                    <string>Modo de presentación de la información en el acceso</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.4</id>
+                <entry>
+                    <string>Visual (sólo por icono)</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.1.4.1</id>
+                <entry>
+                    <string>Informativo</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">1</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE ACCESO AL SIGUIENTE NIVEL</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.2</id>
+                <entry>
+                    <string>Modo de interacción para el acceso (revisar los modos de interacción)</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">1.2.1</id>
+                <entry>
+                    <string>Por ratón u otros dispositivos apuntadores</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">2</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE INTERACCION EN LA ACTIVIDAD DE APRENDIZAJE</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.1</id>
+                <entry>
+                    <string>Modo de presentación de la información dentro del objeto</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.1.4</id>
+                <entry>
+                    <string>Visual (sólo por icono)</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.1.4.1</id>
+                <entry>
+                    <string>Informativa</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">2</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE INTERACCION EN LA ACTIVIDAD DE APRENDIZAJE</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.2</id>
+                <entry>
+                    <string>Permite control flexible (tiene más de una opción de interacción)</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.2.2</id>
+                <entry>
+                    <string>No</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">2</id>
+                <entry>
+                    <string>DECLARACIÓN DEL MODO DE INTERACCION EN LA ACTIVIDAD DE APRENDIZAJE</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.3</id>
+                <entry>
+                    <string>Modos de interacción dentro de la actividad</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">2.3.2</id>
+                <entry>
+                    <string>Control total por ratón u otros dispositivos apuntadores (hardware específico, tableta,...)</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">3</id>
+                <entry>
+                    <string>TRABAJA A PANTALLA COMPLETA</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">3.2</id>
+                <entry>
+                    <string>No</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">4</id>
+                <entry>
+                    <string>RESOLUCION DE PANTALLA NATIVA</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">4.1</id>
+                <entry>
+                    <string>800 x 600</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">5</id>
+                <entry>
+                    <string>PERMITE CAMBIO DE RESOLUCION CON AJUSTE DE CONTENIDO</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">5.1</id>
+                <entry>
+                    <string>Funciona con auto-ajuste</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">6</id>
+                <entry>
+                    <string>PERMITE ADAPTAR LA VISUALIZACION</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">6.2</id>
+                <entry>
+                    <string>No</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">9</id>
+                <entry>
+                    <string>TIENE CONTROL DEL TIEMPO DE EJECUCION</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">9.1</id>
+                <entry>
+                    <string>Sí</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">10</id>
+                <entry>
+                    <string>TIPO DE CONTADOR DE EJECUCION</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">10.1</id>
+                <entry>
+                    <string>Hacia delante modificable</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <taxonPath>
+            <source uniqueElementName="source">
+                <string>Accesibilidad LOM-ESv1.0</string>
+            </source>
+            <taxon>
+                <id uniqueElementName="id">10</id>
+                <entry>
+                    <string>TIPO DE CONTADOR DE EJECUCION</string>
+                </entry>
+            </taxon>
+            <taxon>
+                <id uniqueElementName="id">10.3</id>
+                <entry>
+                    <string>Hacia atrás modificable</string>
+                </entry>
+            </taxon>
+        </taxonPath>
+        <keyword>
+            <string>Visual</string>
+        </keyword>
+        <keyword>
+            <string>textual</string>
+        </keyword>
+        <keyword>
+            <string>informativa</string>
+        </keyword>
+    </classification>
+</lom>

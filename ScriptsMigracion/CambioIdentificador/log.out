@@ -1,0 +1,282 @@
+26/06/09 09:15:20 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 09:15:20 INFO  [Cambio.main (74)] Path del repositorio de odes null
+26/06/09 09:15:20 INFO  [Cambio.main (87)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 09:15:20 ERROR [Cambio.validarRutas (226)] El path repositorio de odes es nulo
+26/06/09 09:16:35 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 09:16:35 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/taller/migraciones
+26/06/09 09:16:35 INFO  [Cambio.main (87)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 09:16:35 ERROR [Cambio.validarRutas (232)] El path repositorio C:/MDA/jboss-4.0.2/bin/uploads/taller/migraciones no es un directorio. Por favor chequee la ruta y vuelva a ejecutar el script
+26/06/09 09:16:35 INFO  [Cambio.main (89)] Fin migración de Odes
+26/06/09 10:10:25 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:10:25 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:10:25 INFO  [Cambio.main (89)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:10:26 INFO  [Cambio.validarRutas (250)] Es zip
+26/06/09 10:10:29 INFO  [Cambio.validarRutas (258)] Descomprimiendo fichero zip
+26/06/09 10:10:30 INFO  [Cambio.validarRutas (285)] el manifest ha sido parseado 
+26/06/09 10:14:38 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:14:50 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:14:50 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:14:50 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:14:50 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:14:56 ERROR [TrueZipDaoImpl.descomprimir (69)] No se pudo descomprimir el archivo C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es.zip en el directorio C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es
+26/06/09 10:17:18 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:17:18 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:17:18 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:17:19 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:17:28 ERROR [TrueZipDaoImpl.descomprimir (69)] No se pudo descomprimir el archivo C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es.zip en el directorio C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es
+26/06/09 10:27:23 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:27:23 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:27:23 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:30:26 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:32:50 ERROR [TrueZipDaoImpl.descomprimir (69)] No se pudo descomprimir el archivo C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es.zip en el directorio C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es
+26/06/09 10:35:26 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:35:26 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:35:26 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:35:35 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:35:45 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:35:59 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:36:05 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:36:05 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc13_oa03_es.zip
+26/06/09 10:36:08 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\lc13_oa03_es
+26/06/09 10:37:30 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:37:34 ERROR [TrueZipDaoImpl.descomprimir (69)] No se pudo descomprimir el archivo C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es.zip en el directorio C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc13_oa02_es
+26/06/09 10:38:50 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 10:38:50 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 10:38:50 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 10:38:57 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:39:04 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:39:05 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:39:09 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:39:09 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc13_oa03_es.zip
+26/06/09 10:39:12 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\lc13_oa03_es
+26/06/09 10:39:18 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:39:24 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:39:25 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:39:28 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:39:28 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc14_oa01_es.zip
+26/06/09 10:39:30 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa01_es
+26/06/09 10:39:33 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:39:36 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:39:36 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:39:37 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:39:37 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc14_oa02_es.zip
+26/06/09 10:39:37 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa02_es
+26/06/09 10:39:40 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:39:47 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:39:47 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:39:47 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:39:47 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc14_oa03_es.zip
+26/06/09 10:39:50 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa03_es
+26/06/09 10:39:52 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 10:39:57 INFO  [Cambio.validarRutas (255)] Descomprimiendo fichero zip
+26/06/09 10:39:57 INFO  [Cambio.validarRutas (282)] el manifest ha sido parseado 
+26/06/09 10:39:57 INFO  [Cambio.validarRutas (298)] Sobrescrito manifest
+26/06/09 10:39:57 INFO  [Cambio.validarRutas (305)] el nombre del fichero sera: lc14_oa04_es.zip
+26/06/09 10:39:59 INFO  [Cambio.validarRutas (311)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa04_es
+26/06/09 11:59:37 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 11:59:37 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/repositorioCambioMec
+26/06/09 11:59:37 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 11:59:38 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 11:59:43 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 11:59:45 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 11:59:46 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 11:59:46 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_oa01_es.zip
+26/06/09 11:59:47 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa01_es
+26/06/09 11:59:48 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 11:59:50 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 11:59:50 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 11:59:50 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 11:59:50 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_oa02_es.zip
+26/06/09 11:59:51 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa02_es
+26/06/09 11:59:52 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 11:59:58 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 11:59:59 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 11:59:59 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 11:59:59 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_oa03_es.zip
+26/06/09 12:00:01 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa03_es
+26/06/09 12:00:03 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:00:07 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:00:07 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:00:08 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:00:08 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_oa04_es.zip
+26/06/09 12:00:10 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa04_es
+26/06/09 12:00:11 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:00:13 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:00:13 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:00:14 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:00:14 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_oa05_es.zip
+26/06/09 12:00:15 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\repositorioCambioMec\SM\12\Lengua\castellano\lc14_oa05_es
+26/06/09 12:00:15 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:00:49 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:00:49 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:00:49 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:00:51 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:01:06 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:01:07 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:01:08 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:01:08 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:01:13 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:01:15 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:02:04 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:02:06 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:02:07 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:02:07 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_es_aux.zip
+26/06/09 12:02:14 INFO  [Cambio.validarRutas (318)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc14_es_aux
+26/06/09 12:02:16 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:05:21 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:05:21 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:05:21 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:05:22 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:05:36 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:05:38 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:05:38 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:05:38 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:05:49 INFO  [Cambio.validarRutas (322)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:05:51 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:06:21 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:06:22 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:06:23 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:06:23 INFO  [Cambio.validarRutas (312)] el nombre del fichero sera: lc14_es_aux.zip
+26/06/09 12:12:00 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:12:15 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:12:18 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:12:25 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:12:31 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:12:37 INFO  [Cambio.validarRutas (327)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:12:40 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:13:01 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:13:02 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:13:03 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:13:13 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc16_es.zip
+26/06/09 12:13:21 INFO  [Cambio.validarRutas (327)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc16_es
+26/06/09 12:13:21 INFO  [Cambio.main (88)] Fin migración de Odes
+26/06/09 12:14:49 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:14:49 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:14:49 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:14:50 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:15:05 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:15:07 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:15:08 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:15:13 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:15:19 INFO  [Cambio.validarRutas (327)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:15:21 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:16:51 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:16:53 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:17:15 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:17:16 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:17:17 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:17:49 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc16_es.zip
+26/06/09 12:17:57 INFO  [Cambio.validarRutas (327)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc16_es
+26/06/09 12:17:57 INFO  [Cambio.main (88)] Fin migración de Odes
+26/06/09 12:27:45 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:27:45 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009/Prueba
+26/06/09 12:27:45 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:27:49 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:29:33 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:30:03 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:30:18 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:30:40 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc14_es.zip
+26/06/09 12:32:58 INFO  [Cambio.validarRutas (329)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\Prueba\lc14_es_aux
+26/06/09 12:33:09 INFO  [Cambio.main (88)] Fin migración de Odes
+26/06/09 12:37:07 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:37:07 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:37:07 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:37:08 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:37:24 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:37:25 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:37:26 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:37:31 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:37:45 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:37:47 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:39:29 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:39:30 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:39:31 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:39:54 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc14_es.zip
+26/06/09 12:41:09 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc14_es_aux
+26/06/09 12:41:15 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:41:34 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:41:35 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:41:35 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:41:37 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc16_es.zip
+26/06/09 12:41:48 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc16_es
+26/06/09 12:41:48 INFO  [Cambio.main (88)] Fin migración de Odes
+26/06/09 12:42:20 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:42:20 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:42:20 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:42:22 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:42:34 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:42:36 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:42:36 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:42:36 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:42:42 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:42:44 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:43:46 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:43:47 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:43:48 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:43:48 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc14_es.zip
+26/06/09 12:44:35 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc14_es_aux
+26/06/09 12:44:37 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:45:06 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:45:06 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:45:06 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:45:06 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc16_es.zip
+26/06/09 12:45:15 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc16_es
+26/06/09 12:45:15 INFO  [Cambio.main (88)] Fin migración de Odes
+26/06/09 12:46:21 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 12:46:21 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 12:46:21 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+26/06/09 12:46:22 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:46:34 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:46:36 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:46:36 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:46:39 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:46:46 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:46:48 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:47:59 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:47:59 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:48:00 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:48:06 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc14_es.zip
+26/06/09 12:49:38 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc14_es_aux
+26/06/09 12:53:45 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:54:06 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:54:07 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:54:07 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:54:11 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc13_es.zip
+26/06/09 12:54:24 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc13_es
+26/06/09 12:54:48 INFO  [Cambio.validarRutas (247)] Es zip
+26/06/09 12:55:52 INFO  [Cambio.validarRutas (262)] Descomprimiendo fichero zip
+26/06/09 12:55:53 INFO  [Cambio.validarRutas (289)] el manifest ha sido parseado 
+26/06/09 12:55:54 INFO  [Cambio.validarRutas (305)] Sobrescrito manifest
+26/06/09 12:56:00 INFO  [Cambio.validarRutas (317)] el nombre del fichero sera: lc14_es.zip
+26/06/09 12:56:49 INFO  [Cambio.validarRutas (325)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Pruebas26062009\lc14_es_aux
+26/06/09 14:03:25 INFO  [Cambio.main (71)] Inicio Migracion de odes
+26/06/09 14:03:25 INFO  [Cambio.main (74)] Path del repositorio de odes C:/MDA/jboss-4.0.2/bin/uploads/Pruebas26062009
+26/06/09 14:03:25 INFO  [Cambio.main (86)] Comenzamos a explorar la carpeta repositorio.... 
+01/07/09 09:39:15 INFO  [Cambio.main (93)] Inicio Migracion de odes
+01/07/09 09:39:21 INFO  [Cambio.main (96)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+01/07/09 09:39:32 INFO  [Cambio.main (113)] Comenzamos a explorar la carpeta repositorio.... 
+01/07/09 09:39:56 INFO  [Cambio.validarRutas (278)] Es zip
+01/07/09 09:40:04 INFO  [Cambio.validarRutas (289)] Descomprimiendo fichero zip
+01/07/09 09:40:07 INFO  [Cambio.validarRutas (310)] el manifest ha sido parseado 
+01/07/09 09:40:22 INFO  [Cambio.validarRutas (324)] Sobrescrito manifest
+01/07/09 09:40:22 INFO  [Cambio.validarRutas (332)] el nombre del fichero sera: lc13_oa03_es.zip
+01/07/09 09:40:26 INFO  [Cambio.validarRutas (340)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Prueba\lc13_oa03_es_1690888353
+01/07/09 09:40:31 INFO  [Cambio.validarRutas (278)] Es zip
+01/07/09 09:40:34 INFO  [Cambio.validarRutas (289)] Descomprimiendo fichero zip
+01/07/09 09:40:34 INFO  [Cambio.validarRutas (310)] el manifest ha sido parseado 
+01/07/09 09:41:17 INFO  [Cambio.validarRutas (324)] Sobrescrito manifest
+01/07/09 09:41:17 INFO  [Cambio.validarRutas (332)] el nombre del fichero sera: lc14_oa01_es.zip
+01/07/09 09:41:19 INFO  [Cambio.validarRutas (340)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Prueba\lc14_oa01_es_1216449279
+01/07/09 09:41:23 INFO  [Cambio.validarRutas (278)] Es zip
+01/07/09 09:41:24 INFO  [Cambio.validarRutas (289)] Descomprimiendo fichero zip
+01/07/09 09:41:24 INFO  [Cambio.validarRutas (310)] el manifest ha sido parseado 
+01/07/09 09:41:33 INFO  [Cambio.validarRutas (324)] Sobrescrito manifest
+01/07/09 09:41:33 INFO  [Cambio.validarRutas (332)] el nombre del fichero sera: lc14_oa02_es.zip
+01/07/09 09:41:34 INFO  [Cambio.validarRutas (340)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Prueba\lc14_oa02_es_1179161366
+01/07/09 09:41:41 INFO  [Cambio.validarRutas (278)] Es zip
+01/07/09 09:41:45 INFO  [Cambio.validarRutas (289)] Descomprimiendo fichero zip
+01/07/09 09:41:45 INFO  [Cambio.validarRutas (310)] el manifest ha sido parseado 
+01/07/09 09:42:01 INFO  [Cambio.validarRutas (324)] Sobrescrito manifest
+01/07/09 09:42:01 INFO  [Cambio.validarRutas (332)] el nombre del fichero sera: lc13_oa02_es.zip
+01/07/09 09:42:04 INFO  [Cambio.validarRutas (340)] Borrando la carpeta C:\MDA\jboss-4.0.2\bin\uploads\Prueba\lc13_oa02_es_1951117646
+01/07/09 09:42:06 INFO  [Cambio.main (115)] Fin migración de Odes

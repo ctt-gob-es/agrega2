@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propiedadesConstantes" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:spring.properties</value>
+			</list>
+		</property>
+	  <property name="ignoreUnresolvablePlaceholders">
+	  		<value>true</value>
+	  </property>	  
+	</bean>
+
+<!-- Inicio de la configuracion para la MBean Service -->    
+      	
+    <!-- bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false"-->
+        <!--<property name="assembler" ref="assembler"/> --> 
+        <!-- <property name="autodetect" value="true"/>  -->
+		<!-- <property name="namingStrategy" ref="namingStrategy"/>  -->  
+        <!-- 
+        <property name="server">
+        	<bean class="org.jboss.mx.util.MBeanServerLocator" factory-method="locateJBoss"/>
+        </property>
+         -->
+                <!--         
+     Al utilizar metadatas(en este caso anotaciones), no se puede trabajar con los proxys dinamicos AOP, definidos en el patron estandar
+     y por consiguiente, debe declararse la clase PropiedadJmxServiceImpl como un inner bean. En el caso de la propiedadDao,esto no es 
+     necesario
+   -->
+   		<!-- 			
+        <property name="beans">
+			<map>	
+		 
+				<entry key="bean:name=propiedadJmxService" value-ref="propiedadJmxService">
+				-->
+				<!-- 
+				  <bean class="es.indra.agrega.jmx.PropiedadJmxServiceImpl">
+				    <property name="beanMapper"><ref bean="beanMapper"/></property>    
+				    <property name="propiedadDao"><ref bean="propiedadDao"/></property>                                      
+                  </bean>
+                 -->
+                 <!-- 
+				</entry>		
+			</map>	
+		 	
+		</property>	 	
+		
+		
+        <property name="notificationListenerMappings">
+	        <map>	            
+	            <entry key="bean:name=propiedadJmxService">
+	             -->
+	            <!-- <entry key="propiedadJmxService"> -->
+	            <!-- 
+	                <bean class="es.indra.agrega.jmx.ConsoleLoggingNotificationListener"/>
+	            </entry>		            
+	        </map>
+    	</property>
+    	      
+    </bean>
+     -->
+<!-- 
+    <bean id="jmxAttributeSource"
+          class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource" />
+    
+    <bean id="assembler"
+          class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>
+    
+    <bean id="namingStrategy"
+          class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>  
+    -->
+<!-- Fin de la configuracion para la MBean Service -->
+             <!-- PropiedadJmxService Service Proxy with inner PropiedadJmxService Service Implementation -->
+             <!-- 
+    <bean id="propiedadJmxService" class="es.indra.agrega.jmx.PropiedadJmxServiceImpl">
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                <property name="propiedadDao"><ref bean="propiedadDao"/></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>serviceJMXTransactionInterceptor</value>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
+     -->
+         <!-- Service Transactional Interceptor -->
+         <!-- 
+    <bean id="serviceJMXTransactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager"><ref bean="transactionManager"/></property>
+        <property name="transactionAttributeSource">
+            <value>
+                es.indra.agrega.jmx.PropiedadJmxServiceImpl.setNeutro=PROPAGATION_REQUIRED
+                es.indra.agrega.jmx.PropiedadJmxServiceImpl.getNeutro=PROPAGATION_REQUIRED
+
+            </value>
+        </property>
+    </bean>   
+     -->
+</beans>

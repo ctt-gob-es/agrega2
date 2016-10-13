@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN" "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+		<configuration>
+			<custom-converters>
+				<converter type="es.pode.publicacion.negocio.soporte.EstadoVOConverter">
+					<class-a>es.pode.publicacion.negocio.dominio.EstadoImpl</class-a>
+					<class-b>es.pode.publicacion.negocio.servicios.EstadoVO</class-b>
+				</converter>
+			</custom-converters>
+		</configuration>
+		
+		<mapping wildcard="true" map-id="DEF_MAPPING_TRANSICION_TRANSICIONVO">
+			<class-a>es.pode.publicacion.negocio.dominio.TransicionImpl</class-a>
+			<class-b>es.pode.publicacion.negocio.servicios.TransicionVO</class-b>
+			<field custom-converter="es.pode.publicacion.negocio.soporte.AlbumVODeTransicionVO">
+				<a>album</a>
+				<b>album</b>
+			</field>
+		</mapping>
+
+
+		
+</mappings>

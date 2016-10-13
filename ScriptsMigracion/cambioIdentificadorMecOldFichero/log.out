@@ -1,0 +1,54 @@
+06/08/09 16:55:33 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 16:56:30 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 16:56:36 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 16:56:54 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 16:56:56 INFO  [Cambio.validarRutas (261)] Es zip
+06/08/09 16:57:19 INFO  [Cambio.validarRutas (272)] Descomprimiendo fichero zip
+06/08/09 16:57:35 INFO  [Cambio.validarRutas (293)] el manifest ha sido parseado 
+06/08/09 16:59:22 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 16:59:37 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 16:59:37 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 16:59:37 INFO  [Cambio.validarRutas (261)] Es zip
+06/08/09 16:59:43 INFO  [Cambio.validarRutas (272)] Descomprimiendo fichero zip
+06/08/09 17:00:00 INFO  [Cambio.validarRutas (293)] el manifest ha sido parseado 
+06/08/09 17:02:07 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 17:02:13 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 17:02:19 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 17:02:27 INFO  [Cambio.validarRutas (261)] Es zip
+06/08/09 17:02:31 INFO  [Cambio.validarRutas (272)] Descomprimiendo fichero zip
+06/08/09 17:02:43 INFO  [Cambio.validarRutas (293)] el manifest ha sido parseado 
+06/08/09 17:15:06 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 17:15:16 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 17:15:28 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 17:15:31 ERROR [Cambio.validarRutas (337)] El archivo C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt no es un zip válido.
+06/08/09 17:15:31 INFO  [Cambio.main (106)] Fin migración de Odes
+06/08/09 17:16:09 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 17:16:11 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 17:16:11 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 17:16:12 INFO  [Cambio.validarRutas (261)] Es zip
+06/08/09 17:16:14 INFO  [Cambio.validarRutas (272)] Descomprimiendo fichero zip
+06/08/09 17:16:22 INFO  [Cambio.validarRutas (293)] el manifest ha sido parseado 
+06/08/09 17:17:13 INFO  [Cambio.validarRutas (307)] Sobrescrito manifest
+06/08/09 17:17:13 INFO  [Cambio.validarRutas (315)] el nombre del fichero sera: h2_a.zip
+06/08/09 17:17:13 INFO  [Cambio.validarRutas (323)] Borrando la carpeta C:\Documents and Settings\aschicon\workspace adl\CambioIdentificadorMecOldFichero\h2_a_388965347
+06/08/09 17:17:13 INFO  [Cambio.main (106)] Fin migración de Odes
+06/08/09 17:19:21 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 17:19:24 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 17:19:39 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 17:19:44 INFO  [Cambio.validarRutas (278)] Es zip
+06/08/09 17:19:44 INFO  [Cambio.validarRutas (289)] Descomprimiendo fichero zip
+06/08/09 17:19:50 INFO  [Cambio.validarRutas (310)] el manifest ha sido parseado 
+06/08/09 17:20:03 INFO  [Cambio.validarRutas (324)] Sobrescrito manifest
+06/08/09 17:20:03 INFO  [Cambio.validarRutas (332)] el nombre del fichero sera: h2_a.zip
+06/08/09 17:20:03 INFO  [Cambio.validarRutas (340)] Borrando la carpeta C:\Documents and Settings\aschicon\workspace adl\CambioIdentificadorMecOldFichero\h2_a_854270564
+06/08/09 17:20:03 INFO  [Cambio.main (106)] Fin migración de Odes
+06/08/09 17:22:58 INFO  [Cambio.main (84)] Inicio Migracion de odes
+06/08/09 17:22:58 INFO  [Cambio.main (87)] Archivo de odes C:/MDA/jboss-4.0.2/bin/uploads/ficheroMec.txt
+06/08/09 17:22:58 INFO  [Cambio.main (104)] Comenzamos a explorar la carpeta repositorio.... 
+06/08/09 17:22:59 INFO  [Cambio.validarRutas (261)] Es zip
+06/08/09 17:23:05 INFO  [Cambio.validarRutas (272)] Descomprimiendo fichero zip
+06/08/09 17:23:06 INFO  [Cambio.validarRutas (293)] el manifest ha sido parseado 
+06/08/09 17:23:07 INFO  [Cambio.validarRutas (307)] Sobrescrito manifest
+06/08/09 17:23:09 INFO  [Cambio.validarRutas (315)] el nombre del fichero sera: h2_a.zip
+06/08/09 17:23:10 INFO  [Cambio.validarRutas (323)] Borrando la carpeta C:\Documents and Settings\aschicon\workspace adl\CambioIdentificadorMecOldFichero\h2_a_1435435098
+06/08/09 17:23:12 INFO  [Cambio.main (106)] Fin migración de Odes

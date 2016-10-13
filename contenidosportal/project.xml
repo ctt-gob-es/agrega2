@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project>
+    <artifactId>${application.id}</artifactId>
+    <groupId>${application.id}</groupId>
+    <name>${application.name}</name>
+    <currentVersion>${application.version}</currentVersion>
+    <shortDescription>The Contenidos Portal</shortDescription>
+    <logo>/images/banner.jpg</logo>
+    <organization>
+	<name>The I-Builder Team</name>
+	<url>http://portalesddp.indra.es/C16/I-Builder/default.aspx</url>
+	<logo></logo>
+    </organization>
+    <inceptionYear>2006</inceptionYear>
+    <description>
+        Contains the Contenidos Portal Project.
+    </description>
+    <package>${application.package}</package>
+    <developers>
+        <developer>
+              <name>Javier Espino</name>
+              <id></id>
+              <email></email>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>commons-jelly</groupId>
+            <artifactId>commons-jelly-tags-interaction</artifactId>
+            <version>${commons.jelly.version}</version>
+        </dependency>
+    </dependencies>
+</project>

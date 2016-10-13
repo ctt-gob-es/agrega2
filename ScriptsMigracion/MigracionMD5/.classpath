@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/conf"/>
+	<classpathentry kind="src" path="build"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="var" path="MAVEN_REPO/agrega/jars/parseadorXML-1.2.jar" sourcepath="/PARSEADORXML/pode/parseadorXML"/>
+	<classpathentry kind="var" path="MAVEN_REPO/castor/jars/castor-1.1-xml.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/dozer/jars/dozer-3.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/agrega/jars/soporte-1.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/log4j/jars/log4j-1.2.9.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-beanutils/jars/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-lang/jars/commons-lang-2.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-collections/jars/commons-collections-3.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/springframework/jars/spring-2.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/hibernate/jars/hibernate-3.2.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/dom4j/jars/dom4j-1.6.1.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/commons-logging/jars/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/cglib/jars/cglib-2.1.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/asm/jars/asm-1.5.3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jta/jars/jta-4.0.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/antlr/jars/antlr-2.7.5H3.jar"/>
+	<classpathentry kind="var" path="MAVEN_REPO/jdbc-drivers/jars/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

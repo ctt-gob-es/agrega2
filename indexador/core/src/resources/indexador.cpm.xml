@@ -1,0 +1,256 @@
+<?xml version="1.0"?>
+<!DOCTYPE compass-core-mapping PUBLIC
+    "-//Compass/Compass Core Mapping DTD 2.2//EN"
+    "http://www.compass-project.org/dtd/compass-core-mapping-2.2.dtd">
+
+<compass-core-mapping package="es.pode.indexador.negocio.dominio">
+
+
+  <class name="IndiceBusquedaImpl" alias="indice" spell-check="exclude" converter="MultivaluadosConverter">
+	<sub-index-hash type="es.pode.indexador.negocio.compass.SubIndexHashIdiomas"></sub-index-hash>
+	
+	<id name="id" exclude-from-all="yes"/>
+	<id name="idioma" exclude-from-all="yes"/>
+  	<property name="second_keywords" boost="5.0f">
+  		<meta-data exclude-from-all="yes">second_keywords</meta-data>
+  	</property>
+ 	<property name="second_title" boost="4.0f">
+  		<meta-data exclude-from-all="yes">second_title</meta-data>
+  	</property>
+ 	<property name="second_description" boost="3.0f">
+  		<meta-data exclude-from-all="yes">second_description</meta-data>
+  	</property>
+	<property name="identificador" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">identificador</meta-data>
+  	</property>
+  	 <property name="localizador" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">localizador</meta-data>
+  	</property>
+  	<property name="valoracion" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">valoracion</meta-data>
+  	</property>
+  	<property name="conSinSecuencia" >
+  		<meta-data exclude-from-all="yes">conSinSecuencia</meta-data>
+  	</property>
+  	<property name="imagen" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">imagen</meta-data>
+  	</property>
+  	<property name="tamanio" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">tamanio</meta-data>
+  	</property>
+  	<property name="title" boost="9.0f">
+  		<meta-data spell-check="include" exclude-from-all="yes">title</meta-data>
+  	</property>
+  	<property name="altTitle" boost="9.0f">
+  		<meta-data exclude-from-all="yes">altTitle</meta-data>
+  	</property>
+  	  	<property name="description" boost="8.0f">
+  		<meta-data spell-check="include" exclude-from-all="yes">description</meta-data>
+  	</property>
+  	<property name="altDescription" boost="8.0f">
+  		<meta-data exclude-from-all="yes">altDescription</meta-data>
+  	</property>
+<!--  	<property name="sugerencias" >
+  		<meta-data exclude-from-all="yes">sugerencias</meta-data>
+  	</property>-->
+  	<property name="keyword" boost="7.0f">
+  		<meta-data exclude-from-all="yes">keyword</meta-data>
+  	</property>
+  	<property name="altKeyword" boost="7.0f">
+  		<meta-data exclude-from-all="yes">altKeyword</meta-data>
+  	</property>
+  	<property name="autor" >
+  		<meta-data exclude-from-all="yes">autor</meta-data>
+  	</property>
+  	<property name="fechaPublicacion" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">fechaPublicacion</meta-data>
+  	</property>
+  	<property name="horaPublicacion" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">horaPublicacion</meta-data>
+  	</property>
+  	<property name="formato" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">formato</meta-data>
+  	</property>
+  	<property name="taxonomia" >
+  		<meta-data exclude-from-all="yes">taxonomia</meta-data>
+  	</property>
+  	<property name="taxonomiaPath" >
+  		<meta-data exclude-from-all="yes">taxonomiaPath</meta-data>
+  	</property>
+  	<property name="taxonomiaNodo" >
+  		<meta-data exclude-from-all="yes">taxonomiaNodo</meta-data>
+  	</property>
+  	<property name="tipoRecurso" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">tipoRecurso</meta-data>
+  	</property>
+  	<property name="destinatarios" >
+  		<meta-data exclude-from-all="yes">destinatarios</meta-data>
+  	</property>
+  	<property name="licencias" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">licencias</meta-data>
+  	</property>
+  	<property name="ambito" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">ambito</meta-data>
+  	</property>
+  	<property name="edad" >
+  		<meta-data exclude-from-all="yes">edad</meta-data>
+  	</property>
+  	<property name="contexto" >
+  		<meta-data exclude-from-all="yes">contexto</meta-data>
+  	</property>
+  	<property name="nivelAgregacion" boost="10.0f">
+  		<meta-data index="not_analyzed" exclude-from-all="yes">nivelAgregacion</meta-data>
+  	</property>
+  	<property name="procesosCognitivos" >
+  		<meta-data exclude-from-all="yes">procesosCognitivos</meta-data>
+  	</property>
+  	<property name="fuente" >
+  		<meta-data exclude-from-all="yes">fuente</meta-data>
+  	</property>
+  	<property name="relacion" >
+  		<meta-data exclude-from-all="yes">relacion</meta-data>
+  	</property>
+  	<property name="publicador" >
+  		<meta-data exclude-from-all="yes">publicador</meta-data>
+  	</property>
+  	<property name="contribuidor" >
+  		<meta-data exclude-from-all="yes">contribuidor</meta-data>
+  	</property>
+  	<property name="alcance" >
+  		<meta-data exclude-from-all="yes">alcance</meta-data>
+  	</property>
+  	<property name="descriptionObjetivo" >
+  		<meta-data index="not_analyzed" exclude-from-all="yes">descriptionObjetivo</meta-data>
+  	</property>
+	<property name="literalArbolC" boost="6.0f">
+  		<meta-data exclude-from-all="yes">literalArbolC</meta-data>
+  	</property>
+	<property name="altLiteralArbolC" boost="6.0f">
+  		<meta-data exclude-from-all="yes">altLiteralArbolC</meta-data>
+  	</property>
+  	<property name="contribucion" >
+  		<meta-data exclude-from-all="yes">contribucion</meta-data>
+  	</property>
+  </class>
+  
+  
+ <!-- <class name="IndiceBusquedaImpl" alias="indice" spell-check="exclude" >
+	<sub-index-hash type="es.pode.indexador.negocio.compass.SubIndexHashIdiomas"></sub-index-hash>
+	
+	<id name="id" exclude-from-all="yes"/>
+	<id name="idioma" exclude-from-all="yes"/>
+  	<property name="second_keywords" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">second_keywords</meta-data>
+  	</property>
+ 	<property name="second_title" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">second_title</meta-data>
+  	</property>
+ 	<property name="second_description" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">second_description</meta-data>
+  	</property>
+	<property name="identificador" >
+  		<meta-data exclude-from-all="yes">identificador</meta-data>
+  	</property>
+  	 <property name="localizador" >
+  		<meta-data exclude-from-all="yes">localizador</meta-data>
+  	</property>
+  	<property name="valoracion" >
+  		<meta-data exclude-from-all="yes">valoracion</meta-data>
+  	</property>
+  	<property name="conSinSecuencia" >
+  		<meta-data exclude-from-all="yes">conSinSecuencia</meta-data>
+  	</property>
+  	<property name="imagen" >
+  		<meta-data exclude-from-all="yes">imagen</meta-data>
+  	</property>
+  	  	<property name="tamanio" >
+  		<meta-data exclude-from-all="yes">tamanio</meta-data>
+  	</property>
+  	  	<property name="title" >
+  		<meta-data exclude-from-all="yes">title</meta-data>
+  	</property>
+  	<property name="altTitle" >
+  		<meta-data exclude-from-all="yes">altTitle</meta-data>
+  	</property>
+  	  	<property name="description" >
+  		<meta-data exclude-from-all="yes">description</meta-data>
+  	</property>
+  	<property name="altDescription" >
+  		<meta-data exclude-from-all="yes">altDescription</meta-data>
+  	</property>
+  	<property name="sugerencias" >
+  		<meta-data exclude-from-all="yes">sugerencias</meta-data>
+  	</property>
+  	<property name="keyword" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">keyword</meta-data>
+  	</property>
+  	<property name="altKeyword" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">altKeyword</meta-data>
+  	</property>
+  	<property name="autor" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">autor</meta-data>
+  	</property>
+  	<property name="fechaPublicacion" >
+  		<meta-data exclude-from-all="yes">fechaPublicacion</meta-data>
+  	</property>
+  	<property name="horaPublicacion" >
+  		<meta-data exclude-from-all="yes">horaPublicacion</meta-data>
+  	</property>
+  	<property name="formato" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">formato</meta-data>
+  	</property>
+  	<property name="taxonomia" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">taxonomia</meta-data>
+  	</property>
+  	<property name="taxonomiaPath" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">taxonomiaPath</meta-data>
+  	</property>
+  	<property name="taxonomiaNodo" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">taxonomiaNodo</meta-data>
+  	</property>
+  	<property name="tipoRecurso" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">tipoRecurso</meta-data>
+  	</property>
+  	<property name="destinatarios" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">destinatarios</meta-data>
+  	</property>
+  	<property name="licencias" >
+  		<meta-data exclude-from-all="yes">licencias</meta-data>
+  	</property>
+  	<property name="ambito" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">ambito</meta-data>
+  	</property>
+
+  	<property name="edad" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">edad</meta-data>
+  	</property>
+  	<property name="contexto" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">contexto</meta-data>
+  	</property>
+  	<property name="nivelAgregacion" >
+  		<meta-data exclude-from-all="yes">nivelAgregacion</meta-data>
+  	</property>
+  	<property name="procesosCognitivos" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">procesosCognitivos</meta-data>
+  	</property>
+  	<property name="fuente" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">fuente</meta-data>
+  	</property>
+  	<property name="relacion" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">relacion</meta-data>
+  	</property>
+  	<property name="publicador" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">publicador</meta-data>
+  	</property>
+  	<property name="contribuidor" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">contribuidor</meta-data>
+  	</property>
+  	<property name="alcance" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">alcance</meta-data>
+  	</property>
+  	<property name="descriptionObjetivo" converter="MultivaluadosConverter">
+  		<meta-data exclude-from-all="yes">descriptionObjetivo</meta-data>
+  	</property>
+  </class>-->
+  
+</compass-core-mapping>

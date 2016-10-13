@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/gruposLicencias" xmlns:tns="http://www.example.org/gruposLicencias" elementFormDefault="qualified">
+	<element name="grupos">
+		<complexType>
+			<sequence>
+				<element name="grupo" minOccurs="1" maxOccurs="unbounded">
+				<complexType>
+					<sequence>
+						<element name="codigoLicencia" minOccurs="1" maxOccurs="unbounded">
+							<complexType>
+								<simpleContent>
+									<extension base="string">
+										<attribute name="orden" type="string" />
+									</extension>
+								</simpleContent>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="nivel" type="string" />
+					<attribute name="nombre" type="string" />
+				</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

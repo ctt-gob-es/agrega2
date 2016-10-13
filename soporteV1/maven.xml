@@ -1,0 +1,46 @@
+<project default="jar:install"
+         xmlns:ant="jelly:ant"
+         xmlns:u="jelly:util"
+         xmlns:maven="jelly:maven"
+         xmlns:j="jelly:core">
+         
+        <preGoal name="java:compile">
+			<ant:echo message="Borrando carpeta ${pom.build.sourceDirectory}"/>
+        	<ant:delete>
+				<ant:fileset dir="${pom.build.sourceDirectory}">
+					<include name="**/*"/>
+				</ant:fileset>
+			</ant:delete>
+			<ant:echo message="Copiando fuentes online a ${pom.build.sourceDirectory}"/>
+         	<ant:copy todir="${pom.build.sourceDirectory}">
+	            <ant:fileset dir="${maven.online.folder}">
+	                   <include name="**/*"/>
+	            </ant:fileset>
+	        </ant:copy>
+			<j:if test="${agrega.offline}">
+				<ant:echo message="Copiando fuentes offline a ${pom.build.sourceDirectory}"/>
+				<ant:copy todir="${pom.build.sourceDirectory}"  overwrite="true">
+		            <ant:fileset dir="${maven.offline.folder}">
+		                   <include name="**/*"/>
+		            </ant:fileset>
+		        </ant:copy>
+			</j:if>
+        </preGoal>
+		<postGoal name="java:jar-resources">
+			<j:if test="${agrega.offline}">
+				<ant:copy todir="${maven.build.dest}" overwrite="true">
+		            <ant:fileset dir="${maven.offline.folder}">
+		                   <include name="**/*.properties"/>
+		            </ant:fileset>
+		        </ant:copy>
+			</j:if>
+		</postGoal>
+		<postGoal name="jar:install">
+			<ant:delete>
+            <ant:fileset dir="${pom.build.sourceDirectory}">
+                <ant:include name="**/*"/>
+            </ant:fileset>
+        </ant:delete> 
+		</postGoal>
+
+</project>

@@ -1,0 +1,297 @@
+<%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+ 
+
+<tiles:insert definition="layout-administrador">
+
+<tiles:put name="title" type="string">
+      <bean:message key="title.Comun"/>
+</tiles:put>
+
+<tiles:put name="body" type="string">
+
+<%@ include file="/taglib-imports.jspf" %>
+<%@ include file="/es/pode/administracion/presentacion/planificador/descripcionTarea/mostrar-informe-catalogo-vars.jspf" %>
+
+
+<!-- ***************************** Inicio CONTENIDO  ****************************** -->
+<div class="plantilla_contenido">
+
+	<!-- ## Para que los mensajes de error vayan bien en IE6 ## -->
+	<jsp:include page="/layout/messages.jsp" flush="true" />
+
+	<!-- *********************      Cabecera Informe     ************************************ -->
+
+	<h2>
+		${form.trabajo}
+	</h2>
+	
+	<!-- ***************************      Inicio del formulario    ************************************ -->
+
+	<html:form styleId="descripcionTareaMostrarInformeCatalogoVolverForm" action="/DescripcionTarea/MostrarInformeCatalogoVolver" method="post" >
+        
+        <!--  INICIO GLOBO GRIS   -->
+		<div class="globo_gris" >
+			<div class="globo_gris_01">
+				<div class="globo_gris_02">
+					<div class="globo_gris_03">
+						
+						<!-- **********************       Inicio caja del formulario        ***********************  -->
+						<div id="formulario">
+            				
+            				<!--  *********************       Caja de Texto de Nombre de Tarea     *******************  -->
+            				<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="nombreTrabajo"><bean:message key="crearTarea.nombreTarea"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<input DISABLED name="trabajo" value="${form.trabajo}" id="nombreTrabajo" type="text" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+							
+							<!--  *********************       Caja de Texto de Grupo de Tarea     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="grupoTrabajo"><bean:message key="crearTarea.nombreGrupoTrabajo"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<input DISABLED name="grupoTrabajo" value="${form.grupoTrabajo}" id="grupoTrabajo" type="text" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+					
+							<!--  *********************        Tipo de Tarea     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="tipoTarea"><bean:message key="crearTarea.tipoTarea"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<input DISABLED name="tipoTarea" value="<bean:message key="crearTarea.informes"/>" id="tipoTarea" type="text" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+							
+							<!--  *********************        Tipo de Informe     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="informe"><bean:message key="informes.nombreInforme"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										
+										<input DISABLED name="informe" value="<bean:message key="crearTarea.catalogo"/>" id="informe" type="text" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+							
+							<!--  *********************        Formato     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="formato"><bean:message key="informes.crearInforme.formato"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<bean:define id="formatoValue"><bean:message key="informes.crearInforme.formato.pdf"/></bean:define>
+										<input DISABLED name="formato" value="${formatoValue}" id="formato" type="text" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+							
+							<!--  *********************       Cajas de Texto de Fecha     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="fecha_inicio"><bean:message key="crearTarea.fechaInicio"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+									
+										<label class="oculto" for="fecha_inicio"><bean:message key="crearTarea.fechaDia"/></label>
+										<fmt:formatNumber var="dia_format" value="${form.dia}" minIntegerDigits="2" maxIntegerDigits="2" />
+										<input DISABLED name="dia" value="${dia_format}"  class="fecha_dia" id="fecha_inicio" type="text" style="background-color:white"/>
+										
+										<label class="oculto" for="fecha_mes"><bean:message key="crearTarea.fechaMes"/></label>
+										<fmt:formatNumber var="mes_format" value="${form.mes}" minIntegerDigits="2" maxIntegerDigits="2" />
+										<input DISABLED name="mes" value="${mes_format}" class="fecha_mes" id="fecha_mes" type="text" style="background-color:white"/>
+										
+										<label class="oculto" for="fecha_anio"><bean:message key="crearTarea.fechaAnio"/></label>	
+										<input DISABLED name="anio" value="${form.anio}" class="fecha_anio" id="fecha_anio" type="text" style="background-color:white"/>
+										
+										<span class="vert"><bean:message key="crearTarea.aLas"/></span>
+										
+										<label class="oculto" for="fecha_hora"><bean:message key="crearTarea.fechaHora"/></label>
+										<fmt:formatNumber var="hora_format" value="${form.hora}" minIntegerDigits="2" maxIntegerDigits="2" />
+										<input DISABLED name="hora"  value="${hora_format}" class="fecha_horas" id="fecha_hora" type="text" style="background-color:white"/>
+										
+										<label class="oculto"  for="fecha_minutos"><bean:message key="crearTarea.fechaMinuto"/></label>
+										<fmt:formatNumber var="minutos_format" value="${form.minutos}" minIntegerDigits="2" maxIntegerDigits="2" />
+										<input DISABLED name="minutos" value="${minutos_format}" class="fecha_minutos" id="fecha_minutos" type="text" style="background-color:white"/>
+										
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+							
+							<!--  *********************       Periodicidad     *******************  -->
+							<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="repetir_tipoTarea"><bean:message key="crearTarea.repetir"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<bean:define id="periodicidadValue"><bean:message key="crearTarea.${form.periodicidad}"/></bean:define>
+					                    <input DISABLED type="text" value="${periodicidadValue}" name="periodicidad" id="repetir_tipoTarea" style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								
+								<br class="oculto" />
+							</div>
+							<!--  *********************       Caja de Texto de Catalogo     *******************  -->
+            				<div class="fila_de_tabla">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="repositorio"><bean:message key="crearTarea.informeCatalogoIdioma"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha">
+									<div class="text">
+										<bean:define id="repositorioValue"><bean:message key="crearTarea.${form.repositorio}"/></bean:define>
+					                    <input DISABLED type="text" value="${repositorioValue}" name="repositorio" id="repositorio"  style="background-color:white"/>
+									</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+										<!--  *********************       Cajas de Texto de FechaActualizacion    *******************  -->
+
+							<div class="fila_de_tabla" style="">
+								<div class="contenedor_izquierda">
+									<div class="text">
+										<label for="repetir_tipoTarea"><bean:message key="crearTarea.distinguirODEs"/></label>
+									</div>
+								</div>
+								<div class="contenedor_derecha"  id="cont_esp_fech">
+								<div class="text" style="white-space:nowrap">
+									<label class="oculto" for="day2"><bean:message key="crearTarea.fechaDia"/></label>
+									<input DISABLED class="fechazo_02" id="day2"  value="${form.diaActualizacion}" onblur="this.style.backgroundColor='#e1e1e1'"  name="diaActualizacion" type="text" onfocus="limpiarTexto(this)" title="<bean:message key="crearTarea.introduzcaAnio"/> "/>
+									<label class="oculto" for="month1"><bean:message key="crearTarea.mes"/></label>
+										<select  id="month1"  name="mesActualizacion" title="<bean:message key="crearTarea.introduzcaMes"/> " style="width:100px;" DISABLED>
+											<c:if test="${form.mesActualizacion == '1'}">
+												<option selected="selected"><bean:message key="crearTarea.Enero"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '2'}">
+												<option selected="selected"><bean:message key="crearTarea.Febrero"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '3'}">
+												<option selected="selected"><bean:message key="crearTarea.Marzo"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '4'}">
+												<option selected="selected"><bean:message key="crearTarea.Abril"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '5'}">
+												<option selected="selected"><bean:message key="crearTarea.Mayo"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '6'}">
+												<option selected="selected"><bean:message key="crearTarea.Junio"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '7'}">
+												<option selected="selected"><bean:message key="crearTarea.Julio"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '8'}">
+												<option selected="selected"><bean:message key="crearTarea.Agosto"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '9'}">
+												<option selected="selected"><bean:message key="crearTarea.Septiembre"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '10'}">
+												<option selected="selected"><bean:message key="crearTarea.Octubre"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '11'}">
+												<option selected="selected"><bean:message key="crearTarea.Noviembre"/></option>
+											</c:if>
+											<c:if test="${form.mesActualizacion == '12'}">
+												<option selected="selected"><bean:message key="crearTarea.Diciembre"/></option>
+											</c:if>
+											<option value="1"><bean:message key="crearTarea.Enero"/></option>
+											<option value="2"><bean:message key="crearTarea.Febrero"/></option>
+											<option value="3"><bean:message key="crearTarea.Marzo"/></option>
+											<option value="4"><bean:message key="crearTarea.Abril"/></option>
+											<option value="5"><bean:message key="crearTarea.Mayo"/></option>
+											<option value="6"><bean:message key="crearTarea.Junio"/></option>
+											<option value="7"><bean:message key="crearTarea.Julio"/></option>
+											<option value="8"><bean:message key="crearTarea.Agosto"/></option>
+											<option value="9"><bean:message key="crearTarea.Septiembre"/></option>
+											<option value="10"><bean:message key="crearTarea.Octubre"/></option>
+											<option value="11"><bean:message key="crearTarea.Noviembre"/></option>
+											<option value="12"><bean:message key="crearTarea.Diciembre"/></option>
+										</select>				
+									<label class="oculto"  for="anio" ><bean:message key="crearTarea.fechaAnio"/></label>
+									<input DISABLED class="fechazo_02" id="fecha_anio"  value="${form.anoActualizacion}" onblur="this.style.backgroundColor='#e1e1e1'"  name="anoActualizacion" type="text" onfocus="limpiarTexto(this)" title="<bean:message key="crearTarea.introduzcaAnio"/> "/>
+								</div>
+								</div>
+								<div class="linea_separadora"></div>
+								<br class="oculto" />
+							</div>
+							
+						</div>
+						
+						<!-- ******************************      Fin caja de formulario     ************************************ -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  FIN GLOBO GRIS   -->
+		
+		<!-- ******************************      Boton Volver    ********************************** -->
+		
+		<html:submit titleKey="informeTrabajo.volver" styleClass="boton_125 tipo"   styleId="form_submit" >
+			<bean:message key='informeTrabajo.volver'/>
+		</html:submit>	
+            
+            
+   	</html:form>
+       
+       
+</div>
+<!-- ***************************** FIN  CONTENIDO  ****************************** -->
+
+
+</tiles:put>
+</tiles:insert>  

@@ -1,0 +1,13 @@
+<project default="webtest:install"
+         xmlns:ant="jelly:ant"
+         xmlns:u="jelly:util"
+         xmlns:maven="jelly:maven"
+         xmlns:j="jelly:core">
+         
+         
+         
+<goal name="webtest:install" description="Run Canoo WebTest">
+</goal>
+  
+  
+</project>

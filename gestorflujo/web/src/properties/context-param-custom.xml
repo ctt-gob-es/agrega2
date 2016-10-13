@@ -1,0 +1,330 @@
+<context-param>
+   		<param-name>url_pendientes</param-name>
+   		<param-value>ObjetosPendientesCU/ObjetosPendientesCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_despublicados</param-name>
+   		<param-value>ObjetosDespublicadosCU/ObjetosDespublicadosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_despublicados_eliminar</param-name>
+   		<param-value>ObjetosDespublicadosCU/MostrarODESDespublicadosEliminar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_despublicados_mostrar</param-name>
+   		<param-value>ObjetosDespublicadosCU/MostrarODESDespublicadosPublicar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar</param-name>
+   		<param-value>visualizador-1/Visualizar/Visualizar.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_personales</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_compartidos</param-name>
+   		<param-value>ObjetosCompartidosCU/MostrarODESCompartidosPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_propuestos</param-name>
+   		<param-value>ObjetosPropuestosCU/MostrarODESPropuestosPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_publicados</param-name>
+   		<param-value>ObjetosPublicadosCU/MostrarODESPublicadosPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_pendientes</param-name>
+   		<param-value>ObjetosPendientesCU/MostrarODESPendientesPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_pend_catalogacion</param-name>
+   		<param-value>ObjetosPendientesCatalogacionCU/MostrarODESPendientesPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_despublicados</param-name>
+   		<param-value>ObjetosDespublicadosCU/MostrarODESDespublicadosPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_visualizar_publicadosAutonomos</param-name>
+   		<param-value>ObjetosPublicadosAutonomosCU/MostrarODESPublicadosAutonomosPrevisualizar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicadosAutonomos_aceptar</param-name>
+   		<param-value>PublicarAutonomosCU/ProponerPublicacionAutonomaAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicadosAutonomos_rechazar_aceptar</param-name>
+   		<param-value>/DespublicarAutonomosCU/DespublicarAutonomaComentariosAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_despublicados_exportar</param-name>
+   		<param-value>ExportarCU/ExportarCU</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_despublicados_historial</param-name>
+   		<param-value>ObjetosDespublicadosCU/MostrarODESDespublicadosVerHistorial</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientes_mostrar</param-name>
+   		<param-value>ObjetosPendientesCU/MostrarODESPendientesPublicarODE</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientes_historial</param-name>
+   		<param-value>ObjetosPendientesCU/MostrarODESPendientesVerHistorial</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientes_catalogacion_historial</param-name>
+   		<param-value>ObjetosPendientesCatalogacionCU/MostrarODESPendientesVerHistorial</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientes_rechazar</param-name>
+   		<param-value>ObjetosPendientesCU/MostrarODESPendientesRechazarODE</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_eliminar_aceptar</param-name>
+   		<param-value>EliminarCU/ConfirmacionAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_eliminar_cancelar</param-name>
+   		<param-value>EliminarCU/ConfirmacionCancelar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_eliminar_resultado_volver</param-name>
+   		<param-value>EliminarCU/ResultadoVolver</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_licencia_aceptar</param-name>
+   		<param-value>PublicarCU/AgregarLicenciaAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_licencia_cancelar</param-name>
+   		<param-value>PublicarCU/AgregarLicenciaCancelar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_ode_aceptar</param-name>
+   		<param-value>gestorFlujo/PublicarCU/PublicarODEAceptar.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_ode_modificar</param-name>
+   		<param-value>PublicarCU/PublicarODEModificarLicencia.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_ode_cancelar</param-name>
+   		<param-value>PublicarCU/PublicarODECancelar.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_duplicados_cancelar</param-name>
+   		<param-value>CalcularDuplicadosCU/ListarDuplicadosCancelar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicar_resultado_validacion</param-name>
+   		<param-value>PublicarCU/ResultadoValidacionDecide</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_rechazar_aceptar</param-name>
+   		<param-value>RechazarCU/RechazarAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientesCatalogacion</param-name>
+   		<param-value>ObjetosPendientesCatalogacionCU/ObjetosPendientesCatalogacionCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicosAutonomos</param-name>
+   		<param-value>ObjetosPublicosAutonomosCU/ObjetosPublicosAutonomosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientesCatalogacion_mostrar_pendientes</param-name>
+   		<param-value>ObjetosPendientesCatalogacionCU/MostrarODESPendientesProponerPublicacionODE</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientesCatalogacion_rechazar</param-name>
+   		<param-value>RechazarPendCatalogacionCU/RechazarPendCatalogacionCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_proponer_principal_aceptar</param-name>
+   		<param-value>ProponerCU/ProponerPrincipalAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_proponer_principal_cancelar</param-name>
+   		<param-value>ProponerCU/ProponerPrincipalCancelar.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_pendientesCatalogacion_rechazar_aceptar</param-name>
+   		<param-value>RechazarPendCatalogacionCU/RechazarAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales</param-name>
+   		<param-value>ObjetosPersonalesCU/ObjetosPersonalesCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPropuestos</param-name>
+   		<param-value>ObjetosPropuestosCU/ObjetosPropuestosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPublicados</param-name>
+   		<param-value>ObjetosPublicadosCU/ObjetosPublicadosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_actualizarVersionados</param-name>
+   		<param-value>ActualizarOdeVersionadoCU/ActualizarOdeVersionadoCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosCompartidos</param-name>
+   		<param-value>ObjetosCompartidosCU/ObjetosCompartidosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPublicadosAutonomos</param-name>
+   		<param-value>ObjetosPublicadosAutonomosCU/ObjetosPublicadosAutonomosCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_publicarAutonomos</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesPublicadosAutonomos</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_eliminar</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesEliminar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_mostrar_historial</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesVerHistorial</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_exportar</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesExportar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_proponer</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesProponer</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_importar</param-name>
+   		<param-value>gestorFlujo/ImportarCU/ImportarCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_catalogar</param-name>
+   		<param-value>PortalEmpaquetador/InicioEmpaquetador/InicioEmpaquetador.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosCompartidos_importar</param-name>
+   		<param-value>ImportarCompartidosCU/ImportarCompartidosCU</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_personales_eliminar_aceptar</param-name>
+   		<param-value>EliminarPersonalesCU/ConfirmacionAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_personales_eliminar_cancelar</param-name>
+   		<param-value>EliminarPersonalesCU/ConfirmacionCancelar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_personales_resultado_volver</param-name>
+   		<param-value>EliminarPersonalesCU/ResultadoAceptarResultado</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_exportar_aceptar</param-name>
+   		<param-value>ExportarCU/ResultadoImportacionAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_exportar_formato</param-name>
+   		<param-value>ExportarCU/SeleccionarFormatoExportacionAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_importar_resultado</param-name>
+   		<param-value>ImportarCU/ResultadoImportacionContinuar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_actualizar_resultado</param-name>
+   		<param-value>ActualizarOdeVersionadoCU/ResultadoActualizacionContinuar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_importar_recurso</param-name>
+   		<param-value>ImportarCU/SeleccionarRecursoImportadoAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_proponerCatalogacion_aceptar</param-name>
+   		<param-value>ProponerCatalogacionCU/ProponerCatalogacionAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_compartir_descompartir_personal</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesCompartir</param-value>
+	</context-param>
+<context-param>
+   		<param-name>url_compartidos</param-name>
+   		<param-value>ObjetosCompartidosCU/ObjetosCompartidosCU</param-value>
+	</context-param>
+<context-param>
+   		<param-name>url_objetosPublicadosAutonomos_despublicar</param-name>
+   		<param-value>ObjetosPublicadosAutonomosCU/MostrarODESPublicadosAutonomosDespublicarAutonomos</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPublicosAutonomos_despublicar</param-name>
+   		<param-value>ObjetosPublicosAutonomosCU/MostrarODESPublicosAutonomosDespublicar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPublicosAutonomos_historial</param-name>
+   		<param-value>ObjetosPublicosAutonomosCU/MostrarODESPublicosAutonomosVerHistorial</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_publicosAutonomos_aceptar</param-name>
+   		<param-value>DespublicaAutonomoCU/DespublicaAutonomoComentariosAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPublicados_odesGrupo</param-name>
+   		<param-value>ObjetosPublicadosCU/MostrarODESPublicadosOdeGrupos</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_odesGrupo_aceptar</param-name>
+   		<param-value>OdeGruposCU/MostrarGruposUsuarioAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_enviarAAlbum</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesEnviarAlbum</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_enviarAlbum_aceptar</param-name>
+   		<param-value>EnvioAlbumCU/ListarAlbumesEnviar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_objetosPersonales_mostrarAlbumes</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesMostrarAlbum</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_enviarAlbum_modificacion</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesModificarAlbum</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_modificar_cancelar</param-name>
+   		<param-value>ModificarAlbumCU/ModificarCancelar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_altaAlbum</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesAltaAlbum</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_eliminarAlbum</param-name>
+   		<param-value>ObjetosPersonalesCU/MostrarODESPersonalesEliminarAlbum</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_eliminarAlbum_aceptar</param-name>
+   		<param-value>EliminarAlbumCU/ConfirmaEliminacionAceptarConfirmacionEliminar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_modificar_aceptar</param-name>
+   		<param-value>ModificarAlbumCU/ModificarAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_altaAlbum_aceptar</param-name>
+   		<param-value>AltaAlbumCU/CrearAceptar</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_listarODEsAlbum</param-name>
+   		<param-value>ListarAlbumCU/ListarAlbumCU.do</param-value>
+</context-param>
+<context-param>
+   		<param-name>url_listarDuplicados</param-name>
+   		<param-value>CalcularDuplicadosCU/CalcularDuplicadosCU.do</param-value>
+</context-param>
+
+

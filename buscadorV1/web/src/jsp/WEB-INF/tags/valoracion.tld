@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>1.0</tlib-version>
+	
+	<short-name>validacion</short-name>
+	<!-- <info>Validacion Sample Tag library</info> -->
+  <!-- A Simple tag -->
+  <tag>
+    <name>valoracion</name>
+    <tag-class>es.pode.buscador.tag.valoracion.ValoracionTag</tag-class>
+  <!--Body content can have a value of 
+  	 empty: no body 
+      JSP: body that is evaluated by container, then possibly processed by the tag 
+      tagdependent: body is only processed by tag; JSP in body is not evaluated.
+   -->
+    <body-content>empty</body-content>
+    <!-- <info>
+	This is a simple tag.
+    </info> -->
+  <!-- Optional attributes  -->
+  <!-- personalized name -->
+  <attribute>
+      <name>valoracion</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+  </attribute>
+  <attribute>
+      <name>pagina</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+  </attribute>
+  <attribute>
+      <name>mensaje</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+  </attribute>
+</tag>
+</taglib>

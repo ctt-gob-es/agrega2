@@ -1,0 +1,6495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SrvPerfilPublico" targetNamespace="http://servicios.negocio.adminusuarios.pode.es" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://servicios.negocio.adminusuarios.pode.es" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    
+    <!-- WSDL Types -->
+
+     <wsdl:types>
+
+          <xsd:schema elementFormDefault="qualified" targetNamespace="http://servicios.negocio.adminusuarios.pode.es" xmlns="http://www.w3.org/2001/XMLSchema">
+ 
+               <xsd:element name="aceptarSolicitudGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Cuando se acepta se incluye el usuario en el grupo publico y el
+                        grupo publico en usuario publico y se elimina la solicitud
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="idSolicitudGrupo" nillable="false" type="soapenc:long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="aceptarSolicitudGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="aceptarSolicitudGrupoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="anadirContactoAAgenda">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Podemos añdir usuario a nuestra agenda(nuestros contactos)
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="contacto" nillable="false" type="impl:ContactoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Contacto que se quiere añadir
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del usuario al que se le quiere añadir el contacto a la
+                                    agenda
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="anadirContactoAAgendaResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="anadirContactoAAgendaReturn" type="impl:ResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="anadirFavoritoAUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="favorito" nillable="false" type="impl:FavoritoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    El usuario del que recogeremos el usuario publico para añadir el
+                                    favorito
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="anadirFavoritoAUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="anadirFavoritoAUsuarioReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="asociarOdeAGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Método para añadir un ODE a un grupo, al asociarlo se enviará un
+                        correo a todos los usuarios miembros del grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="ode" nillable="false" type="impl:OdeGrupoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="nombres" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombres de los  grupos publicos a los que se quiere asociar el
+                                    ode
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="asociarOdeAGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="asociarOdeAGrupoReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="buscarFavoritosPorTitulo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="titulo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="buscarFavoritosPorTituloResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="buscarFavoritosPorTituloReturn" type="impl:ArrayOfFavoritoAnadidioVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="buscarGruposPorDescripcion">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Buscamos todos los grupo que se asemejen a la descripción dada
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="descripcion" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    La descripcion que se debe asemejar a la descripcion de los
+                                    grupos
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="buscarGruposPorDescripcionResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="buscarGruposPorDescripcionReturn" type="impl:ArrayOfGrupoPublicoAdminVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="buscarGruposPorNombre">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Método para buscar los grupos que coincidan con el texto que le
+                        pasamos y nos devolverá una lista de grupos especificando si
+                        está asociado al usuario o no.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="buscarGruposPorNombreResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="buscarGruposPorNombreReturn" type="impl:ArrayOfGrupoPublicoAsociadoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="buscarUsuariosPorNombre">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="textoUsuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="buscarUsuariosPorNombreResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="buscarUsuariosPorNombreReturn" type="impl:ArrayOfContactoAsociadoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="cambiarImagenPorElDefecto">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="cambiarImagenPorElDefectoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="cambiarImagenPorElDefectoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="cancelarSolicitudGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="idSolicitudGrupo" nillable="false" type="soapenc:long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="cancelarSolicitudGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="cancelarSolicitudGrupoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="crearGrupoPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Metodo para crear un grupo publico por un usuario que será el
+                        administrador
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="grupoPublico" nillable="false" type="impl:GrupoPublicoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    el usuario que da de alta el grupo publico
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="crearGrupoPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="crearGrupoPublicoReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="crearUsuarioPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Método para crear un usuario publico
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuarioPublico" nillable="false" type="impl:UsuarioPublicoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Necesitamos el  usuario para saber a quien tenemos que agregarle
+                                    el usuario publico
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="crearUsuarioPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="crearUsuarioPublicoReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="desasociarOdeDeGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Sólo lo podrá hacer el administrador del grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="id_mecs" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Los identificadores de los odes que quieren desasociarse del
+                                    grupo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo del que se quiere desasociar el ode
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="titulos" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="desasociarOdeDeGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="desasociarOdeDeGrupoReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarContactoDeAgenda">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Si somos administradores del grupo podemos eliminar un contacto
+                        de nuestra lista de contactos
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="idContactos" nillable="false" type="impl:ArrayOfsoapenc_long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarContactoDeAgendaResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarContactoDeAgendaReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarFavoritoDeUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="id_mecs" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Identificadores de los ode favoritos que se quieren quitar de la
+                                    lista de favoritos
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Usuario del que accederemos al usuario publico del que tenemos
+                                    que quitar el favorito
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="titulos" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarFavoritoDeUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarFavoritoDeUsuarioReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarGrupoPublicoPorAdministrador">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        El usuario que tenga ROL ADMINISTRADOR pude borrar cualquier
+                        grupo publico
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="identificadores" nillable="false" type="impl:ArrayOfsoapenc_long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombres de los grupos que se quieren eliminar
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarGrupoPublicoPorAdministradorResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarGrupoPublicoPorAdministradorReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarGrupoPublicoPorUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Metodo para eliminar los grupo publicos, sólo lo podrá eliminar
+                        el usuario administrador de ese grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="identificadores" nillable="false" type="impl:ArrayOfsoapenc_long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Usuario creador del grupo que puede eliminarlo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarGrupoPublicoPorUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarGrupoPublicoPorUsuarioReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarODEPerfilPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Método para borrar los odes de la parte publica
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="id_mecs" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarODEPerfilPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarODEPerfilPublicoReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarSolicitud">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        El usuario que hace la solicitud puede eliminarlo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="idSolicitudes" nillable="false" type="impl:ArrayOfsoapenc_long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Los  identificadores de las solicitudes
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="solicitante" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    El solicitante de eliminación, tiene que ser el mismo que el de
+                                    alta
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarSolicitudResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarSolicitudReturn" type="impl:ArrayOfsoapenc_boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarUsuarioDeGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        El administrador del grupo puede eliminar un usuario de la lista
+                        del grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuarios" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Usuarios que se quieren eliminar
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo del que se quiere eliminar el usuario
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarUsuarioDeGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarUsuarioDeGrupoReturn" type="impl:ArrayOfResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="eliminarUsuarioPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="eliminarUsuarioPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="eliminarUsuarioPublicoReturn" type="impl:ResultadoOperacionVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeContactoEnAgendaDeUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="contacto" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeContactoEnAgendaDeUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeContactoEnAgendaDeUsuarioReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeFavoritoEnUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Isentificador del ode
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Usuario
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeFavoritoEnUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeFavoritoEnUsuarioReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeGrupoEnUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Usuario que realiza la solicitud
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo al que solicitar entrar
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeGrupoEnUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeGrupoEnUsuarioReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeNombreGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="id" nillable="false" type="soapenc:long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeNombreGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeNombreGrupoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeOdeEnGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Identificador del ode
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeOdeEnGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeOdeEnGrupoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="existeSolicitudGrupoIdentico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="existeSolicitudGrupoIdenticoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="existeSolicitudGrupoIdenticoReturn" type="soapenc:boolean"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="hacerSolicitudParaGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Método para hacer la solicitud de ingreso en el grupo; Este casó
+                        se dará en el caso de que el solicitante no sea miembro. Después
+                        el administrador del grupo tendrá que decidir si aceptarlo o no.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="solicitudGrupo" nillable="false" type="impl:SolicitudGrupoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="hacerSolicitudParaGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="hacerSolicitudParaGrupoReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listadoGruposConAsociacionPorUsuarioYOde">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Devuelve la lista de todos los grupos donde el usuario está
+                        asociado y el ode esté.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="id_mecs" nillable="false" type="impl:ArrayOfxsd_string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listadoGruposConAsociacionPorUsuarioYOdeResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listadoGruposConAsociacionPorUsuarioYOdeReturn" type="impl:ArrayOfOdeConGruposVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarContactosDeAgenda">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los contacto de un usuario
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarContactosDeAgendaResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarContactosDeAgendaReturn" type="impl:ArrayOfContactoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarFavoritosUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    El usuario
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarFavoritosUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarFavoritosUsuarioReturn" type="impl:ArrayOfFavoritoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGrupoPublicos">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los grupos publico exitentes
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="listarGrupoPublicosResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGrupoPublicosReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGrupoPublicosDeAdministrador">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los grupos donde el usuario es el administrador
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="administrador" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarGrupoPublicosDeAdministradorResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGrupoPublicosDeAdministradorReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGruposCreadosUltimos">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="listarGruposCreadosUltimosResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGruposCreadosUltimosReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGruposModificadosUltimos">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                     <xsd:complexType/>
+
+               </xsd:element>
+
+               <xsd:element name="listarGruposModificadosUltimosResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGruposModificadosUltimosReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGruposPublicosConAsociacion">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los grupos publicos haciendo la distinción entre
+                        aquellos en los que el usuario ya está y a los que se pude
+                        asociar
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarGruposPublicosConAsociacionResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGruposPublicosConAsociacionReturn" type="impl:ArrayOfGrupoPublicoAsociadoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarGruposSolicitadosPorUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los grupos a los que el usuario a solicitado
+                        integrar, pero la solicitud no se ha resuelto
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarGruposSolicitadosPorUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarGruposSolicitadosPorUsuarioReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarOdesDeGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los odes que estén añadidos en el  grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarOdesDeGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarOdesDeGrupoReturn" type="impl:ArrayOfOdeGrupoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarSolicitudesAdministrador">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todas las solicitudes que le faltan por resolver al
+                        administrador del grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="administrador" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarSolicitudesAdministradorResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarSolicitudesAdministradorReturn" type="impl:ArrayOfSolicitudGrupoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarSolicitudesRealizadasPorUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todas las solicitudes que le ha realizado el usuario
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="solicitante" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarSolicitudesRealizadasPorUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarSolicitudesRealizadasPorUsuarioReturn" type="impl:ArrayOfSolicitudGrupoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarTodosGrupoDeUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Listamos todos los grupos dónde el usuario es el administrador o
+                        asociado
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarTodosGrupoDeUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarTodosGrupoDeUsuarioReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosConContacto">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Buscamos todos los usuarios que tienen añadido como contacto el
+                        nombre del contacto que le pasamos y que tienen marcado como
+                        true la variable recibirContacto
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="contacto" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosConContactoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarUsuariosConContactoReturn" type="impl:ArrayOfUsuarioCorreoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosDeGrupo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Se listan todos los usuarios pertenecientes al grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    El nombre del grupo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosDeGrupoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarUsuariosDeGrupoReturn" type="impl:ArrayOfUsuarioPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosDeGrupoCorreo">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Lista todos los usuarios de un grupo con la información de si
+                        debe o no recibir los e-mails. Sólo devolveremos aquellos
+                        usuarios que quieren recibir los mail-s
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombreGrupo" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="listarUsuariosDeGrupoCorreoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="listarUsuariosDeGrupoCorreoReturn" type="impl:ArrayOfUsuarioCorreoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="modificarGrupoPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Metodo para modificar el grupo publico
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="grupoPublico" nillable="false" type="impl:GrupoPublicoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="idGrupo" nillable="false" type="soapenc:long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    el usuario creador del grupo que puede modificarlo
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="modificarGrupoPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="modificarGrupoPublicoReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="modificarUsuarioPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Metodo para modificar el usuario publico
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuarioPublico" nillable="false" type="impl:UsuarioPublicoVO">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Necesitamos saber el usuario para saber que el usuario publico
+                                    de quien tenemos que modificar
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="modificarUsuarioPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="modificarUsuarioPublicoReturn" type="soapenc:long"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="obtenerGrupoPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Obtenermos el grupo publico
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    Nombre del grupo que se quiere obtener
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerGrupoPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerGrupoPublicoReturn" type="impl:GrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="obtenerGruposPublicosPorIdentificador">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="ids" nillable="false" type="impl:ArrayOfsoapenc_long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerGruposPublicosPorIdentificadorResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerGruposPublicosPorIdentificadorReturn" type="impl:ArrayOfGrupoPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="obtenerGrupoUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Obtenemos todos los grupos creados por el usuario y también
+                        aquellos grupos donde el usuario se ha asociado
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerGrupoUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerGrupoUsuarioReturn" type="impl:ArrayOfGrupoPublicoAdminVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="obtenerNumeroFavoritosUsuario">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Metodo que nos devuelve el número de favoritos que le indiquemos
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                              <xsd:element name="numero" nillable="false" type="soapenc:long">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    El número máximo  de ODEs que queremos recoger
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerNumeroFavoritosUsuarioResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerNumeroFavoritosUsuarioReturn" type="impl:ArrayOfFavoritoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+               <xsd:element name="obtenerUsuarioPublico">
+      
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+ 
+                    <xsd:complexType>
+  
+                         <xsd:sequence>
+
+                              <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                                   <xsd:annotation>
+     
+                                        <xsd:documentation>
+ 
+                                    
+                                        </xsd:documentation>
+
+                                   </xsd:annotation>
+
+                              </xsd:element>
+
+                          </xsd:sequence>
+
+                     </xsd:complexType>
+
+               </xsd:element>
+
+               <xsd:element name="obtenerUsuarioPublicoResponse">
+       
+                    <xsd:complexType>
+
+                         <xsd:sequence>
+
+                              <xsd:element name="obtenerUsuarioPublicoReturn" type="impl:UsuarioPublicoVO"/>
+
+                         </xsd:sequence>
+
+                    </xsd:complexType>
+               
+               </xsd:element>
+
+
+
+               <xsd:complexType name="ContactoAsociadoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="usuarioContacto" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="imagenUsuario" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="esAsociadoUsuario" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcionUsuario" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="true" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfContactoAsociadoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ContactoAsociadoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfContactoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ContactoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ContactoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="usuarioContacto" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Usuario al que se ha añadido como contacto
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="true" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfContactoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ContactoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="CrearGrupoPublicoException">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="CrearUsuarioPublicoException">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="FavoritoAnadidioVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="titulo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idioma" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="esFavorito" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfFavoritoAnadidioVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FavoritoAnadidioVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfFavoritoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FavoritoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="FavoritoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Objeto digital de la plataforma que ha sido marcado como
+                        favorito por un usuario
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="titulo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idioma" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfFavoritoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:FavoritoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="GrupoPublicoAdminVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcion" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="imagenGrupo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="administrador" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="creador" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Indica si el usuario que accede y el administrador son la misma
+                                persona
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaCreacion" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaModificacion" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="false" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfGrupoPublicoAdminVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:GrupoPublicoAdminVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="GrupoPublicoAsociadoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="administrador" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="asociado" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcion" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaCreacion" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaModificacion" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="imagenGrupo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="false" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfGrupoPublicoAsociadoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:GrupoPublicoAsociadoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfGrupoPublicoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:GrupoPublicoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="GrupoPublicoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        El grupo público o learning path engloba usuarios y odes
+                        relacionados entre sí. Un usuario podrá crear grupos públicos o
+                        asociarse a otros que hayan sido creados por otros usuarios.
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcion" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="imagenGrupo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="administrador" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaModificacion" nillable="true" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaCreacion" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="true" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="odeGrupo" nillable="false" type="impl:ArrayOfOdeGrupoVO">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+   
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfGrupoPublicoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:GrupoPublicoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ModificarGrupoPublicoException">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ModificarUsuarioPublicoException">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="OdeConGruposVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                El identificador  del ode
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="gruposAsociados" nillable="false" type="impl:ArrayOfGrupoPublicoVO">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                grupos publicos asociados a ese ode
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfOdeConGruposVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:OdeConGruposVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfOdeGrupoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:OdeGrupoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="OdeGrupoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Información del ode asociado a un grupo
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="id_mec" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="titulo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="idioma" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ResultadoOperacionVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        VO para recoger la información de las operaciones realizadas
+                        referentes al perfil público
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="nombre" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Nombre sobre el que se realiza la operación
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="resultado" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Resultado de la operación, si ha ido bien o no.
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfResultadoOperacionVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:ResultadoOperacionVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="SolicitudGrupoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="usuarioSolicitante" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Usuario que solicita ser miembro del grupo
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="grupo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Grupo del que se desea ser miembro
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="usuarioAdministrador" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Administrador del grupo
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="fechaSolicitud" nillable="false" type="xsd:dateTime">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Fecha en la que se realiza la solicitud
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="true" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfSolicitudGrupoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:SolicitudGrupoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="UsuarioCorreoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Vo para obtener los datos necesarios de un usuario y saber si
+                        debe recibir o no correos
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Login del usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="email" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                El e-mail del usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="recibeCorreo" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Indica si debe recibir correos o no
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfUsuarioCorreoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:UsuarioCorreoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="UsuarioPublicoVO">
+
+                    <xsd:annotation>
+     
+                         <xsd:documentation>
+ 
+                        Usuario público de Agrega. Cada usuario público se correspondará
+                        con un usuario registrado en la plataforma
+                         </xsd:documentation>
+
+                    </xsd:annotation>
+
+                    <xsd:sequence>
+
+                         <xsd:element name="foto" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Nombre de la foto del usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="mostrarObjetos" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Indica si se va a mostrar los objetos públicos del usuario en su
+                                página pública
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="mostrarFavoritos" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Indica si se va a mostrar el bloque de los odes favoritos de un
+                                usuario en la página pública de un usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="mostrarGrupos" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Indica si se va a mostrar los grupos de un usuario en su página
+                                pública
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="centroEducativo" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Nombre del centro educativo del usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="recibirCorreo" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="usuario" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="contenidoImagen" nillable="true" type="apachesoap:DataHandler">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="id" nillable="true" type="soapenc:long">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="nombreUsuario" nillable="false" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Nombre y apellidos del usuario
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="descripcion" nillable="true" type="xsd:string">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                Descripcion del usuario publico
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="activo" nillable="false" type="soapenc:boolean">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+
+                         <xsd:element name="grupoPublico" nillable="true" type="impl:ArrayOfGrupoPublicoVO">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+   
+                         <xsd:element name="favoritoUsuario" nillable="true" type="impl:ArrayOfFavoritoVO">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+   
+                         <xsd:element name="contacto" nillable="true" type="impl:ArrayOfContactoVO">
+
+                              <xsd:annotation>
+     
+                                   <xsd:documentation>
+ 
+                                
+                                   </xsd:documentation>
+
+                              </xsd:annotation>
+
+                         </xsd:element>
+   
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfUsuarioPublicoVO">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="impl:UsuarioPublicoVO"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfsoapenc_boolean">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="soapenc:boolean"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfsoapenc_long">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="soapenc:long"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+               <xsd:complexType name="ArrayOfxsd_string">
+
+                    <xsd:sequence>
+
+                         <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+ 
+                    </xsd:sequence>
+
+               </xsd:complexType>
+
+          </xsd:schema>
+
+     </wsdl:types>
+
+   
+    <!-- Messages -->
+
+     <wsdl:message name="aceptarSolicitudGrupo1Request">
+
+          <wsdl:part element="impl:aceptarSolicitudGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="aceptarSolicitudGrupo1Response">
+
+          <wsdl:part element="impl:aceptarSolicitudGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="anadirContactoAAgenda2Request">
+
+          <wsdl:part element="impl:anadirContactoAAgenda" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="anadirContactoAAgenda2Response">
+
+          <wsdl:part element="impl:anadirContactoAAgendaResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="anadirFavoritoAUsuario3Request">
+
+          <wsdl:part element="impl:anadirFavoritoAUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="anadirFavoritoAUsuario3Response">
+
+          <wsdl:part element="impl:anadirFavoritoAUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="asociarOdeAGrupo4Request">
+
+          <wsdl:part element="impl:asociarOdeAGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="asociarOdeAGrupo4Response">
+
+          <wsdl:part element="impl:asociarOdeAGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarFavoritosPorTitulo5Request">
+
+          <wsdl:part element="impl:buscarFavoritosPorTitulo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarFavoritosPorTitulo5Response">
+
+          <wsdl:part element="impl:buscarFavoritosPorTituloResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarGruposPorDescripcion6Request">
+
+          <wsdl:part element="impl:buscarGruposPorDescripcion" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarGruposPorDescripcion6Response">
+
+          <wsdl:part element="impl:buscarGruposPorDescripcionResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarGruposPorNombre7Request">
+
+          <wsdl:part element="impl:buscarGruposPorNombre" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarGruposPorNombre7Response">
+
+          <wsdl:part element="impl:buscarGruposPorNombreResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarUsuariosPorNombre8Request">
+
+          <wsdl:part element="impl:buscarUsuariosPorNombre" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="buscarUsuariosPorNombre8Response">
+
+          <wsdl:part element="impl:buscarUsuariosPorNombreResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="cambiarImagenPorElDefecto9Request">
+
+          <wsdl:part element="impl:cambiarImagenPorElDefecto" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="cambiarImagenPorElDefecto9Response">
+
+          <wsdl:part element="impl:cambiarImagenPorElDefectoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="cancelarSolicitudGrupo10Request">
+
+          <wsdl:part element="impl:cancelarSolicitudGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="cancelarSolicitudGrupo10Response">
+
+          <wsdl:part element="impl:cancelarSolicitudGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="crearGrupoPublico11Request">
+
+          <wsdl:part element="impl:crearGrupoPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="crearGrupoPublico11Response">
+
+          <wsdl:part element="impl:crearGrupoPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="crearUsuarioPublico12Request">
+
+          <wsdl:part element="impl:crearUsuarioPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="crearUsuarioPublico12Response">
+
+          <wsdl:part element="impl:crearUsuarioPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="desasociarOdeDeGrupo13Request">
+
+          <wsdl:part element="impl:desasociarOdeDeGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="desasociarOdeDeGrupo13Response">
+
+          <wsdl:part element="impl:desasociarOdeDeGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarContactoDeAgenda14Request">
+
+          <wsdl:part element="impl:eliminarContactoDeAgenda" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarContactoDeAgenda14Response">
+
+          <wsdl:part element="impl:eliminarContactoDeAgendaResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarFavoritoDeUsuario15Request">
+
+          <wsdl:part element="impl:eliminarFavoritoDeUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarFavoritoDeUsuario15Response">
+
+          <wsdl:part element="impl:eliminarFavoritoDeUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarGrupoPublicoPorAdministrador16Request">
+
+          <wsdl:part element="impl:eliminarGrupoPublicoPorAdministrador" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarGrupoPublicoPorAdministrador16Response">
+
+          <wsdl:part element="impl:eliminarGrupoPublicoPorAdministradorResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarGrupoPublicoPorUsuario17Request">
+
+          <wsdl:part element="impl:eliminarGrupoPublicoPorUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarGrupoPublicoPorUsuario17Response">
+
+          <wsdl:part element="impl:eliminarGrupoPublicoPorUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarODEPerfilPublico18Request">
+
+          <wsdl:part element="impl:eliminarODEPerfilPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarODEPerfilPublico18Response">
+
+          <wsdl:part element="impl:eliminarODEPerfilPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarSolicitud19Request">
+
+          <wsdl:part element="impl:eliminarSolicitud" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarSolicitud19Response">
+
+          <wsdl:part element="impl:eliminarSolicitudResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarUsuarioDeGrupo20Request">
+
+          <wsdl:part element="impl:eliminarUsuarioDeGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarUsuarioDeGrupo20Response">
+
+          <wsdl:part element="impl:eliminarUsuarioDeGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarUsuarioPublico21Request">
+
+          <wsdl:part element="impl:eliminarUsuarioPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="eliminarUsuarioPublico21Response">
+
+          <wsdl:part element="impl:eliminarUsuarioPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeContactoEnAgendaDeUsuario22Request">
+
+          <wsdl:part element="impl:existeContactoEnAgendaDeUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeContactoEnAgendaDeUsuario22Response">
+
+          <wsdl:part element="impl:existeContactoEnAgendaDeUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeFavoritoEnUsuario23Request">
+
+          <wsdl:part element="impl:existeFavoritoEnUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeFavoritoEnUsuario23Response">
+
+          <wsdl:part element="impl:existeFavoritoEnUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeGrupoEnUsuario24Request">
+
+          <wsdl:part element="impl:existeGrupoEnUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeGrupoEnUsuario24Response">
+
+          <wsdl:part element="impl:existeGrupoEnUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeNombreGrupo25Request">
+
+          <wsdl:part element="impl:existeNombreGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeNombreGrupo25Response">
+
+          <wsdl:part element="impl:existeNombreGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeOdeEnGrupo26Request">
+
+          <wsdl:part element="impl:existeOdeEnGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeOdeEnGrupo26Response">
+
+          <wsdl:part element="impl:existeOdeEnGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeSolicitudGrupoIdentico27Request">
+
+          <wsdl:part element="impl:existeSolicitudGrupoIdentico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="existeSolicitudGrupoIdentico27Response">
+
+          <wsdl:part element="impl:existeSolicitudGrupoIdenticoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="hacerSolicitudParaGrupo28Request">
+
+          <wsdl:part element="impl:hacerSolicitudParaGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="hacerSolicitudParaGrupo28Response">
+
+          <wsdl:part element="impl:hacerSolicitudParaGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde29Request">
+
+          <wsdl:part element="impl:listadoGruposConAsociacionPorUsuarioYOde" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listadoGruposConAsociacionPorUsuarioYOde29Response">
+
+          <wsdl:part element="impl:listadoGruposConAsociacionPorUsuarioYOdeResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarContactosDeAgenda30Request">
+
+          <wsdl:part element="impl:listarContactosDeAgenda" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarContactosDeAgenda30Response">
+
+          <wsdl:part element="impl:listarContactosDeAgendaResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarFavoritosUsuario31Request">
+
+          <wsdl:part element="impl:listarFavoritosUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarFavoritosUsuario31Response">
+
+          <wsdl:part element="impl:listarFavoritosUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGrupoPublicos32Request">
+
+          <wsdl:part element="impl:listarGrupoPublicos" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGrupoPublicos32Response">
+
+          <wsdl:part element="impl:listarGrupoPublicosResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGrupoPublicosDeAdministrador33Request">
+
+          <wsdl:part element="impl:listarGrupoPublicosDeAdministrador" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGrupoPublicosDeAdministrador33Response">
+
+          <wsdl:part element="impl:listarGrupoPublicosDeAdministradorResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposCreadosUltimos34Request">
+
+          <wsdl:part element="impl:listarGruposCreadosUltimos" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposCreadosUltimos34Response">
+
+          <wsdl:part element="impl:listarGruposCreadosUltimosResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposModificadosUltimos35Request">
+
+          <wsdl:part element="impl:listarGruposModificadosUltimos" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposModificadosUltimos35Response">
+
+          <wsdl:part element="impl:listarGruposModificadosUltimosResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposPublicosConAsociacion36Request">
+
+          <wsdl:part element="impl:listarGruposPublicosConAsociacion" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposPublicosConAsociacion36Response">
+
+          <wsdl:part element="impl:listarGruposPublicosConAsociacionResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposSolicitadosPorUsuario37Request">
+
+          <wsdl:part element="impl:listarGruposSolicitadosPorUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarGruposSolicitadosPorUsuario37Response">
+
+          <wsdl:part element="impl:listarGruposSolicitadosPorUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarOdesDeGrupo38Request">
+
+          <wsdl:part element="impl:listarOdesDeGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarOdesDeGrupo38Response">
+
+          <wsdl:part element="impl:listarOdesDeGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarSolicitudesAdministrador39Request">
+
+          <wsdl:part element="impl:listarSolicitudesAdministrador" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarSolicitudesAdministrador39Response">
+
+          <wsdl:part element="impl:listarSolicitudesAdministradorResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarSolicitudesRealizadasPorUsuario40Request">
+
+          <wsdl:part element="impl:listarSolicitudesRealizadasPorUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarSolicitudesRealizadasPorUsuario40Response">
+
+          <wsdl:part element="impl:listarSolicitudesRealizadasPorUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarTodosGrupoDeUsuario41Request">
+
+          <wsdl:part element="impl:listarTodosGrupoDeUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarTodosGrupoDeUsuario41Response">
+
+          <wsdl:part element="impl:listarTodosGrupoDeUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosConContacto42Request">
+
+          <wsdl:part element="impl:listarUsuariosConContacto" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosConContacto42Response">
+
+          <wsdl:part element="impl:listarUsuariosConContactoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosDeGrupo43Request">
+
+          <wsdl:part element="impl:listarUsuariosDeGrupo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosDeGrupo43Response">
+
+          <wsdl:part element="impl:listarUsuariosDeGrupoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosDeGrupoCorreo44Request">
+
+          <wsdl:part element="impl:listarUsuariosDeGrupoCorreo" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="listarUsuariosDeGrupoCorreo44Response">
+
+          <wsdl:part element="impl:listarUsuariosDeGrupoCorreoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="modificarGrupoPublico45Request">
+
+          <wsdl:part element="impl:modificarGrupoPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="modificarGrupoPublico45Response">
+
+          <wsdl:part element="impl:modificarGrupoPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="modificarUsuarioPublico46Request">
+
+          <wsdl:part element="impl:modificarUsuarioPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="modificarUsuarioPublico46Response">
+
+          <wsdl:part element="impl:modificarUsuarioPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGrupoPublico47Request">
+
+          <wsdl:part element="impl:obtenerGrupoPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGrupoPublico47Response">
+
+          <wsdl:part element="impl:obtenerGrupoPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGruposPublicosPorIdentificador48Request">
+
+          <wsdl:part element="impl:obtenerGruposPublicosPorIdentificador" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGruposPublicosPorIdentificador48Response">
+
+          <wsdl:part element="impl:obtenerGruposPublicosPorIdentificadorResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGrupoUsuario49Request">
+
+          <wsdl:part element="impl:obtenerGrupoUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerGrupoUsuario49Response">
+
+          <wsdl:part element="impl:obtenerGrupoUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerNumeroFavoritosUsuario50Request">
+
+          <wsdl:part element="impl:obtenerNumeroFavoritosUsuario" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerNumeroFavoritosUsuario50Response">
+
+          <wsdl:part element="impl:obtenerNumeroFavoritosUsuarioResponse" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerUsuarioPublico51Request">
+
+          <wsdl:part element="impl:obtenerUsuarioPublico" name="parameters"/>
+
+     </wsdl:message>
+
+     <wsdl:message name="obtenerUsuarioPublico51Response">
+
+          <wsdl:part element="impl:obtenerUsuarioPublicoResponse" name="parameters"/>
+
+     </wsdl:message>
+
+
+    <!-- Port Type -->
+
+     <wsdl:portType name="SrvPerfilPublico">
+
+          <wsdl:operation name="aceptarSolicitudGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Cuando se acepta se incluye el usuario en el grupo publico y el
+                grupo publico en usuario publico y se elimina la solicitud
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:aceptarSolicitudGrupo1Request" name="aceptarSolicitudGrupo1Request"/>
+
+               <wsdl:output message="impl:aceptarSolicitudGrupo1Response" name="aceptarSolicitudGrupo1Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="anadirContactoAAgenda">
+
+                
+               <wsdl:documentation>
+ 
+                Podemos añdir usuario a nuestra agenda(nuestros contactos)
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:anadirContactoAAgenda2Request" name="anadirContactoAAgenda2Request"/>
+
+               <wsdl:output message="impl:anadirContactoAAgenda2Response" name="anadirContactoAAgenda2Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="anadirFavoritoAUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:anadirFavoritoAUsuario3Request" name="anadirFavoritoAUsuario3Request"/>
+
+               <wsdl:output message="impl:anadirFavoritoAUsuario3Response" name="anadirFavoritoAUsuario3Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="asociarOdeAGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Método para añadir un ODE a un grupo, al asociarlo se enviará un
+                correo a todos los usuarios miembros del grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:asociarOdeAGrupo4Request" name="asociarOdeAGrupo4Request"/>
+
+               <wsdl:output message="impl:asociarOdeAGrupo4Response" name="asociarOdeAGrupo4Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="buscarFavoritosPorTitulo">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:buscarFavoritosPorTitulo5Request" name="buscarFavoritosPorTitulo5Request"/>
+
+               <wsdl:output message="impl:buscarFavoritosPorTitulo5Response" name="buscarFavoritosPorTitulo5Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="buscarGruposPorDescripcion">
+
+                
+               <wsdl:documentation>
+ 
+                Buscamos todos los grupo que se asemejen a la descripción dada
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:buscarGruposPorDescripcion6Request" name="buscarGruposPorDescripcion6Request"/>
+
+               <wsdl:output message="impl:buscarGruposPorDescripcion6Response" name="buscarGruposPorDescripcion6Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="buscarGruposPorNombre">
+
+                
+               <wsdl:documentation>
+ 
+                Método para buscar los grupos que coincidan con el texto que le
+                pasamos y nos devolverá una lista de grupos especificando si
+                está asociado al usuario o no.
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:buscarGruposPorNombre7Request" name="buscarGruposPorNombre7Request"/>
+
+               <wsdl:output message="impl:buscarGruposPorNombre7Response" name="buscarGruposPorNombre7Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="buscarUsuariosPorNombre">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:buscarUsuariosPorNombre8Request" name="buscarUsuariosPorNombre8Request"/>
+
+               <wsdl:output message="impl:buscarUsuariosPorNombre8Response" name="buscarUsuariosPorNombre8Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="cambiarImagenPorElDefecto">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:cambiarImagenPorElDefecto9Request" name="cambiarImagenPorElDefecto9Request"/>
+
+               <wsdl:output message="impl:cambiarImagenPorElDefecto9Response" name="cambiarImagenPorElDefecto9Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="cancelarSolicitudGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:cancelarSolicitudGrupo10Request" name="cancelarSolicitudGrupo10Request"/>
+
+               <wsdl:output message="impl:cancelarSolicitudGrupo10Response" name="cancelarSolicitudGrupo10Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="crearGrupoPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Metodo para crear un grupo publico por un usuario que será el
+                administrador
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:crearGrupoPublico11Request" name="crearGrupoPublico11Request"/>
+
+               <wsdl:output message="impl:crearGrupoPublico11Response" name="crearGrupoPublico11Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="crearUsuarioPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Método para crear un usuario publico
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:crearUsuarioPublico12Request" name="crearUsuarioPublico12Request"/>
+
+               <wsdl:output message="impl:crearUsuarioPublico12Response" name="crearUsuarioPublico12Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="desasociarOdeDeGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Sólo lo podrá hacer el administrador del grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:desasociarOdeDeGrupo13Request" name="desasociarOdeDeGrupo13Request"/>
+
+               <wsdl:output message="impl:desasociarOdeDeGrupo13Response" name="desasociarOdeDeGrupo13Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarContactoDeAgenda">
+
+                
+               <wsdl:documentation>
+ 
+                Si somos administradores del grupo podemos eliminar un contacto
+                de nuestra lista de contactos
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarContactoDeAgenda14Request" name="eliminarContactoDeAgenda14Request"/>
+
+               <wsdl:output message="impl:eliminarContactoDeAgenda14Response" name="eliminarContactoDeAgenda14Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarFavoritoDeUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarFavoritoDeUsuario15Request" name="eliminarFavoritoDeUsuario15Request"/>
+
+               <wsdl:output message="impl:eliminarFavoritoDeUsuario15Response" name="eliminarFavoritoDeUsuario15Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarGrupoPublicoPorAdministrador">
+
+                
+               <wsdl:documentation>
+ 
+                El usuario que tenga ROL ADMINISTRADOR pude borrar cualquier
+                grupo publico
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarGrupoPublicoPorAdministrador16Request" name="eliminarGrupoPublicoPorAdministrador16Request"/>
+
+               <wsdl:output message="impl:eliminarGrupoPublicoPorAdministrador16Response" name="eliminarGrupoPublicoPorAdministrador16Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarGrupoPublicoPorUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Metodo para eliminar los grupo publicos, sólo lo podrá eliminar
+                el usuario administrador de ese grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarGrupoPublicoPorUsuario17Request" name="eliminarGrupoPublicoPorUsuario17Request"/>
+
+               <wsdl:output message="impl:eliminarGrupoPublicoPorUsuario17Response" name="eliminarGrupoPublicoPorUsuario17Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarODEPerfilPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Método para borrar los odes de la parte publica
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarODEPerfilPublico18Request" name="eliminarODEPerfilPublico18Request"/>
+
+               <wsdl:output message="impl:eliminarODEPerfilPublico18Response" name="eliminarODEPerfilPublico18Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarSolicitud">
+
+                
+               <wsdl:documentation>
+ 
+                El usuario que hace la solicitud puede eliminarlo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarSolicitud19Request" name="eliminarSolicitud19Request"/>
+
+               <wsdl:output message="impl:eliminarSolicitud19Response" name="eliminarSolicitud19Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarUsuarioDeGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                El administrador del grupo puede eliminar un usuario de la lista
+                del grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarUsuarioDeGrupo20Request" name="eliminarUsuarioDeGrupo20Request"/>
+
+               <wsdl:output message="impl:eliminarUsuarioDeGrupo20Response" name="eliminarUsuarioDeGrupo20Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="eliminarUsuarioPublico">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:eliminarUsuarioPublico21Request" name="eliminarUsuarioPublico21Request"/>
+
+               <wsdl:output message="impl:eliminarUsuarioPublico21Response" name="eliminarUsuarioPublico21Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeContactoEnAgendaDeUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeContactoEnAgendaDeUsuario22Request" name="existeContactoEnAgendaDeUsuario22Request"/>
+
+               <wsdl:output message="impl:existeContactoEnAgendaDeUsuario22Response" name="existeContactoEnAgendaDeUsuario22Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeFavoritoEnUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeFavoritoEnUsuario23Request" name="existeFavoritoEnUsuario23Request"/>
+
+               <wsdl:output message="impl:existeFavoritoEnUsuario23Response" name="existeFavoritoEnUsuario23Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeGrupoEnUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeGrupoEnUsuario24Request" name="existeGrupoEnUsuario24Request"/>
+
+               <wsdl:output message="impl:existeGrupoEnUsuario24Response" name="existeGrupoEnUsuario24Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeNombreGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeNombreGrupo25Request" name="existeNombreGrupo25Request"/>
+
+               <wsdl:output message="impl:existeNombreGrupo25Response" name="existeNombreGrupo25Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeOdeEnGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeOdeEnGrupo26Request" name="existeOdeEnGrupo26Request"/>
+
+               <wsdl:output message="impl:existeOdeEnGrupo26Response" name="existeOdeEnGrupo26Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="existeSolicitudGrupoIdentico">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:existeSolicitudGrupoIdentico27Request" name="existeSolicitudGrupoIdentico27Request"/>
+
+               <wsdl:output message="impl:existeSolicitudGrupoIdentico27Response" name="existeSolicitudGrupoIdentico27Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="hacerSolicitudParaGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Método para hacer la solicitud de ingreso en el grupo; Este casó
+                se dará en el caso de que el solicitante no sea miembro. Después
+                el administrador del grupo tendrá que decidir si aceptarlo o no.
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:hacerSolicitudParaGrupo28Request" name="hacerSolicitudParaGrupo28Request"/>
+
+               <wsdl:output message="impl:hacerSolicitudParaGrupo28Response" name="hacerSolicitudParaGrupo28Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listadoGruposConAsociacionPorUsuarioYOde">
+
+                
+               <wsdl:documentation>
+ 
+                Devuelve la lista de todos los grupos donde el usuario está
+                asociado y el ode esté.
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listadoGruposConAsociacionPorUsuarioYOde29Request" name="listadoGruposConAsociacionPorUsuarioYOde29Request"/>
+
+               <wsdl:output message="impl:listadoGruposConAsociacionPorUsuarioYOde29Response" name="listadoGruposConAsociacionPorUsuarioYOde29Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarContactosDeAgenda">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los contacto de un usuario
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarContactosDeAgenda30Request" name="listarContactosDeAgenda30Request"/>
+
+               <wsdl:output message="impl:listarContactosDeAgenda30Response" name="listarContactosDeAgenda30Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarFavoritosUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarFavoritosUsuario31Request" name="listarFavoritosUsuario31Request"/>
+
+               <wsdl:output message="impl:listarFavoritosUsuario31Response" name="listarFavoritosUsuario31Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGrupoPublicos">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los grupos publico exitentes
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGrupoPublicos32Request" name="listarGrupoPublicos32Request"/>
+
+               <wsdl:output message="impl:listarGrupoPublicos32Response" name="listarGrupoPublicos32Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGrupoPublicosDeAdministrador">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los grupos donde el usuario es el administrador
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGrupoPublicosDeAdministrador33Request" name="listarGrupoPublicosDeAdministrador33Request"/>
+
+               <wsdl:output message="impl:listarGrupoPublicosDeAdministrador33Response" name="listarGrupoPublicosDeAdministrador33Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGruposCreadosUltimos">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGruposCreadosUltimos34Request" name="listarGruposCreadosUltimos34Request"/>
+
+               <wsdl:output message="impl:listarGruposCreadosUltimos34Response" name="listarGruposCreadosUltimos34Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGruposModificadosUltimos">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGruposModificadosUltimos35Request" name="listarGruposModificadosUltimos35Request"/>
+
+               <wsdl:output message="impl:listarGruposModificadosUltimos35Response" name="listarGruposModificadosUltimos35Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGruposPublicosConAsociacion">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los grupos publicos haciendo la distinción entre
+                aquellos en los que el usuario ya está y a los que se pude
+                asociar
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGruposPublicosConAsociacion36Request" name="listarGruposPublicosConAsociacion36Request"/>
+
+               <wsdl:output message="impl:listarGruposPublicosConAsociacion36Response" name="listarGruposPublicosConAsociacion36Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarGruposSolicitadosPorUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los grupos a los que el usuario a solicitado
+                integrar, pero la solicitud no se ha resuelto
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarGruposSolicitadosPorUsuario37Request" name="listarGruposSolicitadosPorUsuario37Request"/>
+
+               <wsdl:output message="impl:listarGruposSolicitadosPorUsuario37Response" name="listarGruposSolicitadosPorUsuario37Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarOdesDeGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los odes que estén añadidos en el  grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarOdesDeGrupo38Request" name="listarOdesDeGrupo38Request"/>
+
+               <wsdl:output message="impl:listarOdesDeGrupo38Response" name="listarOdesDeGrupo38Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarSolicitudesAdministrador">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todas las solicitudes que le faltan por resolver al
+                administrador del grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarSolicitudesAdministrador39Request" name="listarSolicitudesAdministrador39Request"/>
+
+               <wsdl:output message="impl:listarSolicitudesAdministrador39Response" name="listarSolicitudesAdministrador39Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarSolicitudesRealizadasPorUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todas las solicitudes que le ha realizado el usuario
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarSolicitudesRealizadasPorUsuario40Request" name="listarSolicitudesRealizadasPorUsuario40Request"/>
+
+               <wsdl:output message="impl:listarSolicitudesRealizadasPorUsuario40Response" name="listarSolicitudesRealizadasPorUsuario40Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarTodosGrupoDeUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Listamos todos los grupos dónde el usuario es el administrador o
+                asociado
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarTodosGrupoDeUsuario41Request" name="listarTodosGrupoDeUsuario41Request"/>
+
+               <wsdl:output message="impl:listarTodosGrupoDeUsuario41Response" name="listarTodosGrupoDeUsuario41Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarUsuariosConContacto">
+
+                
+               <wsdl:documentation>
+ 
+                Buscamos todos los usuarios que tienen añadido como contacto el
+                nombre del contacto que le pasamos y que tienen marcado como
+                true la variable recibirContacto
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarUsuariosConContacto42Request" name="listarUsuariosConContacto42Request"/>
+
+               <wsdl:output message="impl:listarUsuariosConContacto42Response" name="listarUsuariosConContacto42Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarUsuariosDeGrupo">
+
+                
+               <wsdl:documentation>
+ 
+                Se listan todos los usuarios pertenecientes al grupo
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarUsuariosDeGrupo43Request" name="listarUsuariosDeGrupo43Request"/>
+
+               <wsdl:output message="impl:listarUsuariosDeGrupo43Response" name="listarUsuariosDeGrupo43Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="listarUsuariosDeGrupoCorreo">
+
+                
+               <wsdl:documentation>
+ 
+                Lista todos los usuarios de un grupo con la información de si
+                debe o no recibir los e-mails. Sólo devolveremos aquellos
+                usuarios que quieren recibir los mail-s
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:listarUsuariosDeGrupoCorreo44Request" name="listarUsuariosDeGrupoCorreo44Request"/>
+
+               <wsdl:output message="impl:listarUsuariosDeGrupoCorreo44Response" name="listarUsuariosDeGrupoCorreo44Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="modificarGrupoPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Metodo para modificar el grupo publico
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:modificarGrupoPublico45Request" name="modificarGrupoPublico45Request"/>
+
+               <wsdl:output message="impl:modificarGrupoPublico45Response" name="modificarGrupoPublico45Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="modificarUsuarioPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Metodo para modificar el usuario publico
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:modificarUsuarioPublico46Request" name="modificarUsuarioPublico46Request"/>
+
+               <wsdl:output message="impl:modificarUsuarioPublico46Response" name="modificarUsuarioPublico46Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerGrupoPublico">
+
+                
+               <wsdl:documentation>
+ 
+                Obtenermos el grupo publico
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerGrupoPublico47Request" name="obtenerGrupoPublico47Request"/>
+
+               <wsdl:output message="impl:obtenerGrupoPublico47Response" name="obtenerGrupoPublico47Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerGruposPublicosPorIdentificador">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerGruposPublicosPorIdentificador48Request" name="obtenerGruposPublicosPorIdentificador48Request"/>
+
+               <wsdl:output message="impl:obtenerGruposPublicosPorIdentificador48Response" name="obtenerGruposPublicosPorIdentificador48Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerGrupoUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Obtenemos todos los grupos creados por el usuario y también
+                aquellos grupos donde el usuario se ha asociado
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerGrupoUsuario49Request" name="obtenerGrupoUsuario49Request"/>
+
+               <wsdl:output message="impl:obtenerGrupoUsuario49Response" name="obtenerGrupoUsuario49Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerNumeroFavoritosUsuario">
+
+                
+               <wsdl:documentation>
+ 
+                Metodo que nos devuelve el número de favoritos que le indiquemos
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerNumeroFavoritosUsuario50Request" name="obtenerNumeroFavoritosUsuario50Request"/>
+
+               <wsdl:output message="impl:obtenerNumeroFavoritosUsuario50Response" name="obtenerNumeroFavoritosUsuario50Response"/>
+
+          </wsdl:operation>
+
+          <wsdl:operation name="obtenerUsuarioPublico">
+
+                
+               <wsdl:documentation>
+ 
+                
+               </wsdl:documentation>
+
+               <wsdl:input message="impl:obtenerUsuarioPublico51Request" name="obtenerUsuarioPublico51Request"/>
+
+               <wsdl:output message="impl:obtenerUsuarioPublico51Response" name="obtenerUsuarioPublico51Response"/>
+
+          </wsdl:operation>
+
+     </wsdl:portType>
+
+    
+    <!-- WSDL Binding -->
+
+     <wsdl:binding name="SrvPerfilPublicoSoapBinding" type="impl:SrvPerfilPublico">
+
+          <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+          <wsdl:operation name="aceptarSolicitudGrupo">
+
+               <wsdlsoap:operation soapAction="aceptarSolicitudGrupo" style="document"/>
+
+               <wsdl:input name="aceptarSolicitudGrupo1Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="aceptarSolicitudGrupo1Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="anadirContactoAAgenda">
+
+               <wsdlsoap:operation soapAction="anadirContactoAAgenda" style="document"/>
+
+               <wsdl:input name="anadirContactoAAgenda2Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="anadirContactoAAgenda2Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="anadirFavoritoAUsuario">
+
+               <wsdlsoap:operation soapAction="anadirFavoritoAUsuario" style="document"/>
+
+               <wsdl:input name="anadirFavoritoAUsuario3Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="anadirFavoritoAUsuario3Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="asociarOdeAGrupo">
+
+               <wsdlsoap:operation soapAction="asociarOdeAGrupo" style="document"/>
+
+               <wsdl:input name="asociarOdeAGrupo4Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="asociarOdeAGrupo4Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="buscarFavoritosPorTitulo">
+
+               <wsdlsoap:operation soapAction="buscarFavoritosPorTitulo" style="document"/>
+
+               <wsdl:input name="buscarFavoritosPorTitulo5Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="buscarFavoritosPorTitulo5Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="buscarGruposPorDescripcion">
+
+               <wsdlsoap:operation soapAction="buscarGruposPorDescripcion" style="document"/>
+
+               <wsdl:input name="buscarGruposPorDescripcion6Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="buscarGruposPorDescripcion6Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="buscarGruposPorNombre">
+
+               <wsdlsoap:operation soapAction="buscarGruposPorNombre" style="document"/>
+
+               <wsdl:input name="buscarGruposPorNombre7Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="buscarGruposPorNombre7Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="buscarUsuariosPorNombre">
+
+               <wsdlsoap:operation soapAction="buscarUsuariosPorNombre" style="document"/>
+
+               <wsdl:input name="buscarUsuariosPorNombre8Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="buscarUsuariosPorNombre8Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="cambiarImagenPorElDefecto">
+
+               <wsdlsoap:operation soapAction="cambiarImagenPorElDefecto" style="document"/>
+
+               <wsdl:input name="cambiarImagenPorElDefecto9Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="cambiarImagenPorElDefecto9Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="cancelarSolicitudGrupo">
+
+               <wsdlsoap:operation soapAction="cancelarSolicitudGrupo" style="document"/>
+
+               <wsdl:input name="cancelarSolicitudGrupo10Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="cancelarSolicitudGrupo10Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="crearGrupoPublico">
+
+               <wsdlsoap:operation soapAction="crearGrupoPublico" style="document"/>
+
+               <wsdl:input name="crearGrupoPublico11Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="crearGrupoPublico11Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="crearUsuarioPublico">
+
+               <wsdlsoap:operation soapAction="crearUsuarioPublico" style="document"/>
+
+               <wsdl:input name="crearUsuarioPublico12Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="crearUsuarioPublico12Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="desasociarOdeDeGrupo">
+
+               <wsdlsoap:operation soapAction="desasociarOdeDeGrupo" style="document"/>
+
+               <wsdl:input name="desasociarOdeDeGrupo13Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="desasociarOdeDeGrupo13Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarContactoDeAgenda">
+
+               <wsdlsoap:operation soapAction="eliminarContactoDeAgenda" style="document"/>
+
+               <wsdl:input name="eliminarContactoDeAgenda14Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarContactoDeAgenda14Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarFavoritoDeUsuario">
+
+               <wsdlsoap:operation soapAction="eliminarFavoritoDeUsuario" style="document"/>
+
+               <wsdl:input name="eliminarFavoritoDeUsuario15Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarFavoritoDeUsuario15Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarGrupoPublicoPorAdministrador">
+
+               <wsdlsoap:operation soapAction="eliminarGrupoPublicoPorAdministrador" style="document"/>
+
+               <wsdl:input name="eliminarGrupoPublicoPorAdministrador16Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarGrupoPublicoPorAdministrador16Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarGrupoPublicoPorUsuario">
+
+               <wsdlsoap:operation soapAction="eliminarGrupoPublicoPorUsuario" style="document"/>
+
+               <wsdl:input name="eliminarGrupoPublicoPorUsuario17Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarGrupoPublicoPorUsuario17Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarODEPerfilPublico">
+
+               <wsdlsoap:operation soapAction="eliminarODEPerfilPublico" style="document"/>
+
+               <wsdl:input name="eliminarODEPerfilPublico18Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarODEPerfilPublico18Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarSolicitud">
+
+               <wsdlsoap:operation soapAction="eliminarSolicitud" style="document"/>
+
+               <wsdl:input name="eliminarSolicitud19Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarSolicitud19Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarUsuarioDeGrupo">
+
+               <wsdlsoap:operation soapAction="eliminarUsuarioDeGrupo" style="document"/>
+
+               <wsdl:input name="eliminarUsuarioDeGrupo20Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarUsuarioDeGrupo20Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="eliminarUsuarioPublico">
+
+               <wsdlsoap:operation soapAction="eliminarUsuarioPublico" style="document"/>
+
+               <wsdl:input name="eliminarUsuarioPublico21Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="eliminarUsuarioPublico21Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeContactoEnAgendaDeUsuario">
+
+               <wsdlsoap:operation soapAction="existeContactoEnAgendaDeUsuario" style="document"/>
+
+               <wsdl:input name="existeContactoEnAgendaDeUsuario22Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeContactoEnAgendaDeUsuario22Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeFavoritoEnUsuario">
+
+               <wsdlsoap:operation soapAction="existeFavoritoEnUsuario" style="document"/>
+
+               <wsdl:input name="existeFavoritoEnUsuario23Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeFavoritoEnUsuario23Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeGrupoEnUsuario">
+
+               <wsdlsoap:operation soapAction="existeGrupoEnUsuario" style="document"/>
+
+               <wsdl:input name="existeGrupoEnUsuario24Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeGrupoEnUsuario24Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeNombreGrupo">
+
+               <wsdlsoap:operation soapAction="existeNombreGrupo" style="document"/>
+
+               <wsdl:input name="existeNombreGrupo25Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeNombreGrupo25Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeOdeEnGrupo">
+
+               <wsdlsoap:operation soapAction="existeOdeEnGrupo" style="document"/>
+
+               <wsdl:input name="existeOdeEnGrupo26Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeOdeEnGrupo26Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="existeSolicitudGrupoIdentico">
+
+               <wsdlsoap:operation soapAction="existeSolicitudGrupoIdentico" style="document"/>
+
+               <wsdl:input name="existeSolicitudGrupoIdentico27Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="existeSolicitudGrupoIdentico27Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="hacerSolicitudParaGrupo">
+
+               <wsdlsoap:operation soapAction="hacerSolicitudParaGrupo" style="document"/>
+
+               <wsdl:input name="hacerSolicitudParaGrupo28Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="hacerSolicitudParaGrupo28Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listadoGruposConAsociacionPorUsuarioYOde">
+
+               <wsdlsoap:operation soapAction="listadoGruposConAsociacionPorUsuarioYOde" style="document"/>
+
+               <wsdl:input name="listadoGruposConAsociacionPorUsuarioYOde29Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listadoGruposConAsociacionPorUsuarioYOde29Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarContactosDeAgenda">
+
+               <wsdlsoap:operation soapAction="listarContactosDeAgenda" style="document"/>
+
+               <wsdl:input name="listarContactosDeAgenda30Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarContactosDeAgenda30Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarFavoritosUsuario">
+
+               <wsdlsoap:operation soapAction="listarFavoritosUsuario" style="document"/>
+
+               <wsdl:input name="listarFavoritosUsuario31Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarFavoritosUsuario31Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGrupoPublicos">
+
+               <wsdlsoap:operation soapAction="listarGrupoPublicos" style="document"/>
+
+               <wsdl:input name="listarGrupoPublicos32Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGrupoPublicos32Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGrupoPublicosDeAdministrador">
+
+               <wsdlsoap:operation soapAction="listarGrupoPublicosDeAdministrador" style="document"/>
+
+               <wsdl:input name="listarGrupoPublicosDeAdministrador33Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGrupoPublicosDeAdministrador33Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGruposCreadosUltimos">
+
+               <wsdlsoap:operation soapAction="listarGruposCreadosUltimos" style="document"/>
+
+               <wsdl:input name="listarGruposCreadosUltimos34Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGruposCreadosUltimos34Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGruposModificadosUltimos">
+
+               <wsdlsoap:operation soapAction="listarGruposModificadosUltimos" style="document"/>
+
+               <wsdl:input name="listarGruposModificadosUltimos35Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGruposModificadosUltimos35Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGruposPublicosConAsociacion">
+
+               <wsdlsoap:operation soapAction="listarGruposPublicosConAsociacion" style="document"/>
+
+               <wsdl:input name="listarGruposPublicosConAsociacion36Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGruposPublicosConAsociacion36Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarGruposSolicitadosPorUsuario">
+
+               <wsdlsoap:operation soapAction="listarGruposSolicitadosPorUsuario" style="document"/>
+
+               <wsdl:input name="listarGruposSolicitadosPorUsuario37Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarGruposSolicitadosPorUsuario37Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarOdesDeGrupo">
+
+               <wsdlsoap:operation soapAction="listarOdesDeGrupo" style="document"/>
+
+               <wsdl:input name="listarOdesDeGrupo38Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarOdesDeGrupo38Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarSolicitudesAdministrador">
+
+               <wsdlsoap:operation soapAction="listarSolicitudesAdministrador" style="document"/>
+
+               <wsdl:input name="listarSolicitudesAdministrador39Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarSolicitudesAdministrador39Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarSolicitudesRealizadasPorUsuario">
+
+               <wsdlsoap:operation soapAction="listarSolicitudesRealizadasPorUsuario" style="document"/>
+
+               <wsdl:input name="listarSolicitudesRealizadasPorUsuario40Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarSolicitudesRealizadasPorUsuario40Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarTodosGrupoDeUsuario">
+
+               <wsdlsoap:operation soapAction="listarTodosGrupoDeUsuario" style="document"/>
+
+               <wsdl:input name="listarTodosGrupoDeUsuario41Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarTodosGrupoDeUsuario41Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarUsuariosConContacto">
+
+               <wsdlsoap:operation soapAction="listarUsuariosConContacto" style="document"/>
+
+               <wsdl:input name="listarUsuariosConContacto42Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarUsuariosConContacto42Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarUsuariosDeGrupo">
+
+               <wsdlsoap:operation soapAction="listarUsuariosDeGrupo" style="document"/>
+
+               <wsdl:input name="listarUsuariosDeGrupo43Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarUsuariosDeGrupo43Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="listarUsuariosDeGrupoCorreo">
+
+               <wsdlsoap:operation soapAction="listarUsuariosDeGrupoCorreo" style="document"/>
+
+               <wsdl:input name="listarUsuariosDeGrupoCorreo44Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="listarUsuariosDeGrupoCorreo44Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="modificarGrupoPublico">
+
+               <wsdlsoap:operation soapAction="modificarGrupoPublico" style="document"/>
+
+               <wsdl:input name="modificarGrupoPublico45Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="modificarGrupoPublico45Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="modificarUsuarioPublico">
+
+               <wsdlsoap:operation soapAction="modificarUsuarioPublico" style="document"/>
+
+               <wsdl:input name="modificarUsuarioPublico46Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="modificarUsuarioPublico46Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="obtenerGrupoPublico">
+
+               <wsdlsoap:operation soapAction="obtenerGrupoPublico" style="document"/>
+
+               <wsdl:input name="obtenerGrupoPublico47Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerGrupoPublico47Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="obtenerGruposPublicosPorIdentificador">
+
+               <wsdlsoap:operation soapAction="obtenerGruposPublicosPorIdentificador" style="document"/>
+
+               <wsdl:input name="obtenerGruposPublicosPorIdentificador48Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerGruposPublicosPorIdentificador48Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="obtenerGrupoUsuario">
+
+               <wsdlsoap:operation soapAction="obtenerGrupoUsuario" style="document"/>
+
+               <wsdl:input name="obtenerGrupoUsuario49Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerGrupoUsuario49Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="obtenerNumeroFavoritosUsuario">
+
+               <wsdlsoap:operation soapAction="obtenerNumeroFavoritosUsuario" style="document"/>
+
+               <wsdl:input name="obtenerNumeroFavoritosUsuario50Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerNumeroFavoritosUsuario50Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+          <wsdl:operation name="obtenerUsuarioPublico">
+
+               <wsdlsoap:operation soapAction="obtenerUsuarioPublico" style="document"/>
+
+               <wsdl:input name="obtenerUsuarioPublico51Request">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:input>
+
+               <wsdl:output name="obtenerUsuarioPublico51Response">
+
+                    <wsdlsoap:body use="literal"/>
+
+               </wsdl:output>
+
+         </wsdl:operation>
+         
+     </wsdl:binding>
+
+    
+    <!-- Service Definition -->
+
+     <wsdl:service name="SrvPerfilPublicoService">
+
+          <wsdl:documentation>
+ 
+            Servicio para la gestion del perfil publico de un usuario de
+            Agrega
+          </wsdl:documentation>
+
+          <wsdl:port binding="impl:SrvPerfilPublicoSoapBinding" name="SrvPerfilPublico">
+
+               <wsdlsoap:address location="http://localhost:8080/adminusuarios/services/SrvPerfilPublico"/>
+
+          </wsdl:port>
+
+     </wsdl:service>
+
+
+</wsdl:definitions>

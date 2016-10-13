@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE window SYSTEM "chrome://agrega-tagger/locale/agrega-tagger.dtd">
+<!--
+Las ventanas y paneles de preferencias son objetos con funcionalidad adicional
+sólo presentes desde Firefox 1.5.
+Los ficheros de propiedades deben estar en agrega-tagger/defaults/preferences,
+el nuestro es agrega-taggerPrefs.js pero se cargarían todos los presentes en esa ruta.
+-->
+<prefwindow id="agrega-tagger_preferences"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" 
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  title="&agrega-tagger.menuLabel;"  
+  ondialogaccept="">
+<prefpane id="agrega-taggerPref" label="&agrega-tagger.menuLabel;">
+	<!--
+	Primero definimos las etiquetas de las preferencias que vamos a tratar
+	en este panel, con su tipo de datos
+	-->
+	<preferences>
+		<preference id="nodo" name="extensions.agrega-tagger.nodo" type="string" />
+	</preferences>
+	<!-- GUI Elements... -->
+	<!--
+	Definimos la parte visual con elementos XUL
+	-->
+	<groupbox>
+		<label value="&agrega-tagger.prefLabel;" />
+		<!--
+		Con el campo preference ligamos el contenido del elemento XUL
+		con el de la preferencia que hemos definido antes.
+		La gestión de cómo y cuando leer y escribir las preferencias es
+		competencia de Firefox, no nuestra.
+		-->
+		<vbox>
+		<textbox preference="nodo" id="nodoActual"/>
+		</vbox>
+	</groupbox>
+		</prefpane>
+</prefwindow>

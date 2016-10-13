@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<opml version="1.1">
+<head>
+	<title>Agrega</title>
+	<dateCreated>Feb 12 2009 12:24:58 GMT</dateCreated>
+	<dateModified>Feb 12 2009 16:05:12 GMT</dateModified>
+	<ownerName>Agrega</ownerName>
+	<ownerEmail/>
+</head>
+<body>
+	<outline text="Berriak" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=0.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:17:01 GMT"/>
+	<outline text="Deskargak" type="rss" xmlUrl="http://${host}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=11.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:17:01 GMT"/>
+	<outline text="Argitaratutako azken ODEak" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=1.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:21:56 GMT"/>
+	<outline text="Argitaratutako azken ODEak" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:22:41 GMT"/>
+	<outline text="Gehien deskargatutako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:29:58 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:31:00 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=3.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:31:18 GMT"/>
+	</outline>
+	<outline text="Gehien deskargatutako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:44:59 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:46:45 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=4.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:47:19 GMT"/>
+	</outline>
+	<outline text="Gehien erakutsitako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:46:08 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:49:45 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=5.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:50:31 GMT"/>
+	</outline>
+	<outline text="Gehien erakutsitako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:52:11 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:52:49 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=6.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:53:28 GMT"/>
+	</outline>
+	<outline text="Gehien bistaratutako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:56:21 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:57:01 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=7.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:57:26 GMT"/>
+	</outline>
+	<outline text="Gehien bistaratutako ODEak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:57:55 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:58:29 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=8.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:58:57 GMT"/>
+	</outline>
+	<outline text="ODE bidalienak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 15:59:39 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 16:00:07 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=9.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 16:00:45 GMT"/>
+	</outline>
+	<outline text="ODE federatu bidalienak">
+		<outline text="Aste honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.2.1&amp;idiomaNavegacion=eu" created="Feb 12 2009 16:01:48 GMT"/>
+		<outline text="Hilabete honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.2.2&amp;idiomaNavegacion=eu" created="Feb 12 2009 16:02:52 GMT"/>
+		<outline text="Urte honetan" type="rss" xmlUrl="http://${host}${subdominio}/visualizadorcontenidos/AgregadorFeedsCU/FormularioAgregadorFeedsObtenerFeed.do?idFeed=10.2.3&amp;idiomaNavegacion=eu" created="Feb 12 2009 16:03:32 GMT"/>
+	</outline>
+	<outline text="ODEak eransketa-maila arabera">
+		<outline text="Mediak eta integratutako mediak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///1///03/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Ikaskuntzako helburuak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///2///03/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Sekuentzia didaktikoak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///3///03/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Ikastaroak, Plangintzak eta Prestakuntzako Programak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///4///03/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+	</outline>
+	<outline text="ODEak federatu eransketa-maila arabera">
+		<outline text="Mediak eta integratutako mediak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///1///01/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Ikaskuntzako helburuak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///2///01/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Sekuentzia didaktikoak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///3///01/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+		<outline text="Ikastaroak, Plangintzak eta Prestakuntzako Programak" type="rss" xmlUrl="http://${host}${subdominio}/feed/20//eu////////////////BUSCADOR///4///01/ATOM" created="Feb 12 2009 16:04:48 GMT"/>
+	</outline>
+</body>
+</opml>

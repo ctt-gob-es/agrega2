@@ -1,0 +1,27 @@
+#Fri Nov 27 12:42:27 CET 2009
+es.pode.modificador.negocio.cambios.configuracion.castor.Addition=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.AdditionDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Changes=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ChangesDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.MetadataType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.MetadataTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Check=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.CheckDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Ode=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.OdeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ValidationType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ValidationTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ExportType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ExportTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.TransformationType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.TransformationTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ModificationTask=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ModificationTaskDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Folder=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.FolderDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Removal=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.RemovalDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.OdeType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.OdeTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Modification=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ModificationDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.RemovalType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.RemovalTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ChangesTypeItem=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ChangesTypeItemDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.AdditionType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.AdditionTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.FolderType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.FolderTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ModificationType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ModificationTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Objects=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ObjectsDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Metadata=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.MetadataDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ObjectsType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ObjectsTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Transformation=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.TransformationDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Validation=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ValidationDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.Export=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ExportDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.CheckType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.CheckTypeDescriptor
+es.pode.modificador.negocio.cambios.configuracion.castor.ChangesType=es.pode.modificador.negocio.cambios.configuracion.castor.descriptors.ChangesTypeDescriptor

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//Spring//DTD Bean//EN" 
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- Application Context -->
+<beans>    
+    <!--          External Beans               -->
+                                               
+<bean 	id="EstructurasDao" 
+		class="es.pode.fuentestaxonomicas.negocio.dominio.EstructurasDaoImpl"
+		factory-bean="EstructuraFactory"
+		factory-method="getInstance"> 
+</bean>
+
+<bean id="EstructuraFactory" class="es.pode.fuentestaxonomicas.negocio.dominio.EstructurasDaoFactory">
+  
+</bean>
+
+
+</beans>
+
+  

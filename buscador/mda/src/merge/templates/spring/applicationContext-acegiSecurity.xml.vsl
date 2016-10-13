@@ -1,0 +1,658 @@
+#parse("templates/spring/SpringGlobals.vm")
+<?xml version="1.0" encoding="$xmlEncoding"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+#if ($useAcegiSecurity=="true")
+##construir la cadena de filtros en funcion de las opciones deseadas
+#set ($filterChain = "httpSessionContextIntegrationFilter")
+#if ($loginCaptcha == "true")
+#set ($filterChain = "${filterChain},captchaValidationProcessingFilter")
+#end
+#set ($filterChain = "${filterChain},channelProcessingFilter")
+#set ($filterChain = "${filterChain},logoutFilter")
+#if ($useCAS == "true")
+#set ($filterChain = "${filterChain},casProcessingFilter")	
+#else
+#if ($x509Auth == "true")
+#set ($filterChain = "${filterChain},x509ProcessingFilter")
+#end
+#if ($userPwdAuthType == "basic")
+#set ($filterChain = "${filterChain},basicProcessingFilter")
+#end
+#if ($userPwdAuthType == "digest")
+#set ($filterChain = "${filterChain},digestProcessingFilter")
+#end
+#if ($userPwdAuthType == "form")
+#set ($filterChain = "${filterChain},formAuthenticationProcessingFilter")
+#end
+#end
+#set ($filterChain = "${filterChain},anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor")
+#set ($filterChainWS = "extractCredentialsFilter,httpSessionContextIntegrationFilterWS,channelProcessingFilter,anonymousProcessingFilter,basicProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor")
+
+	<!-- ACEGI FILTER CHAIN -->
+	<bean id="filterChainProxy" class="org.acegisecurity.util.FilterChainProxy">
+		<property name="filterInvocationDefinitionSource">
+			<value>
+				CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON
+				PATTERN_TYPE_APACHE_ANT
+#if ($jsf == "true")
+                /services/**=httpSessionContextIntegrationFilter,logoutFilter,formAuthenticationProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor
+                /**=httpSessionContextIntegrationFilter,logoutFilter,formAuthenticationProcessingFilter,anonymousProcessingFilter,exceptionTranslationFilter,filterInvocationInterceptor
+#else	
+                /services/**=previousProcessingFilter,$filterChainWS
+  				/**=previousProcessingFilter,$filterChain
+#end
+			</value>
+		</property>
+	</bean>
+
+<bean id="previousProcessingFilter" class="es.pode.soporte.seguridad.openId.ui.openid.PreviousProcessingFilter">
+</bean>
+	
+	<!-- Filter that manages the authentication credentials storing between different requests -->
+	<bean id="httpSessionContextIntegrationFilter" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
+#if ($loginCaptcha == "true")	
+		<property name="context"><value>org.acegisecurity.captcha.CaptchaSecurityContextImpl</value></property>
+#end		
+	</bean>	
+
+    <!-- Filter that manages the authentication credentials storing between different requests -->
+    <bean id="httpSessionContextIntegrationFilterWS" class="org.acegisecurity.context.HttpSessionContextIntegrationFilter">
+#if ($loginCaptcha == "true")      
+        <property name="context"><value>org.acegisecurity.captcha.CaptchaSecurityContextImpl</value></property>
+#end                
+        <property name="allowSessionCreation" value="true"/>
+    </bean>
+
+   <bean id="logoutFilter" class="org.acegisecurity.ui.logout.LogoutFilter">
+#if ($jsf == "true")
+      <constructor-arg><value>/index.jsp</value></constructor-arg>	
+#else   	
+#if ($useCAS == "true")
+      <constructor-arg><value>${cas.http.url}/logout</value></constructor-arg>	
+#else
+      <constructor-arg><value>/</value></constructor-arg>	
+#end
+#end
+      <constructor-arg>
+         <list>
+#if ($lopd == "true")         	
+              <bean class="es.indra.ibuilder.lopd.acegi.LogoutHandlerImplLopd"/>
+#end              
+              <bean class="org.acegisecurity.ui.logout.SecurityContextLogoutHandler"/>
+              <bean class="es.indra.agrega.security.logout.SessionInvalidateLogoutHandler"/>
+         </list>
+      </constructor-arg>
+   </bean>
+
+#if ($loginCaptcha == "true")	
+	<!-- ========================== CAPTCHA SUPPORT ==================================== -->
+
+	<!-- Validation filter -->
+	<bean id="captchaValidationProcessingFilter" class="org.acegisecurity.captcha.CaptchaValidationProcessingFilter">
+		<property name="captchaService">
+			<ref bean="captchaService" />
+		</property>
+		<property name="captchaValidationParameter">
+			<value>j_captcha_response</value>
+		</property>
+	</bean>
+   
+	<bean id="captchaService" class="es.indra.agrega.security.captcha.JCaptchaServiceProxyImpl" >
+		<property name="jcaptchaService" ref="jcaptchaService" />
+	</bean> 
+
+	<!-- jcaptchaService is injected into captchaImageCreateController as well as to captchaService beans -->
+	<bean id="jcaptchaService" class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService" />  
+
+	<!-- Channel processor que decide si se cumplen las condiciones para aplicar un captcha. -->
+	<bean id="alwaysTestAfterMaxRequestsCaptchaChannelProcessor" class="org.acegisecurity.captcha.AlwaysTestAfterMaxRequestsCaptchaChannelProcessor">
+		<property name="thresold">
+			<value>$loginCaptchaThreshold</value>
+		</property>
+		<property name="entryPoint">
+			<ref bean="captchaEntryPoint" />
+		</property>
+	</bean>
+
+	<bean id="captchaEntryPoint" class="org.acegisecurity.captcha.CaptchaEntryPoint">
+		<property name="captchaFormUrl">
+			<value>/logincaptcha.do?captcha=true</value>
+		</property>
+	</bean>
+	<!-- =========================== END CAPTCHA SUPPORT =================================== -->
+#end	
+
+##if ($userPwdAuthType == "basic")
+	<!-- =========================== BASIC AUTHENTICATION SUPPORT =================================== -->
+	<bean id="basicProcessingFilter" class="org.acegisecurity.ui.basicauth.BasicProcessingFilter">
+		<property name="authenticationManager"><ref bean="authenticationManager"/></property>
+		<property name="authenticationEntryPoint"><ref bean="basicAuthenticationEntryPoint"/></property>
+	</bean>
+
+	<bean id="basicAuthenticationEntryPoint" class="org.acegisecurity.ui.basicauth.BasicProcessingFilterEntryPoint">
+		<property name="realmName"><value>IBuilder Application</value></property>
+	</bean>
+	<!-- =========================== END BASIC AUTHENTICATION SUPPORT ================================ -->	
+##end
+
+#if ($userPwdAuthType == "digest")
+	<!-- =========================== DIGEST AUTHENTICATION SUPPORT =================================== -->
+	<bean id="digestProcessingFilter" class="org.acegisecurity.ui.digestauth.DigestProcessingFilter">
+		<property name="userDetailsService"><ref local="userDetailsService"/></property>
+		<property name="authenticationEntryPoint"><ref local="digestProcessingFilterEntryPoint"/></property>
+	</bean>
+	
+	<bean id="digestProcessingFilterEntryPoint" class="org.acegisecurity.ui.digestauth.DigestProcessingFilterEntryPoint">
+		<property name="realmName"><value>IBuilder Application</value></property>
+		<property name="key"><value>IbUiLdErDiGeStKeY</value></property>
+		<property name="nonceValiditySeconds"><value>10</value></property>
+	</bean>
+	<!-- =========================== END DIGEST AUTHENTICATION SUPPORT ================================ -->	
+#end
+
+#if ($userPwdAuthType == "form")
+	<!-- ============================ FORM AUTHENTICATION SUPPORT =================================== -->
+	<!-- Filtro que captura el submit del login y realiza la autenticacion -->
+	<bean id="formAuthenticationProcessingFilter" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilter">
+		<!-- Referencia al gestor de autenticacion que es el que realmente autentifica -->
+      	<property name="authenticationManager"><ref bean="authenticationManager"/></property>
+      	<!-- URL a la que se redirige en caso de fallo. TODO: Mensaje de error -->
+#if ($jsf == "true")
+		<property name="authenticationFailureUrl"><value>/login.jsp?login_error=1</value></property>
+#else      	
+      	<property name="authenticationFailureUrl"><value>/login.do?action=error</value></property>
+#end      	
+      	<!-- URL a la que redirigir en caso de exito -->
+      	<property name="defaultTargetUrl"><value>/</value></property>
+      	<!-- URL a la que hace submit el form y que hay que interceptar para autentificar -->
+#if ($jsf == "true")      	
+		<property name="filterProcessesUrl"><value>/j_acegi_security_check</value></property>	
+#else      	
+      	<property name="filterProcessesUrl"><value>/login/j_security_check</value></property>
+#end      	      	
+      	<!-- Siempre redirigir a la misma pagina cuando la autenticacion es satisfactoria, 
+      	independientemente de la URL que introdujo el usuario en el navegador -->
+      	<property name="alwaysUseDefaultTargetUrl"><value>true</value></property>
+      	<property name="continueChainBeforeSuccessfulAuthentication" ><value>false</value></property>
+	</bean>
+
+	<bean id="formAuthenticationProcessingFilterEntryPoint" class="org.acegisecurity.ui.webapp.AuthenticationProcessingFilterEntryPoint">
+#if ($jsf == "true")
+		<property name="loginFormUrl"><value>/login.jsp</value></property>		
+#else		
+		<property name="loginFormUrl"><value>/login.do</value></property>
+#end		
+		<property name="forceHttps"><value>false</value></property>
+	</bean>	
+	<!-- =========================== END FORM AUTHENTICATION SUPPORT ================================ -->		
+#end	
+
+#if ($x509Auth == "true")
+   <!-- =================================== X509 AUTHENTICATION ===================================== -->
+
+	<bean id="x509ProcessingFilter" class="org.acegisecurity.ui.x509.X509ProcessingFilter">
+		<property name="authenticationManager"><ref local="authenticationManager"/></property>
+	</bean>
+
+	<bean id="x509AuthenticationProvider" class="org.acegisecurity.providers.x509.X509AuthenticationProvider">
+		<property name="x509AuthoritiesPopulator"><ref local="x509AuthoritiesPopulator"/></property>
+	</bean>
+
+	<bean id="x509AuthoritiesPopulator" class="org.acegisecurity.providers.x509.populator.DaoX509AuthoritiesPopulator">
+		<property name="userDetailsService"><ref local="userDetailsService"/></property>
+      	<property name="subjectDNRegex"><value>$x509SubjectDNRegex</value></property>
+	</bean>
+
+	<bean id="x509ProcessingFilterEntryPoint" class="org.acegisecurity.ui.x509.X509ProcessingFilterEntryPoint">
+	</bean>
+   <!-- ================================= END X509 AUTHENTICATION ==================================== -->
+#end
+
+	<!-- =========================== ANONYMOUS AUTHENTICATION SUPPORT =============================== -->			
+	<!-- FILTRO USUARIOS ANONIMOS -->	
+	<bean id="anonymousProcessingFilter" class="org.acegisecurity.providers.anonymous.AnonymousProcessingFilter">
+		<property name="key"><value>IbUiLdErAnOnUsErKeY</value></property>
+		<property name="userAttribute"><value>anonymousUser,ROLE_ANONYMOUS</value></property>
+	</bean>	
+
+	<bean id="anonymousAuthenticationProvider" class="org.acegisecurity.providers.anonymous.AnonymousAuthenticationProvider">
+		<property name="key"><value>AnOnUsErKeY6002</value></property>
+	</bean>		
+	<!-- =========================== END ANONYMOUS AUTHENTICATION SUPPORT ============================ -->				
+
+    <!-- Filter that take credentials from the http header and put them in the session -->
+    <bean id="extractCredentialsFilter" class="es.indra.sawa.support.filter.ExtractCredentialsFilter">
+        <property name="authenticator">
+             <ref bean="passwordComparisonAuthenticator"/>
+        </property>  
+        <property name="checkCredentials" value="${check.credentials}"/>       
+    </bean>
+    <!-- End Filter that take credentials from the http header and put them in the session  -->
+
+	<!-- ============================= AUTHENTICATION BACKEND SUPPORT ================================= -->	
+
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation">
+            <value>classpath:/ehcache-failsafe.xml</value>
+        </property>
+    </bean>
+
+	<bean id="authenticationManager" class="org.acegisecurity.providers.ProviderManager">
+		<!-- Lista de "proveedores" que proporcionan autenticacion -->
+		<property name="providers">
+			<list>
+#if ($useCAS == "true")
+  				<ref bean="casAuthenticationProvider"/>				
+#end
+#if ($x509Auth == "true")			
+				<!-- Autenticacion basada en certificados x509 -->
+			    <ref local="x509AuthenticationProvider"/>
+#end			    
+
+#if ($backendType == "file" || $backendType == "db")
+				<!-- Autenticacion basada en DAO (datos recuperados desde una Base de Datos o fichero).
+				Se recuperan de la BD tanto el principal (usuario) como las credenciales (password) -->
+  				<ref local="daoAuthenticationProvider"/>
+#end  				
+
+#if ($backendType == "ldap")
+  				<!--  Autenticacion basada en LDAP  -->
+  				<ref local="ldapAuthenticationProvider"/>
+  				<ref local="ldapAuthenticationProviderHashedPassword"/>				
+#end  				  				
+
+  				<!-- Proveedor accesos anonimos -->
+	            <ref local="anonymousAuthenticationProvider"/>  	
+			</list>
+		</property>
+	</bean>
+	
+#if ($backendType == "file" || $backendType == "db")	
+	<bean id="daoAuthenticationProvider" class="org.acegisecurity.providers.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/> 
+		<!-- password encryption/decryption -->		
+		<property name="passwordEncoder"><ref local="passwordEncoder"/></property>
+	</bean>	
+	
+#if ($storedPasswords == "plain")
+   <bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.PlaintextPasswordEncoder"/>		
+#end
+
+#if ($storedPasswords == "md5")
+   <bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.Md5PasswordEncoder"/>		
+#end
+
+#if ($storedPasswords == "sha")
+   <bean id="passwordEncoder" class="org.acegisecurity.providers.encoding.ShaPasswordEncoder"/>		
+#end
+
+	
+#end	
+
+#if ($backendType == "file")
+	<!-- ============================== FILE BACKEND SUPPORT =============================== -->		
+	<!-- User service based on a memory table (loaded from a config file) -->
+	#if ($userDetailImpl == "")
+	<bean id="userDetailsService" class="es.indra.agrega.security.providers.file.InMemoryDaoImpl">
+		<property name="userProperties" ref="userRolesProperties"/>
+		<!-- Propiedades adicionales de la implementacion es.indra.ibuilder.security.providers.file.InMemoryDaoImpl sobre la original-->
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>		
+	</bean>
+	#else
+	<bean id="userDetailsService" class="$userDetailImpl">
+		<property name="userProperties" ref="userRolesProperties"/>
+		
+		<!-- Propiedades adicionales de la implementacion es.indra.agrega.security.providers.file.InMemoryDaoImpl sobre la original-->
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>		
+	</bean>	
+	#end
+
+	<bean id="userRolesProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location"><value>classpath:userroles.properties</value></property>
+		<property name="ignoreResourceNotFound"><value>true</value></property>
+	</bean>
+	
+	
+	<!-- ============================ END FILE BACKEND SUPPORT ============================= -->
+#end
+
+#if ($backendType == "db" || $backendType == "ldap")
+	<!-- Placeholder with the LDAP/BD properties -->
+	<bean id="authBackendProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"><value>classpath:authbackend.properties</value></property>
+		<property name="ignoreUnresolvablePlaceholders"><value>true</value></property>	
+		<property name="ignoreResourceNotFound"><value>true</value></property>			
+	</bean>
+#end	
+
+
+#if ($backendType == "ldap")
+	<!-- ============================== LDAP BACKEND SUPPORT =============================== -->		
+	<bean id="initialDirContextFactory" class="org.acegisecurity.ldap.DefaultInitialDirContextFactory">
+		<constructor-arg><value>${ibuilder.security.ldap.url}</value></constructor-arg>
+		<property name="managerDn"><value>${ibuilder.security.ldap.managerDN}</value></property>
+		<property name="managerPassword"><value>${ibuilder.security.ldap.managerPwd}</value></property>
+		<property name="extraEnvVars" ref="jndiEnvVarsProperties"/>
+	</bean>
+	
+	<bean id="jndiEnvVarsProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+			<value>classpath:jndienvvars.properties</value>
+		</property>
+		<property name="ignoreResourceNotFound"><value>true</value></property>
+	</bean>
+
+  #if($ldapProvider=="")
+	<bean id="ldapAuthenticationProvider" class="org.acegisecurity.providers.ldap.LdapAuthenticationProvider">
+		<constructor-arg>
+			<ref bean="ldapBindAuthenticator"/>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="ldapAuthoritiesPopulator"/>
+		</constructor-arg>	
+	</bean>	
+  	<bean id="ldapAuthenticationProviderHashedPassword" class="org.acegisecurity.providers.ldap.LdapAuthenticationProvider">
+		<constructor-arg>
+			<ref bean="passwordComparisonAuthenticator"/>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="ldapAuthoritiesPopulator"/>
+		</constructor-arg>	
+	</bean>  	
+	#else
+	<bean id="ldapAuthenticationProvider" class="$ldapProvider">
+		<constructor-arg>
+			<ref bean="ldapBindAuthenticator"/>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="ldapAuthoritiesPopulator"/>
+		</constructor-arg>	
+	</bean>	
+  	<bean id="ldapAuthenticationProviderHashedPassword" class="$ldapProvider">
+		<constructor-arg>
+			<ref bean="passwordComparisonAuthenticator"/>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="ldapAuthoritiesPopulator"/>
+		</constructor-arg>	
+	</bean>     	
+	#end
+
+	<bean id="passwordComparisonAuthenticator" class="org.acegisecurity.providers.ldap.authenticator.PasswordComparisonAuthenticator">
+		<constructor-arg><ref local="initialDirContextFactory"/></constructor-arg>
+		<property name="passwordEncoder">
+			<bean class="org.acegisecurity.providers.encoding.PlaintextPasswordEncoder"/>
+		</property>
+		<property name="userSearch" ref="userSearch"/>
+	</bean>
+	
+	<bean id="ldapBindAuthenticator" class="org.acegisecurity.providers.ldap.authenticator.BindAuthenticator">
+		<constructor-arg><ref local="initialDirContextFactory"/></constructor-arg>
+		<property name="userSearch" ref="userSearch"/>		
+	</bean>
+
+	<!-- Buscar el DN del usuario a partir del username para poder hacer bind  -->
+  	<bean id="userSearch" class="org.acegisecurity.ldap.search.FilterBasedLdapUserSearch">
+		<constructor-arg index="0">
+			<value>${ibuilder.security.ldap.userSearchBase}</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>${ibuilder.security.ldap.userSearchFilter}</value>
+		</constructor-arg>
+		<constructor-arg index="2">
+			<ref local="initialDirContextFactory" />
+		</constructor-arg>
+		<property name="searchSubtree">
+			<value>true</value>
+		</property>
+	</bean>	
+	
+	<bean id="ldapAuthoritiesPopulator" class="org.acegisecurity.providers.ldap.populator.DefaultLdapAuthoritiesPopulator">
+		<constructor-arg><ref local="initialDirContextFactory"/></constructor-arg>
+		<constructor-arg><value>${ibuilder.security.ldap.groupSearchBase}</value></constructor-arg>
+		<property name="groupRoleAttribute"><value>${ibuilder.security.ldap.groupRoleAttribute}</value></property>
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>
+		<property name="searchSubtree"><value>true</value></property>
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+	</bean>
+
+  #if($userDetailImpl == "")
+	<bean id="userDetailsService" class="es.indra.agrega.security.providers.ldap.LdapUserDetailsService">
+		<property name="populator">
+			<ref bean="ldapAuthoritiesPopulator" />
+		</property> 
+		<property name="ldapUserSearch">
+			<ref bean="userSearch" />
+		</property>		
+	</bean>    
+	#else
+	<bean id="userDetailsService" class="$userDetailImpl">
+		<property name="populator">
+			<ref bean="ldapAuthoritiesPopulator" />
+		</property> 
+		<property name="ldapUserSearch">
+			<ref bean="userSearch" />
+		</property>		
+	</bean>    	
+	#end
+	<!-- =========================== END LDAP BACKEND SUPPORT ============================== -->			
+#end
+
+#if ($backendType == "db")
+	<!-- =========================== DATABASE BACKEND SUPPORT ============================== -->			
+
+    <bean id="securityDataSource" class="$jdbcDataSourceClass"#if ($stringUtils.isNotBlank($jdbcDataSourceDestroyMethod)) destroy-method="$jdbcDataSourceDestroyMethod"#end>
+        <property name="driverClassName"><value>$driver</value></property>
+        <property name="username"><value>$username</value></property>
+        <property name="password"><value>$password</value></property>
+        <property name="url"><value>$connectionUrl</value></property>
+    </bean>
+   #if($userDetailImpl=="") 
+	<bean id="userDetailsService" class="es.indra.agrega.security.providers.db.JdbcDaoImpl">
+		<property name="dataSource"><ref bean="securityDataSource"/></property>
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="usersByUsernameQuery">
+			<value>${ibuilder.security.db.userInfoQuery}</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>${ibuilder.security.db.rolesInfoQuery}</value>
+		</property>
+		
+		<!-- Propiedades adicionales sobre la implementacion original -->
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+	</bean>    
+	#else
+	<bean id="userDetailsService" class="$userDetailImpl">
+		<property name="dataSource"><ref bean="securityDataSource"/></property>
+		<property name="rolePrefix"><value>ROLE_</value></property>
+		<property name="usersByUsernameQuery">
+			<value>${ibuilder.security.db.userInfoQuery}</value>
+		</property>
+		<property name="authoritiesByUsernameQuery">
+			<value>${ibuilder.security.db.rolesInfoQuery}</value>
+		</property>
+		
+		<!-- Propiedades adicionales sobre la implementacion original -->
+		<property name="defaultRole"><value>ROLE_ANONYMOUS</value></property>
+		<property name="convertToUpperCase"><value>true</value></property>
+	</bean>	
+	#end
+	<!-- =========================== END DATABASE BACKEND SUPPORT ============================== -->			    
+#end
+
+#if ($useCAS == "true")
+	<!-- ================================== CAS (SSO) SUPPORT ================================== -->			    
+    <bean id="serviceProperties" class="org.acegisecurity.ui.cas.ServiceProperties">
+        <property name="service">
+            <value>${http.server}/${ApplicationURL}/j_acegi_cas_security_check</value>
+        </property>
+        <property name="sendRenew"><value>false</value></property>
+    </bean>
+
+    <bean id="casProcessingFilter" class="org.acegisecurity.ui.cas.CasProcessingFilter">
+        <property name="authenticationManager"><ref bean="authenticationManager"/></property>
+        <property name="authenticationFailureUrl"><value>/casfailed.jsp</value></property>
+        <property name="defaultTargetUrl"><value>/</value></property>
+        <property name="filterProcessesUrl"><value>/j_acegi_cas_security_check</value></property>
+    </bean>
+    
+    <bean id="casProcessingFilterEntryPoint" class="org.acegisecurity.ui.cas.CasProcessingFilterEntryPoint">
+        <property name="loginUrl"><value>${cas.http.url}/login</value></property>
+        <property name="serviceProperties"><ref bean="serviceProperties"/></property>
+    </bean>    
+    
+    <bean id="casAuthenticationProvider" class="org.acegisecurity.providers.cas.CasAuthenticationProvider">
+        <property name="casAuthoritiesPopulator"><ref bean="casAuthoritiesPopulator"/></property>
+        <property name="casProxyDecider"><ref bean="casProxyDecider"/></property>
+        <property name="ticketValidator"><ref bean="casProxyTicketValidator"/></property>
+        <property name="statelessTicketCache"><ref bean="statelessTicketCache"/></property>
+        <property name="key"><value>my_password_for_this_auth_provider_only</value></property>
+    </bean>
+
+    <bean id="casProxyTicketValidator" class="org.acegisecurity.providers.cas.ticketvalidator.CasProxyTicketValidator">
+        <property name="casValidate"><value>${cas.http.url}/proxyValidate</value></property>
+<!--        <property name="proxyCallbackUrl"><value>${http.server}/${ApplicationURL}/casProxy/receptor</value></property>-->
+        <property name="serviceProperties"><ref bean="serviceProperties"/></property>
+   <!-- <property name="trustStore"><value>/some/path/to/your/lib/security/cacerts</value></property> -->
+    </bean>
+    
+    <bean id="ticketCacheBackend" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager">
+            <ref local="cacheManager"/>
+        </property>
+        <property name="cacheName">
+            <value>ticketCache</value>
+        </property>
+    </bean>
+    
+    <bean id="statelessTicketCache" class="org.acegisecurity.providers.cas.cache.EhCacheBasedTicketCache">
+        <property name="cache"><ref local="ticketCacheBackend"/></property>
+    </bean>
+    
+    <bean id="casAuthoritiesPopulator" class="org.acegisecurity.providers.cas.populator.DaoCasAuthoritiesPopulator">
+        <property name="userDetailsService"><ref bean="userDetailsService"/></property>
+    </bean>
+    
+    <bean id="casProxyDecider" class="org.acegisecurity.providers.cas.proxy.AcceptAnyCasProxy"/>
+    
+	<!-- ================================ END CAS (SSO) SUPPORT ================================ -->			    
+#end
+	<!-- =========================== END AUTHENTICATION BACKEND SUPPORT =============================== -->		
+
+
+	<!-- ==================================== AUTHORIZATION SUPPORT =============================== -->		
+
+	<!-- method invocation interceptor -->
+	<bean id="serviceSecurityInterceptor" class="org.acegisecurity.intercept.method.aopalliance.MethodSecurityInterceptor">
+		<property name="validateConfigAttributes"><value>true</value></property>
+		<property name="authenticationManager"><ref bean="authenticationManager"/></property>
+		<property name="accessDecisionManager"><ref bean="accessDecisionManager"/></property>
+		<property name="objectDefinitionSource">
+			<value>
+#foreach($service in $services)
+#foreach ($operation in $service.operations)
+#if (!$operation.roles.empty)
+                ${service.fullyQualifiedName}.${operation.name}=#foreach($role in $operation.roles)ROLE_${role.name.toUpperCase()}#if($velocityCount != $operation.roles.size()), #end#end
+
+#end
+#end
+#end			
+			</value>
+		</property>
+	</bean>
+	
+	<!-- web tier authorization is defined in the file applicationContext-acegiSecurity-frontend.xml -->
+
+#if ($accessDecisionPolicy == 'all')
+   	<bean id="accessDecisionManager" class="org.acegisecurity.vote.UnanimousBased">
+#else
+   	<bean id="accessDecisionManager" class="org.acegisecurity.vote.AffirmativeBased">
+#end   		
+		<property name="allowIfAllAbstainDecisions"><value>false</value></property>
+		<property name="decisionVoters">
+			<list>
+				<ref bean="roleVoter"/>
+			</list>
+		</property>
+	</bean>	
+
+   <!-- An access decision voter that reads ROLE_* configuration settings -->
+   <bean id="roleVoter" class="org.acegisecurity.vote.RoleVoter"/>   	
+
+	<!-- ==================================== END AUTHORIZATION SUPPORT =============================== -->		
+
+
+   <bean id="exceptionTranslationFilter" class="org.acegisecurity.ui.ExceptionTranslationFilter">
+#if ($useCAS == "true")   	
+		<property name="authenticationEntryPoint"><ref local="casProcessingFilterEntryPoint"/></property>
+#else		
+#if ($userPwdAuthType == "basic")
+      <property name="authenticationEntryPoint"><ref local="basicAuthenticationEntryPoint"/></property>
+#end
+#if ($userPwdAuthType == "digest")
+      <property name="authenticationEntryPoint"><ref local="digestProcessingFilterEntryPoint"/></property>
+#end
+#if ($userPwdAuthType == "form")
+      <property name="authenticationEntryPoint"><ref local="formAuthenticationProcessingFilterEntryPoint"/></property>
+#end
+#if ($userPwdAuthType == "none")
+      <property name="authenticationEntryPoint"><ref local="x509ProcessingFilterEntryPoint"/></property>
+#end
+#end
+   </bean>
+
+
+	<!-- ============================= CHANNEL SECURITY SUPPORT ====================================== -->
+   
+
+	<bean id="channelDecisionManager" class="org.acegisecurity.securechannel.ChannelDecisionManagerImpl">
+		<property name="channelProcessors">
+			<list>
+	            <ref local="secureChannelProcessor"/>
+				<ref local="insecureChannelProcessor"/>
+#if ($loginCaptcha == "true")				            
+				<ref local="alwaysTestAfterMaxRequestsCaptchaChannelProcessor"/>
+#end
+			</list>
+		</property>
+	</bean>   
+	
+	<bean id="secureChannelProcessor" class="org.acegisecurity.securechannel.SecureChannelProcessor">
+		<property name="entryPoint"><ref bean="retryWithHttps"/></property>
+	</bean>
+	<bean id="insecureChannelProcessor" class="org.acegisecurity.securechannel.InsecureChannelProcessor">
+		<property name="entryPoint"><ref bean="retryWithHttp"/></property>
+	</bean>
+
+	<bean id="retryWithHttp" class="org.acegisecurity.securechannel.RetryWithHttpEntryPoint">
+		<property name="portResolver"><ref bean="portResolverImpl"/></property>
+		<property name="portMapper"><ref bean="portMapperImpl"/></property>
+	</bean>
+
+	<bean id="retryWithHttps" class="org.acegisecurity.securechannel.RetryWithHttpsEntryPoint">
+		<property name="portResolver"><ref bean="portResolverImpl"/></property> 
+		<property name="portMapper"><ref bean="portMapperImpl"/></property>
+	</bean>
+	
+	<bean id="portResolverImpl" class="org.acegisecurity.util.PortResolverImpl">
+		<property name="portMapper"><ref bean="portMapperImpl"/></property>
+	</bean>
+
+	<bean id="portMapperImpl" class="org.acegisecurity.util.PortMapperImpl">  
+		<property name="portMappings">
+			<map>
+				<entry key="$insecurePort"><value>$securePort</value></entry>
+			</map>
+		</property>
+	</bean>
+	<!-- ============================= END CHANNEL SECURITY SUPPORT =================================== -->
+
+#end	
+</beans>

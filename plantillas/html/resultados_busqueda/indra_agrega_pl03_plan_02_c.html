@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+<meta charset="utf-8">
+<!-- Obligatorio para trabajar con IExplorer y HTML5 -->
+<!--[if IE]>
+<script src="http://www.therightdirection.biz/clientes/indra/red_2011/js/html5.js"></script>
+<![endif]-->
+
+<title>Agrega</title>
+<meta name="description" content="">
+<meta name="author" content="">
+
+<style type="text/css">
+.resultados_busqueda  label {
+	padding-left: 20px !important;
+	background: url(http://andreslopezjosenge.com/coruna/agrega/img/global/unchecked.gif) no-repeat;
+	cursor: pointer;
+	color: #151515;}
+	
+.resultados_busqueda  label.checked {
+	background: url(http://andreslopezjosenge.com/coruna/agrega/img/global/checke.gif) no-repeat;
+	color: #000;}
+	
+.resultados_busqueda  label.over {color: #000;}
+
+</style>
+<link rel="stylesheet" href="http://www.therightdirection.biz/clientes/indra/red_2011/css/red.css?v=10">
+<link rel="stylesheet" media="handheld" href="http://www.therightdirection.biz/clientes/indra/red_2011/css/handheld.css?v=1">
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery-1.1.1.js" ></script>
+</head>
+
+
+<!-- Para controlar las diferentes versiones de IExplorer -->
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body > <!--<![endif]-->
+
+<!--! INICIO de CAPA MADRE -->
+
+<div id="madre">
+
+
+<!-- CABECERA  -->
+<header id="cabecera">
+<div>
+<span class="acceso"><span>&iquest;Tienes Cuenta?</span>  <a href="#" onclick="toggle_visibility('popup_registro');">Accede</a></span> 
+<span class="acerca"><a href="acerca_de.html">Acerca de Agrega</a></span>
+<ul class="metanavegacion">
+<li><a href="#">Bienvenido</a></li>
+<li><a href="#">Benvingut</a></li>
+<li><a href="#">Benvido</a></li>
+<li><a href="#">Ongi Etorri</a></li>
+<li><a href="#">Welcome</a></li>
+</ul>
+</div>
+</header>
+<!-- CABECERA  -->
+
+<!-- CONTENEDOR  -->
+<div id="contenedor_ie">
+<div id="contenedor">
+<div id="popup_registro">
+	<div class="pop_int">
+		<a class="cerrar_enlace" href="#" onclick="toggle_visibility('popup_registro');">Cerrar</a>
+		<!-- Inicio Input Busqueda Comunidad  -->
+		<div id="combo_comunidad" class="clearfix">
+			<form>
+				<p> Por favor introduzca los siguientes datos para entrar en Agrega</p>
+				<label for="usuario_portada">Usuario:</label>
+					<input type="text" class="de_texto"  name="login" id="usuario_portada" title="Usuario" value="" />
+					<br class="oculto" />
+					<label for="password_portada">Contrase&ntilde;a:</label>
+					<input type="password" class="de_texto" name="password" id="password_portada" title="Contrase&ntilde;a" value="" />
+					<span class="bot_check"><input id="cache" type="checkbox" class="cajacheck"  />
+					<label for="cache">Recu&eacute;rdame</label></span>
+					<input type="submit"  title="Entrar" value="Entrar" class="boton" />
+			</form>
+			<a href="#">Has olvidado la contrase&ntilde;a?</a>
+		</div>
+		<!-- Fin Input Busqueda Comunidad  -->
+		<!-- Fin Input Busqueda Comunidad  -->
+	</div>
+</div>
+
+<!-- NAV  -->
+<nav id="menu">
+<h1><a href="index.html" title="Agrega"><strong>Agrega</strong></a></h1>
+<div id="nav_principal">
+<ul class="metanavegacion">
+<li><a href="index.html" id="activo">Buscador Agrega</a></li>
+<li><a href="buscador_externo.html">Buscador Externo</a></li>
+<li><a href="arbol_curricular.html">&Aacute;rbol Curricular</a></li>
+</ul>
+</div>
+</nav>
+<!-- FIN NAV  -->
+
+
+
+
+<!-- PRINCIPAL   -->
+<section id="principal" class="resultados_busqueda">
+ <!--  -->
+<article id="buscador" >
+     <header>
+       <h2 class="oculto">Resultados de B&uacute;squeda</h2>
+     </header>
+    <section>
+    <form >
+   	<span class="enlace_f"><a href="#">Avanzado</a></span>
+    <!--  -->
+    <fieldset id="caja_buscador">
+    	<div>
+    		<input type="submit" value="IR" class="boton_submit" />
+    		<label for="busc_contenidos">Buscar Contenidos Agrega :</label>
+			<input name="buscador" class="buscador" onfocus="clearText(this)" id="busc_contenidos"  type="text" value='Buscar Contenidos Agrega '>
+			<label for="idioma">Idioma :</label>
+			<span class="caja_de_boton">
+			<select id="idioma" name="idioma" class="select" title="Idioma">
+  			<option selected="selected">Idioma</option>
+   			<option>Catal&aacute;</option>
+    		<option>Espa&ntilde;ol</option>
+    		<option>Euskera</option>
+    		<option>English</option>
+    		<option>Galego</option>
+    		</select>
+    		</span>
+		</div>
+	</fieldset>
+	<!--  -->	
+	<fieldset class="radios">
+		<input type="radio" checked="checked" name="agrega_r" id="todo_agrega" />
+		<label for="todo_agrega">Todo Agrega</label>
+		<input type="radio" name="agrega_r" id="nodo_cca_aa" />
+		<label for="nodo_cca_aa">Nodo CC.AA.</label><br />
+	</fieldset>
+	<!--  -->					
+	</form>
+    </section>
+</article>
+<!--  -->
+<article id="main" class="clearfix">
+	<!--  -->
+<div class="col_izq">
+<form method="post" name="Registration"> 
+<div class="fieldset"> 
+<strong class="legend oculto_imp">RESULTADOS DE B&Uacute;SQUEDA</strong>          
+<ul>
+<li>  
+<input id="todo" type="checkbox"  checked="checked" name="box1" value="1" />       
+<label for="todo">Todo</label>       
+</li>       
+<li>  
+<input id="objetos" type="checkbox"  name="box2" value="2" />       
+<label for="objetos">Objetos B&aacute;sicos</label>       
+<ul>       
+<li>       
+<input id="imagen" type="checkbox" name="box3" value="3" />       
+<label for="imagen">Imagen</label>       
+</li>       
+<li>       
+<input id="audio"  type="checkbox" name="box4" value="4" />       
+<label for="audio">Audio</label>       
+</li>       
+<li>       
+<input id="video"  type="checkbox" name="box5" value="5" />       
+<label for="video">Video</label>       
+</li>       
+<li>       
+<input id="otros"  type="checkbox" name="box6" value="6" />       
+<label for="otros">Otros</label>       
+</li>       
+</ul>      
+</li>
+<li>  
+<input id="secuencias" type="checkbox"   name="box7" value="7" />       
+<label for="secuencias">Secuencias Did&aacute;cticas</label> 
+</li>      
+</ul> 
+</div>
+</form>
+</div>
+    <div class="col_der">
+   <header id="resultados" class="clearfix">
+    <a href="rss.html" class="rss_feed2">RSS</a>
+     <span class="resultados">Resultados: <strong>01</strong> de <strong>10</strong> de <strong>320</strong> </span>
+    <h3 class="res_b">RESULTADOS DE B&uacute;SQUEDA</h3>
+   
+  
+    </header>
+   
+    	<!-- SECCION ARBOL CURRICULAR  -->
+    	<!--
+    	<section class="bloque_resultados clearfix" id="arbol_res">
+    		<strong>140 Objetos</strong>
+    		<h3>Arbol curricular LOE006</h3>
+      		<p>Acceda a los distintos contenidos de la plataforma en funci&oacute;n del curr&iacute;culo de las ense&ntilde;anzas m&iacute;nimas a las que haga referencia:</p>
+       		<div class="arbol_ruta">
+      			<div><a href="#">Nodo XYZ</a><a href="#">Ciclo XYZ</a><a href="#" class="lc">Ciclo XYZ</a>
+      		</div>
+    	 	</div>
+	   	</section>	
+   		 -->
+    	
+    	<section class="bloque_resultados clearfix">
+    	<!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>15 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>  <span><a class="enlace"  href="ficha.html">XYZ.</a><a href="#" title="Lupa" class="lupa" >&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m1" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm1" href="que_ofrecemos.html" onclick="expandirCaja('m1');return false;" onkeypress="expandirCaja('m1');return false;"><strong  id="dm1" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>20 votos</em>	
+    	<div>
+	   	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m2" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm2" href="que_ofrecemos.html" onclick="expandirCaja('m2');return false;" onkeypress="expandirCaja('m2');return false;"><strong  id="dm2" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>14 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>  <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m3" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm3" href="que_ofrecemos.html" onclick="expandirCaja('m3');return false;" onkeypress="expandirCaja('m3');return false;"><strong  id="dm3" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>12 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m4" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm4" href="que_ofrecemos.html" onclick="expandirCaja('m4');return false;" onkeypress="expandirCaja('m4');return false;"><strong  id="dm4" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>30 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   			<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m5" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm5" href="que_ofrecemos.html" onclick="expandirCaja('m5');return false;" onkeypress="expandirCaja('m5');return false;"><strong  id="dm5" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>14 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   			<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m6" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm6" href="que_ofrecemos.html" onclick="expandirCaja('m6');return false;" onkeypress="expandirCaja('m6');return false;"><strong  id="dm6" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>20 votos</em>	
+    	<div>
+	   	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m7" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm7" href="que_ofrecemos.html" onclick="expandirCaja('m7');return false;" onkeypress="expandirCaja('m7');return false;"><strong  id="dm7" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>14 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m8" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm8" href="que_ofrecemos.html" onclick="expandirCaja('m8');return false;" onkeypress="expandirCaja('m8');return false;"><strong  id="dm8" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+   		<!--  -->
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>12 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m9" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm9" href="#" onclick="expandirCaja('m9');return false;" onkeypress="expandirCaja('m9');return false;"><strong  id="dm9" style="font-weight:normal">Ver M&aacute;s</strong></a></span> </p>
+   		</section>
+   		<!--  -->
+    	<section class="bloque_resultados clearfix">
+   		 <!--  estrellas -->	
+    	<div class="valoracion">
+     	<em>30 votos</em>	
+    	<div>
+       	<ol>
+    		<li><a href="#" title="1 estrella"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="1 estrella" /></a></li>
+    		<li><a href="#" title="2 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="2 estrellas" /></a></li>
+    		<li><a href="#" title="3 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_01.gif" alt="3 estrellas" /></a></li>
+    		<li><a href="#" title="4 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="4 estrellas" /></a></li>
+    		<li><a href="#" title="	5 estrellas"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/star_02.gif" alt="5 estrellas" /></a></li>
+    	</ol>
+    	</div>
+   		<strong>Valoraci&oacute;n:</strong>
+   		</div>
+   		<p class="fix"><strong class="tipo_label">T&iacute;tulo:</strong>   <span><a class="enlace" href="ficha.html">Xyz.</a><a href="#" title="Lupa" class="lupa">&nbsp;<em>Objeto digital educativo</em><span class="ventana"><span class="caji"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/global/foto.jpg" alt="Portada 01" /></span></span></a></span> </p>
+   		<p ><strong class="tipo_label">Formato:</strong>   <span><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_04.gif"  alt="Aplicaci&oacute;n" title="Aplicaci&oacute;n" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_06.gif"  alt="Texto" title="Texto" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_03.gif"  alt="Imagen" title="Imagen" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_05.gif"  alt="Audio" title="Audio" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_02.gif"  alt="Video" title="Video" />&nbsp;<img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/iconos/formato_01.gif"  alt="Restringido" title="Restringido" /></span>  </p>
+   		<p ><strong class="tipo_label">Nivel Agregaci&oacute;n:</strong>   <span>Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">Tipo de Recurso:</strong>   <span>Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz, Tipo Xyz.</span>  </p>
+   		<p ><strong class="tipo_label">&Aacute;rea Curricular:</strong>  <span>Educaci&oacute;n Infantil / Segundo Ciclo. <em id="m10" class="caja_cerrada" >/ Lorem Ipsum perspiciatis unde omnis iste natus error sit voluptatem accusantium uasi architecto beuptas sit aspernatur aut odit aut fugit, sed quia consequuntur.</em> <a class="desplegado" id="pm10" href="que_ofrecemos.html" onclick="expandirCaja('m10');return false;" onkeypress="expandirCaja('m10');return false;"><strong  id="dm10" style="font-weight:normal">Ver M&aacute;s</strong></a></span>  </p>
+   		</section>
+<div class="paginacion">
+<a href="#" class="flot_der sig">Siguiente</a>
+<a href="#" class="flot_izq ant">Anterior</a>
+<ul id="navlist">
+<li><a href="#">01</a></li>
+<li><a href="#">02</a></li>
+<li><a href="#" class="sel">03</a></li>
+<li><a href="#">04</a></li>
+<li><a href="#">05</a></li>
+<li><a href="#">06</a></li>
+<li><a href="#">07</a></li>
+<li><a href="#">08</a></li>
+<li><a href="#">09</a></li>
+<li><a href="#">10</a></li>
+</ul>
+</div>
+
+</div>
+   <!--  -->
+</article>
+<article id="buscador_bottom" >
+    <section>
+    <form >
+   	<span class="enlace_f"><a href="#">Avanzado</a></span>
+    <!--  -->
+    <fieldset id="caja_buscador2">
+    	<div>
+    		<input type="submit" value="IR" class="boton_submit" />
+    		<label for="busc_contenidos2">Buscar Contenidos Agrega :</label>
+			<input name="buscador" class="buscador" onfocus="clearText(this)" id="busc_contenidos2"  type="text" value='Buscar Contenidos Agrega '>
+			<label for="idioma2">Idioma :</label>
+			<span class="caja_de_boton">
+			<select id="idioma2" name="idioma2" class="select" title="Idioma">
+  			<option selected="selected">Idioma</option>
+   			<option>Catal&aacute;</option>
+    		<option>Espa&ntilde;ol</option>
+    		<option>Euskera</option>
+    		<option>English</option>
+    		<option>Galego</option>
+    		</select>
+    		</span>
+		</div>
+	</fieldset>
+	<!--  -->	
+	<fieldset class="radios">
+		<input type="radio" checked="checked" name="agrega_r2" id="todo_agrega2" />
+		<label for="todo_agrega2">Todo Agrega</label>
+		<input type="radio" name="agrega_r2" id="nodo_cca_aa2" />
+		<label for="nodo_cca_aa2">Nodo CC.AA.</label><br />
+	</fieldset>
+	<!--  -->					
+	</form>
+    </section>
+</article>
+<!--  -->
+</section>
+<!-- FIN SECCION PRINCIPAL -->
+
+
+<!-- ASIDE -->
+<aside id="patros">
+<dl id="col">
+<dt><strong class="oculto">Colaboran:</strong></dt>
+<dd id="plan_avanza"><a href="#" title="Plan Avanza 2"><span>Plan Avanza 2</span></a></dd>
+<dd id="economia_sostenible"><a href="#" title="Econom&iacute;a Sostenible"><span>Econom&iacute;a Sostenible</span></a></dd>
+<dd id="gob_espana"><a href="#" title="Gobierno de Espa&ntilde;a"><span>Gobierno de Espa&ntilde;a</span></a></dd>
+<dd id="ite"><a href="#" title="ITE- Instituto de Tecnolog&iacute;as Educativas"><span>ITE- Instituto de Tecnolog&iacute;as Educativas</span></a></dd>
+<dd id="feder"><a href="#" title="Fondo de Desarrollo Regional"><span>Fondo de Desarrollo Regional</span></a></dd>
+<dd id="cel"><a href="#" title="Confianza En L&iacute;nea"><span>Confianza En L&iacute;nea</span></a></dd>
+<dd id="ccaa">
+<div id="slider2" class="nivoSlider">
+<a href="#" title="Andalucia" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_andalucia.gif"  alt="" title="Andalucia"  /></a>
+<a href="#" title="Aragon" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_aragon.jpg" title="Aragon" /></a>
+<a href="#" title="Asturias" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_asturias.gif" title="Asturias"  /></a>
+<a href="#" title="Islas Baleares" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_baleares.gif"  alt="" title="Baleares"  /></a>
+<a href="#" title="Islas Canarias" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_canarias.gif" title="Canarias" /></a>
+<a href="#" title="Cantabria" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_cantabria.gif" title="Cantabria"  /></a>
+<a href="#" title="Castilla La Mancha" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/lamancha.gif" title="Castilla La Mancha"  /></a>
+<a href="#" title="Castilla Le&oacute;n" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_castilla_leon.gif" title="Castilla Le&oacute;n"  /></a>
+<a href="#" title="Catalunya" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_catalunya.gif" title="Catalunya"  /></a>
+<a href="#" title="Ceuta"  ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_ceuta.gif" title="Ceuta"  /></a>
+<a href="#" title="Euskadi" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_euskadi.gif" title="Euskadi"  /></a>
+<a href="#" title="Extremadura" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_extremadura.gif" title="Extremadura"  /></a>	
+<a href="#" title="Galicia"  ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_galicia.gif" title="Galicia"  /></a>
+<a href="#" title="La Rioja" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_rioja.gif" title="La Rioja"  /></a>
+<a href="#" title="Madrid" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_madrid.gif" title="Madrid"  /></a>
+<a href="#" title="Melilla"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_melilla.gif" title="Melilla"  /></a>
+<a href="#" title="Murcia" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_murcia.gif" title="Murcia"  /></a>
+<a href="#" title="Navarra" ><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_navarra.gif" title="Navarra"  /></a>
+<a href="#" title="Valencia"><img src="http://www.therightdirection.biz/clientes/indra/red_2011/img/logos/logo_valencia.gif" title="Valencia"  /></a>
+</div></dd>
+</dl>
+</aside>
+<!-- FIN ASIDE -->
+
+<!-- FOOTER -->
+<footer id="pie_pagina" >
+<ul>
+<li><a href="#" title="Pol&iacute;tica de Privacidad" id="politica">Pol&iacute;tica de Privacidad</a></li>
+<li><a href="#" title="Informaci&oacute;n Legal" id="info_legal">Informaci&oacute;n Legal</a></li>
+<li><a href="accesibilidad.html" title="Accesibilidad">Accesibilidad</a></li>
+<li><a href="#" title="Contacto">Contacto</a></li>
+<li><a href="#" title="Ayuda">Ayuda</a></li>
+<li><a href="#" title="Mapa">Mapa</a></li>
+<li><a href="rss.html" title="RSS">RSS</a></li>
+</ul>
+</footer>
+<!-- FIN FOOTER -->
+
+</div>
+</div>
+<!-- CONTENEDOR -->
+
+
+<br />
+</div>
+<!--! FIN de CAPA MADRE -->
+
+<!-- Aqui van javascripts propios  -->
+<script type="text/javascript">
+$(window).load(function() {
+	setTimeout(function(){
+		$('#slider2').nivoSlider({effect:'sliceDown',directionNav:false,startSlide:14, pauseTime:9000, captionOpacity:0,pauseOnHover:false, animSpeed:500 });
+	}, 1000);
+});
+</script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/acceso.js" ></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/codigo.js" ></script>
+<script type="text/javascript" src="http://www.therightdirection.biz/clientes/indra/red_2011/js/jquery.nivo.slider.pack.js" ></script>
+<!-- Aqui van javascripts propios  -->
+</body>
+</html>

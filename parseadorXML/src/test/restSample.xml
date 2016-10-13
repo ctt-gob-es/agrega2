@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rsp stat="OK">
+	<odes page="1" pages="1" total="2">
+		<ode identifier="ode1" evaluation="2.5" agregation-level="3" title="Título de un ODE: La historia de España" url="http://pruebas.agrega.indra.es/agrega/ODE/es/ode1" url-preview="http://pruebas.agrega.indra.es/agrega/ODE/es/ode1">
+			<taxon-path id="1.1" description="Educacion Infantil/Primer Ciclo"/>
+			<taxon-path id="2.1" description="Educacion Primaria/Primer Ciclo"/>
+		</ode>
+		<ode identifier="ode2" evaluation="2.7" agregation-level="2" title="titulo2" url="http://pruebas.agrega.indra.es/agrega/ODE/es/ode2" url-preview="http://pruebas.agrega.indra.es/agrega/ODE/es/ode2">
+			<taxon-path id="1.1" description="Educacion Infantil/Primer Ciclo"/>
+			<taxon-path id="2.1" description="Educacion Primaria/Primer Ciclo"/>
+		</ode>
+	</odes>
+</rsp>

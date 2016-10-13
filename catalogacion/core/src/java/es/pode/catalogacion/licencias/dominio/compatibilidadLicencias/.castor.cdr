@@ -1,0 +1,4 @@
+#Wed Feb 01 12:38:06 CET 2012
+es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.Licencia=es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.descriptors.LicenciaDescriptor
+es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.Licencias=es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.descriptors.LicenciasDescriptor
+es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.LicenciaAdicional=es.pode.catalogacion.licencias.dominio.compatibilidadLicencias.descriptors.LicenciaAdicionalDescriptor

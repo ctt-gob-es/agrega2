@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+		<link rel="stylesheet" href="busquedaExterna.jsp_files/red.css">
+		<link rel="stylesheet" href="busquedaExterna.jsp_files/handheld_v1.htm">
+		<style type="text/css">
+			body {overflow: hidden}
+			#menu_bis {
+				-webkit-box-shadow:inset  0px -2px 5px rgba(0, 0, 0, 0.5);
+				-moz-box-shadow: inset  0px -2px 5px rgba(0, 0, 0, 0.5);
+				box-shadow:inset  0px -2px 5px rgba(0, 0, 0, 0.5);
+				display:block;
+				min-height: 165px;
+				background:#ac2120 url("http://www.therightdirection.biz/clientes/indra/red_2011/img/global/logo.jpg") 0 0  no-repeat; 
+			}
+			.ie7 #menu_bis,
+			.ie8 #menu_bis {
+				background:#ac2120 url("http://www.therightdirection.biz/clientes/indra/red_2011/img/global/logo.jpg") 0 0  no-repeat; 
+				height:165px;
+			}
+			
+			#contenedor_bis{
+				width:960px;
+				background:#fff;
+				position:relative;
+				-webkit-box-shadow: 0 5px 20px  #888;
+				-moz-box-shadow: 0 5px 20px  #888;
+				box-shadow: 0 5px 20px   #888;
+				border:1px solid #333;
+				border-top:0 !important;
+				margin:0 auto;
+				
+				}
+			
+			#frame {
+				width:960px;
+				min-height:600px;
+			}
+			
+			.ie7 #contenedor_bis,
+			.ie8 #contenedor_bis {background:transparent !important;}
+			
+
+			.ie7 #contenedor_ie_bis,
+			.ie8 #contenedor_ie_bis {
+				width:974px;
+				height:165px;
+				z-index:2000;
+				margin:0 auto;
+				display:block;
+				background:transparent url("http://www.therightdirection.biz/clientes/indra/red_2011/img/global/fondo_hoja.gif") 0 0 repeat-y;
+			}
+
+		</style>  
+		<script type="text/javascript" src="busquedaExterna.jsp_files/jquery-1.js"></script>
+	<script language="javascript">
+	
+	// Read a page's GET URL variables and return them as an associative array.
+	function getUrlVars() {
+		return window.location.href.slice(window.location.href.indexOf('=') + 1);
+	}
+	
+	function getIframeUrl() {
+		return getUrlVars();
+	}	
+	
+	function crearFrame(src) {
+	    var frame = document.createElement("IFRAME");
+	    frame.id = "frame";
+	    frame.src = src;
+		frame.height = "75%";
+	    var control = document.getElementById("frame")
+	    if (control==null) {
+	    	document.body.appendChild(frame);
+	    }
+	}
+	
+function adjustIFrameSize (iframeWindow) {
+var the_height=document.getElementById(iframeWindow).contentWindow.document.body.scrollHeight;
+document.getElementById(iframeWindow).style.height=(the_height+10)+"px";
+}
+
+function adjustIFrameSize2(frameId) {
+document.getElementById(frameId).height = document.documentElement.clientHeight;
+} 
+	$(document).ready( function () {
+		crearFrame(getIframeUrl());
+	});
+	
+	</script>
+	</head>
+	
+	
+
+<!-- Para controlar las diferentes versiones de IExplorer -->
+<!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie7"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie8"> <![endif]-->
+<!--[if IE 9 ]> <body class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body > <!--<![endif]-->
+ <!-- onload="adjustIFrameSize2('frame');">				-->
+		<div id="contenedor_ie_bis">
+		<div id="contenedor_bis">		
+		<nav id="menu_bis">
+		<h1><a href="http://desarrollo.agrega.indra.es/visualizadorcontenidos/Portada/Portada.do" title="Agrega"><strong>Agrega</strong></a></h1>
+		</nav>
+		</div>
+		</div>		
+<section>
+<iframe src="busquedaExterna.jsp_files/search.htm" id="frame" height="75%"></iframe>
+</section>
+
+
+</body>
+
+</html>

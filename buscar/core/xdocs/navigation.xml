@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+<body>
+	<menu name="Navigation">
+    		<item name="Principal"                href="../../../target/docs/index.html"/>
+    		<item name="Web"                      href="../../../web/target/docs/index.html"/>
+    		<item name="Common"                   href="../../../common/target/docs/index.html"/>
+  	</menu>
+	<menu name="Core">
+    		<item name="JUnit Report"             href="../docs/junit-report.html"/>
+    		<item name="Cobertura de Test"        href="../docs/cobertura/index.html"/>
+			<item name="Introducción"             href="index.html"/>
+	</menu>  	  	
+</body>
+</project>

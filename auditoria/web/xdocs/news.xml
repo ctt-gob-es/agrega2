@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<document>
+  <body>
+    <news>
+      <entry name="31.12.2006">
+        <p>Se genera el proyecto por primera vez</p>
+      </entry>
+      <entry name="31.12.2006">
+        <p>En el archivo web/xdocs/news.xml se debera introducir cronológicamente todos los comentarios,
+        sucesos y toda información importante del sub-proyecto web.
+        </p>
+      </entry>
+    </news>
+  </body>
+</document>

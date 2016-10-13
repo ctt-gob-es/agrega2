@@ -1,0 +1,7 @@
+#Fri Apr 11 13:33:10 CEST 2008
+es.pode.parseadorXML.oai_pmh.types.ProtocolVersionType=es.pode.parseadorXML.oai_pmh.types.descriptors.ProtocolVersionTypeDescriptor
+es.pode.parseadorXML.oai_pmh.types.VerbType=es.pode.parseadorXML.oai_pmh.types.descriptors.VerbTypeDescriptor
+es.pode.parseadorXML.oai_pmh.types.StatusType=es.pode.parseadorXML.oai_pmh.types.descriptors.StatusTypeDescriptor
+es.pode.parseadorXML.oai_pmh.types.DeletedRecordType=es.pode.parseadorXML.oai_pmh.types.descriptors.DeletedRecordTypeDescriptor
+es.pode.parseadorXML.oai_pmh.types.GranularityType=es.pode.parseadorXML.oai_pmh.types.descriptors.GranularityTypeDescriptor
+es.pode.parseadorXML.oai_pmh.types.OAIPMHerrorcodeType=es.pode.parseadorXML.oai_pmh.types.descriptors.OAIPMHerrorcodeTypeDescriptor

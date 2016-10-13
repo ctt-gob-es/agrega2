@@ -1,0 +1,17 @@
+/* AGREGA V08- 18/01/12  LICENCIAS RED  */
+
+.licencias {display:table-cell !Important ;max-width:300px;position:relative !Important;right:0 !important;margin:0 !Important;}
+.licencias span {display:block;text-align: center !Important;border-bottom:1px solid #666666;min-height:28px;line-height:27px !Important;padding:0 5px}
+.valoracion {clear:right}
+.ie7 .licencias {width:200px;}
+.ie7 .licencias span {overflow:hidden}
+.licencias  span.cat {background:#fff;text-align: center !Important;}
+.licencias span.cat strong em span {display:none}
+.licencias span.cat strong em#licencia_a {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/iconos/categoria_a.gif") right top no-repeat;} 
+.licencias span.cat strong em#licencia_b {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/iconos/categoria_b.gif") right top no-repeat;} 
+.licencias span.cat strong em#licencia_c {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/iconos/categoria_c.gif") right top no-repeat;} 
+#principal.ficha #main .valoracion {float:left !important;margin-top:38px;position:absolute !important;left:0 !important;right: 686px !important}
+.ie7 .ficha .valoracion  {position:absolute;top:6px !important;margin-top:38px;left:0 !important;margin-left:-686px !important}
+#categorias {display:table-cell !Important ;}
+#categorias h2 {display:block !important;float:left;}
+.ficha#principal #main #categorias  .valoracion {position:relative !Important;margin:0 !important;clear:left !important}

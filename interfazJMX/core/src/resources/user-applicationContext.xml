@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="propiedadesConstantes" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:spring.properties</value>
+			</list>
+		</property>
+	  <property name="ignoreUnresolvablePlaceholders">
+	  		<value>true</value>
+	  </property>	  
+	</bean>
+
+<!-- Inicio de la configuracion para la MBean Service -->    
+      	
+    <bean id="exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+        <property name="assembler" ref="assembler"/>
+        <property name="namingStrategy" ref="namingStrategy"/>
+        <property name="autodetect" value="true"/>
+        <property name="beans">
+			<map>			
+				<entry key="agrega:name=propiedadJmxService">
+				  <bean class="es.indra.agrega.jmx.PropiedadJmxServiceImpl">
+				    <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                    <property name="propiedadDao"><ref bean="propiedadDao"/></property>                          
+                  </bean>
+				</entry>		
+			</map>			
+		</property>
+        <!-- property name="notificationListenerMappings">
+	        <map>	            
+	            <entry key="bean:name=propiedadJmxService">
+	                <bean class="es.indra.agrega.jmx.ConsoleLoggingNotificationListener"/>
+	            </entry>		            
+	        </map>
+    	</property-->       
+    </bean>
+
+    <bean id="jmxAttributeSource"
+          class="org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource"/>
+    
+    <bean id="assembler"
+          class="org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>
+    
+    <bean id="namingStrategy"
+          class="org.springframework.jmx.export.naming.MetadataNamingStrategy">
+        <property name="attributeSource" ref="jmxAttributeSource"/>
+    </bean>  
+    
+<!-- Fin de la configuracion para la MBean Service -->
+            
+</beans>

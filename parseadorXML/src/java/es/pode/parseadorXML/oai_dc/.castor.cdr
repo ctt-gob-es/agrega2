@@ -1,0 +1,23 @@
+#Fri Apr 11 13:32:25 CEST 2008
+es.pode.parseadorXML.oai_dc.ElementsGroupChoice=es.pode.parseadorXML.oai_dc.descriptors.ElementsGroupChoiceDescriptor
+es.pode.parseadorXML.oai_dc.Dc=es.pode.parseadorXML.oai_dc.descriptors.DcDescriptor
+es.pode.parseadorXML.oai_dc.DcCoverage=es.pode.parseadorXML.oai_dc.descriptors.DcCoverageDescriptor
+es.pode.parseadorXML.oai_dc.DcLanguage=es.pode.parseadorXML.oai_dc.descriptors.DcLanguageDescriptor
+es.pode.parseadorXML.oai_dc.ElementsGroup=es.pode.parseadorXML.oai_dc.descriptors.ElementsGroupDescriptor
+es.pode.parseadorXML.oai_dc.DcIdentifier=es.pode.parseadorXML.oai_dc.descriptors.DcIdentifierDescriptor
+es.pode.parseadorXML.oai_dc.DcTitle=es.pode.parseadorXML.oai_dc.descriptors.DcTitleDescriptor
+es.pode.parseadorXML.oai_dc.DcRelation=es.pode.parseadorXML.oai_dc.descriptors.DcRelationDescriptor
+es.pode.parseadorXML.oai_dc.DcPublisher=es.pode.parseadorXML.oai_dc.descriptors.DcPublisherDescriptor
+es.pode.parseadorXML.oai_dc.DcCreator=es.pode.parseadorXML.oai_dc.descriptors.DcCreatorDescriptor
+es.pode.parseadorXML.oai_dc.DcSource=es.pode.parseadorXML.oai_dc.descriptors.DcSourceDescriptor
+es.pode.parseadorXML.oai_dc.DcRights=es.pode.parseadorXML.oai_dc.descriptors.DcRightsDescriptor
+es.pode.parseadorXML.oai_dc.DcContributor=es.pode.parseadorXML.oai_dc.descriptors.DcContributorDescriptor
+es.pode.parseadorXML.oai_dc.DcFormat=es.pode.parseadorXML.oai_dc.descriptors.DcFormatDescriptor
+es.pode.parseadorXML.oai_dc.DcDate=es.pode.parseadorXML.oai_dc.descriptors.DcDateDescriptor
+es.pode.parseadorXML.oai_dc.Oai_dcTypeItem=es.pode.parseadorXML.oai_dc.descriptors.Oai_dcTypeItemDescriptor
+es.pode.parseadorXML.oai_dc.DcSubject=es.pode.parseadorXML.oai_dc.descriptors.DcSubjectDescriptor
+es.pode.parseadorXML.oai_dc.DcType=es.pode.parseadorXML.oai_dc.descriptors.DcTypeDescriptor
+es.pode.parseadorXML.oai_dc.ElementType=es.pode.parseadorXML.oai_dc.descriptors.ElementTypeDescriptor
+es.pode.parseadorXML.oai_dc.ElementsGroupChoiceItem=es.pode.parseadorXML.oai_dc.descriptors.ElementsGroupChoiceItemDescriptor
+es.pode.parseadorXML.oai_dc.Oai_dcType=es.pode.parseadorXML.oai_dc.descriptors.Oai_dcTypeDescriptor
+es.pode.parseadorXML.oai_dc.DcDescription=es.pode.parseadorXML.oai_dc.descriptors.DcDescriptionDescriptor

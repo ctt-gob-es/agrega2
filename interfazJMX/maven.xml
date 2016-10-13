@@ -1,0 +1,491 @@
+<project default="install"
+         xmlns:ant="jelly:ant"
+         xmlns:maven="jelly:maven"
+         xmlns:j="jelly:core"
+         xmlns:util="jelly:util"
+         xmlns:i="jelly:interaction">
+
+    <ant:property environment="env"/>
+
+    <!-- ==================================================================
+        Este goal procesa un proyecto y lo migra de version.
+        Los argumentos son: 
+            - xmiToken    = version anterior
+            - xmiValue    = nueva version
+            - directory   = directorio base del proyecto a migrar 
+            - overwriteXMI = true por defecto (cuidado al ser un proyecto BPM ya que contiene un xmi con un caso de uso)
+         Desde la linea de comandos por ej:
+         maven update-project -DxmiToken=3.1.2 -DxmiValue=3.1.3 -Ddirectory=c:\temp\isia -DoverwriteXMI=true
+         ================================================================== -->
+
+    <goal name="update-project">
+        <ant:echo>*******************</ant:echo>    	
+        <ant:echo> Migrando proyecto </ant:echo>
+        <ant:echo>*******************</ant:echo>    	
+        <j:while test="${ empty(xmiToken)}">
+            <i:ask question="Cual es la version actual del proyecto?" answer="xmiToken"/>
+        </j:while>
+        <j:while test="${ empty(xmiValue)}">
+            <i:ask question="Cual es la nueva version?" answer="xmiValue"/>
+        </j:while>
+        <j:if test="${ empty(directory)}">
+        	<i:ask question="Indique la ruta base del proyecto a migrar?" answer="directory"/>
+        </j:if>
+        <j:if test="${ empty(overwriteXMI)}">
+        	<ant:echo>*********************</ant:echo>    	        	
+            <ant:echo> Se machacara el XMI </ant:echo>
+        	<ant:echo>*********************</ant:echo>    	            
+            <j:set var="overwriteXMI" value="true"/>
+        </j:if>
+
+        <util:tokenize var="xmiExtensions" delim=",">${xmi.model.extensions}</util:tokenize>
+        <ant:fileScanner var="models">
+            <ant:fileset dir="${directory}">
+                <j:forEach var="xmiExtension" items="${xmiExtensions}">
+                    <ant:include name="**/*.${xmiExtension}"/>
+                </j:forEach>
+            </ant:fileset>
+        </ant:fileScanner>
+        <j:forEach var="model" items="${models.iterator()}">
+
+            <j:set var="workingDir" value="${model.parent}"/>
+            <j:choose>
+                <j:when test="${model.name.endsWith('.zip')}">
+                    <j:set var="xmiName" value="${model.name.replaceAll('.zip','')}"/>
+                    <!-- descomprime el model para acceder a el -->
+                    <ant:unzip src="${model}" dest="${workingDir}"/>
+                    <!-- reemplaza las occurrencias del XMI -->
+                    <ant:replace dir="${workingDir}" token="${xmiToken}" value="${xmiValue}">
+                        <ant:include name="${xmiName}"/>
+                    </ant:replace>
+                    <!-- reemplaza las occurrencias UTF-8 por ISO-8859-1 -->
+                    <ant:replace dir="${workingDir}" token='UTF-8' value='ISO-8859-1'>
+                        <ant:include name="${xmiName}"/>
+                    </ant:replace>
+                    <!-- comprime el archivo de nuevo -->
+                    <ant:zip destfile="${model}" update="true">
+                        <ant:fileset dir="${workingDir}">
+                            <ant:include name="${xmiName}"/>
+                        </ant:fileset>
+                    </ant:zip>
+                    <!-- borra el XMI  -->
+                    <ant:delete file="${workingDir}/${xmiName}"/>
+                </j:when>
+                <j:otherwise>
+                    <!-- reemplaza las ocurrencias del XMI -->
+                    <ant:replace dir="${workingDir}" token="${xmiToken}" value="${xmiValue}">
+                        <ant:include name="${model.name}"/>
+                    </ant:replace>
+                    <!-- reemplaza las occurrencias UTF-8 por ISO-8859-1 -->
+                    <ant:replace dir="${workingDir}" token='UTF-8' value='ISO-8859-1'>
+                        <ant:include name="${xmiName}"/>
+                    </ant:replace>
+                </j:otherwise>
+            </j:choose>
+        </j:forEach>
+
+        <!-- Copia todas las carpetas src y uml al nuevo proyecto -->
+
+        <ant:copy todir="common/src">
+            <ant:fileset dir="${directory}/common/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="common/target/src">
+            <ant:fileset dir="${directory}/common/target/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="core/src" >
+            <ant:fileset dir="${directory}/core/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="core/target/src" >
+            <ant:fileset dir="${directory}/core/target/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="web/src">
+            <ant:fileset dir="${directory}/web/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="web/target/src">
+            <ant:fileset dir="${directory}/web/target/src">
+                   <include name="**/*.*"/>
+            </ant:fileset>
+        </ant:copy>
+        <ant:copy todir="mda/src/uml" overwrite="${overwriteXMI}">
+           <fileset dir="${directory}/mda/src/uml">
+                   <include name="**/*.*"/>
+            </fileset>
+        </ant:copy>
+        
+    </goal>
+
+    <!-- ==================================================================
+           Builds the entire site with PMD, Test, xRef, JavaDoc Reports
+         ================================================================== -->
+
+	<goal name="testcases">
+	      <maven:maven descriptor="core/project.xml" goals="junit-report:report"/>
+	</goal> 
+	
+	<postGoal name="testcases">
+	      <attainGoal name="testreport"/>
+	</postGoal> 
+	
+	<goal name="testreport">
+	            <ant:mkdir dir="./generated-xdocs/junit"/>
+	            <ant:junitreport todir="./generated-xdocs/junit">
+	                  <ant:fileset dir="./core/target/test-reports">
+	                       <ant:include name="TEST-*.xml" />
+	                  </ant:fileset>
+	                  <ant:report styledir="./styledir" todir="./generated-xdocs/junit" />
+	            </ant:junitreport>
+	 </goal> 
+	
+	<goal name="pmdreport">
+	      <maven:maven descriptor="core/project.xml" goals="pmd:report"/>
+	      <maven:maven descriptor="common/project.xml" goals="pmd:report"/>
+	      <maven:maven descriptor="web/project.xml" goals="pmd:report"/>    
+	</goal>          
+	
+	<goal name="javadocreport">
+	      <ant:ant dir="D:\mda/agregajmx" antfile="builddoc.xml" />
+	</goal> 
+	
+	<goal name="chreport">
+	      <ant:ant dir="D:\mda/agregajmx" antfile="builddoc.xml"  />
+	</goal> 
+	
+	<goal name="coberturareport">
+	      <maven:maven descriptor="core/project.xml" goals="cobertura"/>
+	</goal> 
+	
+	<postGoal name="coberturareport">
+	      <ant:mkdir dir="./generated-xdocs/cobertura"/>
+	      <ant:copy todir="./generated-xdocs/cobertura/" >
+	            <ant:fileset dir="./core/target/docs/cobertura">
+	                  <include name="**/*.*"/>
+	            </ant:fileset>
+	      </ant:copy>            
+	      <ant:delete dir="./core/target/cobertura"/>
+	      <ant:delete dir="./core/target/docs"/>
+	</postGoal> 
+	
+	<postGoal name="pmdreport">
+	      <ant:copy todir="generated-xdocs/pmd/" >
+	          <ant:fileset dir="styledir">
+	              <include name="**/*.js"/>
+	         </ant:fileset>
+	      </ant:copy>                       
+	      <ant:xslt in="./common/target/pmd-raw-report.xml" style="./styledir/pmd-report-per-class.xslt" out="./generated-xdocs/pmd/common-pmd-report.html" />
+	      <ant:xslt in="./core/target/pmd-raw-report.xml" style="./styledir/pmd-report-per-class.xslt" out="./generated-xdocs/pmd/core-pmd-report.html" />
+	      <ant:xslt in="./web/target/pmd-raw-report.xml" style="./styledir/pmd-report-per-class.xslt" out="./generated-xdocs/pmd/web-pmd-report.html" />
+	</postGoal> 
+	
+	<goal name="gendoc">
+	      <attainGoal name="chreport"/>
+	      <attainGoal name="pmdreport"/>
+	      <attainGoal name="javadocreport"/>
+	      <attainGoal name="testreport"/>         
+	      <attainGoal name="coberturareport"/>	      
+	</goal> 
+
+
+    <goal name="gendocs">
+        <maven:maven
+            descriptor="core/project.xml"
+            goals="junit-report:report"/>
+        <maven:maven
+            descriptor="core/project.xml"
+            goals="cobertura"/>
+        <maven:maven            
+            descriptor="./project.xml"
+            goals="site"/>
+        <maven:maven
+            descriptor="common/project.xml"
+            goals="site"/>
+        <maven:maven
+            descriptor="core/project.xml"
+            goals="site"/>
+        <maven:maven            
+            descriptor="web/project.xml"
+            goals="site"/>
+    </goal>
+
+  <!-- ==================================================================
+            Builds the project and compiles the implementation classes
+       ================================================================== -->
+    <goal name="build">
+        
+	<maven:maven
+       		descriptor="common/project.xml"
+	        goals="jar:install"/>
+	
+	<maven:maven
+           	descriptor="core/project.xml"
+           	goals="ejb:install"/>
+
+	<maven:maven
+        	descriptor="web/project.xml"
+		goals="war:install"/>
+
+    </goal>
+
+
+    <!-- ==================================================================
+           Builds everything and installs it into the local Maven repository
+         ================================================================== -->
+    <goal name="install">
+        <attainGoal name="multiproject:install"/>
+    </goal>
+
+    <!-- ==================================================================
+           Cleans Everything
+         ================================================================== -->
+    <goal name="clean">
+        <attainGoal name="multiproject:clean"/>
+        <!-- get rid of all the log files -->
+        <ant:delete>
+            <ant:fileset dir=".">
+                <ant:include name="**/*.log*"/>
+                <ant:exclude name="maven.log"/>
+                <ant:exclude name="**/*andromda*.log"/>
+            </ant:fileset>
+        </ant:delete>
+    </goal>
+
+    <!-- ==================================================================
+           Cleans Everything and deletes all implementation classes
+         ================================================================== -->
+    <goal name="nuke">
+        <i:ask question="This will also clean out all implementation classes, are you sure (y/n) ?"
+               answer="nukeit"/>
+        <j:choose>
+            <j:when test="${nukeit eq 'y'}">
+                <ant:echo>Nuking source code...</ant:echo>
+                <attainGoal name="clean"/>
+                <ant:delete>
+                    <fileset dir="common/src/java">
+                        <include name="**/*Impl.java"/>
+                    </fileset>
+                    <fileset dir="core/src/java">
+                        <include name="**/*Impl.java"/>
+                    </fileset>
+                    <fileset dir="web/src/java">
+                        <include name="**/*Impl.java"/>
+                    </fileset>
+                </ant:delete>
+                <ant:echo>Finished nuke.</ant:echo>
+            </j:when>
+            <j:otherwise>
+                <ant:echo>Nuke was canceled by user.</ant:echo>
+            </j:otherwise>
+        </j:choose>
+    </goal>
+
+    <!-- ==================================================================
+            Deploy the Application
+         ================================================================== -->
+    <goal name="deploy">
+        <maven:maven
+            descriptor="web/project.xml"
+            goals="deploy"/>
+    </goal>
+
+    <!-- ==================================================================
+           Undeploy the Application
+         ================================================================== -->
+    <goal name="undeploy">
+        <maven:maven
+            descriptor="web/project.xml"
+            goals="undeploy"/>
+    </goal>
+
+    <!-- ==================================================================
+           Builds the Web component
+         ================================================================== -->
+    <goal name="web">
+        <maven:maven
+            descriptor="web/project.xml"
+            goals="war:install"/>
+    </goal>
+
+    <!-- ==================================================================
+            Builds the Core component
+         ================================================================== -->
+    <goal name="core">
+        <maven:maven
+            descriptor="core/project.xml"
+            goals="ejb:install"/>
+    </goal>
+
+    <!-- ==================================================================
+            Builds the Common component
+         ================================================================== -->
+    <goal name="common">
+        <maven:maven
+        descriptor="common/project.xml"
+        goals="jar:install"/>
+    </goal>
+
+    <!-- ==================================================================
+            Runs the MDA component
+         ================================================================== -->
+    <goal name="mda">
+        <maven:maven
+            descriptor="mda/project.xml"
+            goals="pom:install"/>
+    </goal>
+
+    <!-- ==================================================================
+            Starts the AndroMDA server
+         ================================================================== -->
+    <goal name="start-andromda-server">
+        <maven:maven
+            descriptor="mda/project.xml"
+            goals="andromda:start-server"/>
+    </goal>
+
+    <!-- ==================================================================
+            Stops the AndroMDA server
+         ================================================================== -->
+    <goal name="stop-andromda-server">
+        <maven:maven
+            descriptor="mda/project.xml"
+            goals="andromda:stop-server"/>
+    </goal>
+
+    <!-- ==================================================================
+            Builds the WebService component
+         ================================================================== -->
+    <goal name="webservice">
+        <maven:maven
+            descriptor="webservice/project.xml"
+            goals="war:install"/>
+    </goal>
+
+    <!-- ============================================================
+             Initializes the database schema for this application
+         ============================================================ -->
+    <goal name="create-schema">
+        <j:set var="script" value="${dataSource.sql.init}"/>
+        <attainGoal name="execute-script"/>
+    </goal>
+
+    <!-- ============================================================
+             Drops the database schema for this application
+         ============================================================ -->
+    <goal name="drop-schema">
+        <j:set var="script" value="${dataSource.sql.drop}"/>
+        <attainGoal name="execute-script"/>
+    </goal>
+
+    <goal name="load-dummy-data">
+        <j:set var="script" value="${dataSource.sql.load}"/>
+        <attainGoal name="execute-script"/>
+    </goal>
+
+    <j:set var="generatedSourceDir" value="${maven.build.dir}"/>
+    <ant:available
+        file="${maven.build.src}"
+        type="dir"
+        property="generatedSrcAvailable"/>
+
+     <!-- ============================================================
+            Adds the generated source to the compile path for
+            each subproject (if any exists)
+          ============================================================ -->
+    <preGoal name="java:compile">
+        <!-- only attempt to add the generated source to the classpath
+             if we have a source directory -->
+        <j:set var="sourceDirectory" value="${pom.build.sourceDirectory}"/>
+        <j:if test="${!empty sourceDirectory}">
+            <j:if test="${generatedSrcAvailable}">
+                <ant:available
+                    file="${sourceDirectory}"
+                    type="dir"
+                    property="srcAvailable"/>
+                <j:choose>
+                    <j:when test="${srcAvailable}">
+                        <!-- add the paths of the generated source to the
+                             maven compile path -->
+                        <ant:path
+                            id="andromda.java.gen.src"
+                            location="${generatedSourceDir}"/>
+                        <maven:addPath
+                            id="maven.compile.src.set"
+                            refid="andromda.java.gen.src"/>
+                    </j:when>
+                    <j:otherwise>
+                        <ant:path id="maven.compile.src.set">
+                            <!-- need to set sources present to true since
+                                 maven thinks no source exist if the directory
+                                 specified by pom.build.sourceDirectory doesn't exist -->
+                            <j:set var="sourcesPresent" value="true"/>
+                            <ant:pathelement location="${generatedSourceDir}"/>
+                        </ant:path>
+                    </j:otherwise>
+                </j:choose>
+            </j:if>
+        </j:if>
+    </preGoal>
+
+    <!-- ============================================================
+             Executes the given DDL script
+         ============================================================ -->
+    <goal name="execute-script">
+        <j:if test="${script != null}">
+            <util:file var="scriptFile" name="${script}"/>
+            <j:if test="${scriptFile.exists()}">
+                <ant:sql driver="${dataSource.driver.class}"
+                         src="${scriptFile}"
+                         url="${dataSource.url}"
+                         userid="${dataSource.user}"
+                         password="${dataSource.password}"
+                         onerror="${dataSource.sql.onError}">
+                    <ant:classpath>
+                        <ant:pathelement location="${dataSource.driver.jar}"/>
+                    </ant:classpath>
+                </ant:sql>
+            </j:if>
+        </j:if>
+    </goal>
+    
+    
+  
+  <!-- ================================================================== -->
+  <!-- webtest:install                                                    -->
+  <!-- Launch the functional test for the current project.                -->
+  <!-- ================================================================== -->
+  <!-- Comentado por Hector Arias     -->
+   <goal name="webtest:webtest" description="Run Canoo WebTest"> 
+   	<ant:echo message="+*********************************************************************+"/>   
+    <ant:echo message="+****          Llamando a Canoo Web Test Maven Plugin             ****+"/>   
+    <ant:echo message="+*********************************************************************+"/>   
+    <maven:maven  descriptor="web/webtest/project.xml" goals="webtest"/>   
+   </goal>  
+
+    <!-- =============================================================================
+             Creates the DDL script for updating the database for this application
+         ============================================================================= -->
+	<goal name="create-update-script">
+		
+		<ant:taskdef name="schemaupdate" classname="es.indra.support.SchemaUpdateHelper">
+			<ant:classpath>
+				<ant:path refid="maven.dependency.classpath"/>
+			</ant:classpath>
+		</ant:taskdef>
+
+		<ant:target name="schemaupdate">
+		    <ant:schemaupdate properties="hibernate.properties" quiet="no" text="yes" output="update.sql">
+		    	<ant:fileset dir="core/target/classes">
+		            <ant:include name="**/*.hbm.xml"/>
+		        </ant:fileset>
+		    </ant:schemaupdate>
+	    </ant:target>
+    </goal>
+</project>

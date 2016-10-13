@@ -1,0 +1,8 @@
+<context-param>
+   		<param-name>noticias_Paginas</param-name>
+   		<param-value>10</param-value>
+</context-param>
+<context-param>
+   		<param-name>noticias_NoticiasPorPagina</param-name>
+   		<param-value>3</param-value>
+</context-param>

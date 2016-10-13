@@ -1,0 +1,13 @@
+<project default="build" xmlns:ant="jelly:ant">
+<!-- 
+Comprimimos todos los ficheros en un zip con la extensión cambiada a xpi
+para que Firefox la reconozca como una extensión.
+El nombre del fichero xpi DEBE corresponderse con el declarado como "content" 
+en chrome.manifest.
+-->
+	<goal name="build">
+		<ant:zip destfile="./agrega-tagger.xpi" update="false">
+			<ant:fileset dir="./agrega-tagger/" />
+		</ant:zip>
+	</goal>
+</project>

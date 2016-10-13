@@ -1,0 +1,26 @@
+#En esta línea declaramos el nombre de la extensión, que debe corresponderse con
+#el nombre del fichero xpi. A partir de ahora todos los recursos internos a la
+#extensión serán referenciados por URIs del tipo chrome.
+#No debe mezclar mayúsculas y minúsculas si queremos que funcione en Firefox 2.
+content   agrega-tagger   chrome/content/
+
+#La interfaz de Firefox se define en ficheros XUL. Para añadir nuestros elementos
+#debemos indicar en qué ficheros se incluirán nuestros puntos de entrada.
+#La sintaxias es "overlay XULdeFirefox nuestroXUL"
+#En esta línea extendemos el XUL de la interfaz principal para añadir nuestro 
+#botón personalizado
+overlay   chrome://browser/content/browser.xul   chrome://agrega-tagger/content/boton.xul
+#En esta línea extendemos el panel de opciones generales para añadir nuestra pestaña
+#personalizada
+overlay   chrome://browser/content/preferences/preferences.xul chrome://agrega-tagger/content/pref_overlay.xul
+
+#En estas líneas declaramos los ficheros de i18n para los ficheros XUL
+#(los de javascript se indican en otro lado, idealmente no deberían existir)
+#Una vez declarados, los ficheros de cada locale serán accesibles con la URI:
+# chrome://agrega-tagger/locale/nombreFichero.ext
+locale agrega-tagger es chrome/locale/es/
+locale agrega-tagger gl chrome/locale/gl/
+locale agrega-tagger ca chrome/locale/ca/
+locale agrega-tagger eu chrome/locale/eu/
+locale agrega-tagger en chrome/locale/en/
+

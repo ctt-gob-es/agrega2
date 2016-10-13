@@ -1,0 +1,24 @@
+/*
+---------------------------------------
+CATEGORIAS/LICENCIAS
+Version: Enero  - 2012
+--------------------------------------
+*/
+
+
+.licencias {display:block !important;float:right !important;border:1px solid #666666;min-width:200px;display:block;border-bottom:0 !important;margin-bottom:0;margin-top:0;-moz-border-radius: 3px;font-size:12px !important;position: absolute;right:25px;
+-khtml-border-radius: 3px;
+-webkit-border-radius: 3px;}
+.licencias span {display:block;text-align: center !Important;border-bottom:1px solid #666666;min-height:28px;line-height:27px !Important;padding:0 5px}
+.valoracion {clear:right !important}
+.licencias  span.cat {background:#fff;text-align: center !Important;}
+.licencias span.cat strong em span {display:none}
+.licencias span.cat strong em#licencia_a {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/categoria_a.gif") right top no-repeat;} 
+.licencias span.cat strong em#licencia_b {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/categoria_b.gif") right top no-repeat;} 
+.licencias span.cat strong em#licencia_c {line-height:27px !Important;background:transparent;display:inline;padding:3px 11px 6px 11px;background:transparent url("../img/categoria_c.gif") right top no-repeat;} 
+*+html .licencias {width:200px;}
+*+html .licencias span {overflow:hidden}
+.ficha .valoracion {float:left;margin-top:38px;position:absolute !important}
+*+html .ficha .valoracion  {position:absolute;top:6px !important;margin-top:38px;left:0 !important;margin-left:-686px !important}
+.plantilla_contenido #formulario {z-index:2000 !important;margin-top:10px}
+#categorias {width:100%  !important;min-height:60px  !important;background:white !Important;}

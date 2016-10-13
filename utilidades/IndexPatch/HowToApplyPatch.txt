@@ -1,0 +1,24 @@
+Para aplicar el parch es necesario seguir los siguientes pasos;
+
+1- Compilar el proyecto "Sync2FS" y generar un jar ejecutable que se llame "sync2FS.jar"
+
+2- Copiar al host que contiene el Jboss con la instalacion de agrega bajo el mismo directorio lo listado a continuacion:
+	* fichero sync2FS.jar generado en el paso anterior
+	* carpeta indicesVacios
+	* carpeta CheckDB
+
+3- Configurar una conexion directa del host con el Jboss con la instalacion de Agrega a la DB
+
+4- Editar el script "applyPatch.sh" ajustando las variables listadas a continuacion con los datos de la conexion a la DB configurada en el paso anterior.
+	* DB -> nombre de la base de datos (solo necesario en caso de MySQL)
+	* DB_USER -> usuario de la DB. El usuario dado debe tener permisos de INSERT, DELETE, UPDATE y de creación y ejecución de procedimientos almacenados
+	* DB_PASS -> contraseña del usuario declarado en DB_USER
+	* DB_HOST -> host con la DB (solo necesario en caso de MySQL)
+	* ORACLE_SID -> SID de la DB (solo en el caso de ORACLE)
+
+5- Segun la configuracion dada en los pasos 3 y 4 ajustar correctamente el valor de las variables MYSQL_INSTALL y ORACLE_INSTALL en el script "applyPatch.sh"
+
+6- Configurar el resto de parametros del script:
+	* PATH_INDICES_COMPASS -> path absoluto al directorio que contiene los indices locales de compass
+	* JBOSS_START_COMMAND
+	* JBOSS_STOP_COMMAND

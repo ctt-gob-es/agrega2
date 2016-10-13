@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://agrega.educacion.es/nodoConf" xmlns:tns="http://agrega.educacion.es/nodoConf" elementFormDefault="qualified">
+
+    <element name="nodoConf">
+    	<complexType>
+			<sequence>
+				<element name="id" type="string" minOccurs="0"/>
+				<element name="url" type="string"/>
+				<element name="fechaAlta" type="string"/>
+				<element name="puerto" type="string"/>
+				<element name="urlWS" type="string"/>
+				<element name="idNodo" type="string"/>
+				<element name="ccaa" type="string"/>
+			</sequence>
+		</complexType>
+    </element>
+</schema>

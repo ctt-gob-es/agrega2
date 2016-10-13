@@ -1,0 +1,3 @@
+#Tue Apr 29 10:41:06 CEST 2008
+es.pode.parseadorXML.id_oai_pmh.OaiIdentifierType=es.pode.parseadorXML.id_oai_pmh.descriptors.OaiIdentifierTypeDescriptor
+es.pode.parseadorXML.id_oai_pmh.OaiIdentifier=es.pode.parseadorXML.id_oai_pmh.descriptors.OaiIdentifierDescriptor

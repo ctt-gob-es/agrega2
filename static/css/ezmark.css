@@ -1,0 +1,40 @@
+/**
+ * CSS File for ezMark jQuery Plugin
+ *
+ **/
+.ez-hide { opacity: 0; filter:alpha(opacity=0); }
+/*.ez-checkbox {
+	background: transparent url('http://andreslopezjosenge.com/coruna/agrega/img/global/unchecked.gif') 0 1px no-repeat;
+	display:inline-block;
+}*/
+
+.ez-checkbox {
+	/*padding-left: 20px;*/
+	background: url(http://andreslopezjosenge.com/coruna/agrega/img/global/unchecked.gif) 0 1px no-repeat;
+	display:inline-block;
+	cursor: pointer;
+	color: #151515;
+}
+
+.ez-radio {
+	background: transparent url('../images/radio-black.png') 0 1px no-repeat;
+	display:inline-block;
+}
+
+/*.ez-checked { background-position: 0 -18px; }*/
+.ez-checked {	
+	background: url(http://andreslopezjosenge.com/coruna/agrega/img/global/checke.gif) 0 1px no-repeat;
+	display:inline-block;
+	color: #000;
+}
+
+
+.ez-selected { background-position: 0 -19px; }
+
+.ez-checkbox-green {
+	background: transparent url('../images/checkbox-green.png') 0 1px no-repeat;
+	display:inline-block;
+	*display: inline;
+}
+.ez-checked-green { background-position: 0 -18px; }
+.ez-checkbox, .ez-radio { zoom: 1; *display:inline; _height:30px; }

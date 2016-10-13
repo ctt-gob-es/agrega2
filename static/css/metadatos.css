@@ -1,0 +1,232 @@
+
+body {background:#D6E6F6;padding:20px;margin:0 0}
+
+table {
+height:auto;
+width:100%;
+margin:0 auto;
+text-align:left;
+border-collapse:collapse;
+line-height:170%;
+font-family: Verdana,Arial, sans-serif;}
+
+table th {
+font-family:"Trebuchet MS",Verdana,Arial, sans-serif;
+line-height:110%;
+color:#000;
+padding:4px 4px;
+text-align:left;
+font-weight:normal;}
+
+table td {
+font-family: Verdana,Arial, sans-serif;
+line-height:110%;
+color:#000;
+padding:4px 4px;
+text-align:left;
+font-weight:normal;}
+
+.identifier .entry {width:400em;padding-top:8px;padding-bottom:8px;font-size:13px;color:#2f2f2f;}
+.identifier .catalog {white-space:nowrap;font-size:13px;}
+.language .valor {white-space:nowrap;font-size:13px;}
+.language .entry {width:400em;padding-top:8px;padding-bottom:8px;font-size:13px;}
+.identificador {margin-bottom:0 !important}
+
+.general .title {color:#585858;font-size:160%;padding: 2px 10px  2px 1px;background:#fff;}
+.general .title_2 {color:#585858;font-size:130%;padding: 4px 10px 6px 1px;background:#fff;}
+td {background:#D6E6F6;padding:4px;line-height: 180%;text-align: left;}
+span.language {font-size:12px;color:#000}
+.interior td, .interior th {background:#fff;padding-left:10px;padding-right:10px;font-size:14px;}
+.interior {padding:10px 10px 0 10px !important}
+
+.interior_02 td, .interior_02 th {background:#fff;padding-left:10px;padding-right:10px;font-size:14px;}
+.interior_02 {padding:0 10px 0 10px;}
+h1 {font-family:"Trebuchet MS",Verdana,Arial, sans-serif;
+font-size:15px;color:#000;font-weight: normal;line-height: normal;padding:0 0 5px 0;margin:0px 0 0 0}
+h2 {font-family:"Trebuchet MS",Verdana,Arial, sans-serif;
+font-size:11px;color:#003366;font-weight: normal;line-height: normal;padding:0 0 5px 0;margin:0 0 0 0}
+.educational h2 {font-size:12px;}
+.educational .requirements h2 {font-size:12px;}
+
+.description table td,
+.coverage table td {background:#eff1f2;font-size: 12px;padding:0px 10px;}
+.requisito table td {background:#eff1f2;font-size: 11px;padding:0px 10px;}
+
+*+html .description table td,
+*+html .coverage table td,
+*+html .requisito table td {padding:8px 10px;}
+
+.coverage {border-bottom:6px solid white !important}
+.description {border-bottom:6px solid white !important}
+.description table,
+.coverage table {margin-top:10px;margin-bottom:0;}
+.requisito table{margin-top:0;margin-bottom:10px;}
+.requisito th.title_description {padding-left:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#036;font-size:12px;padding-bottom:4px;padding-top:8px !important;}
+
+
+
+.description th.title_description {padding-left:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#036;font-size:12px;padding-bottom:0 !important;padding-top:10px !important;line-height:100%}
+.coverage th.title_coverage {padding-left:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#036;font-size:12px;padding-bottom:0;padding-top:10px;line-height:100%}
+
+.description td.language {width:12px;padding-right:0;font-size:10px;color:#000}
+.description p {line-height:100%}
+.coverage td.language {width:12px;padding-right:0;font-size:10px;color:#000}
+.coverage p {line-height:100%}
+.requisito td.language {width:12px;padding-right:0;font-size:10px;color:#000}
+.requisito p {line-height:100%}
+.desc_anotation td.language {width:12px;padding-right:0;font-size:10px;color:#000}
+.desc_anotation p {line-height:100%}
+.desc_anotation h2 {font-size:11px;}
+
+.keywords table  {
+height:auto;
+font-size:9px;
+margin-left:10px;
+border:0;
+width:auto;
+line-height:100%;
+text-align:left;
+border-collapse:collapse;
+}
+.keywords span {margin-right:12px;}
+.keywords {background:#D6E6F6 !important;text-align: left;padding-left:6px;}
+.keywords  th {text-align: left;color:#585858;font-size:9px;font-weight:bold;font-family:Verdana,Arial, sans-serif;padding:6px 12px 0 0}
+.keywords  td {text-align: left;color:#585858;font-size:9px;font-weight:bold;font-family:Verdana,Arial, sans-serif;padding:6px 4px 0 0}
+.encabezado {width:auto !important;margin-left:3px;margin-bottom:0 !important}
+.encabezado_tipo {width:auto !important;margin-left:0px;margin-bottom:0 !important}
+.structure_agregationLevel {width:auto !important;margin-left:3px;margin-bottom:4px;}
+.structure_agregationLevel td, .encabezado td {font-size:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;padding-top:5px;padding-left:3px}
+.encabezado_tipo td {font-size:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;padding-top:5px;padding-left:3px;padding-bottom:0}
+.interior .encabezado_tipo td {font-size:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;padding-top:8px;padding-left:3px;padding-bottom:4px;padding-right:0;}
+span.tipo_td {font-size:12px;font-family:"Trebuchet MS",Verdana,Arial, sans-serif;padding-top:5px;padding-left:3px;padding-bottom:0;font-style: oblique;color:#2f2f2f;}
+.interior .encabezado_tipo {width:100% !important}
+
+.encabezado td {font-style: oblique;color:#2f2f2f;}
+.encabezado_tipo td {font-style: oblique;color:#2f2f2f;}
+
+table.structure_agregationLevel th, table.encabezado th {font-size:12px;padding-right:0}
+table.encabezado_tipo th {font-size:12px;padding-right:10px;padding-bottom:3px;white-space: normal;line-height:140%}
+
+.interior th {white-space:nowrap}
+.interior_02 th {white-space:nowrap}
+.entry_name {font-weight:bold;font-size:90%;color:#2f2f2f;font-family:"Trebuchet MS",Verdana,Arial, sans-serif !important;}
+.principal td.principal {padding:10px;background:#fff !important;}
+
+
+.lifeCycle table, .metadata table, .anotations table {text-align:left;font-size:90%;
+border-collapse:collapse;width:100%;;margin:5px 0 5px 0;background:#D6E6F6;border-bottom:5px solid #D6E6F6}
+.classification table {text-align:left;
+border-collapse:collapse;width:100%;;margin:5px 0;background:#D6E6F6;border-bottom:5px solid #D6E6F6}
+.lifeCycle, .metadata {padding:0 8px;}
+ .anotations  {border-top:8px solid #D6E6F6 }
+.general_cabecera {padding:0 0 0 0;}
+.general_cabecera  table {text-align:left;font-size:100%;
+border-collapse:collapse;width:100%;margin:5px 0;background:#D6E6F6;}
+.lifeCycle th, .metadata th {background:#D6E6F6;color:#000;padding-left:9px !important;padding-bottom:3px}
+.lifeCycle th.version, .metadata th.catalog {padding-left:0 !important;}
+
+.anotations th {background:#D6E6F6;color:#000;padding-left:10px !important;padding-bottom:3px}
+.lifeCycle td, .metadata td, .anotations td {background:#D6E6F6;padding-left:9px;padding-right:10px;}
+.contribute table {border:0;margin:0 0 10px 0;background: #fff;}
+.contribute {padding:0 10px 0 10px;font-size:70%}
+.contribute th {font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#2f2f2f;font-weight:bold;background: #fff;padding-left:5px;font-size:12px;padding-top:6px;}
+.contribute td {background: #fff;}
+.contribute_dateTime {text-align: left;}
+.metadata .identifier .entry {font-size:11px;font-style: oblique;color:#2f2f2f;}
+.metadata .identifier .catalog {font-size:12px;padding-left:8px}
+.metadataSchema {padding:0 10px}
+.metadataSchema table {width:auto;margin:0 0 6px 0;}
+.metadataSchema td, .metadataSchema th {background:#fff;font-size:11px;}
+.metadataSchema .entry_name {color:#585858;}
+
+.formatos {font-size:12px;margin-left:4px;margin-bottom:8px;margin-top:8px;}
+.formatos td  {width:400em;text-align:left;color:#2f2f2f;font-size:11px;}
+.formatos th {padding-top:4px;}
+.formatos span {margin-right:12px;font-style: oblique; }
+
+.copy {font-size:12px;margin-left:4px;margin-bottom:5px;margin-top:8px;}
+.copy td  {width:auto;text-align:left;color:#2f2f2f;font-size:11px;white-space:nowrap;}
+.copy td#copy  {width:100em;white-space:normal;}
+.copy th {padding-top:4px;}
+.copy span {margin-right:5px;font-style: oblique; }
+.descripcions  {padding-top:0 !important}
+.descripcions p {font-size:11px}
+.requirements span {font-size:10px}
+.requisito {margin-bottom:10px !important}
+.requirements table td {font-size:11px !important;padding:0}
+.requirements table td {padding:8px 10px;}
+.requirements_interior {padding-bottom:10px;border-bottom:1px solid #eff1f2 !important;}
+.requirements_interior table {margin:0 !important}
+.requirements_interior table td {background:#fff;font-size: 12px;padding:0px 10px;}
+*+html .requirements_interior table td {padding:8px 10px;}
+.requirements_interior p {font-size:11px}
+.requirements_interior_02 {padding-bottom:0;border-top:10px solid white;border-bottom:1px solid #eff1f2 !important;}
+.requirements_interior_02 table {margin:0 !important;}
+.requirements_interior_02 table td {background:#fff;font-size: 12px;padding:0px 10px;}
+*+html .requirements_interior_02 table td {padding:8px 10px;}
+.requirements_interior_02 p {font-size:11px}
+.requirements_interior h2 {padding-bottom:0}
+.requirements_interior_02 h2 {padding-bottom:0}
+.educational_interior {padding-bottom:0}
+.educational_interior  {padding-top:0}
+.educational_interior table {margin:0 !important}
+.educational_interior table td {background:#fff;font-size: 12px;padding:0px 10px;}
+*+html  .educational_interior table td {padding:8px 10px;}
+.educational_interior p {font-size:11px}
+.educational_interior h2 {padding-top:0;font-size:11px !important}
+.derechos  p {font-size:11px}
+
+.dur_educational {padding-bottom:13px}
+.dur_educational table {margin:0 !important}
+.dur_educational table td {background:#eff1f2;font-size: 12px;padding:0px 10px;}
+.dur_educational p {font-size:11px}
+*+html  .dur_educational table td {padding:8px 10px;}
+
+
+.educational .interior h2 {margin-top:5px;}
+#especial_en .encabezado_tipo th {background:#D6E6F6 !Important;padding:0}
+#especial_rel .encabezado_tipo th {background:#D6E6F6 !Important;padding:0}
+#especial_rel .encabezado_tipo {background:#D6E6F6 !Important;padding:0;margin-bottom:11px !important;margin-top:4px !important;}
+#especial_met .encabezado_tipo th {background:#D6E6F6 !Important;padding:0}
+#especial_met .encabezado_tipo {background:#D6E6F6 !Important;padding:0 !important;margin-bottom:7px !important;margin-top:4px !important;}
+#especial_met .encabezado_tipo th.version {padding-left:0 !important;}
+
+#especial_en .encabezado_tipo {margin-bottom:2px !important;margin-top:4px !important;}
+
+th.encabezado_tit  {font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#2f2f2f;font-weight:bold;background: #fff;padding-left:10px;font-size:12px;padding-top:6px;}
+.desc_anotation table td {background:#eff1f2;font-size: 12px;padding:0px 10px;}
+*+html .desc_anotation table td {padding:8px 10px;}
+.desc_anotation  {padding:8px 8px 0px 8px;}
+.desc_anotation table td p {font-size: 11px}
+#clasificacion table {margin-top:15px;}
+#clasificacion table table {margin-top:0;}
+
+.classification table {text-align:left;
+border-collapse:collapse;width:100%;;margin:0 0 0 0;background:#D6E6F6;border-bottom:10px solid white}
+.classification {padding:0 8px 10px 8px;}
+.classification th {background: #D6E6F6;color:#000;padding-left:10px;vertical-align: bottom}
+
+.classification_competency table {border:0;margin-top:0;font-size:11px;margin-bottom:0;}
+.classification_competency {padding:0 10px 0 10px;background:#FFF;}
+.classification_competency td {padding-left:0;background:#eff1f2}
+
+.classification_competency th {font-family:"Trebuchet MS",Verdana,Arial, sans-serif;color:#2f2f2f;font-weight:bold;background: #fff;padding-left:0;font-size:12px;padding-top:6px;}
+ .classification .keywords table {border:0;}
+.classification_taxon {color:#333;width:14px;padding-left:10px;height:26px !important}
+.classification_competency ul {margin-top:4px;}
+.classification .encabezado_tipo  {margin-top:0 !important;margin-bottom:8px !important;border:0}
+.classification .encabezado_tipo th.version {padding-left:0 !important;padding-top:0 !important}
+.classification .interior  {padding-left:0 !important;padding-top:0 !important}
+.classification_competency .language {color:#2f2f2f;}
+.rights .encabezado_tipo  {margin-top:5px !important;margin-bottom:5px !important;border:0}
+.rights .encabezado_tipo th {padding-left:8px;}
+#sin_padd {padding-top:0 !important}
+#req_esp {padding-bottom:12px;padding-top:3px}
+#req_esp1 {padding-bottom:9px;padding-top:3px}
+.blanco {background: #fff !important;padding-top:10px;padding-left:0}
+.blanco h1 {padding-left:0}
+.keywords span.language {font-size:100%;color:#333}
+.interior_02 .requirements table.tecnica_t td.language {padding:0 5px !important;}
+.interior_02 .requirements table.tecnica_t p {padding:0 5px !important;}
+.agregador td {padding:10px !important;}
+.agregador {border-top:10px solid #eff1f2 !important;}

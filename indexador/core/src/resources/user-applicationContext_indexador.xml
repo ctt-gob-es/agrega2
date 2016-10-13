@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+  <bean id="propiedadesConstantes" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <property name="locations">
+	  <list>
+		  	<value>classpath:spring.properties</value>
+	  </list>
+	  </property>
+	  <property name="ignoreUnresolvablePlaceholders">
+	  		<value>true</value>
+	  </property>	  
+  </bean> 
+	<!--  bean id="pojoDescriptor" class="es.indra.sawa.support.logging.PlainPojoDescriptor">
+		
+	</bean>
+  
+	<bean id="loggingInterceptor" class="es.indra.sawa.support.logging.ServiceLoggingInterceptor">
+	      <property name="pojoDescriptor" ref="pojoDescriptor"></property>
+	</bean>
+	
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	      <property name="beanNames"><value>*Service*</value></property>
+	      <property name="interceptorNames">
+	             <list>
+	                    <value>loggingInterceptor</value>
+	             </list>
+	      </property>
+	</bean-->
+	<bean id="compassPostProcessor" class="es.pode.indexador.negocio.compass.CompassPostProcessor"></bean>
+    <bean id="compass" class="org.compass.spring.LocalCompassBean">
+   		<!-- La ruta donde se guarda el indice (compass.engine.connection) se asigna en la clase CompassPostProcessor  -->
+    	<property name="postProcessor" ref="compassPostProcessor"></property>
+        <property name="resourceLocations">
+            <list>
+                <value>classpath:indexador.cpm.xml</value>
+            </list>
+        </property>
+        <property name="compassSettings">
+            <props>
+                <!-- <prop key="compass.engine.connection">C:/MDA/jboss-4.0.2/indicesCompass</prop> -->
+                <!-- <prop key="compass.engine.connection">/opt/jboss-pruebas/indicesCompass</prop> -->
+                <prop key="compass.transaction.factory">org.compass.spring.transaction.SpringSyncTransactionFactory</prop>
+                <prop key="compass.converter.MultivaluadosConverter.type">es.pode.indexador.negocio.compass.MultivaluadosConverter</prop>
+                <prop key="compass.engine.spellcheck.enable">true</prop>
+                <prop key="compass.engine.spellcheck.schedule">true</prop>
+                <prop key="compass.engine.spellcheck.scheduleInterval">2</prop><!-- default 10 min  -->
+                <prop key="compass.engine.optimizer.schedule">true</prop>
+				<prop key="compass.engine.optimizer.schedule.period">90</prop><!-- default 90  -->
+				<prop key="compass.engine.optimizer.maxNumberOfSegments">20</prop><!-- default 20  -->
+	            <prop key="compass.engine.analyzer.default.stopwords"></prop>
+	            <prop key="compass.engine.analyzer.search.stopwords"></prop>
+            </props>
+        </property>
+        <property name="transactionManager">
+            <ref bean="transactionManager" />
+        </property>
+    </bean>
+    <bean id="hibernateGpsDevice" class="org.compass.gps.device.hibernate.HibernateGpsDevice">
+       <property name="name"><value>hibernate</value></property>
+       <property name="sessionFactory"><ref bean="sessionFactory" /></property>
+       <property name="nativeExtractor"><bean class="org.compass.spring.device.hibernate.SpringNativeHibernateExtractor" /></property>
+     </bean>
+    <bean id="hibernateGps" class="org.compass.gps.impl.SingleCompassGps" init-method="start" destroy-method="stop">
+       <property name="compass"><ref bean="compass" /></property>
+       <property name="gpsDevices">
+         <list>
+           <bean class="org.compass.spring.device.SpringSyncTransactionGpsDeviceWrapper">
+               <property name="gpsDevice" ref="hibernateGpsDevice" />
+           </bean>
+         </list>
+       </property>
+     </bean>
+     <bean id="gestorCompass" class="es.pode.indexador.negocio.compass.GestorCompass">
+	     <property name="compass"><ref bean="compass"/></property>
+    	 <property name="gps"><ref bean="hibernateGps"/></property>
+     </bean>
+	<!-- Usamos el wiring post processor para inyectar el mapa de listeners en la variable de mapa de listeners del session factory de hibernate -->
+  	<bean class="es.pode.soporte.servicios.WiringPostProcessor">
+		<property name="propertyMappings">
+			<list>
+				<value>.*SrvBuscadorService.*;gestorCompass;gestorCompass</value>
+				<value>.*SrvIndexadorService.*;gestorCompass;gestorCompass</value>			
+			</list>
+		</property>
+	</bean>
+</beans>

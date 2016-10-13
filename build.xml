@@ -1,0 +1,1921 @@
+<project name="agrega-builder" default="help" basedir=".">
+    <description>
+        Generacion de version de las tres versiones de Agrega para subida a los entornos de pruebas y pre-produccion y de Agrega offline
+    </description>
+
+	<!-- Carga las propiedades del fichero build.properties y define variables adicionales -->
+	<target name="properties">
+		<loadproperties srcFile="build.properties"/>
+		<condition property="svn.subpath" value="tags/${agrega.tag}" else="trunk">
+			<isset property="agrega.tag"/>
+		</condition>
+		<condition property="src.dir" value="${agrega.tag}/src" else="./">
+			<isset property="agrega.tag"/>
+		</condition>
+		<condition property="target.dir" value="${agrega.tag}/target" else="trunk/target">
+			<isset property="agrega.tag"/>
+		</condition>
+		<condition property="subdominio" value="${agrega.subdominio}" else="">
+			<isset property="agrega.subdominio"/>
+		</condition>
+		<property name="soporte.offline.version" value="offline-1.0"/>
+		
+		<echo message="Las propiedades se han ajustado como sigue:"/>
+		<echo message="- SVN url: ${svn.url}"/>
+		<echo message="- SVN subpath: ${svn.subpath}"/>
+		<echo message="- URL de la version a usar: ${svn.url}/${svn.subpath}"/>
+		<echo message="- src dir: ${src.dir}"/>
+		<echo message="- target dir: ${target.dir}"/>
+		<echo message="- subdominio: ${subdominio}"/>
+		<echo message="- plantillas.portal.path: ${plantillas.portal.path}"/>
+		<echo message="- plantillas.portalV1.path: ${plantillas.portalV1.path}"/>
+		<echo message="- URL plantillas portal: ${svn.url}/${svn.subpath}/${plantillas.portal.path}"/>
+		<echo message="- URL plantillas portal V1: ${svn.url}/${svn.subpath}/${plantillas.portalV1.path}"/>
+		
+	</target>
+
+	<!-- En caso de que existan, borra los directorios generados por un build anterior de la misma version -->
+	<target name="delete-dirs" depends="properties">
+		<delete dir="${src.dir}"/>
+		<delete dir="${target.dir}"/>
+	</target>
+
+	<!-- Descarga los ficheros necesarios para generar los entregables de Agrega del repositorio SVN configurado en build.properties -->
+	<target name="checkout" depends="properties, delete-dirs">
+
+		<!-- Busco los JARs de SVNANT en el localRepo de maven -->
+		<path id="svnantpath">
+			<fileset dir="${local.repo}/svnant/jars">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+
+		<!-- SVN Ant Tasks: Defino las tareas de Ant para poder usar SVN desde este script (http://subclipse.tigris.org/svnant.html) -->
+		<!-- Tasks -->
+		<taskdef name="svn" classname="org.tigris.subversion.svnant.SvnTask" classpathref="svnantpath"/>
+		<!-- Types -->
+		<typedef name="svnFileSet" classname="org.tigris.subversion.svnant.types.SvnFileSet" classpathref="svnantpath"/>
+		<!-- Selectors -->
+		<typedef name="svnNormal" classname="org.tigris.subversion.svnant.selectors.Normal" classpathref="svnantpath"/>
+		<typedef name="svnAdded" classname="org.tigris.subversion.svnant.selectors.Added" classpathref="svnantpath"/>
+		<typedef name="svnReplaced" classname="org.tigris.subversion.svnant.selectors.Replaced" classpathref="svnantpath"/>
+		<typedef name="svnModified" classname="org.tigris.subversion.svnant.selectors.Modified" classpathref="svnantpath"/>
+		<typedef name="svnConflicted" classname="org.tigris.subversion.svnant.selectors.Conflicted" classpathref="svnantpath"/>
+		<typedef name="svnIgnored" classname="org.tigris.subversion.svnant.selectors.Ignored" classpathref="svnantpath"/>
+		<typedef name="svnUnversioned" classname="org.tigris.subversion.svnant.selectors.Unversioned" classpathref="svnantpath"/>
+		<typedef name="svnLocked" classname="org.tigris.subversion.svnant.selectors.Locked" classpathref="svnantpath"/>
+		<typedef name="svnMissing" classname="org.tigris.subversion.svnant.selectors.Missing" classpathref="svnantpath"/>
+		<typedef name="svnDeleted" classname="org.tigris.subversion.svnant.selectors.Deleted" classpathref="svnantpath"/>
+		<!-- Conditions -->
+		<typedef name="svnExists" classname="org.tigris.subversion.svnant.conditions.Exists" classpathref="svnantpath"/>
+		<echo message="Export de codigo fuente y configuracion de agrega (SVN path: ${svn.url}/${svn.subpath})"/>
+		<svn username="${svn.user}" password="${svn.password}" javahl="false">
+			<!-- Checkout del codigo fuente -->
+			<export srcUrl="${svn.url}/${svn.subpath}/fuentes" destPath="${src.dir}"/>
+			<!-- Checkout de la configuracion -->
+			<!--
+			<export srcUrl="${svn.url}/${svn.subpath}/04_Subsistemas" destPath="${target.dir}/configuracion"/>
+			-->
+		</svn>
+		<!-- XMLs de fuentes taxonomicas y esquemas de LOM-ES -->
+		<copy todir="${target.dir}/configuracion/uploads/xmls">
+			<fileset dir="${src.dir}/fuentestaxonomicas/core/src/resources/xmls"/>
+		</copy>
+		<copy todir="${target.dir}/configuracion/uploads/schemas">
+			<fileset dir="${src.dir}/parseadorXML/src/esquema/LOM-ES"/>
+		</copy>
+		<!-- CSSs e imagenes al directorio configuracion/apache/static -->
+		<mkdir dir="${target.dir}/configuracion/apache/static"/>
+		<copy todir="${target.dir}/configuracion/apache/static">
+			<fileset dir="${src.dir}/static"/>
+		</copy>
+	</target>
+
+	<!-- Compila e instala en el localRepo los jars necesarios para los modulos web de Agrega (soporte, parseadorXML) -->
+	<target name="build-dependent-jars" depends="properties">
+		<echo message="Compilando librerias de soporte de Agrega..."/>
+		<!-- Soporte para la version offline -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/soporte">
+			<arg value="clean"/>
+			<arg value="jar:install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dcurrent.version=${soporte.offline.version}"/>
+		</exec>
+		<!-- Soporte -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/soporte">
+			<arg value="clean"/>
+			<arg value="jar:install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- Soporte V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/soporteV1">
+			<arg value="clean"/>
+			<arg value="jar:install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- parseadorXML -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/parseadorXML">
+			<arg value="clean"/>
+			<arg value="jar:install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- Copia de los JAR -->
+		<copy file="${src.dir}/soporteV1/target/soporte-1.0.jar" todir="${target.dir}/jars"/>
+		<copy file="${src.dir}/soporte/target/soporte-2.0.jar" todir="${target.dir}/jars"/>
+		<copy file="${src.dir}/parseadorXML/target/parseadorXML-1.2.jar" todir="${target.dir}/jars"/>
+    <copy file="${src.dir}/soporteV1/target/soporte-1.0.jar" todir="${local.repo2}/agrega/soporte/1.0"/>      
+	</target>
+
+
+	<!-- Genera los entregables de la version Jboss-MySQL -->
+	<target name="build-mysql" depends="properties,build-dependent-jars">
+		<echo message="Compilando Agrega para entorno Jboss-MySQL..."/>
+		<!-- Modulos de servicio -->
+		<!-- adminusuarios -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/adminusuarios">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- auditoria -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/auditoria">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- buscar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- catalogacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- contenidosportal -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/contenidosportal">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- DRI -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/DRI">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- empaquetadorbasico -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/empaquetadorbasico">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- entregar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/entregar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- fuentestaxonomicas -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/fuentestaxonomicas">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- gestorcorreo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorCorreo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- indexador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/indexador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- localizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/localizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- planificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/planificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- publicacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/publicacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- validador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/validador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- valoracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/valoracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- modificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/modificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- agregadorRSS -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/agregadorRSS">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- oaipmh -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/oaipmh">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- configuracionPlataforma -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/configuracionPlataforma">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- interfazJMX -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+
+		<!-- Modulos de presentacion -->
+		<!-- InstaladorAgrega2 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- visualizadorcontenidos -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidos">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portal.path}"/>
+		</exec>
+		<!-- visualizadorcontenidos V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidosV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- portaladministracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/portaladministracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- gestorflujo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorflujo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- buscador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portal.path}"/>
+		</exec>
+		<!-- buscador V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscadorV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- TaggingWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/TaggingWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+
+		<!-- Otros modulos -->
+		<!-- remotinggalleryserver -->
+		<!--
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/RemotingGalleryServer">
+			<arg value="clean"/>
+			<arg value="war"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		 -->
+		<!-- cas-server-3.3.4 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip=true"/>
+		</exec>
+
+		<!-- Copia de los WARs a directorio de destino -->
+		<antcall target="copy-wars">
+			<param name="war-destination" value="${target.dir}/wars-jboss-mysql"/>
+		</antcall>
+
+		<!-- En caso de que se haya habilitado -Dstatic.war, copiar los estaticos al directorio de WARs como static.war (subida a pruebas) -->
+		<antcall target="static.war">
+			<param name="war-destination" value="${target.dir}/wars-jboss-mysql"/>
+		</antcall>
+	</target>
+
+	<!-- Genera los entregables de la version Jboss-Oracle -->
+	<target name="build-oracle" depends="properties,build-dependent-jars">
+		<echo message="Compilando Agrega para entorno Jboss-Oracle..."/>
+		<!-- Modulos de servicio -->
+		<!-- configuracionPlataforma -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/configuracionPlataforma">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- adminusuarios -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/adminusuarios">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- auditoria -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/auditoria">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- buscar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- catalogacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- contenidosportal -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/contenidosportal">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- DRI -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/DRI">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- empaquetadorbasico -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/empaquetadorbasico">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- entregar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/entregar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- fuentestaxonomicas -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/fuentestaxonomicas">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- gestorCorreo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorCorreo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- indexador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/indexador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- localizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/localizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- planificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/planificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- publicacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/publicacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- validador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/validador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- valoracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/valoracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- modificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/modificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- agregadorRSS -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/agregadorRSS">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- oaipmh -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/oaipmh">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+		<!-- interfazJMX -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+		</exec>
+
+		<!-- Modulos de presentacion -->
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- visualizadorcontenidos -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidos">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portal.path}"/>
+		</exec>
+		<!-- visualizadorcontenidosV1 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidosV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- portaladministracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/portaladministracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- gestorflujo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorflujo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- buscador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portal.path}"/>
+		</exec>
+		<!-- buscadorV1 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscadorV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- TaggingWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/TaggingWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+		<!-- InstaladorAgrega2 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dmaven.scm.url=${svn.url}"/> 
+			<arg value="-Dmaven.scm.branch=${svn.subpath}"/> 
+			<arg value="-Dplantillas.portal.path=${plantillas.portalV1.path}"/>
+		</exec>
+
+		<!-- Otros modulos -->
+		<!-- remotinggalleryserver -->
+		<!--
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/RemotingGalleryServer">
+			<arg value="clean"/>
+			<arg value="war"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		-->
+		<!-- cas-server-3.3.4 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip=true"/>
+		</exec>
+
+		<!-- Copia de los WARs a directorio de destino -->
+		<antcall target="copy-wars">
+			<param name="war-destination" value="${target.dir}/wars-jboss-oracle"/>
+		</antcall>
+	</target>
+
+	<!-- Genera los entregables de la version Tomcat-Oracle -->
+	<target name="build-tomcat-oracle" depends="properties,build-dependent-jars">
+	<echo message="Compilando Agrega para entorno Tomcat-Oracle..."/>
+		<!-- Modulos de servicio -->
+		<!-- adminusuarios -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/adminusuarios">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- auditoria -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/auditoria">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- buscar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- catalogacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- contenidosportal -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/contenidosportal">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- DRI -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/DRI">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- empaquetadorbasico -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/empaquetadorbasico">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- entregar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/entregar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- fuentestaxonomicas -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/fuentestaxonomicas">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- gestorCorreo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorCorreo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- indexador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/indexador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- localizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/localizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- planificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/planificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- publicacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/publicacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- validador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/validador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- valoracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/valoracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- modificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/modificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- agregadorRSS -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/agregadorRSS">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- oaipmh -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/oaipmh">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- InstaladorAgrega2 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- configuracionPlataforma -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/configuracionPlataforma">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-DdataSource.driver.class=oracle.jdbc.driver.OracleDriver"/>
+			<arg value="-Dsql.mappings=Oracle9i"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.Oracle9Dialect"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+
+		<!-- Modulos de presentacion -->
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- visualizadorcontenidos -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidos">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- portaladministracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/portaladministracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- gestorflujo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorflujo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- buscador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- TaggingWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/TaggingWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<!-- Hasta nueva fase, este módulo sigue las plantillas viejas
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			-->
+			<arg value="-Dmaven.scm.url=https://svn.red.es/repos/agrega2"/> 
+			<arg value="-Dmaven.scm.branch=/tags/Agrega2-1.3.5_20130403"/> 
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		
+		<!-- Otros modulos -->
+		<!-- remotinggalleryserver -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/RemotingGalleryServer">
+			<arg value="clean"/>
+			<arg value="war"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dversion.tomcat"/>
+		</exec>
+		<!-- cas-server-3.3.4 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip=true"/>
+		</exec>
+
+		<!-- Copia de los WARs a directorio de destino -->
+		<antcall target="copy-wars">
+			<param name="war-destination" value="${target.dir}/wars-tomcat-oracle"/>
+		</antcall>
+
+		<!-- Renombrado de los WARs para despliegue en Tomcat -->
+		<move file="${target.dir}/wars-tomcat-oracle/${adminusuarios.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${adminusuarios.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${auditoria.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${auditoria.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${buscador.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${buscador.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${gestorflujo.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${gestorflujo.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${ModificadorWeb.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${ModificadorWeb.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${oaipmh.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${oaipmh.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${portaladministracion.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${portaladministracion.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${PortalEmpaquetador.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${PortalEmpaquetador.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${catalogadorWeb.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${catalogadorWeb.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${visualizadorcontenidos.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${visualizadorcontenidos.path}.war"/>
+		<move file="${target.dir}/wars-tomcat-oracle/${TaggingWeb.war}.war" tofile="${target.dir}/wars-tomcat-oracle/${TaggingWeb.path}.war"/>
+	</target>
+
+	<target name="build-offline" depends="properties,build-dependent-jars">
+		<!-- Propiedades adicionales para la generacion de la herramienta offline -->
+		<property name="offline-dir" value="${target.dir}/offline/target/agrega"/>
+		<property name="apache-bin" value="${offline-dir}/apache-tomcat-5.5.26/bin"/>
+		<property name="apache-deploy" value="${offline-dir}/apache-tomcat-5.5.26/webapps"/>
+
+
+		<!-- En caso de que existieran, elimino los directorios dependencias de los modulos para evitar la copia de jars obsoletos -->
+		<delete quiet="true">
+			<fileset dir="${local.repo}">
+				<include name="catalogacion/dependencies/*"/>
+				<include name="catalogadorWeb/dependencies/*"/>
+				<include name="empaquetadorbasico/dependencies/*"/>
+				<include name="entregar/dependencies/*"/>
+				<include name="fuentestaxonomicas/dependencies/*"/>
+				<include name="HerramientaOffline/dependencies/*"/>
+				<include name="localizador/dependencies/*"/>
+				<include name="modificador/dependencies/*"/>
+				<include name="ModificadorWeb/dependencies/*"/>
+				<include name="PortalEmpaquetador/dependencies/*"/>
+				<include name="validador/dependencies/*"/>
+				<include name="visualizador/dependencies/*"/>
+			</fileset>
+		</delete>
+
+		<!-- En caso de que existiera, borro la compilacion anterior -->
+		<delete quiet="true">
+			<fileset dir="${target.dir}/offline">
+				<include name="**/*"/>
+			</fileset>
+		</delete>
+
+		<!-- Copia de Apache Tomcat 5.5.x modificado para Agrega Offline -->
+		<copy todir="${offline-dir}/apache-tomcat-5.5.26">
+			<fileset dir="${src.dir}/HerramientaOfflineBuilder/apache-tomcat-5.5.26"/>
+		</copy>
+
+		<!-- Escribo el numero de version al fichero VERSION.txt -->
+		<echo message="${agrega.tag}" file="${offline-dir}/VERSION.txt"/>
+
+		<!-- Despliegue de los ficheros de configuracion de Agrega en Tomcat -->
+		<copy todir="${offline-dir}">
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/agrega64x64.png"/>
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/agrega.ico" />
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/setup.bat" />
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/setup.sh" />
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/LICENSE.txt" />
+			<fileset file="${src.dir}/HerramientaOfflineBuilder/README.txt" />
+		</copy>
+
+		<copy file="${src.dir}/HerramientaOfflineBuilder/Manual_de_Usuario.pdf" todir="${apache-bin}/help"/>
+		<copy todir="${apache-bin}/uploads/xmls">
+			<fileset dir="${src.dir}/fuentestaxonomicas/core/src/resources/xmls"/>
+		</copy>
+		<copy todir="${apache-bin}/uploads/schemas">
+			<fileset dir="${target.dir}/configuracion/uploads/schemas"/>
+			<fileset dir="${src.dir}/parseadorXML/src/esquema/LOM-ES"/>
+		</copy>
+		<copy todir="${apache-bin}/uploads">
+			<fileset dir="${target.dir}/configuracion/uploads">
+				<include name="schemasImscp/**/*"/>
+				<include name="schemasScorm12/**/*"/>
+				<include name="xslt/**/*"/>
+				<include name="logos/**/*"/>
+				<include name="html/**/*"/>
+			</fileset>
+		</copy>
+		<copy todir="${offline-dir}/apache-tomcat-5.5.26/common/classes">
+			<fileset dir="${target.dir}/configuracion/jboss/conf">
+				<exclude name="log4j.xml"/>
+				<exclude name="springldap.xml"/>
+				<exclude name="authbackend.properties"/>
+				<exclude name="ds/*"/>
+				<exclude name="jms/*"/>
+			</fileset>
+		</copy>
+
+		<copy todir="${target.dir}/offline">
+			<fileset dir="${src.dir}/HerramientaOfflineBuilder">
+				<include name="LICENSE*.txt"/>
+				<include name="README.txt"/>
+				<include name="instalador-script.iss"/>
+				<include name="agrega64x64.png"/>
+				<include name="agrega.ico"/>
+				<include name="setup.bat"/>
+				<include name="setup.sh"/>
+			</fileset>
+		</copy>
+
+		<!-- Configuracion de agrega.properties para la herramienta offline -->
+		<replace file="${offline-dir}/apache-tomcat-5.5.26/common/classes/agrega.properties">
+			<replacefilter token="$${nodo}" value="localhost"/>
+			<replacefilter token="$${port}" value="8080"/>
+			<replacefilter token="$${subdomain}" value=""/>
+			<replacefilter token="$${serveron}" value="offline"/>
+			<replacefilter token="$${idnodo}" value="es-offline-2009"/>
+			<replacefilter token="$${ccaa}" value="Offline"/>
+			<replacefilter token="$${PREFIJO_NODO}" value="MEC"/>
+			<replacefilter token="$${ccaa}" value="Offline"/>
+			<replacefilter token="$${urlConsejeria}" value="#"/>
+		</replace>
+
+		<!-- Compilacion de los modulos -->
+		<!-- fuentestaxonomicas -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/fuentestaxonomicas">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- validador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/validador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- modificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/modificador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+			<arg value="-DdataSource.driver.class=org.hsqldb.jdbcDriver"/>
+			<arg value="-DdataSource.url=jdbc:hsqldb:file:db/modificador"/>
+			<arg value="-DdataSource.user=sa"/>
+			<arg value="-DdataSource.password="/>
+			<arg value="-Dsql.mappings=HypersonicSql"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.HSQLDialect"/>
+		</exec>
+		<!-- localizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/localizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+			<arg value="-DdataSource.driver.class=org.hsqldb.jdbcDriver"/>
+			<arg value="-DdataSource.url=jdbc:hsqldb:file:db/localizador"/>
+			<arg value="-DdataSource.user=sa"/>
+			<arg value="-DdataSource.password="/>
+			<arg value="-Dsql.mappings=HypersonicSql"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.HSQLDialect"/>
+		</exec>
+		<!-- entregar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/entregar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+			<arg value="-DdataSource.driver.class=org.hsqldb.jdbcDriver"/>
+			<arg value="-DdataSource.url=jdbc:hsqldb:file:db/entregar"/>
+			<arg value="-DdataSource.user=sa"/>
+			<arg value="-DdataSource.password="/>
+			<arg value="-Dsql.mappings=HypersonicSql"/>
+			<arg value="-Dhibernate.db.dialect=org.hibernate.dialect.HSQLDialect"/>
+		</exec>
+		<!-- empaquetadorbasico -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/empaquetadorbasico">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- catalogacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogacion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+		<!-- herramientaoffline -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/herramientaoffline">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+			<arg value="-Dagrega.offline"/>
+			<arg value="-Dsoporte.version=${soporte.offline.version}"/>
+			<arg value="-Dibuilder.security.useAcegiSecurity=false"/>
+		</exec>
+
+		<!-- Copia de los WAR -->
+		<copy  todir="${apache-deploy}/fuentestaxonomicas-1">
+			<fileset dir="${src.dir}/fuentestaxonomicas/web/target/fuentestaxonomicas-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/validador-1">
+			<fileset dir="${src.dir}/validador/web/target/validador-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/modificador-1">
+			<fileset dir="${src.dir}/modificador/web/target/modificador-1.war" />
+		</copy>
+		<copy todir="${apache-deploy}/ModificadorWeb">
+			<fileset dir="${src.dir}/ModificadorWeb/web/target/ModificadorWeb-1.war"/>
+		</copy>
+		<copy  todir="${apache-deploy}/localizador-1">
+			<fileset dir="${src.dir}/localizador/web/target/localizador-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/visualizador-1">
+			<fileset dir="${src.dir}/visualizador/web/target/visualizador-1.war" />
+		</copy>
+		<copy todir="${apache-deploy}/entregar-1">
+			<fileset dir="${src.dir}/entregar/web/target/entregar-1.war" />
+		</copy>
+		<copy  todir="${apache-deploy}/catalogacion-1">
+			<fileset dir="${src.dir}/catalogacion/web/target/catalogacion-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/empaquetadorbasico-F1">
+			<fileset dir="${src.dir}/empaquetadorbasico/web/target/empaquetadorbasico-F1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/catalogadorWeb">
+			<fileset dir="${src.dir}/catalogadorWeb/web/target/catalogadorWeb-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/PortalEmpaquetador">
+			<fileset dir="${src.dir}/PortalEmpaquetador/web/target/PortalEmpaquetador-F1.war"/>
+		</copy>
+		<copy   todir="${apache-deploy}/herramientaoffline">
+			<fileset dir="${src.dir}/herramientaoffline/web/target/HerramientaOffline-1.war"/>
+		</copy>
+		<copy todir="${apache-deploy}/static">
+			<fileset dir="${src.dir}/static" />
+		</copy>
+
+		<!-- Copia de las dependencias de cada WAR -->
+		<copy flatten="true" todir="${offline-dir}/dependencias">
+			<fileset dir="${local.repo}">
+				<include name="catalogacion/dependencies/*"/>
+				<include name="catalogadorWeb/dependencies/*"/>
+				<include name="empaquetadorbasico/dependencies/*"/>
+				<include name="entregar/dependencies/*"/>
+				<include name="fuentestaxonomicas/dependencies/*"/>
+				<include name="HerramientaOffline/dependencies/*"/>
+				<include name="localizador/dependencies/*"/>
+				<include name="modificador/dependencies/*"/>
+				<include name="ModificadorWeb/dependencies/*"/>
+				<include name="PortalEmpaquetador/dependencies/*"/>
+				<include name="validador/dependencies/*"/>
+				<include name="visualizador/dependencies/*"/>
+			</fileset>
+		</copy>
+
+		<!-- Conversion a Unix de los ficheros .sh -->
+		<fixcrlf srcdir="${offline-dir}" includes="**/*.sh" eol="lf"/>
+
+		<!-- Si estoy en UNIX, cambio permisos de ejecucion de los scripts .sh-->
+		<chmod dir="${offline-dir}" perm="ugo+rx" includes="**/*.sh"/>
+		<chmod dir="${offline-dir}" perm="go-w" includes="**/*.sh"/>
+
+		<!-- Genero la version UNIX (herramienta-offline-version.tar.gz) -->
+		<mkdir dir="${target.dir}/offline/output"/>
+		<tar destfile="${target.dir}/offline/output/herramientas-agrega-bin-${agrega.tag}.tar" basedir="${offline-dir}"/>
+		<gzip destfile="${target.dir}/offline/output/herramientas-agrega-bin-${agrega.tag}.tar.gz" src="${target.dir}/offline/output/herramientas-agrega-bin-${agrega.tag}.tar"/>
+		<delete file="${target.dir}/offline/output/herramientas-agrega-bin-${agrega.tag}.tar"/>
+	</target>
+
+	<!-- Descarga fuentes y genera los entregables de todas las versiones de Agrega -->
+	<target name="build-all" depends="checkout,build-mysql,build-offline,build-tomcat-oracle,build-oracle">
+	</target>
+
+	<target name="static">
+		<copy todir="${target.dir}/configuracion/apache/static">
+			<fileset dir="${src.dir}/static"/>
+		</copy>
+	</target>
+
+
+
+	<!-- Copia los WAR generados al directorio especificado -->
+	<target name="copy-wars" depends="properties" if="war-destination">
+		<copy file="${src.dir}/adminusuarios/web/target/war/${adminusuarios.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/agregadorRSS/web/target/war/${agregadorRSS.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/auditoria/web/target/war/${auditoria.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/buscador/web/target/war/${buscador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/buscadorV1/web/target/war/${buscadorV1.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/buscar/web/target/war/${buscar.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/catalogacion/web/target/war/${catalogacion.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/catalogadorWeb/web/target/war/${catalogadorWeb.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/contenidosportal/web/target/war/${contenidosportal.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/DRI/web/target/war/${dri.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/empaquetadorbasico/web/target/war/${empaquetadorbasico.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/entregar/web/target/war/${entregar.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/fuentestaxonomicas/web/target/war/${fuentestaxonomicas.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/gestorCorreo/web/target/war/${gestorCorreo.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/gestorflujo/web/target/war/${gestorflujo.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/indexador/web/target/war/${indexador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/localizador/web/target/war/${localizador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/modificador/web/target/war/${modificador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/ModificadorWeb/web/target/war/${ModificadorWeb.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/oaipmh/web/target/war/${oaipmh.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/planificador/web/target/war/${planificador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/portaladministracion/web/target/war/${portaladministracion.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/PortalEmpaquetador/web/target/war/${PortalEmpaquetador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/publicacion/web/target/war/${publicacion.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/TaggingWeb/web/target/war/${TaggingWeb.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/validador/web/target/war/${validador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/valoracion/web/target/war/${valoracion.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/visualizador/web/target/war/${visualizador.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/visualizadorcontenidos/web/target/war/${visualizadorcontenidos.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/visualizadorcontenidosV1/web/target/war/${visualizadorcontenidosV1.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/InstaladorAgrega2/web/target/${InstaladorAgrega2.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/configuracionPlataforma/web/target/war/${configuracionPlataforma.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/cas-server-3.3.4/cas-server-webapp/target/${cas.war}.war" todir="${war-destination}"/>
+		<copy file="${src.dir}/interfazJMX/web/target/${interfazJMX.war}.war" todir="${war-destination}"/>
+		<!-- <copy file="${src.dir}/RemotingGalleryServer/target/${RemotingGalleryServer.war}.war" todir="${war-destination}"/>-->
+	</target>
+
+	<target name="check-static-war">
+		<condition property="check.static.war" value="true">
+			<and>
+				<isset property="war-destination"/>
+				<isset property="static.war"/>
+			</and>
+		</condition>
+	</target>
+
+	<!-- Este target permite copiar los estaticos como war cuando se compila con la opcion -Dstatic.war -->
+	<target name="static.war" depends="properties,check-static-war" if="check.static.war">
+		<echo message="Comprimiendo estaticos en ${war-destination}/static.war"/>
+		<zip destfile="${war-destination}/static.war" basedir="${src.dir}/static"/>
+	</target>
+
+	<target name="arreglators" depends="properties,build-dependent-jars">
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ScriptsMigracion/MigracionMD5">
+			<arg value="jar:install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<mkdir dir="${target.dir}/ScriptsMigracion/MigracionMD5"/>
+		<copy todir="${target.dir}/ScriptsMigracion/MigracionMD5">
+			<fileset dir="${src.dir}/ScriptsMigracion/MigracionMD5/target/output" includes="**/*"/>
+		</copy>
+	</target>
+
+	<!-- DEFAULT: Instrucciones de uso de este script -->
+	<target name="help">
+		<echo message=""/>
+		<echo message="SCRIPT DE CONSTRUCCION DE AGREGA"/>
+		<echo message=""/>
+		<echo message="Este script permite generar los entregables de Agrega para las versiones jboss-mysql, jboss-oracle, tomcat-oracle y offline. Recuerde configurar el fichero build.properties para introducir la informacion necesaria para este script."/>
+		<echo message=""/>
+		<echo message="SINTAXIS"/>
+		<echo message=""/>
+		<echo message="ant [target ...]  [opciones]"/>
+		<echo message=""/>
+		<echo message="OPCIONES DISPONIBLES"/>
+		<echo message=""/>
+		<echo message="-Dagrega.tag=[tag] ------ Tag de agrega que se desea construir (dispobible en agrega/tags del repositorio SVN. Por defecto, se construira lo ultimo del trunk)"/>
+		<echo message="-Dstatic.war=true ------- Para la version MySQL, copiar los estaticos como static.war en el directorio de los WAR (entorno de pruebas)"/>
+		<echo message=""/>
+		<echo message="TARGETS DISPONIBLES"/>
+		<echo message="ant help ---------------- Ayuda"/>
+		<echo message="ant checkout	------------ Descargar del repositorio los ficheros necesarios para generar la version."/>
+		<echo message="ant arreglators --------- Genera los patches de migracion y arreglo de ODEs de la entrega."/>
+		<echo message="ant build-mysql --------- Genera los entregables de la version jboss-mysql"/>
+		<echo message="ant build-oracle	-------- Genera los entregables de la version jboss-oracle"/>
+		<echo message="ant build-tomcat-oracle - Genera los entregables de la version tomcat-oracle"/>
+		<echo message="ant build-offline ------- Genera los entregables de la version offline"/>
+		<echo message="ant ear-agrega ---------- Construye un EAR con los WAR generados previamente con build-mysql o build-oracle"/>
+		<echo message="ant build-all ----------- Descarga los ficheros del repositorio y compila las cuatro versiones de Agrega (jboss-mysql, jboss-oracle, tomcat-oracle y offline)"/>
+	</target>
+	
+	<target name="cas" depends="properties">
+		<echo message="Compilando cas con dependencia de soporte2.jar..."/>
+		<!-- Publicamos el jar de soporte 2 en el repo de maven 2 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="${publicacion.soporte2.maven2}"/>
+		</exec>
+		<!-- compilamos el cas con el jar actualizado en su repositorio-->
+		<!-- cas-server-3.3.4 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip=true"/>
+		</exec>
+	</target>
+
+<!-- ================================= NUEVOS TARGETS PARA LA GENERACION DEL EAR DELGADO CON MAVEN2 ========================== -->
+
+	<!-- **********************************************************************************************************************************
+	Este goal instala los war generados anteriormente mediante maven1 en el repositorio de maven2 para
+	que al generar el ear con maven2 los encuentre
+	********************************************************************************************************************************** -->
+
+	<target name="install-wars-maven2" depends="properties">
+		<!-- Wars principales -->
+		<copy file="${src.dir}/buscador/web/target/war/${buscador.war}.war" todir="${local.repo2}\es\agrega\buscador2\2"/>
+		<copy file="${src.dir}/buscadorV1/web/target/war/${buscadorV1.war}.war" todir="${local.repo2}\es\agrega\buscador\1"/>
+		<copy file="${src.dir}/catalogadorWeb/web/target/war/${catalogadorWeb.war}.war" todir="${local.repo2}\es\agrega\catalogadorWeb\1"/>
+		<copy file="${src.dir}/gestorflujo/web/target/war/${gestorflujo.war}.war" todir="${local.repo2}\es\agrega\gestorflujo\1"/>
+		<copy file="${src.dir}/portaladministracion/web/target/war/${portaladministracion.war}.war" todir="${local.repo2}\es\agrega\portaladministracion\F1"/>
+		<copy file="${src.dir}/ModificadorWeb/web/target/war/${ModificadorWeb.war}.war" todir="${local.repo2}\es\agrega\ModificadorWeb\1"/>
+		<copy file="${src.dir}/TaggingWeb/web/target/war/${TaggingWeb.war}.war" todir="${local.repo2}\es\agrega\TaggingWeb\1"/>
+		<copy file="${src.dir}/oaipmh/web/target/war/${oaipmh.war}.war" todir="${local.repo2}\es\agrega\oaipmh\1.0"/>
+		<copy file="${src.dir}/planificador/web/target/war/${planificador.war}.war" todir="${local.repo2}\es\agrega\planificador\1.0"/>
+		<copy file="${src.dir}/PortalEmpaquetador/web/target/war/${PortalEmpaquetador.war}.war" todir="${local.repo2}\es\agrega\PortalEmpaquetador\F1"/>
+		<copy file="${src.dir}/visualizador/web/target/war/${visualizador.war}.war" todir="${local.repo2}\es\agrega\visualizador\1"/>
+		<copy file="${src.dir}/visualizadorcontenidos/web/target/war/${visualizadorcontenidos.war}.war" todir="${local.repo2}\es\agrega\visualizadorcontenidos2\F2"/>
+		<copy file="${src.dir}/visualizadorcontenidosV1/web/target/war/${visualizadorcontenidosV1.war}.war" todir="${local.repo2}\es\agrega\visualizadorcontenidos\F1"/>
+		<!-- Resto de Wars -->
+		<copy file="${src.dir}/adminusuarios/web/target/war/${adminusuarios.war}.war" todir="${local.repo2}\es\agrega\adminusuarios\1.0"/>
+		<copy file="${src.dir}/agregadorRSS/web/target/war/${agregadorRSS.war}.war" todir="${local.repo2}\es\agrega\agregadorRSS\1.0"/>
+		<copy file="${src.dir}/auditoria/web/target/war/${auditoria.war}.war" todir="${local.repo2}\es\agrega\auditoria\1.0"/>
+		<copy file="${src.dir}/catalogacion/web/target/war/${catalogacion.war}.war" todir="${local.repo2}\es\agrega\catalogacion\1"/>
+		<copy file="${src.dir}/contenidosportal/web/target/war/${contenidosportal.war}.war" todir="${local.repo2}\es\agrega\contenidosportal\F1"/>
+		<copy file="${src.dir}/dri/web/target/war/${dri.war}.war" todir="${local.repo2}\es\agrega\dri\1"/>
+		<copy file="${src.dir}/empaquetadorbasico/web/target/war/${empaquetadorbasico.war}.war" todir="${local.repo2}\es\agrega\empaquetadorbasico\F1"/>
+		<copy file="${src.dir}/fuentestaxonomicas/web/target/war/${fuentestaxonomicas.war}.war" todir="${local.repo2}\es\agrega\fuentestaxonomicas\1"/>
+		<copy file="${src.dir}/gestorCorreo/web/target/war/${gestorCorreo.war}.war" todir="${local.repo2}\es\agrega\gestorCorreo\1.0"/>
+		<copy file="${src.dir}/localizador/web/target/war/${localizador.war}.war" todir="${local.repo2}\es\agrega\localizador\1"/>
+		<copy file="${src.dir}/indexador/web/target/war/${indexador.war}.war" todir="${local.repo2}\es\agrega\indexador\0.1"/>
+		<copy file="${src.dir}/modificador/web/target/war/${modificador.war}.war" todir="${local.repo2}\es\agrega\modificador\1"/>
+		<copy file="${src.dir}/planificador/web/target/war/${planificador.war}.war" todir="${local.repo2}\es\agrega\planificador\1.0"/>
+		<copy file="${src.dir}/publicacion/web/target/war/${publicacion.war}.war" todir="${local.repo2}\es\agrega\publicacion\1"/>
+		<copy file="${src.dir}/validador/web/target/war/${validador.war}.war" todir="${local.repo2}\es\agrega\validador\1"/>
+		<copy file="${src.dir}/valoracion/web/target/war/${valoracion.war}.war" todir="${local.repo2}\es\agrega\valoracion\1"/>
+		<copy file="${src.dir}/entregar/web/target/war/${entregar.war}.war" todir="${local.repo2}\es\agrega\entregar\1"/>
+		<copy file="${src.dir}/buscar/web/target/war/${buscar.war}.war" todir="${local.repo2}\es\agrega\buscar\1"/>
+		<copy file="${src.dir}/configuracionPlataforma/web/target/war/${configuracionPlataforma.war}.war" todir="${local.repo2}\es\agrega\configuracionPlataforma\1.0"/>
+		<copy file="${src.dir}/catalogacion/web/target/war/${catalogacion.war}.war" todir="${local.repo2}\es\agrega\catalogacion\1.0"/> 
+		<copy file="${src.dir}/interfazJMX/web/target/interfazJMX.war" tofile="${local.repo2}\es\agrega\interfazJMX\1.0\interfazJMX-1.0.war"/> 
+		<copy file="${src.dir}/cas-server-3.3.4/cas-server-webapp/target/${cas.war}.war" tofile="${local.repo2}\es\agrega\cas\1.0\cas-1.0.war"/> 
+	</target>
+
+	<!-- **********************************************************************************************************************************
+	Este goal se encarga de copiar las librerias auxiliares seleccionadas del repositorio de maven1 al repositorio de maven2.
+	De esta manera al generar el EAR con maven2 las localiza y puede incluirlas en el directorio lib del ear
+	**********************************************************************************************************************************-->
+	<target name="install-jars-repo-maven2" depends="properties">
+		<copy file="${local.repo}/acegisecurity/jars/acegi-security-1.0.5.jar" todir="${local.repo2}/acegisecurity/acegi-security/1.0.5"/>
+		<copy file="${local.repo}/agrega/jars/agrega-jmx-1.3.jar" todir="${local.repo2}/agrega/agrega-jmx/1.3"/>
+		<copy file="${local.repo}/agrega/jars/agrega-security-1.4.jar" todir="${local.repo2}/agrega/agrega-security/1.4"/>
+		<copy file="${local.repo}/ajaxtags/jars/ajaxtags-1.2-beta2.jar" todir="${local.repo2}/ajaxtags/ajaxtags/1.2-beta2"/>
+		<copy file="${local.repo}/antlr/jars/antlr-2.7.5H3.jar" todir="${local.repo2}/antlr/antlr/2.7.5H3"/>
+		<copy file="${local.repo}/antlr/jars/antlr3-3.0ea8.jar" todir="${local.repo2}/antlr/antlr3/3.0ea8"/>
+		<copy file="${local.repo}/cglib/jars/cglib-2.1.3.jar" todir="${local.repo2}/cglib/cglib/2.1.3"/>
+		<copy file="${local.repo}/dozer/jars/dozer-3.4.jar" todir="${local.repo2}/dozer/dozer/3.4"/>
+		<copy file="${local.repo}/hibernate/jars/hibernate-3.2.jar" todir="${local.repo2}/hibernate/hibernate/3.2"/>
+		<copy file="${local.repo}/htmlparser/jars/htmlparser-1.6.jar" todir="${local.repo2}/htmlparser/htmlparser/1.6"/>
+		<copy file="${local.repo}/jaf/jars/jaf-1.1.jar" todir="${local.repo2}/jaf/jaf/1.1"/>
+		<copy file="${local.repo}/mail/jars/javamail-1.4.jar" todir="${local.repo2}/mail/javamail/1.4"/>
+		<copy file="${local.repo}/jcaptcha/jars/jcaptcha-all-1.0-RC3.jar" todir="${local.repo2}/jcaptcha/jcaptcha-all/1.0-RC3"/>
+		<copy file="${local.repo}/joesnmp/jars/joesnmp-0.3.4.jar" todir="${local.repo2}/joesnmp/joesnmp/0.3.4"/>
+		<copy file="${local.repo}/javax-transaction/jars/jta-1.0.1B.jar" todir="${local.repo2}/javax-transaction/jta/1.0.1B"/>
+		<copy file="${local.repo}/javax-transaction/jars/jta-1.1.jar" todir="${local.repo2}/javax-transaction/jta/1.1"/>
+		<copy file="${local.repo}/ldapbp/jars/ldapbp-1.0.jar" todir="${local.repo2}/ldapbp/ldapbp/1.0"/>
+		<copy file="${local.repo}/agrega/jars/soporte-2.0.jar" todir="${local.repo2}/agrega/soporte/2.0"/>
+		<copy file="${local.repo}/openid4java/jars/openid4java-0.9.5.jar" todir="${local.repo2}/openid4java/openid4java/0.9.5"/>
+		<copy file="${local.repo}/openxri-client/jars/openxri-client-1.0.1.jar" todir="${local.repo2}/openxri-client/openxri-client/1.0.1"/>
+		<copy file="${local.repo}/openxri-syntax/jars/openxri-syntax-1.0.1.jar" todir="${local.repo2}/openxri-syntax/openxri-syntax/1.0.1"/>
+		<copy file="${local.repo}/sawa/jars/sawa-core-2.0.jar" todir="${local.repo2}/sawa/sawa-core/2.0"/>
+		<copy file="${local.repo}/smslib/jars/smslib-1.3-jdk1.4.jar" todir="${local.repo2}/smslib/smslib/1.3-jdk1.4"/>
+		<copy file="${local.repo}/snmptrapappender/jars/snmptrapappender-1.2.9.jar" todir="${local.repo2}/snmptrapappender/snmptrapappender/1.2.9"/>
+		<copy file="${local.repo}/springframework/jars/spring-2.0.7.jar" todir="${local.repo2}/springframework/spring/2.0.7"/>
+		<copy file="${local.repo}/acegisecurity/jars/spring-ldap-1.1.2.jar" todir="${local.repo2}/acegisecurity/spring-ldap/1.1.2"/>
+		<copy file="${local.repo}/springmodules/jars/springmodules-jbpm31.jar" todir="${local.repo2}/springmodules/springmodules/jbpm31"/>
+		<copy file="${local.repo}/springmodules/jars/spring-modules-0.8-all.jar" todir="${local.repo2}/springmodules/spring-modules/0.8-all"/>
+		<copy file="${local.repo}/xmlsec/jars/xmlsec-1.3.0.jar" todir="${local.repo2}/xmlsec/xmlsec/1.3.0"/>
+		<copy file="${local.repo}/xpp3/jars/xpp3-1.1.3_8.jar" todir="${local.repo2}/xpp3/xpp3/1.1.3_8"/>
+		<copy file="${local.repo}/andromda/jars/andromda-breadcrumbs-taglib-3.1.5.jar" todir="${local.repo2}/andromda/andromda-breadcrumbs-taglib/3.1.5"/>
+		<copy file="${local.repo}/andromda/jars/andromda-collections-taglib-3.1.5.jar" todir="${local.repo2}/andromda/andromda-collections-taglib/3.1.5"/>
+		<copy file="${local.repo}/andromda/jars/andromda-formatting-taglib-3.1.5.jar" todir="${local.repo2}/andromda/andromda-formatting-taglib/3.1.5"/>
+		<copy file="${local.repo}/castor/jars/castor-1.1-xml.jar" todir="${local.repo2}/castor/castor/1.1-xml"/>
+		<copy file="${local.repo}/agrega/jars/parseadorXML-1.2.jar" todir="${local.repo2}/agrega/parseadorXML/1.2"/>
+		<copy file="${local.repo}/jug-lgpl/jars/jug-lgpl-2.0.0.jar" todir="${local.repo2}/jug-lgpl/jug-lgpl/2.0.0"/>
+		<copy file="${local.repo}/jdom/jars/jdom-1.1.jar" todir="${local.repo2}/jdom/jdom/1.1"/>
+		<copy file="${local.repo}/xerces/jars/xercesImpl-2.9.0.jar" todir="${local.repo2}/xerces/xercesImpl/2.9.0"/>
+		<copy file="${local.repo}/jsppager/jars/pager-taglib-2.0.jar" todir="${local.repo2}/jsppager/pager-taglib/2.0"/>
+		<copy file="${local.repo}/struts/jars/struts-1.2.7.p01.jar" todir="${local.repo2}/struts/struts/1.2.7.p01"/>
+		<copy file="${local.repo}/javax/jars/activation-1.0.2.jar" todir="${local.repo2}/javax/activation/1.0.2"/>
+		<copy file="${local.repo}/cas/jars/casclient-2.1.1.jar" todir="${local.repo2}/cas/casclient/2.1.1"/>
+		<copy file="${local.repo}/commons-pool/jars/commons-pool-1.2.jar" todir="${local.repo2}/commons-pool/commons-pool/1.2"/>
+		<copy file="${local.repo}/dozer/jars/dozer-3.3.1.jar" todir="${local.repo2}/dozer/dozer/3.3.1"/>
+		<copy file="${local.repo}/xerces/jars/resolver-2.9.0.jar" todir="${local.repo2}/xerces/resolver/2.9.0"/>
+		<copy file="${local.repo}/xerces/jars/serializer-2.9.0.jar" todir="${local.repo2}/xerces/serializer/2.9.0"/>
+		<copy file="${local.repo}/saxon/jars/saxon-9.1.jar" todir="${local.repo2}/saxon/saxon/9.1"/>
+		<copy file="${local.repo}/saxon/jars/saxon-api-9.1.jar" todir="${local.repo2}/saxon/saxon-api/9.1"/>
+		<copy file="${local.repo}/truezip/jars/truezip-6.6.jar" todir="${local.repo2}/truezip/truezip/6.6"/>
+		<copy file="${local.repo}/xerces/jars/xercesSamples-2.9.0.jar" todir="${local.repo2}/xerces/xercesSamples/2.9.0"/>
+
+	</target>
+
+	<!-- 
+	Este goal se encarga de invocar a la creacion del EAR con maven2 
+	En el correspondiente pom.xml del proyecto AgregaEar se definen los war que forman parte del ear y las librerias auxiliares
+	Las librerias auxiliares que se encuentren dentro de los war, se eliminan en el proceso de creacion del ear ya que las copia en el directorio lib,
+	de esta manera se aligera el peso del ear al no tener librerias repetidas en los diferentes wars.
+	Por problemas de classloader en JBoss los wars de presentacion no se pueden aligerar.
+	Los pasos que se siguen son
+	1. Se genera el ear eliminando las librerias comunes de todos los wars
+	2. Se copian los wars originales de presentacion completos
+	3. Se genera el nuevo ear con los wars de presentacion completos
+	4. Se elimina del ear las librerias xercesImpl y xml-apis por incompatibilidades con Jboss.
+	-->
+	<target name="ear-agrega" depends="properties,install-jars-repo-maven2,install-wars-maven2">
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/agregaEar">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-e"/>
+		</exec>
+
+		<copy overwrite="true" file="${src.dir}/buscador/web/target/war/${buscador.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR/"/>
+		<copy overwrite="true" file="${src.dir}/buscadorV1/web/target/war/${buscadorV1.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR/"/>
+		<copy overwrite="true" file="${src.dir}/catalogadorWeb/web/target/war/${catalogadorWeb.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/gestorflujo/web/target/war/${gestorflujo.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/portaladministracion/web/target/war/${portaladministracion.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/ModificadorWeb/web/target/war/${ModificadorWeb.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/TaggingWeb/web/target/war/${TaggingWeb.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/> 
+		<copy overwrite="true" file="${src.dir}/PortalEmpaquetador/web/target/war/${PortalEmpaquetador.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/visualizador/web/target/war/${visualizador.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/visualizadorcontenidos/web/target/war/${visualizadorcontenidos.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		<copy overwrite="true" file="${src.dir}/visualizadorcontenidosV1/web/target/war/${visualizadorcontenidosV1.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		 <copy overwrite="true" file="${src.dir}/cas-server-3.3.4/cas-server-webapp/target/cas.war" tofile="${src.dir}/agregaEar/target/AgregaEAR/cas-1.0.war"/>
+		<copy overwrite="true" file="${src.dir}/valoracion/web/target/war/${valoracion.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR/"/> 
+		<copy overwrite="true" file="${src.dir}/buscar/web/target/war/${buscar.war}.war" todir="${src.dir}/agregaEar/target/AgregaEAR/"/>
+		 
+		<zip destfile="${src.dir}/agregaEar/target/AgregaEAR_NUEVO.ear"
+		   basedir="${src.dir}/agregaEar/target/AgregaEAR"/>
+		   
+		<zip destfile="${src.dir}/agregaEar/target/AgregaEAR_temp.ear">
+			<zipfileset src="${src.dir}/agregaEar/target/AgregaEAR_NUEVO.ear">
+					<exclude name="**/xercesImpl*" />
+					<exclude name="**/xml-ap*" /> 
+			</zipfileset>
+		</zip>
+
+		<delete file="${src.dir}/agregaEar/target/AgregaEAR.ear"/> 
+		<delete file="${src.dir}/agregaEar/target/AgregaEAR_NUEVO.ear"/> 
+		<move file="${src.dir}/agregaEar/target/AgregaEAR_temp.ear" tofile="${src.dir}/agregaEar/target/AgregaEAR.ear" /> 
+	</target>
+
+	
+	<!-- Genera los entregables de Presentacion -->
+	<!-- <target name="build-presentacion" depends="properties,build-dependent-jars"> -->
+	<target name="build-presentacion" depends="properties">
+		<echo message="Compilando Modulos de Presentacion de Agrega"/>
+		<!-- Modulos de presentacion -->
+		<!-- InstaladorAgrega2 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+		</exec>
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- visualizadorcontenidos -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidos">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- visualizadorcontenidos V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidosV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- portaladministracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/portaladministracion">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- gestorflujo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorflujo">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- buscador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscador">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- buscador V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscadorV1">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		<!-- TaggingWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/TaggingWeb">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip"/>
+			<arg value="-Dmaven.scm.branch=/${svn.subpath}"/>
+		</exec>
+		
+		<!-- cas-server-3.3.4 -->
+		<!-- Por ahora no incluimos cas
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+			<arg value="install"/>
+			<arg value="-Dmaven.test.skip=true"/>
+		</exec>
+		-->
+		<!-- Copia de los WARs a directorio de destino -->
+		<antcall target="copy-wars">
+			<param name="war-destination" value="${target.dir}/wars-jboss-mysql"/>
+		</antcall>
+
+		<!-- En caso de que se haya habilitado -Dstatic.war, copiar los estaticos al directorio de WARs como static.war (subida a pruebas) -->
+		<antcall target="static.war">
+			<param name="war-destination" value="${target.dir}/wars-jboss-mysql"/>
+		</antcall>
+	</target>
+	
+	<!-- =================================================================================================================================-->
+	
+	
+	<!-- Genera los entregables de la version Jboss-MySQL -->
+	<target name="clean-all" depends="properties">
+		<echo message="Compilando Agrega para entorno Jboss-MySQL..."/>
+		<!-- Modulos de servicio -->
+		<!-- adminusuarios -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/adminusuarios">
+			<arg value="clean"/>
+		</exec>
+		<!-- auditoria -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/auditoria">
+			<arg value="clean"/>
+		</exec>
+		<!-- buscar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscar">
+			<arg value="clean"/>
+		</exec>
+		<!-- catalogacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogacion">
+			<arg value="clean"/>
+		</exec>
+		<!-- contenidosportal -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/contenidosportal">
+			<arg value="clean"/>
+		</exec>
+		<!-- DRI -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/DRI">
+			<arg value="clean"/>
+		</exec>
+		<!-- empaquetadorbasico -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/empaquetadorbasico">
+			<arg value="clean"/>
+		</exec>
+		<!-- entregar -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/entregar">
+			<arg value="clean"/>
+		</exec>
+		<!-- fuentestaxonomicas -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/fuentestaxonomicas">
+			<arg value="clean"/>
+		</exec>
+		<!-- gestorcorreo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorCorreo">
+			<arg value="clean"/>
+		</exec>
+		<!-- indexador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/indexador">
+			<arg value="clean"/>
+		</exec>
+		<!-- localizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/localizador">
+			<arg value="clean"/>
+		</exec>
+		<!-- planificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/planificador">
+			<arg value="clean"/>
+		</exec>
+		<!-- publicacion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/publicacion">
+			<arg value="clean"/>
+		</exec>
+		<!-- validador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/validador">
+			<arg value="clean"/>
+		</exec>
+		<!-- valoracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/valoracion">
+			<arg value="clean"/>
+		</exec>
+		<!-- modificador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/modificador">
+			<arg value="clean"/>
+		</exec>
+		<!-- agregadorRSS -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/agregadorRSS">
+			<arg value="clean"/>
+		</exec>
+		<!-- oaipmh -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/oaipmh">
+			<arg value="clean"/>
+		</exec>
+		<!-- configuracionPlataforma -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/configuracionPlataforma">
+			<arg value="clean"/>
+		</exec>
+		<!-- interfazJMX -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/interfazJMX">
+			<arg value="clean"/>
+		</exec>
+
+		<!-- Modulos de presentacion -->
+		<!-- InstaladorAgrega2 -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/InstaladorAgrega2">
+			<arg value="clean"/>
+		</exec>
+		<!-- ModificadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/ModificadorWeb">
+			<arg value="clean"/>
+		</exec>
+		<!-- visualizador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizador">
+			<arg value="clean"/>
+		</exec>
+		<!-- visualizadorcontenidos -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidos">
+			<arg value="clean"/>
+		</exec>
+		<!-- visualizadorcontenidos V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/visualizadorcontenidosV1">
+			<arg value="clean"/>
+		</exec>
+		<!-- portaladministracion -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/portaladministracion">
+			<arg value="clean"/>
+		</exec>
+		<!-- PortalEmpaquetador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/PortalEmpaquetador">
+			<arg value="clean"/>
+		</exec>
+		<!-- gestorflujo -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/gestorflujo">
+			<arg value="clean"/>
+		</exec>
+		<!-- catalogadorWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/catalogadorWeb">
+			<arg value="clean"/>
+		</exec>
+		<!-- buscador -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscador">
+			<arg value="clean"/>
+		</exec>
+		<!-- buscador V1-->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/buscadorV1">
+			<arg value="clean"/>
+		</exec>
+		<!-- TaggingWeb -->
+		<exec failonerror="true" executable="${maven.exec.path}" dir="${src.dir}/TaggingWeb">
+			<arg value="clean"/>
+		</exec>
+		<!-- cas-server-3.3.4 -->
+		<exec failonerror="true" executable="${mvn.exec.path}" dir="${src.dir}/cas-server-3.3.4">
+			<arg value="clean"/>
+		</exec>
+	</target>		
+	
+</project>

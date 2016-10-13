@@ -1,0 +1,56 @@
+/* AGREGA V08- 18/01/12  LICENCIAS RED  */
+
+.licencias {display:table-cell !Important ;max-width:92px;position:relative !Important;right:0 !important;margin:0 !Important}
+
+.licencias {float:right !important;border:0 !important;min-width:94px !important;display:block;border-bottom:0 !important;margin-bottom:20px;margin-top:6px;-moz-border-radius: 3px;
+margin-left:10px !important;
+-khtml-border-radius: 3px;
+-webkit-border-radius: 3px;}
+
+.licencias_int#cc_by {background:transparent url("../img/categorias/by.png") 0 0 no-repeat;}
+.licencias_int#cc_pd {background:transparent url("../img/categorias/publicdomain.png") 0 0 no-repeat;}
+.licencias_int#cc_by_sa {background:transparent url("../img/categorias/by-sa.png") 0 0 no-repeat;}
+.licencias_int#cc_by_nd {background:transparent url("../img/categorias/by-nd.png") 0 0 no-repeat;}
+.licencias_int#cc_by_nc_sa {background:transparent url("../img/categorias/by-nc-sa.eu.png") 0 0 no-repeat;}
+.licencias_int#cc_by_nc_nd {background:transparent url("../img/categorias/by-nc-nd.eu.png") 0 0 no-repeat;}
+.licencias_int#cc_by_nc {background:transparent url("../img/categorias/by-nc.eu.png") 0 0 no-repeat;}
+
+.licencias_int#copyright {background:transparent url("../img/categorias/copyright.eu.png") 0 0 no-repeat;}
+.licencias_int#gfdl {background:transparent url("../img/categorias/gfdl.eu.png") 0 0 no-repeat;}
+.licencias_int#eupl {background:transparent url("../img/categorias/eupl.eu.png") 0 0 no-repeat;}
+.licencias_int#gpl {background:transparent url("../img/categorias/gpl.eu.png") 0 0 no-repeat;}
+.licencias_int#gpl_eupl {background:transparent url("../img/categorias/gpl_eupl.eu.png") 0 0 no-repeat;}
+.licencias_int#otras_lic_libres {background:transparent url("../img/categorias/otras_lic_libres.eu.png") 0 0 no-repeat;}
+.licencias_int#no_corresponde {background:transparent url("../img/categorias/no_corresponde.eu.png") 0 0 no-repeat;}
+.licencias_int#lic_prop_intelectual {background:transparent url("../img/categorias/lic_prop_intelectual.eu.png") 0 0 no-repeat;}
+
+.licencias_int {height:32px !important;display:block;width:94px !important;border:1px solid white;border-bottom:0 !Important;z-index:1110;cursor: pointer !important}
+
+.licencias span {display:block;text-align: center !Important;min-height:32px;line-height:27px !Important;padding:0 0;}
+.valoracion {clear:right}
+.ie7 .licencias {width:92px;}
+.ie7 .licencias span {overflow:hidden}
+.licencias  span.cat {background:#fff;text-align: center !Important;}
+.licencias span.cat strong em {font-style: normal;border:1px solid white;border-bottom:0 !Important;cursor: pointer !important}
+.licencias span.cat strong em span {display:inline;color:#fff;font-size:10px}
+.licencias span.cat strong em#licencia_b span {display:inline;color:#000}
+.licencias em span {line-height:14px !Important;}
+.licencias span.cat strong em#licencia_a {line-height:14px !Important;background:#1D752C;display:block;} 
+.licencias span.cat strong em#licencia_b {line-height:14px !Important;background:#FAC632;display:block;} 
+.licencias span.cat strong em#licencia_c {line-height:14px !Important;background:#1C45E0;display:block;} 
+#principal.ficha #main .valoracion {float:left !important;margin-top:38px;position:absolute !important;left:0 !important;right: 686px !important}
+.ie7 .ficha .valoracion  {position:absolute;top:6px !important;margin-top:38px;left:0 !important;margin-left:-686px !important}
+
+#categorias {width:98%  !important;min-height:60px  !important;background:white !Important;}
+#categorias h2 {display:block !important;float:left;}
+.ficha#principal #main #categorias  .valoracion {position:relative !Important;margin:0 !important;clear:left !important}
+
+
+.tipsy { padding: 5px; font-size: 11px; position: absolute; z-index: 100000;font-weight: bold; word-wrap: break-word;}
+.tipsy-inner { padding: 6px 8px 3px 8px; background-color:#066bbc; color: white;  text-align: center; word-wrap: break-word;}
+.tipsy-inner { border-radius: 5px; -moz-border-radius:5px; -webkit-border-radius:5px;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='#000000'); /* for IE */
+background: -moz-linear-gradient(top, #000000, #000000) ;
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #000000),  color-stop(100%, #000000));   }
+
+
