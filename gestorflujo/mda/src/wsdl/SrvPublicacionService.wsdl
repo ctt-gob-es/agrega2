@@ -621,7 +621,7 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
-            <xsd:element name="despublicarWebSemantica">      
+            <xsd:element name="despublicacionExterna">      
                 <xsd:annotation>     
                     <xsd:documentation> 
                         Metodo que llama a noDisponible con algunos argumentos ya fijos.
@@ -637,7 +637,7 @@
                                 </xsd:documentation>
                             </xsd:annotation>
                         </xsd:element>
-                        <xsd:element name="idUsuario" type="xsd:string" nillable="false">
+                        <xsd:element name="usuario" type="xsd:string" nillable="false">
                             <xsd:annotation>     
                                 <xsd:documentation> 
                                     
@@ -647,10 +647,10 @@
                      </xsd:sequence>
                  </xsd:complexType>
             </xsd:element>
-            <xsd:element name="despublicarWebSemanticaResponse">       
+            <xsd:element name="despublicacionExternaResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="despublicarWebSemanticaReturn" type="impl:ResultadoOperacionVO"/>
+                        <xsd:element name="despublicacionExternaReturn" type="impl:ResultadoOperacionVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -1019,7 +1019,7 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
-            <xsd:element name="obtenerEditoresOdeWebSemantica">      
+            <xsd:element name="obtenerEditoresOdeExterno">      
                 <xsd:annotation>     
                     <xsd:documentation> 
                         
@@ -1037,14 +1037,14 @@
                      </xsd:sequence>
                  </xsd:complexType>
             </xsd:element>
-            <xsd:element name="obtenerEditoresOdeWebSemanticaResponse">       
+            <xsd:element name="obtenerEditoresOdeExternoResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="obtenerEditoresOdeWebSemanticaReturn" type="impl:ArrayOfxsd_string"/>
+                        <xsd:element name="obtenerEditoresOdeExternoReturn" type="impl:ArrayOfxsd_string"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
-            <xsd:element name="obtenerOdesEditablesUsuarioWebSemantica">      
+            <xsd:element name="obtenerOdesEditablesUsuarioExterno">      
                 <xsd:annotation>     
                     <xsd:documentation> 
                         
@@ -1052,7 +1052,7 @@
                 </xsd:annotation> 
                 <xsd:complexType>  
                     <xsd:sequence>
-                        <xsd:element name="idUsuario" type="xsd:string" nillable="false">
+                        <xsd:element name="usuario" type="xsd:string" nillable="false">
                             <xsd:annotation>     
                                 <xsd:documentation> 
                                     
@@ -1062,10 +1062,10 @@
                      </xsd:sequence>
                  </xsd:complexType>
             </xsd:element>
-            <xsd:element name="obtenerOdesEditablesUsuarioWebSemanticaResponse">       
+            <xsd:element name="obtenerOdesEditablesUsuarioExternoResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="obtenerOdesEditablesUsuarioWebSemanticaReturn" type="impl:ArrayOfxsd_string"/>
+                        <xsd:element name="obtenerOdesEditablesUsuarioExternoReturn" type="impl:ArrayOfxsd_string"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -1486,6 +1486,107 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="obtenODEsDespublicadosPorFechaReturn" type="impl:ArrayOfTransicionVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idUsuario" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    Identificador del usuario del que se quieren averiguar la lista
+                                    de ODEs.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaInicio" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaFin" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="titulo" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFechaResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFechaReturn" type="impl:ArrayOfTransicionVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="idUsuarioDespublicador" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    Identificador del usuario del que se quieren averiguar la lista
+                                    de ODEs.
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaInicio" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="fechaFin" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="titulo" type="xsd:string" nillable="true">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="idsUsuariosCreador" type="impl:ArrayOfxsd_string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFechaResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFechaReturn" type="impl:ArrayOfTransicionVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -2026,6 +2127,74 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="publicacionExterna">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="zipODE" type="xsd:hexBinary" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="catalogacionReducida" type="xsd:hexBinary" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    Un imsmanifest reducido
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="correoUsuario" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    email del usuario. El email de usuario es el id para la web
+                                    semantica
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="titulo" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="listaUsuarioEditores" type="impl:ArrayOfxsd_string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    Lista de ids de los usuarios que pueden editar el ODE
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="esNuevaVersion" type="xsd:boolean" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="tipoPublicacion" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="publicacionExternaResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="publicacionExternaReturn" type="impl:ResultadoPublicacionVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="publicar">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -2346,74 +2515,6 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="publicarPifCargaReturn" type="impl:ArrayOfResultadoOperacionCargaVO"/>
-                    </xsd:sequence>
-                </xsd:complexType>               
-            </xsd:element>
-            <xsd:element name="publicarWebSemantica">      
-                <xsd:annotation>     
-                    <xsd:documentation> 
-                        
-                    </xsd:documentation>
-                </xsd:annotation> 
-                <xsd:complexType>  
-                    <xsd:sequence>
-                        <xsd:element name="zipODE" type="xsd:hexBinary" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="catalogacionReducida" type="xsd:hexBinary" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    Un imsmanifest reducido
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="idUsuario" type="xsd:string" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    email del usuario. El email de usuario es el id para la web
-                                    semantica
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="titulo" type="xsd:string" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="listaUsuarioEditores" type="impl:ArrayOfxsd_string" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    Lista de ids de los usuarios que pueden editar el ODE
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="esNuevaVersion" type="xsd:boolean" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                        <xsd:element name="tipoPublicacion" type="xsd:string" nillable="false">
-                            <xsd:annotation>     
-                                <xsd:documentation> 
-                                    
-                                </xsd:documentation>
-                            </xsd:annotation>
-                        </xsd:element>
-                     </xsd:sequence>
-                 </xsd:complexType>
-            </xsd:element>
-            <xsd:element name="publicarWebSemanticaResponse">       
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="publicarWebSemanticaReturn" type="impl:ResultadoPublicacionVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -3758,11 +3859,11 @@
     <wsdl:message name="descompartirODE12Response">
         <wsdl:part element="impl:descompartirODEResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="despublicarWebSemantica13Request">
-        <wsdl:part element="impl:despublicarWebSemantica" name="parameters"/>
+    <wsdl:message name="despublicacionExterna13Request">
+        <wsdl:part element="impl:despublicacionExterna" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="despublicarWebSemantica13Response">
-        <wsdl:part element="impl:despublicarWebSemanticaResponse" name="parameters"/>
+    <wsdl:message name="despublicacionExterna13Response">
+        <wsdl:part element="impl:despublicacionExternaResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="eliminar14Request">
         <wsdl:part element="impl:eliminar" name="parameters"/>
@@ -3824,17 +3925,17 @@
     <wsdl:message name="noDisponibles23Response">
         <wsdl:part element="impl:noDisponiblesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerEditoresOdeWebSemantica24Request">
-        <wsdl:part element="impl:obtenerEditoresOdeWebSemantica" name="parameters"/>
+    <wsdl:message name="obtenerEditoresOdeExterno24Request">
+        <wsdl:part element="impl:obtenerEditoresOdeExterno" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerEditoresOdeWebSemantica24Response">
-        <wsdl:part element="impl:obtenerEditoresOdeWebSemanticaResponse" name="parameters"/>
+    <wsdl:message name="obtenerEditoresOdeExterno24Response">
+        <wsdl:part element="impl:obtenerEditoresOdeExternoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerOdesEditablesUsuarioWebSemantica25Request">
-        <wsdl:part element="impl:obtenerOdesEditablesUsuarioWebSemantica" name="parameters"/>
+    <wsdl:message name="obtenerOdesEditablesUsuarioExterno25Request">
+        <wsdl:part element="impl:obtenerOdesEditablesUsuarioExterno" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerOdesEditablesUsuarioWebSemantica25Response">
-        <wsdl:part element="impl:obtenerOdesEditablesUsuarioWebSemanticaResponse" name="parameters"/>
+    <wsdl:message name="obtenerOdesEditablesUsuarioExterno25Response">
+        <wsdl:part element="impl:obtenerOdesEditablesUsuarioExternoResponse" name="parameters"/>
     </wsdl:message>
     <wsdl:message name="obtenerUsuariosCreacionDeIdentificadores26Request">
         <wsdl:part element="impl:obtenerUsuariosCreacionDeIdentificadores" name="parameters"/>
@@ -3926,190 +4027,202 @@
     <wsdl:message name="obtenODEsDespublicadosPorFecha40Response">
         <wsdl:part element="impl:obtenODEsDespublicadosPorFechaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsDespublicadosPorUsuario41Request">
+    <wsdl:message name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Request">
+        <wsdl:part element="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Response">
+        <wsdl:part element="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorFechaResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Request">
+        <wsdl:part element="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Response">
+        <wsdl:part element="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFechaResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="obtenODEsDespublicadosPorUsuario43Request">
         <wsdl:part element="impl:obtenODEsDespublicadosPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsDespublicadosPorUsuario41Response">
+    <wsdl:message name="obtenODEsDespublicadosPorUsuario43Response">
         <wsdl:part element="impl:obtenODEsDespublicadosPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsDespublicadosPorUsuarios42Request">
+    <wsdl:message name="obtenODEsDespublicadosPorUsuarios44Request">
         <wsdl:part element="impl:obtenODEsDespublicadosPorUsuarios" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsDespublicadosPorUsuarios42Response">
+    <wsdl:message name="obtenODEsDespublicadosPorUsuarios44Response">
         <wsdl:part element="impl:obtenODEsDespublicadosPorUsuariosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestos43Request">
+    <wsdl:message name="obtenODEsPropuestos45Request">
         <wsdl:part element="impl:obtenODEsPropuestos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestos43Response">
+    <wsdl:message name="obtenODEsPropuestos45Response">
         <wsdl:part element="impl:obtenODEsPropuestosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODESPropuestosCatalogacion44Request">
+    <wsdl:message name="obtenODESPropuestosCatalogacion46Request">
         <wsdl:part element="impl:obtenODESPropuestosCatalogacion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODESPropuestosCatalogacion44Response">
+    <wsdl:message name="obtenODESPropuestosCatalogacion46Response">
         <wsdl:part element="impl:obtenODESPropuestosCatalogacionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODESPropuestosCatalogacionPorUsuario45Request">
+    <wsdl:message name="obtenODESPropuestosCatalogacionPorUsuario47Request">
         <wsdl:part element="impl:obtenODESPropuestosCatalogacionPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODESPropuestosCatalogacionPorUsuario45Response">
+    <wsdl:message name="obtenODESPropuestosCatalogacionPorUsuario47Response">
         <wsdl:part element="impl:obtenODESPropuestosCatalogacionPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosCatalogacionPorUsuarios46Request">
+    <wsdl:message name="obtenODEsPropuestosCatalogacionPorUsuarios48Request">
         <wsdl:part element="impl:obtenODEsPropuestosCatalogacionPorUsuarios" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosCatalogacionPorUsuarios46Response">
+    <wsdl:message name="obtenODEsPropuestosCatalogacionPorUsuarios48Response">
         <wsdl:part element="impl:obtenODEsPropuestosCatalogacionPorUsuariosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosPorUsuario47Request">
+    <wsdl:message name="obtenODEsPropuestosPorUsuario49Request">
         <wsdl:part element="impl:obtenODEsPropuestosPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosPorUsuario47Response">
+    <wsdl:message name="obtenODEsPropuestosPorUsuario49Response">
         <wsdl:part element="impl:obtenODEsPropuestosPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosPorUsuarios48Request">
+    <wsdl:message name="obtenODEsPropuestosPorUsuarios50Request">
         <wsdl:part element="impl:obtenODEsPropuestosPorUsuarios" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPropuestosPorUsuarios48Response">
+    <wsdl:message name="obtenODEsPropuestosPorUsuarios50Response">
         <wsdl:part element="impl:obtenODEsPropuestosPorUsuariosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicados49Request">
+    <wsdl:message name="obtenODEsPublicados51Request">
         <wsdl:part element="impl:obtenODEsPublicados" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicados49Response">
+    <wsdl:message name="obtenODEsPublicados51Response">
         <wsdl:part element="impl:obtenODEsPublicadosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosAutonomo50Request">
+    <wsdl:message name="obtenODEsPublicadosAutonomo52Request">
         <wsdl:part element="impl:obtenODEsPublicadosAutonomo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosAutonomo50Response">
+    <wsdl:message name="obtenODEsPublicadosAutonomo52Response">
         <wsdl:part element="impl:obtenODEsPublicadosAutonomoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosAutonomoPorUsuario51Request">
+    <wsdl:message name="obtenODEsPublicadosAutonomoPorUsuario53Request">
         <wsdl:part element="impl:obtenODEsPublicadosAutonomoPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosAutonomoPorUsuario51Response">
+    <wsdl:message name="obtenODEsPublicadosAutonomoPorUsuario53Response">
         <wsdl:part element="impl:obtenODEsPublicadosAutonomoPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorTitulo52Request">
+    <wsdl:message name="obtenODEsPublicadosPorTitulo54Request">
         <wsdl:part element="impl:obtenODEsPublicadosPorTitulo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorTitulo52Response">
+    <wsdl:message name="obtenODEsPublicadosPorTitulo54Response">
         <wsdl:part element="impl:obtenODEsPublicadosPorTituloResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorTituloYUsuario53Request">
+    <wsdl:message name="obtenODEsPublicadosPorTituloYUsuario55Request">
         <wsdl:part element="impl:obtenODEsPublicadosPorTituloYUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorTituloYUsuario53Response">
+    <wsdl:message name="obtenODEsPublicadosPorTituloYUsuario55Response">
         <wsdl:part element="impl:obtenODEsPublicadosPorTituloYUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorUsuario54Request">
+    <wsdl:message name="obtenODEsPublicadosPorUsuario56Request">
         <wsdl:part element="impl:obtenODEsPublicadosPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadosPorUsuario54Response">
+    <wsdl:message name="obtenODEsPublicadosPorUsuario56Response">
         <wsdl:part element="impl:obtenODEsPublicadosPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadoUsuario55Request">
+    <wsdl:message name="obtenODEsPublicadoUsuario57Request">
         <wsdl:part element="impl:obtenODEsPublicadoUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsPublicadoUsuario55Response">
+    <wsdl:message name="obtenODEsPublicadoUsuario57Response">
         <wsdl:part element="impl:obtenODEsPublicadoUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsRechazadosPorUsuario56Request">
+    <wsdl:message name="obtenODEsRechazadosPorUsuario58Request">
         <wsdl:part element="impl:obtenODEsRechazadosPorUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenODEsRechazadosPorUsuario56Response">
+    <wsdl:message name="obtenODEsRechazadosPorUsuario58Response">
         <wsdl:part element="impl:obtenODEsRechazadosPorUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerCatalogacion57Request">
+    <wsdl:message name="proponerCatalogacion59Request">
         <wsdl:part element="impl:proponerCatalogacion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerCatalogacion57Response">
+    <wsdl:message name="proponerCatalogacion59Response">
         <wsdl:part element="impl:proponerCatalogacionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerCatalogacionNuevaVersion58Request">
+    <wsdl:message name="proponerCatalogacionNuevaVersion60Request">
         <wsdl:part element="impl:proponerCatalogacionNuevaVersion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerCatalogacionNuevaVersion58Response">
+    <wsdl:message name="proponerCatalogacionNuevaVersion60Response">
         <wsdl:part element="impl:proponerCatalogacionNuevaVersionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerPublicacion59Request">
+    <wsdl:message name="proponerPublicacion61Request">
         <wsdl:part element="impl:proponerPublicacion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="proponerPublicacion59Response">
+    <wsdl:message name="proponerPublicacion61Response">
         <wsdl:part element="impl:proponerPublicacionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicar60Request">
+    <wsdl:message name="publicacionExterna62Request">
+        <wsdl:part element="impl:publicacionExterna" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publicacionExterna62Response">
+        <wsdl:part element="impl:publicacionExternaResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="publicar63Request">
         <wsdl:part element="impl:publicar" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicar60Response">
+    <wsdl:message name="publicar63Response">
         <wsdl:part element="impl:publicarResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarAutonomo61Request">
+    <wsdl:message name="publicarAutonomo64Request">
         <wsdl:part element="impl:publicarAutonomo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarAutonomo61Response">
+    <wsdl:message name="publicarAutonomo64Response">
         <wsdl:part element="impl:publicarAutonomoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarDespublicado62Request">
+    <wsdl:message name="publicarDespublicado65Request">
         <wsdl:part element="impl:publicarDespublicado" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarDespublicado62Response">
+    <wsdl:message name="publicarDespublicado65Response">
         <wsdl:part element="impl:publicarDespublicadoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarPIF63Request">
+    <wsdl:message name="publicarPIF66Request">
         <wsdl:part element="impl:publicarPIF" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarPIF63Response">
+    <wsdl:message name="publicarPIF66Response">
         <wsdl:part element="impl:publicarPIFResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarPifCarga64Request">
+    <wsdl:message name="publicarPifCarga67Request">
         <wsdl:part element="impl:publicarPifCarga" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarPifCarga64Response">
+    <wsdl:message name="publicarPifCarga67Response">
         <wsdl:part element="impl:publicarPifCargaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="publicarWebSemantica65Request">
-        <wsdl:part element="impl:publicarWebSemantica" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="publicarWebSemantica65Response">
-        <wsdl:part element="impl:publicarWebSemanticaResponse" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="rechazar66Request">
+    <wsdl:message name="rechazar68Request">
         <wsdl:part element="impl:rechazar" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="rechazar66Response">
+    <wsdl:message name="rechazar68Response">
         <wsdl:part element="impl:rechazarResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="regeneraIndiceIdioma67Request">
+    <wsdl:message name="regeneraIndiceIdioma69Request">
         <wsdl:part element="impl:regeneraIndiceIdioma" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="regeneraIndiceIdioma67Response">
+    <wsdl:message name="regeneraIndiceIdioma69Response">
         <wsdl:part element="impl:regeneraIndiceIdiomaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="regenerarImagenes68Request">
+    <wsdl:message name="regenerarImagenes70Request">
         <wsdl:part element="impl:regenerarImagenes" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="regenerarImagenes68Response">
+    <wsdl:message name="regenerarImagenes70Response">
         <wsdl:part element="impl:regenerarImagenesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="reindexarODEPublicado69Request">
+    <wsdl:message name="reindexarODEPublicado71Request">
         <wsdl:part element="impl:reindexarODEPublicado" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="reindexarODEPublicado69Response">
+    <wsdl:message name="reindexarODEPublicado71Response">
         <wsdl:part element="impl:reindexarODEPublicadoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="reindexarODEsPublicados70Request">
+    <wsdl:message name="reindexarODEsPublicados72Request">
         <wsdl:part element="impl:reindexarODEsPublicados" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="reindexarODEsPublicados70Response">
+    <wsdl:message name="reindexarODEsPublicados72Response">
         <wsdl:part element="impl:reindexarODEsPublicadosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="subirFichero71Request">
+    <wsdl:message name="subirFichero73Request">
         <wsdl:part element="impl:subirFichero" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="subirFichero71Response">
+    <wsdl:message name="subirFichero73Response">
         <wsdl:part element="impl:subirFicheroResponse" name="parameters"/>
     </wsdl:message>
 
@@ -4278,16 +4391,16 @@
             <wsdl:output message="impl:descompartirODE12Response" 
                          name="descompartirODE12Response"/>
         </wsdl:operation>
-        <wsdl:operation name="despublicarWebSemantica">
+        <wsdl:operation name="despublicacionExterna">
                 
             <wsdl:documentation> 
                 Metodo que llama a noDisponible con algunos argumentos ya fijos.
                 Este metodo lo usaran de forma externa desde la web semantica
             </wsdl:documentation>
-            <wsdl:input message="impl:despublicarWebSemantica13Request" 
-                        name="despublicarWebSemantica13Request"/>
-            <wsdl:output message="impl:despublicarWebSemantica13Response" 
-                         name="despublicarWebSemantica13Response"/>
+            <wsdl:input message="impl:despublicacionExterna13Request" 
+                        name="despublicacionExterna13Request"/>
+            <wsdl:output message="impl:despublicacionExterna13Response" 
+                         name="despublicacionExterna13Response"/>
         </wsdl:operation>
         <wsdl:operation name="eliminar">
                 
@@ -4425,25 +4538,25 @@
             <wsdl:output message="impl:noDisponibles23Response" 
                          name="noDisponibles23Response"/>
         </wsdl:operation>
-        <wsdl:operation name="obtenerEditoresOdeWebSemantica">
+        <wsdl:operation name="obtenerEditoresOdeExterno">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerEditoresOdeWebSemantica24Request" 
-                        name="obtenerEditoresOdeWebSemantica24Request"/>
-            <wsdl:output message="impl:obtenerEditoresOdeWebSemantica24Response" 
-                         name="obtenerEditoresOdeWebSemantica24Response"/>
+            <wsdl:input message="impl:obtenerEditoresOdeExterno24Request" 
+                        name="obtenerEditoresOdeExterno24Request"/>
+            <wsdl:output message="impl:obtenerEditoresOdeExterno24Response" 
+                         name="obtenerEditoresOdeExterno24Response"/>
         </wsdl:operation>
-        <wsdl:operation name="obtenerOdesEditablesUsuarioWebSemantica">
+        <wsdl:operation name="obtenerOdesEditablesUsuarioExterno">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerOdesEditablesUsuarioWebSemantica25Request" 
-                        name="obtenerOdesEditablesUsuarioWebSemantica25Request"/>
-            <wsdl:output message="impl:obtenerOdesEditablesUsuarioWebSemantica25Response" 
-                         name="obtenerOdesEditablesUsuarioWebSemantica25Response"/>
+            <wsdl:input message="impl:obtenerOdesEditablesUsuarioExterno25Request" 
+                        name="obtenerOdesEditablesUsuarioExterno25Request"/>
+            <wsdl:output message="impl:obtenerOdesEditablesUsuarioExterno25Response" 
+                         name="obtenerOdesEditablesUsuarioExterno25Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosCreacionDeIdentificadores">
                 
@@ -4615,16 +4728,36 @@
             <wsdl:output message="impl:obtenODEsDespublicadosPorFecha40Response" 
                          name="obtenODEsDespublicadosPorFecha40Response"/>
         </wsdl:operation>
+        <wsdl:operation name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Request" 
+                        name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Request"/>
+            <wsdl:output message="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Response" 
+                         name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Request" 
+                        name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Request"/>
+            <wsdl:output message="impl:obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Response" 
+                         name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Response"/>
+        </wsdl:operation>
         <wsdl:operation name="obtenODEsDespublicadosPorUsuario">
                 
             <wsdl:documentation> 
                 Este metodo devuelve los ODEs que estan en estado No Disponible
                 asociados al usuario dado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsDespublicadosPorUsuario41Request" 
-                        name="obtenODEsDespublicadosPorUsuario41Request"/>
-            <wsdl:output message="impl:obtenODEsDespublicadosPorUsuario41Response" 
-                         name="obtenODEsDespublicadosPorUsuario41Response"/>
+            <wsdl:input message="impl:obtenODEsDespublicadosPorUsuario43Request" 
+                        name="obtenODEsDespublicadosPorUsuario43Request"/>
+            <wsdl:output message="impl:obtenODEsDespublicadosPorUsuario43Response" 
+                         name="obtenODEsDespublicadosPorUsuario43Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsDespublicadosPorUsuarios">
                 
@@ -4632,10 +4765,10 @@
                 Muestra los odes de todos los usuarios que comparten grupo de
                 trabajo que estan despublicados (no disponibles)
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsDespublicadosPorUsuarios42Request" 
-                        name="obtenODEsDespublicadosPorUsuarios42Request"/>
-            <wsdl:output message="impl:obtenODEsDespublicadosPorUsuarios42Response" 
-                         name="obtenODEsDespublicadosPorUsuarios42Response"/>
+            <wsdl:input message="impl:obtenODEsDespublicadosPorUsuarios44Request" 
+                        name="obtenODEsDespublicadosPorUsuarios44Request"/>
+            <wsdl:output message="impl:obtenODEsDespublicadosPorUsuarios44Response" 
+                         name="obtenODEsDespublicadosPorUsuarios44Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPropuestos">
                 
@@ -4643,10 +4776,10 @@
                 Devuelve los odes de todos los usuarios del nodo que estan
                 pendientes de publicacion (en estado propuesto)
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPropuestos43Request" 
-                        name="obtenODEsPropuestos43Request"/>
-            <wsdl:output message="impl:obtenODEsPropuestos43Response" 
-                         name="obtenODEsPropuestos43Response"/>
+            <wsdl:input message="impl:obtenODEsPropuestos45Request" 
+                        name="obtenODEsPropuestos45Request"/>
+            <wsdl:output message="impl:obtenODEsPropuestos45Response" 
+                         name="obtenODEsPropuestos45Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODESPropuestosCatalogacion">
                 
@@ -4654,20 +4787,20 @@
                 Devuelve los odes de todos los usuarios que esten pendientes de
                 catalogar.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODESPropuestosCatalogacion44Request" 
-                        name="obtenODESPropuestosCatalogacion44Request"/>
-            <wsdl:output message="impl:obtenODESPropuestosCatalogacion44Response" 
-                         name="obtenODESPropuestosCatalogacion44Response"/>
+            <wsdl:input message="impl:obtenODESPropuestosCatalogacion46Request" 
+                        name="obtenODESPropuestosCatalogacion46Request"/>
+            <wsdl:output message="impl:obtenODESPropuestosCatalogacion46Response" 
+                         name="obtenODESPropuestosCatalogacion46Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODESPropuestosCatalogacionPorUsuario">
                 
             <wsdl:documentation> 
                 devuelve los odes del usuario que esten pendientes de catalogar.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODESPropuestosCatalogacionPorUsuario45Request" 
-                        name="obtenODESPropuestosCatalogacionPorUsuario45Request"/>
-            <wsdl:output message="impl:obtenODESPropuestosCatalogacionPorUsuario45Response" 
-                         name="obtenODESPropuestosCatalogacionPorUsuario45Response"/>
+            <wsdl:input message="impl:obtenODESPropuestosCatalogacionPorUsuario47Request" 
+                        name="obtenODESPropuestosCatalogacionPorUsuario47Request"/>
+            <wsdl:output message="impl:obtenODESPropuestosCatalogacionPorUsuario47Response" 
+                         name="obtenODESPropuestosCatalogacionPorUsuario47Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPropuestosCatalogacionPorUsuarios">
                 
@@ -4675,10 +4808,10 @@
                 Método para obtener los Odes propuestos para catalogación de una
                 lista de usuarios
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPropuestosCatalogacionPorUsuarios46Request" 
-                        name="obtenODEsPropuestosCatalogacionPorUsuarios46Request"/>
-            <wsdl:output message="impl:obtenODEsPropuestosCatalogacionPorUsuarios46Response" 
-                         name="obtenODEsPropuestosCatalogacionPorUsuarios46Response"/>
+            <wsdl:input message="impl:obtenODEsPropuestosCatalogacionPorUsuarios48Request" 
+                        name="obtenODEsPropuestosCatalogacionPorUsuarios48Request"/>
+            <wsdl:output message="impl:obtenODEsPropuestosCatalogacionPorUsuarios48Response" 
+                         name="obtenODEsPropuestosCatalogacionPorUsuarios48Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPropuestosPorUsuario">
                 
@@ -4686,20 +4819,20 @@
                 Este metodo devuelve los ODEs en estado PROPUESTO asociados al
                 usuario dado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPropuestosPorUsuario47Request" 
-                        name="obtenODEsPropuestosPorUsuario47Request"/>
-            <wsdl:output message="impl:obtenODEsPropuestosPorUsuario47Response" 
-                         name="obtenODEsPropuestosPorUsuario47Response"/>
+            <wsdl:input message="impl:obtenODEsPropuestosPorUsuario49Request" 
+                        name="obtenODEsPropuestosPorUsuario49Request"/>
+            <wsdl:output message="impl:obtenODEsPropuestosPorUsuario49Response" 
+                         name="obtenODEsPropuestosPorUsuario49Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPropuestosPorUsuarios">
                 
             <wsdl:documentation> 
                 Método para obtener los Odes propuestos de una lista de usuarios
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPropuestosPorUsuarios48Request" 
-                        name="obtenODEsPropuestosPorUsuarios48Request"/>
-            <wsdl:output message="impl:obtenODEsPropuestosPorUsuarios48Response" 
-                         name="obtenODEsPropuestosPorUsuarios48Response"/>
+            <wsdl:input message="impl:obtenODEsPropuestosPorUsuarios50Request" 
+                        name="obtenODEsPropuestosPorUsuarios50Request"/>
+            <wsdl:output message="impl:obtenODEsPropuestosPorUsuarios50Response" 
+                         name="obtenODEsPropuestosPorUsuarios50Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicados">
                 
@@ -4707,10 +4840,10 @@
                 Este metodo devuelve una lista de identificadores de ODEs que se
                 encuentren en estado publicado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicados49Request" 
-                        name="obtenODEsPublicados49Request"/>
-            <wsdl:output message="impl:obtenODEsPublicados49Response" 
-                         name="obtenODEsPublicados49Response"/>
+            <wsdl:input message="impl:obtenODEsPublicados51Request" 
+                        name="obtenODEsPublicados51Request"/>
+            <wsdl:output message="impl:obtenODEsPublicados51Response" 
+                         name="obtenODEsPublicados51Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadosAutonomo">
                 
@@ -4718,10 +4851,10 @@
                 Este metodo devuelve los ODEs que estan en estado
                 PUBLICADO_AUTONOMO.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadosAutonomo50Request" 
-                        name="obtenODEsPublicadosAutonomo50Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadosAutonomo50Response" 
-                         name="obtenODEsPublicadosAutonomo50Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadosAutonomo52Request" 
+                        name="obtenODEsPublicadosAutonomo52Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadosAutonomo52Response" 
+                         name="obtenODEsPublicadosAutonomo52Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadosAutonomoPorUsuario">
                 
@@ -4729,30 +4862,30 @@
                 Este metodo selecciona los ODEs en estado PUBLICADOS_AUTONOMOS
                 asociados al usuario dado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadosAutonomoPorUsuario51Request" 
-                        name="obtenODEsPublicadosAutonomoPorUsuario51Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadosAutonomoPorUsuario51Response" 
-                         name="obtenODEsPublicadosAutonomoPorUsuario51Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadosAutonomoPorUsuario53Request" 
+                        name="obtenODEsPublicadosAutonomoPorUsuario53Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadosAutonomoPorUsuario53Response" 
+                         name="obtenODEsPublicadosAutonomoPorUsuario53Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadosPorTitulo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadosPorTitulo52Request" 
-                        name="obtenODEsPublicadosPorTitulo52Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadosPorTitulo52Response" 
-                         name="obtenODEsPublicadosPorTitulo52Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadosPorTitulo54Request" 
+                        name="obtenODEsPublicadosPorTitulo54Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadosPorTitulo54Response" 
+                         name="obtenODEsPublicadosPorTitulo54Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadosPorTituloYUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadosPorTituloYUsuario53Request" 
-                        name="obtenODEsPublicadosPorTituloYUsuario53Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadosPorTituloYUsuario53Response" 
-                         name="obtenODEsPublicadosPorTituloYUsuario53Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadosPorTituloYUsuario55Request" 
+                        name="obtenODEsPublicadosPorTituloYUsuario55Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadosPorTituloYUsuario55Response" 
+                         name="obtenODEsPublicadosPorTituloYUsuario55Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadosPorUsuario">
                 
@@ -4760,10 +4893,10 @@
                 Este metodo selecciona los ODEs en estado PROPUESTO asociados al
                 usuario dado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadosPorUsuario54Request" 
-                        name="obtenODEsPublicadosPorUsuario54Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadosPorUsuario54Response" 
-                         name="obtenODEsPublicadosPorUsuario54Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadosPorUsuario56Request" 
+                        name="obtenODEsPublicadosPorUsuario56Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadosPorUsuario56Response" 
+                         name="obtenODEsPublicadosPorUsuario56Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsPublicadoUsuario">
                 
@@ -4771,20 +4904,20 @@
                 Este metodo devuelve la información de publicación de los ODEs
                 que se han publicado para el usuario suministrado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsPublicadoUsuario55Request" 
-                        name="obtenODEsPublicadoUsuario55Request"/>
-            <wsdl:output message="impl:obtenODEsPublicadoUsuario55Response" 
-                         name="obtenODEsPublicadoUsuario55Response"/>
+            <wsdl:input message="impl:obtenODEsPublicadoUsuario57Request" 
+                        name="obtenODEsPublicadoUsuario57Request"/>
+            <wsdl:output message="impl:obtenODEsPublicadoUsuario57Response" 
+                         name="obtenODEsPublicadoUsuario57Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenODEsRechazadosPorUsuario">
                 
             <wsdl:documentation> 
                 Devuelve los odes del usuario que estan en estado rechazado.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenODEsRechazadosPorUsuario56Request" 
-                        name="obtenODEsRechazadosPorUsuario56Request"/>
-            <wsdl:output message="impl:obtenODEsRechazadosPorUsuario56Response" 
-                         name="obtenODEsRechazadosPorUsuario56Response"/>
+            <wsdl:input message="impl:obtenODEsRechazadosPorUsuario58Request" 
+                        name="obtenODEsRechazadosPorUsuario58Request"/>
+            <wsdl:output message="impl:obtenODEsRechazadosPorUsuario58Response" 
+                         name="obtenODEsRechazadosPorUsuario58Response"/>
         </wsdl:operation>
         <wsdl:operation name="proponerCatalogacion">
                 
@@ -4793,10 +4926,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:proponerCatalogacion57Request" 
-                        name="proponerCatalogacion57Request"/>
-            <wsdl:output message="impl:proponerCatalogacion57Response" 
-                         name="proponerCatalogacion57Response"/>
+            <wsdl:input message="impl:proponerCatalogacion59Request" 
+                        name="proponerCatalogacion59Request"/>
+            <wsdl:output message="impl:proponerCatalogacion59Response" 
+                         name="proponerCatalogacion59Response"/>
         </wsdl:operation>
         <wsdl:operation name="proponerCatalogacionNuevaVersion">
                 
@@ -4809,10 +4942,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:proponerCatalogacionNuevaVersion58Request" 
-                        name="proponerCatalogacionNuevaVersion58Request"/>
-            <wsdl:output message="impl:proponerCatalogacionNuevaVersion58Response" 
-                         name="proponerCatalogacionNuevaVersion58Response"/>
+            <wsdl:input message="impl:proponerCatalogacionNuevaVersion60Request" 
+                        name="proponerCatalogacionNuevaVersion60Request"/>
+            <wsdl:output message="impl:proponerCatalogacionNuevaVersion60Response" 
+                         name="proponerCatalogacionNuevaVersion60Response"/>
         </wsdl:operation>
         <wsdl:operation name="proponerPublicacion">
                 
@@ -4821,10 +4954,20 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:proponerPublicacion59Request" 
-                        name="proponerPublicacion59Request"/>
-            <wsdl:output message="impl:proponerPublicacion59Response" 
-                         name="proponerPublicacion59Response"/>
+            <wsdl:input message="impl:proponerPublicacion61Request" 
+                        name="proponerPublicacion61Request"/>
+            <wsdl:output message="impl:proponerPublicacion61Response" 
+                         name="proponerPublicacion61Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="publicacionExterna">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:publicacionExterna62Request" 
+                        name="publicacionExterna62Request"/>
+            <wsdl:output message="impl:publicacionExterna62Response" 
+                         name="publicacionExterna62Response"/>
         </wsdl:operation>
         <wsdl:operation name="publicar">
                 
@@ -4835,10 +4978,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:publicar60Request" 
-                        name="publicar60Request"/>
-            <wsdl:output message="impl:publicar60Response" 
-                         name="publicar60Response"/>
+            <wsdl:input message="impl:publicar63Request" 
+                        name="publicar63Request"/>
+            <wsdl:output message="impl:publicar63Response" 
+                         name="publicar63Response"/>
         </wsdl:operation>
         <wsdl:operation name="publicarAutonomo">
                 
@@ -4848,10 +4991,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:publicarAutonomo61Request" 
-                        name="publicarAutonomo61Request"/>
-            <wsdl:output message="impl:publicarAutonomo61Response" 
-                         name="publicarAutonomo61Response"/>
+            <wsdl:input message="impl:publicarAutonomo64Request" 
+                        name="publicarAutonomo64Request"/>
+            <wsdl:output message="impl:publicarAutonomo64Response" 
+                         name="publicarAutonomo64Response"/>
         </wsdl:operation>
         <wsdl:operation name="publicarDespublicado">
                 
@@ -4861,10 +5004,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:publicarDespublicado62Request" 
-                        name="publicarDespublicado62Request"/>
-            <wsdl:output message="impl:publicarDespublicado62Response" 
-                         name="publicarDespublicado62Response"/>
+            <wsdl:input message="impl:publicarDespublicado65Request" 
+                        name="publicarDespublicado65Request"/>
+            <wsdl:output message="impl:publicarDespublicado65Response" 
+                         name="publicarDespublicado65Response"/>
         </wsdl:operation>
         <wsdl:operation name="publicarPIF">
                 
@@ -4875,10 +5018,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:publicarPIF63Request" 
-                        name="publicarPIF63Request"/>
-            <wsdl:output message="impl:publicarPIF63Response" 
-                         name="publicarPIF63Response"/>
+            <wsdl:input message="impl:publicarPIF66Request" 
+                        name="publicarPIF66Request"/>
+            <wsdl:output message="impl:publicarPIF66Response" 
+                         name="publicarPIF66Response"/>
         </wsdl:operation>
         <wsdl:operation name="publicarPifCarga">
                 
@@ -4886,20 +5029,10 @@
                 Método que realiza la carga masiva del conjunto que odes que se
                 pasan por parámetro.
             </wsdl:documentation>
-            <wsdl:input message="impl:publicarPifCarga64Request" 
-                        name="publicarPifCarga64Request"/>
-            <wsdl:output message="impl:publicarPifCarga64Response" 
-                         name="publicarPifCarga64Response"/>
-        </wsdl:operation>
-        <wsdl:operation name="publicarWebSemantica">
-                
-            <wsdl:documentation> 
-                
-            </wsdl:documentation>
-            <wsdl:input message="impl:publicarWebSemantica65Request" 
-                        name="publicarWebSemantica65Request"/>
-            <wsdl:output message="impl:publicarWebSemantica65Response" 
-                         name="publicarWebSemantica65Response"/>
+            <wsdl:input message="impl:publicarPifCarga67Request" 
+                        name="publicarPifCarga67Request"/>
+            <wsdl:output message="impl:publicarPifCarga67Response" 
+                         name="publicarPifCarga67Response"/>
         </wsdl:operation>
         <wsdl:operation name="rechazar">
                 
@@ -4908,10 +5041,10 @@
                 Devuelve un VO con el error que se ha producido en el caso de
                 detectarse algun problema.
             </wsdl:documentation>
-            <wsdl:input message="impl:rechazar66Request" 
-                        name="rechazar66Request"/>
-            <wsdl:output message="impl:rechazar66Response" 
-                         name="rechazar66Response"/>
+            <wsdl:input message="impl:rechazar68Request" 
+                        name="rechazar68Request"/>
+            <wsdl:output message="impl:rechazar68Response" 
+                         name="rechazar68Response"/>
         </wsdl:operation>
         <wsdl:operation name="regeneraIndiceIdioma">
                 
@@ -4921,20 +5054,20 @@
                 los odes publicados en el momento de la invocacion para cada
                 idioma afectado.
             </wsdl:documentation>
-            <wsdl:input message="impl:regeneraIndiceIdioma67Request" 
-                        name="regeneraIndiceIdioma67Request"/>
-            <wsdl:output message="impl:regeneraIndiceIdioma67Response" 
-                         name="regeneraIndiceIdioma67Response"/>
+            <wsdl:input message="impl:regeneraIndiceIdioma69Request" 
+                        name="regeneraIndiceIdioma69Request"/>
+            <wsdl:output message="impl:regeneraIndiceIdioma69Response" 
+                         name="regeneraIndiceIdioma69Response"/>
         </wsdl:operation>
         <wsdl:operation name="regenerarImagenes">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:regenerarImagenes68Request" 
-                        name="regenerarImagenes68Request"/>
-            <wsdl:output message="impl:regenerarImagenes68Response" 
-                         name="regenerarImagenes68Response"/>
+            <wsdl:input message="impl:regenerarImagenes70Request" 
+                        name="regenerarImagenes70Request"/>
+            <wsdl:output message="impl:regenerarImagenes70Response" 
+                         name="regenerarImagenes70Response"/>
         </wsdl:operation>
         <wsdl:operation name="reindexarODEPublicado">
                 
@@ -4943,10 +5076,10 @@
                 indica con la valoracion que le pasan.
                 Devuelve un VO con el codigo de exito o error en la operacion.
             </wsdl:documentation>
-            <wsdl:input message="impl:reindexarODEPublicado69Request" 
-                        name="reindexarODEPublicado69Request"/>
-            <wsdl:output message="impl:reindexarODEPublicado69Response" 
-                         name="reindexarODEPublicado69Response"/>
+            <wsdl:input message="impl:reindexarODEPublicado71Request" 
+                        name="reindexarODEPublicado71Request"/>
+            <wsdl:output message="impl:reindexarODEPublicado71Response" 
+                         name="reindexarODEPublicado71Response"/>
         </wsdl:operation>
         <wsdl:operation name="reindexarODEsPublicados">
                 
@@ -4957,20 +5090,20 @@
                 idioma.
                 Se devuelve un VO con codigo de exito/fracaso para cada ODE.
             </wsdl:documentation>
-            <wsdl:input message="impl:reindexarODEsPublicados70Request" 
-                        name="reindexarODEsPublicados70Request"/>
-            <wsdl:output message="impl:reindexarODEsPublicados70Response" 
-                         name="reindexarODEsPublicados70Response"/>
+            <wsdl:input message="impl:reindexarODEsPublicados72Request" 
+                        name="reindexarODEsPublicados72Request"/>
+            <wsdl:output message="impl:reindexarODEsPublicados72Response" 
+                         name="reindexarODEsPublicados72Response"/>
         </wsdl:operation>
         <wsdl:operation name="subirFichero">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:subirFichero71Request" 
-                        name="subirFichero71Request"/>
-            <wsdl:output message="impl:subirFichero71Response" 
-                         name="subirFichero71Response"/>
+            <wsdl:input message="impl:subirFichero73Request" 
+                        name="subirFichero73Request"/>
+            <wsdl:output message="impl:subirFichero73Response" 
+                         name="subirFichero73Response"/>
         </wsdl:operation>
     </wsdl:portType>
     
@@ -5085,12 +5218,12 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="despublicarWebSemantica">
-            <wsdlsoap:operation soapAction="despublicarWebSemantica" style="document"/>
-            <wsdl:input name="despublicarWebSemantica13Request">
+        <wsdl:operation name="despublicacionExterna">
+            <wsdlsoap:operation soapAction="despublicacionExterna" style="document"/>
+            <wsdl:input name="despublicacionExterna13Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="despublicarWebSemantica13Response">
+            <wsdl:output name="despublicacionExterna13Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
@@ -5184,21 +5317,21 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="obtenerEditoresOdeWebSemantica">
-            <wsdlsoap:operation soapAction="obtenerEditoresOdeWebSemantica" style="document"/>
-            <wsdl:input name="obtenerEditoresOdeWebSemantica24Request">
+        <wsdl:operation name="obtenerEditoresOdeExterno">
+            <wsdlsoap:operation soapAction="obtenerEditoresOdeExterno" style="document"/>
+            <wsdl:input name="obtenerEditoresOdeExterno24Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerEditoresOdeWebSemantica24Response">
+            <wsdl:output name="obtenerEditoresOdeExterno24Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="obtenerOdesEditablesUsuarioWebSemantica">
-            <wsdlsoap:operation soapAction="obtenerOdesEditablesUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="obtenerOdesEditablesUsuarioWebSemantica25Request">
+        <wsdl:operation name="obtenerOdesEditablesUsuarioExterno">
+            <wsdlsoap:operation soapAction="obtenerOdesEditablesUsuarioExterno" style="document"/>
+            <wsdl:input name="obtenerOdesEditablesUsuarioExterno25Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerOdesEditablesUsuarioWebSemantica25Response">
+            <wsdl:output name="obtenerOdesEditablesUsuarioExterno25Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
@@ -5337,282 +5470,300 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="obtenODEsDespublicadosPorUsuario">
-            <wsdlsoap:operation soapAction="obtenODEsDespublicadosPorUsuario" style="document"/>
-            <wsdl:input name="obtenODEsDespublicadosPorUsuario41Request">
+        <wsdl:operation name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha">
+            <wsdlsoap:operation soapAction="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha" style="document"/>
+            <wsdl:input name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsDespublicadosPorUsuario41Response">
+            <wsdl:output name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha41Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha">
+            <wsdlsoap:operation soapAction="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha" style="document"/>
+            <wsdl:input name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha42Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="obtenODEsDespublicadosPorUsuario">
+            <wsdlsoap:operation soapAction="obtenODEsDespublicadosPorUsuario" style="document"/>
+            <wsdl:input name="obtenODEsDespublicadosPorUsuario43Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenODEsDespublicadosPorUsuario43Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsDespublicadosPorUsuarios">
             <wsdlsoap:operation soapAction="obtenODEsDespublicadosPorUsuarios" style="document"/>
-            <wsdl:input name="obtenODEsDespublicadosPorUsuarios42Request">
+            <wsdl:input name="obtenODEsDespublicadosPorUsuarios44Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsDespublicadosPorUsuarios42Response">
+            <wsdl:output name="obtenODEsDespublicadosPorUsuarios44Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPropuestos">
             <wsdlsoap:operation soapAction="obtenODEsPropuestos" style="document"/>
-            <wsdl:input name="obtenODEsPropuestos43Request">
+            <wsdl:input name="obtenODEsPropuestos45Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPropuestos43Response">
+            <wsdl:output name="obtenODEsPropuestos45Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODESPropuestosCatalogacion">
             <wsdlsoap:operation soapAction="obtenODESPropuestosCatalogacion" style="document"/>
-            <wsdl:input name="obtenODESPropuestosCatalogacion44Request">
+            <wsdl:input name="obtenODESPropuestosCatalogacion46Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODESPropuestosCatalogacion44Response">
+            <wsdl:output name="obtenODESPropuestosCatalogacion46Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODESPropuestosCatalogacionPorUsuario">
             <wsdlsoap:operation soapAction="obtenODESPropuestosCatalogacionPorUsuario" style="document"/>
-            <wsdl:input name="obtenODESPropuestosCatalogacionPorUsuario45Request">
+            <wsdl:input name="obtenODESPropuestosCatalogacionPorUsuario47Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODESPropuestosCatalogacionPorUsuario45Response">
+            <wsdl:output name="obtenODESPropuestosCatalogacionPorUsuario47Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPropuestosCatalogacionPorUsuarios">
             <wsdlsoap:operation soapAction="obtenODEsPropuestosCatalogacionPorUsuarios" style="document"/>
-            <wsdl:input name="obtenODEsPropuestosCatalogacionPorUsuarios46Request">
+            <wsdl:input name="obtenODEsPropuestosCatalogacionPorUsuarios48Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPropuestosCatalogacionPorUsuarios46Response">
+            <wsdl:output name="obtenODEsPropuestosCatalogacionPorUsuarios48Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPropuestosPorUsuario">
             <wsdlsoap:operation soapAction="obtenODEsPropuestosPorUsuario" style="document"/>
-            <wsdl:input name="obtenODEsPropuestosPorUsuario47Request">
+            <wsdl:input name="obtenODEsPropuestosPorUsuario49Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPropuestosPorUsuario47Response">
+            <wsdl:output name="obtenODEsPropuestosPorUsuario49Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPropuestosPorUsuarios">
             <wsdlsoap:operation soapAction="obtenODEsPropuestosPorUsuarios" style="document"/>
-            <wsdl:input name="obtenODEsPropuestosPorUsuarios48Request">
+            <wsdl:input name="obtenODEsPropuestosPorUsuarios50Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPropuestosPorUsuarios48Response">
+            <wsdl:output name="obtenODEsPropuestosPorUsuarios50Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicados">
             <wsdlsoap:operation soapAction="obtenODEsPublicados" style="document"/>
-            <wsdl:input name="obtenODEsPublicados49Request">
+            <wsdl:input name="obtenODEsPublicados51Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicados49Response">
+            <wsdl:output name="obtenODEsPublicados51Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadosAutonomo">
             <wsdlsoap:operation soapAction="obtenODEsPublicadosAutonomo" style="document"/>
-            <wsdl:input name="obtenODEsPublicadosAutonomo50Request">
+            <wsdl:input name="obtenODEsPublicadosAutonomo52Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadosAutonomo50Response">
+            <wsdl:output name="obtenODEsPublicadosAutonomo52Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadosAutonomoPorUsuario">
             <wsdlsoap:operation soapAction="obtenODEsPublicadosAutonomoPorUsuario" style="document"/>
-            <wsdl:input name="obtenODEsPublicadosAutonomoPorUsuario51Request">
+            <wsdl:input name="obtenODEsPublicadosAutonomoPorUsuario53Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadosAutonomoPorUsuario51Response">
+            <wsdl:output name="obtenODEsPublicadosAutonomoPorUsuario53Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadosPorTitulo">
             <wsdlsoap:operation soapAction="obtenODEsPublicadosPorTitulo" style="document"/>
-            <wsdl:input name="obtenODEsPublicadosPorTitulo52Request">
+            <wsdl:input name="obtenODEsPublicadosPorTitulo54Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadosPorTitulo52Response">
+            <wsdl:output name="obtenODEsPublicadosPorTitulo54Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadosPorTituloYUsuario">
             <wsdlsoap:operation soapAction="obtenODEsPublicadosPorTituloYUsuario" style="document"/>
-            <wsdl:input name="obtenODEsPublicadosPorTituloYUsuario53Request">
+            <wsdl:input name="obtenODEsPublicadosPorTituloYUsuario55Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadosPorTituloYUsuario53Response">
+            <wsdl:output name="obtenODEsPublicadosPorTituloYUsuario55Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadosPorUsuario">
             <wsdlsoap:operation soapAction="obtenODEsPublicadosPorUsuario" style="document"/>
-            <wsdl:input name="obtenODEsPublicadosPorUsuario54Request">
+            <wsdl:input name="obtenODEsPublicadosPorUsuario56Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadosPorUsuario54Response">
+            <wsdl:output name="obtenODEsPublicadosPorUsuario56Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsPublicadoUsuario">
             <wsdlsoap:operation soapAction="obtenODEsPublicadoUsuario" style="document"/>
-            <wsdl:input name="obtenODEsPublicadoUsuario55Request">
+            <wsdl:input name="obtenODEsPublicadoUsuario57Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsPublicadoUsuario55Response">
+            <wsdl:output name="obtenODEsPublicadoUsuario57Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenODEsRechazadosPorUsuario">
             <wsdlsoap:operation soapAction="obtenODEsRechazadosPorUsuario" style="document"/>
-            <wsdl:input name="obtenODEsRechazadosPorUsuario56Request">
+            <wsdl:input name="obtenODEsRechazadosPorUsuario58Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenODEsRechazadosPorUsuario56Response">
+            <wsdl:output name="obtenODEsRechazadosPorUsuario58Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="proponerCatalogacion">
             <wsdlsoap:operation soapAction="proponerCatalogacion" style="document"/>
-            <wsdl:input name="proponerCatalogacion57Request">
+            <wsdl:input name="proponerCatalogacion59Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="proponerCatalogacion57Response">
+            <wsdl:output name="proponerCatalogacion59Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="proponerCatalogacionNuevaVersion">
             <wsdlsoap:operation soapAction="proponerCatalogacionNuevaVersion" style="document"/>
-            <wsdl:input name="proponerCatalogacionNuevaVersion58Request">
+            <wsdl:input name="proponerCatalogacionNuevaVersion60Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="proponerCatalogacionNuevaVersion58Response">
+            <wsdl:output name="proponerCatalogacionNuevaVersion60Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="proponerPublicacion">
             <wsdlsoap:operation soapAction="proponerPublicacion" style="document"/>
-            <wsdl:input name="proponerPublicacion59Request">
+            <wsdl:input name="proponerPublicacion61Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="proponerPublicacion59Response">
+            <wsdl:output name="proponerPublicacion61Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="publicacionExterna">
+            <wsdlsoap:operation soapAction="publicacionExterna" style="document"/>
+            <wsdl:input name="publicacionExterna62Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="publicacionExterna62Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="publicar">
             <wsdlsoap:operation soapAction="publicar" style="document"/>
-            <wsdl:input name="publicar60Request">
+            <wsdl:input name="publicar63Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="publicar60Response">
+            <wsdl:output name="publicar63Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="publicarAutonomo">
             <wsdlsoap:operation soapAction="publicarAutonomo" style="document"/>
-            <wsdl:input name="publicarAutonomo61Request">
+            <wsdl:input name="publicarAutonomo64Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="publicarAutonomo61Response">
+            <wsdl:output name="publicarAutonomo64Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="publicarDespublicado">
             <wsdlsoap:operation soapAction="publicarDespublicado" style="document"/>
-            <wsdl:input name="publicarDespublicado62Request">
+            <wsdl:input name="publicarDespublicado65Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="publicarDespublicado62Response">
+            <wsdl:output name="publicarDespublicado65Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="publicarPIF">
             <wsdlsoap:operation soapAction="publicarPIF" style="document"/>
-            <wsdl:input name="publicarPIF63Request">
+            <wsdl:input name="publicarPIF66Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="publicarPIF63Response">
+            <wsdl:output name="publicarPIF66Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="publicarPifCarga">
             <wsdlsoap:operation soapAction="publicarPifCarga" style="document"/>
-            <wsdl:input name="publicarPifCarga64Request">
+            <wsdl:input name="publicarPifCarga67Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="publicarPifCarga64Response">
-                <wsdlsoap:body use="literal"/>
-            </wsdl:output>
-       </wsdl:operation>         
-        <wsdl:operation name="publicarWebSemantica">
-            <wsdlsoap:operation soapAction="publicarWebSemantica" style="document"/>
-            <wsdl:input name="publicarWebSemantica65Request">
-                <wsdlsoap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output name="publicarWebSemantica65Response">
+            <wsdl:output name="publicarPifCarga67Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="rechazar">
             <wsdlsoap:operation soapAction="rechazar" style="document"/>
-            <wsdl:input name="rechazar66Request">
+            <wsdl:input name="rechazar68Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="rechazar66Response">
+            <wsdl:output name="rechazar68Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="regeneraIndiceIdioma">
             <wsdlsoap:operation soapAction="regeneraIndiceIdioma" style="document"/>
-            <wsdl:input name="regeneraIndiceIdioma67Request">
+            <wsdl:input name="regeneraIndiceIdioma69Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="regeneraIndiceIdioma67Response">
+            <wsdl:output name="regeneraIndiceIdioma69Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="regenerarImagenes">
             <wsdlsoap:operation soapAction="regenerarImagenes" style="document"/>
-            <wsdl:input name="regenerarImagenes68Request">
+            <wsdl:input name="regenerarImagenes70Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="regenerarImagenes68Response">
+            <wsdl:output name="regenerarImagenes70Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="reindexarODEPublicado">
             <wsdlsoap:operation soapAction="reindexarODEPublicado" style="document"/>
-            <wsdl:input name="reindexarODEPublicado69Request">
+            <wsdl:input name="reindexarODEPublicado71Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="reindexarODEPublicado69Response">
+            <wsdl:output name="reindexarODEPublicado71Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="reindexarODEsPublicados">
             <wsdlsoap:operation soapAction="reindexarODEsPublicados" style="document"/>
-            <wsdl:input name="reindexarODEsPublicados70Request">
+            <wsdl:input name="reindexarODEsPublicados72Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="reindexarODEsPublicados70Response">
+            <wsdl:output name="reindexarODEsPublicados72Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="subirFichero">
             <wsdlsoap:operation soapAction="subirFichero" style="document"/>
-            <wsdl:input name="subirFichero71Request">
+            <wsdl:input name="subirFichero73Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="subirFichero71Response">
+            <wsdl:output name="subirFichero73Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         

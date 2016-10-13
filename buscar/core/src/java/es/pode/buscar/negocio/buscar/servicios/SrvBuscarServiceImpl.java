@@ -1480,7 +1480,6 @@ public class SrvBuscarServiceImpl
     
 	}
 	
-	
 	private MetadatoBasicoVO mapearDocVO30ToMetadatoBasicoVO(DocVO30 documentoBusqueda,NodoVO[] nodos){
 		String[] ambitosTraducidos = null;
 		//TODO Creo que era en la primera posición donde iba el ámbito universal si es que va. Hay que comprobar
@@ -1517,8 +1516,8 @@ public class SrvBuscarServiceImpl
 			}
 		}
 		return new MetadatoBasicoVO(documentoBusqueda.getLicencias(),
-				documentoBusqueda.getTitulo(),
-				documentoBusqueda.getDescripcion(),
+				UtilesString.eliminaCaracteresProblematicosParaVisualizador(documentoBusqueda.getTitulo()),
+				UtilesString.eliminaCaracteresProblematicosParaVisualizador(documentoBusqueda.getDescripcion()),
 				documentoBusqueda.getFormato(),
 				documentoBusqueda.getDestinatarios(),
 				documentoBusqueda.getIdioma(),

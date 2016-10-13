@@ -2105,7 +2105,7 @@ private void trataLom (String cat, Lom[] obj, List<ErrorParseoVO> errores, Prope
 	 * @return ValidaVO Información del resultado de la validación
 	 */
  	@Override
-	protected ValidaVO handleValidarCatalogacionWebSemantica(
+	protected ValidaVO handleValidarCatalogacionExterna(
 			byte[] ficheroCatalogacion, byte[] ficheroCatalogacionAuxiliar) throws Exception {
 
 		if (logger.isDebugEnabled())

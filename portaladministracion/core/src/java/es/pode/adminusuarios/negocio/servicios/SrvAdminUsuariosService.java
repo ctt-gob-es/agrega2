@@ -30,6 +30,16 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     public java.lang.Long altaUsuario(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException;
 
     /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionExternaVO altaUsuarioExterno(es.pode.adminusuarios.negocio.servicios.UsuarioVO datosUsuario) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionExternaVO autenticacionUsuarioExterno(java.lang.String usuario, java.lang.String password) throws java.rmi.RemoteException;
+
+    /**
      * Eliminación de un grupo
      */
     public es.pode.adminusuarios.negocio.servicios.ValidaBajaGrupoVO bajaGrupo(java.lang.Long[] ids) throws java.rmi.RemoteException;
@@ -43,6 +53,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
      * Eliminación de usuarios
      */
     public es.pode.adminusuarios.negocio.servicios.ValidaBajaUsuarioVO bajaUsuario(java.lang.Long[] ids) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionExternaVO bajaUsuarioExterno(java.lang.String usuario, java.lang.String passwd) throws java.rmi.RemoteException;
 
     /**
 
@@ -159,6 +174,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     public es.pode.adminusuarios.negocio.servicios.UsuarioVO[] listarUsuariosInactivos() throws java.rmi.RemoteException;
 
     /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.UsuarioVO[] listarUsuariosInactivosYdadosDeBaja() throws java.rmi.RemoteException;
+
+    /**
      * Listado de los usuarios del nodo que no han sido dados de alta
      * por el administrador
      */
@@ -181,6 +201,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     public java.lang.String modificarUsuario(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException;
 
     /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionExternaVO modificarUsuarioExterno(es.pode.adminusuarios.negocio.servicios.UsuarioVO datosUsuario) throws java.rmi.RemoteException;
+
+    /**
      * Los usuarios podrán solicitar una nueva clave y que está se
      * les
      *                 envíe por correo electrónico a la cuenta que tienen
@@ -195,6 +220,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
 
      */
     public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuario(java.lang.String usuario) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuarioPorEmail(java.lang.String email) throws java.rmi.RemoteException;
 
     /**
 
@@ -270,4 +300,9 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
 
      */
     public es.pode.adminusuarios.negocio.servicios.UsuarioActivoVO[] usuariosActivos(es.pode.adminusuarios.negocio.servicios.ParametroAuditoriaUsuariosVO parametroAuditoriaVO) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionExternaVO validarCampoUsuarioExterno(java.lang.String nombreCampo, java.lang.String valorCampo) throws java.rmi.RemoteException;
 }

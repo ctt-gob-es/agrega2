@@ -33,6 +33,7 @@ public class EliminarOdesControllerImpl extends EliminarOdesController{
 	public final static String MENSAJE_RESULTADO_CORRECTO = "configurar.avanzado.texto.eliminarODE.resultadoCorrecto";
 	public final static String MENSAJE_IDIOMAS_BUSQUEDA = "listar.odecu.mostrar.resultados.detalles.errorTraduccionTermino";
 	public final static String ERROR_ELIMINANDO_ODES = "errors.odes.eliminar";
+	public final static String MENSAJE_NO_SE_HAN_SELECCIONADO_ODES = "errors.odes.eliminar.no.hay.seleccionados";
 	public final static String ERROR_METADATOS = "errors.odes.metadatos";
 	
 	public final static String SIN_ERRORES = "0.0";
@@ -108,8 +109,10 @@ public class EliminarOdesControllerImpl extends EliminarOdesController{
 						{							
 							log("BuscarAvanzadoControllerImpl - eliminarOdes: ODE eliminado correctamente");
 							this.getSrvCacheService().borrarHitCache();
-						}else
-							saveErrorMessage(request, "ERROR_ELIMINANDO_ODES");
+						} else {
+							log("Error al pasar el ODE a no disponible:" + resultado.getDescripcion());
+							saveErrorMessage(request, ERROR_ELIMINANDO_ODES);
+						}
 					}
 					try{
 						log("EliminarOdesControllerImpl - eliminarOdes:Se va a eliminar la asociación de los ODEs eliminados a los tags sociales");
@@ -119,7 +122,7 @@ public class EliminarOdesControllerImpl extends EliminarOdesController{
 						throw new Exception();
 					}	
     			}else{
-    				saveErrorMessage(request, "ERROR_ELIMINANDO_ODES");
+    				saveErrorMessage(request, "MENSAJE_NO_SE_HAN_SELECCIONADO_ODES2");
     			}
 			}else{
 				logger.error("EliminarOdesControllerImpl - eliminarOdes: No tiene permisos para eliminar ODEs");

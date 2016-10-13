@@ -30,10 +30,10 @@
 	<!--		Inicio  PESTANIAS de FICHA		 -->
 
 	<div id="ficha_pestanias">
-		<div><h2><bean:message key="usuarios.desactivados.cabecera"/></h2></div>
+		<div><h2><bean:message key="usuarios.desactivados.baja.cabecera"/></h2></div>
 		<ul>
 			<li><a href="<html:rewrite action="/ListarUsuarios/ListarUsuarios.do"/>" ><bean:message key="usuarios.pestania.listado"/></a></li>
-			<li id="pest_activa"><a href="<html:rewrite action="/ListarUsuariosInactivos/ListarUsuariosInactivos.do"/>" id="seleccionada"><bean:message key="usuarios.pestania.desactivados"/></a></li>
+			<li id="pest_activa"><a href="<html:rewrite action="/ListarUsuariosInactivos/ListarUsuariosInactivos.do"/>" id="seleccionada"><bean:message key="usuarios.pestania.desactivados.baja"/></a></li>
 			<!--  <li><a href="/${initParam.url_portaladministracion}/ListarUsuariosPendientes/ListarUsuariosPendientes.do"><bean:message key="usuarios.pestania.pendientes"/></a></li>-->
 		</ul>
 	</div>
@@ -75,7 +75,7 @@
 					<!--		Columna de Usuario (html y exportada)		-->
 					
 					<bean:define id="usuarioValueExport"><bean:message key="usuarios.cabecera"/></bean:define>
-				    <display:column media="excel pdf" title="${usuarioValueExport}" autolink="true" paramId="usuario">
+				    <display:column media="excel pdf" title="${usuarioValueExport}" autolink="false" paramId="usuario">
 							${fila.usuario}
 					</display:column>
 		        							
@@ -87,30 +87,38 @@
 					</display:column>
 					
 					
-					<!--		Columna de fecha	(html)	-->
+					<!--		Columna fecha baja	(html)	-->
 					
-					<bean:define id="fechaValue"><bean:message key="tareas.cabeceraFecha"/></bean:define>
-						<display:column sortable="true" sortProperty="fechaDesactivacion" title="${fechaValue}"  style="valign:top;" >
-							<fmt:formatDate value="${fila.fechaDesactivacion}" pattern="dd/MM/yyyy"/>
-						</display:column>
+					<bean:define id="fechaBajaValue"><bean:message key="usuarios.fechaBaja.cabecera"/></bean:define>					
+					<display:column media="html" sortable="true" sortProperty="fechaBajaValue" title="${fechaBajaValue}"  style="valign:top;" >
+						<fmt:formatDate value="${fila.fechaBaja.time}" pattern="dd/MM/yyyy"/>
+					</display:column>
+					
+					
+					<!--		Columna de fecha desactivacion	(html)	-->
+					
+					<bean:define id="fechaDesactivacion"><bean:message key="usuarios.fechaDesactivacion.cabecera"/></bean:define>
+					<display:column media="html" sortable="true" sortProperty="fechaDesactivacion" title="${fechaDesactivacion}"  style="valign:top;" >
+						<fmt:formatDate value="${fila.fechaDesactivacion}" pattern="dd/MM/yyyy"/>
+					</display:column>
 					
 			        
 			        
 			        <!--		Columna de Activar	(html)	-->
-					
 					<display:column media="html" style="valign:top;"> 
-						<html:link action="/ListarUsuariosInactivos/FormularioListadoUsuariosInactivosActivarUsuario?id=${fila.id}">
-							<bean:message key="usuarios.activar"/>
-						</html:link>
-			        </display:column>
-					
+						<c:if test="${empty fila.fechaBaja.time}">
+							<html:link action="/ListarUsuariosInactivos/FormularioListadoUsuariosInactivosActivarUsuario?id=${fila.id}">
+								<bean:message key="usuarios.activar"/>
+							</html:link>
+						</c:if>
+				    </display:column>
 					
 					<!--		COLUMNAS PARA SER EXPORTADAS		-->
 					
 					<!--		Columna Nombre	(exportada)	-->
 					
 					<bean:define id="nombreValueExport"><bean:message key="usuarios.nombre.cabecera"/></bean:define>
-				    <display:column media="excel pdf" title="${nombreValueExport}" autolink="true" paramId="nombre">
+				    <display:column media="excel pdf" title="${nombreValueExport}" autolink="false" paramId="nombre">
 							${fila.nombre}
 					</display:column>
 					
@@ -130,6 +138,38 @@
 							${fila.apellido2}
 					</display:column>
 					
+					
+					<!--		Columna NIF	(exportada)	-->
+					
+					<bean:define id="NIFValueExport"><bean:message key="usuarios.nif.cabecera"/></bean:define>
+				    <display:column media="excel pdf" title="${NIFValueExport}" autolink="true" paramId="NIF">
+							${fila.NIF}
+					</display:column>
+					
+					
+					<!--		Columna fecha alta (exportada)	-->
+					
+					<bean:define id="fechaAltaValueExport"><bean:message key="usuarios.fechaAlta.cabecera"/></bean:define>
+				    <display:column media="excel pdf" title="${fechaAltaValueExport}" autolink="true" paramId="fechaAlta">				    
+							<fmt:formatDate value="${fila.fechaAlta.time}" pattern="dd/MM/yyyy"/>
+					</display:column>
+					
+					
+					<!--		Columna fecha baja	(exportada)	-->
+
+					<bean:define id="fechaBajaValueExport"><bean:message key="usuarios.fechaBaja.cabecera"/></bean:define>
+				    <display:column media="excel pdf" title="${fechaBajaValueExport}" autolink="true" paramId="fechaBaja">				    
+							<fmt:formatDate value="${fila.fechaBaja.time}" pattern="dd/MM/yyyy"/>
+					</display:column>
+
+					
+					<!--		Columna fecha desactivacion	(exportada)	-->
+
+					<bean:define id="fechaDesactivacionValueExport"><bean:message key="usuarios.fechaDesactivacion.cabecera"/></bean:define>
+				    <display:column media="excel pdf" title="${fechaDesactivacionValueExport}" autolink="true" paramId="fechaDesactivacion">
+							<fmt:formatDate value="${fila.fechaDesactivacion}" pattern="dd/MM/yyyy"/>
+					</display:column>	
+
 					
 					<!--		Columna tipo empaquetador	(exportada)	-->
 					

@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Aug 27 13:45:38 CEST 2014'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Tue Dec 15 12:01:04 CET 2015'>
   <XMI.header>
     <XMI.documentation>
       <XMI.exporter>Netbeans XMI Writer</XMI.exporter>
@@ -105,14 +105,14 @@
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a29' name = 'OdeGrupoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                                <UML:Class xmi.id = 'a29' name = 'GrupoPublicoAdminVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a30' name = 'Información del ode asociado a un grupo'
-                                      isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a30' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a31' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a31' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
@@ -122,9 +122,9 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a33' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a33' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a34' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -132,9 +132,9 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a35' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a35' name = 'imagenGrupo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a36' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -142,37 +142,52 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a37' name = 'ContactoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a38' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a39' name = 'usuarioContacto' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a37' name = 'administrador' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a40' name = 'Usuario al que se ha añadido como contacto'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a38' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a41' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a39' name = 'creador' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a42'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a43' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a44' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a40' name = 'Indica si el usuario que accede y el administrador son la misma&#10;                                persona'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a42' name = 'fechaCreacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a43' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a44' name = 'fechaModificacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a45' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a46' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a47' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a28'/>
@@ -180,300 +195,305 @@
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Association xmi.id = 'a45' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a46' name = 'grupoPublico' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a47'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a48' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a50' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a51'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a52' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Association xmi.id = 'a54' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a55' name = 'favoritoUsuario' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a56'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a57' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a58'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a59' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a60'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a61' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Association xmi.id = 'a62' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
-                                  <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a63' name = 'contacto' visibility = 'public'
-                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
-                                      targetScope = 'instance' changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a64'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a65' lower = '0' upper = '-1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a37'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a66' visibility = 'public' isSpecification = 'false'
-                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
-                                      changeability = 'changeable'>
-                                      <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a67'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a68' lower = '1' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:AssociationEnd.multiplicity>
-                                      <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a53'/>
-                                      </UML:AssociationEnd.participant>
-                                    </UML:AssociationEnd>
-                                  </UML:Association.connection>
-                                </UML:Association>
-                                <UML:Class xmi.id = 'a53' name = 'UsuarioPublicoVO' visibility = 'public'
+                                <UML:Class xmi.id = 'a48' name = 'GrupoPublicoAsociadoVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a69' name = 'Usuario público de Agrega. Cada usuario público se correspondará&#10;                        con un usuario registrado en la plataforma'
+                                    <UML:Comment xmi.id = 'a49' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a50' name = 'administrador' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a51' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a52' name = 'asociado' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a53' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a54' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a55' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a56' name = 'fechaCreacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a57' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a58' name = 'fechaModificacion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a59' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a23'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a60' name = 'imagenGrupo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a61' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a62' name = 'nombre' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a63' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a64' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a65' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a28'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a66' name = 'ResultadoOperacionVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a67' name = 'VO para recoger la información de las operaciones realizadas&#10;                        referentes al perfil público'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a70' name = 'foto' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a68' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a71' name = 'Nombre de la foto del usuario' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a72' name = 'mostrarObjetos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a73' name = 'Indica si se va a mostrar los objetos públicos del usuario en su&#10;                                página pública'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a75' name = 'mostrarFavoritos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a76' name = 'Indica si se va a mostrar el bloque de los odes favoritos de un&#10;                                usuario en la página pública de un usuario'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a77' name = 'mostrarGrupos' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a78' name = 'Indica si se va a mostrar los grupos de un usuario en su página&#10;                                pública'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a79' name = 'centroEducativo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a80' name = 'Nombre del centro educativo del usuario'
+                                        <UML:Comment xmi.id = 'a69' name = 'Nombre sobre el que se realiza la operación'
                                           isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a81' name = 'recibirCorreo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a82' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a83' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a70' name = 'resultado' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a84' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a71' name = 'Resultado de la operación, si ha ido bien o no.'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a72' name = 'UsuarioCorreoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a73' name = 'Vo para obtener los datos necesarios de un usuario y saber si&#10;                        debe recibir o no correos'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a74' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a75' name = 'Login del usuario' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a85' name = 'contenidoImagen' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a76' name = 'email' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a77' name = 'El e-mail del usuario' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a78' name = 'recibeCorreo' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a79' name = 'Indica si debe recibir correos o no'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Association xmi.id = 'a80' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a81' name = 'odeGrupo' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a82'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a83' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a84'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a85' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
                                         <UML:Multiplicity xmi.id = 'a86'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a87' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a87' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a88' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a89'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a90' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a88'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Class xmi.id = 'a88' name = 'GrupoPublicoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a89' name = 'El grupo público o learning path engloba usuarios y odes&#10;                        relacionados entre sí. Un usuario podrá crear grupos públicos o&#10;                        asociarse a otros que hayan sido creados por otros usuarios.'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a90' name = 'nombre' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a91'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a92' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a91' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a92' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a93' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a94' name = 'nombreUsuario' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a94' name = 'imagenGrupo' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a95' name = 'Nombre y apellidos del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a95' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a96' name = 'descripcion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a96' name = 'administrador' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a97' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a98' name = 'fechaModificacion' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a97'>
+                                        <UML:Multiplicity xmi.id = 'a99'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a98' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a100' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a99' name = 'Descripcion del usuario publico' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a100' name = 'activo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a101' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a23'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a102' name = 'ContactoAsociadoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a103' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a104' name = 'usuarioContacto' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a102' name = 'fechaCreacion' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a105' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a103' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a23'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a106' name = 'imagenUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a104' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a105'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a106' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a107' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a108' name = 'esAsociadoUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a109' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a110' name = 'descripcionUsuario' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a108' name = 'FavoritoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a109' name = 'Objeto digital de la plataforma que ha sido marcado como&#10;                        favorito por un usuario'
+                                      isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a110' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a111' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
@@ -481,540 +501,520 @@
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a112' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a112' name = 'titulo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
-                                      <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a113'>
-                                          <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a114' lower = '0' upper = '1'/>
-                                          </UML:Multiplicity.range>
-                                        </UML:Multiplicity>
-                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a113' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a114' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a115' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a116' name = 'GrupoPublicoAdminVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
+                                <UML:Class xmi.id = 'a84' name = 'OdeGrupoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a117' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a118' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a119' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a120' name = 'descripcion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a121' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a122' name = 'imagenGrupo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a123' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a124' name = 'administrador' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a125' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a126' name = 'creador' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a127' name = 'Indica si el usuario que accede y el administrador son la misma&#10;                                persona'
-                                          isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a128' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a129' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a130' name = 'fechaModificacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a131' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a132' name = 'id' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a133' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a134' name = 'GrupoPublicoAsociadoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a135' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a136' name = 'administrador' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a137' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a138' name = 'asociado' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a139' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a140' name = 'descripcion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a141' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a142' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a143' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a144' name = 'fechaModificacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a145' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a146' name = 'imagenGrupo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a147' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a148' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a149' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a150' name = 'id' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a151' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a28'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a152' name = 'UsuarioCorreoVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a153' name = 'Vo para obtener los datos necesarios de un usuario y saber si&#10;                        debe recibir o no correos'
+                                    <UML:Comment xmi.id = 'a116' name = 'Información del ode asociado a un grupo'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a154' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a117' name = 'id_mec' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a155' name = 'Login del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a118' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a156' name = 'email' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a119' name = 'titulo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a157' name = 'El e-mail del usuario' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a120' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a158' name = 'recibeCorreo' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a121' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a159' name = 'Indica si debe recibir correos o no'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a122' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a160' name = 'ResultadoOperacionVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
+                                <UML:Class xmi.id = 'a123' name = 'ContactoVO' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a161' name = 'VO para recoger la información de las operaciones realizadas&#10;                        referentes al perfil público'
-                                      isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a124' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a162' name = 'nombre' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a125' name = 'usuarioContacto' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a163' name = 'Nombre sobre el que se realiza la operación'
+                                        <UML:Comment xmi.id = 'a126' name = 'Usuario al que se ha añadido como contacto'
                                           isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a164' name = 'resultado' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
+                                    <UML:Attribute xmi.id = 'a127' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a128'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a129' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a165' name = 'Resultado de la operación, si ha ido bien o no.'
-                                          isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a130' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Association xmi.id = 'a166' visibility = 'public' isSpecification = 'false'
+                                <UML:Association xmi.id = 'a131' visibility = 'public' isSpecification = 'false'
                                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                                   <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a167' name = 'odeGrupo' visibility = 'public'
+                                    <UML:AssociationEnd xmi.id = 'a132' name = 'grupoPublico' visibility = 'public'
                                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                                       targetScope = 'instance' changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a168'>
+                                        <UML:Multiplicity xmi.id = 'a133'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a169' lower = '0' upper = '-1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a134' lower = '0' upper = '-1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a29'/>
+                                        <UML:Class xmi.idref = 'a88'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a170' visibility = 'public' isSpecification = 'false'
+                                    <UML:AssociationEnd xmi.id = 'a135' visibility = 'public' isSpecification = 'false'
                                       isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                                       changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a171'>
+                                        <UML:Multiplicity xmi.id = 'a136'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a172' lower = '1' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a137' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
+                                        <UML:Class xmi.idref = 'a138'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
                                   </UML:Association.connection>
                                 </UML:Association>
-                                <UML:Class xmi.id = 'a49' name = 'GrupoPublicoVO' visibility = 'public'
+                                <UML:Association xmi.id = 'a139' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a140' name = 'favoritoUsuario' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a141'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a142' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a108'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a143' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a144'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a145' lower = '1' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a138'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Association xmi.id = 'a146' visibility = 'public' isSpecification = 'false'
+                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
+                                  <UML:Association.connection>
+                                    <UML:AssociationEnd xmi.id = 'a147' name = 'contacto' visibility = 'public'
+                                      isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
+                                      targetScope = 'instance' changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a148'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a149' lower = '0' upper = '-1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a123'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                    <UML:AssociationEnd xmi.id = 'a150' visibility = 'public' isSpecification = 'false'
+                                      isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
+                                      changeability = 'changeable'>
+                                      <UML:AssociationEnd.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a151'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a152' lower = '1' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:AssociationEnd.multiplicity>
+                                      <UML:AssociationEnd.participant>
+                                        <UML:Class xmi.idref = 'a138'/>
+                                      </UML:AssociationEnd.participant>
+                                    </UML:AssociationEnd>
+                                  </UML:Association.connection>
+                                </UML:Association>
+                                <UML:Class xmi.id = 'a138' name = 'UsuarioPublicoVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a173' name = 'El grupo público o learning path engloba usuarios y odes&#10;                        relacionados entre sí. Un usuario podrá crear grupos públicos o&#10;                        asociarse a otros que hayan sido creados por otros usuarios.'
+                                    <UML:Comment xmi.id = 'a153' name = 'Usuario público de Agrega. Cada usuario público se correspondará&#10;                        con un usuario registrado en la plataforma'
                                       isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a174' name = 'nombre' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a154' name = 'foto' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a175' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a155' name = 'Nombre de la foto del usuario' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a176' name = 'descripcion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a156' name = 'mostrarObjetos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a177' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a157' name = 'Indica si se va a mostrar los objetos públicos del usuario en su&#10;                                página pública'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a178' name = 'imagenGrupo' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a158' name = 'mostrarFavoritos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a179' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a159' name = 'Indica si se va a mostrar el bloque de los odes favoritos de un&#10;                                usuario en la página pública de un usuario'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a180' name = 'administrador' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a160' name = 'mostrarGrupos' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a181' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a161' name = 'Indica si se va a mostrar los grupos de un usuario en su página&#10;                                pública'
+                                          isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a162' name = 'centroEducativo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a163' name = 'Nombre del centro educativo del usuario'
+                                          isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a182' name = 'fechaModificacion' visibility = 'public'
+                                    <UML:Attribute xmi.id = 'a164' name = 'recibirCorreo' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a165' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a166' name = 'usuario' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a167' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a168' name = 'contenidoImagen' visibility = 'public'
                                       isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
                                       targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a183'>
+                                        <UML:Multiplicity xmi.id = 'a169'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a184' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a170' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a185' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a171' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
+                                        <UML:DataType xmi.idref = 'a172'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a186' name = 'fechaCreacion' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a187' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a23'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a188' name = 'id' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a173' name = 'id' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:StructuralFeature.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a189'>
+                                        <UML:Multiplicity xmi.id = 'a174'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a190' lower = '0' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a175' lower = '0' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:StructuralFeature.multiplicity>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a191' name = '' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a176' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Class xmi.id = 'a58' name = 'FavoritoVO' visibility = 'public' isSpecification = 'false'
-                                  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a192' name = 'Objeto digital de la plataforma que ha sido marcado como&#10;                        favorito por un usuario'
-                                      isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a193' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a177' name = 'nombreUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a178' name = 'Nombre y apellidos del usuario' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a179' name = 'descripcion' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a180'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a181' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a182' name = 'Descripcion del usuario publico' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a183' name = 'activo' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a184' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a185' name = 'FavoritoAnadidioVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a186' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a187' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a188' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a189' name = 'titulo' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a190' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a191' name = 'idioma' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a192' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a193' name = 'esFavorito' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
                                       <UML:ModelElement.comment>
                                         <UML:Comment xmi.id = 'a194' name = '' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a195' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a196' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a197' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a198' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
+                                        <UML:DataType xmi.idref = 'a41'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
                                 </UML:Class>
-                                <UML:Class xmi.id = 'a199' name = 'FavoritoAnadidioVO' visibility = 'public'
-                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
-                                  isActive = 'false'>
-                                  <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a200' name = '' isSpecification = 'false'/>
-                                  </UML:ModelElement.comment>
-                                  <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a201' name = 'id_mec' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a202' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a203' name = 'titulo' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a204' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a205' name = 'idioma' visibility = 'public' isSpecification = 'false'
-                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
-                                      ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a206' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a16'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                    <UML:Attribute xmi.id = 'a207' name = 'esFavorito' visibility = 'public'
-                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
-                                      targetScope = 'classifier' ordering = 'unordered'>
-                                      <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a208' name = '' isSpecification = 'false'/>
-                                      </UML:ModelElement.comment>
-                                      <UML:StructuralFeature.type>
-                                        <UML:DataType xmi.idref = 'a74'/>
-                                      </UML:StructuralFeature.type>
-                                    </UML:Attribute>
-                                  </UML:Classifier.feature>
-                                </UML:Class>
-                                <UML:Association xmi.id = 'a209' visibility = 'public' isSpecification = 'false'
+                                <UML:Association xmi.id = 'a195' visibility = 'public' isSpecification = 'false'
                                   isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
                                   <UML:Association.connection>
-                                    <UML:AssociationEnd xmi.id = 'a210' name = 'gruposAsociados' visibility = 'public'
+                                    <UML:AssociationEnd xmi.id = 'a196' name = 'gruposAsociados' visibility = 'public'
                                       isSpecification = 'false' isNavigable = 'true' ordering = 'unordered' aggregation = 'none'
                                       targetScope = 'instance' changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a211'>
+                                        <UML:Multiplicity xmi.id = 'a197'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a212' lower = '0' upper = '-1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a198' lower = '0' upper = '-1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a49'/>
+                                        <UML:Class xmi.idref = 'a88'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
-                                    <UML:AssociationEnd xmi.id = 'a213' visibility = 'public' isSpecification = 'false'
+                                    <UML:AssociationEnd xmi.id = 'a199' visibility = 'public' isSpecification = 'false'
                                       isNavigable = 'false' ordering = 'unordered' aggregation = 'composite' targetScope = 'instance'
                                       changeability = 'changeable'>
                                       <UML:AssociationEnd.multiplicity>
-                                        <UML:Multiplicity xmi.id = 'a214'>
+                                        <UML:Multiplicity xmi.id = 'a200'>
                                           <UML:Multiplicity.range>
-                                            <UML:MultiplicityRange xmi.id = 'a215' lower = '1' upper = '1'/>
+                                            <UML:MultiplicityRange xmi.id = 'a201' lower = '1' upper = '1'/>
                                           </UML:Multiplicity.range>
                                         </UML:Multiplicity>
                                       </UML:AssociationEnd.multiplicity>
                                       <UML:AssociationEnd.participant>
-                                        <UML:Class xmi.idref = 'a216'/>
+                                        <UML:Class xmi.idref = 'a202'/>
                                       </UML:AssociationEnd.participant>
                                     </UML:AssociationEnd>
                                   </UML:Association.connection>
                                 </UML:Association>
-                                <UML:Class xmi.id = 'a216' name = 'OdeConGruposVO' visibility = 'public'
+                                <UML:Class xmi.id = 'a202' name = 'OdeConGruposVO' visibility = 'public'
                                   isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
                                   isActive = 'false'>
                                   <UML:ModelElement.comment>
-                                    <UML:Comment xmi.id = 'a217' name = '' isSpecification = 'false'/>
+                                    <UML:Comment xmi.id = 'a203' name = '' isSpecification = 'false'/>
                                   </UML:ModelElement.comment>
                                   <UML:Classifier.feature>
-                                    <UML:Attribute xmi.id = 'a218' name = 'id_mec' visibility = 'public' isSpecification = 'false'
+                                    <UML:Attribute xmi.id = 'a204' name = 'id_mec' visibility = 'public' isSpecification = 'false'
                                       ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
                                       ordering = 'unordered'>
                                       <UML:ModelElement.comment>
-                                        <UML:Comment xmi.id = 'a219' name = 'El identificador  del ode' isSpecification = 'false'/>
+                                        <UML:Comment xmi.id = 'a205' name = 'El identificador  del ode' isSpecification = 'false'/>
                                       </UML:ModelElement.comment>
                                       <UML:StructuralFeature.type>
                                         <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                  </UML:Classifier.feature>
+                                </UML:Class>
+                                <UML:Class xmi.id = 'a206' name = 'ContactoAsociadoVO' visibility = 'public'
+                                  isSpecification = 'false' isRoot = 'false' isLeaf = 'false' isAbstract = 'false'
+                                  isActive = 'false'>
+                                  <UML:ModelElement.comment>
+                                    <UML:Comment xmi.id = 'a207' name = '' isSpecification = 'false'/>
+                                  </UML:ModelElement.comment>
+                                  <UML:Classifier.feature>
+                                    <UML:Attribute xmi.id = 'a208' name = 'usuarioContacto' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a209' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a210' name = 'imagenUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a211' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a212' name = 'esAsociadoUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a213' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a41'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a214' name = 'descripcionUsuario' visibility = 'public'
+                                      isSpecification = 'false' ownerScope = 'instance' changeability = 'changeable'
+                                      targetScope = 'classifier' ordering = 'unordered'>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a215' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a16'/>
+                                      </UML:StructuralFeature.type>
+                                    </UML:Attribute>
+                                    <UML:Attribute xmi.id = 'a216' name = 'id' visibility = 'public' isSpecification = 'false'
+                                      ownerScope = 'instance' changeability = 'changeable' targetScope = 'classifier'
+                                      ordering = 'unordered'>
+                                      <UML:StructuralFeature.multiplicity>
+                                        <UML:Multiplicity xmi.id = 'a217'>
+                                          <UML:Multiplicity.range>
+                                            <UML:MultiplicityRange xmi.id = 'a218' lower = '0' upper = '1'/>
+                                          </UML:Multiplicity.range>
+                                        </UML:Multiplicity>
+                                      </UML:StructuralFeature.multiplicity>
+                                      <UML:ModelElement.comment>
+                                        <UML:Comment xmi.id = 'a219' name = '' isSpecification = 'false'/>
+                                      </UML:ModelElement.comment>
+                                      <UML:StructuralFeature.type>
+                                        <UML:DataType xmi.idref = 'a28'/>
                                       </UML:StructuralFeature.type>
                                     </UML:Attribute>
                                   </UML:Classifier.feature>
@@ -1100,7 +1100,7 @@
                                         <UML:Parameter xmi.id = 'a244' name = 'aceptarSolicitudGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a245' name = 'idSolicitudGrupo' visibility = 'public'
@@ -1125,7 +1125,7 @@
                                         <UML:Parameter xmi.id = 'a249' name = 'anadirContactoAAgendaReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a160'/>
+                                            <UML:Class xmi.idref = 'a66'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a250' name = 'contacto' visibility = 'public' isSpecification = 'false'
@@ -1134,7 +1134,7 @@
                                             <UML:Comment xmi.id = 'a251' name = 'Contacto que se quiere añadir' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a37'/>
+                                            <UML:Class xmi.idref = 'a123'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a252' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1168,7 +1168,7 @@
                                             <UML:Comment xmi.id = 'a258' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a58'/>
+                                            <UML:Class xmi.idref = 'a108'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a259' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1203,7 +1203,7 @@
                                             <UML:Comment xmi.id = 'a265' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a29'/>
+                                            <UML:Class xmi.idref = 'a84'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a266' name = 'nombres' visibility = 'public' isSpecification = 'false'
@@ -1363,7 +1363,7 @@
                                         <UML:Parameter xmi.id = 'a299' name = 'cambiarImagenPorElDefectoReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a300' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1387,7 +1387,7 @@
                                         <UML:Parameter xmi.id = 'a304' name = 'cancelarSolicitudGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a305' name = 'idSolicitudGrupo' visibility = 'public'
@@ -1421,7 +1421,7 @@
                                             <UML:Comment xmi.id = 'a311' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a312' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1456,7 +1456,7 @@
                                             <UML:Comment xmi.id = 'a318' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a319' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1771,7 +1771,7 @@
                                         <UML:Parameter xmi.id = 'a383' name = 'eliminarUsuarioPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a160'/>
+                                            <UML:Class xmi.idref = 'a66'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a384' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1796,7 +1796,7 @@
                                         <UML:Parameter xmi.id = 'a388' name = 'existeContactoEnAgendaDeUsuarioReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a389' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1829,7 +1829,7 @@
                                         <UML:Parameter xmi.id = 'a395' name = 'existeFavoritoEnUsuarioReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a396' name = 'id_mec' visibility = 'public' isSpecification = 'false'
@@ -1862,7 +1862,7 @@
                                         <UML:Parameter xmi.id = 'a402' name = 'existeGrupoEnUsuarioReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a403' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -1896,7 +1896,7 @@
                                         <UML:Parameter xmi.id = 'a409' name = 'existeNombreGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a410' name = 'nombreGrupo' visibility = 'public'
@@ -1929,7 +1929,7 @@
                                         <UML:Parameter xmi.id = 'a416' name = 'existeOdeEnGrupoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a417' name = 'id_mec' visibility = 'public' isSpecification = 'false'
@@ -1962,7 +1962,7 @@
                                         <UML:Parameter xmi.id = 'a423' name = 'existeSolicitudGrupoIdenticoReturn'
                                           visibility = 'public' isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:DataType xmi.idref = 'a74'/>
+                                            <UML:DataType xmi.idref = 'a41'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a424' name = 'nombreGrupo' visibility = 'public'
@@ -2414,7 +2414,7 @@
                                             <UML:Comment xmi.id = 'a513' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a514' name = 'idGrupo' visibility = 'public' isSpecification = 'false'
@@ -2458,7 +2458,7 @@
                                             <UML:Comment xmi.id = 'a522' name = '' isSpecification = 'false'/>
                                           </UML:ModelElement.comment>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a523' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -2483,7 +2483,7 @@
                                         <UML:Parameter xmi.id = 'a527' name = 'obtenerGrupoPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a49'/>
+                                            <UML:Class xmi.idref = 'a88'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a528' name = 'nombre' visibility = 'public' isSpecification = 'false'
@@ -2593,7 +2593,7 @@
                                         <UML:Parameter xmi.id = 'a549' name = 'obtenerUsuarioPublicoReturn' visibility = 'public'
                                           isSpecification = 'false' kind = 'return'>
                                           <UML:Parameter.type>
-                                            <UML:Class xmi.idref = 'a53'/>
+                                            <UML:Class xmi.idref = 'a138'/>
                                           </UML:Parameter.type>
                                         </UML:Parameter>
                                         <UML:Parameter xmi.id = 'a550' name = 'usuario' visibility = 'public' isSpecification = 'false'
@@ -2757,7 +2757,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -2765,7 +2765,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -2916,7 +2916,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'
@@ -5780,7 +5780,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -5788,7 +5788,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -5939,7 +5939,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'
@@ -6093,7 +6093,7 @@
               isLeaf = 'false' isAbstract = 'false'/>
             <UML:DataType xmi.id = 'a369' name = 'Boolean[]' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'/>
-            <UML:DataType xmi.id = 'a74' name = 'Boolean' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a41' name = 'Boolean' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:GeneralizableElement.generalization>
                 <UML:Generalization xmi.idref = 'a593'/>
@@ -6101,7 +6101,7 @@
             </UML:DataType>
             <UML:Generalization xmi.id = 'a593' isSpecification = 'false'>
               <UML:Generalization.child>
-                <UML:DataType xmi.idref = 'a74'/>
+                <UML:DataType xmi.idref = 'a41'/>
               </UML:Generalization.child>
               <UML:Generalization.parent>
                 <UML:DataType xmi.idref = 'a559'/>
@@ -6252,7 +6252,7 @@
                 <UML:DataType xmi.idref = 'a582'/>
               </UML:Generalization.parent>
             </UML:Generalization>
-            <UML:DataType xmi.id = 'a89' name = 'DataHandler' isSpecification = 'false'
+            <UML:DataType xmi.id = 'a172' name = 'DataHandler' isSpecification = 'false'
               isRoot = 'false' isLeaf = 'false' isAbstract = 'false'>
               <UML:ModelElement.comment>
                 <UML:Comment xmi.id = 'a624' name = 'Placeholder for webservice attachments'

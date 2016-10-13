@@ -112,6 +112,7 @@ public class UtilesString {
 	//http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 	//http://unicode-table.com/en/
 	public static String translateUnicodeSpecialCharacters (String s) {
+		
 		boolean carateresEspeciales=false;
 		  
 		//Obtenemos el string en su equivalente con caracteres unicode
@@ -132,6 +133,22 @@ public class UtilesString {
 		//Examinamos si existen los tres puntos seguidos (horizontal ellipsis)
 		//http://www.fileformat.info/info/unicode/char/2026/index.htm
 		if(unicodeString.contains("\\u2026"))
+			carateresEspeciales=true;
+		//Examinamos si existen dobles comillas iniciales (double grave accent)
+		//http://www.fileformat.info/info/unicode/char/02F5/index.htm
+		if(unicodeString.contains("\\u02F5"))
+			carateresEspeciales=true;
+		//Examinamos si existen dobles comillas finales (double acute accent)
+		//http://www.fileformat.info/info/unicode/char/02F6/index.htm
+		if(unicodeString.contains("\\u02F6"))
+			carateresEspeciales=true;
+		//Examinamos si existen dobles comillas iniciales (LEFT DOUBLE QUOTATION MARK)
+		//http://www.fileformat.info/info/unicode/char/201C/index.htm
+		if(unicodeString.contains("\\u201c"))
+			carateresEspeciales=true;
+		//Examinamos si existen dobles comillas finales (RIGHT DOUBLE QUOTATION MARK)
+		//http://www.fileformat.info/info/unicode/char/201D/index.htm
+		if(unicodeString.contains("\\u201d"))
 			carateresEspeciales=true;
 		  
 		if(!carateresEspeciales) return s;
@@ -226,6 +243,19 @@ public class UtilesString {
 				retorno.insert(i, "...");
 				longString=longString+2;
 				i=i+2;
+				
+			} else if(
+					codigoUnicode.contentEquals("\\u02f5")||
+					codigoUnicode.contentEquals("\\u02f6")||
+					codigoUnicode.contentEquals("\\u201c")||
+					codigoUnicode.contentEquals("\\u201d")
+					) {
+				retorno.deleteCharAt(i);
+				retorno.insert(i, "\"");
+				
+			} else {
+				if(retorno.charAt(i) >= 0x100)
+					logger.warn("Posible caracter problematico no traducido, codigo unicode: "+codigoUnicode);
 			}
 			  
 		}

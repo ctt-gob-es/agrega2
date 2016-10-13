@@ -5,6 +5,7 @@
 <%@ taglib uri="http://displaytag.sf.net" prefix="display" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
 <%@ taglib uri="/WEB-INF/tags/rewriteTag.tld" prefix="rewrite" %>
+<%@ taglib prefix="agrega" uri="/WEB-INF/tlds/agregaProperties.tld" %>
 <html:xhtml/>
 <tiles:insert definition="layout-administrador">
 
@@ -71,7 +72,109 @@ function marcarTodas()
 		<!-- ATENCION!! E3TA ES LA CAPA QUE DEBE REEMPLAZARSE POR LA DEL MISMO NOMBRE (plantilla contenido pestanias ) EN LA PLANTILLA DE  CONTENIDO  CON EL CONTENIDO DE FICHA -->
 		<div class="plantilla_contenido_pestanias">
 		<!-- CAJA TABLA --> <!-- CAJA TABLA -->
+		
+<form method="post"	action="<html:rewrite action="${initParam.url_despublicados}"/>"> 
+				<!-- Inicio caja buscador -->
+<!-- Inicio caja buscador -->
+<!--  INICIO GLOBO GRIS   -->
+<!--  INICIO GLOBO GRIS   -->
+<div class="globo_gris"  >
+	<div class="globo_gris_01">
+		<div class="globo_gris_02">
+			<div class="globo_gris_03" style="padding-bottom:0 !important">
+			<!--  INICIO CAJA DE FORMULARIO   -->		
+			
+			<div id="formulario_02" >
+			<!-- 
+			<h3 class="h3_generico_small"><bean:message key="usuarios.busqueda.usuarios" /></h3>
+			-->
+			<h3 class="h3_generico_small">Busqueda de ODEs despublicados</h3>
+			
+  				<div class="fila_de_tabla" style="border:1px solid #D6E6F6">
+					<div class="text">
+						<label class="oculto" for="buscarUsuario"></label>
+						
+							<table border="0" class="res_list_inv" style="border-bottom:0;" cellpadding="0" cellspacing="0" >
+							<tr>
+							<td valign="top" class="dere00 td_short">
+								<!--bean:message key="estadisticas.estadisticas.cambiar.fechas.param.fecha.desde.actividad"/>-->
+								Despublicado entre el
+							</td>
+							<td valign="top" class="dere00 td_large">
+								<input name="fechaInicioBusqueda" class="fechazo calendario" style="left:0 !important;" onfocus="limpiarTexto(this)" value="${form.fechaInicioBusqueda}"  onblur="this.style.backgroundColor='#e1e1e1'" id="fechaInicioBusqueda" type="text" title="<bean:message key="buscador.buscador"/>"  />
+								<div class="autocomplete" id="list" style="display:none"></div>
+								&nbsp;&nbsp;&nbsp; y el &nbsp;&nbsp;&nbsp;
+								<input name="fechaFinBusqueda" class="fechazo calendario" style="left:0 !important;" onfocus="limpiarTexto(this)" value="${form.fechaFinBusqueda}"  onblur="this.style.backgroundColor='#e1e1e1'" id="fechaFinBusqueda" type="text" title="<bean:message key="buscador.buscador"/>"  />
+								<div class="autocomplete" id="list" style="display:none"></div>
+							</td>
+							</tr>
+							
+							<tr>
+							<td valign="top" class="dere00 td_short">
+								Usuario despublicador
+							</td>
+							<td valign="top" class="dere00 td_large">
+								<input name="idUsuarioBusqueda" style="width:500px;margin-right:10px;" onfocus="limpiarTexto(this)" value="${form.idUsuarioBusqueda}"  onblur="this.style.backgroundColor='#e1e1e1'" id="idUsuarioBusqueda" type="text" title="<bean:message key="buscador.buscador"/>"  />
+								<div class="autocomplete" id="list" style="display:none"></div>
+							</td>
+							</tr>
+							
+							<tr>
+							<td valign="top" class="dere00 td_short">
+								Titulo ODE despublicado
+							</td>
+							<td valign="top" class="dere00 td_large">
+								<input name="tituloBusqueda" style="width:500px;margin-right:10px;" onfocus="limpiarTexto(this)" value="${form.tituloBusqueda}"  onblur="this.style.backgroundColor='#e1e1e1'" id="tituloBusqueda" type="text" title="<bean:message key="buscador.buscador"/>"  />
+								<div class="autocomplete" id="list" style="display:none"></div>
+							</td>	
+							</tr>
+							
+							</table>
+								
+						</div>
+				</div>
+				
+				<div style="text-align: center;">
+				<input class="boton_90" id="bus_solo" type="submit" value="<bean:message key="buscador.buscador.boton"/>" />
+				</div>
+				
+				<!-- -->
+			</div>
+			
+				<!--  FIN CAJA DE FORMULARIO   -->
+			</div>
+		</div>
+
+	</div>
+</div>
+</form>		
+		
+
+<link rel="stylesheet" href="/static/css/jquery-ui-1.8.23.custom.css" type="text/css" />
+<script type="text/javascript" src="/static/js/jquery-ui-1.8.23.custom.min.js"></script>		
+<script type="text/javascript">		
+var host_and_subdomain="<agrega:agregaProperties property="host"/><agrega:agregaProperties property="subdominio"/>";
+
+$( ".calendario").datepicker({
+				showOn: "button",
+				buttonImage: "http://"+host_and_subdomain+"/static/img/azul/calendar.png",
+				buttonText: "Seleccionar Fecha",
+				buttonImageOnly: true
+		});
+		$( ".calendario").click( function(){ 
+			$(this).datepicker("show");
+		}).attr("readonly",true);
+		
+//$(".ui-datepicker-trigger").removeAttr('style').css("margin-left","0px !important");
+$(".ui-datepicker-trigger").css("margin-left", "0px !important;");
+$(".ui-datepicker-trigger").attr("style", "margin-left: 0px !important");
+</script>
+
+		
+		
 		<fieldset>
+		
+		
 		<form method="post"
 			action="<html:rewrite action="${initParam.url_despublicados_eliminar}"/>">
 		

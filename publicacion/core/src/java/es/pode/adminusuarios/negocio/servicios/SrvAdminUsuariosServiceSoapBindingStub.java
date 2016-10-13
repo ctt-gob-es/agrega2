@@ -16,7 +16,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[52];
+        _operations = new org.apache.axis.description.OperationDesc[57];
         _initOperationDesc1();
         _initOperationDesc2();
         _initOperationDesc3();
@@ -73,6 +73,17 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         _operations[3] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("altaUsuarioProComun");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "UsuarioVO"), es.pode.adminusuarios.negocio.servicios.UsuarioVO.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO"));
+        oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "altaUsuarioProComunReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[4] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("altaUsuarioWebSemantica");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "UsuarioVO"), es.pode.adminusuarios.negocio.servicios.UsuarioVO.class, false, false);
         oper.addParameter(param);
@@ -81,7 +92,20 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "altaUsuarioWebSemanticaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[4] = oper;
+        _operations[5] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("autenticacionUsuarioProComun");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "email"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "password"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO"));
+        oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "autenticacionUsuarioProComunReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[6] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("autenticacionUsuarioWebSemantica");
@@ -94,7 +118,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "autenticacionUsuarioWebSemanticaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[5] = oper;
+        _operations[7] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("bajaGrupo");
@@ -106,7 +130,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaGrupoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[6] = oper;
+        _operations[8] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("bajaGrupoTrabajo");
@@ -118,8 +142,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaGrupoTrabajoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[7] = oper;
+        _operations[9] = oper;
 
+    }
+
+    private static void _initOperationDesc2(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("bajaUsuario");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ids"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ArrayOfsoapenc_long"), java.lang.Long[].class, false, false);
@@ -130,7 +159,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[8] = oper;
+        _operations[10] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("bajaUsuarioPendiente");
@@ -144,13 +173,21 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaUsuarioPendienteReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[9] = oper;
+        _operations[11] = oper;
 
-    }
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("bajaUsuarioProComun");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "email"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "passwd"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO"));
+        oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaUsuarioProComunReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[12] = oper;
 
-    private static void _initOperationDesc2(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("bajaUsuarioWebSemantica");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "email"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -162,7 +199,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaUsuarioWebSemanticaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[10] = oper;
+        _operations[13] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("desactivarUsuario");
@@ -173,7 +210,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[11] = oper;
+        _operations[14] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("descripcionGrupo");
@@ -184,7 +221,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "descripcionGrupoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[12] = oper;
+        _operations[15] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("descripcionGrupoTrabajo");
@@ -195,7 +232,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "descripcionGrupoTrabajoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[13] = oper;
+        _operations[16] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("descripcionUsuario");
@@ -206,7 +243,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "descripcionUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[14] = oper;
+        _operations[17] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("enviarCorreoBaja");
@@ -217,7 +254,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "enviarCorreoBajaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[15] = oper;
+        _operations[18] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("estaActivo");
@@ -228,8 +265,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "estaActivoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[16] = oper;
+        _operations[19] = oper;
 
+    }
+
+    private static void _initOperationDesc3(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("existeDescripcion");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "descripcion"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -241,7 +283,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "existeDescripcionReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[17] = oper;
+        _operations[20] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("existeNombreTrabajo");
@@ -254,7 +296,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "existeNombreTrabajoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[18] = oper;
+        _operations[21] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("existeUsuario");
@@ -265,13 +307,8 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "existeUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[19] = oper;
+        _operations[22] = oper;
 
-    }
-
-    private static void _initOperationDesc3(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getEmailAdmin");
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ArrayOfxsd_string"));
@@ -281,7 +318,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[20] = oper;
+        _operations[23] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getEmailPublicadores");
@@ -292,7 +329,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[21] = oper;
+        _operations[24] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("getRol");
@@ -303,7 +340,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "getRolReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[22] = oper;
+        _operations[25] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarGrupos");
@@ -314,7 +351,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[23] = oper;
+        _operations[26] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarGruposTrabajo");
@@ -325,7 +362,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[24] = oper;
+        _operations[27] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarRoles");
@@ -336,7 +373,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[25] = oper;
+        _operations[28] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarRolesUsuario");
@@ -349,8 +386,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[26] = oper;
+        _operations[29] = oper;
 
+    }
+
+    private static void _initOperationDesc4(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarTodosUsuarios");
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ArrayOfUsuarioVO"));
@@ -360,7 +402,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[27] = oper;
+        _operations[30] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarUsuarios");
@@ -371,7 +413,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[28] = oper;
+        _operations[31] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarUsuariosInactivos");
@@ -382,13 +424,8 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[29] = oper;
+        _operations[32] = oper;
 
-    }
-
-    private static void _initOperationDesc4(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("listarUsuariosPendientes");
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ArrayOfUsuarioVO"));
@@ -398,7 +435,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[30] = oper;
+        _operations[33] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("modificarGrupo");
@@ -407,7 +444,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnType(org.apache.axis.encoding.XMLType.AXIS_VOID);
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[31] = oper;
+        _operations[34] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("modificarGrupoTrabajo");
@@ -418,7 +455,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "modificarGrupoTrabajoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[32] = oper;
+        _operations[35] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("modificarUsuario");
@@ -429,7 +466,20 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "modificarUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[33] = oper;
+        _operations[36] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("modificarUsuarioProComun");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "UsuarioVO"), es.pode.adminusuarios.negocio.servicios.UsuarioVO.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "passwordAntiguo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO"));
+        oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "modificarUsuarioProComunReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[37] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("modificarUsuarioWebSemantica");
@@ -442,7 +492,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "modificarUsuarioWebSemanticaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[34] = oper;
+        _operations[38] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("nuevaClave");
@@ -453,8 +503,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "nuevaClaveReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[35] = oper;
+        _operations[39] = oper;
 
+    }
+
+    private static void _initOperationDesc5(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerDatosUsuario");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -464,18 +519,18 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerDatosUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[36] = oper;
+        _operations[40] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("obtenerDatosUsuarioWebSemantica");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "correoUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.setName("obtenerDatosUsuarioPorEmail");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "email"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "UsuarioVO"));
         oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.UsuarioVO.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerDatosUsuarioWebSemanticaReturn"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerDatosUsuarioPorEmailReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[37] = oper;
+        _operations[41] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerGrupoAdministrador");
@@ -486,7 +541,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[38] = oper;
+        _operations[42] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerGrupoRol");
@@ -497,13 +552,8 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerGrupoRolReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[39] = oper;
+        _operations[43] = oper;
 
-    }
-
-    private static void _initOperationDesc5(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerListaUsuariosGrupoTrabajo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "usuarioGrupoTrabajo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -515,7 +565,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[40] = oper;
+        _operations[44] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuario");
@@ -526,7 +576,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[41] = oper;
+        _operations[45] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuarioConOpenId");
@@ -537,7 +587,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerUsuarioConOpenIdReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[42] = oper;
+        _operations[46] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuariosActivosPorNombre");
@@ -550,7 +600,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[43] = oper;
+        _operations[47] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuariosAdministrador");
@@ -561,7 +611,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[44] = oper;
+        _operations[48] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuariosConCorreo");
@@ -575,8 +625,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[45] = oper;
+        _operations[49] = oper;
 
+    }
+
+    private static void _initOperationDesc6(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuariosGrupo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://schemas.xmlsoap.org/soap/encoding/", "long"), java.lang.Long.class, false, false);
@@ -586,7 +641,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerUsuariosGrupoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[46] = oper;
+        _operations[50] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenerUsuariosGrupoTrabajo");
@@ -597,7 +652,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerUsuariosGrupoTrabajoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[47] = oper;
+        _operations[51] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("registrarIntegracionLdap");
@@ -610,7 +665,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[48] = oper;
+        _operations[52] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("solicitarAltaUsuario");
@@ -621,13 +676,8 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "solicitarAltaUsuarioReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[49] = oper;
+        _operations[53] = oper;
 
-    }
-
-    private static void _initOperationDesc6(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("usuariosActivos");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "parametroAuditoriaVO"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ParametroAuditoriaUsuariosVO"), es.pode.adminusuarios.negocio.servicios.ParametroAuditoriaUsuariosVO.class, false, false);
@@ -639,7 +689,20 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[50] = oper;
+        _operations[54] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("validarCampoUsuarioProComun");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "nombreCampo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "valorCampo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO"));
+        oper.setReturnClass(es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "validarCampoUsuarioProComunReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[55] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("validarCampoUsuarioWebSemantica");
@@ -652,7 +715,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "validarCampoUsuarioWebSemanticaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[51] = oper;
+        _operations[56] = oper;
 
     }
 
@@ -838,6 +901,13 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             qName = new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ParametroAuditoriaUsuariosVO");
             cachedSerQNames.add(qName);
             cls = es.pode.adminusuarios.negocio.servicios.ParametroAuditoriaUsuariosVO.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "ResultadoOperacionWebSemanticaVO");
+            cachedSerQNames.add(qName);
+            cls = es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -1093,12 +1163,46 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
-    public java.lang.Long altaUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException {
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO altaUsuarioProComun(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[4]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("altaUsuarioProComun");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "altaUsuarioProComun"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {usuario});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public java.lang.Long altaUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[5]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("altaUsuarioWebSemantica");
         _call.setEncodingStyle(null);
@@ -1127,12 +1231,46 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO autenticacionUsuarioProComun(java.lang.String email, java.lang.String password) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[6]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("autenticacionUsuarioProComun");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "autenticacionUsuarioProComun"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {email, password});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
     public boolean autenticacionUsuarioWebSemantica(java.lang.String email, java.lang.String password) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[5]);
+        _call.setOperation(_operations[7]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("autenticacionUsuarioWebSemantica");
         _call.setEncodingStyle(null);
@@ -1166,7 +1304,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[6]);
+        _call.setOperation(_operations[8]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("bajaGrupo");
         _call.setEncodingStyle(null);
@@ -1200,7 +1338,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[7]);
+        _call.setOperation(_operations[9]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("bajaGrupoTrabajo");
         _call.setEncodingStyle(null);
@@ -1234,7 +1372,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[8]);
+        _call.setOperation(_operations[10]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("bajaUsuario");
         _call.setEncodingStyle(null);
@@ -1268,7 +1406,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[9]);
+        _call.setOperation(_operations[11]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("bajaUsuarioPendiente");
         _call.setEncodingStyle(null);
@@ -1297,12 +1435,46 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO bajaUsuarioProComun(java.lang.String email, java.lang.String passwd) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[12]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("bajaUsuarioProComun");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "bajaUsuarioProComun"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {email, passwd});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
     public boolean bajaUsuarioWebSemantica(java.lang.String email, java.lang.String passwd) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[10]);
+        _call.setOperation(_operations[13]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("bajaUsuarioWebSemantica");
         _call.setEncodingStyle(null);
@@ -1336,7 +1508,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[11]);
+        _call.setOperation(_operations[14]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("desactivarUsuario");
         _call.setEncodingStyle(null);
@@ -1363,7 +1535,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[12]);
+        _call.setOperation(_operations[15]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("descripcionGrupo");
         _call.setEncodingStyle(null);
@@ -1397,7 +1569,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[13]);
+        _call.setOperation(_operations[16]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("descripcionGrupoTrabajo");
         _call.setEncodingStyle(null);
@@ -1431,7 +1603,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[14]);
+        _call.setOperation(_operations[17]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("descripcionUsuario");
         _call.setEncodingStyle(null);
@@ -1465,7 +1637,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[15]);
+        _call.setOperation(_operations[18]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("enviarCorreoBaja");
         _call.setEncodingStyle(null);
@@ -1499,7 +1671,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[16]);
+        _call.setOperation(_operations[19]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("estaActivo");
         _call.setEncodingStyle(null);
@@ -1533,7 +1705,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[17]);
+        _call.setOperation(_operations[20]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("existeDescripcion");
         _call.setEncodingStyle(null);
@@ -1567,7 +1739,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[18]);
+        _call.setOperation(_operations[21]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("existeNombreTrabajo");
         _call.setEncodingStyle(null);
@@ -1601,7 +1773,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[19]);
+        _call.setOperation(_operations[22]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("existeUsuario");
         _call.setEncodingStyle(null);
@@ -1635,7 +1807,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[20]);
+        _call.setOperation(_operations[23]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("getEmailAdmin");
         _call.setEncodingStyle(null);
@@ -1669,7 +1841,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[21]);
+        _call.setOperation(_operations[24]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("getEmailPublicadores");
         _call.setEncodingStyle(null);
@@ -1703,7 +1875,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[22]);
+        _call.setOperation(_operations[25]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("getRol");
         _call.setEncodingStyle(null);
@@ -1737,7 +1909,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[23]);
+        _call.setOperation(_operations[26]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarGrupos");
         _call.setEncodingStyle(null);
@@ -1771,7 +1943,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[24]);
+        _call.setOperation(_operations[27]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarGruposTrabajo");
         _call.setEncodingStyle(null);
@@ -1805,7 +1977,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[25]);
+        _call.setOperation(_operations[28]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarRoles");
         _call.setEncodingStyle(null);
@@ -1839,7 +2011,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[26]);
+        _call.setOperation(_operations[29]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarRolesUsuario");
         _call.setEncodingStyle(null);
@@ -1873,7 +2045,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[27]);
+        _call.setOperation(_operations[30]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarTodosUsuarios");
         _call.setEncodingStyle(null);
@@ -1907,7 +2079,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[28]);
+        _call.setOperation(_operations[31]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarUsuarios");
         _call.setEncodingStyle(null);
@@ -1941,7 +2113,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[29]);
+        _call.setOperation(_operations[32]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarUsuariosInactivos");
         _call.setEncodingStyle(null);
@@ -1975,7 +2147,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[30]);
+        _call.setOperation(_operations[33]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("listarUsuariosPendientes");
         _call.setEncodingStyle(null);
@@ -2009,7 +2181,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[31]);
+        _call.setOperation(_operations[34]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("modificarGrupo");
         _call.setEncodingStyle(null);
@@ -2036,7 +2208,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[32]);
+        _call.setOperation(_operations[35]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("modificarGrupoTrabajo");
         _call.setEncodingStyle(null);
@@ -2070,7 +2242,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[33]);
+        _call.setOperation(_operations[36]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("modificarUsuario");
         _call.setEncodingStyle(null);
@@ -2099,12 +2271,46 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO modificarUsuarioProComun(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario, java.lang.String passwordAntiguo) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[37]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("modificarUsuarioProComun");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "modificarUsuarioProComun"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {usuario, passwordAntiguo});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
     public boolean modificarUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario, java.lang.String passwordAntiguo) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[34]);
+        _call.setOperation(_operations[38]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("modificarUsuarioWebSemantica");
         _call.setEncodingStyle(null);
@@ -2138,7 +2344,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[35]);
+        _call.setOperation(_operations[39]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("nuevaClave");
         _call.setEncodingStyle(null);
@@ -2172,7 +2378,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[36]);
+        _call.setOperation(_operations[40]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerDatosUsuario");
         _call.setEncodingStyle(null);
@@ -2201,23 +2407,23 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
-    public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuarioWebSemantica(java.lang.String correoUsuario) throws java.rmi.RemoteException {
+    public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuarioPorEmail(java.lang.String email) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[37]);
+        _call.setOperation(_operations[41]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("obtenerDatosUsuarioWebSemantica");
+        _call.setSOAPActionURI("obtenerDatosUsuarioPorEmail");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerDatosUsuarioWebSemantica"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "obtenerDatosUsuarioPorEmail"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {correoUsuario});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {email});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -2240,7 +2446,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[38]);
+        _call.setOperation(_operations[42]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerGrupoAdministrador");
         _call.setEncodingStyle(null);
@@ -2274,7 +2480,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[39]);
+        _call.setOperation(_operations[43]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerGrupoRol");
         _call.setEncodingStyle(null);
@@ -2308,7 +2514,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[40]);
+        _call.setOperation(_operations[44]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerListaUsuariosGrupoTrabajo");
         _call.setEncodingStyle(null);
@@ -2342,7 +2548,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[41]);
+        _call.setOperation(_operations[45]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuario");
         _call.setEncodingStyle(null);
@@ -2376,7 +2582,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[42]);
+        _call.setOperation(_operations[46]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuarioConOpenId");
         _call.setEncodingStyle(null);
@@ -2410,7 +2616,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[43]);
+        _call.setOperation(_operations[47]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuariosActivosPorNombre");
         _call.setEncodingStyle(null);
@@ -2444,7 +2650,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[44]);
+        _call.setOperation(_operations[48]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuariosAdministrador");
         _call.setEncodingStyle(null);
@@ -2478,7 +2684,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[45]);
+        _call.setOperation(_operations[49]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuariosConCorreo");
         _call.setEncodingStyle(null);
@@ -2512,7 +2718,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[46]);
+        _call.setOperation(_operations[50]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuariosGrupo");
         _call.setEncodingStyle(null);
@@ -2546,7 +2752,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[47]);
+        _call.setOperation(_operations[51]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenerUsuariosGrupoTrabajo");
         _call.setEncodingStyle(null);
@@ -2580,7 +2786,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[48]);
+        _call.setOperation(_operations[52]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("registrarIntegracionLdap");
         _call.setEncodingStyle(null);
@@ -2614,7 +2820,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[49]);
+        _call.setOperation(_operations[53]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("solicitarAltaUsuario");
         _call.setEncodingStyle(null);
@@ -2648,7 +2854,7 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[50]);
+        _call.setOperation(_operations[54]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("usuariosActivos");
         _call.setEncodingStyle(null);
@@ -2677,12 +2883,46 @@ public class SrvAdminUsuariosServiceSoapBindingStub extends org.apache.axis.clie
 }
     }
 
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO validarCampoUsuarioProComun(java.lang.String nombreCampo, java.lang.String valorCampo) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[55]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("validarCampoUsuarioProComun");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.adminusuarios.pode.es", "validarCampoUsuarioProComun"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {nombreCampo, valorCampo});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
     public boolean validarCampoUsuarioWebSemantica(java.lang.String nombreCampo, java.lang.String valorCampo) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[51]);
+        _call.setOperation(_operations[56]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("validarCampoUsuarioWebSemantica");
         _call.setEncodingStyle(null);

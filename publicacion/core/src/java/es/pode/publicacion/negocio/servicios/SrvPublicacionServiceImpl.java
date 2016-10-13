@@ -101,6 +101,11 @@ import es.pode.parseadorXML.lomes.lomesAgrega.RequisitoAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.RightsAgrega;
 import es.pode.parseadorXML.lomes.lomesAgrega.TechnicalAgrega;
 import es.pode.parseadorXML.scorm2004.agrega.ManifestAgrega;
+import es.pode.publicacion.negocio.dominio.EditoresOdesExternos;
+import es.pode.publicacion.negocio.dominio.EditoresOdesExternosDao;
+import es.pode.publicacion.negocio.dominio.EditoresOdesExternosIdOdeCriteria;
+import es.pode.publicacion.negocio.dominio.EditoresOdesExternosIdOdeEsPublicadorOdeCriteria;
+import es.pode.publicacion.negocio.dominio.EditoresOdesExternosIdUsuarioEditorCriteria;
 import es.pode.publicacion.negocio.dominio.Estado;
 import es.pode.publicacion.negocio.dominio.EstadoCompartidoCriteria;
 import es.pode.publicacion.negocio.dominio.EstadoCompartidoTituloCriteria;
@@ -110,7 +115,14 @@ import es.pode.publicacion.negocio.dominio.EstadoCriteria;
 import es.pode.publicacion.negocio.dominio.EstadoDao;
 import es.pode.publicacion.negocio.dominio.EstadoDesdeHastaCriteria;
 import es.pode.publicacion.negocio.dominio.EstadoTituloCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoTituloDesdeHastaCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuarioDespublicadorDesdeHastaCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuarioDespublicadorTituloDesdeHastaCriteria;
 import es.pode.publicacion.negocio.dominio.EstadoUsuarioTituloCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuariosCreacionDesdeHastaCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuariosCreacionTituloDesdeHastaCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuariosCreacionUsuarioDespublicadorDesdeHastaCriteria;
+import es.pode.publicacion.negocio.dominio.EstadoUsuariosCreacionUsuarioDespublicadorTituloDesdeHastaCriteria;
 import es.pode.publicacion.negocio.dominio.EstadoUsuariosTituloCriteria;
 import es.pode.publicacion.negocio.dominio.IdODECriteria;
 import es.pode.publicacion.negocio.dominio.IdODEFechaCriteria;
@@ -272,11 +284,11 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		IdODECriteria criterio = new IdODECriteria(idODE,null, null);
 		List<TransicionVO> list = transicion.buscarEstadoPorCriterioIdODE(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
 		if (list == null || list.size() == 0) {
-			logger.warn("No hay estado para el IdODE]" + idODE + "]");
+			logger.warn("No hay estado para el IdODE [" + idODE + "]");
 			return null;
 		}
 		EstadoVO estado = list.get(0).getEstadoActual();
-		if(logger.isDebugEnabled())	logger.debug("idODE[" + idODE + "] esta en estado[" + estado.getClave() + "]");
+		if(logger.isDebugEnabled())	logger.debug("idODE [" + idODE + "] esta en estado [" + estado.getClave() + "]");
 		return estado;
 	}
 
@@ -1387,10 +1399,10 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					String idODEVersion = relacionVersionDe.get(0).getEntradaId();
 					ResultadoOperacionVO resultado = new ResultadoOperacionVO();
 					
-					EstadoVO estadoODEOriginal = this.obtenEstadoPorIdODE(idODEVersion, LdapUserDetailsUtils.getIdioma());
+					EstadoVO estadoODEOriginal = handleObtenEstadoPorIdODE(idODEVersion, LdapUserDetailsUtils.getIdioma());
 					
 					// Si el ODE está publicado lo pasamos a no disponible y lo elimanos.
-					if (estadoODEOriginal.getClave().equals(PUBLICADO)) {									
+					if (estadoODEOriginal!=null && estadoODEOriginal.getClave()!=null && estadoODEOriginal.getClave().equals(PUBLICADO)) {									
 						resultado=handleNoDisponible(idODEVersion, idUsuario, "Se despublica por nueva versión", titulo);
 						if(!resultado.getIdResultado().equals(SIN_ERRORES)) {
 							logger.error("Error al despublicar el ODE con id "+idODEVersion+" para poder publicar una nueva version del mismo. Accion que ha intentado ejecutar el usuario "+idUsuario+": "+resultado.getDescripcion());
@@ -2479,7 +2491,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			//Ya se lo hemos cambiado o añadido antes en insertarIdnetificadorMEC el catalogo mec
 			ScormDao scorm = (ScormDao) this.getScormDao();
 			// Aniadimos la contribucion del publicador
-			TratamientoODE.introducePublicadorManifest(localizadorVO.getPath(), idUsuario, imsmanifest, scorm);
+			String nombreApellidosUsuario = idUsuario2NombreApellidos(idUsuario);
+			TratamientoODE.introducePublicadorManifest(localizadorVO.getPath(), nombreApellidosUsuario, imsmanifest, scorm);
 			// Despues de la contribucion, tenemos que meter la localizacion del ODE en a pantalla de busqueda para que la ficha sea publica
 			// y accesible en el caso de una busqueda por SQI.
 
@@ -2662,7 +2675,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			}
 			// Comprueba si es primera indexacion y en tal caso, introduce MEC en LOMES.
 			// Aniadimos la contribucion del publicador
-			TratamientoODE.introducePublicadorManifest(localizadorVO.getPath(), idUsuario, imsmanifest, scorm);
+			String nombreApellidosUsuario = idUsuario2NombreApellidos(idUsuario);
+			TratamientoODE.introducePublicadorManifest(localizadorVO.getPath(), nombreApellidosUsuario, imsmanifest, scorm);
 			// Despues de la contribucion, tenemos que meter la localizacion del ODE en a pantalla de busqueda para que la ficha sea publica
 			// y accesible en el caso de una busqueda por SQI.
 			TratamientoODE.introduceLocalizacionWEB(localizadorVO.getPath(), idUsuario, imsmanifest, scorm, ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
@@ -3964,7 +3978,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		boolean escribirCambios=false;
 		boolean escribirMasCambios=false;
 
-		//Modificamos titulo
+		//Modificamos titulo y descripcion
 		String identifiadorManifest = manAgrega.getManifest().getIdentifier();
 		Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);
 		
@@ -3975,11 +3989,26 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			String titulo = lomAgrega.getGeneralAgrega().getTitulo(idioma);
 			String tituloNuevo = eliminarCaracteresExtranos(titulo);
 			
+			Lom nuevoLom = null;
+			
 			if(!titulo.contentEquals(tituloNuevo)) {
 				lomAgrega.getGeneralAgrega().setTitulo(tituloNuevo, idioma);
-				Lom nuevoLom = lomAgrega.getLom();
+				nuevoLom = lomAgrega.getLom();
 				manAgrega.setLom(identifiadorManifest, null, nuevoLom);
 				escribirCambios=true;
+			}
+			
+			List<String> descripciones = lomAgrega.getGeneralAgrega().getDescripcionesIdioma(idioma);
+			for(int i=0; i<descripciones.size(); i++) {
+				String descripNueva =  eliminarCaracteresExtranos(descripciones.get(i));
+
+				if(!descripciones.get(i).contentEquals(descripNueva)) {
+					lomAgrega.getGeneralAgrega().setDescripcion(i, descripNueva, idioma);
+					if(nuevoLom==null)
+						nuevoLom = lomAgrega.getLom();
+					manAgrega.setLom(identifiadorManifest, null, nuevoLom);
+					escribirCambios=true;
+				}
 			}
 		} 
 		
@@ -5719,7 +5748,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				String pathtemp = pifATemp(localizadorNP, pif);
 				File ficheroZip = new File(pathtemp);
 				if(logger.isDebugEnabled())
-					logger.debug("Publicando PIF (de carga):Comenzamos a descomprimir el PIF"+ficheroZip.getPath()+ "" + "  y guardar en:" + pathtemp+";");
+					logger.debug("Publicando PIF (de carga):Comenzamos a descomprimir el PIF "+ficheroZip.getPath()+ "" + "  y guardar en:" + pathtemp+";");
 				if (this.getZipDao().esZip(pathtemp)){
 					try {
 						this.getZipDao().descomprimir(ficheroZip.getPath(), localizadorNP.getPath());
@@ -5813,11 +5842,17 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				// validador
 				SrvValidadorService validadorService = this.getSrvValidadorService();
 				ValidarLicenciasVO validacionLic=null;
-				ValidaVO valid = validadorService.validarCargaOde(localizadorNP.getPath());
 				logger.info("Publicando PIF (de carga):Validando el ODE [" + localizadorNP.getIdentificador() + "]");
+				//Se llama a la misma validacion que el publicar normal, para que pueda validar los metadatos en ficheros externos referenciados con adcpl:location
+				ValidaVO valid = validadorService.obtenerValidacion(localizadorNP.getPath());
+				//ValidaVO valid = validadorService.validarCargaOde(localizadorNP.getPath());
+				logger.info("Publicando PIF (de carga): Resultado validacion del ODE [" + localizadorNP.getIdentificador() + "]: "+valid.getEsValidoManifest().booleanValue());
+
 				//Validamos licencias
 				validacionLic = this.getSrvGruposLicencias().validarLicencias(localizadorNP.getPath());
-				if (valid.getEsValidoManifest().booleanValue()&& validacionLic.isResultado()) {
+				logger.info("Publicando PIF (de carga): Resultado validacion licencias del ODE [" + localizadorNP.getIdentificador() + "]: "+validacionLic.isResultado());
+				
+				if (valid.getEsValidoManifest().booleanValue() && validacionLic.isResultado()) {
 					// proponiendo catalogacion
 					logger.info("Publicando PIF (de carga):Proponemos para catalogacion el ODE con identificador[" + idODE + "], idUsuario["
 							+ idUsuario + "] y comentarios[" + comentarios + "]");
@@ -5833,9 +5868,21 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 					// publicar
 					// llamada a un metodo "validadorService.validarMec" que devuelve null si el mec es malo o no existe
 					// y devuelve el valor del mec, si éste, es bueno
-					String mec = validadorService.validarMec(localizadorNP.getPath());
+									
+					// 04082015 Se modifica la forma de obtener el mec para que lo obtenga tanto del fichero imsmanifest como 
+					// de un fichero externo imslrm.xml si está referenciado. Antes no miraba en los externos.					
+					//String mec = validadorService.validarMec(localizadorNP.getPath());
+					
+					File extraeSubmanifest = new File(localizadorNP.getPath(), MANIFEST_NAME);
+					Manifest imsmanifest = this.getScormDao().parsearODEEager(extraeSubmanifest);
+					ManifestAgrega manAgrega = new ManifestAgrega(imsmanifest);
+					String identifiadorManifest = manAgrega.getManifest().getIdentifier();
+					Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);
+					LomAgrega lomAg = new LomAgrega(lom);
+									
+					String mec = lomAg.getGeneralAgrega().obtenerIdentificadorFormatoMEC(ObtieneSrvPropiedad().getValorPropiedad(AgregaProperties.CATALOGO_MEC));
 					//Si el mec no es correcto sacamos un error no genera un nuevo mec.
-					if (mec == null) {
+					if (mec == null || mec.isEmpty()) {
 						//Si el validador devuelve mec inválido no se recubre con otro y se desecha el ode
 						logger.warn("El ode no tiene un id_mec valido");
 						this.handleEliminar(idODE, idUsuario);
@@ -7559,49 +7606,68 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 
 	
 	@Override
-	protected ResultadoOperacionVO handleDespublicarWebSemantica(String idODE,
-			String idUsuario) throws Exception {
+	protected ResultadoOperacionVO handleDespublicacionExterna(String idODE,
+			String usuario) throws Exception {
 		ResultadoOperacionVO resultado = new ResultadoOperacionVO();
 
 		try
 		{
 			// Validación campos de entrada
-			if (idODE==null || idODE.equals(""))
-			{
+			if (idODE==null || idODE.equals("")) {
 				logger.error("handleDespublicarWebSemantica. No se ha informado el ODE a despublicar");
 				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ERROR_ID_ODE_OBLIGATORIO,"es"));
 				resultado.setIdODE(idODE);
 				resultado.setIdResultado(ERROR_ID_ODE_OBLIGATORIO);
-
 				return resultado;
 			}
-			if (idUsuario==null || idUsuario.equals(""))
-			{
+			
+			if (usuario==null || usuario.equals("")) {
 				logger.error("handleDespublicarWebSemantica. No se ha informado el usuario que despublica el ODE");
 				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ERROR_USUARIO_DESPUB_OBLIGATORIO,"es"));
 				resultado.setIdODE(idODE);
 				resultado.setIdResultado(ERROR_USUARIO_DESPUB_OBLIGATORIO);
-
 				return resultado;
 			}
 			
 			if (logger.isDebugEnabled())
-				logger.debug("handleDespublicarWebSemantica. El usuario : " + idUsuario + " ha solicitado despublicar el ODE : " + idODE);
-			
-			// 1. Validar que el usuario puede despublicar ese ODE
-			LocalizadorVO localizadorP = null;
-			try
-			{		
+				logger.debug("handleDespublicarWebSemantica. El usuario : " + usuario + " ha solicitado despublicar el ODE : " + idODE);
+
+			//Comprobar que el ODE existe
+			LocalizadorVO localizadorP = null;			
+			try {		
 				localizadorP = getSrvLocalizadorService().consultaLocalizador(idODE);			
-			}catch (Exception e) {
+			} catch (Exception e) {
 				logger.error("handleDespublicarWebSemantica. No se ha localizado el ODE : ", e);
 				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ODE_NO_EXISTE,"es"));
 				resultado.setIdODE(idODE);
 				resultado.setIdResultado(ODE_NO_EXISTE);
-
 				return resultado;
 			}
+			
+			//Validar que el usuario puede despublicar ese ODE
+			EditoresOdesExternosIdOdeCriteria criterio = new EditoresOdesExternosIdOdeCriteria();
+			criterio.setIdOde(idODE);
+			List<EditoresOdesExternosVO> listaEditoresDelOdeVO = null;
+			listaEditoresDelOdeVO = this.getEditoresOdesExternosDao().buscarEditoresOdesExternosPorIdOde(EditoresOdesExternosDao.TRANSFORM_EDITORESODESEXTERNOSVO, criterio);
+			
+			boolean usuarioAutorizado = false;
 
+			if(listaEditoresDelOdeVO!=null && !listaEditoresDelOdeVO.isEmpty()) {
+				for(int i=0; i<listaEditoresDelOdeVO.size(); i++) {
+					if(listaEditoresDelOdeVO.get(i).getIdUsuarioEditor().contentEquals(usuario)) {
+						usuarioAutorizado = true;
+						break;
+					}
+				}
+			}
+			
+			if (!usuarioAutorizado) {
+				logger.error("handleDespublicarWebSemantica. El usuario : " + usuario + " no tiene permisos para despublicar el ODE : " + idODE);
+				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ERROR_USUARIO_NO_PERMISO_ODE,"es"));
+				resultado.setIdODE(idODE);
+				resultado.setIdResultado(ERROR_USUARIO_NO_PERMISO_ODE);
+				return resultado;
+			}
 
 			File extraeSubmanifest = new File(localizadorP.getPath(), MANIFEST_NAME);
 			Manifest imsmanifest = this.getScormDao().parsearODEEager(extraeSubmanifest);
@@ -7610,9 +7676,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);
 
 			LomAgrega lomAgrega = new LomAgrega(lom);
-
+/*
 			List<EntidadAgrega> listaAutores = (List<EntidadAgrega>) lomAgrega.getLifeCycleAgrega().getAutores();
-			
 			List<EntidadAgrega> listaPublicadores = (List<EntidadAgrega>) lomAgrega.getLifeCycleAgrega().getPublicadores();
 
 			boolean bUsuarioAutorizado = false;
@@ -7621,7 +7686,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				EntidadAgrega entidadAgrega =  iterator.next();
 				logger.info("Identificador autor :" + entidadAgrega.getNombre() + " Correo : " + entidadAgrega.getCorreo());
 
-				if (idUsuario.equalsIgnoreCase(entidadAgrega.getNombre())||idUsuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
+				if (usuario.equalsIgnoreCase(entidadAgrega.getNombre())||usuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
 				{
 					bUsuarioAutorizado=true;
 					break;
@@ -7633,7 +7698,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				EntidadAgrega entidadAgrega =  iterator.next();
 				logger.info("Identificador publicador :" + entidadAgrega.getNombre()+ " Correo : " + entidadAgrega.getCorreo());
 
-				if (idUsuario.equalsIgnoreCase(entidadAgrega.getNombre())||idUsuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
+				if (usuario.equalsIgnoreCase(entidadAgrega.getNombre())||usuario.equalsIgnoreCase(entidadAgrega.getCorreo()))
 				{
 					bUsuarioAutorizado=true;
 					break;
@@ -7642,23 +7707,30 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			}
 			if (!bUsuarioAutorizado)
 			{
-				logger.error("handleDespublicarWebSemantica. El usuario : " + idUsuario + " no tiene permisos para despublicar el ODE : " + idODE);
+				logger.error("handleDespublicarWebSemantica. El usuario : " + usuario + " no tiene permisos para despublicar el ODE : " + idODE);
 				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ERROR_USUARIO_NO_PERMISO_ODE,"es"));
 				resultado.setIdODE(idODE);
 				resultado.setIdResultado(ERROR_USUARIO_NO_PERMISO_ODE);
-
 				return resultado;
 			}
+*/
 
-			// 2. Despublicar el ODE 		
+			//Despublicamos el ODE 		
 			String tituloODE = (String) lomAgrega.getGeneralAgrega().getTitulos().get(0);
-			resultado = noDisponible(idODE, idUsuario, "Se pasa a no disponible el ODE a petición de Web Semántica",tituloODE);
+			resultado = noDisponible(idODE, usuario, "Se pasa a no disponible el ODE a petición de Web Semántica",tituloODE);
 			// Actualizamos la descripción porque al no estar "logado" no puede detectar el idioma y por lo tanto obtener 
 			// la descripción del error/éxito
 			if (resultado!=null)
 				resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(resultado.getIdResultado(),"es"));
 			
-		}catch (Exception e) {
+			//Des-registramos los editores del ODE
+			List<EditoresOdesExternos> listaEditoresDelOde = null;
+			listaEditoresDelOde = this.getEditoresOdesExternosDao().buscarEditoresOdesExternosPorIdOde(criterio);
+			
+			if(listaEditoresDelOde!=null && !listaEditoresDelOde.isEmpty()) 
+				this.getEditoresOdesExternosDao().remove(listaEditoresDelOde);
+			
+		} catch (Exception e) {
 			logger.error("handleDespublicarWebSemantica. Error genérico al despublicar el ODE ", e);
 			resultado.setDescripcion(I18nModuloPublicacion.getPropertyValueI18n(ERROR_GENERICO,"es"));
 			resultado.setIdODE(idODE);
@@ -7785,7 +7857,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
     
     
 	@Override
-	protected ResultadoPublicacionVO handlePublicarWebSemantica(byte[] zipODE,
+	protected ResultadoPublicacionVO handlePublicacionExterna(byte[] zipODE,
 			byte[] catalogacionReducida, String correoUsuario, String titulo,
 			String[] listaUsuarioEditores, boolean esNuevaVersion, String tipoPublicacion)
 			throws Exception {
@@ -7808,7 +7880,7 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			if (logger.isDebugEnabled())
 				logger.debug("handlePublicarWebSemantica.Verificamos que el usuario exista en Agrega : " + idUsuario);
 
-			UsuarioVO usuarioVO = getSrvAdminUsuariosService().obtenerDatosUsuarioWebSemantica(correoUsuario);
+			UsuarioVO usuarioVO = getSrvAdminUsuariosService().obtenerDatosUsuarioPorEmail(correoUsuario);
 			
 			if (usuarioVO==null)
 			{
@@ -7917,6 +7989,16 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			return ResultadoOperacion2ResultadoPublicacion(resultado,"","");
 		}
 		
+		//Registramos los editores del ODE
+		/*
+		this.getEditoresOdesExternosDao().create(correoUsuario, resultado.getIdODE(), 1);
+		if(listaUsuarioEditores!=null) {
+			for(int i=0; i<listaUsuarioEditores.length; i++)
+				this.getEditoresOdesExternosDao().create(listaUsuarioEditores[i], resultado.getIdODE(), 0);
+		}
+		*/
+		registrarEditoresOde(resultado.getIdODE(), listaUsuarioEditores, correoUsuario);
+		
 		DocVO30 datosOde = this.getSrvBuscadorService().busquedaMEC(resultado.getIdODE(), "");
 		String pathImagen = datosOde.getImagen();
 		LocalizadorVO l = this.getSrvLocalizadorService().consultaLocalizador(resultado.getIdODE());
@@ -7924,10 +8006,107 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		
 		return ResultadoOperacion2ResultadoPublicacion(resultado, pathImagen, pathRepositorio);
 	}
+	
+	
+	private void registrarEditoresOde(String idOde, String[] listaUsuarioEditores, String emailPublicador) {
+
+		try {
+			UsuarioVO usuario = getSrvAdminUsuariosService().obtenerDatosUsuarioPorEmail(emailPublicador);
+			if(usuario==null) {
+				logger.error("No se encontraron los datos del email usuario publicador externo "+emailPublicador);
+				return;
+			} else 					
+				this.getEditoresOdesExternosDao().create(usuario.getUsuario(), idOde, 1);
+		} catch (Exception e) {
+			logger.error("Error al obtener datos del email usuario "+emailPublicador);
+			return;
+		}
+		
+		if(listaUsuarioEditores!=null) {
+			for(int i=0; i<listaUsuarioEditores.length; i++) {
+				
+				try {
+					UsuarioVO usuario = getSrvAdminUsuariosService().obtenerDatosUsuarioPorEmail(listaUsuarioEditores[i]);
+					if(usuario==null)
+						logger.warn("No se encontraron los datos del email usuario externo "+listaUsuarioEditores[i]);
+					else 					
+						this.getEditoresOdesExternosDao().create(usuario.getUsuario(), idOde, 0);
+					
+				} catch (Exception e) {
+					logger.error("Error al obtener datos del email usuario "+listaUsuarioEditores[i]);
+				}
+			}
+		}
+	}
 
 	
 	@Override
-	protected String[] handleObtenerEditoresOdeWebSemantica(String idODE)
+	protected String[] handleObtenerEditoresOdeExterno(String idODE)
+			throws Exception {
+
+		List<String> listaEditores = new ArrayList<String>();	
+
+		try	{ 
+			//Obtenemos el publicador del ODE
+			EditoresOdesExternosIdOdeEsPublicadorOdeCriteria criterio = new EditoresOdesExternosIdOdeEsPublicadorOdeCriteria();
+			criterio.setIdOde(idODE);
+			criterio.setEsPublicadorOde(1);
+			List<EditoresOdesExternosVO> listaPublicadoresDelOde = null;
+			listaPublicadoresDelOde = this.getEditoresOdesExternosDao().buscarEditoresOdesExternosPorIdOdeEsPublicadorOde(EditoresOdesExternosDao.TRANSFORM_EDITORESODESEXTERNOSVO, criterio);
+			
+			if(listaPublicadoresDelOde==null || listaPublicadoresDelOde.isEmpty()) {
+				logger.error("No se encontro publicador para el ODE externo "+idODE);
+				return null;
+				
+			} else if(listaPublicadoresDelOde!=null && listaPublicadoresDelOde.size()>1) {
+				logger.error("Se encontro mas de un publicador para el ODE externo "+idODE);
+				return null;
+			}
+			
+			listaEditores.add(listaPublicadoresDelOde.get(0).getIdUsuarioEditor());
+
+		} catch (Exception e) {
+			logger.error("Error al obtener el publicador del ODE externo "+idODE+": ", e);		
+			return null;
+		}
+		
+		try	{ 
+			//Obtenemos los editores del ODE
+			EditoresOdesExternosIdOdeEsPublicadorOdeCriteria criterio = new EditoresOdesExternosIdOdeEsPublicadorOdeCriteria();
+			criterio.setIdOde(idODE);
+			criterio.setEsPublicadorOde(0);
+			List<EditoresOdesExternosVO> listaEditoresDelOde = null;
+			listaEditoresDelOde = this.getEditoresOdesExternosDao().buscarEditoresOdesExternosPorIdOdeEsPublicadorOde(EditoresOdesExternosDao.TRANSFORM_EDITORESODESEXTERNOSVO, criterio);
+
+			if(listaEditoresDelOde!=null && !listaEditoresDelOde.isEmpty()) 
+				for(int i=0; i<listaEditoresDelOde.size(); i++)
+					listaEditores.add(listaEditoresDelOde.get(i).getIdUsuarioEditor());
+			
+			String[] listaEditoresMetodoAntiguo = handleObtenerEditoresOdeExternoAntiguo(idODE);
+
+			//Hacemos merge con la lista que obtendria el metodo antiguo
+			for(int a=0; a<listaEditoresMetodoAntiguo.length; a++) {
+				boolean usuarioEncontrado = false;
+				for(int i=0; i<listaEditoresDelOde.size(); i++) {
+					if(listaEditoresMetodoAntiguo[a].contentEquals(listaEditores.get(i))) {
+						usuarioEncontrado = true;
+						break;
+					}
+				}
+				if(!usuarioEncontrado)
+					listaEditores.add(listaEditoresMetodoAntiguo[a]);
+			}
+			
+		} catch (Exception e) {
+			logger.error("Error al obtener los editores del ODE externo "+idODE+": ", e);		
+			return null;
+		}
+		
+		return listaEditores.toArray(new String[listaEditores.size()]);
+	}
+	
+
+	private String[] handleObtenerEditoresOdeExternoAntiguo(String idODE)
 			throws Exception {
 		
 		String[] resultado = null;		
@@ -7986,11 +8165,11 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 				EntidadAgrega entidadAgrega =  iterator.next();					
 				listaUsuarios.add(entidadAgrega.getNombre());			
 			}
-/* 09072015 Movemos este código para devolver siempre el usuario que crea el ODE en primera posición       
+// 09072015 Movemos este código para devolver siempre el usuario que crea el ODE en primera posición       
 			// Controlamos si el usuario de creación en Agrega ya se incluye por estar en contribución con rol autor
-			if (!listaUsuarios.contains(usuarioCreacion))
-				listaUsuarios.add(usuarioCreacion);
-*/			
+//			if (!listaUsuarios.contains(usuarioCreacion))
+//				listaUsuarios.add(usuarioCreacion);
+			
 			resultado = listaUsuarios.toArray(new String[0]);
 						
 		} else {
@@ -7998,7 +8177,72 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			resultado[0]=usuarioCreacion;
 		}
 		return resultado;
-	}		
+	}	
+	
+
+	private String idUsuario2NombreApellidos(String idUsuario) {
+		
+		UsuarioVO usuario=null;
+		try {
+			usuario = this.getSrvAdminUsuariosService().obtenerDatosUsuario(idUsuario);
+		} catch (Exception e) {
+			logger.error("Error al obtener datos del idUsuario "+idUsuario);
+			return "";
+		}
+		if(usuario==null) {
+			logger.warn("No se encontraron los datos del idUsuario externo "+idUsuario);
+			return "";
+		}
+		if(usuario.getApellido2()!=null && !usuario.getApellido2().isEmpty())
+			return usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2();
+		if(usuario.getApellido1()!=null && !usuario.getApellido1().isEmpty())
+			return usuario.getNombre() + " " + usuario.getApellido1();
+		return usuario.getNombre();
+	}
+	
+
+	/**
+	 * Metodo que dado un email de usuario en agrega, devuelve su nobre y apellidos
+	 */
+	private String emailUsuario2NombreApellidos(String email) {
+		
+		UsuarioVO usuario=null;
+		try {
+			usuario = getSrvAdminUsuariosService().obtenerDatosUsuarioPorEmail(email);
+		} catch (Exception e) {
+			logger.error("Error al obtener datos del email usuario "+email);
+			return "";
+		}
+		if(usuario==null) {
+			logger.warn("No se encontraron los datos del email usuario externo "+email);
+			return "";
+		}
+		if(usuario.getApellido2()!=null && !usuario.getApellido2().isEmpty())
+			return usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2();
+		if(usuario.getApellido1()!=null && !usuario.getApellido1().isEmpty())
+			return usuario.getNombre() + " " + usuario.getApellido1();
+		return usuario.getNombre();
+	}
+	
+	
+	/**
+	 * Metodo que dados una lista de emails de usuario en agrega, devuelve su equivalencia en nobre y apellidos
+	 * Eliminara eauqllos usuarios que no estan registrados en Agrega
+	 */
+	private String[] emailsUsuarios2NombresApellidos(String[] emails) {
+		
+		if(emails==null)
+			return null;
+		
+		ArrayList<String> nombresApellidos = new ArrayList<String>();
+		
+		for(int i=0; i<emails.length; i++) {
+			String tmp = emailUsuario2NombreApellidos(emails[i]);
+			if(tmp!=null && !tmp.isEmpty())
+				nombresApellidos.add(tmp);
+		}
+		return nombresApellidos.toArray(new String[nombresApellidos.size()]);
+	}
 
 	
 	private boolean insertarContribucionesAutoresODE(String idODE, String[] correosUsuarios)
@@ -8016,7 +8260,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			File extraeSubmanifest = new File(localizadorP.getPath(), MANIFEST_NAME);
 			Manifest imsmanifest = this.getScormDao().parsearODEEager(extraeSubmanifest);
 
-			TratamientoODE.introduceAutorWebSemanticaManifest(localizadorP.getPath(), correosUsuarios, imsmanifest, (ScormDao) this.getScormDao());	
+			String[] nombresApellidosUsuarios = emailsUsuarios2NombresApellidos(correosUsuarios);
+			TratamientoODE.introduceAutorWebSemanticaManifest(localizadorP.getPath(), nombresApellidosUsuarios, imsmanifest, (ScormDao) this.getScormDao());	
 						
 			resultado=true;			
 		}catch (Exception e) {
@@ -8271,15 +8516,57 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		return false;
 	}  
 	
+
 	@Override
-	protected String[] handleObtenerOdesEditablesUsuarioWebSemantica(
-			String idUsuario) throws Exception {
+	protected String[] handleObtenerOdesEditablesUsuarioExterno(
+			String usuario) throws Exception {
+
+		List<String> listaIdsOdes = new ArrayList<String>();
+
+		try	{ 
+			EditoresOdesExternosIdUsuarioEditorCriteria criterio = new EditoresOdesExternosIdUsuarioEditorCriteria();
+			criterio.setIdUsuarioEditor(usuario);
+			List<EditoresOdesExternosVO> listaOdes = null;
+			listaOdes = this.getEditoresOdesExternosDao().buscarEditoresOdesExternosPorIdUsuarioEditor(EditoresOdesExternosDao.TRANSFORM_EDITORESODESEXTERNOSVO, criterio);
+			
+			if(listaOdes==null || listaOdes.isEmpty()) 
+				return listaIdsOdes.toArray(new String[listaIdsOdes.size()]);
+			
+			for(int i=0; i<listaOdes.size(); i++)
+				listaIdsOdes.add(listaOdes.get(i).getIdOde());
+			
+			String[] listaOdesMetodoAntiguo = handleObtenerOdesEditablesUsuarioExternoAntiguo(usuario);
+
+			//Hacemos merge con la lista que obtendria el metodo antiguo
+			for(int a=0; a<listaOdesMetodoAntiguo.length; a++) {
+				boolean odeEncontrado = false;
+				for(int i=0; i<listaIdsOdes.size(); i++) {
+					if(listaOdesMetodoAntiguo[a].contentEquals(listaIdsOdes.get(i))) {
+						odeEncontrado = true;
+						break;
+					}
+				}
+				if(!odeEncontrado)
+					listaIdsOdes.add(listaOdesMetodoAntiguo[a]);
+			}				
+
+		} catch (Exception e) {
+			logger.error("Error al obtener odes editables por el usuario externo "+usuario+": ", e);		
+			return null;
+		}
+		
+		return listaIdsOdes.toArray(new String[listaIdsOdes.size()]);
+	}
+	
+	
+	private String[] handleObtenerOdesEditablesUsuarioExternoAntiguo(
+			String usuario) throws Exception {
 
 		boolean usuarioRegistrado=false;
 		
-		UsuarioVO usuario = this.getSrvAdminUsuariosService().obtenerDatosUsuarioWebSemantica(idUsuario);
-		if (usuario!=null && usuario.getUsuario()!=null) {
-			idUsuario=usuario.getUsuario();
+		UsuarioVO usuarioVO = this.getSrvAdminUsuariosService().obtenerDatosUsuario(usuario);
+		if (usuarioVO!=null && usuarioVO.getUsuario()!=null) {
+			usuario=usuarioVO.getUsuario();
 			usuarioRegistrado=true;
 		}		
 		
@@ -8287,13 +8574,13 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		
 		if(usuarioRegistrado) {
 			//Obtengo los ODEs que ha publicado el usuario
-			TransicionVO[] odesPublicados = handleObtenODEsPublicadosPorUsuario(idUsuario);
+			TransicionVO[] odesPublicados = handleObtenODEsPublicadosPorUsuario(usuario);
 			for(int i=0; i<odesPublicados.length; i++)
 				idODEsEditables.add(odesPublicados[i].getIdODE());
 		}
 		
 		//Obtengo los ODEs en los que el usuario ha contribuido como publicador o como autor
-		String[] idODEsContribuidos = this.getSrvIndexadorService().obtenerOdesConUsuarioEnContribucion(idUsuario);
+		String[] idODEsContribuidos = this.getSrvIndexadorService().obtenerOdesConUsuarioEnContribucion(usuario);
 		
 		for(int i=0; i<idODEsContribuidos.length; i++) {
 			
@@ -8315,7 +8602,252 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			}
 			
 		}					
-		return (String[])idODEsEditables.toArray(new String[0]);	
+		return (String[])idODEsEditables.toArray(new String[0]);
+	}
 
+	
+	/**
+	 * Metodo que obtiene la lista de ODEs despublicados por usuario que lo despublico, titulo del ODE, y
+	 * fecha de despublicacion
+	 */
+	@Override
+	protected TransicionVO[] handleObtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha(String idUsuario, String fechaInicio,
+			String fechaFin, String titulo) throws Exception {	
+		
+		//SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd-MM-yyyy");
+		Date dateIni = null;
+		Date dateFin = null;
+		
+		// Comprobamos y ajustamos las fechas
+		if (fechaInicio==null || fechaInicio.isEmpty())
+			dateIni = new Date(0); // si la fecha de inicio es vacia, cogemos 1970 como inicio.
+		else 
+			dateIni = formatoDelTexto.parse(fechaInicio);
+		
+		if (fechaFin==null || fechaFin.isEmpty())
+			dateFin = new Date(); // si la fecha de fin es vacia, utilzamos hoy como tope.
+		else
+			dateFin = formatoDelTexto.parse(fechaFin);
+			
+		if (dateIni.after(dateFin)) // hay una inconsistencia con las fechas, no seguimos
+		{
+			String msg = "Error invocando la eliminacion de odes. Fechas desde[" + fechaInicio.toString()
+			+ "] y hasta[" + fechaFin.toString() + "] inconsistentes.";
+			logger.warn(msg);
+			throw new Exception(msg);
+		}
+		
+		//Afinamos las fechas
+        Calendar inicio = Calendar.getInstance();
+        inicio.setTime(dateIni);
+        inicio.set(Calendar.AM_PM, 0);
+        inicio.set(Calendar.HOUR, 0);
+        inicio.set(Calendar.MINUTE, 0);
+        inicio.set(Calendar.SECOND, 0);
+        
+        Calendar fin = Calendar.getInstance();
+        fin.setTime(dateFin);
+        fin.set(Calendar.AM_PM, 1);
+        fin.set(Calendar.HOUR, 11);
+        fin.set(Calendar.MINUTE, 59);
+        fin.set(Calendar.SECOND, 59);
+		
+		try {
+			List<TransicionVO> transiciones = null;
+			Estado estadoNoDisponible = getEstadoDao().obtenEstadoPorNombre(NO_DISPONIBLE);
+
+			String msg = "Obteniendo la lista de ODEs Despublicados con titulo [" + titulo + "], usuario [" + idUsuario + "], desde ["
+					+ fechaInicio.toString() + "], hasta [" + fechaFin.toString() + "]";
+			
+			logger.debug(msg);
+			
+			//Si solo recibo el usuario busco por fecha y usuario
+			if(idUsuario!=null && !idUsuario.isEmpty() && (titulo==null || titulo.isEmpty()) ) {
+				
+				EstadoUsuarioDespublicadorDesdeHastaCriteria criterio = new EstadoUsuarioDespublicadorDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdUsuario(idUsuario);
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuarioDespublicadorDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			
+			//Si solo recibo el titulo busco por titulo y fecha
+			} else if(titulo!=null && !titulo.isEmpty() && (idUsuario==null || idUsuario.isEmpty()) ) {
+
+				EstadoTituloDesdeHastaCriteria criterio = new EstadoTituloDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setTitulo("%"+titulo.toLowerCase()+"%");
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoTituloDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			
+			//Si recibo titulo y usuario busco por todo
+			} else if(idUsuario!=null && !idUsuario.isEmpty() && titulo!=null && !titulo.isEmpty()) {
+
+				EstadoUsuarioDespublicadorTituloDesdeHastaCriteria criterio = new EstadoUsuarioDespublicadorTituloDesdeHastaCriteria();
+				//criterio.setFechaDesde(DateManager.dateToCalendar(dateIni));
+				//criterio.setFechaHasta(DateManager.dateToCalendar(dateFin));
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdUsuario(idUsuario);
+				criterio.setTitulo("%"+titulo.toLowerCase()+"%");
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuarioDespublicadorTituloDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+				
+			//Si no recibo ni titulo ni usuario busco solo despublicados por fecha
+			} else if( (idUsuario==null || idUsuario.isEmpty()) && (titulo==null || titulo.isEmpty()) ) {
+
+				EstadoDesdeHastaCriteria criterio = new EstadoDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				
+				transiciones = getTransicionDao().buscarODEsPorCriterioEstadoDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			}
+			
+			if(transiciones!=null) {
+				logger.debug("Encontradas "+transiciones.size()+" transiciones");
+				return transiciones.toArray(new TransicionVO[transiciones.size()]);
+			} else {
+				logger.debug("Encontradas null transiciones");
+				return null;
+			}
+			
+		} catch (Exception e) {
+			String msg = "Error obteniendo la lista de ODEs Despublicados con titulo [" + titulo + "], usuario [" + idUsuario + "], desde ["
+					+ fechaInicio.toString() + "], hasta [" + fechaFin.toString() + "][" + e.getCause() + "]";
+			logger.error(msg);
+			throw new Exception(msg, e);
+		}
+	}
+	
+
+	@Override
+	protected TransicionVO[] handleObtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha(
+			String idUsuarioDespublicador, String fechaInicio, String fechaFin, String titulo,
+			String[] idsUsuariosCreador) throws Exception {
+		
+		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dd-MM-yyyy");
+		Date dateIni = null;
+		Date dateFin = null;
+		
+		// Comprobamos y ajustamos las fechas
+		if (fechaInicio==null || fechaInicio.isEmpty())
+			dateIni = new Date(0); // si la fecha de inicio es vacia, cogemos 1970 como inicio.
+		else 
+			dateIni = formatoDelTexto.parse(fechaInicio);
+		
+		if (fechaFin==null || fechaFin.isEmpty())
+			dateFin = new Date(); // si la fecha de fin es vacia, utilzamos hoy como tope.
+		else
+			dateFin = formatoDelTexto.parse(fechaFin);
+			
+		if (dateIni.after(dateFin)) // hay una inconsistencia con las fechas, no seguimos
+		{
+			String msg = "Error invocando la eliminacion de odes. Fechas desde[" + fechaInicio.toString()
+			+ "] y hasta[" + fechaFin.toString() + "] inconsistentes.";
+			logger.warn(msg);
+			throw new Exception(msg);
+		}
+		
+		//Afinamos las fechas
+        Calendar inicio = Calendar.getInstance();
+        inicio.setTime(dateIni);
+        inicio.set(Calendar.AM_PM, 0);
+        inicio.set(Calendar.HOUR, 0);
+        inicio.set(Calendar.MINUTE, 0);
+        inicio.set(Calendar.SECOND, 0);
+        
+        Calendar fin = Calendar.getInstance();
+        fin.setTime(dateFin);
+        fin.set(Calendar.AM_PM, 1);
+        fin.set(Calendar.HOUR, 11);
+        fin.set(Calendar.MINUTE, 59);
+        fin.set(Calendar.SECOND, 59);
+		
+		try {
+			List<TransicionVO> transiciones = null;
+			Estado estadoNoDisponible = getEstadoDao().obtenEstadoPorNombre(NO_DISPONIBLE);
+
+			String msg = "Obteniendo la lista de ODEs Despublicados con titulo [" + titulo + "], usuario [" + idUsuarioDespublicador + "], desde ["
+					+ fechaInicio.toString() + "], hasta [" + fechaFin.toString() + "]";
+			
+			logger.debug(msg);
+			
+			//Si solo recibo el usuario busco por fecha y usuario
+			if(idUsuarioDespublicador!=null && !idUsuarioDespublicador.isEmpty() && (titulo==null || titulo.isEmpty()) ) {
+				
+				EstadoUsuariosCreacionUsuarioDespublicadorDesdeHastaCriteria criterio = new EstadoUsuariosCreacionUsuarioDespublicadorDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdsUsuariosCreacion(idsUsuariosCreador);
+				criterio.setIdUsuarioDespublicador(idUsuarioDespublicador);
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuariosCreacionUsuarioDespublicadorDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			
+			//Si solo recibo el titulo busco por titulo y fecha
+			} else if(titulo!=null && !titulo.isEmpty() && (idUsuarioDespublicador==null || idUsuarioDespublicador.isEmpty()) ) {
+
+				EstadoUsuariosCreacionTituloDesdeHastaCriteria criterio = new EstadoUsuariosCreacionTituloDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdsUsuariosCreacion(idsUsuariosCreador);
+				criterio.setTitulo("%"+titulo.toLowerCase()+"%");
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuariosCreacionTituloDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			
+			//Si recibo titulo y usuario busco por todo
+			} else if(idUsuarioDespublicador!=null && !idUsuarioDespublicador.isEmpty() && titulo!=null && !titulo.isEmpty()) {
+
+				EstadoUsuariosCreacionUsuarioDespublicadorTituloDesdeHastaCriteria criterio = new EstadoUsuariosCreacionUsuarioDespublicadorTituloDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdsUsuariosCreacion(idsUsuariosCreador);
+				criterio.setIdUsuarioDespublicador(idUsuarioDespublicador);
+				criterio.setTitulo("%"+titulo.toLowerCase()+"%");
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuariosCreacionUsuarioDespublicadorTituloDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+				
+			//Si no recibo ni titulo ni usuario busco solo despublicados por fecha
+			} else if( (idUsuarioDespublicador==null || idUsuarioDespublicador.isEmpty()) && (titulo==null || titulo.isEmpty()) ) {
+
+				EstadoUsuariosCreacionDesdeHastaCriteria criterio = new EstadoUsuariosCreacionDesdeHastaCriteria();
+				criterio.setFechaDesde(inicio);
+				criterio.setFechaHasta(fin);
+				criterio.setEstadoActual(estadoNoDisponible);
+				criterio.setEstadoTransitado(null);
+				criterio.setIdsUsuariosCreacion(idsUsuariosCreador);
+				
+				transiciones = getTransicionDao().buscarODEsPorEstadoUsuariosCreacionDesdeHasta(TransicionDao.TRANSFORM_TRANSICIONVO, criterio);
+			}
+			
+			if(transiciones!=null) {
+				logger.debug("Encontradas "+transiciones.size()+" transiciones");
+				return transiciones.toArray(new TransicionVO[transiciones.size()]);
+			} else {
+				logger.debug("Encontradas null transiciones");
+				return null;
+			}
+			
+		} catch (Exception e) {
+			String msg = "Error obteniendo la lista de ODEs Despublicados con titulo [" + titulo + "], usuario [" + idUsuarioDespublicador + "], desde ["
+					+ fechaInicio.toString() + "], hasta [" + fechaFin.toString() + "][" + e.getCause() + "]";
+			logger.error(msg);
+			throw new Exception(msg, e);
+		}
 	}
 }

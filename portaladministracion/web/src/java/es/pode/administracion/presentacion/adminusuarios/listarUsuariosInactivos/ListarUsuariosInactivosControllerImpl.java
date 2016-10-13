@@ -38,7 +38,7 @@ public class ListarUsuariosInactivosControllerImpl extends ListarUsuariosInactiv
     	// que esta en sesion.
     	try {
     	   
-    		 UsuarioVO[] usuarioVO = this.getSrvAdminUsuariosService().listarUsuariosInactivos();
+    		 UsuarioVO[] usuarioVO = this.getSrvAdminUsuariosService().listarUsuariosInactivosYdadosDeBaja();
     		
     		 UsuarioVODate[] usuariosDate = null;
     		

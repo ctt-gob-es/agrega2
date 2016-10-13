@@ -30,9 +30,19 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     public java.lang.Long altaUsuario(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException;
 
     /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO altaUsuarioProComun(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException;
+
+    /**
      * Para dar a un usuario de alta desde la web semantica
      */
     public java.lang.Long altaUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO autenticacionUsuarioProComun(java.lang.String email, java.lang.String password) throws java.rmi.RemoteException;
 
     /**
 
@@ -58,6 +68,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
 
      */
     public es.pode.adminusuarios.negocio.servicios.ValidaBajaUsuarioVO bajaUsuarioPendiente(java.lang.Long[] ids, es.pode.adminusuarios.negocio.servicios.UsuarioVO emailAdmin) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO bajaUsuarioProComun(java.lang.String email, java.lang.String passwd) throws java.rmi.RemoteException;
 
     /**
 
@@ -198,6 +213,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     /**
 
      */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO modificarUsuarioProComun(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario, java.lang.String passwordAntiguo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
     public boolean modificarUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO usuario, java.lang.String passwordAntiguo) throws java.rmi.RemoteException;
 
     /**
@@ -219,7 +239,7 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
     /**
 
      */
-    public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuarioWebSemantica(java.lang.String correoUsuario) throws java.rmi.RemoteException;
+    public es.pode.adminusuarios.negocio.servicios.UsuarioVO obtenerDatosUsuarioPorEmail(java.lang.String email) throws java.rmi.RemoteException;
 
     /**
 
@@ -295,6 +315,11 @@ public interface SrvAdminUsuariosService extends java.rmi.Remote {
 
      */
     public es.pode.adminusuarios.negocio.servicios.UsuarioActivoVO[] usuariosActivos(es.pode.adminusuarios.negocio.servicios.ParametroAuditoriaUsuariosVO parametroAuditoriaVO) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.adminusuarios.negocio.servicios.ResultadoOperacionWebSemanticaVO validarCampoUsuarioProComun(java.lang.String nombreCampo, java.lang.String valorCampo) throws java.rmi.RemoteException;
 
     /**
      * Valida un campo del usuario de web semantica. El campor puede

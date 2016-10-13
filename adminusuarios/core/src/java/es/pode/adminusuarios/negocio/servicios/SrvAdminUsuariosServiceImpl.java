@@ -1993,6 +1993,26 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	}
 	
 	
+	protected UsuarioVO[] handleListarUsuariosInactivosYdadosDeBaja() throws Exception {
+		UsuarioVO[] usuarioV = null;
+
+		try
+		{
+			Collection usuarios = this.getUsuarioDao().getUsuariosInactivosYdadosDeBaja();
+			this.getUsuarioDao().toUsuarioVOCollection(usuarios);
+			usuarioV = (UsuarioVO[]) usuarios.toArray(new UsuarioVO[0]);
+
+			if(log.isDebugEnabled())log.debug("[LISTARUSUARIOSINACTIVOS] usuarios inactivos y dados de baja " + usuarios.size());
+
+		} catch (Exception e)
+		{
+			log.error("Error: " + e);
+			throw e;
+		}
+		return usuarioV;
+	}
+	
+	
 
 	/**
 	 * Obtiene un listado de todos los grupos de trabajo del sistema.
@@ -3010,10 +3030,10 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	}
 	
 	
-	private ResultadoOperacionWebSemanticaVO comprobarIntegridadDatosBasicosUsuarioProComun (UsuarioVO usuario, boolean comprobarPasswd)
+	private ResultadoOperacionExternaVO comprobarIntegridadDatosBasicosUsuarioExterno (UsuarioVO usuario, boolean comprobarPasswd)
 			{
 
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");
 		
 		//Revisamos que recibimos los datos necesarios para crear el usuario de web semantica
@@ -3100,53 +3120,52 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	
 	
 	/**
-	 * Metodo para dar de alta un usuario de Procomun. Se le agregará en el servidor
-	 * ldap de Agrega y en el de Web Semantica y se enviará un correo con el usuario y la clave
+	 * Metodo para dar de alta un usuario de Procomun. 
 	 * El usuario se creara desactivado.
 	 * @param usuario usuarioVO con los datos del usuario que se dara de alta
 	 * @return resultado String que devuelve si el alta ha ido bien o no
 	 * @throws Exception
 	 */	
 	@Override
-	protected ResultadoOperacionWebSemanticaVO handleAltaUsuarioProComun(UsuarioVO usuario)
+	protected ResultadoOperacionExternaVO handleAltaUsuarioExterno(UsuarioVO datosUsuario)
 			{
 
-		ResultadoOperacionWebSemanticaVO checkDatos=null;
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO checkDatos=null;
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");
 		Long retorno = null;
 		String nombreGrupoWebSemantica="UsuariosWebSemantica";
 		
 		try {
 		    // Validamos los campos que informan desde Web Semántica (nombre, apellidos, nif y password)
-			checkDatos=comprobarIntegridadDatosBasicosUsuarioProComun(usuario, true);
+			checkDatos=comprobarIntegridadDatosBasicosUsuarioExterno(datosUsuario, true);
 			if(checkDatos==null || !checkDatos.getCodigoResultado().contentEquals(OK_WS))
 				return checkDatos;
 
 		    // Pasamos a minúsculas el username ya que suponemos que son emails
-	    	usuario.setUsuario(usuario.getUsuario().toLowerCase());
+			datosUsuario.setUsuario(datosUsuario.getUsuario().toLowerCase());
 			
 			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
-		    if (usuario.getNIF()!=null)
-		    	usuario.setNIF(usuario.getNIF().toUpperCase());
+		    if (datosUsuario.getNIF()!=null)
+		    	datosUsuario.setNIF(datosUsuario.getNIF().toUpperCase());
 			
 		    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
-		    if (usuario.getEmail()!=null)
-		    	usuario.setEmail(usuario.getEmail().toLowerCase());
+		    if (datosUsuario.getEmail()!=null)
+		    	datosUsuario.setEmail(datosUsuario.getEmail().toLowerCase());
 		    
 			//Cargamos los campos del usuario que podemos recibir
-		    String nombre = usuario.getNombre();
-		    String apellido1 = usuario.getApellido1();
-		    String apellido2 = usuario.getApellido2();
+		    String nombre = datosUsuario.getNombre();
+		    String apellido1 = datosUsuario.getApellido1();
+		    String apellido2 = datosUsuario.getApellido2();
 		    String nif;
-		    if (usuario.getNIF()!=null && !usuario.getNIF().isEmpty())
-		    	nif = usuario.getNIF();
+		    if (datosUsuario.getNIF()!=null && !datosUsuario.getNIF().isEmpty())
+		    	nif = datosUsuario.getNIF();
 		    else 
 		    	nif = "WS"+System.currentTimeMillis();
-		    Boolean recibirCorreoPublicacion = usuario.getRecibirCorreoPublicacion();
+		    Boolean recibirCorreoPublicacion = datosUsuario.getRecibirCorreoPublicacion();
 		    //Campos de usuario que ajustamos automaticamente independientemente
 		    //de lo que recibamos
-			String user=usuario.getUsuario();
+			String user=datosUsuario.getUsuario();
 		    String openIdUrl = "";
 		    String idiomaBusqueda="es"; //Puede ser; ca, en, eu, gl, va o fr
 		    String idioma="es";
@@ -3161,23 +3180,23 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    }
     	    
 		    //Cargo las modificaciones y los ajustes de los campos en el usuario a crear 
-		    usuario.setNombre(nombre);
-		    usuario.setApellido1(apellido1);
-		    usuario.setApellido2(apellido2);
-		    usuario.setNIF(nif);
-		    usuario.setRecibirCorreoPublicacion(recibirCorreoPublicacion);
-		    usuario.setUsuario(user);
-		    usuario.setOpenIdUrl(openIdUrl);
-		    usuario.setIdiomaBusqueda(idiomaBusqueda);
-		    usuario.setIdioma(idioma);
-		    usuario.setTipoEmpaquetador(tipoEmpaquetador);
-		    usuario.setTipoCatalogador(tipoCatalogador);
-		    usuario.setTipoVisualizador(tipoVisualizador);
-		    //usuario.setCuota(cuota);    
-		    usuario.setFechaAlta(new java.util.Date()); 
-		    usuario.setFechaBaja(null);
-		    //usuario.setFechaDesactivacion(null);
-		    usuario.setFechaDesactivacion(new java.util.Date());
+		    datosUsuario.setNombre(nombre);
+		    datosUsuario.setApellido1(apellido1);
+		    datosUsuario.setApellido2(apellido2);
+		    datosUsuario.setNIF(nif);
+		    datosUsuario.setRecibirCorreoPublicacion(recibirCorreoPublicacion);
+		    datosUsuario.setUsuario(user);
+		    datosUsuario.setOpenIdUrl(openIdUrl);
+		    datosUsuario.setIdiomaBusqueda(idiomaBusqueda);
+		    datosUsuario.setIdioma(idioma);
+		    datosUsuario.setTipoEmpaquetador(tipoEmpaquetador);
+		    datosUsuario.setTipoCatalogador(tipoCatalogador);
+		    datosUsuario.setTipoVisualizador(tipoVisualizador);
+		    //datosUsuario.setCuota(cuota);    
+		    datosUsuario.setFechaAlta(new java.util.Date()); 
+		    datosUsuario.setFechaBaja(null);
+		    //datosUsuario.setFechaDesactivacion(null);
+		    datosUsuario.setFechaDesactivacion(new java.util.Date());
 		    
 		    //Asignamos grupo
 		    Boolean grupoWebSemanticaEncontrado=false;
@@ -3194,14 +3213,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			    	
 			    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
 			    		grupoWebSemantica[0]=grupos[i];
-			    		usuario.setGrupos(grupoWebSemantica);
+			    		datosUsuario.setGrupos(grupoWebSemantica);
 			    		grupoWebSemanticaEncontrado=true;
 			    		break;
 			    	}
 			    }
 			} catch (Exception ex) {
-				log.error("Error al obtener los grupos ", ex);
-				r.setMensaje("Error al obtener los grupos");
+				log.error("Error al obtener los grupos de usuarios", ex);
+				r.setMensaje("Error al obtener los grupos de usuarios");
 				r.setCodigoResultado(ERROR_LISTAR_GRUPOS_ALTA_WS);
 				return r;
 			}
@@ -3227,14 +3246,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				    		
 				    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
 				    		grupoWebSemantica[0]=handleDescripcionGrupo(idGrupo);
-				    		usuario.setGrupos(grupoWebSemantica);
+				    		datosUsuario.setGrupos(grupoWebSemantica);
 				    		rolDocenteEncontrado=true;
 				    		break;
 				    	}
 				    	
 				    }
 				    if(!rolDocenteEncontrado) {
-						r.setMensaje("No existe el rol DOCENTE en la plataforma. Este es necesario para crear el grupo de usuarios de web semantica.");
+						r.setMensaje("No existe el rol DOCENTE en la plataforma. Este es necesario para crear el grupo de usuarios donde se incluirán a los nuevos usuarios.");
 						r.setCodigoResultado(ERROR_OBTENER_ROL_DOCENTE_WS);
 						return r;
 				    }
@@ -3259,7 +3278,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			    		
 			    		GrupoTrabajoVO[] grupoWebSemantica=new GrupoTrabajoVO[1];
 			    		grupoWebSemantica[0]=gruposDeTrabajo[i];
-			    		usuario.setGrupoTrabajo(grupoWebSemantica);
+			    		datosUsuario.setGrupoTrabajo(grupoWebSemantica);
 			    		grupoWebSemanticaEncontrado=true;
 			    		break;
 			    	}
@@ -3273,7 +3292,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    		
 		    		GrupoTrabajoVO[] grupoWebSemantica=new GrupoTrabajoVO[1];
 		    		grupoWebSemantica[0]=handleDescripcionGrupoTrabajo(idGrupo);
-		    		usuario.setGrupoTrabajo(grupoWebSemantica);
+		    		datosUsuario.setGrupoTrabajo(grupoWebSemantica);
 				}
 		    	 
 			} catch (Exception ex) {				
@@ -3306,10 +3325,10 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 						return r;
 					}
 					//El usuario ya esta registrado pero esta dado de baja
-				    usuario.setFechaAlta(usuarioExistente.getFechaAlta());
+					datosUsuario.setFechaAlta(usuarioExistente.getFechaAlta());
 			    }
 
-				if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail())!=null) {
+				if (this.getUsuarioDao().obtenerUsuarioPorEmail(datosUsuario.getEmail())!=null) {
 					r.setMensaje("El email ya pertenece a un usuario registrado");
 					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 					return r;
@@ -3317,15 +3336,15 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			    
 			} catch (Exception ex) {
 				
-				log.error("Error al comprobar si existe usuario ", ex);
-				r.setMensaje("Error al comprobar si existe usuario");
+				log.error("Error al comprobar si existe un usuario registrado en el sistema con los mismos datos ", ex);
+				r.setMensaje("Error al comprobar si existe un usuario registrado en el sistema con los mismos datos");
 				r.setCodigoResultado(ERROR_COMPROBAR_USUARIO_TRABAJO_ALTA_WS);
 				return r;
 			}
 			
 		    // 16092014 La plataforma final de Procomún pasará la clave como hash sha1.
 		    // Para compatibilidad con el piloto de Procomún que la pasa en claro, si se detecta que no es un hash se calcula
-		    String pass = usuario.getClave();
+		    String pass = datosUsuario.getClave();
 		    //if (!pass.startsWith("{SHA}"))
 	    	try
 	    	{
@@ -3342,8 +3361,8 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			{
 				try
 				{
-					this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(),pass, 
-						usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
+					this.getLdapWebSemanticaHandler().insertUser(datosUsuario.getUsuario(),pass, 
+						datosUsuario.getNombre() + " " + datosUsuario.getApellido1() + " " + datosUsuario.getApellido2());
 				} catch (Exception ex) {					
 					log.error("Error al acceder a ldap", ex);
 					r.setMensaje("Error al acceder a ldap para dar de alta");
@@ -3355,15 +3374,15 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			try {
 				//Damos de alta al usuario en Agrega
 				//return altaUsuarioAgrega(usuario, true);
-				retorno=altaUsuarioAgrega(usuario, false, false);
-				r.setMensaje("Usuario creado correctamente con identificador : " + usuario.getUsuario());
+				retorno=altaUsuarioAgrega(datosUsuario, false, false);
+				r.setMensaje("Usuario creado correctamente con identificador : " + datosUsuario.getUsuario());
 				r.setCodigoResultado(OK_WS);
 				return r;
 				
 			} catch (Exception e) {
 				try
 				{
-					this.getLdapWebSemanticaHandler().deleteContact(usuario.getUsuario());
+					this.getLdapWebSemanticaHandler().deleteContact(datosUsuario.getUsuario());
 				} catch (Exception ex) {					
 					log.error("Error al acceder a ldap para revertir alta de usuario", ex);
 					r.setMensaje("Error al acceder a ldap para revertir alta de usuario");
@@ -3390,10 +3409,10 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	 * En otras palabras devuelve true si el par campo-valor es valido para ser usable por un nuevo usuario.
 	 */
 	@Override
-	protected ResultadoOperacionWebSemanticaVO handleValidarCampoUsuarioProComun(String nombreCampo,
+	protected ResultadoOperacionExternaVO handleValidarCampoUsuarioExterno(String nombreCampo,
 			String valorCampo)  {
 
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");
 		
 		// Validamos que los parametros vengan informados
@@ -3456,14 +3475,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 	
 	@Override
-	protected ResultadoOperacionWebSemanticaVO handleAutenticacionUsuarioProComun(String email,
+	protected ResultadoOperacionExternaVO handleAutenticacionUsuarioExterno(String usuario,
 			String password) {
 
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");	
 
-		if(email==null) {
-			r.setMensaje("No se ha recibido un email o identificador del usuario a autenticar");
+		if(usuario==null) {
+			r.setMensaje("No se ha recibido un identificador del usuario a autenticar");
 			r.setCodigoResultado(ERROR_PARAMETROS_WS);
 			return r;
 		}
@@ -3473,9 +3492,9 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			return r;
 		}
 		
-		String idUsuario = email; 
+		String idUsuario = usuario; 
 
-		log.info("PROCOMUN Va a autenticar el usuario: " + email);
+		log.info("PROCOMUN Va a autenticar el usuario: " + usuario);
 		try
 		{
 //			// Si es un email tenemos que obtener el identificador para Agrega
@@ -3493,8 +3512,8 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			// Si no está activo devolvemos error diferenciado
 			if (usuarioDesactivadoOEliminado(idUsuario)) {	
-				log.info("El usuario " + email + " esta desactivado o eliminado");
-				r.setMensaje("El usuario " + email + " esta desactivado o eliminado");
+				log.info("El usuario " + usuario + " esta desactivado o eliminado");
+				r.setMensaje("El usuario " + usuario + " esta desactivado o eliminado");
 				r.setCodigoResultado(ERROR_USUARIO_NO_ACTIVO_WS);
 				return r;
 			}
@@ -3531,54 +3550,32 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			if (verificarPassword(passUserLdap, password))
 			//if (passUserLdap.equals(hashPassEntrada))
 			{
-				log.info("Se ha autenticado correctamente al usuario: " + email);
-				r.setMensaje("Se ha autenticado correctamente al usuario: " + email);
+				log.info("Se ha autenticado correctamente al usuario: " + usuario);
+				r.setMensaje("Se ha autenticado correctamente al usuario: " + usuario);
 				r.setCodigoResultado(OK_WS);				
 				return r;
 			} else if (passUserLdap.equals(getHashPassword(password)))
 			{
-				log.info("Se ha autenticado correctamente al usuario: " + email);
-				r.setMensaje("Se ha autenticado correctamente al usuario: " + email);
+				log.info("Se ha autenticado correctamente al usuario: " + usuario);
+				r.setMensaje("Se ha autenticado correctamente al usuario: " + usuario);
 				r.setCodigoResultado(OK_WS);				
 				return r;
 				
 			}
 			else{
-				log.error("No se ha autenticado correctamente al usuario: " + email);
-				r.setMensaje("No se ha autenticado correctamente al usuario: " + email);
+				log.error("No se ha autenticado correctamente al usuario: " + usuario);
+				r.setMensaje("No se ha autenticado correctamente al usuario: " + usuario);
 				r.setCodigoResultado(ERROR_USUARIO_NO_ENCONTRADO_WS);
 				return r;
 			}
 			
 		} catch (Exception e) {
-			log.error("Se ha producido un error genérico al autenticar al usuario: " + email);
+			log.error("Se ha producido un error genérico al autenticar al usuario: " + usuario);
 			log.error(e.getMessage());
-			r.setMensaje("Se ha producido un error genérico al autenticar al usuario: " + email);
+			r.setMensaje("Se ha producido un error genérico al autenticar al usuario: " + usuario);
 			r.setCodigoResultado(ERROR_GENERICO_AUTENTIFICAR_USUARIO_WS);
 			return r;
 		}
-	}
-
-	
-	/**
-	 * Obtiene los datos del usuario que se pasa como parámetro. 
-	 * @param correoUsuario permite el correo del usuario o el identficador (para usuarios antiguos de Agrega). 
-	 * @return UsuarioVO Datos del usuario solicitado
-	 * @throws Exception
-	 */
-	@Override
-	protected UsuarioVO handleObtenerDatosUsuarioWebSemantica(
-			String correoUsuario) throws Exception {
-		
-		UsuarioVO usuario= null;
-		log.info("PROCOMUN Va a obtener los datos del usuario: " + correoUsuario);
-
-	    // Buscamos en minúsculas el username ya que suponemos que son emails
-		Usuario usuBd = this.getUsuarioDao().obtenerDatosUsuario(correoUsuario.toLowerCase());
-		if (usuBd!=null)
-			usuario = getUsuarioDao().toUsuarioVO(usuBd); 			
-			
-		return usuario;
 	}
 	
 	
@@ -3612,20 +3609,20 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 	 * @see es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosServiceBase#handleModificarUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO, java.lang.String)
 	 */
 	@Override
-	protected ResultadoOperacionWebSemanticaVO handleModificarUsuarioProComun(UsuarioVO usuario, String passwordAntiguo)
+	protected ResultadoOperacionExternaVO handleModificarUsuarioExterno(UsuarioVO datosUsuario)
 			 {
 		
-		ResultadoOperacionWebSemanticaVO checkDatos=null;
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO checkDatos=null;
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");
 		
 		//try {	
 		    // Validamos los campos que informan desde Web Semántica (nombre, apellidos, nif, password, e email)
 		     
-		    if(usuario.getClave()!=null && !usuario.getClave().isEmpty()) 
-		    	checkDatos=comprobarIntegridadDatosBasicosUsuarioProComun(usuario, true);
+		    if(datosUsuario.getClave()!=null && !datosUsuario.getClave().isEmpty()) 
+		    	checkDatos=comprobarIntegridadDatosBasicosUsuarioExterno(datosUsuario, true);
 		    else
-		    	checkDatos=comprobarIntegridadDatosBasicosUsuarioProComun(usuario, false);
+		    	checkDatos=comprobarIntegridadDatosBasicosUsuarioExterno(datosUsuario, false);
 		    
 		    if(checkDatos==null || !checkDatos.getCodigoResultado().contentEquals(OK_WS)) 
 		    	return checkDatos;
@@ -3633,17 +3630,17 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			String ldapExterno=AgregaPropertiesImpl.getInstance().getProperty(AgregaProperties.LDAPEXTERNO);
 			
 			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
-		    if (usuario.getNIF()!=null)
-		    	usuario.setNIF(usuario.getNIF().toUpperCase());
+		    if (datosUsuario.getNIF()!=null)
+		    	datosUsuario.setNIF(datosUsuario.getNIF().toUpperCase());
 			
 		    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
-		    if (usuario.getEmail()!=null)
-		    	usuario.setEmail(usuario.getEmail().toLowerCase());
+		    if (datosUsuario.getEmail()!=null)
+		    	datosUsuario.setEmail(datosUsuario.getEmail().toLowerCase());
 
 		    // Obtenemos el usuario de base de datos
 		    UsuarioVO user = null;
 			try{
-				user = handleObtenerDatosUsuarioWebSemantica(usuario.getUsuario());
+				user = obtenerDatosUsuarioExterno(datosUsuario.getUsuario());
 			} catch (Exception ex) {					
 				log.error("Error al obtener los datos del usuario", ex);
 				r.setMensaje("Error al obtener los datos del usuario");
@@ -3653,14 +3650,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			if (user==null)
 			{
-				log.error("Se intenta modificar un usuario de Procomun que no existe: "+ usuario.getUsuario());
-				r.setMensaje("Se intenta modificar un usuario de Procomun que no existe: "+ usuario.getUsuario());
+				log.error("Se intenta modificar un usuario que no existe: "+ datosUsuario.getUsuario());
+				r.setMensaje("Se intenta modificar un usuario que no existe: "+ datosUsuario.getUsuario());
 				r.setCodigoResultado(ERROR_USUARIO_NO_ENCONTRADO_WS);
 				return r;				
 			}
 			
 			// Intentamos autenticar al usuario para permitir modificar sus datos
-//			ResultadoOperacionWebSemanticaVO resAuten = handleAutenticacionUsuarioProComun(user.getUsuario(), passwordAntiguo);			
+//			ResultadoOperacionExternaVO resAuten = handleAutenticacionUsuarioProComun(user.getUsuario(), passwordAntiguo);			
 //			if (!resAuten.getCodigoResultado().equals(OK_WS) && !resAuten.getCodigoResultado().equals(ERROR_USUARIO_NO_ACTIVO_WS) )
 //			{
 //				log.error("No se ha autenticado correctamente al usuario: "+ usuario.getUsuario());				
@@ -3668,9 +3665,9 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 //			}
 			
 			// Si el correo ha cambiado verificamos que no se esté usando ya
-			if (!user.getEmail().equalsIgnoreCase(usuario.getEmail()))
+			if (!user.getEmail().equalsIgnoreCase(datosUsuario.getEmail()))
 			{
-				if (this.getUsuarioDao().obtenerUsuarioPorEmail(usuario.getEmail())!=null) {
+				if (this.getUsuarioDao().obtenerUsuarioPorEmail(datosUsuario.getEmail())!=null) {
 					r.setMensaje("El email ya pertenece a un usuario registrado");
 					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 					return r;
@@ -3678,9 +3675,9 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			}
 			
 			// Si el dni ha cambiado verificamos que no se esté usando ya
-			if (!user.getNIF().equalsIgnoreCase(usuario.getNIF()))
+			if (!user.getNIF().equalsIgnoreCase(datosUsuario.getNIF()))
 			{
-				if (obtenerUsuario(usuario.getNIF().toUpperCase())!=null) {
+				if (obtenerUsuario(datosUsuario.getNIF().toUpperCase())!=null) {
 					r.setMensaje("El documento de identidad ya pertenece a un usuario registrado");
 					r.setCodigoResultado(ERROR_VALOR_YA_UTILIZADO_WS);
 					return r;
@@ -3690,14 +3687,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		    handleActivarUsuario(user.getId(), "Procomun");    
 		    
 		    // Actualizamos el vo con los campos que informa Web Semántica		    
-		    user.setNombre(usuario.getNombre());
-		    user.setApellido1(usuario.getApellido1());
-		    user.setApellido2(usuario.getApellido2());
+		    user.setNombre(datosUsuario.getNombre());
+		    user.setApellido1(datosUsuario.getApellido1());
+		    user.setApellido2(datosUsuario.getApellido2());
 		    user.setFechaDesactivacion(null);
-		    user.setEmail(usuario.getEmail());
+		    user.setEmail(datosUsuario.getEmail());
 		    
 		    //Si nos pasan un NIF lo modificamos
-		    if (usuario.getNIF()!=null && !usuario.getNIF().isEmpty())
+		    if (datosUsuario.getNIF()!=null && !datosUsuario.getNIF().isEmpty())
 		    	user.setNIF(user.getNIF());
 
 			//Primero almacenamos los datos actuales por si hay que hacer rollback
@@ -3714,20 +3711,20 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			// Para poder cambiar la password debe haber informado la contraseña anterior
 		    String hashedPassword="";
 		    
-		    if(usuario.getClave()!=null && !usuario.getClave().isEmpty()) {
+		    if(datosUsuario.getClave()!=null && !datosUsuario.getClave().isEmpty()) {
 		    //if(passwordAntiguo!=null && !passwordAntiguo.isEmpty()) {
 			//	boolean usuarioCorrecto = handleAutenticacionUsuarioWebSemantica(user.getUsuario(), passwordAntiguo);
 			//	if (!usuarioCorrecto) throw new Exception("El par usuario/password no es valido o el usuario esta desactivado o eliminado");
 		    	try
 		    	{
-		    		hashedPassword=this.getHashPassword(usuario.getClave());
+		    		hashedPassword=this.getHashPassword(datosUsuario.getClave());
 				} catch (Exception ex) {					
 					log.error("Error al calcular la contraseña ", ex);
 					r.setMensaje("Error al calcular la contraseña");
 					r.setCodigoResultado(ERROR_CALCULO_PASS_WS);
 					return r;
 				}
-			    user.setClave(usuario.getClave());
+			    user.setClave(datosUsuario.getClave());
 		    } else {
 		    	hashedPassword=datosLdapUsuario.getHasedPasswd();
 			    user.setClave("");
@@ -3789,25 +3786,25 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 
 	
 	@Override
-	protected ResultadoOperacionWebSemanticaVO handleBajaUsuarioProComun(String email, String passwd)
+	protected ResultadoOperacionExternaVO handleBajaUsuarioExterno(String usuario, String passwd)
 			 throws Exception{
 		
-		ResultadoOperacionWebSemanticaVO resAutenticacion=null;
-		ResultadoOperacionWebSemanticaVO r = new ResultadoOperacionWebSemanticaVO();
+		ResultadoOperacionExternaVO resAutenticacion=null;
+		ResultadoOperacionExternaVO r = new ResultadoOperacionExternaVO();
 		r.setMensaje("");
 		
-		if(email==null) {
-			r.setMensaje("No se ha recibido un mail para dar de baja en la web semantica");
+		if(usuario==null) {
+			r.setMensaje("No se ha recibido un usuario para dar de baja");
 			r.setCodigoResultado(ERROR_PARAMETROS_WS);
 			return r;
 		}
 		if(passwd==null) {
-			r.setMensaje("No se ha recibido la passwd para dar de baja al usuario "+email+" en la web semantica");
+			r.setMensaje("No se ha recibido la passwd para dar de baja al usuario "+usuario);
 			r.setCodigoResultado(ERROR_PARAMETROS_WS);
 			return r;
 		}
 		
-		String mail=email.toLowerCase();
+		String mail=usuario.toLowerCase();
 		
 		boolean bCasoBajaEspecial = false;
 		
@@ -3822,7 +3819,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			//Comprobamos que la clave es correcta
 			log.info("Va a autenticar : " + mail + " con : " + passwd);
-			resAutenticacion=handleAutenticacionUsuarioProComun(mail, passwd);
+			resAutenticacion=handleAutenticacionUsuarioExterno(usuario, passwd);
 			if(resAutenticacion==null) {
 				r.setMensaje("El par usuario/password no es válido o el usuario esta desactivado o eliminado");
 				r.setCodigoResultado(ERROR_GENERICO_AUTENTIFICAR_USUARIO_WS);
@@ -3833,11 +3830,11 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				return resAutenticacion;
 			}
 				
-			UsuarioVO usuario = null;
+			UsuarioVO usuarioVO = null;
 			boolean bRetrotraerBaja = false;
 			
 			try {
-				usuario = handleObtenerDatosUsuarioWebSemantica(mail);
+				usuarioVO = obtenerDatosUsuarioExterno(usuario);
 			} catch (Exception ex) {					
 				log.error("Error al obtener los datos del usuario", ex);
 				r.setMensaje("Error al obtener los datos del usuario");
@@ -3845,8 +3842,8 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				return r;				
 			}
 			if(usuario==null) {
-				log.info("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
-				r.setMensaje("Se intenta dar de baja un usuario de Procomun que no existe: "+mail);
+				log.info("Se intenta dar de baja un usuario que no existe: "+mail);
+				r.setMensaje("Se intenta dar de baja un usuario que no existe: "+mail);
 				r.setCodigoResultado(ERROR_USUARIO_NO_ENCONTRADO_WS);
 				return r;
 			}
@@ -3854,7 +3851,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			// Obtenemos el password del usuario almacenado en LDAP por si hay que hacer rollback y volver a insertarlo
 			String passUserLdap = "";
 			try {
-				passUserLdap = getLdapWebSemanticaHandler().getUserHasedPasswd(usuario.getUsuario());	
+				passUserLdap = getLdapWebSemanticaHandler().getUserHasedPasswd(usuarioVO.getUsuario());	
 			} catch (Exception ex) {					
 				log.error("Error al acceder a ldap para obtener la contraseña ", ex);
 				r.setMensaje("Error al acceder a ldap para obtener la contraseña");
@@ -3876,7 +3873,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 			
 			//Damos de baja al usuario en Agrega	
 			Long[] idUsuario=new Long[1];
-			idUsuario[0]=usuario.getId();
+			idUsuario[0]=usuarioVO.getId();
 			ValidaBajaUsuarioVO ret= null;
 			try {
 				ret = bajaUsuarioAgrega(idUsuario, false);
@@ -3887,14 +3884,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 				bRetrotraerBaja = true;	
 			}
 			if(bCasoBajaEspecial)
-				resetearCamposUsuarioBajaEspecialWS(usuario.getId());
+				resetearCamposUsuarioBajaEspecialWS(usuarioVO.getId());
 			
 			if((ret.getNumDeleted()!=1) || bRetrotraerBaja) {
 			    //ROLLBACK: Damos al usuario de alta en la rama LDAP de la web semantica
 				if(ldapExterno.equalsIgnoreCase("false")) {
 					try {
-						this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), passUserLdap,
-								usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
+						this.getLdapWebSemanticaHandler().insertUser(usuarioVO.getUsuario(), passUserLdap,
+								usuarioVO.getNombre() + " " + usuarioVO.getApellido1() + " " + usuarioVO.getApellido2());
 					} catch (UnsupportedEncodingException e) {
 						log.error("Error al calcular la password del usuario", e);
 						r.setMensaje("Error al calcular la password del usuario");						
@@ -3912,14 +3909,14 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 						return r;						
 					}
 				}
-				r.setMensaje("Error al dar de baja al usuario de Procomun: "+mail);
+				r.setMensaje("Error al dar de baja al usuario "+mail);
 				r.setCodigoResultado(ERROR_BAJA_USUARIO_AGREGA_WS);
 				return r;
 			}
 					
 		} catch (Exception e) {
-			log.error("Error genérico al dar de baja al usuario de Procomún "+mail+": ", e);
-			r.setMensaje("Error genérico al dar de baja al usuario de Procomún. Motivo: "+e.getMessage());
+			log.error("Error genérico al dar de baja al usuario "+mail+": ", e);
+			r.setMensaje("Error genérico al dar de baja al usuario. Motivo: "+e.getMessage());
 			r.setCodigoResultado(ERROR_GENERICO_BAJA_USUARIO_WS);
 			return r;
 		}
@@ -3942,502 +3939,7 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		this.getUsuarioDao().update(usuario);
 		log.info("Se han reseteado los campos dni y correo electrónico del usuario: " + usuario.getUsuario());			
 	}
-  
-  	/**
-	 * Metodo para dar de alta un usuario de web semantica. Se le agregará en el servidor
-	 * ldap de Agrega y en el de Web Semantica y se enviará un correo con el usuario y la clave
-	 * El usuario se creara desactivado.
-	 * @param usuario usuarioVO con los datos del usuario que se dara de alta
-	 * @return resultado String que devuelve si el alta ha ido bien o no
-	 * @throws Exception
-	 */	
-	@Override
-	protected Long handleAltaUsuarioWebSemantica(UsuarioVO usuario)
-			throws Exception {
-		
-		Long retorno = null;
-		String nombreGrupoWebSemantica="UsuariosWebSemantica";
-		
-		try {
-		    // Validamos los campos que informan desde Web Semántica (nombre, apellidos, nif y password)
-		    comprobarIntegridadDatosBasicosUsuarioWebSemantica(usuario, true);
-		    
-			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
-		    if (usuario.getNIF()!=null)
-		    	usuario.setNIF(usuario.getNIF().toUpperCase());
-			
-		    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
-		    if (usuario.getEmail()!=null)
-		    	usuario.setEmail(usuario.getEmail().toLowerCase());
-		    
-			//Cargamos los campos del usuario que podemos recibir
-		    String nombre = usuario.getNombre();
-		    String apellido1 = usuario.getApellido1();
-		    String apellido2 = usuario.getApellido2();
-		    String nif;
-		    if (usuario.getNIF()!=null && !usuario.getNIF().isEmpty())
-		    	nif = usuario.getNIF();
-		    else 
-		    	nif = "WS"+System.currentTimeMillis();
-		    Boolean recibirCorreoPublicacion = usuario.getRecibirCorreoPublicacion();
-		    //Campos de usuario que ajustamos automaticamente independientemente
-		    //de lo que recibamos
-			String user=usuario.getEmail();
-		    String openIdUrl = "";
-		    String idiomaBusqueda="es"; //Puede ser; ca, en, eu, gl, va o fr
-		    String idioma="es";
-		    String tipoEmpaquetador="basico"; //Puede ser basico o avanzado
-		    String tipoCatalogador="basico";
-		    String tipoVisualizador="agrega"; //Puede ser agrega o adl
-		    //Long cuota = Long.valueOf(5).longValue() * 1024 * 1024; //5MB por defecto
-			
-			//RecibirCorreo
-		    if (recibirCorreoPublicacion == null) {
-		    	recibirCorreoPublicacion=false;
-		    }
-    	    
-		    //Cargo las modificaciones y los ajustes de los campos en el usuario a crear 
-		    usuario.setNombre(nombre);
-		    usuario.setApellido1(apellido1);
-		    usuario.setApellido2(apellido2);
-		    usuario.setNIF(nif);
-		    usuario.setRecibirCorreoPublicacion(recibirCorreoPublicacion);
-		    usuario.setUsuario(user);
-		    usuario.setOpenIdUrl(openIdUrl);
-		    usuario.setIdiomaBusqueda(idiomaBusqueda);
-		    usuario.setIdioma(idioma);
-		    usuario.setTipoEmpaquetador(tipoEmpaquetador);
-		    usuario.setTipoCatalogador(tipoCatalogador);
-		    usuario.setTipoVisualizador(tipoVisualizador);
-		    //usuario.setCuota(cuota);    
-		    usuario.setFechaAlta(new java.util.Date()); 
-		    usuario.setFechaBaja(null);
-		    //usuario.setFechaDesactivacion(null);
-		    usuario.setFechaDesactivacion(new java.util.Date());
-		    
-		    //Asignamos grupo
-		    Boolean grupoWebSemanticaEncontrado=false;
-		    
-		    //Buscamos el grupo UsuariosWebSemantica
-		    GrupoVO[] grupos=handleListarGrupos();
-		    for(int i=0; i<grupos.length; i++) {
-		    	
-		    	if(grupos[i].getDescripcion().equalsIgnoreCase(nombreGrupoWebSemantica)) {
-		    	
-		    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
-		    		grupoWebSemantica[0]=grupos[i];
-		    		usuario.setGrupos(grupoWebSemantica);
-		    		grupoWebSemanticaEncontrado=true;
-		    		break;
-		    	}
-		    }
-		    		    
-		    if(!grupoWebSemanticaEncontrado) {
-			    Boolean rolDocenteEncontrado=false;
-			    
-		    	//Para crear el nuevo grupo necesito darle el rol docente
-			    RolVO[] roles = handleListarRoles();
-			    for(int i=0; i<roles.length; i++) {
-			    	
-			    	if(roles[i].getDescripcion().equalsIgnoreCase("DOCENTE")) {
-			    	
-			    		GrupoVO nuevoGrupo=new GrupoVO();
-			    		RolVO[] rolWebSemantica=new RolVO[1];
-			    		rolWebSemantica[0]=roles[i];
-			    		nuevoGrupo.setRols(rolWebSemantica);
-			    		nuevoGrupo.setDescripcion(nombreGrupoWebSemantica);
-			    		Long idGrupo=handleAltaGrupo(nuevoGrupo);
-			    		
-			    		GrupoVO[] grupoWebSemantica=new GrupoVO[1];
-			    		grupoWebSemantica[0]=handleDescripcionGrupo(idGrupo);
-			    		usuario.setGrupos(grupoWebSemantica);
-			    		rolDocenteEncontrado=true;
-			    		break;
-			    	}
-			    }
-			    if(!rolDocenteEncontrado) {
-					throw new Exception("No existe el rol DOCENTE en la plataforma. Este es necesario para crear el gru de usuarios de web semantica.");
-			    }
-		    }
-		    
-		    //Asignamos el grupo de trabajo
-		    grupoWebSemanticaEncontrado=false;
-		    
-		    GrupoTrabajoVO[] gruposDeTrabajo=handleListarGruposTrabajo();
-		    for(int i=0; i<gruposDeTrabajo.length; i++) {
-		    	
-		    	if(gruposDeTrabajo[i].getNombre().equalsIgnoreCase(nombreGrupoWebSemantica)) {
-		    		
-		    		GrupoTrabajoVO[] grupoWebSemantica=new GrupoTrabajoVO[1];
-		    		grupoWebSemantica[0]=gruposDeTrabajo[i];
-		    		usuario.setGrupoTrabajo(grupoWebSemantica);
-		    		grupoWebSemanticaEncontrado=true;
-		    		break;
-		    	}
-		    }
-		    
-			if(!grupoWebSemanticaEncontrado) {
-	    		GrupoTrabajoVO nuevogrupoTrabajo=new GrupoTrabajoVO();
-	    		nuevogrupoTrabajo.setNombre(nombreGrupoWebSemantica);
-	    		nuevogrupoTrabajo.setDescripcion("Grupo de trabajo de los usuarios de Web Semantica");
-	    		Long idGrupo=handleAltaGrupoTrabajo(nuevogrupoTrabajo);
-	    		
-	    		GrupoTrabajoVO[] grupoWebSemantica=new GrupoTrabajoVO[1];
-	    		grupoWebSemantica[0]=handleDescripcionGrupoTrabajo(idGrupo);
-	    		usuario.setGrupoTrabajo(grupoWebSemantica);
-			}
-		    	    
-		    //Compruebo si el usuario(NIF) ya esta dado de alta. Si lo esta y no tiene fecha
-	        //de baja saco un mensaje de error.
-		    UsuarioVO usuarioExistente = handleObtenerUsuario(nif.toUpperCase());
-		    if (usuarioExistente == null) {
-		    
-				//Chequeamos si el usuario introducido ya esta en la BD en ese
-				//caso sacamos un mensaje de error
-				Boolean existeUsuario = handleExisteUsuario(user);
-				if (existeUsuario) {
-					throw new Exception("El usuario "+user+" ya existe");
-				}			
-				
-		    } else {
-				if (usuarioExistente.getFechaBaja() == null) {
-					throw new Exception("Ya existe un usuario registrado con NIF "+nif);
-				}
-				//El usuario ya esta registrado pero esta dado de baja
-			    usuario.setFechaAlta(usuarioExistente.getFechaAlta());
-		    }
-		    
-		    //Damos al usuario de alta en la rama LDAP de la web semantica
-			if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
-			{
-				this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()), 
-						usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
-			}
-
-			try {
-				//Damos de alta al usuario en Agrega
-				//return altaUsuarioAgrega(usuario, true);
-				return altaUsuarioAgrega(usuario, false, false);
-			} catch (Exception e) {
-				this.getLdapWebSemanticaHandler().deleteContact(usuario.getUsuario());
-				log.error("Error al dar de alta al usuario de web semantica en agrega ", e);
-				throw e;
-			}
-
-		} catch (Exception e) {
-			log.error("Error al dar de alta al usuario de web semantica ", e);
-			throw e;
-		}
-	}
-
-  	@Override
-	protected boolean handleAutenticacionUsuarioWebSemantica(String email,
-			String password) throws Exception {
-
-		boolean autentCorrecto = false;		
-
-		if(email==null) {
-			throw new Exception("No se ha recibido un email o identificador del usuario a autenticar");
-		}
-		if(password==null) {
-			throw new Exception("No se ha recibido una passwd del usuario a autenticar");
-		}
-		
-		String idUsuario = email; 
-
-		log.info("PROCOMUN Va a autenticar el usuario: " + email);
-		try
-		{
-			// Si es un email tenemos que obtener el identificador para Agrega
-			// Para nuevos usuarios de web semántica será el mismo,
-			// para usuarios anteriores de Agrega obtendremos un identificador normal de Agrega.
-			Usuario usuario = null;
-			if (esUnMail(email))
-			{
-				usuario = this.getUsuarioDao().obtenerUsuarioPorEmail(email.toLowerCase());
-				idUsuario = usuario.getUsuario();
-			}
-			
-			// Si no está activo devolvemos false
-//			if (usuarioDesactivadoOEliminado(idUsuario)) {	
-//				log.info("El usuario " + email + "esta desactivado o eliminado");
-//				return false;
-//			}
-			
-			// Obtenemos el password del usuario almacenado en LDAP
-			String passUserLdap = getLdapHandler().getUserHasedPasswd(idUsuario);	
-			
-			// Obtenemos el hash del password proporcionado por PROCOMUN
-			String hashPassEntrada = getHashPassword(password);
-			
-			// Si ambos hash son iguales asumimos que la password es correcta y damos el usuario por correcto
-			// devolviendo su información			
-			if (passUserLdap.equals(hashPassEntrada))
-			{
-				log.info("Se ha autenticado correctamente al usuario: " + email);				
-				autentCorrecto = true;				
-			}else
-				log.error("No se ha autenticado correctamente al usuario: " + email);
-					
-		}catch (Exception e) {
-			log.error("Error al intentar autenticar al usuario: " + email);
-			log.error(e.getMessage());
-		}
-		return autentCorrecto;
-	}
-
-  	@Override
-	protected boolean handleBajaUsuarioWebSemantica(String email, String passwd)
-			throws Exception {
-		
-		if(email==null) {
-			throw new Exception("No se ha recibido un mail para dar de baja en la web semantica");
-		}
-		if(passwd==null) {
-			throw new Exception("No se ha recibido la passwd para dar de baja al usuario "+email+" en la web semantica");
-		}
-		
-		String mail=email.toLowerCase();
-		
-		boolean bCasoBajaEspecial = false;
-		
-		try {
-			
-			if (passwd.equals(PASSWORD_BAJA_ESPECIAL)) 
-				bCasoBajaEspecial =true;
-			
-			log.info("Es una baja especial de usuario de web semantica :"+bCasoBajaEspecial);
-			
-			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
-			
-			//Comprobamos que la clave es correcta
-			if(!bCasoBajaEspecial & (!handleAutenticacionUsuarioWebSemantica(mail, passwd))) 
-				throw new Exception("El par usuario/password no es valido o el usuario esta desactivado o eliminado");
-						
-		    //Damos al usuario de baja en la rama LDAP de la web semantica
-			if (this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO).equalsIgnoreCase("false"))
-				this.getLdapWebSemanticaHandler().deleteContact(mail);
-				
-			UsuarioVO usuario = null;
-			try {
-				usuario = handleObtenerDatosUsuarioWebSemantica(mail); 
-				if(usuario==null) {
-					log.info("Se intenta dar de baja un usuario de web semantica que no existe: "+mail);
-					throw new Exception ("Se intenta dar de baja un usuario de web semantica que no existe: "+mail);
-				}
-				//Damos de baja al usuario en Agrega	
-				Long[] idUsuario=new Long[1];
-				idUsuario[0]=usuario.getId();
-				ValidaBajaUsuarioVO ret=bajaUsuarioAgrega(idUsuario, false);
-				
-				if(bCasoBajaEspecial)
-					resetearCamposUsuarioBajaEspecialWS(usuario.getId());
-				
-				if(ret.getNumDeleted()!=1) {
-				    //Damos al usuario de alta en la rama LDAP de la web semantica
-					if(ldapExterno.equalsIgnoreCase("false")) {
-						this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()),
-								usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
-					}
-					throw new Exception ("Error al dar de baja al usuario de web semantica "+mail);
-				}
-				
-			} catch (Exception e) {
-				//Damos al usuario de alta en la rama LDAP de la web semantica
-				if(ldapExterno.equalsIgnoreCase("false")) {
-					this.getLdapWebSemanticaHandler().insertUser(usuario.getUsuario(), this.getHashPassword(usuario.getClave()), 
-							usuario.getNombre() + " " + usuario.getApellido1() + " " + usuario.getApellido2());
-				}							
-				throw new Exception ("Error al dar de baja al usuario de web semantica "+mail);
-			}
-						
-		} catch (Exception e) {
-			log.error("Error al dar de baja al usuario de web semantica "+mail+": ", e);
-			throw e;
-		}
-		return true;
-	}
-  
-  	/**
-	 * A parte de para modificar los datos de usuario sirve tambien para dar de alta a un usuario.
-	 * @see es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosServiceBase#handleModificarUsuarioWebSemantica(es.pode.adminusuarios.negocio.servicios.UsuarioVO, java.lang.String)
-	 */
-	@Override
-	protected boolean handleModificarUsuarioWebSemantica(UsuarioVO usuario, String passwordAntiguo)
-			throws Exception {
-		
-		try {	
-		    // Validamos los campos que informan desde Web Semántica (nombre, apellidos, nif, password, e email)
-		    //if(passwordAntiguo!=null && !passwordAntiguo.isEmpty()) 
-		    if(usuario.getClave()!=null && !usuario.getClave().isEmpty()) 
-		    	comprobarIntegridadDatosBasicosUsuarioWebSemantica(usuario, true);
-		    else
-		    	comprobarIntegridadDatosBasicosUsuarioWebSemantica(usuario, false);
-
-			String ldapExterno=this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.LDAPEXTERNO);
-			
-			// Pasamos a mayúsculas para que todos los docmentos de identidad se inserten en mayúsculas en bd
-		    if (usuario.getNIF()!=null)
-		    	usuario.setNIF(usuario.getNIF().toUpperCase());
-			
-		    // Pasamos a minúsculas para que todos los correos se inserten en minúsculas en bd
-		    if (usuario.getEmail()!=null)
-		    	usuario.setEmail(usuario.getEmail().toLowerCase());
-
-		    // Obtenemos el usuario de base de datos
-		    UsuarioVO user = handleObtenerDatosUsuarioWebSemantica(usuario.getEmail());
-		    
-		    //Damos de alta al usuario
-		    handleActivarUsuario(user.getId(), "Web Semantica");    
-		    
-		    // Actualizamos el vo con los campos que informa Web Semántica		    
-		    user.setNombre(usuario.getNombre());
-		    user.setApellido1(usuario.getApellido1());
-		    user.setApellido2(usuario.getApellido2());
-		    user.setFechaDesactivacion(null);
-		    
-		    //Si nos pasan un NIF lo modificamos
-		    if (usuario.getNIF()!=null && !usuario.getNIF().isEmpty())
-		    	user.setNIF(user.getNIF());
-
-			//Primero almacenamos los datos actuales por si hay que hacer rollback
-			Person datosLdapUsuario=null;
-			datosLdapUsuario=this.getLdapWebSemanticaHandler().getUserData(user.getUsuario());
-
-			// Para poder cambiar la password debe haber informado la contraseña anterior
-		    String hashedPassword="";
-		    
-		    if(usuario.getClave()!=null || !usuario.getClave().isEmpty()) {
-		    //if(passwordAntiguo!=null && !passwordAntiguo.isEmpty()) {
-			//	boolean usuarioCorrecto = handleAutenticacionUsuarioWebSemantica(user.getUsuario(), passwordAntiguo);
-			//	if (!usuarioCorrecto) throw new Exception("El par usuario/password no es valido o el usuario esta desactivado o eliminado");
-				hashedPassword=this.getHashPassword(usuario.getClave());
-			    user.setClave(usuario.getClave());
-		    } else {
-		    	hashedPassword=datosLdapUsuario.getHasedPasswd();
-			    user.setClave("");
-		    }
-		
-		    //Modificamos los datos del usuario en la rama LDAP de la web semantica
-			if(ldapExterno.equalsIgnoreCase("false")) {	
-				//Ahora modificamos
-				this.getLdapWebSemanticaHandler().modifyUser(user.getUsuario(), hashedPassword, 
-						user.getNombre() + " " + user.getApellido1() + " " + user.getApellido2());			
-			}
-
-			String resultado=modificarUsuarioAgrega(user);
-			if(!resultado.equalsIgnoreCase("OK.MODIFICARUSUARIO")) {
-				if(ldapExterno.equalsIgnoreCase("false")) {				
-					//Rollback
-					this.getLdapWebSemanticaHandler().modifyUser(datosLdapUsuario.getUsuario(), datosLdapUsuario.getHasedPasswd(), 
-						datosLdapUsuario.getNombreApellidos());
-				}
-				log.error("Error al modificar el usuario en agrega");
-				return false;
-			}
-						    			
-		} catch (Exception e) {
-			log.error("Error al modificar el usuario de web semantica :", e);
-			throw e;
-		}
-		return true;
-	}
-  
-	/**
-	 * Devuelve true si el el valor del campo no se esta usando por ningun usuario de Agrega.
-	 * En otras palabras devuelve true si el par campo-valor es valido para ser usable por un nuevo usuario.
-	 */
-	@Override
-	protected boolean handleValidarCampoUsuarioWebSemantica(String nombreCampo,
-			String valorCampo) throws Exception {
-
-		// Validamos que los parametros vengan informados
-		if(nombreCampo==null || nombreCampo.isEmpty())
-			return false;
-		if(valorCampo==null || valorCampo.isEmpty())
-			return false;
-		
-		// Verificamos que el campo informado no esté ya utilizado en Agrega.
-		if(nombreCampo.equalsIgnoreCase("email")) {
-			if (!esUnMail(valorCampo)) return false;
-			if (this.getUsuarioDao().obtenerUsuarioPorEmail(valorCampo.toLowerCase())!=null)		
-				return false;
-			else return true;				
-		} else if(nombreCampo.equalsIgnoreCase("documentoIdentidad")) {
-			if (obtenerUsuario(valorCampo.toUpperCase())!=null)
-					return false;
-			else return true;
-		}
-		return false;
-	}
 	
-	private void comprobarIntegridadDatosBasicosUsuarioWebSemantica(
-			UsuarioVO usuario, boolean comprobarPasswd) throws Exception {
-
-		// Revisamos que recibimos los datos necesarios para crear el usuario de
-		// web semantica
-		if (usuario == null) {
-			throw new Exception(
-					"No se ha recibido un usuario que dar de alta/modificar en la web semantica");
-		}
-
-		// Validacion para nombre y apellidos
-		Pattern mask = Pattern
-				.compile("[^\\¿\\?\\¡\\!\\>\\#\\&\\<\\@\\$\\/\\\'\\\"]+");
-		// Validacion para password
-		Pattern maskPwd = Pattern
-				.compile("[^Ññ\\¿\\?\\¡\\!\\>\\#\\&\\<\\@\\$\\/\\\'\\\"]+");
-
-		// Cargamos los campos del usuario que podemos recibir
-		String nombre = usuario.getNombre();
-		String apellido1 = usuario.getApellido1();
-		String apellido2 = usuario.getApellido2();
-		String nif = usuario.getNIF();
-		String passwd = usuario.getClave();
-
-		// Nombre
-		if (usuario.getNombre() == null || usuario.getNombre().isEmpty()) {
-			throw new Exception("El campo nombre no es valido");
-		}
-		Matcher matcher = mask.matcher(nombre);
-		if (!matcher.matches()) {
-			throw new Exception("Caracter ilegal en el campo nombre");
-		}
-		// Apellido1
-		if (apellido1 == null || apellido1.isEmpty()) {
-			throw new Exception("El campo apellido1 no es valido");
-		}
-		matcher = mask.matcher(apellido1);
-		if (!matcher.matches()) {
-			throw new Exception("Caracter ilegal en el campo apellido1");
-		}
-		// Apellido2
-		if (apellido2 != null && !apellido2.isEmpty()) {
-			matcher = mask.matcher(apellido2);
-			if (!matcher.matches()) {
-				throw new Exception("Caracter ilegal en el campo apellido2");
-			}
-		}
-		// NIF
-		/*
-		 * if(nif==null || nif.isEmpty()) { throw new
-		 * Exception("El campo nif no es valido"); }
-		 */
-		// Passwd
-		if (comprobarPasswd) {
-			if (passwd == null || passwd.isEmpty()) {
-				throw new Exception("El campo password no es valido");
-			}
-			matcher = maskPwd.matcher(passwd);
-			if (!matcher.matches()) {
-				throw new Exception("Caracter ilegal en el campo password");
-			}
-		}
-		// Mail
-		if (!esUnMail(usuario.getEmail())) {
-			throw new Exception("El campo email no es valido");
-		}
-	}
 	
 	private boolean verificarPassword(String passwordLdap, String hashHexEntrada) {
 		boolean res = false;
@@ -4487,5 +3989,41 @@ public class SrvAdminUsuariosServiceImpl extends es.pode.adminusuarios.negocio.s
 		}
 
 		return 0;
+	}
+	
+	
+	/**
+	 * Obtiene los datos del usuario que se pasa como parámetro. 
+	 * @param correoUsuario permite el correo del usuario o el identficador (para usuarios antiguos de Agrega). 
+	 * @return UsuarioVO Datos del usuario solicitado
+	 * @throws Exception
+	 */
+	private UsuarioVO obtenerDatosUsuarioExterno(String usuario)
+			throws Exception {
+		
+		UsuarioVO usuarioVO= null;
+
+	    // Buscamos en minúsculas el username ya que suponemos que son emails
+		Usuario usuBd = this.getUsuarioDao().obtenerDatosUsuario(usuario);
+		if (usuBd!=null)
+			usuarioVO = getUsuarioDao().toUsuarioVO(usuBd); 			
+			
+		return usuarioVO;
+	}
+	
+	
+	@Override
+	protected UsuarioVO handleObtenerDatosUsuarioPorEmail(String email)
+			throws Exception {
+		
+		UsuarioVO usuario= null;
+
+	    // Buscamos en minúsculas el username ya que suponemos que son emails
+		//Usuario usuBd = this.getUsuarioDao().obtenerDatosUsuario(email.toLowerCase());
+		Usuario usuBd = this.getUsuarioDao().obtenerUsuarioPorEmail(email.toLowerCase());
+		if (usuBd!=null)
+			usuario = getUsuarioDao().toUsuarioVO(usuBd); 			
+			
+		return usuario;
 	}
 }

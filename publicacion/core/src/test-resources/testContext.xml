@@ -53,6 +53,8 @@
                 <value>es/pode/publicacion/negocio/dominio/Album.hbm.xml</value>
                 <value>es/pode/publicacion/negocio/dominio/ContenidoInapropiado.hbm.xml</value>
                 <value>es/pode/publicacion/negocio/dominio/Transicion.hbm.xml</value>
+                <value>es/pode/publicacion/negocio/dominio/OdesFederadosDespublicados.hbm.xml</value>
+                <value>es/pode/publicacion/negocio/dominio/EditoresOdesExternos.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -161,6 +163,42 @@
             </list>
         </property>
     </bean>
+    <!-- OdesFederadosDespublicados Entity Proxy with inner OdesFederadosDespublicados Entity implementation -->
+    <bean id="odesFederadosDespublicadosDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.publicacion.negocio.dominio.OdesFederadosDespublicadosDaoImpl">
+                <property name="sessionFactory"><ref local="sessionFactory"/></property>
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                
+            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.publicacion.negocio.dominio.OdesFederadosDespublicadosDao</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <!-- EditoresOdesExternos Entity Proxy with inner EditoresOdesExternos Entity implementation -->
+    <bean id="editoresOdesExternosDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target">
+            <bean class="es.pode.publicacion.negocio.dominio.EditoresOdesExternosDaoImpl">
+                <property name="sessionFactory"><ref local="sessionFactory"/></property>
+                <property name="beanMapper"><ref bean="beanMapper"/></property>                
+                
+            </bean>
+        </property>
+        <property name="proxyInterfaces">
+            <value>es.pode.publicacion.negocio.dominio.EditoresOdesExternosDao</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hibernateInterceptor</value>
+            </list>
+        </property>
+    </bean>
     <!-- ========================= Start of SERVICE DEFINITIONS ========================= -->
 
     <!-- Service Transactional Interceptor -->
@@ -233,6 +271,20 @@
                 es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsPublicadosPorTitulo=PROPAGATION_REQUIRED
                 es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsPublicadosPorTituloYUsuario=PROPAGATION_REQUIRED
                 es.pode.publicacion.negocio.servicios.SrvPublicacionService.crearPifConCuotaYEstado=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsCreadosPorUsuarioPorTitulo=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.proponerCatalogacionNuevaVersion=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.actualizarVersionODE=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.haEstadoVersionado=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsDespublicadosPorFecha=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.insertarOdesFederadosDespublicados=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsDespublicadosFederadosPorFecha=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.despublicacionExterna=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.publicacionExterna=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenerEditoresOdeExterno=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.subirFichero=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenerOdesEditablesUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha=PROPAGATION_REQUIRED
+                es.pode.publicacion.negocio.servicios.SrvPublicacionService.obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha=PROPAGATION_REQUIRED
                 es.pode.publicacion.negocio.servicios.SrvAuditaPublicacionService.actividadTransiciones=PROPAGATION_REQUIRED
                 es.pode.publicacion.negocio.servicios.SrvAuditaPublicacionService.dimensionesODEsPublicados=PROPAGATION_REQUIRED
                 es.pode.publicacion.negocio.servicios.SrvAuditaPublicacionService.odesPorUsuario=PROPAGATION_REQUIRED
@@ -276,10 +328,12 @@
                 <property name="odePublicadoDao"><ref bean="odePublicadoDao"/></property>
                 <property name="estadoDao"><ref bean="estadoDao"/></property>
                 <property name="transicionDao"><ref bean="transicionDao"/></property>
+                <property name="odesFederadosDespublicadosDao"><ref bean="odesFederadosDespublicadosDao"/></property>
+                <property name="editoresOdesExternosDao"><ref bean="editoresOdesExternosDao"/></property>
 		                <property name="scormDao"><ref bean="ScormDao"/></property>
     			                <property name="zipDao"><ref bean="ZipDao"/></property>
     													                <property name="srvAlbumService"><ref bean="srvAlbumService"/></property>
-    							                <lookup-method name="getSrvContenidoInapropiadoService" bean="srvContenidoInapropiadoService"/>
+    								                <lookup-method name="getSrvContenidoInapropiadoService" bean="srvContenidoInapropiadoService"/>
             </bean>
         </property>
         <property name="proxyInterfaces">

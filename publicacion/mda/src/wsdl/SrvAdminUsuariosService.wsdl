@@ -118,6 +118,31 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="altaUsuarioProComun">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="usuario" type="impl:UsuarioVO" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="altaUsuarioProComunResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="altaUsuarioProComunReturn" type="impl:ResultadoOperacionWebSemanticaVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="altaUsuarioWebSemantica">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -140,6 +165,38 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="altaUsuarioWebSemanticaReturn" type="soapenc:long"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="autenticacionUsuarioProComun">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="email" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="password" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="autenticacionUsuarioProComunResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="autenticacionUsuarioProComunReturn" type="impl:ResultadoOperacionWebSemanticaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -279,6 +336,38 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="bajaUsuarioPendienteReturn" type="impl:ValidaBajaUsuarioVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="bajaUsuarioProComun">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="email" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="passwd" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="bajaUsuarioProComunResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="bajaUsuarioProComunReturn" type="impl:ResultadoOperacionWebSemanticaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -824,6 +913,38 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
+            <xsd:element name="modificarUsuarioProComun">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="usuario" type="impl:UsuarioVO" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="passwordAntiguo" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="modificarUsuarioProComunResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="modificarUsuarioProComunReturn" type="impl:ResultadoOperacionWebSemanticaVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
             <xsd:element name="modificarUsuarioWebSemantica">      
                 <xsd:annotation>     
                     <xsd:documentation> 
@@ -910,7 +1031,7 @@
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
-            <xsd:element name="obtenerDatosUsuarioWebSemantica">      
+            <xsd:element name="obtenerDatosUsuarioPorEmail">      
                 <xsd:annotation>     
                     <xsd:documentation> 
                         
@@ -918,7 +1039,7 @@
                 </xsd:annotation> 
                 <xsd:complexType>  
                     <xsd:sequence>
-                        <xsd:element name="correoUsuario" type="xsd:string" nillable="false">
+                        <xsd:element name="email" type="xsd:string" nillable="false">
                             <xsd:annotation>     
                                 <xsd:documentation> 
                                     
@@ -928,10 +1049,10 @@
                      </xsd:sequence>
                  </xsd:complexType>
             </xsd:element>
-            <xsd:element name="obtenerDatosUsuarioWebSemanticaResponse">       
+            <xsd:element name="obtenerDatosUsuarioPorEmailResponse">       
                 <xsd:complexType>
                     <xsd:sequence>
-                        <xsd:element name="obtenerDatosUsuarioWebSemanticaReturn" type="impl:UsuarioVO"/>
+                        <xsd:element name="obtenerDatosUsuarioPorEmailReturn" type="impl:UsuarioVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -1244,6 +1365,38 @@
                 <xsd:complexType>
                     <xsd:sequence>
                         <xsd:element name="usuariosActivosReturn" type="impl:ArrayOfUsuarioActivoVO"/>
+                    </xsd:sequence>
+                </xsd:complexType>               
+            </xsd:element>
+            <xsd:element name="validarCampoUsuarioProComun">      
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation> 
+                <xsd:complexType>  
+                    <xsd:sequence>
+                        <xsd:element name="nombreCampo" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                        <xsd:element name="valorCampo" type="xsd:string" nillable="false">
+                            <xsd:annotation>     
+                                <xsd:documentation> 
+                                    
+                                </xsd:documentation>
+                            </xsd:annotation>
+                        </xsd:element>
+                     </xsd:sequence>
+                 </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="validarCampoUsuarioProComunResponse">       
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="validarCampoUsuarioProComunReturn" type="impl:ResultadoOperacionWebSemanticaVO"/>
                     </xsd:sequence>
                 </xsd:complexType>               
             </xsd:element>
@@ -1620,6 +1773,29 @@
                         </xsd:annotation>
                     </xsd:element>
                     <xsd:element name="fechaHasta" nillable="false" type="xsd:dateTime">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="ResultadoOperacionWebSemanticaVO">
+                <xsd:annotation>     
+                    <xsd:documentation> 
+                        
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="codigoResultado" nillable="false" type="xsd:string">
+                        <xsd:annotation>     
+                            <xsd:documentation> 
+                                
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="mensaje" nillable="false" type="xsd:string">
                         <xsd:annotation>     
                             <xsd:documentation> 
                                 
@@ -2190,292 +2366,322 @@
     <wsdl:message name="altaUsuario4Response">
         <wsdl:part element="impl:altaUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="altaUsuarioWebSemantica5Request">
+    <wsdl:message name="altaUsuarioProComun5Request">
+        <wsdl:part element="impl:altaUsuarioProComun" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="altaUsuarioProComun5Response">
+        <wsdl:part element="impl:altaUsuarioProComunResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="altaUsuarioWebSemantica6Request">
         <wsdl:part element="impl:altaUsuarioWebSemantica" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="altaUsuarioWebSemantica5Response">
+    <wsdl:message name="altaUsuarioWebSemantica6Response">
         <wsdl:part element="impl:altaUsuarioWebSemanticaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="autenticacionUsuarioWebSemantica6Request">
+    <wsdl:message name="autenticacionUsuarioProComun7Request">
+        <wsdl:part element="impl:autenticacionUsuarioProComun" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="autenticacionUsuarioProComun7Response">
+        <wsdl:part element="impl:autenticacionUsuarioProComunResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="autenticacionUsuarioWebSemantica8Request">
         <wsdl:part element="impl:autenticacionUsuarioWebSemantica" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="autenticacionUsuarioWebSemantica6Response">
+    <wsdl:message name="autenticacionUsuarioWebSemantica8Response">
         <wsdl:part element="impl:autenticacionUsuarioWebSemanticaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaGrupo7Request">
+    <wsdl:message name="bajaGrupo9Request">
         <wsdl:part element="impl:bajaGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaGrupo7Response">
+    <wsdl:message name="bajaGrupo9Response">
         <wsdl:part element="impl:bajaGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaGrupoTrabajo8Request">
+    <wsdl:message name="bajaGrupoTrabajo10Request">
         <wsdl:part element="impl:bajaGrupoTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaGrupoTrabajo8Response">
+    <wsdl:message name="bajaGrupoTrabajo10Response">
         <wsdl:part element="impl:bajaGrupoTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuario9Request">
+    <wsdl:message name="bajaUsuario11Request">
         <wsdl:part element="impl:bajaUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuario9Response">
+    <wsdl:message name="bajaUsuario11Response">
         <wsdl:part element="impl:bajaUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuarioPendiente10Request">
+    <wsdl:message name="bajaUsuarioPendiente12Request">
         <wsdl:part element="impl:bajaUsuarioPendiente" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuarioPendiente10Response">
+    <wsdl:message name="bajaUsuarioPendiente12Response">
         <wsdl:part element="impl:bajaUsuarioPendienteResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuarioWebSemantica11Request">
+    <wsdl:message name="bajaUsuarioProComun13Request">
+        <wsdl:part element="impl:bajaUsuarioProComun" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="bajaUsuarioProComun13Response">
+        <wsdl:part element="impl:bajaUsuarioProComunResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="bajaUsuarioWebSemantica14Request">
         <wsdl:part element="impl:bajaUsuarioWebSemantica" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="bajaUsuarioWebSemantica11Response">
+    <wsdl:message name="bajaUsuarioWebSemantica14Response">
         <wsdl:part element="impl:bajaUsuarioWebSemanticaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="desactivarUsuario12Request">
+    <wsdl:message name="desactivarUsuario15Request">
         <wsdl:part element="impl:desactivarUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="desactivarUsuario12Response">
+    <wsdl:message name="desactivarUsuario15Response">
         <wsdl:part element="impl:desactivarUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionGrupo13Request">
+    <wsdl:message name="descripcionGrupo16Request">
         <wsdl:part element="impl:descripcionGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionGrupo13Response">
+    <wsdl:message name="descripcionGrupo16Response">
         <wsdl:part element="impl:descripcionGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionGrupoTrabajo14Request">
+    <wsdl:message name="descripcionGrupoTrabajo17Request">
         <wsdl:part element="impl:descripcionGrupoTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionGrupoTrabajo14Response">
+    <wsdl:message name="descripcionGrupoTrabajo17Response">
         <wsdl:part element="impl:descripcionGrupoTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionUsuario15Request">
+    <wsdl:message name="descripcionUsuario18Request">
         <wsdl:part element="impl:descripcionUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="descripcionUsuario15Response">
+    <wsdl:message name="descripcionUsuario18Response">
         <wsdl:part element="impl:descripcionUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="enviarCorreoBaja16Request">
+    <wsdl:message name="enviarCorreoBaja19Request">
         <wsdl:part element="impl:enviarCorreoBaja" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="enviarCorreoBaja16Response">
+    <wsdl:message name="enviarCorreoBaja19Response">
         <wsdl:part element="impl:enviarCorreoBajaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="estaActivo17Request">
+    <wsdl:message name="estaActivo20Request">
         <wsdl:part element="impl:estaActivo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="estaActivo17Response">
+    <wsdl:message name="estaActivo20Response">
         <wsdl:part element="impl:estaActivoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeDescripcion18Request">
+    <wsdl:message name="existeDescripcion21Request">
         <wsdl:part element="impl:existeDescripcion" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeDescripcion18Response">
+    <wsdl:message name="existeDescripcion21Response">
         <wsdl:part element="impl:existeDescripcionResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeNombreTrabajo19Request">
+    <wsdl:message name="existeNombreTrabajo22Request">
         <wsdl:part element="impl:existeNombreTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeNombreTrabajo19Response">
+    <wsdl:message name="existeNombreTrabajo22Response">
         <wsdl:part element="impl:existeNombreTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeUsuario20Request">
+    <wsdl:message name="existeUsuario23Request">
         <wsdl:part element="impl:existeUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="existeUsuario20Response">
+    <wsdl:message name="existeUsuario23Response">
         <wsdl:part element="impl:existeUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getEmailAdmin21Request">
+    <wsdl:message name="getEmailAdmin24Request">
         <wsdl:part element="impl:getEmailAdmin" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getEmailAdmin21Response">
+    <wsdl:message name="getEmailAdmin24Response">
         <wsdl:part element="impl:getEmailAdminResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getEmailPublicadores22Request">
+    <wsdl:message name="getEmailPublicadores25Request">
         <wsdl:part element="impl:getEmailPublicadores" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getEmailPublicadores22Response">
+    <wsdl:message name="getEmailPublicadores25Response">
         <wsdl:part element="impl:getEmailPublicadoresResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getRol23Request">
+    <wsdl:message name="getRol26Request">
         <wsdl:part element="impl:getRol" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="getRol23Response">
+    <wsdl:message name="getRol26Response">
         <wsdl:part element="impl:getRolResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupos24Request">
+    <wsdl:message name="listarGrupos27Request">
         <wsdl:part element="impl:listarGrupos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGrupos24Response">
+    <wsdl:message name="listarGrupos27Response">
         <wsdl:part element="impl:listarGruposResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposTrabajo25Request">
+    <wsdl:message name="listarGruposTrabajo28Request">
         <wsdl:part element="impl:listarGruposTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarGruposTrabajo25Response">
+    <wsdl:message name="listarGruposTrabajo28Response">
         <wsdl:part element="impl:listarGruposTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarRoles26Request">
+    <wsdl:message name="listarRoles29Request">
         <wsdl:part element="impl:listarRoles" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarRoles26Response">
+    <wsdl:message name="listarRoles29Response">
         <wsdl:part element="impl:listarRolesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarRolesUsuario27Request">
+    <wsdl:message name="listarRolesUsuario30Request">
         <wsdl:part element="impl:listarRolesUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarRolesUsuario27Response">
+    <wsdl:message name="listarRolesUsuario30Response">
         <wsdl:part element="impl:listarRolesUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarTodosUsuarios28Request">
+    <wsdl:message name="listarTodosUsuarios31Request">
         <wsdl:part element="impl:listarTodosUsuarios" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarTodosUsuarios28Response">
+    <wsdl:message name="listarTodosUsuarios31Response">
         <wsdl:part element="impl:listarTodosUsuariosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuarios29Request">
+    <wsdl:message name="listarUsuarios32Request">
         <wsdl:part element="impl:listarUsuarios" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuarios29Response">
+    <wsdl:message name="listarUsuarios32Response">
         <wsdl:part element="impl:listarUsuariosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosInactivos30Request">
+    <wsdl:message name="listarUsuariosInactivos33Request">
         <wsdl:part element="impl:listarUsuariosInactivos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosInactivos30Response">
+    <wsdl:message name="listarUsuariosInactivos33Response">
         <wsdl:part element="impl:listarUsuariosInactivosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosPendientes31Request">
+    <wsdl:message name="listarUsuariosPendientes34Request">
         <wsdl:part element="impl:listarUsuariosPendientes" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="listarUsuariosPendientes31Response">
+    <wsdl:message name="listarUsuariosPendientes34Response">
         <wsdl:part element="impl:listarUsuariosPendientesResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupo32Request">
+    <wsdl:message name="modificarGrupo35Request">
         <wsdl:part element="impl:modificarGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupo32Response">
+    <wsdl:message name="modificarGrupo35Response">
         <wsdl:part element="impl:modificarGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupoTrabajo33Request">
+    <wsdl:message name="modificarGrupoTrabajo36Request">
         <wsdl:part element="impl:modificarGrupoTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarGrupoTrabajo33Response">
+    <wsdl:message name="modificarGrupoTrabajo36Response">
         <wsdl:part element="impl:modificarGrupoTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuario34Request">
+    <wsdl:message name="modificarUsuario37Request">
         <wsdl:part element="impl:modificarUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuario34Response">
+    <wsdl:message name="modificarUsuario37Response">
         <wsdl:part element="impl:modificarUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuarioWebSemantica35Request">
+    <wsdl:message name="modificarUsuarioProComun38Request">
+        <wsdl:part element="impl:modificarUsuarioProComun" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="modificarUsuarioProComun38Response">
+        <wsdl:part element="impl:modificarUsuarioProComunResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="modificarUsuarioWebSemantica39Request">
         <wsdl:part element="impl:modificarUsuarioWebSemantica" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="modificarUsuarioWebSemantica35Response">
+    <wsdl:message name="modificarUsuarioWebSemantica39Response">
         <wsdl:part element="impl:modificarUsuarioWebSemanticaResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="nuevaClave36Request">
+    <wsdl:message name="nuevaClave40Request">
         <wsdl:part element="impl:nuevaClave" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="nuevaClave36Response">
+    <wsdl:message name="nuevaClave40Response">
         <wsdl:part element="impl:nuevaClaveResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerDatosUsuario37Request">
+    <wsdl:message name="obtenerDatosUsuario41Request">
         <wsdl:part element="impl:obtenerDatosUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerDatosUsuario37Response">
+    <wsdl:message name="obtenerDatosUsuario41Response">
         <wsdl:part element="impl:obtenerDatosUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerDatosUsuarioWebSemantica38Request">
-        <wsdl:part element="impl:obtenerDatosUsuarioWebSemantica" name="parameters"/>
+    <wsdl:message name="obtenerDatosUsuarioPorEmail42Request">
+        <wsdl:part element="impl:obtenerDatosUsuarioPorEmail" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerDatosUsuarioWebSemantica38Response">
-        <wsdl:part element="impl:obtenerDatosUsuarioWebSemanticaResponse" name="parameters"/>
+    <wsdl:message name="obtenerDatosUsuarioPorEmail42Response">
+        <wsdl:part element="impl:obtenerDatosUsuarioPorEmailResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoAdministrador39Request">
+    <wsdl:message name="obtenerGrupoAdministrador43Request">
         <wsdl:part element="impl:obtenerGrupoAdministrador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoAdministrador39Response">
+    <wsdl:message name="obtenerGrupoAdministrador43Response">
         <wsdl:part element="impl:obtenerGrupoAdministradorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoRol40Request">
+    <wsdl:message name="obtenerGrupoRol44Request">
         <wsdl:part element="impl:obtenerGrupoRol" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerGrupoRol40Response">
+    <wsdl:message name="obtenerGrupoRol44Response">
         <wsdl:part element="impl:obtenerGrupoRolResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerListaUsuariosGrupoTrabajo41Request">
+    <wsdl:message name="obtenerListaUsuariosGrupoTrabajo45Request">
         <wsdl:part element="impl:obtenerListaUsuariosGrupoTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerListaUsuariosGrupoTrabajo41Response">
+    <wsdl:message name="obtenerListaUsuariosGrupoTrabajo45Response">
         <wsdl:part element="impl:obtenerListaUsuariosGrupoTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuario42Request">
+    <wsdl:message name="obtenerUsuario46Request">
         <wsdl:part element="impl:obtenerUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuario42Response">
+    <wsdl:message name="obtenerUsuario46Response">
         <wsdl:part element="impl:obtenerUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuarioConOpenId43Request">
+    <wsdl:message name="obtenerUsuarioConOpenId47Request">
         <wsdl:part element="impl:obtenerUsuarioConOpenId" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuarioConOpenId43Response">
+    <wsdl:message name="obtenerUsuarioConOpenId47Response">
         <wsdl:part element="impl:obtenerUsuarioConOpenIdResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosActivosPorNombre44Request">
+    <wsdl:message name="obtenerUsuariosActivosPorNombre48Request">
         <wsdl:part element="impl:obtenerUsuariosActivosPorNombre" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosActivosPorNombre44Response">
+    <wsdl:message name="obtenerUsuariosActivosPorNombre48Response">
         <wsdl:part element="impl:obtenerUsuariosActivosPorNombreResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosAdministrador45Request">
+    <wsdl:message name="obtenerUsuariosAdministrador49Request">
         <wsdl:part element="impl:obtenerUsuariosAdministrador" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosAdministrador45Response">
+    <wsdl:message name="obtenerUsuariosAdministrador49Response">
         <wsdl:part element="impl:obtenerUsuariosAdministradorResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosConCorreo46Request">
+    <wsdl:message name="obtenerUsuariosConCorreo50Request">
         <wsdl:part element="impl:obtenerUsuariosConCorreo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosConCorreo46Response">
+    <wsdl:message name="obtenerUsuariosConCorreo50Response">
         <wsdl:part element="impl:obtenerUsuariosConCorreoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosGrupo47Request">
+    <wsdl:message name="obtenerUsuariosGrupo51Request">
         <wsdl:part element="impl:obtenerUsuariosGrupo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosGrupo47Response">
+    <wsdl:message name="obtenerUsuariosGrupo51Response">
         <wsdl:part element="impl:obtenerUsuariosGrupoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosGrupoTrabajo48Request">
+    <wsdl:message name="obtenerUsuariosGrupoTrabajo52Request">
         <wsdl:part element="impl:obtenerUsuariosGrupoTrabajo" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="obtenerUsuariosGrupoTrabajo48Response">
+    <wsdl:message name="obtenerUsuariosGrupoTrabajo52Response">
         <wsdl:part element="impl:obtenerUsuariosGrupoTrabajoResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="registrarIntegracionLdap49Request">
+    <wsdl:message name="registrarIntegracionLdap53Request">
         <wsdl:part element="impl:registrarIntegracionLdap" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="registrarIntegracionLdap49Response">
+    <wsdl:message name="registrarIntegracionLdap53Response">
         <wsdl:part element="impl:registrarIntegracionLdapResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarAltaUsuario50Request">
+    <wsdl:message name="solicitarAltaUsuario54Request">
         <wsdl:part element="impl:solicitarAltaUsuario" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="solicitarAltaUsuario50Response">
+    <wsdl:message name="solicitarAltaUsuario54Response">
         <wsdl:part element="impl:solicitarAltaUsuarioResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="usuariosActivos51Request">
+    <wsdl:message name="usuariosActivos55Request">
         <wsdl:part element="impl:usuariosActivos" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="usuariosActivos51Response">
+    <wsdl:message name="usuariosActivos55Response">
         <wsdl:part element="impl:usuariosActivosResponse" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="validarCampoUsuarioWebSemantica52Request">
+    <wsdl:message name="validarCampoUsuarioProComun56Request">
+        <wsdl:part element="impl:validarCampoUsuarioProComun" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="validarCampoUsuarioProComun56Response">
+        <wsdl:part element="impl:validarCampoUsuarioProComunResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="validarCampoUsuarioWebSemantica57Request">
         <wsdl:part element="impl:validarCampoUsuarioWebSemantica" name="parameters"/>
     </wsdl:message>
-    <wsdl:message name="validarCampoUsuarioWebSemantica52Response">
+    <wsdl:message name="validarCampoUsuarioWebSemantica57Response">
         <wsdl:part element="impl:validarCampoUsuarioWebSemanticaResponse" name="parameters"/>
     </wsdl:message>
 
@@ -2521,95 +2727,125 @@
             <wsdl:output message="impl:altaUsuario4Response" 
                          name="altaUsuario4Response"/>
         </wsdl:operation>
+        <wsdl:operation name="altaUsuarioProComun">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:altaUsuarioProComun5Request" 
+                        name="altaUsuarioProComun5Request"/>
+            <wsdl:output message="impl:altaUsuarioProComun5Response" 
+                         name="altaUsuarioProComun5Response"/>
+        </wsdl:operation>
         <wsdl:operation name="altaUsuarioWebSemantica">
                 
             <wsdl:documentation> 
                 Para dar a un usuario de alta desde la web semantica
             </wsdl:documentation>
-            <wsdl:input message="impl:altaUsuarioWebSemantica5Request" 
-                        name="altaUsuarioWebSemantica5Request"/>
-            <wsdl:output message="impl:altaUsuarioWebSemantica5Response" 
-                         name="altaUsuarioWebSemantica5Response"/>
+            <wsdl:input message="impl:altaUsuarioWebSemantica6Request" 
+                        name="altaUsuarioWebSemantica6Request"/>
+            <wsdl:output message="impl:altaUsuarioWebSemantica6Response" 
+                         name="altaUsuarioWebSemantica6Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="autenticacionUsuarioProComun">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:autenticacionUsuarioProComun7Request" 
+                        name="autenticacionUsuarioProComun7Request"/>
+            <wsdl:output message="impl:autenticacionUsuarioProComun7Response" 
+                         name="autenticacionUsuarioProComun7Response"/>
         </wsdl:operation>
         <wsdl:operation name="autenticacionUsuarioWebSemantica">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:autenticacionUsuarioWebSemantica6Request" 
-                        name="autenticacionUsuarioWebSemantica6Request"/>
-            <wsdl:output message="impl:autenticacionUsuarioWebSemantica6Response" 
-                         name="autenticacionUsuarioWebSemantica6Response"/>
+            <wsdl:input message="impl:autenticacionUsuarioWebSemantica8Request" 
+                        name="autenticacionUsuarioWebSemantica8Request"/>
+            <wsdl:output message="impl:autenticacionUsuarioWebSemantica8Response" 
+                         name="autenticacionUsuarioWebSemantica8Response"/>
         </wsdl:operation>
         <wsdl:operation name="bajaGrupo">
                 
             <wsdl:documentation> 
                 Eliminación de un grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:bajaGrupo7Request" 
-                        name="bajaGrupo7Request"/>
-            <wsdl:output message="impl:bajaGrupo7Response" 
-                         name="bajaGrupo7Response"/>
+            <wsdl:input message="impl:bajaGrupo9Request" 
+                        name="bajaGrupo9Request"/>
+            <wsdl:output message="impl:bajaGrupo9Response" 
+                         name="bajaGrupo9Response"/>
         </wsdl:operation>
         <wsdl:operation name="bajaGrupoTrabajo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:bajaGrupoTrabajo8Request" 
-                        name="bajaGrupoTrabajo8Request"/>
-            <wsdl:output message="impl:bajaGrupoTrabajo8Response" 
-                         name="bajaGrupoTrabajo8Response"/>
+            <wsdl:input message="impl:bajaGrupoTrabajo10Request" 
+                        name="bajaGrupoTrabajo10Request"/>
+            <wsdl:output message="impl:bajaGrupoTrabajo10Response" 
+                         name="bajaGrupoTrabajo10Response"/>
         </wsdl:operation>
         <wsdl:operation name="bajaUsuario">
                 
             <wsdl:documentation> 
                 Eliminación de usuarios
             </wsdl:documentation>
-            <wsdl:input message="impl:bajaUsuario9Request" 
-                        name="bajaUsuario9Request"/>
-            <wsdl:output message="impl:bajaUsuario9Response" 
-                         name="bajaUsuario9Response"/>
+            <wsdl:input message="impl:bajaUsuario11Request" 
+                        name="bajaUsuario11Request"/>
+            <wsdl:output message="impl:bajaUsuario11Response" 
+                         name="bajaUsuario11Response"/>
         </wsdl:operation>
         <wsdl:operation name="bajaUsuarioPendiente">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:bajaUsuarioPendiente10Request" 
-                        name="bajaUsuarioPendiente10Request"/>
-            <wsdl:output message="impl:bajaUsuarioPendiente10Response" 
-                         name="bajaUsuarioPendiente10Response"/>
+            <wsdl:input message="impl:bajaUsuarioPendiente12Request" 
+                        name="bajaUsuarioPendiente12Request"/>
+            <wsdl:output message="impl:bajaUsuarioPendiente12Response" 
+                         name="bajaUsuarioPendiente12Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="bajaUsuarioProComun">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:bajaUsuarioProComun13Request" 
+                        name="bajaUsuarioProComun13Request"/>
+            <wsdl:output message="impl:bajaUsuarioProComun13Response" 
+                         name="bajaUsuarioProComun13Response"/>
         </wsdl:operation>
         <wsdl:operation name="bajaUsuarioWebSemantica">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:bajaUsuarioWebSemantica11Request" 
-                        name="bajaUsuarioWebSemantica11Request"/>
-            <wsdl:output message="impl:bajaUsuarioWebSemantica11Response" 
-                         name="bajaUsuarioWebSemantica11Response"/>
+            <wsdl:input message="impl:bajaUsuarioWebSemantica14Request" 
+                        name="bajaUsuarioWebSemantica14Request"/>
+            <wsdl:output message="impl:bajaUsuarioWebSemantica14Response" 
+                         name="bajaUsuarioWebSemantica14Response"/>
         </wsdl:operation>
         <wsdl:operation name="desactivarUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:desactivarUsuario12Request" 
-                        name="desactivarUsuario12Request"/>
-            <wsdl:output message="impl:desactivarUsuario12Response" 
-                         name="desactivarUsuario12Response"/>
+            <wsdl:input message="impl:desactivarUsuario15Request" 
+                        name="desactivarUsuario15Request"/>
+            <wsdl:output message="impl:desactivarUsuario15Response" 
+                         name="desactivarUsuario15Response"/>
         </wsdl:operation>
         <wsdl:operation name="descripcionGrupo">
                 
             <wsdl:documentation> 
                 Descripción de los datos de un grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:descripcionGrupo13Request" 
-                        name="descripcionGrupo13Request"/>
-            <wsdl:output message="impl:descripcionGrupo13Response" 
-                         name="descripcionGrupo13Response"/>
+            <wsdl:input message="impl:descripcionGrupo16Request" 
+                        name="descripcionGrupo16Request"/>
+            <wsdl:output message="impl:descripcionGrupo16Response" 
+                         name="descripcionGrupo16Response"/>
         </wsdl:operation>
         <wsdl:operation name="descripcionGrupoTrabajo">
                 
@@ -2617,30 +2853,30 @@
                 Obtiene el grupo de trabajo cuyo identificador se pasa como
                 parámetro
             </wsdl:documentation>
-            <wsdl:input message="impl:descripcionGrupoTrabajo14Request" 
-                        name="descripcionGrupoTrabajo14Request"/>
-            <wsdl:output message="impl:descripcionGrupoTrabajo14Response" 
-                         name="descripcionGrupoTrabajo14Response"/>
+            <wsdl:input message="impl:descripcionGrupoTrabajo17Request" 
+                        name="descripcionGrupoTrabajo17Request"/>
+            <wsdl:output message="impl:descripcionGrupoTrabajo17Response" 
+                         name="descripcionGrupoTrabajo17Response"/>
         </wsdl:operation>
         <wsdl:operation name="descripcionUsuario">
                 
             <wsdl:documentation> 
                 Los datos de un usuario
             </wsdl:documentation>
-            <wsdl:input message="impl:descripcionUsuario15Request" 
-                        name="descripcionUsuario15Request"/>
-            <wsdl:output message="impl:descripcionUsuario15Response" 
-                         name="descripcionUsuario15Response"/>
+            <wsdl:input message="impl:descripcionUsuario18Request" 
+                        name="descripcionUsuario18Request"/>
+            <wsdl:output message="impl:descripcionUsuario18Response" 
+                         name="descripcionUsuario18Response"/>
         </wsdl:operation>
         <wsdl:operation name="enviarCorreoBaja">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:enviarCorreoBaja16Request" 
-                        name="enviarCorreoBaja16Request"/>
-            <wsdl:output message="impl:enviarCorreoBaja16Response" 
-                         name="enviarCorreoBaja16Response"/>
+            <wsdl:input message="impl:enviarCorreoBaja19Request" 
+                        name="enviarCorreoBaja19Request"/>
+            <wsdl:output message="impl:enviarCorreoBaja19Response" 
+                         name="enviarCorreoBaja19Response"/>
         </wsdl:operation>
         <wsdl:operation name="estaActivo">
                 
@@ -2648,30 +2884,30 @@
                 Comprueba si el usuario que se pasa como parámetro esta activo
                 en la plataforma
             </wsdl:documentation>
-            <wsdl:input message="impl:estaActivo17Request" 
-                        name="estaActivo17Request"/>
-            <wsdl:output message="impl:estaActivo17Response" 
-                         name="estaActivo17Response"/>
+            <wsdl:input message="impl:estaActivo20Request" 
+                        name="estaActivo20Request"/>
+            <wsdl:output message="impl:estaActivo20Response" 
+                         name="estaActivo20Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeDescripcion">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeDescripcion18Request" 
-                        name="existeDescripcion18Request"/>
-            <wsdl:output message="impl:existeDescripcion18Response" 
-                         name="existeDescripcion18Response"/>
+            <wsdl:input message="impl:existeDescripcion21Request" 
+                        name="existeDescripcion21Request"/>
+            <wsdl:output message="impl:existeDescripcion21Response" 
+                         name="existeDescripcion21Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeNombreTrabajo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:existeNombreTrabajo19Request" 
-                        name="existeNombreTrabajo19Request"/>
-            <wsdl:output message="impl:existeNombreTrabajo19Response" 
-                         name="existeNombreTrabajo19Response"/>
+            <wsdl:input message="impl:existeNombreTrabajo22Request" 
+                        name="existeNombreTrabajo22Request"/>
+            <wsdl:output message="impl:existeNombreTrabajo22Response" 
+                         name="existeNombreTrabajo22Response"/>
         </wsdl:operation>
         <wsdl:operation name="existeUsuario">
                 
@@ -2679,50 +2915,50 @@
                 Comprueba si existe en el sistema un usuario con ese usuario
                 (login)
             </wsdl:documentation>
-            <wsdl:input message="impl:existeUsuario20Request" 
-                        name="existeUsuario20Request"/>
-            <wsdl:output message="impl:existeUsuario20Response" 
-                         name="existeUsuario20Response"/>
+            <wsdl:input message="impl:existeUsuario23Request" 
+                        name="existeUsuario23Request"/>
+            <wsdl:output message="impl:existeUsuario23Response" 
+                         name="existeUsuario23Response"/>
         </wsdl:operation>
         <wsdl:operation name="getEmailAdmin">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:getEmailAdmin21Request" 
-                        name="getEmailAdmin21Request"/>
-            <wsdl:output message="impl:getEmailAdmin21Response" 
-                         name="getEmailAdmin21Response"/>
+            <wsdl:input message="impl:getEmailAdmin24Request" 
+                        name="getEmailAdmin24Request"/>
+            <wsdl:output message="impl:getEmailAdmin24Response" 
+                         name="getEmailAdmin24Response"/>
         </wsdl:operation>
         <wsdl:operation name="getEmailPublicadores">
                 
             <wsdl:documentation> 
                 Obtiene los correos de todos los publicadores de la plataforma
             </wsdl:documentation>
-            <wsdl:input message="impl:getEmailPublicadores22Request" 
-                        name="getEmailPublicadores22Request"/>
-            <wsdl:output message="impl:getEmailPublicadores22Response" 
-                         name="getEmailPublicadores22Response"/>
+            <wsdl:input message="impl:getEmailPublicadores25Request" 
+                        name="getEmailPublicadores25Request"/>
+            <wsdl:output message="impl:getEmailPublicadores25Response" 
+                         name="getEmailPublicadores25Response"/>
         </wsdl:operation>
         <wsdl:operation name="getRol">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:getRol23Request" 
-                        name="getRol23Request"/>
-            <wsdl:output message="impl:getRol23Response" 
-                         name="getRol23Response"/>
+            <wsdl:input message="impl:getRol26Request" 
+                        name="getRol26Request"/>
+            <wsdl:output message="impl:getRol26Response" 
+                         name="getRol26Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGrupos">
                 
             <wsdl:documentation> 
                 Listado de los grupos existentes
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGrupos24Request" 
-                        name="listarGrupos24Request"/>
-            <wsdl:output message="impl:listarGrupos24Response" 
-                         name="listarGrupos24Response"/>
+            <wsdl:input message="impl:listarGrupos27Request" 
+                        name="listarGrupos27Request"/>
+            <wsdl:output message="impl:listarGrupos27Response" 
+                         name="listarGrupos27Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarGruposTrabajo">
                 
@@ -2733,30 +2969,30 @@
                 usuario selecciona este grupo de trabajo se le asociarán todos
                 los grupos.
             </wsdl:documentation>
-            <wsdl:input message="impl:listarGruposTrabajo25Request" 
-                        name="listarGruposTrabajo25Request"/>
-            <wsdl:output message="impl:listarGruposTrabajo25Response" 
-                         name="listarGruposTrabajo25Response"/>
+            <wsdl:input message="impl:listarGruposTrabajo28Request" 
+                        name="listarGruposTrabajo28Request"/>
+            <wsdl:output message="impl:listarGruposTrabajo28Response" 
+                         name="listarGruposTrabajo28Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarRoles">
                 
             <wsdl:documentation> 
                 Listado de los roles existentes
             </wsdl:documentation>
-            <wsdl:input message="impl:listarRoles26Request" 
-                        name="listarRoles26Request"/>
-            <wsdl:output message="impl:listarRoles26Response" 
-                         name="listarRoles26Response"/>
+            <wsdl:input message="impl:listarRoles29Request" 
+                        name="listarRoles29Request"/>
+            <wsdl:output message="impl:listarRoles29Response" 
+                         name="listarRoles29Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarRolesUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:listarRolesUsuario27Request" 
-                        name="listarRolesUsuario27Request"/>
-            <wsdl:output message="impl:listarRolesUsuario27Response" 
-                         name="listarRolesUsuario27Response"/>
+            <wsdl:input message="impl:listarRolesUsuario30Request" 
+                        name="listarRolesUsuario30Request"/>
+            <wsdl:output message="impl:listarRolesUsuario30Response" 
+                         name="listarRolesUsuario30Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarTodosUsuarios">
                 
@@ -2764,10 +3000,10 @@
                 Lista todos los usuarios del sistema (salvo los pendientes de
                 dar de alta)
             </wsdl:documentation>
-            <wsdl:input message="impl:listarTodosUsuarios28Request" 
-                        name="listarTodosUsuarios28Request"/>
-            <wsdl:output message="impl:listarTodosUsuarios28Response" 
-                         name="listarTodosUsuarios28Response"/>
+            <wsdl:input message="impl:listarTodosUsuarios31Request" 
+                        name="listarTodosUsuarios31Request"/>
+            <wsdl:output message="impl:listarTodosUsuarios31Response" 
+                         name="listarTodosUsuarios31Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuarios">
                 
@@ -2775,20 +3011,20 @@
                 Listado de todos los usuarios del nodo que ya han sido dados de
                 alta por el administrador
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuarios29Request" 
-                        name="listarUsuarios29Request"/>
-            <wsdl:output message="impl:listarUsuarios29Response" 
-                         name="listarUsuarios29Response"/>
+            <wsdl:input message="impl:listarUsuarios32Request" 
+                        name="listarUsuarios32Request"/>
+            <wsdl:output message="impl:listarUsuarios32Response" 
+                         name="listarUsuarios32Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuariosInactivos">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuariosInactivos30Request" 
-                        name="listarUsuariosInactivos30Request"/>
-            <wsdl:output message="impl:listarUsuariosInactivos30Response" 
-                         name="listarUsuariosInactivos30Response"/>
+            <wsdl:input message="impl:listarUsuariosInactivos33Request" 
+                        name="listarUsuariosInactivos33Request"/>
+            <wsdl:output message="impl:listarUsuariosInactivos33Response" 
+                         name="listarUsuariosInactivos33Response"/>
         </wsdl:operation>
         <wsdl:operation name="listarUsuariosPendientes">
                 
@@ -2796,30 +3032,30 @@
                 Listado de los usuarios del nodo que no han sido dados de alta
                 por el administrador
             </wsdl:documentation>
-            <wsdl:input message="impl:listarUsuariosPendientes31Request" 
-                        name="listarUsuariosPendientes31Request"/>
-            <wsdl:output message="impl:listarUsuariosPendientes31Response" 
-                         name="listarUsuariosPendientes31Response"/>
+            <wsdl:input message="impl:listarUsuariosPendientes34Request" 
+                        name="listarUsuariosPendientes34Request"/>
+            <wsdl:output message="impl:listarUsuariosPendientes34Response" 
+                         name="listarUsuariosPendientes34Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarGrupo">
                 
             <wsdl:documentation> 
                 Modificación de los datos de un grupo
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarGrupo32Request" 
-                        name="modificarGrupo32Request"/>
-            <wsdl:output message="impl:modificarGrupo32Response" 
-                         name="modificarGrupo32Response"/>
+            <wsdl:input message="impl:modificarGrupo35Request" 
+                        name="modificarGrupo35Request"/>
+            <wsdl:output message="impl:modificarGrupo35Response" 
+                         name="modificarGrupo35Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarGrupoTrabajo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarGrupoTrabajo33Request" 
-                        name="modificarGrupoTrabajo33Request"/>
-            <wsdl:output message="impl:modificarGrupoTrabajo33Response" 
-                         name="modificarGrupoTrabajo33Response"/>
+            <wsdl:input message="impl:modificarGrupoTrabajo36Request" 
+                        name="modificarGrupoTrabajo36Request"/>
+            <wsdl:output message="impl:modificarGrupoTrabajo36Response" 
+                         name="modificarGrupoTrabajo36Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarUsuario">
                 
@@ -2827,20 +3063,30 @@
                 Datos nuevos del usuario. La propiedad id del objeto UsuarioVO
                 es el identificado del usuarioque va a ser modificado
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarUsuario34Request" 
-                        name="modificarUsuario34Request"/>
-            <wsdl:output message="impl:modificarUsuario34Response" 
-                         name="modificarUsuario34Response"/>
+            <wsdl:input message="impl:modificarUsuario37Request" 
+                        name="modificarUsuario37Request"/>
+            <wsdl:output message="impl:modificarUsuario37Response" 
+                         name="modificarUsuario37Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="modificarUsuarioProComun">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:modificarUsuarioProComun38Request" 
+                        name="modificarUsuarioProComun38Request"/>
+            <wsdl:output message="impl:modificarUsuarioProComun38Response" 
+                         name="modificarUsuarioProComun38Response"/>
         </wsdl:operation>
         <wsdl:operation name="modificarUsuarioWebSemantica">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:modificarUsuarioWebSemantica35Request" 
-                        name="modificarUsuarioWebSemantica35Request"/>
-            <wsdl:output message="impl:modificarUsuarioWebSemantica35Response" 
-                         name="modificarUsuarioWebSemantica35Response"/>
+            <wsdl:input message="impl:modificarUsuarioWebSemantica39Request" 
+                        name="modificarUsuarioWebSemantica39Request"/>
+            <wsdl:output message="impl:modificarUsuarioWebSemantica39Response" 
+                         name="modificarUsuarioWebSemantica39Response"/>
         </wsdl:operation>
         <wsdl:operation name="nuevaClave">
                 
@@ -2850,40 +3096,40 @@
                 en el sistema. Para ello deberán introducir la dirección de
                 correo electrónico y el NIF
             </wsdl:documentation>
-            <wsdl:input message="impl:nuevaClave36Request" 
-                        name="nuevaClave36Request"/>
-            <wsdl:output message="impl:nuevaClave36Response" 
-                         name="nuevaClave36Response"/>
+            <wsdl:input message="impl:nuevaClave40Request" 
+                        name="nuevaClave40Request"/>
+            <wsdl:output message="impl:nuevaClave40Response" 
+                         name="nuevaClave40Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerDatosUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerDatosUsuario37Request" 
-                        name="obtenerDatosUsuario37Request"/>
-            <wsdl:output message="impl:obtenerDatosUsuario37Response" 
-                         name="obtenerDatosUsuario37Response"/>
+            <wsdl:input message="impl:obtenerDatosUsuario41Request" 
+                        name="obtenerDatosUsuario41Request"/>
+            <wsdl:output message="impl:obtenerDatosUsuario41Response" 
+                         name="obtenerDatosUsuario41Response"/>
         </wsdl:operation>
-        <wsdl:operation name="obtenerDatosUsuarioWebSemantica">
+        <wsdl:operation name="obtenerDatosUsuarioPorEmail">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerDatosUsuarioWebSemantica38Request" 
-                        name="obtenerDatosUsuarioWebSemantica38Request"/>
-            <wsdl:output message="impl:obtenerDatosUsuarioWebSemantica38Response" 
-                         name="obtenerDatosUsuarioWebSemantica38Response"/>
+            <wsdl:input message="impl:obtenerDatosUsuarioPorEmail42Request" 
+                        name="obtenerDatosUsuarioPorEmail42Request"/>
+            <wsdl:output message="impl:obtenerDatosUsuarioPorEmail42Response" 
+                         name="obtenerDatosUsuarioPorEmail42Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerGrupoAdministrador">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerGrupoAdministrador39Request" 
-                        name="obtenerGrupoAdministrador39Request"/>
-            <wsdl:output message="impl:obtenerGrupoAdministrador39Response" 
-                         name="obtenerGrupoAdministrador39Response"/>
+            <wsdl:input message="impl:obtenerGrupoAdministrador43Request" 
+                        name="obtenerGrupoAdministrador43Request"/>
+            <wsdl:output message="impl:obtenerGrupoAdministrador43Response" 
+                         name="obtenerGrupoAdministrador43Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerGrupoRol">
                 
@@ -2892,10 +3138,10 @@
                 como parámetro, este método devolverá grupos con un único rol y
                 que coincidan con el que se pasa como parámetro.
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerGrupoRol40Request" 
-                        name="obtenerGrupoRol40Request"/>
-            <wsdl:output message="impl:obtenerGrupoRol40Response" 
-                         name="obtenerGrupoRol40Response"/>
+            <wsdl:input message="impl:obtenerGrupoRol44Request" 
+                        name="obtenerGrupoRol44Request"/>
+            <wsdl:output message="impl:obtenerGrupoRol44Response" 
+                         name="obtenerGrupoRol44Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerListaUsuariosGrupoTrabajo">
                 
@@ -2903,80 +3149,80 @@
                 Obtiene la lista de usuarios que pertenecen al mismo grupo de
                 trabajo que el usuario que se pasa como parámetro
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerListaUsuariosGrupoTrabajo41Request" 
-                        name="obtenerListaUsuariosGrupoTrabajo41Request"/>
-            <wsdl:output message="impl:obtenerListaUsuariosGrupoTrabajo41Response" 
-                         name="obtenerListaUsuariosGrupoTrabajo41Response"/>
+            <wsdl:input message="impl:obtenerListaUsuariosGrupoTrabajo45Request" 
+                        name="obtenerListaUsuariosGrupoTrabajo45Request"/>
+            <wsdl:output message="impl:obtenerListaUsuariosGrupoTrabajo45Response" 
+                         name="obtenerListaUsuariosGrupoTrabajo45Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuario42Request" 
-                        name="obtenerUsuario42Request"/>
-            <wsdl:output message="impl:obtenerUsuario42Response" 
-                         name="obtenerUsuario42Response"/>
+            <wsdl:input message="impl:obtenerUsuario46Request" 
+                        name="obtenerUsuario46Request"/>
+            <wsdl:output message="impl:obtenerUsuario46Response" 
+                         name="obtenerUsuario46Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuarioConOpenId">
                 
             <wsdl:documentation> 
                 Metodo para obtener el usuario que pertenezca ese openId
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuarioConOpenId43Request" 
-                        name="obtenerUsuarioConOpenId43Request"/>
-            <wsdl:output message="impl:obtenerUsuarioConOpenId43Response" 
-                         name="obtenerUsuarioConOpenId43Response"/>
+            <wsdl:input message="impl:obtenerUsuarioConOpenId47Request" 
+                        name="obtenerUsuarioConOpenId47Request"/>
+            <wsdl:output message="impl:obtenerUsuarioConOpenId47Response" 
+                         name="obtenerUsuarioConOpenId47Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosActivosPorNombre">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuariosActivosPorNombre44Request" 
-                        name="obtenerUsuariosActivosPorNombre44Request"/>
-            <wsdl:output message="impl:obtenerUsuariosActivosPorNombre44Response" 
-                         name="obtenerUsuariosActivosPorNombre44Response"/>
+            <wsdl:input message="impl:obtenerUsuariosActivosPorNombre48Request" 
+                        name="obtenerUsuariosActivosPorNombre48Request"/>
+            <wsdl:output message="impl:obtenerUsuariosActivosPorNombre48Response" 
+                         name="obtenerUsuariosActivosPorNombre48Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosAdministrador">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuariosAdministrador45Request" 
-                        name="obtenerUsuariosAdministrador45Request"/>
-            <wsdl:output message="impl:obtenerUsuariosAdministrador45Response" 
-                         name="obtenerUsuariosAdministrador45Response"/>
+            <wsdl:input message="impl:obtenerUsuariosAdministrador49Request" 
+                        name="obtenerUsuariosAdministrador49Request"/>
+            <wsdl:output message="impl:obtenerUsuariosAdministrador49Response" 
+                         name="obtenerUsuariosAdministrador49Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosConCorreo">
                 
             <wsdl:documentation> 
                 Obtiene los correos de los usuarios que recibe como parámetro
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuariosConCorreo46Request" 
-                        name="obtenerUsuariosConCorreo46Request"/>
-            <wsdl:output message="impl:obtenerUsuariosConCorreo46Response" 
-                         name="obtenerUsuariosConCorreo46Response"/>
+            <wsdl:input message="impl:obtenerUsuariosConCorreo50Request" 
+                        name="obtenerUsuariosConCorreo50Request"/>
+            <wsdl:output message="impl:obtenerUsuariosConCorreo50Response" 
+                         name="obtenerUsuariosConCorreo50Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosGrupo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuariosGrupo47Request" 
-                        name="obtenerUsuariosGrupo47Request"/>
-            <wsdl:output message="impl:obtenerUsuariosGrupo47Response" 
-                         name="obtenerUsuariosGrupo47Response"/>
+            <wsdl:input message="impl:obtenerUsuariosGrupo51Request" 
+                        name="obtenerUsuariosGrupo51Request"/>
+            <wsdl:output message="impl:obtenerUsuariosGrupo51Response" 
+                         name="obtenerUsuariosGrupo51Response"/>
         </wsdl:operation>
         <wsdl:operation name="obtenerUsuariosGrupoTrabajo">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:obtenerUsuariosGrupoTrabajo48Request" 
-                        name="obtenerUsuariosGrupoTrabajo48Request"/>
-            <wsdl:output message="impl:obtenerUsuariosGrupoTrabajo48Response" 
-                         name="obtenerUsuariosGrupoTrabajo48Response"/>
+            <wsdl:input message="impl:obtenerUsuariosGrupoTrabajo52Request" 
+                        name="obtenerUsuariosGrupoTrabajo52Request"/>
+            <wsdl:output message="impl:obtenerUsuariosGrupoTrabajo52Response" 
+                         name="obtenerUsuariosGrupoTrabajo52Response"/>
         </wsdl:operation>
         <wsdl:operation name="registrarIntegracionLdap">
                 
@@ -2986,30 +3232,40 @@
                 de registrar, este método será utilizado como parte de la
                 integración con el ldap de las comunidades
             </wsdl:documentation>
-            <wsdl:input message="impl:registrarIntegracionLdap49Request" 
-                        name="registrarIntegracionLdap49Request"/>
-            <wsdl:output message="impl:registrarIntegracionLdap49Response" 
-                         name="registrarIntegracionLdap49Response"/>
+            <wsdl:input message="impl:registrarIntegracionLdap53Request" 
+                        name="registrarIntegracionLdap53Request"/>
+            <wsdl:output message="impl:registrarIntegracionLdap53Response" 
+                         name="registrarIntegracionLdap53Response"/>
         </wsdl:operation>
         <wsdl:operation name="solicitarAltaUsuario">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:solicitarAltaUsuario50Request" 
-                        name="solicitarAltaUsuario50Request"/>
-            <wsdl:output message="impl:solicitarAltaUsuario50Response" 
-                         name="solicitarAltaUsuario50Response"/>
+            <wsdl:input message="impl:solicitarAltaUsuario54Request" 
+                        name="solicitarAltaUsuario54Request"/>
+            <wsdl:output message="impl:solicitarAltaUsuario54Response" 
+                         name="solicitarAltaUsuario54Response"/>
         </wsdl:operation>
         <wsdl:operation name="usuariosActivos">
                 
             <wsdl:documentation> 
                 
             </wsdl:documentation>
-            <wsdl:input message="impl:usuariosActivos51Request" 
-                        name="usuariosActivos51Request"/>
-            <wsdl:output message="impl:usuariosActivos51Response" 
-                         name="usuariosActivos51Response"/>
+            <wsdl:input message="impl:usuariosActivos55Request" 
+                        name="usuariosActivos55Request"/>
+            <wsdl:output message="impl:usuariosActivos55Response" 
+                         name="usuariosActivos55Response"/>
+        </wsdl:operation>
+        <wsdl:operation name="validarCampoUsuarioProComun">
+                
+            <wsdl:documentation> 
+                
+            </wsdl:documentation>
+            <wsdl:input message="impl:validarCampoUsuarioProComun56Request" 
+                        name="validarCampoUsuarioProComun56Request"/>
+            <wsdl:output message="impl:validarCampoUsuarioProComun56Response" 
+                         name="validarCampoUsuarioProComun56Response"/>
         </wsdl:operation>
         <wsdl:operation name="validarCampoUsuarioWebSemantica">
                 
@@ -3018,10 +3274,10 @@
                 ser el correo eletronico, el dni, etc...
                 Devuelve true si el par clave, valor valida y false eoc
             </wsdl:documentation>
-            <wsdl:input message="impl:validarCampoUsuarioWebSemantica52Request" 
-                        name="validarCampoUsuarioWebSemantica52Request"/>
-            <wsdl:output message="impl:validarCampoUsuarioWebSemantica52Response" 
-                         name="validarCampoUsuarioWebSemantica52Response"/>
+            <wsdl:input message="impl:validarCampoUsuarioWebSemantica57Request" 
+                        name="validarCampoUsuarioWebSemantica57Request"/>
+            <wsdl:output message="impl:validarCampoUsuarioWebSemantica57Response" 
+                         name="validarCampoUsuarioWebSemantica57Response"/>
         </wsdl:operation>
     </wsdl:portType>
     
@@ -3064,435 +3320,480 @@
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="altaUsuarioWebSemantica">
-            <wsdlsoap:operation soapAction="altaUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="altaUsuarioWebSemantica5Request">
+        <wsdl:operation name="altaUsuarioProComun">
+            <wsdlsoap:operation soapAction="altaUsuarioProComun" style="document"/>
+            <wsdl:input name="altaUsuarioProComun5Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="altaUsuarioWebSemantica5Response">
+            <wsdl:output name="altaUsuarioProComun5Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="altaUsuarioWebSemantica">
+            <wsdlsoap:operation soapAction="altaUsuarioWebSemantica" style="document"/>
+            <wsdl:input name="altaUsuarioWebSemantica6Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="altaUsuarioWebSemantica6Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="autenticacionUsuarioProComun">
+            <wsdlsoap:operation soapAction="autenticacionUsuarioProComun" style="document"/>
+            <wsdl:input name="autenticacionUsuarioProComun7Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="autenticacionUsuarioProComun7Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="autenticacionUsuarioWebSemantica">
             <wsdlsoap:operation soapAction="autenticacionUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="autenticacionUsuarioWebSemantica6Request">
+            <wsdl:input name="autenticacionUsuarioWebSemantica8Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="autenticacionUsuarioWebSemantica6Response">
+            <wsdl:output name="autenticacionUsuarioWebSemantica8Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="bajaGrupo">
             <wsdlsoap:operation soapAction="bajaGrupo" style="document"/>
-            <wsdl:input name="bajaGrupo7Request">
+            <wsdl:input name="bajaGrupo9Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="bajaGrupo7Response">
+            <wsdl:output name="bajaGrupo9Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="bajaGrupoTrabajo">
             <wsdlsoap:operation soapAction="bajaGrupoTrabajo" style="document"/>
-            <wsdl:input name="bajaGrupoTrabajo8Request">
+            <wsdl:input name="bajaGrupoTrabajo10Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="bajaGrupoTrabajo8Response">
+            <wsdl:output name="bajaGrupoTrabajo10Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="bajaUsuario">
             <wsdlsoap:operation soapAction="bajaUsuario" style="document"/>
-            <wsdl:input name="bajaUsuario9Request">
+            <wsdl:input name="bajaUsuario11Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="bajaUsuario9Response">
+            <wsdl:output name="bajaUsuario11Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="bajaUsuarioPendiente">
             <wsdlsoap:operation soapAction="bajaUsuarioPendiente" style="document"/>
-            <wsdl:input name="bajaUsuarioPendiente10Request">
+            <wsdl:input name="bajaUsuarioPendiente12Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="bajaUsuarioPendiente10Response">
+            <wsdl:output name="bajaUsuarioPendiente12Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="bajaUsuarioProComun">
+            <wsdlsoap:operation soapAction="bajaUsuarioProComun" style="document"/>
+            <wsdl:input name="bajaUsuarioProComun13Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="bajaUsuarioProComun13Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="bajaUsuarioWebSemantica">
             <wsdlsoap:operation soapAction="bajaUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="bajaUsuarioWebSemantica11Request">
+            <wsdl:input name="bajaUsuarioWebSemantica14Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="bajaUsuarioWebSemantica11Response">
+            <wsdl:output name="bajaUsuarioWebSemantica14Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="desactivarUsuario">
             <wsdlsoap:operation soapAction="desactivarUsuario" style="document"/>
-            <wsdl:input name="desactivarUsuario12Request">
+            <wsdl:input name="desactivarUsuario15Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="desactivarUsuario12Response">
+            <wsdl:output name="desactivarUsuario15Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="descripcionGrupo">
             <wsdlsoap:operation soapAction="descripcionGrupo" style="document"/>
-            <wsdl:input name="descripcionGrupo13Request">
+            <wsdl:input name="descripcionGrupo16Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="descripcionGrupo13Response">
+            <wsdl:output name="descripcionGrupo16Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="descripcionGrupoTrabajo">
             <wsdlsoap:operation soapAction="descripcionGrupoTrabajo" style="document"/>
-            <wsdl:input name="descripcionGrupoTrabajo14Request">
+            <wsdl:input name="descripcionGrupoTrabajo17Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="descripcionGrupoTrabajo14Response">
+            <wsdl:output name="descripcionGrupoTrabajo17Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="descripcionUsuario">
             <wsdlsoap:operation soapAction="descripcionUsuario" style="document"/>
-            <wsdl:input name="descripcionUsuario15Request">
+            <wsdl:input name="descripcionUsuario18Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="descripcionUsuario15Response">
+            <wsdl:output name="descripcionUsuario18Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="enviarCorreoBaja">
             <wsdlsoap:operation soapAction="enviarCorreoBaja" style="document"/>
-            <wsdl:input name="enviarCorreoBaja16Request">
+            <wsdl:input name="enviarCorreoBaja19Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="enviarCorreoBaja16Response">
+            <wsdl:output name="enviarCorreoBaja19Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="estaActivo">
             <wsdlsoap:operation soapAction="estaActivo" style="document"/>
-            <wsdl:input name="estaActivo17Request">
+            <wsdl:input name="estaActivo20Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="estaActivo17Response">
+            <wsdl:output name="estaActivo20Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeDescripcion">
             <wsdlsoap:operation soapAction="existeDescripcion" style="document"/>
-            <wsdl:input name="existeDescripcion18Request">
+            <wsdl:input name="existeDescripcion21Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeDescripcion18Response">
+            <wsdl:output name="existeDescripcion21Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeNombreTrabajo">
             <wsdlsoap:operation soapAction="existeNombreTrabajo" style="document"/>
-            <wsdl:input name="existeNombreTrabajo19Request">
+            <wsdl:input name="existeNombreTrabajo22Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeNombreTrabajo19Response">
+            <wsdl:output name="existeNombreTrabajo22Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="existeUsuario">
             <wsdlsoap:operation soapAction="existeUsuario" style="document"/>
-            <wsdl:input name="existeUsuario20Request">
+            <wsdl:input name="existeUsuario23Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="existeUsuario20Response">
+            <wsdl:output name="existeUsuario23Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="getEmailAdmin">
             <wsdlsoap:operation soapAction="getEmailAdmin" style="document"/>
-            <wsdl:input name="getEmailAdmin21Request">
+            <wsdl:input name="getEmailAdmin24Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="getEmailAdmin21Response">
+            <wsdl:output name="getEmailAdmin24Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="getEmailPublicadores">
             <wsdlsoap:operation soapAction="getEmailPublicadores" style="document"/>
-            <wsdl:input name="getEmailPublicadores22Request">
+            <wsdl:input name="getEmailPublicadores25Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="getEmailPublicadores22Response">
+            <wsdl:output name="getEmailPublicadores25Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="getRol">
             <wsdlsoap:operation soapAction="getRol" style="document"/>
-            <wsdl:input name="getRol23Request">
+            <wsdl:input name="getRol26Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="getRol23Response">
+            <wsdl:output name="getRol26Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGrupos">
             <wsdlsoap:operation soapAction="listarGrupos" style="document"/>
-            <wsdl:input name="listarGrupos24Request">
+            <wsdl:input name="listarGrupos27Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGrupos24Response">
+            <wsdl:output name="listarGrupos27Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarGruposTrabajo">
             <wsdlsoap:operation soapAction="listarGruposTrabajo" style="document"/>
-            <wsdl:input name="listarGruposTrabajo25Request">
+            <wsdl:input name="listarGruposTrabajo28Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarGruposTrabajo25Response">
+            <wsdl:output name="listarGruposTrabajo28Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarRoles">
             <wsdlsoap:operation soapAction="listarRoles" style="document"/>
-            <wsdl:input name="listarRoles26Request">
+            <wsdl:input name="listarRoles29Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarRoles26Response">
+            <wsdl:output name="listarRoles29Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarRolesUsuario">
             <wsdlsoap:operation soapAction="listarRolesUsuario" style="document"/>
-            <wsdl:input name="listarRolesUsuario27Request">
+            <wsdl:input name="listarRolesUsuario30Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarRolesUsuario27Response">
+            <wsdl:output name="listarRolesUsuario30Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarTodosUsuarios">
             <wsdlsoap:operation soapAction="listarTodosUsuarios" style="document"/>
-            <wsdl:input name="listarTodosUsuarios28Request">
+            <wsdl:input name="listarTodosUsuarios31Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarTodosUsuarios28Response">
+            <wsdl:output name="listarTodosUsuarios31Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuarios">
             <wsdlsoap:operation soapAction="listarUsuarios" style="document"/>
-            <wsdl:input name="listarUsuarios29Request">
+            <wsdl:input name="listarUsuarios32Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuarios29Response">
+            <wsdl:output name="listarUsuarios32Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuariosInactivos">
             <wsdlsoap:operation soapAction="listarUsuariosInactivos" style="document"/>
-            <wsdl:input name="listarUsuariosInactivos30Request">
+            <wsdl:input name="listarUsuariosInactivos33Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuariosInactivos30Response">
+            <wsdl:output name="listarUsuariosInactivos33Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="listarUsuariosPendientes">
             <wsdlsoap:operation soapAction="listarUsuariosPendientes" style="document"/>
-            <wsdl:input name="listarUsuariosPendientes31Request">
+            <wsdl:input name="listarUsuariosPendientes34Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="listarUsuariosPendientes31Response">
+            <wsdl:output name="listarUsuariosPendientes34Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarGrupo">
             <wsdlsoap:operation soapAction="modificarGrupo" style="document"/>
-            <wsdl:input name="modificarGrupo32Request">
+            <wsdl:input name="modificarGrupo35Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarGrupo32Response">
+            <wsdl:output name="modificarGrupo35Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarGrupoTrabajo">
             <wsdlsoap:operation soapAction="modificarGrupoTrabajo" style="document"/>
-            <wsdl:input name="modificarGrupoTrabajo33Request">
+            <wsdl:input name="modificarGrupoTrabajo36Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarGrupoTrabajo33Response">
+            <wsdl:output name="modificarGrupoTrabajo36Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarUsuario">
             <wsdlsoap:operation soapAction="modificarUsuario" style="document"/>
-            <wsdl:input name="modificarUsuario34Request">
+            <wsdl:input name="modificarUsuario37Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarUsuario34Response">
+            <wsdl:output name="modificarUsuario37Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="modificarUsuarioProComun">
+            <wsdlsoap:operation soapAction="modificarUsuarioProComun" style="document"/>
+            <wsdl:input name="modificarUsuarioProComun38Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="modificarUsuarioProComun38Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="modificarUsuarioWebSemantica">
             <wsdlsoap:operation soapAction="modificarUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="modificarUsuarioWebSemantica35Request">
+            <wsdl:input name="modificarUsuarioWebSemantica39Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="modificarUsuarioWebSemantica35Response">
+            <wsdl:output name="modificarUsuarioWebSemantica39Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="nuevaClave">
             <wsdlsoap:operation soapAction="nuevaClave" style="document"/>
-            <wsdl:input name="nuevaClave36Request">
+            <wsdl:input name="nuevaClave40Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="nuevaClave36Response">
+            <wsdl:output name="nuevaClave40Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerDatosUsuario">
             <wsdlsoap:operation soapAction="obtenerDatosUsuario" style="document"/>
-            <wsdl:input name="obtenerDatosUsuario37Request">
+            <wsdl:input name="obtenerDatosUsuario41Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerDatosUsuario37Response">
+            <wsdl:output name="obtenerDatosUsuario41Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
-        <wsdl:operation name="obtenerDatosUsuarioWebSemantica">
-            <wsdlsoap:operation soapAction="obtenerDatosUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="obtenerDatosUsuarioWebSemantica38Request">
+        <wsdl:operation name="obtenerDatosUsuarioPorEmail">
+            <wsdlsoap:operation soapAction="obtenerDatosUsuarioPorEmail" style="document"/>
+            <wsdl:input name="obtenerDatosUsuarioPorEmail42Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerDatosUsuarioWebSemantica38Response">
+            <wsdl:output name="obtenerDatosUsuarioPorEmail42Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerGrupoAdministrador">
             <wsdlsoap:operation soapAction="obtenerGrupoAdministrador" style="document"/>
-            <wsdl:input name="obtenerGrupoAdministrador39Request">
+            <wsdl:input name="obtenerGrupoAdministrador43Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerGrupoAdministrador39Response">
+            <wsdl:output name="obtenerGrupoAdministrador43Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerGrupoRol">
             <wsdlsoap:operation soapAction="obtenerGrupoRol" style="document"/>
-            <wsdl:input name="obtenerGrupoRol40Request">
+            <wsdl:input name="obtenerGrupoRol44Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerGrupoRol40Response">
+            <wsdl:output name="obtenerGrupoRol44Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerListaUsuariosGrupoTrabajo">
             <wsdlsoap:operation soapAction="obtenerListaUsuariosGrupoTrabajo" style="document"/>
-            <wsdl:input name="obtenerListaUsuariosGrupoTrabajo41Request">
+            <wsdl:input name="obtenerListaUsuariosGrupoTrabajo45Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerListaUsuariosGrupoTrabajo41Response">
+            <wsdl:output name="obtenerListaUsuariosGrupoTrabajo45Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuario">
             <wsdlsoap:operation soapAction="obtenerUsuario" style="document"/>
-            <wsdl:input name="obtenerUsuario42Request">
+            <wsdl:input name="obtenerUsuario46Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuario42Response">
+            <wsdl:output name="obtenerUsuario46Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuarioConOpenId">
             <wsdlsoap:operation soapAction="obtenerUsuarioConOpenId" style="document"/>
-            <wsdl:input name="obtenerUsuarioConOpenId43Request">
+            <wsdl:input name="obtenerUsuarioConOpenId47Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuarioConOpenId43Response">
+            <wsdl:output name="obtenerUsuarioConOpenId47Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuariosActivosPorNombre">
             <wsdlsoap:operation soapAction="obtenerUsuariosActivosPorNombre" style="document"/>
-            <wsdl:input name="obtenerUsuariosActivosPorNombre44Request">
+            <wsdl:input name="obtenerUsuariosActivosPorNombre48Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuariosActivosPorNombre44Response">
+            <wsdl:output name="obtenerUsuariosActivosPorNombre48Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuariosAdministrador">
             <wsdlsoap:operation soapAction="obtenerUsuariosAdministrador" style="document"/>
-            <wsdl:input name="obtenerUsuariosAdministrador45Request">
+            <wsdl:input name="obtenerUsuariosAdministrador49Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuariosAdministrador45Response">
+            <wsdl:output name="obtenerUsuariosAdministrador49Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuariosConCorreo">
             <wsdlsoap:operation soapAction="obtenerUsuariosConCorreo" style="document"/>
-            <wsdl:input name="obtenerUsuariosConCorreo46Request">
+            <wsdl:input name="obtenerUsuariosConCorreo50Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuariosConCorreo46Response">
+            <wsdl:output name="obtenerUsuariosConCorreo50Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuariosGrupo">
             <wsdlsoap:operation soapAction="obtenerUsuariosGrupo" style="document"/>
-            <wsdl:input name="obtenerUsuariosGrupo47Request">
+            <wsdl:input name="obtenerUsuariosGrupo51Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuariosGrupo47Response">
+            <wsdl:output name="obtenerUsuariosGrupo51Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="obtenerUsuariosGrupoTrabajo">
             <wsdlsoap:operation soapAction="obtenerUsuariosGrupoTrabajo" style="document"/>
-            <wsdl:input name="obtenerUsuariosGrupoTrabajo48Request">
+            <wsdl:input name="obtenerUsuariosGrupoTrabajo52Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="obtenerUsuariosGrupoTrabajo48Response">
+            <wsdl:output name="obtenerUsuariosGrupoTrabajo52Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="registrarIntegracionLdap">
             <wsdlsoap:operation soapAction="registrarIntegracionLdap" style="document"/>
-            <wsdl:input name="registrarIntegracionLdap49Request">
+            <wsdl:input name="registrarIntegracionLdap53Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="registrarIntegracionLdap49Response">
+            <wsdl:output name="registrarIntegracionLdap53Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="solicitarAltaUsuario">
             <wsdlsoap:operation soapAction="solicitarAltaUsuario" style="document"/>
-            <wsdl:input name="solicitarAltaUsuario50Request">
+            <wsdl:input name="solicitarAltaUsuario54Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="solicitarAltaUsuario50Response">
+            <wsdl:output name="solicitarAltaUsuario54Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="usuariosActivos">
             <wsdlsoap:operation soapAction="usuariosActivos" style="document"/>
-            <wsdl:input name="usuariosActivos51Request">
+            <wsdl:input name="usuariosActivos55Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="usuariosActivos51Response">
+            <wsdl:output name="usuariosActivos55Response">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+       </wsdl:operation>         
+        <wsdl:operation name="validarCampoUsuarioProComun">
+            <wsdlsoap:operation soapAction="validarCampoUsuarioProComun" style="document"/>
+            <wsdl:input name="validarCampoUsuarioProComun56Request">
+                <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="validarCampoUsuarioProComun56Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         
         <wsdl:operation name="validarCampoUsuarioWebSemantica">
             <wsdlsoap:operation soapAction="validarCampoUsuarioWebSemantica" style="document"/>
-            <wsdl:input name="validarCampoUsuarioWebSemantica52Request">
+            <wsdl:input name="validarCampoUsuarioWebSemantica57Request">
                 <wsdlsoap:body use="literal"/>
             </wsdl:input>
-            <wsdl:output name="validarCampoUsuarioWebSemantica52Response">
+            <wsdl:output name="validarCampoUsuarioWebSemantica57Response">
                 <wsdlsoap:body use="literal"/>
             </wsdl:output>
        </wsdl:operation>         

@@ -16,7 +16,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
     static org.apache.axis.description.OperationDesc [] _operations;
 
     static {
-        _operations = new org.apache.axis.description.OperationDesc[71];
+        _operations = new org.apache.axis.description.OperationDesc[73];
         _initOperationDesc1();
         _initOperationDesc2();
         _initOperationDesc3();
@@ -242,14 +242,14 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         _operations[11] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("despublicarWebSemantica");
+        oper.setName("despublicacionExterna");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ResultadoOperacionVO"));
         oper.setReturnClass(es.pode.publicacion.negocio.servicios.ResultadoOperacionVO.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "despublicarWebSemanticaReturn"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "despublicacionExternaReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[12] = oper;
@@ -398,12 +398,12 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         _operations[22] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("obtenerEditoresOdeWebSemantica");
+        oper.setName("obtenerEditoresOdeExterno");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfxsd_string"));
         oper.setReturnClass(java.lang.String[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerEditoresOdeWebSemanticaReturn"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerEditoresOdeExternoReturn"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
@@ -411,12 +411,12 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         _operations[23] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("obtenerOdesEditablesUsuarioWebSemantica");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.setName("obtenerOdesEditablesUsuarioExterno");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "usuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfxsd_string"));
         oper.setReturnClass(java.lang.String[].class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerOdesEditablesUsuarioWebSemanticaReturn"));
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerOdesEditablesUsuarioExternoReturn"));
         param = oper.getReturnParamDesc();
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
@@ -635,6 +635,55 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         org.apache.axis.description.OperationDesc oper;
         org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "fechaInicio"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "fechaFin"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "titulo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfTransicionVO"));
+        oper.setReturnClass(es.pode.publicacion.negocio.servicios.TransicionVO[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenODEsDespublicadosPorTituloUsuarioDespublicadorFechaReturn"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[40] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuarioDespublicador"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "fechaInicio"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "fechaFin"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "titulo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        param.setNillable(true);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idsUsuariosCreador"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfxsd_string"), java.lang.String[].class, false, false);
+        param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfTransicionVO"));
+        oper.setReturnClass(es.pode.publicacion.negocio.servicios.TransicionVO[].class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFechaReturn"));
+        param = oper.getReturnParamDesc();
+        param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[41] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsDespublicadosPorUsuario");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
         oper.addParameter(param);
@@ -645,7 +694,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[40] = oper;
+        _operations[42] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsDespublicadosPorUsuarios");
@@ -659,7 +708,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[41] = oper;
+        _operations[43] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPropuestos");
@@ -670,7 +719,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[42] = oper;
+        _operations[44] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODESPropuestosCatalogacion");
@@ -681,7 +730,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[43] = oper;
+        _operations[45] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODESPropuestosCatalogacionPorUsuario");
@@ -694,7 +743,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[44] = oper;
+        _operations[46] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPropuestosCatalogacionPorUsuarios");
@@ -708,7 +757,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[45] = oper;
+        _operations[47] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPropuestosPorUsuario");
@@ -721,7 +770,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[46] = oper;
+        _operations[48] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPropuestosPorUsuarios");
@@ -735,8 +784,13 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[47] = oper;
+        _operations[49] = oper;
 
+    }
+
+    private static void _initOperationDesc6(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicados");
         oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfIdODEVO"));
@@ -746,7 +800,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[48] = oper;
+        _operations[50] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadosAutonomo");
@@ -757,13 +811,8 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[49] = oper;
+        _operations[51] = oper;
 
-    }
-
-    private static void _initOperationDesc6(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadosAutonomoPorUsuario");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -775,7 +824,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[50] = oper;
+        _operations[52] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadosPorTitulo");
@@ -788,7 +837,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[51] = oper;
+        _operations[53] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadosPorTituloYUsuario");
@@ -804,7 +853,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[52] = oper;
+        _operations[54] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadosPorUsuario");
@@ -817,7 +866,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[53] = oper;
+        _operations[55] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsPublicadoUsuario");
@@ -830,7 +879,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[54] = oper;
+        _operations[56] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("obtenODEsRechazadosPorUsuario");
@@ -843,7 +892,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[55] = oper;
+        _operations[57] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("proponerCatalogacion");
@@ -860,7 +909,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "proponerCatalogacionReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[56] = oper;
+        _operations[58] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("proponerCatalogacionNuevaVersion");
@@ -879,8 +928,13 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "proponerCatalogacionNuevaVersionReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[57] = oper;
+        _operations[59] = oper;
 
+    }
+
+    private static void _initOperationDesc7(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("proponerPublicacion");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -896,7 +950,31 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "proponerPublicacionReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[58] = oper;
+        _operations[60] = oper;
+
+        oper = new org.apache.axis.description.OperationDesc();
+        oper.setName("publicacionExterna");
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "zipODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "hexBinary"), byte[].class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "catalogacionReducida"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "hexBinary"), byte[].class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "correoUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "titulo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "listaUsuarioEditores"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfxsd_string"), java.lang.String[].class, false, false);
+        param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "esNuevaVersion"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"), boolean.class, false, false);
+        oper.addParameter(param);
+        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "tipoPublicacion"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
+        oper.addParameter(param);
+        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ResultadoPublicacionVO"));
+        oper.setReturnClass(es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO.class);
+        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicacionExternaReturn"));
+        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
+        oper.setUse(org.apache.axis.constants.Use.LITERAL);
+        _operations[61] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("publicar");
@@ -921,13 +999,8 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[59] = oper;
+        _operations[62] = oper;
 
-    }
-
-    private static void _initOperationDesc7(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("publicarAutonomo");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -943,7 +1016,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarAutonomoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[60] = oper;
+        _operations[63] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("publicarDespublicado");
@@ -969,7 +1042,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarDespublicadoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[61] = oper;
+        _operations[64] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("publicarPIF");
@@ -988,7 +1061,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarPIFReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[62] = oper;
+        _operations[65] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("publicarPifCarga");
@@ -1010,31 +1083,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[63] = oper;
-
-        oper = new org.apache.axis.description.OperationDesc();
-        oper.setName("publicarWebSemantica");
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "zipODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "hexBinary"), byte[].class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "catalogacionReducida"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "hexBinary"), byte[].class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idUsuario"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "titulo"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "listaUsuarioEditores"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ArrayOfxsd_string"), java.lang.String[].class, false, false);
-        param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "esNuevaVersion"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"), boolean.class, false, false);
-        oper.addParameter(param);
-        param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "tipoPublicacion"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
-        oper.addParameter(param);
-        oper.setReturnType(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "ResultadoPublicacionVO"));
-        oper.setReturnClass(es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarWebSemanticaReturn"));
-        oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
-        oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[64] = oper;
+        _operations[66] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("rechazar");
@@ -1051,7 +1100,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "rechazarReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[65] = oper;
+        _operations[67] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("regeneraIndiceIdioma");
@@ -1064,7 +1113,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[66] = oper;
+        _operations[68] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("regenerarImagenes");
@@ -1075,8 +1124,13 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "regenerarImagenesReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[67] = oper;
+        _operations[69] = oper;
 
+    }
+
+    private static void _initOperationDesc8(){
+        org.apache.axis.description.OperationDesc oper;
+        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("reindexarODEPublicado");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "idODE"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false);
@@ -1088,7 +1142,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "reindexarODEPublicadoReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[68] = oper;
+        _operations[70] = oper;
 
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("reindexarODEsPublicados");
@@ -1102,13 +1156,8 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         param.setItemQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "item"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[69] = oper;
+        _operations[71] = oper;
 
-    }
-
-    private static void _initOperationDesc8(){
-        org.apache.axis.description.OperationDesc oper;
-        org.apache.axis.description.ParameterDesc param;
         oper = new org.apache.axis.description.OperationDesc();
         oper.setName("subirFichero");
         param = new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "fichero"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "hexBinary"), byte[].class, false, false);
@@ -1120,7 +1169,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
         oper.setReturnQName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "subirFicheroReturn"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
-        _operations[70] = oper;
+        _operations[72] = oper;
 
     }
 
@@ -1861,23 +1910,23 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
-    public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO despublicarWebSemantica(java.lang.String idODE, java.lang.String idUsuario) throws java.rmi.RemoteException {
+    public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO despublicacionExterna(java.lang.String idODE, java.lang.String usuario) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[12]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("despublicarWebSemantica");
+        _call.setSOAPActionURI("despublicacionExterna");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "despublicarWebSemantica"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "despublicacionExterna"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {idODE, idUsuario});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {idODE, usuario});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -2228,19 +2277,19 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
-    public java.lang.String[] obtenerEditoresOdeWebSemantica(java.lang.String idODE) throws java.rmi.RemoteException {
+    public java.lang.String[] obtenerEditoresOdeExterno(java.lang.String idODE) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[23]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("obtenerEditoresOdeWebSemantica");
+        _call.setSOAPActionURI("obtenerEditoresOdeExterno");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerEditoresOdeWebSemantica"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerEditoresOdeExterno"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -2262,23 +2311,23 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
-    public java.lang.String[] obtenerOdesEditablesUsuarioWebSemantica(java.lang.String idUsuario) throws java.rmi.RemoteException {
+    public java.lang.String[] obtenerOdesEditablesUsuarioExterno(java.lang.String usuario) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[24]);
         _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("obtenerOdesEditablesUsuarioWebSemantica");
+        _call.setSOAPActionURI("obtenerOdesEditablesUsuarioExterno");
         _call.setEncodingStyle(null);
         _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerOdesEditablesUsuarioWebSemantica"));
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenerOdesEditablesUsuarioExterno"));
 
         setRequestHeaders(_call);
         setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {idUsuario});
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {usuario});
 
         if (_resp instanceof java.rmi.RemoteException) {
             throw (java.rmi.RemoteException)_resp;
@@ -2806,12 +2855,80 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
-    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorUsuario(java.lang.String idUsuario) throws java.rmi.RemoteException {
+    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha(java.lang.String idUsuario, java.lang.String fechaInicio, java.lang.String fechaFin, java.lang.String titulo) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
         _call.setOperation(_operations[40]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {idUsuario, fechaInicio, fechaFin, titulo});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.publicacion.negocio.servicios.TransicionVO[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.publicacion.negocio.servicios.TransicionVO[]) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.publicacion.negocio.servicios.TransicionVO[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha(java.lang.String idUsuarioDespublicador, java.lang.String fechaInicio, java.lang.String fechaFin, java.lang.String titulo, java.lang.String[] idsUsuariosCreador) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[41]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {idUsuarioDespublicador, fechaInicio, fechaFin, titulo, idsUsuariosCreador});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.publicacion.negocio.servicios.TransicionVO[]) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.publicacion.negocio.servicios.TransicionVO[]) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.publicacion.negocio.servicios.TransicionVO[].class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
+    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorUsuario(java.lang.String idUsuario) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[42]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsDespublicadosPorUsuario");
         _call.setEncodingStyle(null);
@@ -2845,7 +2962,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[41]);
+        _call.setOperation(_operations[43]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsDespublicadosPorUsuarios");
         _call.setEncodingStyle(null);
@@ -2879,7 +2996,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[42]);
+        _call.setOperation(_operations[44]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPropuestos");
         _call.setEncodingStyle(null);
@@ -2913,7 +3030,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[43]);
+        _call.setOperation(_operations[45]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODESPropuestosCatalogacion");
         _call.setEncodingStyle(null);
@@ -2947,7 +3064,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[44]);
+        _call.setOperation(_operations[46]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODESPropuestosCatalogacionPorUsuario");
         _call.setEncodingStyle(null);
@@ -2981,7 +3098,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[45]);
+        _call.setOperation(_operations[47]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPropuestosCatalogacionPorUsuarios");
         _call.setEncodingStyle(null);
@@ -3015,7 +3132,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[46]);
+        _call.setOperation(_operations[48]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPropuestosPorUsuario");
         _call.setEncodingStyle(null);
@@ -3049,7 +3166,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[47]);
+        _call.setOperation(_operations[49]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPropuestosPorUsuarios");
         _call.setEncodingStyle(null);
@@ -3083,7 +3200,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[48]);
+        _call.setOperation(_operations[50]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicados");
         _call.setEncodingStyle(null);
@@ -3117,7 +3234,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[49]);
+        _call.setOperation(_operations[51]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadosAutonomo");
         _call.setEncodingStyle(null);
@@ -3151,7 +3268,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[50]);
+        _call.setOperation(_operations[52]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadosAutonomoPorUsuario");
         _call.setEncodingStyle(null);
@@ -3185,7 +3302,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[51]);
+        _call.setOperation(_operations[53]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadosPorTitulo");
         _call.setEncodingStyle(null);
@@ -3219,7 +3336,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[52]);
+        _call.setOperation(_operations[54]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadosPorTituloYUsuario");
         _call.setEncodingStyle(null);
@@ -3253,7 +3370,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[53]);
+        _call.setOperation(_operations[55]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadosPorUsuario");
         _call.setEncodingStyle(null);
@@ -3287,7 +3404,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[54]);
+        _call.setOperation(_operations[56]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsPublicadoUsuario");
         _call.setEncodingStyle(null);
@@ -3321,7 +3438,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[55]);
+        _call.setOperation(_operations[57]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("obtenODEsRechazadosPorUsuario");
         _call.setEncodingStyle(null);
@@ -3355,7 +3472,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[56]);
+        _call.setOperation(_operations[58]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("proponerCatalogacion");
         _call.setEncodingStyle(null);
@@ -3389,7 +3506,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[57]);
+        _call.setOperation(_operations[59]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("proponerCatalogacionNuevaVersion");
         _call.setEncodingStyle(null);
@@ -3423,7 +3540,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[58]);
+        _call.setOperation(_operations[60]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("proponerPublicacion");
         _call.setEncodingStyle(null);
@@ -3452,12 +3569,46 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
+    public es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO publicacionExterna(byte[] zipODE, byte[] catalogacionReducida, java.lang.String correoUsuario, java.lang.String titulo, java.lang.String[] listaUsuarioEditores, boolean esNuevaVersion, java.lang.String tipoPublicacion) throws java.rmi.RemoteException {
+        if (super.cachedEndpoint == null) {
+            throw new org.apache.axis.NoEndPointException();
+        }
+        org.apache.axis.client.Call _call = createCall();
+        _call.setOperation(_operations[61]);
+        _call.setUseSOAPAction(true);
+        _call.setSOAPActionURI("publicacionExterna");
+        _call.setEncodingStyle(null);
+        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
+        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
+        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
+        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicacionExterna"));
+
+        setRequestHeaders(_call);
+        setAttachments(_call);
+ try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new org.apache.axis.types.HexBinary(zipODE), new org.apache.axis.types.HexBinary(catalogacionReducida), correoUsuario, titulo, listaUsuarioEditores, new java.lang.Boolean(esNuevaVersion), tipoPublicacion});
+
+        if (_resp instanceof java.rmi.RemoteException) {
+            throw (java.rmi.RemoteException)_resp;
+        }
+        else {
+            extractAttachments(_call);
+            try {
+                return (es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO) _resp;
+            } catch (java.lang.Exception _exception) {
+                return (es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO.class);
+            }
+        }
+  } catch (org.apache.axis.AxisFault axisFaultException) {
+  throw axisFaultException;
+}
+    }
+
     public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO publicar(java.lang.String idODE, java.lang.String idUsuario, java.lang.String comentarios, java.lang.String titulo, java.lang.String comunidades, java.lang.String universal, java.lang.String textoLicencia, java.lang.String identificadorLicencia) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[59]);
+        _call.setOperation(_operations[62]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("publicar");
         _call.setEncodingStyle(null);
@@ -3491,7 +3642,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[60]);
+        _call.setOperation(_operations[63]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("publicarAutonomo");
         _call.setEncodingStyle(null);
@@ -3525,7 +3676,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[61]);
+        _call.setOperation(_operations[64]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("publicarDespublicado");
         _call.setEncodingStyle(null);
@@ -3559,7 +3710,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[62]);
+        _call.setOperation(_operations[65]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("publicarPIF");
         _call.setEncodingStyle(null);
@@ -3593,7 +3744,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[63]);
+        _call.setOperation(_operations[66]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("publicarPifCarga");
         _call.setEncodingStyle(null);
@@ -3622,46 +3773,12 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
 }
     }
 
-    public es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO publicarWebSemantica(byte[] zipODE, byte[] catalogacionReducida, java.lang.String idUsuario, java.lang.String titulo, java.lang.String[] listaUsuarioEditores, boolean esNuevaVersion, java.lang.String tipoPublicacion) throws java.rmi.RemoteException {
-        if (super.cachedEndpoint == null) {
-            throw new org.apache.axis.NoEndPointException();
-        }
-        org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[64]);
-        _call.setUseSOAPAction(true);
-        _call.setSOAPActionURI("publicarWebSemantica");
-        _call.setEncodingStyle(null);
-        _call.setProperty(org.apache.axis.client.Call.SEND_TYPE_ATTR, Boolean.FALSE);
-        _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
-        _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
-        _call.setOperationName(new javax.xml.namespace.QName("http://servicios.negocio.publicacion.pode.es", "publicarWebSemantica"));
-
-        setRequestHeaders(_call);
-        setAttachments(_call);
- try {        java.lang.Object _resp = _call.invoke(new java.lang.Object[] {new org.apache.axis.types.HexBinary(zipODE), new org.apache.axis.types.HexBinary(catalogacionReducida), idUsuario, titulo, listaUsuarioEditores, new java.lang.Boolean(esNuevaVersion), tipoPublicacion});
-
-        if (_resp instanceof java.rmi.RemoteException) {
-            throw (java.rmi.RemoteException)_resp;
-        }
-        else {
-            extractAttachments(_call);
-            try {
-                return (es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO) _resp;
-            } catch (java.lang.Exception _exception) {
-                return (es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO) org.apache.axis.utils.JavaUtils.convert(_resp, es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO.class);
-            }
-        }
-  } catch (org.apache.axis.AxisFault axisFaultException) {
-  throw axisFaultException;
-}
-    }
-
     public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO rechazar(java.lang.String idODE, java.lang.String idUsuario, java.lang.String comentarios, java.lang.String titulo) throws java.rmi.RemoteException {
         if (super.cachedEndpoint == null) {
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[65]);
+        _call.setOperation(_operations[67]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("rechazar");
         _call.setEncodingStyle(null);
@@ -3695,7 +3812,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[66]);
+        _call.setOperation(_operations[68]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("regeneraIndiceIdioma");
         _call.setEncodingStyle(null);
@@ -3729,7 +3846,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[67]);
+        _call.setOperation(_operations[69]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("regenerarImagenes");
         _call.setEncodingStyle(null);
@@ -3763,7 +3880,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[68]);
+        _call.setOperation(_operations[70]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("reindexarODEPublicado");
         _call.setEncodingStyle(null);
@@ -3797,7 +3914,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[69]);
+        _call.setOperation(_operations[71]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("reindexarODEsPublicados");
         _call.setEncodingStyle(null);
@@ -3831,7 +3948,7 @@ public class SrvPublicacionServiceSoapBindingStub extends org.apache.axis.client
             throw new org.apache.axis.NoEndPointException();
         }
         org.apache.axis.client.Call _call = createCall();
-        _call.setOperation(_operations[70]);
+        _call.setOperation(_operations[72]);
         _call.setUseSOAPAction(true);
         _call.setSOAPActionURI("subirFichero");
         _call.setEncodingStyle(null);

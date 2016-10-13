@@ -147,7 +147,7 @@ public interface SrvPublicacionService extends java.rmi.Remote {
      * Metodo que llama a noDisponible con algunos argumentos ya fijos.
      * Este metodo lo usaran de forma externa desde la web semantica
      */
-    public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO despublicarWebSemantica(java.lang.String idODE, java.lang.String idUsuario) throws java.rmi.RemoteException;
+    public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO despublicacionExterna(java.lang.String idODE, java.lang.String usuario) throws java.rmi.RemoteException;
 
     /**
      * Elimina el ode que se pasa por parametro del usuario. Los odes
@@ -255,12 +255,12 @@ public interface SrvPublicacionService extends java.rmi.Remote {
     /**
 
      */
-    public java.lang.String[] obtenerEditoresOdeWebSemantica(java.lang.String idODE) throws java.rmi.RemoteException;
+    public java.lang.String[] obtenerEditoresOdeExterno(java.lang.String idODE) throws java.rmi.RemoteException;
 
     /**
 
      */
-    public java.lang.String[] obtenerOdesEditablesUsuarioWebSemantica(java.lang.String idUsuario) throws java.rmi.RemoteException;
+    public java.lang.String[] obtenerOdesEditablesUsuarioExterno(java.lang.String usuario) throws java.rmi.RemoteException;
 
     /**
      * Este método nos devuelve un array de usuarios que son los
@@ -368,6 +368,16 @@ public interface SrvPublicacionService extends java.rmi.Remote {
 
      */
     public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorFecha(java.lang.String fechaInicio, java.lang.String fechaFin) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha(java.lang.String idUsuario, java.lang.String fechaInicio, java.lang.String fechaFin, java.lang.String titulo) throws java.rmi.RemoteException;
+
+    /**
+
+     */
+    public es.pode.publicacion.negocio.servicios.TransicionVO[] obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha(java.lang.String idUsuarioDespublicador, java.lang.String fechaInicio, java.lang.String fechaFin, java.lang.String titulo, java.lang.String[] idsUsuariosCreador) throws java.rmi.RemoteException;
 
     /**
      * Este metodo devuelve los ODEs que estan en estado No Disponible
@@ -496,6 +506,11 @@ public interface SrvPublicacionService extends java.rmi.Remote {
     public es.pode.publicacion.negocio.servicios.ResultadoOperacionVO proponerPublicacion(java.lang.String idODE, java.lang.String idUsuario, java.lang.String comentarios, java.lang.String titulo) throws java.rmi.RemoteException;
 
     /**
+
+     */
+    public es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO publicacionExterna(byte[] zipODE, byte[] catalogacionReducida, java.lang.String correoUsuario, java.lang.String titulo, java.lang.String[] listaUsuarioEditores, boolean esNuevaVersion, java.lang.String tipoPublicacion) throws java.rmi.RemoteException;
+
+    /**
      * Este metodo se encargara de coger un identificador de ODE y
      * realizar todos los pasos para publicarlo, incluyendo la
      *                 generacion del MEC.
@@ -540,11 +555,6 @@ public interface SrvPublicacionService extends java.rmi.Remote {
      *                 pasan por parámetro.
      */
     public es.pode.publicacion.negocio.servicios.ResultadoOperacionCargaVO[] publicarPifCarga(java.lang.String[] odes, java.lang.String idUsuario, java.lang.String sobrescribir, java.lang.String nombreCarga, java.lang.String pathCarga) throws java.rmi.RemoteException;
-
-    /**
-
-     */
-    public es.pode.publicacion.negocio.servicios.ResultadoPublicacionVO publicarWebSemantica(byte[] zipODE, byte[] catalogacionReducida, java.lang.String idUsuario, java.lang.String titulo, java.lang.String[] listaUsuarioEditores, boolean esNuevaVersion, java.lang.String tipoPublicacion) throws java.rmi.RemoteException;
 
     /**
      * Metodo que implementa el rechazo del ODE que le indican.

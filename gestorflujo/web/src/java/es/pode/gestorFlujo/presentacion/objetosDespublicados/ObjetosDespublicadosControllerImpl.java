@@ -30,8 +30,22 @@ public class ObjetosDespublicadosControllerImpl extends ObjetosDespublicadosCont
     public final void cargarODESDespublicados(ActionMapping mapping,
 			es.pode.gestorFlujo.presentacion.objetosDespublicados.CargarODESDespublicadosForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	
     	if(logger.isDebugEnabled())
     		logger.debug("Cargando objetos Despublicados");
+
+		if(form.getFechaInicioBusqueda()==null)
+			form.setFechaInicioBusqueda("");
+		
+		if(form.getFechaFinBusqueda()==null)
+			form.setFechaFinBusqueda("");
+
+		if(form.getIdUsuarioBusqueda()==null)
+			form.setIdUsuarioBusqueda("");
+
+		if(form.getTituloBusqueda()==null)
+			form.setTituloBusqueda("");
+    	
 		SrvPublicacionService publi = this.getSrvPublicacionService();
 		SrvAdminUsuariosService admin=this.getSrvAdminUsuariosService();
 		TransicionVO[] odes =null;
@@ -42,11 +56,13 @@ public class ObjetosDespublicadosControllerImpl extends ObjetosDespublicadosCont
 			
 			if(todosUsuariosGrupos!=null && todosUsuariosGrupos.length>0){
 				logger.info("Obtenidos lista de usuarios de los grupos pertenecientes de usuario:["+LdapUserDetailsUtils.getUsuario()+"Numero de usuarios:["+todosUsuariosGrupos.length);
-				 odes = publi.obtenODEsDespublicadosPorUsuarios(todosUsuariosGrupos);
+				//odes = publi.obtenODEsDespublicadosPorUsuarios(todosUsuariosGrupos);
+				odes=publi.obtenODEsDespublicadosPorTituloUsuarioDespublicadorUsuariosCreadorFecha(form.getIdUsuarioBusqueda(), form.getFechaInicioBusqueda(), form.getFechaFinBusqueda(), form.getTituloBusqueda(), todosUsuariosGrupos);
 				logger.info("Obtenidos odes de esos usuarios, numero de odes despublicados ["+odes.length);
 			}else{
 				logger.info("Obtenidos lista de todos los ODES, pues el usuario:["+LdapUserDetailsUtils.getUsuario()+" es parte de todos los grupos");
-				odes=publi.obtenODEsDespublicados();
+				//odes=publi.obtenODEsDespublicados();
+				odes=publi.obtenODEsDespublicadosPorTituloUsuarioDespublicadorFecha(form.getIdUsuarioBusqueda(), form.getFechaInicioBusqueda(), form.getFechaFinBusqueda(), form.getTituloBusqueda());
 				logger.info("Obtenidos odes de todos los usuarios, numero de odes despublicados["+odes.length);
 			}
 			
