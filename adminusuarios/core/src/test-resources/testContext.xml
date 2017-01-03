@@ -310,12 +310,13 @@
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerUsuarioCorreo=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.enviarCorreoBaja=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerUsuariosConCorreo=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.altaUsuarioWebSemantica=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.validarCampoUsuarioWebSemantica=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.autenticacionUsuarioWebSemantica=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerDatosUsuarioWebSemantica=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.modificarUsuarioWebSemantica=PROPAGATION_REQUIRED
-                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.bajaUsuarioWebSemantica=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.altaUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.validarCampoUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.autenticacionUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.modificarUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.bajaUsuarioExterno=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.obtenerDatosUsuarioPorEmail=PROPAGATION_REQUIRED
+                es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService.listarUsuariosInactivosYdadosDeBaja=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.obtenerGrupoUsuario=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.crearUsuarioPublico=PROPAGATION_REQUIRED
                 es.pode.adminusuarios.negocio.servicios.SrvPerfilPublico.modificarUsuarioPublico=PROPAGATION_REQUIRED
@@ -385,7 +386,7 @@
                 <property name="rolDao"><ref bean="rolDao"/></property>
                 <property name="grupoTrabajoDao"><ref bean="grupoTrabajoDao"/></property>
 		                <property name="srvPerfilPublico"><ref bean="srvPerfilPublico"/></property>
-    		            </bean>
+    				            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.adminusuarios.negocio.servicios.SrvAdminUsuariosService</value>

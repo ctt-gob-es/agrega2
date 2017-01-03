@@ -121,7 +121,7 @@
             <bean class="es.pode.fuentestaxonomicas.negocio.servicio.SrvTaxonomiaServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
 	                <property name="estructurasDao"><ref bean="EstructurasDao"/></property>
-    	            </bean>
+    		            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.fuentestaxonomicas.negocio.servicio.SrvTaxonomiaService</value>

@@ -90,7 +90,7 @@
 	                <property name="lomesDao"><ref bean="LomesDao"/></property>
     		                <property name="catalogacionDozerDao"><ref bean="CatalogacionDozerDao"/></property>
     		                <property name="traduccionDao"><ref bean="TraduccionDao"/></property>
-    	            </bean>
+    		            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.catalogacion.negocio.servicios.SrvCatalogacionBasicaService</value>
@@ -110,7 +110,7 @@
 	                <property name="lomesDao"><ref bean="LomesDao"/></property>
     		                <property name="catalogacionDozerDao"><ref bean="CatalogacionDozerDao"/></property>
     		                <property name="traduccionDao"><ref bean="TraduccionDao"/></property>
-    	            </bean>
+    		            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.catalogacion.negocio.servicios.SrvCatalogacionAvanzadaService</value>

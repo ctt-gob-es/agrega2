@@ -241,6 +241,14 @@
                 es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerTareaObtenerODESDespublicadosFederados=PROPAGATION_REQUIRED
                 es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerMetadatosODESFederados=PROPAGATION_REQUIRED
                 es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerODESDespublicadosFederados=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.crearTareaObtenerMetadatosODESFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.crearTareaObtenerODESDespublicadosFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.modificarTareaObtenerMetadatosODESFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.modificarTareaObtenerODESDespublicadosFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerTareaObtenerMetadatosODESFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerTareaObtenerODESDespublicadosFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerMetadatosODESFederadosFaltantes=PROPAGATION_REQUIRED
+                es.pode.planificador.negocio.servicios.SrvPlanificadorService.obtenerODESDespublicadosFederadosFaltantes=PROPAGATION_REQUIRED
                 es.pode.planificador.negocio.servicios.SrvRegistroPlanificadorService.registrarTrabajo=PROPAGATION_REQUIRED
                 es.pode.planificador.negocio.servicios.SrvRegistroPlanificadorService.registrarTrabajoHijo=PROPAGATION_REQUIRED
                 es.pode.planificador.negocio.servicios.SrvRegistroPlanificadorService.registrarTrabajoFechaFin=PROPAGATION_REQUIRED

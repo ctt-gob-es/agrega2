@@ -15,6 +15,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
+import java.net.IDN;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
@@ -145,6 +146,7 @@ import es.pode.soporte.constantes.ConstantesAgrega;
 import es.pode.soporte.url.Proxy;
 import es.pode.soporte.utiles.date.DateManager;
 import es.pode.soporte.utiles.ficheros.UtilesFicheros;
+import es.pode.soporte.elastic.BuscadorMetadatosFederados;
 
 /**
  * Servicios asociados a la planificación de las tareas
@@ -162,6 +164,8 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	private static Logger log = Logger.getLogger(SrvPlanificadorServiceImpl.class);
 	private static final String FILE_NAME_PROPERTIES = "/planificador.properties";
 	private static Properties props = null;
+	private static final String RUTA_METADATOS_ODES_FEDERADOS = "uploads"+File.separator+"metadatosLomesOdesFederados";
+
 
 	private static final String ERROR = "ERROR";	
 	
@@ -5021,12 +5025,12 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		resultado.setResultadoGlobal(ERROR);
 		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
 		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
-
 		
 		int contNodos = 0;
 		List<NodoVO> nodos = null;
 		ArrayList<String> listaNodosConError = new ArrayList<String>();
-		String rutaLocal = "uploads"+File.separator+"metadatosLomesOdesFederados";
+
+		String rutaLocal = RUTA_METADATOS_ODES_FEDERADOS;
 		String errorLogFile = rutaLocal+File.separator+"ObtenerMetadatosODESFederados_ERROR.log";
 		String newLine = System.getProperty("line.separator");
 
@@ -5076,8 +5080,7 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	    		
 	   			resSubtarea = new ResultadoSubtareaVO();
 				resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
-		
-				
+						
 	    		ArrayList<Object> o = hacerPeticionOAIPMHLomes(fechaInicio, fechaFin, urlWsNodo, idNodo);
 	    		if (o==null) {		        		
 	    			//Resgistro error del nodo en el fichero log en caso de que no este ya registrado
@@ -5110,6 +5113,7 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		   			resSubtarea = new ResultadoSubtareaVO();
 					resSubtarea.setSubtarea("Procesando respuesta nodo :" + idNodo);
 		
+					String url= this.getSrvPropiedadService().getValorPropiedad("url_es");
 					
 	        		for(int n=0; n<o.size(); n++) {
 						RecordAgrega rec = (RecordAgrega)o.get(n);
@@ -5121,11 +5125,18 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 					    	int randomNumber=generator.nextInt(1000);
 					    	String number = Integer.toString(randomNumber); 
 					    	idOde=new GregorianCalendar().getTimeInMillis()+"."+number;
-						}
+						}	
+
 						String nombreXml = pathAlmacenMetadatos+File.separator+idOde+".xml";
 		    			FileWriter xml = new FileWriter(nombreXml);
 		    			xml.write(rec.getMetadata().toString().replaceFirst("UTF-8", "ISO-8859-1"));
 		    			xml.close();
+						
+						String fecha = rec.getHeader().getDatestamp(); 
+
+						logger.debug("Indexando en ES el ode : " + idOde);
+						BuscadorMetadatosFederados.insertarIndiceMetadatosFederadosOdePublicado(url, idOde, idNodo, fecha, nombreXml);
+						logger.debug("Ha indexado en ES el ode : " + idOde);
 					}	        		
 		    		resSubtarea.setResultadoSubtarea(OK);
 		    		lResSubtareas.add(resSubtarea);
@@ -5236,7 +5247,6 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		resultado.setResultadoGlobal(ERROR);
 		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
 		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
-
 		
 		String rutaLocal = "uploads";
 		String errorLogFile = rutaLocal+File.separator+"ObtenerODESDespublicadosFederados_ERROR.log";
@@ -5291,7 +5301,6 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	 			resSubtarea = new ResultadoSubtareaVO();
 				resSubtarea.setSubtarea("Realizando llamada al nodo :" + idNodo);
 		
-	   	 		
 	   	 		if(!registraDespublicadosDeNodo(fechaInicio, fechaFin, urlWsNodo, idNodo, false)) {
 	   	 			//Resgistro error del nodo en el fichero log en caso de que no este ya registrado
 		   	 		String error=fechaHoy + " " + idNodo;
@@ -5351,8 +5360,7 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
 		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
 
-
-		String rutaLocal = "uploads"+File.separator+"metadatosLomesOdesFederados";
+		String rutaLocal = RUTA_METADATOS_ODES_FEDERADOS;
 		String errorLogFile = rutaLocal+File.separator+"ObtenerMetadatosODESFederados_ERROR.log";
 		String errorLogFileNew = rutaLocal+File.separator+"ObtenerMetadatosODESFederados_ERROR.newlog";
 		String newLine = System.getProperty("line.separator");
@@ -5494,6 +5502,8 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 	
 				   			resSubtarea = new ResultadoSubtareaVO();
 							resSubtarea.setSubtarea("Procesando respuesta nodo :" + idNodo);
+							
+							String url= this.getSrvPropiedadService().getValorPropiedad("url_es");
 										
 			        		for(int n=0; n<o.size(); n++) {
 								RecordAgrega rec = (RecordAgrega)o.get(n);
@@ -5510,6 +5520,12 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 				    			FileWriter xml = new FileWriter(nombreXml);
 				    			xml.write(rec.getMetadata().toString().replaceFirst("UTF-8", "ISO-8859-1"));
 				    			xml.close();
+								
+								String datestamp = rec.getHeader().getDatestamp(); 
+
+								logger.debug("Indexando en ES el ode : " + idOde);
+								BuscadorMetadatosFederados.insertarIndiceMetadatosFederadosOdePublicado(url, idOde, idNodo, datestamp, nombreXml);
+								logger.debug("Ha indexado en ES el ode : " + idOde);
 							}
 			        		
 				    		resSubtarea.setResultadoSubtarea(OK);
@@ -5528,14 +5544,12 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 			} 
 	
    			resSubtarea = new ResultadoSubtareaVO();
-			resSubtarea.setSubtarea("Enviando correos de error");
-	
+			resSubtarea.setSubtarea("Enviando correos de error");	
 			
 			//Enviamos correo informando de que nodos han fallado
 			if(listaNodosConError!=null && listaNodosConError.size()>0)
 				enviarCorreoIncidenciaUnificacion(listaNodosConError, "INCIDENCIA_METADATOS_ODES_FEDERADOS");
 			
-
 			resSubtarea.setResultadoSubtarea(OK);
 			lResSubtareas.add(resSubtarea);	
 			
@@ -5563,7 +5577,6 @@ public class SrvPlanificadorServiceImpl extends es.pode.planificador.negocio.ser
 		resultado.setResultadoGlobal(ERROR);
 		List<ResultadoSubtareaVO> lResSubtareas = new ArrayList<ResultadoSubtareaVO>();
 		ResultadoSubtareaVO resSubtarea = new ResultadoSubtareaVO();
-
 		
 		String rutaLocal = "uploads";
 		String errorLogFile = rutaLocal+File.separator+"ObtenerODESDespublicadosFederados_ERROR.log";

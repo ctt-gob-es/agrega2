@@ -65,6 +65,7 @@
                 es.pode.empaquetador.negocio.servicio.SrvGestorArchivosService.crearVistaPrevia=PROPAGATION_REQUIRED
                 es.pode.empaquetador.negocio.servicio.SrvGestorArchivosService.recuperarVistaPrevia=PROPAGATION_REQUIRED
                 es.pode.empaquetador.negocio.servicio.SrvGestorArchivosService.eliminarVistaPrevia=PROPAGATION_REQUIRED
+                es.pode.empaquetador.negocio.servicio.SrvGestorArchivosService.verficarExisteBackup=PROPAGATION_REQUIRED
                 es.pode.empaquetador.negocio.servicio.SrvGestorManifestService.cargarManifest=PROPAGATION_REQUIRED
                 es.pode.empaquetador.negocio.servicio.SrvGestorManifestService.descargarManifest=PROPAGATION_REQUIRED
                 es.pode.empaquetador.negocio.servicio.SrvGestorManifestService.crearGrupo=PROPAGATION_REQUIRED
@@ -147,7 +148,7 @@
             <bean class="es.pode.empaquetador.negocio.servicio.SrvGestorArchivosServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
 	                <property name="zipDao"><ref bean="ZipDao"/></property>
-    		            </bean>
+    			            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.empaquetador.negocio.servicio.SrvGestorArchivosService</value>
@@ -167,7 +168,7 @@
 	                <property name="srvGestorArchivosService"><ref bean="srvGestorArchivosService"/></property>
     			                <property name="scormDao"><ref bean="ScormDao"/></property>
     			                <property name="zipDao"><ref bean="ZipDao"/></property>
-    							            </bean>
+    								            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.empaquetador.negocio.servicio.SrvGestorManifestService</value>

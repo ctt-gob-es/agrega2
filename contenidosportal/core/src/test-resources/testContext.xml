@@ -511,7 +511,7 @@
                 <property name="descDescargaDao"><ref bean="descDescargaDao"/></property>
                 <property name="categoriaDescargaDao"><ref bean="categoriaDescargaDao"/></property>
                 <property name="categoriaDescargaDescDao"><ref bean="categoriaDescargaDescDao"/></property>
-            </bean>
+	            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.contenidos.negocio.descargas.servicio.SrvDescargas</value>

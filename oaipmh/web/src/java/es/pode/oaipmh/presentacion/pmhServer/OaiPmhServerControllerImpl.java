@@ -82,6 +82,7 @@ import es.pode.parseadorXML.oai_pmh.types.DeletedRecordType;
 import es.pode.parseadorXML.oai_pmh.types.GranularityType;
 import es.pode.parseadorXML.oai_pmh.types.OAIPMHerrorcodeType;
 import es.pode.parseadorXML.oai_pmh.types.ProtocolVersionType;
+import es.pode.parseadorXML.oai_pmh.types.StatusType;
 import es.pode.parseadorXML.oai_pmh.types.VerbType;
 import es.pode.parseadorXML.oai_pmh_id.OaiIdentifier;
 import es.pode.soporte.utiles.date.DateManager;
@@ -651,21 +652,46 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 					
 					RecordAgrega record = new RecordAgrega();
 					RecordTypeHeader header = new RecordTypeHeader();
-					
-					if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
-							parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)){
-						
+					// Si se ha pedido metadatos LOMES, LOM o es un set estamos trabajando con objetos LomAgrega 
+					if((parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+	    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))
+	    					|| (parametrosRequestVO.getIdentificadorConjunto() != null))
+	    					{	    				
 						Lom lom = (Lom)resultadoOAIRequest.getGetRecordLomes();
 						LomAgrega lomAgrega = new LomAgrega(lom);		
 						header.setIdentifier(parametrosRequestVO.getIdentificador());
-						if(logger.isDebugEnabled())logger.debug("header.getIdentifier() <"+header.getIdentifier()+">");		
-						header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
-						record.setMetadata(lom);
+						if(logger.isDebugEnabled())logger.debug("header.getIdentifier() <"+header.getIdentifier()+">");
+						
+						if(lomAgrega.getLifeCycleAgrega()!=null &&
+								lomAgrega.getLifeCycleAgrega().getEstatusAv()!=null &&
+								lomAgrega.getLifeCycleAgrega().getEstatusAv().contentEquals("DESPUBLICADO")) {
+
+							header.setDatestamp(lomAgrega.getGeneralAgrega().getNivelDeAgregacion());
+							header.setStatus(StatusType.DELETED);
+							
+						} else {					
+						
+							// Si tenemos que devolver lomes o lom se devuelve directamente
+							if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+			    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))	
+	    					{
+								header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
+								record.setMetadata(lom);
+	    					}else
+	    					{
+	    						// Tenemos que parsear de lomes a dc
+								header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
+	    						record.setMetadata(transformadorLomes2DC(parametrosRequestVO.getPrefijoMetadato(),lom));
+	    					}
+						}
 						
 						if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES))
 							tipoProtocolo = OaiPmhDao.GETRECORD_LOMES;
-						else
+						else if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))
 							tipoProtocolo = OaiPmhDao.GETRECORD_LOM_IEEE;
+						else
+							tipoProtocolo = OaiPmhDao.GETRECORD_DC;
+							
 					} else {	
 						//if(logger.isDebugEnabled())logger.debug("getRecord");
 						ResultadoRecordVO resultadoRecordVO = resultadoOAIRequest.getGetRecord();
@@ -797,15 +823,22 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 					ListRecordsTypeRecord[] aRecord = null;
 					int numResultados = 0;
 					
-	    			if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
-	    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) {
+					// Si se ha pedido metadatos LOMES, LOM o es un set estamos trabajando con objetos LomAgrega 
+	    			if((parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+	    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))
+	    					|| (parametrosRequestVO.getIdentificadorConjunto() != null))
+	    					{
 	    				
 	    				o = resultadoOAIRequest.getListRecordsLomes();
 	    				numResultados = o.length;
-	    				if (parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES))
-	    					tipoProtocolo = OaiPmhDao.LISTRECORDS_LOMES;
-	    				else
-	    					tipoProtocolo = OaiPmhDao.LISTRECORDS_LOM_IEEE;
+	    				
+						if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES))
+							tipoProtocolo = OaiPmhDao.GETRECORD_LOMES;
+						else if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))
+							tipoProtocolo = OaiPmhDao.GETRECORD_LOM_IEEE;
+						else
+							tipoProtocolo = OaiPmhDao.GETRECORD_DC;
+	    				
 					} else {
 	    				resultadoRecordVO = resultadoOAIRequest.getListRecords();
 	    				numResultados = resultadoRecordVO.length;
@@ -841,15 +874,43 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 	        			aRecord[i] = new ListRecordsTypeRecord();
 	        			RecordTypeHeader header = new RecordTypeHeader();
 	        			Metadata meta=new Metadata();
-	
-	        			if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
-	        					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)){
-	        				
+	        			
+	        			// Si se ha pedido metadatos LOMES, LOM o es un set estamos trabajando con objetos LomAgrega 
+	        			if((parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+		    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))
+		    					|| (parametrosRequestVO.getIdentificadorConjunto() != null))
+		    					{
+	        				// TODO 20161111 ejfente. Aquí hay que distinguir...si viene con set o no 
+	        				// Si viene con set tenemos siempre lomes y en función del metadato solicitado se debe
+	        				// transformar a dc o trabajar con lom. Hay que hacer un transformador como el "obtenerMetadato"
+		    					        				
 	        				LomAgrega lomAgrega = new LomAgrega((Lom)o[i]);
-							String catalogo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
-							header.setIdentifier(devuelveidOai(lomAgrega.getGeneralAgrega().obtenerIdentificadorFormatoMEC(catalogo)));		
-							header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
-							meta.setAnyObject((Lom)o[i]);
+	        				
+							if(lomAgrega.getLifeCycleAgrega()!=null &&
+									lomAgrega.getLifeCycleAgrega().getEstatusAv()!=null &&
+									lomAgrega.getLifeCycleAgrega().getEstatusAv().contentEquals("DESPUBLICADO")) {
+
+								header.setDatestamp(lomAgrega.getGeneralAgrega().getNivelDeAgregacion());
+								header.setStatus(StatusType.DELETED);
+	        				
+							} else {
+								
+								String catalogo = this.getSrvPropiedadService().getValorPropiedad(AgregaProperties.CATALOGO_MEC);
+								header.setIdentifier(devuelveidOai(lomAgrega.getGeneralAgrega().obtenerIdentificadorFormatoMEC(catalogo)));		
+								header.setDatestamp(devuelveFechaString(lomAgrega.getLifeCycleAgrega().getFechaPublicacion()));
+								
+								// Si tenemos que devolver lomes o lom se devuelve directamente
+								if(parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+				    					parametrosRequestVO.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE))	
+		    					{										
+									meta.setAnyObject((Lom)o[i]);
+		    					}else
+		    					{
+		    						// Tenemos que parsear de lomes a dc
+									meta.setAnyObject(transformadorLomes2DC(parametrosRequestVO.getPrefijoMetadato(),(Lom)o[i]));
+		    					}
+							}
+							
 	        			} else {
 	            			//if(logger.isDebugEnabled())logger.debug("El resultadoRecordVO numero "+i);
 	            			header.setIdentifier(resultadoRecordVO[i].getIdRepositorio());
@@ -1076,7 +1137,7 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 		}
 		if(tipoPeticion.equalsIgnoreCase("GetRecord"))
 		{
-			if(!(parametros.getCodigoPaginacion() == null) || !(parametros.getFechaDesde() == null) || !(parametros.getFechaHasta() == null) || !(parametros.getIdentificadorConjunto() == null))
+			if(!(parametros.getCodigoPaginacion() == null) || !(parametros.getFechaDesde() == null) || !(parametros.getFechaHasta() == null))
 			{
 				if(logger.isDebugEnabled())logger.debug("Se pasan al metodo GetRecord mas parametros de los necesarios");
 				return "badArgument";
@@ -1118,13 +1179,306 @@ public class OaiPmhServerControllerImpl extends OaiPmhServerController
 	 }
 	 
 	 
+	 private String obtenerCampoFnDeVcard(String vcard) {
+		 if(vcard==null)
+			 return null;
+		 if(vcard.isEmpty())
+			 return "";
+		 
+		 String[] tmp = vcard.split("FN:");
+		 tmp = tmp[1].split("EMAIL;TYPE=INTERNET:");
+		 return tmp[0];
+	 }
+	 		
+		
+	 /**
+	  * Mapea un objeto lomes a dublin core
+	  * @param lenguage
+	  * @param lom
+	  * @return
+	  */	 
+	private Object transformadorLomes2DC(String lenguage, Lom lom)
+	{
+		Object resultado = null;	 
+		Dc dublincore = new Dc();
+		LomAgrega lomAgrega = new LomAgrega(lom);
+		
+		try{
+			
+			String idioma = null;
+
+	       	//language
+       	 	if(lomAgrega.getMetaMetadataAgrega()!=null && lomAgrega.getMetaMetadataAgrega().getIdioma()!=null)
+       	 	{
+       	 		idioma = lomAgrega.getMetaMetadataAgrega().getIdioma();
+       	 		
+       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+       	 		DcLanguage language = new DcLanguage();
+       	 		language.setContent(idioma);
+       	 		logger.debug("añadir el idioma ["+language.getContent()+"]");
+       	 		item.setDcLanguage(language);
+       	 		dublincore.addOai_dcTypeItem(item);
+       	 	}
+       	 	
+       	 	if(idioma==null)
+       	 		idioma="es";
+			
+			//title
+			if(lomAgrega.getGeneralAgrega().getTitulo(idioma)!=null)
+			{
+				Oai_dcTypeItem item = new Oai_dcTypeItem();
+				DcTitle titulo =new DcTitle();
+				titulo.setContent(lomAgrega.getGeneralAgrega().getTitulo(idioma));
+				logger.debug("Se añade el titulo <"+titulo.getContent()+">");
+				item.setDcTitle(titulo);
+				dublincore.addOai_dcTypeItem(item);
+			}
+			
+			//creator
+			if(lom.getLifeCycle()!=null && lom.getLifeCycle().getGroupLifeCycleLifeCycle()!=null)
+			{
+       	 		for(int j=0;j<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContributeCount();j++)//Todos los autores en uno
+       	 		{
+       	 			String rol = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getRole().getGroupRoleRole().getComplexTypeRoleVocabValue().getContent();
+       	 			logger.debug("LUIS rol "+rol);
+       	 			
+       	 			if(!rol.contentEquals("author"))
+       	 				continue;
+       	 			
+       	 			for(int k=0; k<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnboundedCount(); k++) {
+       	 				String autor = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnbounded(k).getGroupEntityUnboundedEntity().getContent();
+       	 				autor = obtenerCampoFnDeVcard(autor);
+       	 				if(autor!=null && !autor.isEmpty()) {
+       	 					Oai_dcTypeItem item = new Oai_dcTypeItem();
+	       	       	 		DcCreator creador = new DcCreator();
+	       		 			creador.setContent(autor);
+	       		 			item.setDcCreator(creador);
+	       		 			dublincore.addOai_dcTypeItem(item);
+	       	 				logger.debug("El autor numero "+j+"-"+k+" es: ["+autor+"]");
+       	 				}
+       	 			}
+       	 		}
+			}
+			
+       	 	//subject
+       	 	if(lom.getGeneral().getGroupGeneralGeneral().getKeywordCount()>0 && lom.getGeneral().getGroupGeneralGeneral().getKeyword()!=null)
+       	 	{
+	       	 	logger.debug("añadir el subject");
+       	 		for(int j=0; j<lom.getGeneral().getGroupGeneralGeneral().getKeywordCount(); j++)
+       	 		{
+	       	 		Oai_dcTypeItem itemAut = new Oai_dcTypeItem();
+	       	 		DcSubject subject = new DcSubject();
+	       	 		String s = lom.getGeneral().getGroupGeneralGeneral().getKeyword()[j].getGroupKeywordKeyword().getLanguageStringItem(0).getString().getContent();
+	       	 		if(s!=null && !s.isEmpty()) {
+		       	 		subject.setContent(s);
+		       	 		logger.debug("El tema numero "+j+" es ["+subject.getContent()+"]");
+		       	 		itemAut.setDcSubject(subject);
+		       	 		dublincore.addOai_dcTypeItem(itemAut);
+	       	 		}
+       	 		}
+	       	}
+       	 	
+       	 	//coverage (1.6)
+       	 	if(lom.getGeneral().getGroupGeneralGeneral().getCoverage() != null)
+       	 	{
+	       	 	for(int j=0;j<lom.getGeneral().getGroupGeneralGeneral().getCoverageCount();j++)
+	       	 	{
+	       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+	       	 		DcCoverage coverage = new DcCoverage();
+	       	 		coverage.setContent(lom.getGeneral().getGroupGeneralGeneral().getCoverage(j).getGroupCoverageCoverage().getLanguageStringItem(0).getString().getContent());
+	       	 		logger.debug("El ambito numero "+j+" es ["+coverage.getContent()+"]");
+	       	 		item.setDcCoverage(coverage);
+	       	 		dublincore.addOai_dcTypeItem(item);
+	       	 	}
+       	 	
+       	 	}
+			
+       	 	//contributor
+			if(lom.getLifeCycle()!=null && lom.getLifeCycle().getGroupLifeCycleLifeCycle()!=null)
+			{
+       	 		for(int j=0;j<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContributeCount();j++)//Todos los autores en uno
+       	 		{
+       	 			String rol = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getRole().getGroupRoleRole().getComplexTypeRoleVocabValue().getContent();
+       	 			
+       	 			if(!rol.contentEquals("contributor"))
+       	 				continue;
+       	 			
+       	 			for(int k=0; k<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnboundedCount(); k++) {
+       	 				String contributor = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnbounded(k).getGroupEntityUnboundedEntity().getContent();
+       	 				contributor = obtenerCampoFnDeVcard(contributor);
+       	 				if(contributor!=null && !contributor.isEmpty()) {
+       	 					Oai_dcTypeItem item = new Oai_dcTypeItem();
+       		       	 		DcContributor contrib = new DcContributor();
+       		       	 		contrib.setContent(contributor);
+	       		 			item.setDcContributor(contrib);
+	       		 			dublincore.addOai_dcTypeItem(item);
+	       	 				logger.debug("El contribuidor numero "+j+"-"+k+" es: ["+contributor+"]");
+       	 				}
+       	 			}
+       	 		}
+			}
+       	 	
+       	 	//rights
+       	 	if(lom.getRights()!=null &&
+       	 		lom.getRights().getGroupRightsRights()!=null &&
+       	 			lom.getRights().getGroupRightsRights().getCopyrightAndOtherRestrictions()!=null &&
+       	 				lom.getRights().getGroupRightsRights().getCopyrightAndOtherRestrictions().getGroupCopyrightAndOtherRestrictionsCopyrightAndOtherRestrictions()!=null &&
+       	 					lom.getRights().getGroupRightsRights().getCopyrightAndOtherRestrictions().getGroupCopyrightAndOtherRestrictionsCopyrightAndOtherRestrictions().getComplexTypeCopyrightAndOtherRestrictionsVocabValue()!=null) {
+       	 			
+       	 		String derechos = lom.getRights().getGroupRightsRights().getCopyrightAndOtherRestrictions().getGroupCopyrightAndOtherRestrictionsCopyrightAndOtherRestrictions().getComplexTypeCopyrightAndOtherRestrictionsVocabValue().getContent();
+       	 	
+       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+       	 		DcRights rights = new DcRights();
+       	 		rights.setContent(derechos);
+       	 		item.setDcRights(rights);
+       	 		dublincore.addOai_dcTypeItem(item);
+       	 	}
+       	 	
+			//description
+       	 	if(lomAgrega.getGeneralAgrega().getDescripcionesIdioma(idioma)!=null)
+       	 	{
+       	 		logger.debug("añadir la description");
+       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+       	 		DcDescription descripcion = new DcDescription();
+       	 		descripcion.setContent(lomAgrega.getGeneralAgrega().getDescripcion(0, idioma));
+       	 		logger.debug(" descripcion.getContent() "+descripcion.getContent());
+       	 		item.setDcDescription(descripcion);
+       	 		dublincore.addOai_dcTypeItem(item);
+       	 	}
+       	 	
+       	 	//date (fecha de ultima publicacion)
+       	 	/*
+       	 	if(!(resultadoRecordVO.getFecha() == null))
+       	 	{
+       	 		if(logger.isDebugEnabled())logger.debug("añadir el date");
+       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+       	 		DcDate date = new DcDate();
+       	 		date.setContent((resultadoRecordVO.getFecha()).toString());
+       	 		if(logger.isDebugEnabled())logger.debug(" date.getContent() "+date.getContent());
+       	 		item.setDcDate(date);
+       	 		dublincore.addOai_dcTypeItem(item);
+       	 	}
+       	 	*/
+       	 	
+       	 	//format
+       	 	if(lom.getTechnical()!=null && lom.getTechnical().getGroupTechnicalTechnical()!=null)
+       	 	{
+	       	 	for(int j=0;j<lom.getTechnical().getGroupTechnicalTechnical().getFormatCount();j++)
+	       	 	{	       	 		
+	       	 		String formato = lom.getTechnical().getGroupTechnicalTechnical().getFormat(j).getGroupFormatFormat().getContent();
+	       	 		Oai_dcTypeItem itemAut = new Oai_dcTypeItem();
+	       	 		DcFormat format = new DcFormat();
+	       	 		format.setContent(formato);
+	       	 		logger.debug("El formato numero "+j+" es ["+formato+"]");
+	       	 		itemAut.setDcFormat(format);
+	       	 		dublincore.addOai_dcTypeItem(itemAut);
+	       	 	}
+       	 	}
+       	 	/*
+       	//source
+       	 	if(!(resultadoRecordVO.getFuente() == null))
+       	 	{
+       	 		if(logger.isDebugEnabled())logger.debug("añadir los sources");
+	       	 	for(int j=0;j<resultadoRecordVO.getFuente().length;j++)
+	       	 	{
+	       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+	       	 		DcSource source = new DcSource();
+	       	 		source.setContent((resultadoRecordVO.getFuente()[j]));
+	       	 		if(logger.isDebugEnabled())logger.debug("La fuente "+j+" es ["+source.getContent()+"]");
+	       	 		item.setDcSource(source);
+	       	 		dublincore.addOai_dcTypeItem(item);
+	       	 	}
+       	 	
+       	 	}
+       	 	*/
+       	 	
+       	 	//publisher
+			if(lom.getLifeCycle()!=null && lom.getLifeCycle().getGroupLifeCycleLifeCycle()!=null)
+			{
+       	 		for(int j=0;j<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContributeCount();j++)//Todos los autores en uno
+       	 		{
+       	 			String rol = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getRole().getGroupRoleRole().getComplexTypeRoleVocabValue().getContent();
+       	 			
+       	 			if(!rol.contentEquals("publisher"))
+       	 				continue;
+       	 			
+       	 			for(int k=0; k<lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnboundedCount(); k++) {
+       	 				String publicador = lom.getLifeCycle().getGroupLifeCycleLifeCycle().getContribute(j).getGroupContributeContribute().getEntityUnbounded(k).getGroupEntityUnboundedEntity().getContent();
+       	 				publicador = obtenerCampoFnDeVcard(publicador);
+       	 				if(publicador!=null && !publicador.isEmpty()) {
+       	 					Oai_dcTypeItem item = new Oai_dcTypeItem();
+							DcPublisher publisher = new DcPublisher();
+							publisher.setContent(publicador);
+							item.setDcPublisher(publisher);
+							dublincore.addOai_dcTypeItem(item);
+	       	 				logger.debug("El publicador numero "+j+"-"+k+" es: ["+publicador+"]");
+       	 				}
+       	 			}
+       	 		}
+			}
+
+       		//relation
+       	 	if(lom.getRelationCount()>0 && lom.getRelation()!=null)
+       	 	{
+       	 		logger.debug("añadir los relation");
+	       	 	for(int j=0; j<lom.getRelationCount(); j++)
+	       	 	{
+	       	 		Oai_dcTypeItem item = new Oai_dcTypeItem();
+	       	 		DcRelation relation = new DcRelation();
+	       	 		relation.setContent(lom.getRelation()[j].getGroupRelationRelation().getResource().getGroupResourceResource().getIdentifier().getGroupIdentifierIdentifier().getEntry().getGroupEntryEntry().getContent());
+	       	 		logger.debug("La relacion "+j+" es ["+relation.getContent()+"]");
+	       	 		item.setDcRelation(relation);
+	       	 		dublincore.addOai_dcTypeItem(item);
+	        	}
+       	 	}
+       	
+       		//type
+       	 	if(lom.getEducationalCount()>0 && lom.getEducational()!=null)
+       	 	{
+	       	 	for(int j=0; j<lom.getEducationalCount(); j++)
+	       	 	{
+		       	 	for(int k=0; k<lom.getEducational()[j].getGroupEducationalEducational().getLearningResourceTypeCount(); k++)
+		       	 	{
+		       	 		String tipoRecursoEducativo = lom.getEducational()[j].getGroupEducationalEducational().getLearningResourceType(k).getGroupLearningResourceTypeLearningResourceType().getComplexTypeLearningResourceTypeVocabValue().getContent();
+			       	 	Oai_dcTypeItem itemAut = new Oai_dcTypeItem();
+			       	 	DcType type = new DcType();
+		    	 		type.setContent(tipoRecursoEducativo);
+		    	 		logger.debug("El tipo "+j+"-"+k+" es ["+tipoRecursoEducativo+"]");
+			       	 	itemAut.setDcType(type);
+			   	 		dublincore.addOai_dcTypeItem(itemAut);
+		       	 	}
+	        	}
+       	 	}
+       	 	
+       	 	//identifier
+   	 		logger.debug("añadir los identifier");
+   	 		for(int j=0;j<lom.getGeneral().getGroupGeneralGeneral().getIdentifierCount();j++)
+   	 		{
+   	 			Oai_dcTypeItem item = new Oai_dcTypeItem();
+   	 			DcIdentifier identifier = new DcIdentifier();
+   	 			String id = lom.getGeneral().getGroupGeneralGeneral().getIdentifier(j).getGroupIdentifierIdentifier().getEntry().getGroupEntryEntry().getContent();
+   	 			if(id!=null && !id.isEmpty()) {
+	   	 			identifier.setContent(id);
+	   	 			logger.debug("El identificador "+j+" es ["+identifier.getContent()+"]");
+	   	 			item.setDcIdentifier(identifier);
+	   	 			dublincore.addOai_dcTypeItem(item);
+   	 			}
+   	 		}
+       	 	
+       	 	resultado = dublincore;
+		} catch (Exception e) {
+			logger.error("ERROR ", e);
+		}
+		return resultado;
+	}
+	 
+	 
 	 /**
 		* Devuelve el tipo de metadato codificado en el lenguage que se pase por parámetro: dublincore, perseus,...
 		* @param  resultadoRecordVO VO con la información del registro
 		* @param  lenguage String con el lenguage en el que se codificará la etiqueta metadato
 		* @return Object 
 		*/
-	 
 	 private Object obtenerMetadato(String lenguage,ResultadoRecordVO resultadoRecordVO)
 	 {
 		

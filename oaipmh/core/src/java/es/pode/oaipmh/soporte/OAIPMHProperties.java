@@ -32,6 +32,7 @@ public class OAIPMHProperties {
 	private static final String KEY_SCHEME_IDENTIFIER 			= "esquemaIdentificador";
 	private static final String KEY_NAMESPACE_IDENTIFIER		= "namespaceIdentificador";
 	public static final String KEY_METADATOS_FEDERADOS 			= "nombreSetMetadatosFederados";
+	public static final String KEY_ID_NODOS_SETS_PERMITIDOS		= "idNodosSetsPermitidos";
 	
 //	Valores para soportar los conjuntos
 	public static final String VALUE_SOPORTA_CONJUNTOS_VALUE_SI = "si";
@@ -85,6 +86,7 @@ public class OAIPMHProperties {
 	public static final String ERR_SEVERAL_FROM_DES					= "El argumento from esta repetido";
 	public static final String ERR_SEVERAL_UNTIL_DES				= "El argumento until esta repetido";
 	public static final String ERR_SEVERAL_SET_DES					= "El argumento set esta repetido";
+	public static final String ERR_BAD_SET_DES					= "El argumento set es incorrecto";
 	public static final String ERR_SEVERAL_RESUMPTIONTOKEN_DES		= "El argumento resumptionToken esta repetido";
 	
 	public static final String NUM_RESULT_PAG						= "num_result_pag";
@@ -134,6 +136,7 @@ public class OAIPMHProperties {
 	{
 		return OAIPMHProperties.VALUE_SOPORTA_CONJUNTOS_VALUE_SI.equals(props.getProperty(OAIPMHProperties.KEY_SOPORTA_CONJUNTOS));
 	}
+	
 	
 	/*
 		Este metodo recorre la lista de metadatos admitidos y mira a ver si el que se le pasa esta.

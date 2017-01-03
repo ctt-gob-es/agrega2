@@ -104,6 +104,10 @@
                 es.pode.entregar.negocio.servicios.SrvEntregarService.eliminarTemporales=PROPAGATION_REQUIRED
                 es.pode.entregar.negocio.servicios.SrvEntregarService.transformarFormatosODEs=PROPAGATION_REQUIRED
                 es.pode.entregar.negocio.servicios.SrvEntregarService.generarPDF=PROPAGATION_REQUIRED
+                es.pode.entregar.negocio.servicios.SrvEntregarService.obtenerManifest=PROPAGATION_REQUIRED
+                es.pode.entregar.negocio.servicios.SrvEntregarService.obtenerRecursoUnicoDelODE=PROPAGATION_REQUIRED
+                es.pode.entregar.negocio.servicios.SrvEntregarService.odeConRecursoDirectamenteDescargable=PROPAGATION_REQUIRED
+                es.pode.entregar.negocio.servicios.SrvEntregarService.devolverPaquetePIFOImagen=PROPAGATION_REQUIRED
             </value>
         </property>
     </bean>

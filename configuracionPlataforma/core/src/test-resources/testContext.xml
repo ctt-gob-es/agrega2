@@ -49,7 +49,7 @@
         <property name="mappingResources">
             <list>
                 <value>es/pode/configuracionPlataforma/negocio/dominio/Propiedad.hbm.xml</value>
-                <value>es/pode/configuracionPlataforma/negocio/dominio/HistoricoPropiedad.hbm.xml</value>
+                <value>es/pode/configuracionPlataforma/negocio/dominio/PropiedadHistorico.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -86,17 +86,17 @@
             </list>
         </property>
     </bean>
-    <!-- HistoricoPropiedad Entity Proxy with inner HistoricoPropiedad Entity implementation -->
-    <bean id="historicoPropiedadDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <!-- PropiedadHistorico Entity Proxy with inner PropiedadHistorico Entity implementation -->
+    <bean id="propiedadHistoricoDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target">
-            <bean class="es.pode.configuracionPlataforma.negocio.dominio.HistoricoPropiedadDaoImpl">
+            <bean class="es.pode.configuracionPlataforma.negocio.dominio.PropiedadHistoricoDaoImpl">
                 <property name="sessionFactory"><ref local="sessionFactory"/></property>
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
                 
             </bean>
         </property>
         <property name="proxyInterfaces">
-            <value>es.pode.configuracionPlataforma.negocio.dominio.HistoricoPropiedadDao</value>
+            <value>es.pode.configuracionPlataforma.negocio.dominio.PropiedadHistoricoDao</value>
         </property>
         <property name="interceptorNames">
             <list>
@@ -125,7 +125,19 @@
                 es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesJbossPorFichero=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesLocalesPorFichero=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getValorPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.setValorPropiedad=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.setValorPropiedades=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesPorFichero=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getCategoriasPropiedadesModificables=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadesModificablesDeTodasInstanciasPorCategoria=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getInstanciasJbossActivas=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getPropiedadJBoss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.resetCachePropiedadesLocales=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService.getAllProperties=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionService.escribirFicheroLocal=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionService.crearBackupFicherosInstanciaJboss=PROPAGATION_REQUIRED
+                es.pode.configuracionPlataforma.negocio.servicios.SrvFicherosConfiguracionService.restaurarBackupFicherosInstanciaJboss=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarValorPropiedadLocal=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarValorPropiedad=PROPAGATION_REQUIRED
                 es.pode.configuracionPlataforma.negocio.servicios.SrvGestorConfiguracionService.modificarPropiedadesLocal=PROPAGATION_REQUIRED
@@ -139,7 +151,7 @@
         <property name="target">
             <bean class="es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
-                <property name="historicoPropiedadDao"><ref bean="historicoPropiedadDao"/></property>
+                <property name="propiedadHistoricoDao"><ref bean="propiedadHistoricoDao"/></property>
                 <property name="propiedadDao"><ref bean="propiedadDao"/></property>
             </bean>
         </property>

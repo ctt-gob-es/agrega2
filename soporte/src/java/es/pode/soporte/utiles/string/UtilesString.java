@@ -263,6 +263,18 @@ public class UtilesString {
 	}
 	
 	
+	static public String removeHtmlAccents(String s) {
+
+		s = s.replaceAll("&aacute;", "a");
+		s = s.replaceAll("&eacute;", "e");
+		s = s.replaceAll("&iacute;", "i");
+		s = s.replaceAll("&oacute;", "o");
+		s = s.replaceAll("&uacute;", "u");
+		
+		return s;
+	}
+	
+	
 	static public String eliminaCaracteresProblematicosParaVisualizador (String s) {
 		s = translateUnicodeSpecialCharacters(s);
 		s=s.replaceAll("\\[", "_");

@@ -68,7 +68,7 @@
         <property name="target">
             <bean class="es.pode.oaipmh.negocio.servicios.SrvOaiPmhServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
-			            </bean>
+				            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.oaipmh.negocio.servicios.SrvOaiPmhService</value>

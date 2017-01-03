@@ -287,7 +287,7 @@
                 <property name="ccaaDao"><ref bean="ccaaDao"/></property>
                 <property name="servicioDao"><ref bean="servicioDao"/></property>
                 <property name="estadisticaDao"><ref bean="estadisticaDao"/></property>
-			            </bean>
+				            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.buscar.negocio.administrar.servicio.SrvNodoService</value>
@@ -344,7 +344,7 @@
             <bean class="es.pode.buscar.negocio.nodosSQI.servicio.SrvGestionSqiServiceImpl">
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
                 <property name="nodoSQIDao"><ref bean="nodoSQIDao"/></property>
-	            </bean>
+            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.buscar.negocio.nodosSQI.servicio.SrvGestionSqiService</value>

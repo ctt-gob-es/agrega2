@@ -131,6 +131,7 @@
                 es.pode.indexador.negocio.servicios.indexado.SrvIndexadorService.optimizarIndice=PROPAGATION_REQUIRED
                 es.pode.indexador.negocio.servicios.indexado.SrvIndexadorService.borrarOdesPorIdioma=PROPAGATION_REQUIRED
                 es.pode.indexador.negocio.servicios.indexado.SrvIndexadorService.sincronizarIndiceCompass=PROPAGATION_REQUIRED
+                es.pode.indexador.negocio.servicios.indexado.SrvIndexadorService.obtenerOdesConUsuarioEnContribucion=PROPAGATION_REQUIRED
                 es.pode.indexador.negocio.servicios.auditoria.SrvAuditoriaIndexadorService.coberturaArbolCurricular=PROPAGATION_REQUIRED
                 es.pode.indexador.negocio.servicios.auditoria.SrvAuditoriaIndexadorService.coberturaNivelAgregacion=PROPAGATION_REQUIRED
                 es.pode.indexador.negocio.servicios.auditoria.SrvAuditoriaIndexadorService.coberturaLicencias=PROPAGATION_REQUIRED
@@ -146,7 +147,7 @@
                 <property name="beanMapper"><ref bean="beanMapper"/></property>                
 		                <property name="scormDao"><ref bean="ScormDao"/></property>
     		                <property name="lomesDao"><ref bean="LomesDao"/></property>
-    		            </bean>
+    			            </bean>
         </property>
         <property name="proxyInterfaces">
             <value>es.pode.indexador.negocio.servicios.busqueda.SrvBuscadorService</value>

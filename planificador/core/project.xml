@@ -188,6 +188,12 @@
 		<type>jar</type>
 	</dependency>
 	<dependency>
+		<groupId>castor</groupId>
+		<artifactId>castor</artifactId>
+		<version>${castor.version}</version>
+		<type>jar</type>
+	</dependency>  
+	<dependency>
 		<groupId>log4j</groupId>
 		<artifactId>log4j</artifactId>
 		<version>${log4j.version}</version>

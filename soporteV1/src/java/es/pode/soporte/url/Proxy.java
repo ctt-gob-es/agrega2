@@ -5,8 +5,12 @@ package es.pode.soporte.url;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.apache.log4j.Logger;
 
 import es.agrega.soporte.agregaProperties.AgregaProperties;
 import es.agrega.soporte.agregaProperties.AgregaPropertiesImpl;
@@ -18,6 +22,8 @@ import es.pode.soporte.utiles.base64.Base64Coder;
  */
 public class Proxy {
 
+	private static Logger logger = Logger.getLogger(Proxy.class);
+	
 	static public InputStream getInputStream(URL url) throws IOException {
 		char[] encoded;
 		InputStream in;
@@ -90,5 +96,30 @@ public class Proxy {
 			return feedUrlConnection;
 		}
 		return null;
+	}
+	
+	public static InputStream postUrlConnection(String url, String body) {
+		logger.debug("Va a realizar petición post a : " + url);
+		InputStream in = null;
+		try
+		{
+			URL urlES = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) urlES.openConnection();
+			conn.setRequestMethod("POST");
+
+			conn.setDoOutput(true);
+
+			OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
+
+			writer.write(body);
+			writer.flush();			
+			
+			writer.close();
+			in = conn.getInputStream();
+			
+		}catch (Exception e) {
+			logger.error("Error al realizar petición POST : " , e);
+		}
+		return in;
 	}
 }

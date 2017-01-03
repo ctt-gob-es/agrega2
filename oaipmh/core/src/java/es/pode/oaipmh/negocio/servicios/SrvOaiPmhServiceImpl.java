@@ -8,11 +8,17 @@ package es.pode.oaipmh.negocio.servicios;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.rmi.RemoteException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -20,18 +26,23 @@ import net.sf.ehcache.Element;
 
 import org.apache.log4j.Logger;
 
+import es.pode.buscar.negocio.administrar.servicio.NodoVO;
 import es.pode.configuracionPlataforma.negocio.servicios.SrvPropiedadService;
 import es.pode.indexador.negocio.servicios.busqueda.ParamPeriodoRepositorioVO;
 import es.pode.localizador.negocio.servicios.SrvLocalizadorService;
 import es.pode.oaipmh.negocio.resumptionToken.ResumptionTokenManager;
 import es.pode.oaipmh.soporte.OAIPMHProperties;
 import es.pode.parseadorXML.LomESDao;
+import es.pode.parseadorXML.ParseadorException;
 import es.pode.parseadorXML.SCORM2004Dao;
 import es.pode.parseadorXML.castor.CopyrightAndOtherRestrictions;
 import es.pode.parseadorXML.castor.Lom;
 import es.pode.parseadorXML.castor.Manifest;
 import es.pode.parseadorXML.lomes.lomesAgrega.LomAgrega;
 import es.pode.parseadorXML.scorm2004.agrega.ManifestAgrega;
+import es.pode.soporte.elastic.BuscadorMetadatosFederados;
+import es.pode.soporte.elastic.Source;
+import es.pode.soporte.utiles.string.UtilesString;
 import es.pode.soporte.validador.ValidadorMEC;
 
 import es.agrega.soporte.agregaProperties.AgregaProperties;
@@ -48,6 +59,8 @@ public class SrvOaiPmhServiceImpl
 
 	private SrvPropiedadService prop = null;
 	private static Logger logger = Logger.getLogger(SrvOaiPmhServiceImpl.class);
+
+	private static final String RUTA_METADATOS_ODES_FEDERADOS = "uploads"+File.separator+"metadatosLomesOdesFederados";
 	
 	private static final String PROTOCOLO_HTTP = "protocoloHttp";
 	private static final String BUSCADOR_FICHA = "buscadorFicha";
@@ -298,18 +311,34 @@ public class SrvOaiPmhServiceImpl
     	 * -------------------------------------------------------------------------
     	 * --------------- COMPROBAMOS SI EL REPOSITORIO ADMITE SET ----------------
     	 * -------------------------------------------------------------------------
-    	 * */  
-    	
-		if(parametroLlamada.getIdentificadorConjunto()!=null && !parametroLlamada.getIdentificadorConjunto().equals(""))				
-		{
-			if(!OAIPMHProperties.repositorioAdmiteSets())
-			{
+    	 * */
+		String set = parametroLlamada.getIdentificadorConjunto();
+		boolean filtrarMetadatosFederados = false;
+		
+		if(set!=null && !set.isEmpty())				
+		{			
+			if(!OAIPMHProperties.repositorioAdmiteSets()) {
 	    		logger.debug("Sets no estan admitidos en el repositorio");	
-//	    		Se rellena el resultadoOaiRequestVO
 	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_SET_HIERARCHY, OAIPMHProperties.ERR_NO_SET_HIERARCHY_DES, 
 	    									null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);				
 			}
-    		
+			
+	    	if(!esSetValido(set)) {
+	    		logger.debug("Se ha recibido un set no valido");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_SET_DES, 
+	    				                           null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);					
+	    	}
+	    	
+    		// Se trata de una consulta a metadatos federeados. Debe filtrarse por fechas y un máximo de un mes
+    		if (esSetMetadatosFederados(set) && 
+    				!validacionFechasMetadatosFederados(parametroLlamada.getFechaDesde(), parametroLlamada.getFechaHasta()))
+    		{
+    			logger.error("Las fechas proporcionadas no son correctas");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_ARGUMENT_DES, 
+                           null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);
+    		}
+	    	
+    		filtrarMetadatosFederados = true;
     	}    	
 		
 		/**
@@ -318,8 +347,7 @@ public class SrvOaiPmhServiceImpl
     	 * ---------------------- PARAMETROS OPCIONALES ----------------------------
     	 * -------------------------------------------------------------------------
     	 * */ 
-		
-			tratamientoFechaDesdeHasta(parametroLlamada.getFechaDesde(), (parametroLlamada.getFechaHasta()), paramBusq);    	
+		tratamientoFechaDesdeHasta(parametroLlamada.getFechaDesde(), (parametroLlamada.getFechaHasta()), paramBusq);    	
     	
     	/**
     	 * -------------------------------------------------------------------------
@@ -345,7 +373,21 @@ public class SrvOaiPmhServiceImpl
                 paramBusq.setRegistroInicial(vueltaCacheToken.getDesde());
                 logger.debug((new StringBuilder()).append("vueltaCacheToken.getDesde() ").append(vueltaCacheToken.getDesde()).toString());
                 logger.debug((new StringBuilder()).append("vueltaCacheToken.getHasta() ").append(vueltaCacheToken.getHasta()).toString());
-                resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+                
+                if(filtrarMetadatosFederados) {
+
+            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+        	    			parametroLlamada.getFechaDesde(), 
+        	    			parametroLlamada.getFechaHasta(), 
+        	    			parametroLlamada.getIdentificadorConjunto(), 
+        	    			null,
+        	    			vueltaCacheToken.getDesde());
+            		
+            		resultadoHeader = source2IndexadorResultadoHeaderVO(listaIdsOdes);
+                } else {
+                	resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+                }
+                
                 logger.debug((new StringBuilder()).append("El numero de resultados del buscador es resultadoHeader ").append(resultadoHeader.length).toString());
                 elementoIndice = resumptionToken.devuelveElementoResumptionToken("numElementosIndice");
                 if(vueltaCacheToken.getSiguienteResumptionToken() != null)
@@ -391,28 +433,53 @@ public class SrvOaiPmhServiceImpl
     	}else
     	{
     		logger.debug("Es la primera vez que se ejecuta esa query");
-            Integer numElementosIndice;
-            numElementosIndice = getSrvBuscadorService().obtenerTotalesRepositorioFechas(paramBusq).getDocumentosCount();
+            Integer numElementosIndice = null;
+
+            if(filtrarMetadatosFederados) {
+            	
+        		int nElementosTotales = obtenerNumTotalMetadatosFederados(
+    	    			parametroLlamada.getFechaDesde(), 
+    	    			parametroLlamada.getFechaHasta(), 
+    	    			parametroLlamada.getIdentificadorConjunto(), 
+    	    			null);
+
+                numElementosIndice = new Integer(nElementosTotales);
+            } else {
+            	numElementosIndice = getSrvBuscadorService().obtenerTotalesRepositorioFechas(paramBusq).getDocumentosCount();
+            }
+            
             if(numElementosIndice == null || numElementosIndice.intValue() == 0)
             {
             	logger.debug((new StringBuilder()).append("No se ha podido encontrar ningun header con fechaDesde [").append(paramBusq.getDesde()).append("] y fechaHasta [").append(paramBusq.getHasta()).append("]").toString());
             	return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
 					       null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);
-            }else
-            {
+            }
+            
             logger.debug((new StringBuilder()).append("El numero de elementos del indice ").append(numElementosIndice).toString());
             tokenCacheHit = resumptionToken.generateResumptionToken(numElementosIndice, numElementosIndice, "numElementosIndice");
             logger.debug("Se guarda en la cache un VO con el numero de elementos del indice");
            
-            //else
-           // {
             if(numElementosIndice.intValue() <= numMaxPaginaInt)
             {
                 logger.debug("No hay paginacion");
                 paramBusq.setRegistroFinal(numElementosIndice);
                 paramBusq.setRegistroInicial(new Integer(0));
                 logger.debug("Se llama al indexador para obtener toda la informaci\363n del indice");
-                resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+                
+
+                if(filtrarMetadatosFederados) {
+
+            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+        	    			parametroLlamada.getFechaDesde(), 
+        	    			parametroLlamada.getFechaHasta(),  
+        	    			parametroLlamada.getIdentificadorConjunto(), 
+        	    			null,
+        	    			paramBusq.getRegistroInicial());
+            		
+            		resultadoHeader = source2IndexadorResultadoHeaderVO(listaIdsOdes);
+                } else {                
+                	resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+                }
             } else
             {
                 logger.debug("Hay paginacion");
@@ -423,7 +490,20 @@ public class SrvOaiPmhServiceImpl
                 }
                 paramBusq.setRegistroFinal(new Integer(numFin));
                 paramBusq.setRegistroInicial(new Integer(numInicio));
-                resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+
+                if(filtrarMetadatosFederados) {
+
+            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+        	    			parametroLlamada.getFechaDesde(), 
+        	    			parametroLlamada.getFechaHasta(), 
+        	    			parametroLlamada.getIdentificadorConjunto(), 
+        	    			null,
+        	    			paramBusq.getRegistroInicial());
+            		
+            		resultadoHeader = source2IndexadorResultadoHeaderVO(listaIdsOdes);
+                } else {
+                	resultadoHeader = getSrvBuscadorService().busquedaHeadersRepositorio(paramBusq);
+                }
                 logger.debug((new StringBuilder()).append("El numero de resultados del buscador es resultadoHeader ").append(resultadoHeader.length).toString());
                 if(logger.isDebugEnabled())
                 {
@@ -438,34 +518,35 @@ public class SrvOaiPmhServiceImpl
                 tokenCacheHit = resumptionToken.generateResumptionToken(new Integer(numInicio), new Integer(numFin), claveToken);
                 
             }
-            if(resultadoHeader == null && resultadoHeader.length == 0)
+            if(resultadoHeader == null || resultadoHeader.length == 0)
             {
             	logger.debug((new StringBuilder()).append("No se ha podido encontrar ningun header con fechaDesde [").append(paramBusq.getDesde()).append("] y fechaHasta [").append(paramBusq.getHasta()).append("]").toString());
             	return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
 					       null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);
             }
+            
             token = devuelveResumptionToken(tokenCacheHit, null, numElementosIndice.intValue(), false);
-           // }
-    	}   
     	}
     	}catch(Exception e)
 		{
 			pintarTrazasListIdentifiers(resultadoHeader);				
 			logger.error("Error recuperando el vo del doc ["+resultadoHeader+"] del servicio de indexacion con tamanho ["+resultadoHeader.length+"] - ",e);
-//			Se rellena el resultadoOaiRequestVO
+			//Se rellena el resultadoOaiRequestVO
 			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ERROR_GENERICO, OAIPMHProperties.ERR_ERROR_GENERICO_DES, 
 											   null, null, OAIPMHProperties.VERB_LIST_IDENTIFIERS);				
 		}
     	pintarTrazasListIdentifiers(resultadoHeader);
-        //logger.debug("DESPUES DE PINTARTRAZASLISTIDENTIFIERS");
-        listIdentifiers = mapeoHeaderVO(resultadoHeader);
+
+    	listIdentifiers = mapeoHeaderVO(resultadoHeader);
+    	
 		if (logger.isDebugEnabled()) 
 			logger.debug((new StringBuilder()).append("listIdentifiers [")
 					.append(listIdentifiers).append("] con tamanho [")
 					.append(listIdentifiers.length).append("]").toString());
+		
         return devuelveResultadoOaiRequest(null, null, listIdentifiers, token, OAIPMHProperties.VERB_LIST_IDENTIFIERS);
-    				
     }
+    
 
     /**
      * Obtiene el listado de los formatos de metadatos que existen en el repositorio
@@ -538,8 +619,300 @@ public class SrvOaiPmhServiceImpl
         }        
 
     }
-
     
+    
+    private boolean esSetMetadatosFederados (String set) {
+    	if(set.contentEquals(OAIPMHProperties.getPropertyValue(OAIPMHProperties.KEY_METADATOS_FEDERADOS)))
+    		return true;
+    	return false;
+    }
+    
+    
+    private Set<String> obtenerIdsNodosPermitidosEnSet() {
+    	
+    	String idsNodosPermitidos = OAIPMHProperties.getPropertyValue(OAIPMHProperties.KEY_ID_NODOS_SETS_PERMITIDOS);   
+    	
+    	if(idsNodosPermitidos==null || idsNodosPermitidos.isEmpty())
+    		logger.warn("La lista de nodos permitidos en los sets esta vacia");
+    	
+    	String[] listaIdsNodosPermitidos = idsNodosPermitidos.split(",");
+    	
+    	Set<String> idsNodos = new HashSet<String>();
+
+    	for(int i=0; i<listaIdsNodosPermitidos.length; i++)
+    		if(!idsNodos.contains(listaIdsNodosPermitidos[i]))
+    			idsNodos.add(listaIdsNodosPermitidos[i]);
+    	
+    	return idsNodos;
+    }
+	
+    
+	private boolean esSetValido(String set) {
+		
+    	if(esSetMetadatosFederados(set))
+    		return true;
+    	
+    	//Obtenemos la lista de los ids de los nodos que pueden ser un set 
+    	Set<String> idsNodosPermitidos = obtenerIdsNodosPermitidosEnSet();
+    	
+    	NodoVO[] listaNodos = null;
+		try {
+			listaNodos = this.getSrvNodoService().listarNodos();
+		} catch (Exception e) {
+			logger.error("Error al obtener los nodos registrados ",e);
+			return false;
+		}
+    	for(int i=0; i<listaNodos.length; i++) {
+    		if(idsNodosPermitidos.contains(listaNodos[i].getIdNodo())) {
+	    		String nodo = UtilesString.removeHtmlAccents(listaNodos[i].getNodo());
+	    		nodo = UtilesString.removeAccents(nodo);
+	    		if(set.equalsIgnoreCase(nodo)) 
+	    			return true;
+    		}
+    	}
+    	logger.warn("El set "+set+" no coincide con el nombre de ningun nodo registrado");
+    	return false;
+	}
+    
+    
+    private List<String> listarSets() {
+    	
+    	List<String> listaSets = new ArrayList<String>();
+    	
+    	//Aniadimos a la lista de sets el de metadatos federados
+    	listaSets.add(OAIPMHProperties.getPropertyValue(OAIPMHProperties.KEY_METADATOS_FEDERADOS));
+    	
+    	//Obtenemos la lista de los ids de los nodos que pueden ser un set 
+    	Set<String> idsNodosPermitidos = obtenerIdsNodosPermitidosEnSet();
+    	
+    	NodoVO[] listaNodos = null;
+		try {
+			listaNodos = this.getSrvNodoService().listarNodos();
+		} catch (Exception e) {
+			logger.error("Error al obtener los nodos registrados ",e);
+			return listaSets;
+		}
+    	for(int i=0; i<listaNodos.length; i++) {
+    		if(idsNodosPermitidos.contains(listaNodos[i].getIdNodo())) {
+	    		String nodo = UtilesString.removeHtmlAccents(listaNodos[i].getNodo());
+	    		nodo = UtilesString.removeAccents(nodo);
+	    		listaSets.add(nodo);
+    		}
+    	}
+    	return listaSets;
+    }
+    
+    
+    /**
+     * Metodo que dado un set de una CCAA lo traduce 
+     * @return
+     */
+    private String set2IdNodo(String set) {
+    	
+    	if(set.contentEquals(OAIPMHProperties.getPropertyValue(OAIPMHProperties.KEY_METADATOS_FEDERADOS)))
+    		return "";
+    	
+    	NodoVO[] listaNodos = null;
+		try {
+			listaNodos = this.getSrvNodoService().listarNodos();
+		} catch (Exception e) {
+			logger.error("Error al obtener los nodos registrados ",e);
+			return null;
+		}
+    	for(int i=0; i<listaNodos.length; i++) {
+    		String nodo = UtilesString.removeHtmlAccents(listaNodos[i].getNodo());
+    		nodo = UtilesString.removeAccents(nodo);
+    		if(set.equalsIgnoreCase(nodo)) 
+    			return listaNodos[i].getIdNodo();
+    	}
+    	logger.warn("El set "+set+" no coincide con el nombre de ningun nodo registrado");
+    	return null;
+    }
+    
+    
+    /**
+    * Metodo que realiza la búsqueda contra el índice de ElasticSearch. 
+    * En función del tipo de petición ListIdentifiers o GetRecord se devuelve una lista de identificadores o la ruta del fichero si existe en  
+    * el conjunto indicado.
+    * @throws Exception
+    */
+	private List<Source> filtrarMetadatosFederados(
+			Calendar fechaDesde, 
+			Calendar fechaHasta, 
+			String set, 
+			String identificador,
+			int inicioPagina) throws Exception
+	{      
+		logger.info("filtrarMetadatosFederados");
+		String url= this.getSrvPropiedadService().getValorPropiedad("url_es");
+
+		String idNodo = set2IdNodo(set);
+		String fechaInicio = null;
+		String fechaFin = null;
+		
+		if(fechaDesde!=null) {
+			fechaInicio = calendar2string(fechaDesde, "yyyy-MM-dd");
+			logger.info("Se va a buscar en el nodo '"+idNodo+"' desde la fecha "+fechaInicio);	
+		}
+		
+		if(fechaHasta!=null) {
+			fechaFin = calendar2string(fechaHasta, "yyyy-MM-dd");
+			logger.info("Se va a buscar en el nodo '"+idNodo+"' hasta la fecha "+fechaFin);
+		}
+		List<Source> resulBusqueda = BuscadorMetadatosFederados.buscarMetadatosFederados(
+				url, 
+				identificador, 
+				idNodo, 
+				fechaInicio, 
+				fechaFin, 
+				inicioPagina, 
+				numMaxPaginaInt);		
+				
+		return resulBusqueda;      
+	}
+	
+    /**
+	* Metodo que obtiene el número total de resultados de un filtro contra el índice de ElasticSearch. 
+	* @throws Exception
+	*/
+	private int obtenerNumTotalMetadatosFederados(
+			Calendar fechaDesde, 
+			Calendar fechaHasta, 
+			String set, 
+			String identificador) throws Exception
+	{      
+		logger.info("obtenerNumTotalMetadatosFederados");
+		//List<String> lRetorno = new ArrayList<String>();
+		String url= this.getSrvPropiedadService().getValorPropiedad("url_es");
+		
+		String idNodo = set2IdNodo(set);
+		String fechaInicio = null;
+		String fechaFin = null;
+		
+		if(fechaDesde!=null) {
+			fechaInicio = calendar2string(fechaDesde, "yyyy-MM-dd");
+			logger.info("Se va a buscar en el nodo '"+idNodo+"' desde la fecha "+fechaInicio);	
+		}
+		
+		if(fechaHasta!=null) {
+			fechaFin = calendar2string(fechaHasta, "yyyy-MM-dd");
+			logger.info("Se va a buscar en el nodo '"+idNodo+"' hasta la fecha "+fechaFin);
+		}
+	
+		int numResultadosTotales = BuscadorMetadatosFederados.obtenerTotalMetadatosFederados(
+				url, 
+				identificador, 
+				idNodo, 
+				fechaInicio, 
+				fechaFin, 
+				0, 1);		
+		return numResultadosTotales;
+	}
+
+	
+	public static String calendar2string (Calendar c, String formatoFecha) {
+		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
+		String s = sdf.format(c.getTime());
+		return s;
+	}
+		
+		
+	private Date string2date (String fecha, String formatoFecha) {
+		if(fecha==null || fecha.isEmpty()) return null;
+		SimpleDateFormat sdf = new SimpleDateFormat(formatoFecha);
+		Date d = null;
+		try {
+			d = sdf.parse(fecha);
+		} catch (ParseException e) {
+			logger.error("Hubo un problema al parsear el string '"+fecha+"' como date usando el formato '"+formatoFecha+"': "+e);
+		}	
+		return d;		
+	}
+	
+
+	private Calendar string2calendar (String fecha, String formatoFecha) {
+		Date d = string2date(fecha, formatoFecha);
+		if(d==null) return null;
+		Calendar c = Calendar.getInstance();
+		c.setTime(d);
+		return c;
+	}
+	
+
+    private es.pode.oaipmh.negocio.servicios.ResultadoHeaderVO[] source2OaiResultadoHeaderVO(List<Source> resulBusqueda) {
+    	
+    	if(resulBusqueda==null)
+    		return new ResultadoHeaderVO[0];
+    	
+    	es.pode.oaipmh.negocio.servicios.ResultadoHeaderVO[] datosResultHeaders = new ResultadoHeaderVO[resulBusqueda.size()];
+    	
+    	for(int i=0; i<resulBusqueda.size(); i++) {
+    		ResultadoHeaderVO datosResultHeader = new ResultadoHeaderVO();
+    		datosResultHeader.setFecha(resulBusqueda.get(i).getFechaPublicacion());
+    		datosResultHeader.setIdentificador(resulBusqueda.get(i).getIdODE());
+    		datosResultHeaders[i] = datosResultHeader;
+    	}
+    	
+    	return datosResultHeaders;
+    }
+	
+
+    private es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO[] source2IndexadorResultadoHeaderVO(List<Source> resulBusqueda) {
+    	
+    	if(resulBusqueda==null)
+    		return new es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO[0];
+    	
+    	es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO[] datosResultHeaders = new es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO[resulBusqueda.size()];
+    	
+    	for(int i=0; i<resulBusqueda.size(); i++) {
+    		es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO datosResultHeader = new es.pode.indexador.negocio.servicios.busqueda.ResultadoHeaderVO();
+    		datosResultHeader.setIdentificador(resulBusqueda.get(i).getIdODE());
+    		    		
+    		//datosResultHeader.setFecha(string2calendar(resulBusqueda.get(i).getFechaPublicacion(), "yyyy-MM-dd'T'HH:mm:ss"));
+    		if(resulBusqueda.get(i).getFechaPublicacion()!=null && !resulBusqueda.get(i).getFechaPublicacion().isEmpty()) {
+    			datosResultHeader.setFecha(string2calendar(resulBusqueda.get(i).getFechaPublicacion(), "yyyy-MM-dd"));
+    			logger.info("La fecha de publicacion es "+resulBusqueda.get(i).getFechaPublicacion());
+    		} else {
+    			datosResultHeader.setFecha(string2calendar(resulBusqueda.get(i).getFechaDespublicacion(), "yyyy-MM-dd"));
+    			logger.info("La fecha de despublicacion es "+resulBusqueda.get(i).getFechaDespublicacion());
+    		}
+    		
+    		datosResultHeaders[i] = datosResultHeader;
+    	}
+    	
+    	return datosResultHeaders;
+    }
+	
+
+    /*
+    private es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO source2IndexadorResultadoRecordVO(List<Source> resulBusqueda) {
+    	
+    	if(resulBusqueda==null || resulBusqueda.isEmpty())
+    		return null;
+    	
+    	es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO datosResultadoRecord = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO();
+    	    	
+    	datosResultadoRecord.setAmbito(null);
+    	datosResultadoRecord.setAutores(null);
+    	datosResultadoRecord.setContribuidor(null);
+    	datosResultadoRecord.setDerechos(null);
+    	datosResultadoRecord.setDescripcion(null);
+    	datosResultadoRecord.setFecha(resulBusqueda.get(0).getFechaPublicacion());
+    	datosResultadoRecord.setFormatos(null);
+    	datosResultadoRecord.setFuente(null);
+    	datosResultadoRecord.setIdentificador(resulBusqueda.get(0).getIdODE());
+    	datosResultadoRecord.setIdioma(null);
+    	datosResultadoRecord.setPublicador(null);
+    	datosResultadoRecord.setRelacion(null);
+    	datosResultadoRecord.setTema(null);
+    	datosResultadoRecord.setTipo(null);
+    	datosResultadoRecord.setTitulo(resulBusqueda.get(0).getTitulo());
+    	
+    	return datosResultadoRecord;
+    }
+    */
+
+
     /**
      * Obtiene el listado de los sets que existen en el repositorio. El repositorio puede aceptarlos o no. (En nuestro caso no se aceptan)
      * @return ResultadoOaiRequestVo: vo de retorno que es este caso contendra relleno el vo de listSets
@@ -548,9 +921,7 @@ public class SrvOaiPmhServiceImpl
      */
     protected es.pode.oaipmh.negocio.servicios.ResultadoOAIRequest handleListSets()
         throws java.lang.Exception
-    {
-//    	logger.debug("LISTSETS");   	
-    	
+    {    	
     	/**
     	 * -------------------------------------------------------------------------
     	 * --------------------DECLARACION DE VARIABLES-----------------------------
@@ -563,23 +934,31 @@ public class SrvOaiPmhServiceImpl
     	 * --------------- COMPROBAMOS SI EL REPOSITORIO ADMITE SET ----------------
     	 * -------------------------------------------------------------------------
     	 * */  
+
     	try
     	{
-	    	if(!OAIPMHProperties.repositorioAdmiteSets())
-	    	{
+	    	if(!OAIPMHProperties.repositorioAdmiteSets()) {
 	    		logger.debug("Sets no estan admitidos en el repositorio");		
 	    		resultadoOAIRequest = devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_SET_HIERARCHY, OAIPMHProperties.ERR_NO_SET_HIERARCHY_DES, 
-	    				                           null, null, OAIPMHProperties.VERB_LIST_SETS);						
+	    				                           null, null, OAIPMHProperties.VERB_LIST_SETS);	
+		    	return resultadoOAIRequest;
 	    	}
-	    	else
-	    	{
-	    		logger.debug("Sets estan admitidos en el repositorio");
-	    	}	
 	    	
+	    	List<String> listaSets = listarSets();
+	    	
+    		logger.debug("Sets estan admitidos en el repositorio");
+    		List<SetVO> setList = new ArrayList<SetVO>();
+    		
+    		for(int i=0; i<listaSets.size(); i++) {
+        		SetVO list = new SetVO();
+        		list.setIdentificador(listaSets.get(i));
+        		setList.add(list);
+    		}
+    		
+    		resultadoOAIRequest = devuelveResultadoOaiRequest(null, null, setList.toArray(new SetVO[setList.size()]), null, OAIPMHProperties.VERB_LIST_SETS);	    	
 	    	return resultadoOAIRequest;
 	    	
-    	}catch (Exception e)
-    	{    		
+    	} catch (Exception e) {    		
 			logger.error("Error recuperando si el repositorio admite set o no - ",e);	
 //			Se rellena el resultadoOaiRequestVO
 			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ERROR_GENERICO, OAIPMHProperties.ERR_ERROR_GENERICO_DES, 
@@ -636,47 +1015,53 @@ public class SrvOaiPmhServiceImpl
 			if (!OAIPMHProperties.esFormatoMetadatoAdmitido(parametrosLlamada.getPrefijoMetadato()))
 			{
 				if (logger.isDebugEnabled()) logger.debug("El metadataPrefix ["+parametrosLlamada.getPrefijoMetadato()+"] no esta admitido en repositorio");
-//				Se rellena el resultadoOaiRequestVO
+				//Se rellena el resultadoOaiRequestVO
 				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_CAN_NOT_DISEMINATE_FORMAT, OAIPMHProperties.ERR_CAN_NOT_DISEMINATE_FORMAT_DES, 
 						                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);				
 			}   
 		}
 		
-		 /**
-    	 * -------------------------------------------------------------------------
-    	 * --------------- COMPROBAMOS SI EL REPOSITORIO ADMITE SET ----------------
-    	 * -------------------------- PARAMETRO OPCIONAL ---------------------------
-    	 * -------------------------------------------------------------------------
-    	 * */
+		/**
+		* -------------------------------------------------------------------------
+		* --------------- COMPROBAMOS SI EL REPOSITORIO ADMITE SET ----------------
+		* -------------------------- PARAMETRO OPCIONAL ---------------------------
+		* -------------------------------------------------------------------------
+		* */
 		
 		// Verificamos si el SET que nos pasan es el que se ha definido con Agrega Semántico para obtener los metadatos federados 
 		// Si es así lo marcamos para modificar las búsquedas posteriores
-    	boolean bConsultarRepositorioMetadatosFederados=false;
-    	
-	    if(parametrosLlamada.getIdentificadorConjunto()!=null && !parametrosLlamada.getIdentificadorConjunto().equals(""))				
+    	boolean bConsultarRepositorioMetadatosFederados=false;    	
+		boolean filtrarMetadatosFederados = false;
+		
+		String set = parametrosLlamada.getIdentificadorConjunto();
+		
+	    if(set!=null && !set.isEmpty())				
 		{
-	    	if(!OAIPMHProperties.esSetMetadatosFederados(parametrosLlamada.getIdentificadorConjunto()))
-	    	{
-	    		logger.debug("Sets no estan admitidos en el repositorio");
-//		    		Se rellena el resultadoOaiRequestVO
+			if(!OAIPMHProperties.repositorioAdmiteSets()) {
+	    		logger.debug("Sets no estan admitidos en el repositorio");	
 	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_SET_HIERARCHY, OAIPMHProperties.ERR_NO_SET_HIERARCHY_DES, 
+	    									null, null, OAIPMHProperties.VERB_LIST_RECORDS);				
+			}
+			
+	    	if(!esSetValido(parametrosLlamada.getIdentificadorConjunto())) {
+	    		logger.debug("Se ha recibido un set no valido");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_SET_DES, 
 	    				                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);					
 	    	}
-	    	else
-	    	{
-	    		// Se trata de una consulta a metadatos federeados. Debe filtrarse por fechas y un máximo de un mes
-	    		boolean bFechasValidas=validacionFechasMetadatosFederados(parametrosLlamada.getFechaDesde(), parametrosLlamada.getFechaHasta());
-	    		
-	    		if (!bFechasValidas)
-	    		{
-	    			logger.error("Las fechas proporcionadas no son correctas");
-		    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_ARGUMENT_DES, 
-	                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);
-	    		}
-	    			
+
+	    	/*
+	    	if (esSetMetadatosFederados(set) && 
+	    			!validacionFechasMetadatosFederados(parametrosLlamada.getFechaDesde(), parametrosLlamada.getFechaHasta()))
+    		{
+    			logger.error("Las fechas proporcionadas no son correctas");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_ARGUMENT_DES, 
+                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);
+    		}
+    		*/
+    		filtrarMetadatosFederados = true;
+	    	
+	    	if(esSetMetadatosFederados(set))
 	    		bConsultarRepositorioMetadatosFederados=true;
-	    		
-	    	}
 		}
     	
 		/**
@@ -697,7 +1082,7 @@ public class SrvOaiPmhServiceImpl
 	    	if(idResumptionToken != null && !"".equals(idResumptionToken))
 	    	{    
 	    		//logger.debug("Se hace una llamada con codigo de paginacion");
-	//    	    		 Vamos a comprobar a la cache si esta el identificador 
+	    		//Vamos a comprobar a la cache si esta el identificador 
 	    		elemento = resumptionToken.devuelveElementoResumptionToken(idResumptionToken);
 
 	    		if(elemento == null) {
@@ -716,19 +1101,54 @@ public class SrvOaiPmhServiceImpl
                 logger.debug((new StringBuilder()).append("vueltaCacheToken.getDesde() ").append(vueltaCacheToken.getDesde()).toString());
                 logger.debug((new StringBuilder()).append("vueltaCacheToken.getHasta() ").append(vueltaCacheToken.getHasta()).toString());
                 
-                
                 // Si es consulta contra repositorio metadatos federados se obtiene de manera diferente
-	    	    if (bConsultarRepositorioMetadatosFederados)
-	    	    {
+                /*
+	    	    if (bConsultarRepositorioMetadatosFederados) {
 	    	    	Calendar cIni = Calendar.getInstance();
 	    	    	Calendar cFin = Calendar.getInstance();
 	    	    	
 	    	    	cIni.setTimeInMillis(parametrosLlamada.getFechaDesde().getTimeInMillis());
 	    	    	cFin.setTimeInMillis(parametrosLlamada.getFechaHasta().getTimeInMillis());
 	    	    	resultadoRecord = obtenerMetadatosFederados(cIni,cFin,vueltaCacheToken.getDesde(),false);
-	    	    }
-	    	    else
+	    	    	
+	    	    } else*/ 
+	    	    if (filtrarMetadatosFederados) {
+	    	    	
+	    	    	//TODO
+            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+        	    			parametrosLlamada.getFechaDesde(), 
+        	    			parametrosLlamada.getFechaHasta(), 
+        	    			parametrosLlamada.getIdentificadorConjunto(), 
+        	    			null,
+        	    			vueltaCacheToken.getDesde());
+        			
+            		if(listaIdsOdes==null || listaIdsOdes.isEmpty()) {
+        				logger.debug("No se ha podido encontrar ningun record");
+        				//Se rellena el resultadoOaiRequestVO
+        				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
+        						                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);	
+        			}
+            		
+            		resultadoRecord = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[listaIdsOdes.size()];
+            		
+            		for(int i=0; i<listaIdsOdes.size(); i++) {
+            			es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO tmp = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO();
+            			tmp.setTitulo(listaIdsOdes.get(i).getRuta());
+            			tmp.setDescripcion(listaIdsOdes.get(i).getEstado());
+            			tmp.setIdentificador(listaIdsOdes.get(i).getIdODE());
+            			
+            			if(listaIdsOdes.get(i).getEstado().contentEquals("PUBLICADO"))
+            				tmp.setFecha(listaIdsOdes.get(i).getFechaPublicacion());
+            			else 
+            				tmp.setFecha(listaIdsOdes.get(i).getFechaDespublicacion());
+            			
+            			resultadoRecord[i] = tmp;
+            		}
+	    	    	
+	    	    } else {
 	    	    	resultadoRecord = this.getSrvBuscadorService().busquedaRepositorio(paramBusq);
+	    	    }
+	    	    
                 elementoIndice = resumptionToken.devuelveElementoResumptionToken("numElementosIndice");
                 if(vueltaCacheToken.getSiguienteResumptionToken() != null)
                 {
@@ -764,19 +1184,31 @@ public class SrvOaiPmhServiceImpl
 	    	}else
 	    	{
 	    		logger.debug("Es la primera vez que se ejecuta esa query");
-	    	    Integer numElementosIndice;
+	    	    Integer numElementosIndice = null;
 	    	   
 	    	    // Si es consulta contra repositorio metadatos federados se obtiene de manera diferente
-	    	    if (bConsultarRepositorioMetadatosFederados)
+	    	    /*if (bConsultarRepositorioMetadatosFederados) {
 	    	    	numElementosIndice =  obtenerMetadatosFederados(parametrosLlamada.getFechaDesde(), parametrosLlamada.getFechaHasta(),0,true).length;
-	    	    else
+	    	    } else*/ 
+	    	    if (filtrarMetadatosFederados) { 
+    	    	
+	    	    	//TODO
+	    	    	numElementosIndice = obtenerNumTotalMetadatosFederados(
+	    	    			parametrosLlamada.getFechaDesde(), 
+	    	    			parametrosLlamada.getFechaHasta(), 
+	    	    			set, 
+	    	    			null);
+    	    	
+	    	    } else {
 	    	    	numElementosIndice = getSrvBuscadorService().obtenerTotalesRepositorioFechas(paramBusq).getDocumentosCount();
+	    	    }
+	    	    
 	    	    logger.debug("numElementosIndice <"+numElementosIndice+">");
 	    	    
 	    	    if(numElementosIndice == null || numElementosIndice.intValue() == 0)
 	    	    {
 	    	    	logger.debug("No se ha podido encontrar ningun record con fechaDesde ["+paramBusq.getDesde()+"] y fechaHasta ["+paramBusq.getHasta()+"]");
-	//						Se rellena el resultadoOaiRequestVO
+	    	    	//Se rellena el resultadoOaiRequestVO
 					return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
 							                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);  
 	    	    }
@@ -793,10 +1225,46 @@ public class SrvOaiPmhServiceImpl
 					logger.debug("Se llama al indexador para obtener toda la informaci\363n del indice");
 					
 		    	    // Si es consulta contra repositorio metadatos federados se obtiene de manera diferente
-		    	    if (bConsultarRepositorioMetadatosFederados)
+		    	    /*if (bConsultarRepositorioMetadatosFederados) {
 		    	    	resultadoRecord = obtenerMetadatosFederados(parametrosLlamada.getFechaDesde(), parametrosLlamada.getFechaHasta(),0,false);
-		    	    else
+		    	    } else*/ 
+		    	    if (filtrarMetadatosFederados) {
+		    	    	
+		    	    	//TODO
+	            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+	        	    			parametrosLlamada.getFechaDesde(), 
+	        	    			parametrosLlamada.getFechaHasta(), 
+	        	    			parametrosLlamada.getIdentificadorConjunto(), 
+	        	    			null,
+	        	    			paramBusq.getRegistroInicial());
+	        			
+	            		if(listaIdsOdes==null || listaIdsOdes.isEmpty()) {
+	        				logger.debug("No se ha podido encontrar ningun record");
+	        				//Se rellena el resultadoOaiRequestVO
+	        				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
+	        						                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);	
+	        			}
+	            		
+	            		resultadoRecord = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[listaIdsOdes.size()];
+	            		
+	            		for(int i=0; i<listaIdsOdes.size(); i++) {
+	            			es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO tmp = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO();
+	            			tmp.setTitulo(listaIdsOdes.get(i).getRuta());
+	            			tmp.setDescripcion(listaIdsOdes.get(i).getEstado());
+	            			tmp.setIdentificador(listaIdsOdes.get(i).getIdODE());
+	            			
+	            			if(listaIdsOdes.get(i).getEstado().contentEquals("PUBLICADO"))
+	            				tmp.setFecha(listaIdsOdes.get(i).getFechaPublicacion());
+	            			else 
+	            				tmp.setFecha(listaIdsOdes.get(i).getFechaDespublicacion());
+	            			
+	            			resultadoRecord[i] = tmp;
+	            		}
+	            		
+		    	    } else {
 		    	    	resultadoRecord = getSrvBuscadorService().busquedaRepositorio(paramBusq);
+		    	    }
+		    	    
 				} else
 				{
 					logger.debug("Hay paginacion");
@@ -812,10 +1280,45 @@ public class SrvOaiPmhServiceImpl
 					paramBusq.setRegistroInicial(new Integer(numInicio));
 					
 					// Si es consulta contra repositorio metadatos federados se obtiene de manera diferente
-		    	    if (bConsultarRepositorioMetadatosFederados)
+		    	    /*if (bConsultarRepositorioMetadatosFederados) {
 		    	    	resultadoRecord = obtenerMetadatosFederados(parametrosLlamada.getFechaDesde(), parametrosLlamada.getFechaHasta(), 0,false);
-		    	    else
+		    	    } else*/
+		    	    if (filtrarMetadatosFederados) { 	
+		    	    
+		    	    	//TODO
+	            		List<Source> listaIdsOdes = filtrarMetadatosFederados(
+	        	    			parametrosLlamada.getFechaDesde(), 
+	        	    			parametrosLlamada.getFechaHasta(), 
+	        	    			parametrosLlamada.getIdentificadorConjunto(), 
+	        	    			null,
+	        	    			paramBusq.getRegistroInicial());
+	        			
+	            		if(listaIdsOdes==null || listaIdsOdes.isEmpty()) {
+	        				logger.debug("No se ha podido encontrar ningun record");
+	        				//Se rellena el resultadoOaiRequestVO
+	        				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
+	        						                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);	
+	        			}
+	            		
+	            		resultadoRecord = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[listaIdsOdes.size()];
+	            		
+	            		for(int i=0; i<listaIdsOdes.size(); i++) {
+	            			es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO tmp = new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO();
+	            			tmp.setTitulo(listaIdsOdes.get(i).getRuta());
+	            			tmp.setDescripcion(listaIdsOdes.get(i).getEstado());
+	            			tmp.setIdentificador(listaIdsOdes.get(i).getIdODE());
+	            			
+	            			if(listaIdsOdes.get(i).getEstado().contentEquals("PUBLICADO"))
+	            				tmp.setFecha(listaIdsOdes.get(i).getFechaPublicacion());
+	            			else 
+	            				tmp.setFecha(listaIdsOdes.get(i).getFechaDespublicacion());
+	            			
+	            			resultadoRecord[i] = tmp;
+	            		}
+	            		
+		    	    } else { 
 		    	    	resultadoRecord = getSrvBuscadorService().busquedaRepositorio(paramBusq);
+		    	    }
 					
 					if (logger.isDebugEnabled()) {
 						logger.debug((new StringBuilder())
@@ -843,7 +1346,6 @@ public class SrvOaiPmhServiceImpl
 				if(resultadoRecord == null || resultadoRecord.length == 0)
 				{
 					logger.debug("No se ha podido encontrar ningun record con fechaDesde ["+paramBusq.getDesde()+"] y fechaHasta ["+paramBusq.getHasta()+"]");
-//							Se rellena el resultadoOaiRequestVO
 					return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
 							                           null, null, OAIPMHProperties.VERB_LIST_RECORDS);    						
 				}
@@ -854,7 +1356,6 @@ public class SrvOaiPmhServiceImpl
         {
 	    	//pintarTrazasListRecords(resultadoRecord);    					
 			logger.error("Error recuperando el vo del doc ["+resultadoRecord+"] del servicio de indexacion con tamanho ["+resultadoRecord.length+"] - ",e);
-//    					Se rellena el resultadoOaiRequestVO
 			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ERROR_GENERICO, OAIPMHProperties.ERR_ERROR_GENERICO_DES, 
 					                           null, null, OAIPMHProperties.VERB_LIST_RECORDS); 
         }	
@@ -862,22 +1363,37 @@ public class SrvOaiPmhServiceImpl
 	    pintarTrazasListRecords(resultadoRecord);
 		
 	    // Si es consulta contra repositorio metadatos federados se obtiene de manera diferente
-	    if (bConsultarRepositorioMetadatosFederados){
+	    if (bConsultarRepositorioMetadatosFederados || filtrarMetadatosFederados){
 	    	Object[] o = new Object[resultadoRecord.length]; 
 	    	
 	    	for(int i=0; i<resultadoRecord.length; i++) {
-	    	
-	    		Lom lom = null;
-	    	
-	    		LomESDao lomDao = new LomESDao();
-
-	    		lom = lomDao.parsearLom(new File(resultadoRecord[i].getTitulo()));
 	    		
+	    		String rutaXml = resultadoRecord[i].getTitulo();
+	    		String estado = resultadoRecord[i].getDescripcion();
+	    		String idOde = resultadoRecord[i].getIdentificador();	    		
+				
+				logger.info("La ruta del xml del ODE "+idOde+" es "+rutaXml);
+				    	
+				File manifest = new File(rutaXml);
+				if(!manifest.exists()) 
+					logger.error("El fichero "+manifest.getAbsolutePath()+" no existe");
+	    		
+	    		LomESDao lomDao = new LomESDao();
+	    		Lom lom = lomDao.parsearLom(manifest);
 	    		o[i] = lom;
+				
+				if(estado.contentEquals("DESPUBLICADO")) {			
+					//Poner el status del lifecycle del lomAgrega al estado correcto
+					LomAgrega lomAgrega = new LomAgrega(lom);
+					lomAgrega.getLifeCycleAgrega().setEstatusAv("DESPUBLICADO");
+					lomAgrega.getGeneralAgrega().setNivelDeAgregacion(resultadoRecord[i].getFecha());
+					lom = lomAgrega.getLom();
+				}		
 	    	}
 	    	return devuelveResultadoOaiRequest(null, null, o, token, OAIPMHProperties.VERB_LIST_RECORDS);	
 	    	
     	}
+	    
 		if(parametrosLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
 				parametrosLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) {
 			
@@ -908,8 +1424,7 @@ public class SrvOaiPmhServiceImpl
     	 * */
 		listRecords = mapeoListRecordVO(resultadoRecord);	
 		if (logger.isDebugEnabled()) logger.debug("listRecords ["+listRecords+"] con tamanho ["+listRecords.length+"]");
-    		
-//        			Se rellena el resultadoOaiRequestVO
+    	
 		return devuelveResultadoOaiRequest(null, null, 
               listRecords, token, OAIPMHProperties.VERB_LIST_RECORDS);
     }
@@ -985,8 +1500,6 @@ public class SrvOaiPmhServiceImpl
 		return lom;
     }
     
-    
-    
     			
     /**
      * Obtiene información de un registro del repositorio  
@@ -994,12 +1507,10 @@ public class SrvOaiPmhServiceImpl
      * @return ResultadoOaiRequestVo: vo de retorno que es este caso contendra relleno el vo de getRecord
      * @throws Exception
      * 
-     */    
+     */
     protected es.pode.oaipmh.negocio.servicios.ResultadoOAIRequest handleGetRecord(es.pode.oaipmh.negocio.servicios.ParametrosOaiPmhVO parametroLlamada)
         throws java.lang.Exception
-    {
-    	//logger.debug("GETRECORD");
-    	        
+    {    	        
         /**
     	 * -------------------------------------------------------------------------
     	 * ------ COMPROBAMOS SI EL REPOSITORIO ADMITE ESE METADATAPREFIX ----------
@@ -1009,102 +1520,203 @@ public class SrvOaiPmhServiceImpl
 		if (!OAIPMHProperties.esFormatoMetadatoAdmitido(parametroLlamada.getPrefijoMetadato()))
 		{
 			if (logger.isDebugEnabled()) logger.debug("El metadataPrefix ["+parametroLlamada.getPrefijoMetadato()+"] no esta admitido en repositorio");
-//			Se rellena el resultadoOaiRequestVO
+			//Se rellena el resultadoOaiRequestVO
 			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_CAN_NOT_DISEMINATE_FORMAT, OAIPMHProperties.ERR_CAN_NOT_DISEMINATE_FORMAT_DES, 
 					                           null, null, OAIPMHProperties.VERB_GET_RECORD);			
 		}   
-        
 		
-		 /**
-    	 * -------------------------------------------------------------------------
-    	 * ------ COMPROBAMOS SI EL REPOSITORIO ADMITE ESE IDENTIFICADOR -----------
-    	 * ----------------------- PARAMETRO REQUERIDO -----------------------------
-    	 * -------------------------------------------------------------------------
-    	 * */ 
+		/**
+		* -------------------------------------------------------------------------
+		* --------------- COMPROBAMOS SI EL REPOSITORIO ADMITE SET ----------------
+		* -------------------------- PARAMETRO OPCIONAL ---------------------------
+		* -------------------------------------------------------------------------
+		* */		
+		String set = parametroLlamada.getIdentificadorConjunto();
+		boolean filtrarMetadatosFederados = false;
+		
+		if(set!=null && !set.isEmpty())				
+		{			
+			if(!OAIPMHProperties.repositorioAdmiteSets()) {
+	    		logger.debug("Sets no estan admitidos en el repositorio");	
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_SET_HIERARCHY, OAIPMHProperties.ERR_NO_SET_HIERARCHY_DES, 
+	    									null, null, OAIPMHProperties.VERB_GET_RECORD);				
+			}
+			
+	    	if(!esSetValido(set)) {
+	    		logger.debug("Se ha recibido un set no valido");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_SET_DES, 
+	    				                           null, null, OAIPMHProperties.VERB_GET_RECORD);					
+	    	}
+	    	
+    		// Se trata de una consulta a metadatos federeados. Debe filtrarse por fechas y un máximo de un mes
+    		/*
+	    	if (esSetMetadatosFederados(set) && 
+    				!validacionFechasMetadatosFederados(parametroLlamada.getFechaDesde(), parametroLlamada.getFechaHasta()))
+    		{
+    			logger.error("Las fechas proporcionadas no son correctas");
+	    		return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_BAD_ARGUMENT, OAIPMHProperties.ERR_BAD_ARGUMENT_DES, 
+                           null, null, OAIPMHProperties.VERB_GET_RECORD);
+    		}
+	    	*/
+    		filtrarMetadatosFederados = true;
+    	}    	
+        		
+		/**
+		* -------------------------------------------------------------------------
+		* ------ COMPROBAMOS SI EL REPOSITORIO ADMITE ESE IDENTIFICADOR -----------
+		* ----------------------- PARAMETRO REQUERIDO -----------------------------
+		* -------------------------------------------------------------------------
+		* */ 
 		String idMEC = "";
 		
 		if (!validateIdentifier(parametroLlamada.getIdentificador()))
 		{
 			if (logger.isDebugEnabled()) logger.debug("El identificador ["+parametroLlamada.getIdentificador()+"] no esta admitido en repositorio");
-//			Se rellena el resultadoOaiRequestVO
+			//Se rellena el resultadoOaiRequestVO
 			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ID_DOES_NOT_EXIST, OAIPMHProperties.ERR_ID_DOES_NOT_EXIST_DES, 
 					                           null, null, OAIPMHProperties.VERB_GET_RECORD);			
 		}   
 
 		idMEC = devuelveidMec(parametroLlamada.getIdentificador());
-
-		
+				
 		/**
     	 * -------------------------------------------------------------------------
     	 * --------SE LLAMA AL INDEXADOR PARA OBTENER EL VO DE LOS RECORDS----------
     	 * -------------------------------------------------------------------------
-    	 * */
-		
+    	 * */		
 		es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO recordVO = null;		 
-			
-		logger.debug("Antes de llamar al indexador");
-		try
-		{
-			logger.debug("Se llama al servicio de indexacion para obtener el vo del record con identificador ["+parametroLlamada.getIdentificador()+"]");
-			recordVO = this.getSrvBuscadorService().busquedaMECRepositorio(idMEC);
-			
-//			Se comprueba que la vuelta del indexador es correcta
-			if(recordVO == null)
-			{
-				logger.debug("No se ha podido encontrar ningun record");
-//				Se rellena el resultadoOaiRequestVO
-				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
-						                           null, null, OAIPMHProperties.VERB_GET_RECORD);				
-			}
-		}
-		catch (Exception e)
-		{
-//    			Pintamos los valores del record        		
-			pintarTrazasGetRecord(recordVO);			
-			logger.error("Error recuperando el vo del servicio de indexacion",e);
-//			Se rellena el resultadoOaiRequestVO
-			return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ERROR_GENERICO, OAIPMHProperties.ERR_ERROR_GENERICO_DES, 
-					                           null, null, OAIPMHProperties.VERB_GET_RECORD);			
-		}
-		    	
-//		Pintamos los valores del recordVO
-		pintarTrazasGetRecord(recordVO);
-		
-		/**
-    	 * -----------------------------------------------------------------------------------
-    	 * ---------- REALIZAMOS EL MAPEO DE RECORDVO (INDEXADOR) A RECORDVO (OAI)------------
-    	 * -----------------------------------------------------------------------------------
-    	 * */	
-		es.pode.oaipmh.negocio.servicios.ResultadoRecordVO recordVOOai = null;
-		
-		if(parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
-				parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) {
-			
-			SrvLocalizadorService localizadorService = this.getSrvLocalizadorService();
-			String pathODE = localizadorService.consultaLocalizador(idMEC).getPath();
-			Manifest manifest = this.parsearManifiesto(pathODE + File.separator + "imsmanifest.xml");						
-			ManifestAgrega manAgrega = new ManifestAgrega(manifest);
-			String identifiadorManifest = manAgrega.getManifest().getIdentifier();
-			Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);		
+				
+		if (filtrarMetadatosFederados) {
 
-			if(parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) 
+			List<Source> listaIdsOdes = filtrarMetadatosFederados(
+					null, 
+					null, 
+					set, 
+					idMEC,
+					0);
+			
+			if(listaIdsOdes==null || listaIdsOdes.isEmpty()) {
+				logger.debug("No se ha podido encontrar ningun record");
+				//Se rellena el resultadoOaiRequestVO
+				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
+						                           null, null, OAIPMHProperties.VERB_GET_RECORD);	
+			}
+			
+			//Cogemos el primer ODE de la lista ya que sera el ultimo estado del ODE buscado
+			String rutaXml = listaIdsOdes.get(0).getRuta();
+			
+			boolean estaDespublicado = false;
+			
+			//Comprobamos si es un ODE borrado 
+			if(listaIdsOdes.get(0).getEstado().contentEquals("DESPUBLICADO")) {
+				
+				estaDespublicado = true;
+				
+				//Buscamos en los resultados el registro de publicacion para coger la ruta del lomes
+				for(int i=0; i<listaIdsOdes.size(); i++) 
+					if(listaIdsOdes.get(i).getEstado().contentEquals("PUBLICADO"))					
+						rutaXml = listaIdsOdes.get(i).getRuta();
+			}
+			logger.info("Esta despublicado? "+estaDespublicado);
+			
+			if(rutaXml==null || rutaXml.isEmpty()) 
+				logger.error("No se ha podido obtener la ruta del ode "+idMEC);
+				
+			logger.info("La ruta del xml del ODE es "+rutaXml);
+			    	
+			File manifest = new File(rutaXml);
+			if(!manifest.exists()) 
+				logger.error("El fichero "+manifest.getAbsolutePath()+" no existe");
+			
+			LomESDao lomDao = new LomESDao();
+    		Lom lom = lomDao.parsearLom(manifest);
+			
+			if(estaDespublicado) {			
+				//Poner el status del lifecycle del lomAgrega al estado correcto
+				LomAgrega lomAgrega = new LomAgrega(lom);
+				lomAgrega.getLifeCycleAgrega().setEstatusAv("DESPUBLICADO");
+				lomAgrega.getGeneralAgrega().setNivelDeAgregacion(listaIdsOdes.get(0).getFechaDespublicacion());
+				lom = lomAgrega.getLom();
+			}			
+
+			if(parametroLlamada.getPrefijoMetadato()!=null && 
+					parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) 
 				lom = lomes2LomIEEE(lom);
 						
 			return devuelveResultadoOaiRequest(null, null, lom, null, OAIPMHProperties.VERB_GET_RECORD);
-		}
+			
+		} else {
 		
-		recordVOOai  = mapeoRecordVO(recordVO);	
-		return devuelveResultadoOaiRequest(null, null, recordVOOai, null, OAIPMHProperties.VERB_GET_RECORD);
+			logger.debug("Antes de llamar al indexador");
+			try
+			{
+				logger.debug("Se llama al servicio de indexacion para obtener el vo del record con identificador ["+parametroLlamada.getIdentificador()+"]");
+				recordVO = this.getSrvBuscadorService().busquedaMECRepositorio(idMEC);
+			}
+			catch (Exception e)
+			{
+				//Pintamos los valores del record        		
+				pintarTrazasGetRecord(recordVO);			
+				logger.error("Error recuperando el vo del servicio de indexacion",e);
+				//Se rellena el resultadoOaiRequestVO
+				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_ERROR_GENERICO, OAIPMHProperties.ERR_ERROR_GENERICO_DES, 
+						                           null, null, OAIPMHProperties.VERB_GET_RECORD);			
+			}
+			
+			//Se comprueba que la vuelta del indexador es correcta
+			if(recordVO == null)
+			{
+				logger.debug("No se ha podido encontrar ningun record");
+				//Se rellena el resultadoOaiRequestVO
+				return devuelveResultadoOaiRequest(OAIPMHProperties.ERR_NO_RECORDS_MATCH, OAIPMHProperties.ERR_NO_RECORDS_MATCH_DES, 
+						                           null, null, OAIPMHProperties.VERB_GET_RECORD);				
+			}
+		    	
+			//Pintamos los valores del recordVO
+			pintarTrazasGetRecord(recordVO);
+			
+			/**
+	    	 * -----------------------------------------------------------------------------------
+	    	 * ---------- REALIZAMOS EL MAPEO DE RECORDVO (INDEXADOR) A RECORDVO (OAI)------------
+	    	 * -----------------------------------------------------------------------------------
+	    	 * */	
+			es.pode.oaipmh.negocio.servicios.ResultadoRecordVO recordVOOai = null;
+			
+			if(parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOMES) ||
+					parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) {
+				
+				SrvLocalizadorService localizadorService = this.getSrvLocalizadorService();
+				String pathODE = localizadorService.consultaLocalizador(idMEC).getPath();
+				Manifest manifest = this.parsearManifiesto(pathODE + File.separator + "imsmanifest.xml");						
+				ManifestAgrega manAgrega = new ManifestAgrega(manifest);
+				String identifiadorManifest = manAgrega.getManifest().getIdentifier();
+				Lom lom = manAgrega.obtenerLom(identifiadorManifest, null);		
+	
+				if(parametroLlamada.getPrefijoMetadato().equalsIgnoreCase(OAIPMHProperties.VALUE_METADATO_LOM_IEEE)) 
+					lom = lomes2LomIEEE(lom);
+							
+				return devuelveResultadoOaiRequest(null, null, lom, null, OAIPMHProperties.VERB_GET_RECORD);
+			}
+			
+			recordVOOai  = mapeoRecordVO(recordVO);	
+			return devuelveResultadoOaiRequest(null, null, recordVOOai, null, OAIPMHProperties.VERB_GET_RECORD);
+		}
     }
     
     
 	private Manifest parsearManifiesto(String localizador) throws Exception {
-		Manifest manifest = null;
-		try {			
-			//manifest = this.getScormDao().parsearODELazy(new File(localizador));
-			SCORM2004Dao s = new SCORM2004Dao();
-			manifest = s.parsearODELazy(new File(localizador));
-		} catch (Exception e) {
+		Manifest manifest = null;	
+		//manifest = this.getScormDao().parsearODELazy(new File(localizador));
+		SCORM2004Dao s = new SCORM2004Dao();
+		File f = new File(localizador);
+		if(!f.exists()) {
+			logger.error("El fichero "+localizador+" NO existe");
+			return null;
+		}
+		logger.error("El fichero "+localizador+" SI existe");
+		try {
+			manifest = s.parsearODELazy(f);
+		} catch (ParseadorException e) {
 			logger.error("No se puede parsear el fichero; localizador: "+localizador);
 			throw e;
 		}
@@ -1539,7 +2151,6 @@ public class SrvOaiPmhServiceImpl
 	 * @throws Exception
 	 * */
 	protected Boolean handleEstasActivo() throws Exception {
-		// TODO Auto-generated method stub
 		return new Boolean(true);
 	} 
 	
@@ -1610,12 +2221,10 @@ public class SrvOaiPmhServiceImpl
 	 * @throws Exception
 	 * */
 	private es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[] obtenerMetadatosFederados(Calendar fechaDesde, Calendar fechaHasta, int numInicio, boolean bModoTotalesRepositorio) throws Exception {
-						
-		String rutaLocal = "uploads"+File.separator+"metadatosLomesOdesFederados";
-		
+								
 		if (logger.isDebugEnabled())
 		{
-			logger.debug("Va a obtener metadatos del repositorio :" + rutaLocal);
+			logger.debug("Va a obtener metadatos del repositorio :" + RUTA_METADATOS_ODES_FEDERADOS);
 			logger.debug("Modo totales repositorio :" + bModoTotalesRepositorio);
 			logger.debug("Fecha Desde :" + fechaDesde.getTime());
 			logger.debug("Fecha Hasta :" + fechaHasta.getTime());
@@ -1625,7 +2234,7 @@ public class SrvOaiPmhServiceImpl
 		
 		List<es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO> listaMetadatos = new ArrayList<es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO>(); 
 		
-		File dirInicial = new File(rutaLocal);
+		File dirInicial = new File(RUTA_METADATOS_ODES_FEDERADOS);
 		
 		// Sumamos un dia a las fechas porque el proceso de recopilación en el repositorio los crea con un día más.
    
@@ -1643,7 +2252,6 @@ public class SrvOaiPmhServiceImpl
 //  	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 //		String fecInicio = sdf.format(fechaDesde.getTime());			
 //		String fecFin = sdf.format(fechaHasta.getTime());
-
                 
 		int nNumOrdenFichero = 1;
 		for (int i = 0; i < dirInicial.listFiles().length; i++) {
@@ -1661,12 +2269,8 @@ public class SrvOaiPmhServiceImpl
 					logger.debug("Ya se ha llenado la página de resultados");
 				break;				
 			}	
-		
 		}
-		
-		
-		return listaMetadatos.toArray(new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[listaMetadatos.size()] );
-		
+		return listaMetadatos.toArray(new es.pode.indexador.negocio.servicios.busqueda.ResultadoRecordVO[listaMetadatos.size()] );		
 	}
 	
 
@@ -1719,6 +2323,7 @@ public class SrvOaiPmhServiceImpl
 		return nNumOrdenFichero;
 	}
     	
+	
 	/**
 	 * Metodo que realiza la validación de la fechaDesde y fechaHasta para el set de metadatos federados. 
 	 * Las fechas deben ir rellenas y no deben diferir más de 30 días
@@ -1728,13 +2333,9 @@ public class SrvOaiPmhServiceImpl
     {    	
     	boolean bCorrecto=true;
     	
-    	if(fechaDesde == null || (fechaHasta==null) || fechaHasta.before(fechaDesde)
-    			) 
-    	{    	
-    		
+    	if(fechaDesde == null || (fechaHasta==null) || fechaHasta.before(fechaDesde)) { 
     		bCorrecto=false;
-    	}else
-    	{
+    	} else {
     		Calendar cHastaMesMenos = Calendar.getInstance();    
     		cHastaMesMenos.setTime(fechaHasta.getTime());
     		cHastaMesMenos.add(Calendar.DAY_OF_YEAR, -30);
@@ -1742,9 +2343,7 @@ public class SrvOaiPmhServiceImpl
     		if (cHastaMesMenos.after(fechaDesde))
     			bCorrecto=false;
     	}
-    		
-    	
-    	return bCorrecto;		
-    	
+    	return bCorrecto;
     }    	
+    
 }

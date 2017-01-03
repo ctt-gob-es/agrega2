@@ -57,6 +57,7 @@
                 es.pode.validador.negocio.servicio.SrvValidadorService.estoyActivo=PROPAGATION_REQUIRED
                 es.pode.validador.negocio.servicio.SrvValidadorService.obtenerValidacionLomes=PROPAGATION_REQUIRED
                 es.pode.validador.negocio.servicio.SrvValidadorService.obtenerValidacion=PROPAGATION_REQUIRED
+                es.pode.validador.negocio.servicio.SrvValidadorService.validarCatalogacionExterna=PROPAGATION_REQUIRED
                 es.pode.validador.negocio.servicio.SrvValidadorVDEXService.obtenerValidacionTesauro=PROPAGATION_REQUIRED
                 es.pode.validador.negocio.servicio.SrvValidadorVDEXService.obtenerValidacionTaxonomia=PROPAGATION_REQUIRED
                 es.pode.validador.negocio.servicio.SrvValidadorVDEXService.obtenerValidacionVdex=PROPAGATION_REQUIRED

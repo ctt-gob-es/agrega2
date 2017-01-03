@@ -148,6 +148,7 @@ import es.pode.publicacion.negocio.soporte.TratamientoCuota;
 import es.pode.publicacion.negocio.soporte.TratamientoImagenes;
 import es.pode.publicacion.negocio.soporte.TratamientoODE;
 import es.pode.soporte.constantes.ConstantesAgrega;
+import es.pode.soporte.elastic.BuscadorMetadatosFederados;
 import es.pode.soporte.i18n.I18n;
 import es.pode.soporte.seguridad.ldap.LdapUserDetailsUtils;
 import es.pode.soporte.utiles.date.DateManager;
@@ -7515,6 +7516,8 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 		if(odes==null) return true;
 		if(idNodo==null || idNodo.equals(""))
 			throw (new Exception ("Error; el server id del nodo no puede ser vacio"));
+
+		String url= this.getSrvPropiedadService().getValorPropiedad("url_es");
 		
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -7527,10 +7530,14 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			List l = this.getOdesFederadosDespublicadosDao().obtenerOdeFederadoDespublicadoPorFecha(criterio);
 			
 			if(l==null || l.size()==0) {
-				if(!estado.equals(NO_DISPONIBLE) && !estado.equals(ELIMINADO)) 
+				if(!estado.equals(NO_DISPONIBLE) && !estado.equals(ELIMINADO)) {
 					logger.error("Error: Se ha intentado registrar en la tabla de ODEs federados despublicados un ode con estado "+estado+" -> idODE:"+odes[i].getIdODE()+", fecha despublicacion:"+fechaOde+", nodo:"+idNodo);			
-				else
+				} else {
 					this.getOdesFederadosDespublicadosDao().create(odes[i].getIdODE(), odes[i].getFecha(), idNodo);
+					logger.debug("Indexando en ES el ode : " + odes[i].getIdODE());
+					BuscadorMetadatosFederados.insertarIndiceMetadatosFederadosOdeDespublicado(url, odes[i].getIdODE(), idNodo, fechaOde, null);
+					logger.debug("Ha indexado en ES el ode : " + odes[i].getIdODE());
+				}
 			} else {
 				logger.warn("Se ha intentado registrar como despublicado federado en el nodo "+idNodo+" un ODE ("+odes[i].getIdODE()+") que ya teniamos registrado con fecha de despublicacion "+fechaOde);
 			}
@@ -8056,14 +8063,13 @@ public class SrvPublicacionServiceImpl extends es.pode.publicacion.negocio.servi
 			
 			if(listaPublicadoresDelOde==null || listaPublicadoresDelOde.isEmpty()) {
 				logger.error("No se encontro publicador para el ODE externo "+idODE);
-				return null;
 				
 			} else if(listaPublicadoresDelOde!=null && listaPublicadoresDelOde.size()>1) {
 				logger.error("Se encontro mas de un publicador para el ODE externo "+idODE);
-				return null;
+				
+			} else if(listaPublicadoresDelOde!=null && listaPublicadoresDelOde.size()==1) {
+				listaEditores.add(listaPublicadoresDelOde.get(0).getIdUsuarioEditor());
 			}
-			
-			listaEditores.add(listaPublicadoresDelOde.get(0).getIdUsuarioEditor());
 
 		} catch (Exception e) {
 			logger.error("Error al obtener el publicador del ODE externo "+idODE+": ", e);		
